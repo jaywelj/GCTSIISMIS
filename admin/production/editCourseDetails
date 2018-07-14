@@ -1,0 +1,33 @@
+<?php
+
+if(isset($_POST["courseCode"]))
+{	
+	$output = '';
+	$varcharCourseCode = $_POST["courseCode"];
+	include('connectionString.php');
+	$queryView = "SELECT * FROM tbl_course WHERE courseCode = '$varcharCourseCode'";
+	$queryViewArray=mysqli_query($connect,$queryView);
+	$output .= '
+			 		<table class="table" >
+						<tbody>';
+						while($row = mysqli_fetch_array($queryViewArray))
+						{
+							$output .= '
+							
+							<label>Course Code</label>
+							<input type="text" name="txtbxEditCourseCode" id="txtbxEditCourseCode"  value="'.$row["courseCode"].'" class="form-control" />
+							<br />
+							<label>Course Name</label>
+							<input type="text" name="txtbxEditCourseName" id="txtbxEditCourseName" value="'.$row["courseName"].'" class="form-control" />
+							<br />
+							';
+						}
+						$output .= '
+						</tbody>
+					</table>
+				';
+	echo $output;
+}
+else
+echo '<script> alert("emplty string");</script>';
+?>	

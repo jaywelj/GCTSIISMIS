@@ -1,0 +1,7 @@
+.disabledTab{
+    pointer-events: none;
+}
+#hiddenradiobutton {
+    display: none;
+    /*visibility: hidden;*/
+}
