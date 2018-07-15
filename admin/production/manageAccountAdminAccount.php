@@ -121,14 +121,14 @@ if(isset($_POST['btnUpdate']))
 		if (!empty($varcharAdminAccountImage)) 
 		{
 			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress' WHERE `adminEmail` = '$varcharAdminAccountEmail' ";
-				$message = "0";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+			$message = "0";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
 			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharAdminAccountEmail'";
-				$message = "1";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+			$message = "1";
+			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		if(!mysqli_query($connect, $queryEdit))
 		{
@@ -251,18 +251,24 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td>
-														<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
+													<td width="14%" >
+														<center>
+															<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
 
-														<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
 
-														<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+														</center>
 													</td>
 													<td> <?php echo $row['adminId'];?> </td>
 													<td> <?php echo $row['adminFirstName'];?> </td>
 													<td> <?php echo $row['adminMiddleName'];?> </td>
 													<td> <?php echo $row['adminLastName'];?> </td>
-													<td> <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';?> </td>
+													<td> 
+														<center>
+															<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';?> 
+														</center>
+													</td>
 												</tr>  
 												<?php
 											}

@@ -225,12 +225,13 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td>
+													<td width="9%" >
+														<center>
 
-														<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['collegeCode'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['collegeCode'];?>> <i class="fa fa-edit"></i></button>
 
-														<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
-
+															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+														</center>
 													</td>
 													<td> <?php echo $row['collegeCode'];?> </td>
 													<td> <?php echo $row['collegeName'];?> </td>
@@ -339,18 +340,18 @@ require 'header.php';
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 	<script>
-			$(document).on('click','.btn-edit',function(){
-				var collegeCode = $(this).attr("id");
-				$.ajax({
-					url:"editCollegeDetails.php",
-					method:"post",
-					data:{collegeCode:collegeCode},
-					success:function(data){
-						$('#editCollegeDetails').html(data);
-						$('#edit_data_Modal').modal('show');
-					}
-				});
+		$(document).on('click','.btn-edit',function(){
+			var collegeCode = $(this).attr("id");
+			$.ajax({
+				url:"editCollegeDetails.php",
+				method:"post",
+				data:{collegeCode:collegeCode},
+				success:function(data){
+					$('#editCollegeDetails').html(data);
+					$('#edit_data_Modal').modal('show');
+				}
 			});
+		});
 	</script>
 
 </body>

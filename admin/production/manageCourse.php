@@ -62,7 +62,7 @@ if(isset($_POST['btnAdd']))
 				echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
 				echo "<script type='text/javascript'>location.href = 'manageAccountCourse.php';</script>";
-							echo ("Error description: " . mysqli_error($connect));
+				echo ("Error description: " . mysqli_error($connect));
 
 			}
 		}
@@ -225,10 +225,12 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td>
-														<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
+													<td width="9%" >
+														<center>
+															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
 
-														<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+														</center>
 														
 													</td>
 													<td> <?php echo $row['courseCode'];?> </td>

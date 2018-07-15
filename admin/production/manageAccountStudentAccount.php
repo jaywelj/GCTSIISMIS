@@ -4,44 +4,42 @@ if(isset($_POST['btnAdd']))
 										//including the database connection file
 	include_once("connectionString.php");
 
-	$varcharStudentAccountFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountFirstName']);
+	$varcharStudentNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumber']);
 
-	$varcharStudentAccountLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountLastName']);
+	$varcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFirstName']);
 
-	$varcharStudentAccountMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountMiddleName']);
+	$varcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentLastName']);
 
-	$varcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountNumber']);
+	$varcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMiddleName']);
 
-	$varcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountPassword']);
+	$varcharStudentCourse = mysqli_real_escape_string($connect, $_POST['selectStudentCourse']);
 
-	$varcharStudentAccountCourse = mysqli_real_escape_string($connect, $_POST['selectStudentAccountCourse']);
+	$varcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentYear']);
 
-	$varcharStudentAccountYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountYear']);
+	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
 
-	$varcharStudentAccountSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountSection']);
+	$varcharStudentImage = addslashes(file_get_contents($_FILES["fileStudentImage"]["tmp_name"]));
 
-	$varcharStudentAccountImage = addslashes(file_get_contents($_FILES["fileStudentAccountImage"]["tmp_name"]));
-
-	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentAccountCourse' ;";
+	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ;";
 	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
 	while ($row = mysqli_fetch_array($queryGetCollegeArray))
 	{
-		$varcharStudentAccountCollege = $row['collegeCode'];
+		$varcharStudentCollege = $row['collegeCode'];
 	}
-	echo "<script type='text/javascript'>alert('$varcharStudentAccountCollege');</script>";
+	echo "<script type='text/javascript'>alert('$varcharStudentCollege');</script>";
 
 
 										//first name validation if input is a space 
 										// checking empty fields
-	if(empty($varcharStudentAccountFirstName) || empty($varcharStudentAccountNumber)) 
+	if(empty($varcharStudentFirstName) || empty($varcharStudentNumber)) 
 	{
 
-		if(empty($varcharStudentAccountFirstName))
+		if(empty($varcharStudentFirstName))
 		{
 			$message = "Enter a First Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		if(empty($varcharStudentAccountNumber)) 
+		if(empty($varcharStudentNumber)) 
 		{
 			$message = "Enter a valid Student Number";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -49,20 +47,20 @@ if(isset($_POST['btnAdd']))
 												//link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
-	else if(empty($varcharStudentAccountImage))
+	else if(empty($varcharStudentImage))
 	{
-		$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`,`studentDisplayPic`) vALUES ('$varcharStudentAccountNumber', '$varcharStudentAccountFirstName', '$varcharStudentAccountMiddleName', '$varcharStudentAccountLastName', '$varcharStudentAccountPassword', NULL, NULL)";
+		$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`,`studentDisplayPic`) vALUES ('$varcharStudentNumber', '$varcharStudentPassword', NULL, NULL)";
 
-		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, 'Javier', 'Jaywel', 'Bisarra', 'M', 'Homosexual', '19', '$varcharStudentAccountYear', '$varcharStudentAccountSection', 'Single', '1998-08-17', '172', '54', 'Fair', 'Pasig City', '113', 'Rizal', 'Taytay', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentAccountCollege', '$varcharStudentAccountCourse', '$varcharStudentAccountNumber')";
+		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, '$varcharStudentFirstName', '$varcharStudentMiddleName', '$varcharStudentLastName', 'M', 'Homosexual', '19', '$varcharStudentYear', '$varcharStudentSection', 'Single', '1998-08-17', '172', '54', 'Fair', 'Pasig City', '113', 'Rizal', 'Taytay', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
 	} 
 	else 
 	{ 						//insert data to database   
-		$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`,`studentDisplayPic`) vALUES ('$varcharStudentAccountNumber', '$varcharStudentAccountFirstName', '$varcharStudentAccountMiddleName', '$varcharStudentAccountLastName', '$varcharStudentAccountPassword', NULL, '$varcharStudentAccountImage')";
+		$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`,`studentDisplayPic`) vALUES ('$varcharStudentNumber', '$varcharStudentFirstName', '$varcharStudentMiddleName', '$varcharStudentLastName', '$varcharStudentPassword', NULL, '$varcharStudentImage')";
 
-		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, 'Javier', 'Jaywel', 'Bisarra', 'M', 'Homosexual', '19', '$varcharStudentAccountYear', '$varcharStudentAccountSection', 'Single', '1998-08-17', '172', '54', 'Fair', 'Pasig City', '113', 'Rizal', 'Taytay', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentAccountCollege', '$varcharStudentAccountCourse', '$varcharStudentAccountNumber')";
+		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, 'Javier', 'Jaywel', 'Bisarra', 'M', 'Bisexual', '25', '$varcharStudentYear', '$varcharStudentSection', 'Single', '1993-03-10', '172', '54', 'Fair', 'Pasig City', '113', 'Olongapo', 'Olongapo', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
 	}
 
-												//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643', '43534534', '345345', '3454353', '345345', NULL, NULL, NULL)";
+												
 	if(mysqli_query($connect, $queryAdd))
 	{   
 		if(mysqli_query($connect, $queryAdd2))
@@ -75,7 +73,7 @@ if(isset($_POST['btnAdd']))
 	}
 	else
 	{
-		$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentAccountNumber' ";
+		$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentNumber' ";
 		$result = mysqli_query($connect, $query);
 
 		if (mysqli_num_rows($result) == 1) {
@@ -91,10 +89,98 @@ if(isset($_POST['btnAdd']))
 			
 			echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+			echo "<script type='text/javascript'>location.href = 'manageAccountStudent.php';</script>";
 		}
 	}
 	
+}
+if(isset($_POST['btnUpdate']))
+{
+	include_once("connectionString.php");
+
+	$varcharStudentNumber	= mysqli_real_escape_string($connect, $_POST['txtbxEditStudentNumber']);
+
+	$varcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentFirstName']);
+
+	$varcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentMiddleName']);
+
+	$varcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentLastName']);
+
+	$varcharStudentCourse = mysqli_real_escape_string($connect, $_POST['optionStudentCourse']);
+		
+	$varcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentYear']);
+
+	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentSection']);
+
+	$varcharStudentGender = mysqli_real_escape_string($connect, $_POST['optionEditStudentGender']);
+
+	$varcharStudentBirthdate = mysqli_real_escape_string($connect, $_POST['dateEditStudentBirthdate']);
+
+	$varcharStudentContactNo = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentContactNo']);
+
+	$varcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentEmail']);
+
+	
+	if(!empty($_FILES['fileEditStudentImage']['tmp_name']) && file_exists($_FILES['fileEditStudentImage']['tmp_name'])) 
+	{
+		$varcharStudentImage = addslashes(file_get_contents($_FILES["fileEditStudentImage"]["tmp_name"]));
+	}
+	else
+	{
+		$varcharStudentImage = "";
+	}
+	// checking empty fields
+	if(empty($varcharStudentFirstName)) 
+	{
+
+		if(empty($varcharStudentFirstName))
+		{
+			$message = "Enter a First Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		//link to the previous page
+		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+	} 
+	else 
+	{ 
+		// if all the fields are filled (not empty) 
+		//insert data to database   
+		if (!empty($varcharStudentImage)) 
+		{
+			$queryEdit = "
+			UPDATE `tbl_studentaccount` AS A
+			INNER JOIN tbl_personalinfo AS B 
+			ON A.studentNumber = B.studentNumber 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo', `studentDisplayPic` = '$varcharStudentImage' 
+			WHERE A.studentNumber = '$varcharStudentNumber'";
+			$message = "0";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		else
+		{
+			$queryEdit = "
+			UPDATE `tbl_studentaccount` AS A
+			INNER JOIN tbl_personalinfo AS B 
+			ON A.studentNumber = B.studentNumber 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo'
+			WHERE A.studentNumber = '$varcharStudentNumber'";
+			$message = "1";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(!mysqli_query($connect, $queryEdit))
+		{
+			$message = "Query Error" ;
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			echo("Error description: " . mysqli_error($connect));
+		}
+		else
+		{
+			$message = "Student Account Updated Successfully!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";	
+		}
+	}
 }
 
 ?>
@@ -196,216 +282,218 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryStudent = "SELECT * FROM tbl_studentaccount";
+											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber";
 											$resultStudent = mysqli_query($connect, $queryStudent); 
 											while($row = mysqli_fetch_array($resultStudent))  
 											{  
 												?>  
 												<tr>
-													<td>
+													<td width="14%" >
+														<center>
+															<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['studentNumber'];?>><i class="fa fa-list"></i></button>
 
-														<button class="btn btn-default btn-info" data-toggle="modal" data-target="#view_data_Modal" type="button"><i class="fa fa-list"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['studentNumber'];?>> <i class="fa fa-edit"></i></button>
 
-														<button class="btn btn-default btn-warning" data-toggle="modal" data-target="#edit_data_Modal" type="button"><i class="fa fa-edit"></i></button>
-
-														<a title="Delete" class="btn btn-danger" href="manageAccountStudentAccountDelete.php?id=<?php echo $row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
-
+															<a title="Delete" class="btn btn-danger" href="manageAccountStudentAccountDelete.php?id=<?php echo $row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+														</center>
 													</td>
 													<td> <?php echo $row['studentNumber'];?> </td>
-													<td> <?php echo $row['studentFirstName'];?> </td>
-													<td> <?php echo $row['studentMiddleName'];?> </td>
-													<td> <?php echo $row['studentLastName'];?> </td>
-													<td> <?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['studentDisplayPic'] ).'"height="200" width="200" style="object-fit:cover;"  />';?> </td>
-												</tr>  
-												<?php
-											}
-											?> 
+													<td> <?php echo $row['firstName'];?> </td>
+													<td> <?php echo $row['middleName'];?> </td>
+													<td> <?php echo $row['lastName'];?> </td>
+													<td> 
+														<center>	
+															<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['studentDisplayPic'] ).'"height="200" width="200" style="object-fit:cover;"  />';?> </td>
+														</center>
+													</tr>  
+													<?php
+												}
+												?> 
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!--Other Tables othertables/-->
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+				<!--Modal view-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="view_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">STUDENT ACCOUNT DETAILS</h4>
+								</div>
+								<div class="modal-body" id="studentAccountDetails"    style=" padding: 5px 50px 5px 50px;">
 
-										</tbody>
-									</table>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
-						<!--Other Tables othertables/-->
 					</div>
-				</div>
-			</div>
-			<!-- /page content -->
-			<!--Modal view-->
-			<div id="view_data_Modal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Account Details</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post" id="insert_form" style="font-size: 16px;">
-								<table class="table">
-									<tbody>
-										<tr>
-											<th scope="row">Name</th>
-											<td>Jaywel Bisarra Javier</td>
-										</tr>
-										<tr>
-											<th scope="row">Student No.</th>
-											<td>2014-04778-MN-0</td>
-										</tr>
-										<tr>
-											<th scope="row">Student Type</th>
-											<td>College</td>
-										</tr>
-									</tbody>
-								</table>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/Modal view-->
-			<!--Modal Edit-->
-			<div id="edit_data_Modal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Update Account</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post" id="insert_form">
-								<label>First Name</label>
-								<input type="text" name="StudentAccountFirstNameUpdate" id="StudentAccountFirstNameUpdate" value="Jaywel" class="form-control" />
-								<br />
-								<label>Last Name</label>
-								<input type="text" name="StudentAccountLastNameUpdate" id="StudentAccountLastNameUpdate" value="Javier" class="form-control" />
-								<br />
-								<label>Middle Name</label>
-								<input type="StudentAccountMiddleNameUpdate" name="StudentAccountMiddleNameUpdate" id="name" value="Bisarra" class="form-control" />
-								<br />
-								<label>Student No.</label>
-								<input type="text" name="StudentAccountNumberUpdate" id="StudentAccountNumberUpdate" value="2015-04778-MN-0" class="form-control" />
-								<br />
-								<label>Password</label>
-								<input type="password" name="name" id="name" value="" class="form-control" />
-								<br />
-								<label>Retype Password</label>
-								<input type="password" name="name" id="name" value="" class="form-control" />
-								<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
-								<input type="submit" name="insert" id="insert" value="Update" class="btn btn-success pull-right" />
-							</form>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/Modal Edit-->
-			<!--Modal Add-->
-			<form method="post" enctype="multipart/form-data">
-				<div id="add_data_Modal" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
+				</form>
+				<!--/Modal view-->
+				<!--Modal Edit-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="edit_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">EDIT STUDENT ACCOUNT DETAILS</h4>
+								</div>
+								<div class="modal-body" id="editStudentAccountDetails"    style=" padding: 25px 50px 5px 50px;">
+
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" class="btn btn-success"/>
+									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button>
+								</div>
 							</div>
-							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-								<label>Student Number</label>
-								<input type="text" name="txtbxStudentAccountNumber" id="txtbxStudentAccountNumber" class="form-control" />
-								<br />
-								<label>First Name</label>
-								<input type="text" name="txtbxStudentAccountFirstName" id="txtbxStudentAccountFirstName" class="form-control" />
-								<br />
-								<label>Last Name</label>
-								<input type="text" name="txtbxStudentAccountLastName" id="txtbxStudentAccountLastName" class="form-control" />
-								<br />
-								<label>Middle Name</label>
-								<input type="text" name="txtbxStudentAccountMiddleName" id="txtbxStudentAccountMiddleName" class="form-control" />
-								<br />
-								<?php
+						</div>
+					</div>
+				</form>
+				<!--/Modal Edit-->
+				<!--Modal Add-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="add_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
+								</div>
+								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+									<label>Student Number</label>
+									<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" />
+									<br />
+									<label>First Name</label>
+									<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
+									<br />
+									<label>Last Name</label>
+									<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
+									<br />
+									<label>Middle Name</label>
+									<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
+									<br />
+									<?php
 
 								// php select option value from database
-								include("connectionString.php");
+									include("connectionString.php");
 
 								// mysql select query
-								$queryCourse2 = "SELECT * FROM tbl_course";
+									$queryCourse2 = "SELECT * FROM tbl_course";
 
 								// for method 1/
-								$resultCourse2 = mysqli_query($connect, $queryCourse2);
+									$resultCourse2 = mysqli_query($connect, $queryCourse2);
 
-								?>
-								<label>Course</label>
-								<select name="selectStudentAccountCourse" id="selectStudentAccountCourse" class="form-control">
-									<option value="NULL" selected>Select A Course</option>
-									<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
-										<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
-									<?php endwhile;?>
-								</select>
-								<br />
-								<label>Year</label>
-								<input type="number" name="txtbxStudentAccountYear" id="txtbxStudentAccountYear" class="form-control" />
-								<br />
-								<label>Section</label>
-								<input type="number" name="txtbxStudentAccountSection" id="txtbxStudentAccountSection" class="form-control" />
-								<br />
-								<label>Password</label>
-								<input type="password" name="txtbxStudentAccountPassword" id="txtbxStudentAccountPassword" class="form-control" />
-								<br />
-								<label>Image</label>
-								<input type="file" name="fileStudentAccountImage" id="fileStudentAccountImage" class="form-control" />
-								<br />
-							</div>
-							<div class="modal-footer">
-								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
-								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
+									?>
+									<label>Course</label>
+									<select name="selectStudentCourse" id="selectStudentCourse" class="form-control">
+										<option value="NULL" selected>Select A Course</option>
+										<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
+											<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
+										<?php endwhile;?>
+									</select>
+									<br />
+									<label>Year</label>
+									<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" />
+									<br />
+									<label>Section</label>
+									<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" />
+									<br />
+									<label>Password</label>
+									<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
+									<br />
+									<label>Image</label>
+									<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" />
+									<br />
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
+								</div>
 							</div>
 						</div>
 					</div>
-				</div>
-			</form>
-			<!--/Modal Edit-->
+				</form>
+				<!--/Modal Edit-->
 
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix"></div>
+				</footer>
+				<!-- /footer content -->
+			</div>
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- Datatables -->
-	<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-	<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-	<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-	<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-	<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-	<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-	<script src="../vendors/jszip/dist/jszip.min.js"></script>
-	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="../vendors/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="../vendors/jszip/dist/jszip.min.js"></script>
+		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
 
-</body>
-</html>
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.btn-view',function(){
+					var studentNumber = $(this).attr("id");
+					$.ajax({
+						url:"viewStudentAccountDetails.php",
+						method:"post",
+						data:{studentNumber:studentNumber},
+						success:function(data){
+							$('#studentAccountDetails').html(data);
+							$('#view_data_Modal').modal('show');
+						}
+					});
+				});
+				$(document).on('click','.btn-edit',function(){
+					var studentNumber = $(this).attr("id");
+					$.ajax({
+						url:"editStudentAccountDetails.php",
+						method:"post",
+						data:{studentNumber:studentNumber},
+						success:function(data){
+							$('#editStudentAccountDetails').html(data);
+							$('#edit_data_Modal').modal('show');
+						}
+					});
+				});
+			});
+		</script>
+
+	</body>
+	</html>
