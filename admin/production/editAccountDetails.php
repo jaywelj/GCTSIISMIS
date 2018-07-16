@@ -52,8 +52,11 @@ if(isset($_POST["adminEmail"]))
 							<input type="date" name="dateEditAdminAccountBirthdate" id="dateEditAdminAccountBirthdate" value="'.$row["adminBirthDate"].'" class="form-control" />
 							<br />  
 							<label>Contact No</label>
-							<input type="number" name="txtbxEditAdminAccountContactNo" value="'.$row["adminContactNo"].'" id="txtbxEditAdminAccountContactNo" class="form-control" />
+							<input type="number" name="txtbxEditAdminAccountContactNo" value="'.$row["adminContactNo"]. '" id="txtbxEditAdminAccountContactNo" class="form-control" />
 							<br />
+							<center>
+							<button class="btn btn-default btn-warning btn-change-password" type="button" id="'.$row["adminEmail"].'" data-dismiss="modal"><i class="fa fa-lock"> Change Password</i></button>
+							</center>
 							';
 						}
 						$output .= '

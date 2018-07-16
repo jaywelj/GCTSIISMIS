@@ -57,7 +57,7 @@ if(isset($_POST['btnAdd']))
 	{ 						//insert data to database   
 		$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`,`studentDisplayPic`) vALUES ('$varcharStudentNumber', '$varcharStudentFirstName', '$varcharStudentMiddleName', '$varcharStudentLastName', '$varcharStudentPassword', NULL, '$varcharStudentImage')";
 
-		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, 'Javier', 'Jaywel', 'Bisarra', 'M', 'Bisexual', '25', '$varcharStudentYear', '$varcharStudentSection', 'Single', '1993-03-10', '172', '54', 'Fair', 'Pasig City', '113', 'Olongapo', 'Olongapo', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
+		$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `firstName`, `middleName`, `lastName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) vALUES (NULL, 'Javier', 'Jaywel', 'Bisarra', 'M', 'Bisexual', '25', '$varcharStudentYear', '$varcharStudentSection', 'Single', '1993-03-10', '172', '54', 'Fair', 'Pasig City', '113', 'Olongapo', 'Olongapo', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', '92.5', 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '090817271', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
 	}
 
 												
@@ -260,7 +260,7 @@ require 'header.php';
 								<div class="x_title">
 									<h2>Student Accounts <small>StudentAccounts</small></h2>
 									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD AN ACCOUNT</button>
+										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD STUDENT ACCOUNT</button>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -282,7 +282,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber";
+											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber ORDER BY tbl_studentaccount.studentNumber DESC";
 											$resultStudent = mysqli_query($connect, $queryStudent); 
 											while($row = mysqli_fetch_array($resultStudent))  
 											{  
@@ -290,11 +290,11 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['studentNumber'];?>><i class="fa fa-list"></i></button>
+															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['studentNumber'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['studentNumber'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['studentNumber'];?>> <i class="fa fa-edit"></i></button>
 
-															<a title="Delete" class="btn btn-danger" href="manageAccountStudentAccountDelete.php?id=<?php echo $row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountStudentAccountDelete.php?id=<?php echo $row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
 														</center>
 													</td>
 													<td> <?php echo $row['studentNumber'];?> </td>
@@ -376,11 +376,11 @@ require 'header.php';
 									<label>First Name</label>
 									<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
 									<br />
-									<label>Last Name</label>
-									<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
-									<br />
 									<label>Middle Name</label>
 									<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
+									<br />
+									<label>Last Name</label>
+									<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
 									<br />
 									<?php
 
