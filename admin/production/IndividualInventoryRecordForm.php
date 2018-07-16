@@ -4,16 +4,14 @@ include("connectionString.php");
 $varcharStudentNumber = $_GET["id"];
 $queryStudentAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentNumber'";
 $arrayStudentAccount = mysqli_query($connect, $queryStudentAccount);
-while($res = mysqli_fetch_array($arrayStudentAccount))
-{
+while ($res = mysqli_fetch_array($arrayStudentAccount)) {
 	$varcharFirstName = $res['studentFirstName'];
 	$varcharMiddleName = $res['studentMiddleName'];
 	$varcharLastName = $res['studentLastName'];
 }
 $queryPersonalInfo = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$varcharStudentNumber'";
 $arrayPersonalInfo = mysqli_query($connect, $queryPersonalInfo);
-while($res = mysqli_fetch_array($arrayPersonalInfo))
-{
+while ($res = mysqli_fetch_array($arrayPersonalInfo)) {
 	$vacharYear = $res['year'];
 	$vacharSection = $res['section'];
 	$vacharCourse = $res['courseCode'];
@@ -21,36 +19,31 @@ while($res = mysqli_fetch_array($arrayPersonalInfo))
 ?>
 <?php
 include 'IndividualInventoryRecordFormSubmit.php';
-if(isset($_POST['btnFinish']))
-{
+if (isset($_POST['btnFinish'])) {
 //Get Personal Information
 	$varcharFirstName = $_POST['txtbxFirstName'];
 	$varcharMiddleName = $_POST['txtbxMiddleName'];
 	$varcharLastName = $_POST['txtbxLastName'];
 	$varcharGender = $_POST['radioGender'];
 	$varcharSexuality = $_POST['dropdownSexuality'];
-	if($varcharSexuality == 'Others')
-	{
+	if ($varcharSexuality == 'Others') {
 		$varcharSexuality = $_POST['txtbxOthersSexuality'];
 	}
 	$intAge = $_POST['txtbxAge'];
 	$dateDateOfBirth = $_POST['dateDateOfBirth'];
 	$varcharPlaceOfBirth = $_POST['txtbxPlaceOfBirth'];
 	$varcharCivilStatus = $_POST['dropdownCivilStatus'];
-	if($varcharCivilStatus == 'Others')
-	{
+	if ($varcharCivilStatus == 'Others') {
 		$varcharCivilStatus = $_POST['txtbxOthersCivilStatus'];
 	}
 	$varcharReligion = $_POST['dropdownReligion'];
-	if($varcharReligion == 'Others')
-	{
+	if ($varcharReligion == 'Others') {
 		$varcharReligion = $txtbxOthersReligion;
 	}
 	$doubleHeight = $_POST['txtbxHeight'];
 	$doubleWeight = $_POST['txtbxWeight'];
 	$varcharComplexion = $_POST['dropdownComplexion'];
-	if($varcharComplexion == 'Others')
-	{
+	if ($varcharComplexion == 'Others') {
 		$varcharComplexion == $_POST['txtbxOthersComplexion'];
 	}
 	$varcharYear = $_POST['txtbxYear'];
@@ -60,27 +53,27 @@ if(isset($_POST['btnFinish']))
 	$vacharEmailAddress = $_POST['txtbxEmailAddress'];
 //End of Personal Info
 //Educational Background
-	$varcahrPreELemSchoolGraduated=$_POST['txtbxPreElemSchoolGraduated'];
-	$varcahrPreELemSchoolAddress=$_POST['txtbxPreElemSchoolAddress'];
+	$varcahrPreELemSchoolGraduated = $_POST['txtbxPreElemSchoolGraduated'];
+	$varcahrPreELemSchoolAddress = $_POST['txtbxPreElemSchoolAddress'];
 
-	$varcahrPreElemYearAttended=$_POST['txtbxPreElemYearAttended'];
-	$varcharPreElemHonors=$_POST['txtbxPreElemHonors'];
-	$varcharElementarySchoolGraduated=$_POST['txtbxElementarySchoolGraduated'];
-	$varcharElementarySchoolAddress=$_POST['txtbxElementarySchoolAddress'];
-	$varcahrElementaryYearAttended=$_POST['txtbxElementaryYearAttended'];
-	$varcharElementaryHonors=$_POST['txtbxElementaryHonors'];
-	$varcharHighschoolSchoolGraduated=$_POST['txtbxHighschoolSchoolGraduated'];
-	$varcharHighschoolSchoolAddress=$_POST['txtbxHighschoolSchoolAddress'];
-	$varcharHighschoolYearAttended=$_POST['txtbxHighschoolYearAttended'];
-	$varcharHighschoolHonors=$_POST['txtbxHighschoolHonors'];
-	$varcharVocationalSchoolGraduated=$_POST['txtbxVocationalSchoolGraduated'];
-	$varcharVocationalSchoolAddress=$_POST['txtbxVocationalSchoolAddress'];
-	$varcharVocationalYearAttended=$_POST['txtbxVocationalYearAttended'];
-	$varcharVocationalHonors=$_POST['txtbxVocationalHonors'];
-	$varcharCollegeSchoolGraduated=$_POST['txtbxCollegeSchoolGraduated'];
-	$varcharCollegeSchoolAddress=$_POST['txtbxCollegeSchoolAddress'];
-	$varcharCollegeYearAttended=$_POST['txtbxCollegeYearAttended'];
-	$varcharCollegeHonors=$_POST['txtbxCollegeHonors'];
+	$varcahrPreElemYearAttended = $_POST['txtbxPreElemYearAttended'];
+	$varcharPreElemHonors = $_POST['txtbxPreElemHonors'];
+	$varcharElementarySchoolGraduated = $_POST['txtbxElementarySchoolGraduated'];
+	$varcharElementarySchoolAddress = $_POST['txtbxElementarySchoolAddress'];
+	$varcahrElementaryYearAttended = $_POST['txtbxElementaryYearAttended'];
+	$varcharElementaryHonors = $_POST['txtbxElementaryHonors'];
+	$varcharHighschoolSchoolGraduated = $_POST['txtbxHighschoolSchoolGraduated'];
+	$varcharHighschoolSchoolAddress = $_POST['txtbxHighschoolSchoolAddress'];
+	$varcharHighschoolYearAttended = $_POST['txtbxHighschoolYearAttended'];
+	$varcharHighschoolHonors = $_POST['txtbxHighschoolHonors'];
+	$varcharVocationalSchoolGraduated = $_POST['txtbxVocationalSchoolGraduated'];
+	$varcharVocationalSchoolAddress = $_POST['txtbxVocationalSchoolAddress'];
+	$varcharVocationalYearAttended = $_POST['txtbxVocationalYearAttended'];
+	$varcharVocationalHonors = $_POST['txtbxVocationalHonors'];
+	$varcharCollegeSchoolGraduated = $_POST['txtbxCollegeSchoolGraduated'];
+	$varcharCollegeSchoolAddress = $_POST['txtbxCollegeSchoolAddress'];
+	$varcharCollegeYearAttended = $_POST['txtbxCollegeYearAttended'];
+	$varcharCollegeHonors = $_POST['txtbxCollegeHonors'];
 //End of Educational Background
 //Family Background
 	$varcharMotherName = $_POST["txtbxMotherName"];
@@ -112,98 +105,77 @@ if(isset($_POST['btnFinish']))
 	$varcharNoOfBrothersSistersGainfullyEmployed = $_POST["txtbxNoOfBrothersSistersGainfullyEmployed"];
 	$varcharOrdinalPosition = $_POST["dropdownOrdinalPosition"];
 	$varcharWhoFinancesYoureSchooling = $_POST["dropdownWhoFinancesYourSchooling"];
-	$varcharNatureOfResidence = $_POST["dropdownNatureOfResidence"]; 
+	$varcharNatureOfResidence = $_POST["dropdownNatureOfResidence"];
 	$varcharWithWhom = $_POST["txtbxWithWhom"];
 	$doubleWeeklyAllowance = $_POST["txtbxWeeklyAllowance"];
 //End Of Family Background
 //Health Background
 	$varcharVisionProblem = $_POST["radioVision"];
-	if($varcharVisionProblem == "Yes")
-	{
+	if ($varcharVisionProblem == "Yes") {
 		$varcharVisionProblem = $_POST["txtbxVision"];
 	}
 	$varcharHearingProblem = $_POST["radioHearing"];
-	if($varcharHearingProblem == "Yes")
-	{
+	if ($varcharHearingProblem == "Yes") {
 		$varcharHearingProblem = $_POST["txtbxHearing"];
 	}
 	$varcharSpeachProblem = $_POST["radioSpeach"];
-	if($varcharSpeachProblem == "Yes")
-	{
+	if ($varcharSpeachProblem == "Yes") {
 		$varcharSpeachProblem = $_POST["txtbxSpeach"];
 	}
 	$varcharGeneralHealthProblem = $_POST["radioGeneralHealth"];
-	if($varcharGeneralHealthProblem == "Yes")
-	{
+	if ($varcharGeneralHealthProblem == "Yes") {
 		$varcharGeneralHealthProblem = $_POST["txtbxGeneralHealth"];
 	}
 
 	$varcharPyschiatristConsult = $_POST["radioPsychiatrist"];
-	if($varcharPyschiatristConsult == "Yes")
-	{
+	if ($varcharPyschiatristConsult == "Yes") {
 		$datePsychiatristWhen = $_POST["datePsychiatrist"];
 		$varcharPyschiatristReason = $_POST["txtareaForWhatPsychiatrist"];
-	}
-	else
-	{
-		$datePsychiatristWhen = NULL;
-		$varcharPyschiatristReason = NULL;
+	} else {
+		$datePsychiatristWhen = null;
+		$varcharPyschiatristReason = null;
 	}
 	$varcharPyschologistConsult = $_POST["radioPsychologist"];
 
-	if($varcharPyschologistConsult == "Yes")
-	{
+	if ($varcharPyschologistConsult == "Yes") {
 		$datePsychologistWhen = $_POST["datePsychologist"];
 		$varcharPyschologistReason = $_POST["txtareaForWhatPsychologist"];
-	}
-	else
-	{
-		$datePsychologistWhen = NULL;
-		$varcharPyscologistReason = NULL;
+	} else {
+		$datePsychologistWhen = null;
+		$varcharPyscologistReason = null;
 	}
 	$varcharCounselorConsult = $_POST["radioCounselor"];
 
-	if($varcharCounselorConsult == "Yes")
-	{
+	if ($varcharCounselorConsult == "Yes") {
 		$dateCounselorWhen = $_POST["datePsychiatrist"];
 		$varcharCounselorReason = $_POST["txtareaForWhatCounselor"];
-	}
-	else
-	{
-		$dateCounselorWhen = NULL;
-		$varcharCounselorReason = NULL;
+	} else {
+		$dateCounselorWhen = null;
+		$varcharCounselorReason = null;
 	}
 //End Of Health Background
 //Interest and Hoobies
 	$varcharClubInterest = "";
-	if(isset($_POST['checkClubInterestNoInterest']))
-	{
+	if (isset($_POST['checkClubInterestNoInterest'])) {
 		$varcharClubInterest = "No Interest";
-	}
-	else
-	{
-		if(isset($_POST['checkClubInterest']))
-		{
+	} else {
+		if (isset($_POST['checkClubInterest'])) {
 			$varcharClubInterestArray = $_POST['checkClubInterest'];
 			$n = count($varcharClubInterestArray);
-			for ($i=0; $i<$n-1; $i++) { 
+			for ($i = 0; $i < $n - 1; $i++) {
 				$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
 			}
-			$varcharClubInterest = $varcharClubInterest. $varcharClubInterestArray[$n-1];
-			if(isset($_POST['checkClubInterestOthers']))
-			{
+			$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
+			if (isset($_POST['checkClubInterestOthers'])) {
 				$varcharClubInterestOthers = $_POST['txtbxOthersClubInterest'];
 				$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
 			}
-		}
-		else
-		{
-			if(isset($_POST['checkClubInterestOthers']))
-			{
+		} else {
+			if (isset($_POST['checkClubInterestOthers'])) {
 				$varcharClubInterestOthers = $_POST['txtbxOthersClubInterest'];
 				$varcharClubInterest = $varcharClubInterestOthers;
 			}
-		} 
+		}
 	}
 
 	$varcharFavoriteSubject = $_POST['txtareaFavoriteSubject'];
@@ -215,34 +187,26 @@ if(isset($_POST['btnFinish']))
 
 
 	$varcharOrganizationInterest = "";
-	if(isset($_POST['checkOrganizationInterestNoInterest']))
-	{
+	if (isset($_POST['checkOrganizationInterestNoInterest'])) {
 		$varcharOrganizationInterest = "No Interest";
-	}
-	else
-	{
-		if(isset($_POST['checkOrganizationInterest']))
-		{
+	} else {
+		if (isset($_POST['checkOrganizationInterest'])) {
 			$varcharOrganizationInterestArray = $_POST['checkOrganizationInterest'];
 			$n = count($varcharOrganizationInterestArray);
-			for ($i=0; $i<$n-1; $i++) { 
+			for ($i = 0; $i < $n - 1; $i++) {
 				$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
 			}
-			$varcharOrganizationInterest = $varcharOrganizationInterest. $varcharOrganizationInterestArray[$n-1];
-			if(isset($_POST['checkOrganizationInterestOthers']))
-			{
+			$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
+			if (isset($_POST['checkOrganizationInterestOthers'])) {
 				$varcharOrganizationInterestOthers = $_POST['txtbxOthersOrganizationInterest'];
 				$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
 			}
-		}
-		else
-		{
-			if(isset($_POST['checkOrganizationInterestOthers']))
-			{
+		} else {
+			if (isset($_POST['checkOrganizationInterestOthers'])) {
 				$varcharOrganizationInterestOthers = $_POST['txtbxOthersOrganizationInterest'];
 				$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
 			}
-		} 
+		}
 	}
 
 //End Of Interest and Hobbies
@@ -279,224 +243,22 @@ if(isset($_POST['btnFinish']))
 
 
 </head>
-<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:5px; padding:7px;" >
-	<image class="navbar-left" src="images/PUPLogo88x88.png"></image>
-	<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">
-		<h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
-		<p style="margin-bottom: 0; font-size: 14px;">THE COUNTRY'S 1ST POLYTECHNICU</p>
-		<h4 style="margin-top: 0; font-weight: bold;">GUIDANCE COUNSELING AND TESTING SERVICES</h4>
-	</div>
-</div>
+<?php
+require 'header.php';
+?>
 <body class="nav-md">
 	<div class="container body" id="div1">
-		<!--side navigation-->
-		<div class="col-md-3 left_col">
-			<div class="left_col scroll-view">
-				<div style="border-bottom:5px solid #9a3532;">
-					<div class="clearfix"></div>
-					<!-- menu profile quick info -->
-					<div class="profile clearfix">
-						<div class="profile_pic">
-							<img src="images/img.jpg" alt="..." class="img-circle profile_img"  style="margin-left:100%; width:75%; margin-top:10px; ">
-						</div>
-						<div class="profile_info"  style="width:100%;">
-							<center>
-								<span>Welcome,</span>
-								<h2><strong>Jaywel B Javier</strong></h2>
-							</center>
-						</div>
-					</div>
-				</div>
-				<!-- /menu profile quick info -->
-
-				<br />
-
-				<!-- sidebar menu -->
-				<div id="sidebar-menu" class="main_menu_side hidden-print main_menu">
-					<div class="menu_section">
-						<h3>General</h3>
-						<ul class="nav side-menu">
-							<li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu">
-									<li><a href="index.php">Dashboard</a></li>
-									<li><a href="index2.php">Dashboard2</a></li>
-									<li><a href="index3.php">Dashboard3</a></li>
-								</ul>
-							</li>
-							<li><a><i class="fa fa-table"></i> Individual Inventory Record <span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu">
-									<?php
-									include("connectionString.php");  
-									$queryCollege = "SELECT * FROM tbl_college";
-									$resultCollege = mysqli_query($connect, $queryCollege); 
-									while($row = mysqli_fetch_array($resultCollege))  
-									{  
-										$collegeCode = $row['collegeCode'];
-										$collegeName = $row['collegeName'];
-										?>
-
-										<li><a href="IndividualInventoryRecord.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
-										<?php  
-									}
-
-									?>
-								</ul>
-							</li>
-							<li><a><i class="fa fa-bar-chart-o"></i>Tally<span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu">
-									<?php
-									include("connectionString.php");  
-									$queryCollege = "SELECT * FROM tbl_college";
-									$resultCollege = mysqli_query($connect, $queryCollege); 
-									while($row = mysqli_fetch_array($resultCollege))  
-									{  
-										$collegeCode = $row['collegeCode'];
-										$collegeName = $row['collegeName'];
-										?>
-
-										<li><a href="Tallytables.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
-
-
-										<?php  
-									}
-
-									?>
-								</ul>
-							</li>
-							<li><a><i class="fa fa-desktop"></i> Manage Accounts <span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu">
-									<li><a href="manageAccountAdminAccount.php">Admin Account</a></li>
-									<li><a href="manageAccountStaffAccount.php">Staff Account</a></li>
-									<li><a href="manageAccountStudentAccount.php">Student Account</a></li>
-								</ul>
-							</li>
-							<li><a><i class="fa fa-institution"></i> Manage Course And College <span class="fa fa-chevron-down"></span></a>
-								<ul class="nav child_menu">
-									<li><a href="manageCourse.php">Course</a></li>
-									<li><a href="manageCollege.php">College</a></li>
-								</ul>
-							</li>
-						</ul>
-					</div>
-				</div>
-				<!-- /sidebar menu -->
-
-				<!-- /menu footer buttons -->
-				<div class="sidebar-footer hidden-small">
-					<a data-toggle="tooltip" data-placement="top" title="Settings">
-						<span class="glyphicon glyphicon-cog" aria-hidden="true"></span>
-					</a>
-					<a data-toggle="tooltip" data-placement="top" title="FullScreen">
-						<span class="glyphicon glyphicon-fullscreen" aria-hidden="true"></span>
-					</a>
-					<a data-toggle="tooltip" data-placement="top" title="Lock">
-						<span class="glyphicon glyphicon-eye-close" aria-hidden="true"></span>
-					</a>
-					<a data-toggle="tooltip" data-placement="top" title="Logout" href="login.php">
-						<span class="glyphicon glyphicon-off" aria-hidden="true"></span>
-					</a>
-				</div>
-				<!-- /menu footer buttons -->
-			</div>
-		</div>
-		<!--/side navigation-->
-
-		<!-- top navigation -->
-		<div class="top_nav">
-			<div class="nav_menu">
-				<nav>
-					<div class="nav toggle">
-						<a id="menu_toggle"><i class="fa fa-bars"></i></a>
-					</div>
-
-					<ul class="nav navbar-nav navbar-right">
-						<li class="">
-							<a href="javascript:;" class="user-profile dropdown-toggle" data-toggle="dropdown" aria-expanded="false">
-								<img src="images/img.jpg" alt="">John Doe
-								<span class=" fa fa-angle-down"></span>
-							</a>
-							<ul class="dropdown-menu dropdown-usermenu pull-right">
-								<li><a href="AdminProfile.php"> Profile</a></li>
-								<li>
-									<a href="javascript:;">
-										<span class="badge bg-red pull-right">50%</span>
-										<span>Settings</span>
-									</a>
-								</li>
-								<li><a href="javascript:;">Help</a></li>
-								<li><a href="login.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
-							</ul>
-						</li>
-
-						<li role="presentation" class="dropdown">
-							<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
-								<i class="fa fa-envelope-o"></i>
-								<span class="badge bg-green">6</span>
-							</a>
-							<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
-								<li>
-									<a>
-										<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-										<span>
-											<span>John Smith</span>
-											<span class="time">3 mins ago</span>
-										</span>
-										<span class="message">
-											Film festivals used to be do-or-die moments for movie makers. They were where...
-										</span>
-									</a>
-								</li>
-								<li>
-									<a>
-										<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-										<span>
-											<span>John Smith</span>
-											<span class="time">3 mins ago</span>
-										</span>
-										<span class="message">
-											Film festivals used to be do-or-die moments for movie makers. They were where...
-										</span>
-									</a>
-								</li>
-								<li>
-									<a>
-										<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-										<span>
-											<span>John Smith</span>
-											<span class="time">3 mins ago</span>
-										</span>
-										<span class="message">
-											Film festivals used to be do-or-die moments for movie makers. They were where...
-										</span>
-									</a>
-								</li>
-								<li>
-									<a>
-										<span class="image"><img src="images/img.jpg" alt="Profile Image" /></span>
-										<span>
-											<span>John Smith</span>
-											<span class="time">3 mins ago</span>
-										</span>
-										<span class="message">
-											Film festivals used to be do-or-die moments for movie makers. They were where...
-										</span>
-									</a>
-								</li>
-								<li>
-									<div class="text-center">
-										<a>
-											<strong>See All Alerts</strong>
-											<i class="fa fa-angle-right"></i>
-										</a>
-									</div>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</nav>
-			</div>
-		</div>
-		<!-- /top navigation -->
+		<div class="main_container">
+			<!-- side navigation -->
+			<?php 
+		require 'sidebar.php';
+		?>
+			<!-- /side navigation -->
+			<!-- top navigation -->
+			<?php 
+		require 'navbar.php';
+		?>
+			<!-- /top navigation -->
 		<!-- page content -->
 
 		<div class="right_col" role="main">
