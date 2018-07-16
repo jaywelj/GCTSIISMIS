@@ -223,7 +223,7 @@ require 'header.php';
 								<div class="x_title">
 									<h2>Accounts <small>Admin</small></h2>
 									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD ANOTHER ADMIN</button>
+										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD ADMIN ACCOUNT</button>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -245,7 +245,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Admin'";
+											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Admin' ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
@@ -253,11 +253,11 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
+															<button class="btn btn-default btn-info btn-view"  type="button" title="View" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
 
-															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+															<button class="btn btn-default btn-danger" type="button" title="Delete"><i class="fa fa-trash"></i></button>
 														</center>
 													</td>
 													<td> <?php echo $row['adminId'];?> </td>
@@ -370,6 +370,35 @@ require 'header.php';
 				</div>
 			</form>
 			<!--/Modal Edit-->
+			<!--Modal Change Password-->
+			<form method="post" enctype="multipart/form-data">
+				<div id="change_password_Modal" class="modal fade">
+					<div class="modal-dialog modal-sm">
+						<div class="modal-content">
+							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+								<h4 class="modal-title text-center">CHANGE PASSWORD</h4>
+							</div>
+							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+								<label>Password</label>
+								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
+								<br />
+								<label>Password</label>
+								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
+								<br />
+								<label>Confirm Password</label>
+								<input type="password" name="txtbxAdminAccountConfirmPassword" id="txtbxAdminAccountConfirmPassword" class="form-control" />
+								<br />
+							</div>
+							<div class="modal-footer">
+								<input type="submit" name="btnAdd" id="btnChangePassword" value="Confirm" class="btn btn-success "  />
+								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
+							</div>
+						</div>
+					</div>
+				</div>
+			</form>
+			<!--/Modal Change Password-->
 
 			<!-- footer content -->
 			<footer>
@@ -437,6 +466,10 @@ require 'header.php';
 						$('#edit_data_Modal').modal('show');
 					}
 				});
+			});
+			$(document).on('click','.btn-change-password',function(){
+				var adminEmail = $(this).attr("id");
+				$('#change_password_Modal').modal('show');
 			});
 		});
 	</script>

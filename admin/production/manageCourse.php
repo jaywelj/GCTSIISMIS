@@ -201,7 +201,7 @@ require 'header.php';
 								<div class="x_title">
 									<h2>Course <small>Code And Name</small></h2>
 									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD ANOTHER COURSE</button>
+										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD COURSE</button>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -227,9 +227,9 @@ require 'header.php';
 												<tr>
 													<td width="9%" >
 														<center>
-															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
 
-															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+															<button class="btn btn-default btn-danger" type="button"  title="Delete"><i class="fa fa-trash"></i></button>
 														</center>
 														
 													</td>

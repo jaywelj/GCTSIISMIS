@@ -223,7 +223,7 @@ require 'header.php';
 								<div class="x_title">
 									<h2>Accounts <small>Admin</small></h2>
 									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD ANOTHER ADMIN</button>
+										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD STAFF ACCOUNT</button>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -245,7 +245,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Staff'";
+											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Staff' ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
@@ -253,11 +253,11 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
+															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
+															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
 
-															<button class="btn btn-default btn-danger" type="button"><i class="fa fa-trash"></i></button>
+															<button class="btn btn-default btn-danger" type="button" title="Delete"><i class="fa fa-trash"></i></button>
 														</center>
 													</td>
 													<td> <?php echo $row['adminId'];?> </td>

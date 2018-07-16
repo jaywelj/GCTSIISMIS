@@ -113,6 +113,8 @@ jQuery(function($) {
 
 	// test disabledAttrs
 	var disabledAttrs = ['placeholder'];
+	// test disabled fields
+	var disabledFields = ['hidden', 'file', 'autocomplete','starRating','button','number','paragraph','textarea'];
 
 	var fbOptions = {
 		subtypes: {
@@ -132,12 +134,12 @@ jQuery(function($) {
 		sortableControls: true,
 		fields: fields,
 		templates: templates,
-		inputSets: inputSets,
+		//inputSets: inputSets,
 		typeUserDisabledAttrs: typeUserDisabledAttrs,
 		typeUserAttrs: typeUserAttrs,
 		disableInjectedStyle: false,
-		disableFields: ['autocomplete'],
-		replaceFields: replaceFields,
+		disableFields: disabledFields,
+		//replaceFields: replaceFields,
 		disabledFieldButtons: {
 			text: ['copy']
 		}
