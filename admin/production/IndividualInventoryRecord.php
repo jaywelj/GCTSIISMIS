@@ -134,9 +134,9 @@ require 'header.php';
 
 														</td>
 														<td> <?php echo $row['studentNumber'];?> </td>
-														<td> <?php echo $row['studentFirstName'];?> </td>
-														<td> <?php echo $row['studentMiddleName'];?> </td>
-														<td> <?php echo $row['studentLastName'];?> </td>
+														<td> <?php echo $row['firstName'];?> </td>
+														<td> <?php echo $row['middleName'];?> </td>
+														<td> <?php echo $row['lastName'];?> </td>
 														<td> <?php echo $row['courseCode'];?> </td>
 														<td> <?php echo $row['year'];?> </td>
 														<td> <?php echo $row['section'];?> </td>

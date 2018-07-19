@@ -199,7 +199,7 @@ require 'header.php';
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage Admin Accounts<small></small></h3>
+							<h3>Manage Archived Admin Accounts<small></small></h3>
 						</div>
 
 						<div class="title_right">
@@ -221,7 +221,7 @@ require 'header.php';
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Accounts <small>Admin</small></h2>
+									<h2>Account <small>Admin</small></h2>
 									<ul class="nav navbar-right">
 										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD ADMIN ACCOUNT</button>
 									</ul>
@@ -245,7 +245,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Admin' ORDER BY adminId DESC";
+											$queryCourse = "SELECT * FROM tbl_adminaccountarchive WHERE adminAccessLevel = 'Admin' ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
@@ -253,14 +253,14 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view"  type="button" title="View" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
+															<a title="Revive" class="btn btn-info" href="manageAccountStaffAccountReturn.php?id=<?php echo$row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to return?')"><span class="fa fa-share-square"></span></a>
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountAdminAccountDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountAdminAccountArchivedDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>	
+															
 														</center>
 													</td>
-													<td> <?php echo $row['adminId'];?> </td>
+													<td> <?php echo $row['adminEmail'];?> </td>
 													<td> <?php echo $row['adminFirstName'];?> </td>
 													<td> <?php echo $row['adminMiddleName'];?> </td>
 													<td> <?php echo $row['adminLastName'];?> </td>

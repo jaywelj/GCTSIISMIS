@@ -11,22 +11,22 @@ $studentNumber = $_GET['id'];
 
 $default = "0";
 
-$querymovingstudentaccounttoarchive = "INSERT INTO `tbl_studentaccountarchive` select * from tbl_studentaccount where studentNumber = '$studentNumber'";
-$querydeletingstudentaccount = "DELETE FROM `tbl_studentaccount` WHERE `tbl_studentaccount`.`studentNumber` = '$studentNumber'";
-$querymovingpersonalinfotoarchive = "INSERT INTO `tbl_personalinfoarchive` select * from tbl_personalinfo where studentNumber = '$studentNumber'";
-$querydeletingpersonalinfo = "DELETE FROM `tbl_personalinfo` WHERE `tbl_personalinfo`.`studentNumber` = '$studentNumber'";
-$querymovingeducationalbackgroundtoarchive = "INSERT INTO `tbl_educationalbackgroundarchive` SELECT * FROM `tbl_educationalbackground` WHERE studentNumber = '$studentNumber' ";
-$querydeletingeducationalbackground = "DELETE FROM `tbl_educationalbackground` WHERE `studentNumber` = '$studentNumber' ";
-$querymovingfamilybackgroundtoarchive = "INSERT INTO `tbl_familybackgroundarchive` SELECT * FROM `tbl_familybackground` WHERE `studentNumber` = '$studentNumber' ";
-$querydeletingfamilybackground = "DELETE FROM `tbl_familybackground` WHERE `studentNumber` = '$studentNumber' ";
-$querymovinginteresthobbiestoarchive = "INSERT INTO `tbl_interesthobbiesarchive` SELECT * FROM `tbl_interesthobbies` WHERE `studentNumber` = '$studentNumber' ";
-$querydeletinginteresthobbies = "DELETE FROM `tbl_interesthobbies` WHERE `studentNumber` = '$studentNumber' ";
-$querymovinghealthinfotoarchive = "INSERT INTO `tbl_healthinfoarchive` SELECT * FROM `tbl_healthinfo` WHERE `studentNumber` = '$studentNumber' ";
-$querydeletinghealthinfo = "DELETE FROM `tbl_healthinfo` WHERE `studentNumber` = '$studentNumber' ";
-$querymovingsignificantnotestoarchive = "INSERT INTO `tbl_significantnotesarchive` SELECT * FROM `tbl_significantnotes` WHERE `studentNumber` = '$studentNumber' ";
-$querydeletingsignificantnotes = "DELETE FROM `tbl_significantnotes` WHERE `studentNumber` = '$studentNumber' ";
-$querymovingtestrecordtoarchive = "INSERT INTO `tbl_testrecordarchive` SELECT * FROM `tbl_testrecord` WHERE `studentNumber` = '$studentNumber' ";
-$querydeletingtestrecord = "DELETE FROM `tbl_testrecord` WHERE `studentNumber` = '$studentNumber' ";
+$querymovingstudentaccounttoarchive = "INSERT INTO `tbl_studentaccount` select * from tbl_studentaccountarchive where studentNumber = '$studentNumber'";
+$querydeletingstudentaccount = "DELETE FROM `tbl_studentaccountarchive` WHERE `tbl_studentaccountarchive`.`studentNumber` = '$studentNumber'";
+$querymovingpersonalinfotoarchive = "INSERT INTO `tbl_personalinfo` select * from tbl_personalinfoarchive where studentNumber = '$studentNumber'";
+$querydeletingpersonalinfo = "DELETE FROM `tbl_personalinfoarchive` WHERE `tbl_personalinfoarchive`.`studentNumber` = '$studentNumber'";
+$querymovingeducationalbackgroundtoarchive = "INSERT INTO `tbl_educationalbackground` SELECT * FROM `tbl_educationalbackgroundarchive` WHERE studentNumber = '$studentNumber' ";
+$querydeletingeducationalbackground = "DELETE FROM `tbl_educationalbackgroundarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querymovingfamilybackgroundtoarchive = "INSERT INTO `tbl_familybackground` SELECT * FROM `tbl_familybackgroundarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querydeletingfamilybackground = "DELETE FROM `tbl_familybackgroundarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querymovinghealthinfotoarchive = "INSERT INTO `tbl_healthinfo` SELECT * FROM `tbl_healthinfoarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querydeletinghealthinfo = "DELETE FROM `tbl_healthinfoarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querymovinginteresthobbiestoarchive = "INSERT INTO `tbl_interesthobbies` SELECT * FROM `tbl_interesthobbiesarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querydeletinginteresthobbies = "DELETE FROM `tbl_interesthobbiesarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querymovingsignificantnotestoarchive = "INSERT INTO `tbl_significantnotes` SELECT * FROM `tbl_significantnotesarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querydeletingsignificantnotes = "DELETE FROM `tbl_significantnotesarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querymovingtestrecordtoarchive = "INSERT INTO `tbl_testrecord` SELECT * FROM `tbl_testrecordarchive` WHERE `studentNumber` = '$studentNumber' ";
+$querydeletingtestrecord = "DELETE FROM `tbl_testrecordarchive` WHERE `studentNumber` = '$studentNumber' ";
 
 
 
@@ -205,4 +205,5 @@ else{
 //redirecting to the display page (index.php in our case)
 
 ?>
+
 

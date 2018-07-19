@@ -124,13 +124,27 @@ jQuery(function ($) {
 	var disabledAttrs = ['placeholder'];
 	// test disabled fields
 	var disabledFields = ['hidden', 'file', 'autocomplete', 'starRating', 'button', 'number', 'paragraph', 'textarea'];
-	
+	var xmldata = formBuilder.actions.getData('xml');
+
+	$.ajax({
+		url: "surveySurveyFormGet++hp",
+		method: "post",
+		data: {
+			xmldata: xmldata
+		},
+		success: function (data) {
+			alert("SUCCESSFUL WRITE");
+			$('#xmldatadiv').html(data);
+		}
+	});
+
 	var fbOptions = {
 		subtypes: {
 			text: ['datetime-local']
 		},
 		onSave: function (e, formData) {
-			var xmldata = formBuilder.actions.getData('xml');
+			var xmldata = 5;
+			alert(xmldata);
 
 			$.ajax({
 				url: "surveySurveyFormXMLWrite.php",
@@ -149,7 +163,7 @@ jQuery(function ($) {
 				formData: formData,
 				templates: templates
 			});
-			window.sessionStorage.setItem('formData', JSON.stringify(formData));
+			window.sessionStorage.setItem('formData', "");
 		},
 		stickyControls: {
 			enable: true
@@ -250,3 +264,5 @@ jQuery(function ($) {
 		toggleEdit();
 	};
 });
+
+

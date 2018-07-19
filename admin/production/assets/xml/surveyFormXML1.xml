@@ -1,0 +1,49 @@
+<form-template>	
+	<fields>		
+		<field type="header" subtype="h1" label="Guidance Councelling and Testing Services"></field>		
+		<field type="header" subtype="h3" label="Student Problems and Issues Survey"></field>		
+		<field type="radio-group" required="true" label="Do you experience bullying in your classroom?" name="radio-group-1531909552870">			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			
+			<option label="Never" value="Never">Never</option>		
+		</field>		
+		<field type="radio-group" required="true" label="Do you smoke?" name="radio-group-1531909681489">			
+			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			
+			<option label="Never" value="Never">Never</option>		
+		</field>		
+		<field type="radio-group" required="true" label="Do you have issues in your family's financial status?" name="radio-group-1531909709904">			
+			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			
+			<option label="Never" value="Never">Never</option>		
+		</field>		
+		<field type="radio-group" required="true" label="Have you ever engaged in a physical fight in the school?" name="radio-group-1531909784864">			
+			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			<option label="Never" value="Never">Never</option>		
+		</field>
+		<field type="radio-group" required="true" label="Do you experience stress?" name="radio-group-1531909817632">			
+			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			
+			<option label="Never" value="Never">Never</option>		
+		</field>		
+		<field type="radio-group" required="true" label="Do you have suicidal thought?" name="radio-group-1531909843320">		
+			<option label="Always" value="Always">Always</option>			
+			<option label="Sometimes" value="Sometimes">Sometimes</option>			
+			<option label="Never" value="Never">Never</option>		</field>		<field type="header" subtype="h3" label="Recreational Survey">
+		</field>		
+		<field type="checkbox-group" label="Board games you enjoy" name="checkbox-group-1531910079015">		
+			<option label="Snakes and Ladders" value="Snakes and Ladders">Snakes and Ladders
+			</option>			<option label="Games of the Generals" value="Games of the Generals">Games of the Generals</option>			<option label="Chess" value="Chess">Chess</option>			
+			<option label="Scrable" value="Scrable">Scrable</option>		
+		</field>		
+		<field type="checkbox-group" label="Clubs you are interested of joining" name="checkbox-group-1531910229209">			<option label="Math" value="Math">Math</option>		
+			<option label="Science" value="Science">Science</option>			<option label="Drama" value="Drama">Drama</option>			
+			<option label="Poetry" value="Poetry">Poetry</option>			
+			<option label="Literature" value="Literature">Literature</option>		
+		</field>		
+		<field type="checkbox-group" label="Organizations of your interest" name="checkbox-group-1531910294089">			<option label="Math" value="Math">Math</option>			
+			<option label="Science" value="Science">Science</option>			<option label="Drama" value="Drama">Drama</option>			
+			<option label="Poetry" value="Poetry">Poetry</option>			
+			<option label="Literature" value="Literature">Literature</option>		
+		</field>	
+	</fields>
+</form-template>

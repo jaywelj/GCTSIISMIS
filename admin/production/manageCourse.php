@@ -229,8 +229,8 @@ require 'header.php';
 														<center>
 															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
 
-															<button class="btn btn-default btn-danger" type="button"  title="Delete"><i class="fa fa-trash"></i></button>
-														</center>
+															<a title="Delete" class="btn btn-default btn-danger" href="manageCourseDelete.php?id=<?php echo $row['courseCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>	
+															</center>
 														
 													</td>
 													<td> <?php echo $row['courseCode'];?> </td>

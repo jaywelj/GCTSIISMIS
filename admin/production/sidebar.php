@@ -115,8 +115,9 @@ while($res = mysqli_fetch_array($result))
 					</li>
 					<li><a><i class="fa fa-list"></i> Survey <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li>
 							<li><a href="surveySurveyForms.php">Survey Forms</a></li>
+							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li>
+							<li><a href="surveyRenderSurveyForm.php">Render Survey Forms</a></li>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-desktop"></i> Accounts <span class="fa fa-chevron-down"></span></a>
@@ -130,6 +131,15 @@ while($res = mysqli_fetch_array($result))
 						<ul class="nav child_menu">
 							<li><a href="manageCourse.php">Course</a></li>
 							<li><a href="manageCollege.php">College</a></li>
+						</ul>
+					</li>
+					<li><a><i class="fa fa-trash"></i> Archived <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="manageCourseArchived.php">Course</a></li>
+							<li><a href="manageCollegeArchived.php">College</a></li>
+							<li><a href="manageAccountAdminAccountArchived.php">Account - Admin</a></li>
+							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>
+							<li><a href="manageAccountStudentAccountArchived.php">Account - Student</a></li>
 						</ul>
 					</li>
 				</ul>
