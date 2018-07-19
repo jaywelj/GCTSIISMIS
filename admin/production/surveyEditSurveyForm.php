@@ -131,7 +131,5 @@ require 'header.php';
 	<script src="assets/js/form-render.min.js"></script>
 	<script src="assets/js/jquery.rateyo.min.js"></script>
 	
-
-	
 </body>
 </html>

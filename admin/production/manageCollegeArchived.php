@@ -174,7 +174,7 @@ require 'header.php';
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage College<small></small></h3>
+							<h3>Manage Archived College<small></small></h3>
 						</div>
 
 						<div class="title_right">
@@ -196,7 +196,7 @@ require 'header.php';
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>College <small>Code And Name</small></h2>
+									<h2>College(Archived) <small>Code And Name</small></h2>
 									<ul class="nav navbar-right">
 										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD COLLEGE</button>
 									</ul>
@@ -219,7 +219,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCollege = "SELECT * FROM tbl_college";
+											$queryCollege = "SELECT * FROM tbl_collegearchive";
 											$resultCollege = mysqli_query($connect, $queryCollege); 
 											while($row = mysqli_fetch_array($resultCollege))  
 											{  
@@ -228,9 +228,10 @@ require 'header.php';
 													<td width="9%" >
 														<center>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['collegeCode'];?>> <i class="fa fa-edit"></i></button>
+															<!-- <button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['collegeCode'];?>> <i class="fa fa-edit"></i></button> -->
+															<a title="Revive" class="btn btn-info" href="manageCollegeReturn.php?id=<?php echo$row['collegeCode']; ?>" onClick="return confirm('Are you sure you want to bring back?')"><span class="fa fa-share-square"></span></a>
 
-															<a title="Delete" class="btn btn-default btn-danger" href="manageCollegeDelete.php?id=<?php echo $row['collegeCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>
+															<a title="Delete" class="btn btn-default btn-danger" href="manageCollegeArchivedDelete.php?id=<?php echo$row['collegeCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>			
 
 														</center>
 													</td>

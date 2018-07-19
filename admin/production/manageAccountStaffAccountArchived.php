@@ -199,7 +199,7 @@ require 'header.php';
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage Admin Accounts<small></small></h3>
+							<h3>Manage Archived Staff Accounts<small></small></h3>
 						</div>
 
 						<div class="title_right">
@@ -245,7 +245,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Staff' ORDER BY adminId DESC";
+											$queryCourse = "SELECT * FROM tbl_adminaccountarchive WHERE adminAccessLevel = 'Staff' ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
@@ -253,194 +253,191 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['adminEmail'];?>><i class="fa fa-list"></i></button>
+															<a title="Revive" class="btn btn-info" href="manageAccountStaffAccountReturn.php?id=<?php echo$row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to return?')"><span class="fa fa-share-square"></span></a>	
 
-															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['adminEmail'];?>> <i class="fa fa-edit"></i></button>
+															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountStaffAccountArchivedDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>													</center>
+														</td>
+														<td> <?php echo $row['adminEmail'];?> </td>
+														<td> <?php echo $row['adminFirstName'];?> </td>
+														<td> <?php echo $row['adminMiddleName'];?> </td>
+														<td> <?php echo $row['adminLastName'];?> </td>
+														<td> 
+															<center>
+																<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';?> 
+															</center>
+														</td>
+													</tr>  
+													<?php
+												}
+												?> 
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountStaffAccountDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>														</center>	
-														
-													</td>
-													<td> <?php echo $row['adminId'];?> </td>
-													<td> <?php echo $row['adminFirstName'];?> </td>
-													<td> <?php echo $row['adminMiddleName'];?> </td>
-													<td> <?php echo $row['adminLastName'];?> </td>
-													<td> 
-														<center>
-															<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';?> 
-														</center>
-													</td>
-												</tr>  
-												<?php
-											}
-											?> 
+											</tbody>
+										</table>
+									</div>
+								</div>
+							</div>
+							<!--Other Tables othertables/-->
+						</div>
+					</div>
+				</div>
+				<!-- /page content -->
+				<!--Modal view-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="view_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">ACCOUNT DETAILS</h4>
+								</div>
+								<div class="modal-body" id="accountDetails"    style=" padding: 5px 50px 5px 50px;">
 
-										</tbody>
-									</table>
+								</div>
+								<div class="modal-footer">
+									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
 								</div>
 							</div>
 						</div>
-						<!--Other Tables othertables/-->
 					</div>
-				</div>
+				</form>
+				<!--/Modal view-->
+				<!--Modal Edit-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="edit_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">EDIT ACCOUNT DETAILS</h4>
+								</div>
+								<div class="modal-body" id="editAccountDetails"    style=" padding: 25px 50px 5px 50px;">
+
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" class="btn btn-success"/>
+									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button>
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!--/Modal Edit-->
+				<!--Modal Add-->
+				<form method="post" enctype="multipart/form-data">
+					<div id="add_data_Modal" class="modal fade">
+						<div class="modal-dialog">
+							<div class="modal-content">
+								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+									<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
+								</div>
+								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+									<label>First Name</label>
+									<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" />
+									<br />
+									<label>Last Name</label>
+									<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" />
+									<br />
+									<label>Middle Name</label>
+									<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control" />
+									<br />
+									<label>Email</label>
+									<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control" />
+									<br />
+									<label>Birthdate</label>
+									<input type="date" name="dateAdminAccountBirthdate" id="dateAdminAccountBirthdate" class="form-control" />
+									<br />
+									<label>Password</label>
+									<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
+									<br />
+									<label>Confirm Password</label>
+									<input type="password" name="txtbxAdminAccountConfirmPassword" id="txtbxAdminAccountConfirmPassword" class="form-control" />
+									<br />
+									<label>Image</label>
+									<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" />
+									<br />
+
+								</div>
+								<div class="modal-footer">
+									<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
+								</div>
+							</div>
+						</div>
+					</div>
+				</form>
+				<!--/Modal Edit-->
+
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix"></div>
+				</footer>
+				<!-- /footer content -->
 			</div>
-			<!-- /page content -->
-			<!--Modal view-->
-			<form method="post" enctype="multipart/form-data">
-				<div id="view_data_Modal" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" style="background: #800; color:#fff">
-								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">ACCOUNT DETAILS</h4>
-							</div>
-							<div class="modal-body" id="accountDetails"    style=" padding: 5px 50px 5px 50px;">
-
-							</div>
-							<div class="modal-footer">
-								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!--/Modal view-->
-			<!--Modal Edit-->
-			<form method="post" enctype="multipart/form-data">
-				<div id="edit_data_Modal" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">EDIT ACCOUNT DETAILS</h4>
-							</div>
-							<div class="modal-body" id="editAccountDetails"    style=" padding: 25px 50px 5px 50px;">
-
-							</div>
-							<div class="modal-footer">
-								<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" class="btn btn-success"/>
-								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button>
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!--/Modal Edit-->
-			<!--Modal Add-->
-			<form method="post" enctype="multipart/form-data">
-				<div id="add_data_Modal" class="modal fade">
-					<div class="modal-dialog">
-						<div class="modal-content">
-							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
-							</div>
-							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-								<label>First Name</label>
-								<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" />
-								<br />
-								<label>Last Name</label>
-								<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" />
-								<br />
-								<label>Middle Name</label>
-								<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control" />
-								<br />
-								<label>Email</label>
-								<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control" />
-								<br />
-								<label>Birthdate</label>
-								<input type="date" name="dateAdminAccountBirthdate" id="dateAdminAccountBirthdate" class="form-control" />
-								<br />
-								<label>Password</label>
-								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
-								<br />
-								<label>Confirm Password</label>
-								<input type="password" name="txtbxAdminAccountConfirmPassword" id="txtbxAdminAccountConfirmPassword" class="form-control" />
-								<br />
-								<label>Image</label>
-								<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" />
-								<br />
-
-							</div>
-							<div class="modal-footer">
-								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
-								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
-							</div>
-						</div>
-					</div>
-				</div>
-			</form>
-			<!--/Modal Edit-->
-
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->	
-	<script src="../vendors/nprogress/nprogress.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- Datatables -->
-	<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-	<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-	<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-	<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-	<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-	<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-	<script src="../vendors/jszip/dist/jszip.min.js"></script>
-	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->	
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="../vendors/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="../vendors/jszip/dist/jszip.min.js"></script>
+		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
 
-	<script>
-		$(document).ready(function(){
-			$(document).on('click','.btn-view',function(){
-				var adminEmail = $(this).attr("id");
-				$.ajax({
-					url:"viewAccountDetails.php",
-					method:"post",
-					data:{adminEmail:adminEmail},
-					success:function(data){
-						$('#accountDetails').html(data);
-						$('#view_data_Modal').modal('show');
-					}
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.btn-view',function(){
+					var adminEmail = $(this).attr("id");
+					$.ajax({
+						url:"viewAccountDetails.php",
+						method:"post",
+						data:{adminEmail:adminEmail},
+						success:function(data){
+							$('#accountDetails').html(data);
+							$('#view_data_Modal').modal('show');
+						}
+					});
+				});
+				$(document).on('click','.btn-edit',function(){
+					var adminEmail = $(this).attr("id");
+					$.ajax({
+						url:"editAccountDetails.php",
+						method:"post",
+						data:{adminEmail:adminEmail},
+						success:function(data){
+							$('#editAccountDetails').html(data);
+							$('#edit_data_Modal').modal('show');
+						}
+					});
 				});
 			});
-			$(document).on('click','.btn-edit',function(){
-				var adminEmail = $(this).attr("id");
-				$.ajax({
-					url:"editAccountDetails.php",
-					method:"post",
-					data:{adminEmail:adminEmail},
-					success:function(data){
-						$('#editAccountDetails').html(data);
-						$('#edit_data_Modal').modal('show');
-					}
-				});
-			});
-		});
-	</script>
+		</script>
 
 
-</body>
-</html>
+	</body>
+	</html>

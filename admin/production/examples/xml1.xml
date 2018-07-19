@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form-template>
+	<fields>
+		<field type="header" subtype="h1" label="First Ever Survey Form"></field>
+		<field type="checkbox-group" label="What activities did you enjoyed last summer" name="checkbox-group-1531825521428">
+			<option label="Basketball" value="option1">Basketball</option>
+			<option label="Volleyball" value="option2">Volleyball</option>
+			<option label="Tennis" value="option3">Tennis</option>
+		</field>
+		<field type="radio-group" label="Did you enjoy your summer vacation?" name="radio-group-1531825681948">
+			<option label="Yes" value="option-1">Yes</option>
+			<option label="No" value="option-2">No</option>
+		</field>
+	</fields>
+</form-template>

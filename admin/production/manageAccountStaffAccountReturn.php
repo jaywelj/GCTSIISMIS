@@ -11,26 +11,26 @@ $adminUserName = $_GET['id'];
 
 
 
-$querymovingtoarchive = "INSERT INTO `tbl_adminaccountarchive` select * from tbl_adminaccount where `adminEmail` = '$adminUserName'";
-$querydeleting = "DELETE FROM `tbl_adminaccount` WHERE `tbl_adminaccount`.`adminEmail` = '$adminUserName'";
+$querymovingtoarchive = "INSERT INTO `tbl_adminaccount` select * from tbl_adminaccountarchive where `adminEmail` = '$adminUserName'";
+$querydeleting = "DELETE FROM `tbl_adminaccountarchive` WHERE `tbl_adminaccountarchive`.`adminEmail` = '$adminUserName'";
 
 if ($resultmovingtoarchive = mysqli_query($connect, $querymovingtoarchive))
 {
   if ($resultdeleting = mysqli_query($connect, $querydeleting))
   {
-    header("Location:manageAccountStaffAccount.php");
+    header("Location:manageAccountStaffAccountArchived.php");
 }
 else{
     $message = "Error Deleting";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    header("Location:manageAccountStaffAccount.php");
+    header("Location:manageAccountStaffAccountArchived.php");
 }
 
 }
 else{
   $message = "Error Moving";
   echo "<script type='text/javascript'>alert('$message');</script>";
-  header("Location:manageAccountStaffAccount.php");
+  header("Location:manageAccountStaffAccountArchived.php");
 }
 
 //redirecting to the display page (index.php in our case)
