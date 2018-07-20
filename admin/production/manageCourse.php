@@ -228,10 +228,8 @@ require 'header.php';
 													<td width="9%" >
 														<center>
 															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
-
 															<a title="Delete" class="btn btn-default btn-danger" href="manageCourseDelete.php?id=<?php echo $row['courseCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>	
-															</center>
-														
+														</center>
 													</td>
 													<td> <?php echo $row['courseCode'];?> </td>
 													<td> <?php echo $row['courseName'];?> </td>

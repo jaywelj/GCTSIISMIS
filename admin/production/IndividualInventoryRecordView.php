@@ -5,8 +5,6 @@ session_start();
 
 
 $varcharStudentAccountNumber = $_GET['id'];
-$_SESSION['sessionStudentAccountNumber'] = $varcharStudentAccountNumber;
-$_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
 ?>
 <?php
 include("connectionString.php");
@@ -18,16 +16,18 @@ while($res = mysqli_fetch_array($result))
 {
 
 	$varcharStudentNumber = $res['studentNumber'];
-	$varcharStudentFirstName = $res['studentFirstName'];
-	$varcharStudentMiddleName = $res['studentMiddleName'];
-	$varcharStudentLastName = $res['studentLastName'];
 	$varcharStudentAbout = $res['aboutStudent'];
 	$varcharStudentDisplayPic = $res['studentDisplayPic'];
 
 }
 $result2 = mysqli_query($connect, "SELECT * FROM `tbl_personalinfo` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `infoID` DESC LIMIT 1");
 
-while($res2 = mysqli_fetch_array($result2)){
+while($res2 = mysqli_fetch_array($result2))
+{
+
+	$varcharStudentFirstName = $res2['firstName'];
+	$varcharStudentMiddleName = $res2['middleName'];
+	$varcharStudentLastName = $res2['lastName'];
 	$varcharStudentCollege = $res2['collegeCode'];
 	$varcharStudentCourse = $res2['courseCode'];
 	$varcharStudentSex = $res2['sex'];
@@ -204,8 +204,6 @@ else if($varcharStudentSex = "M"){
 	$varcharStudentSex = "Male";
 }
 
-$varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
-
 ?>
 
 <!DOCTYPE html>
@@ -297,13 +295,37 @@ require 'header.php';
 										<div class="profile_img">
 											<div id="crop-avatar">
 												<!-- Current avatar -->
-												<img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+											<!-- 	<?php
+												// echo '
+												// <img src="data:image/jpeg;base64,'.base64_encode($varcharStudentDisplayPic).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover; display: block; margin-left: auto; margin-right: auto;">';
+												?> -->
+												<?php
+
+												$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount` WHERE `studentNumber` = '$varcharStudentAccountNumber'");
+
+												while($res = mysqli_fetch_array($result))
+												{
+													$VarcharStudentProfileImage = $res['studentDisplayPic'];
+													if(empty($VarcharStudentProfileImage))
+													{
+														echo '
+														<img src="assets/img/default-user.png">
+														';
+													}
+													 else{
+													// 	<img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
+	 													echo '
+														<img class="img-responsive avatar-view" src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic']).'"  alt="Avatar" title='.$res['studentNumber'].'>
+														';
+													}
+												}
+												?>
 											</div>
 										</div>
-										<h3>Jaywel Javier</h3>
+										<h3><?php echo $varcharStudentFirstName.' '.$varcharStudentLastName;  ?></h3>
 
 										<ul class="list-unstyled user_data">
-											<li><i class="fa fa-map-marker user-profile-icon"></i> Taytay, Rizal
+											<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityProvince ; ?>, <?php echo $varcharStudentCityCity ;?>
 											</li>
 										</ul>
 
@@ -339,7 +361,7 @@ require 'header.php';
 																	<tbody>
 																		<tr>
 																			<th scope="row" style="width: 400px;">Full Name</th>
-																			<td><?php echo $varcharStudentFirstName.$varcharStudentMiddleName.$varcharStudentLastName; ?></td>
+																			<td><?php echo $varcharStudentFirstName." ".$varcharStudentMiddleName." ".$varcharStudentLastName; ?></td>
 																		</tr>
 																		<tr>
 																			<th scope="row">Gender</th>

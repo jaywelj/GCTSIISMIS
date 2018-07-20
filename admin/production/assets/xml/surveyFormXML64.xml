@@ -1,0 +1,13 @@
+<form-template>
+	<fields>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532052704962">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="header" subtype="h1" label="Header"></field>
+	</fields>
+</form-template>

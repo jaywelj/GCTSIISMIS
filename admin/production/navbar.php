@@ -48,7 +48,7 @@ include("connectionString.php");
 					</a>
 					
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
-						<li><a href="AdminProfile.php"> Profile</a></li>
+						<li><a href="manageAccountSelf.php"> Profile</a></li>
 						<li>
 							<a href="javascript:;">
 								<span class="badge bg-red pull-right">50%</span>

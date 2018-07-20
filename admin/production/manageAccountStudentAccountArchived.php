@@ -310,7 +310,22 @@ require 'header.php';
 													<td> <?php echo $res['lastName'];?> </td>
 													<td> 
 														<center>	
-															<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['studentDisplayPic'] ).'"height="200" width="200" style="object-fit:cover;"  />';?> </td>
+															<?php
+
+
+															$VarcharStudentProfileImage = $res['studentDisplayPic'];
+															if(empty($VarcharStudentProfileImage))
+															{
+																echo '
+																<img src="assets/img/default-user.png" height="200" width="200" style="object-fit:cover;">
+																';
+															}
+															else{
+																echo '<img src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic'] ).'" height="200" width="200" style="object-fit:cover;" />';
+															}
+
+															?>
+														</td>
 														</center>
 													</tr>  
 													<?php
@@ -318,6 +333,16 @@ require 'header.php';
 											
 												?> 
 											</tbody>
+											<tfoot>
+											<tr>
+												<th></th>
+												<th>Student Number</th>
+												<th>First Name</th>
+												<th>Middle Name</th>
+												<th>Last Name</th>
+												<th>Image</th>
+											</tr>
+										</tfoot>
 										</table>
 									</div>
 								</div>

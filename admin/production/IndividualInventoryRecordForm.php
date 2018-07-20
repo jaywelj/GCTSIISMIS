@@ -1,219 +1,646 @@
 <!DOCTYPE html>
 <?php
+
+
 include("connectionString.php");
-$varcharStudentNumber = $_GET["id"];
-$queryStudentAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentNumber'";
+
+$VarcharStudentNumber = $_GET["id"];
+$queryStudentAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$VarcharStudentNumber'";
 $arrayStudentAccount = mysqli_query($connect, $queryStudentAccount);
 while ($res = mysqli_fetch_array($arrayStudentAccount)) {
-	$varcharFirstName = $res['studentFirstName'];
-	$varcharMiddleName = $res['studentMiddleName'];
-	$varcharLastName = $res['studentLastName'];
+
 }
-$queryPersonalInfo = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$varcharStudentNumber'";
+$queryPersonalInfo = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$VarcharStudentNumber'";
 $arrayPersonalInfo = mysqli_query($connect, $queryPersonalInfo);
 while ($res = mysqli_fetch_array($arrayPersonalInfo)) {
-	$vacharYear = $res['year'];
-	$vacharSection = $res['section'];
-	$vacharCourse = $res['courseCode'];
+	$varcharYear= $res['year'];
+	$varcharSection = $res['section'];
+	$varcharCourse = $res['courseCode'];
+	$varcharFirstName = $res['firstName'];
+	$varcharMiddleName = $res['middleName'];
+	$varcharLastName = $res['lastName'];
+	$varcharCourseCode = $res['courseCode'];
+	$varcharCollegeCode = $res['collegeCode'];
 }
 ?>
 <?php
 include 'IndividualInventoryRecordFormSubmit.php';
-if (isset($_POST['btnFinish'])) {
-//Get Personal Information
-	$varcharFirstName = $_POST['txtbxFirstName'];
-	$varcharMiddleName = $_POST['txtbxMiddleName'];
-	$varcharLastName = $_POST['txtbxLastName'];
-	$varcharGender = $_POST['radioGender'];
-	$varcharSexuality = $_POST['dropdownSexuality'];
-	if ($varcharSexuality == 'Others') {
-		$varcharSexuality = $_POST['txtbxOthersSexuality'];
-	}
-	$intAge = $_POST['txtbxAge'];
-	$dateDateOfBirth = $_POST['dateDateOfBirth'];
-	$varcharPlaceOfBirth = $_POST['txtbxPlaceOfBirth'];
-	$varcharCivilStatus = $_POST['dropdownCivilStatus'];
-	if ($varcharCivilStatus == 'Others') {
-		$varcharCivilStatus = $_POST['txtbxOthersCivilStatus'];
-	}
-	$varcharReligion = $_POST['dropdownReligion'];
-	if ($varcharReligion == 'Others') {
-		$varcharReligion = $txtbxOthersReligion;
-	}
-	$doubleHeight = $_POST['txtbxHeight'];
-	$doubleWeight = $_POST['txtbxWeight'];
-	$varcharComplexion = $_POST['dropdownComplexion'];
-	if ($varcharComplexion == 'Others') {
-		$varcharComplexion == $_POST['txtbxOthersComplexion'];
-	}
-	$varcharYear = $_POST['txtbxYear'];
-	$varcharSection = $_POST['txtbxSection'];
-	$varcharCityAddress = $_POST['dropdownCityAddress'];
-	$varcharProvincialAddress = $_POST['dropdownProvincialAddress'];
-	$vacharEmailAddress = $_POST['txtbxEmailAddress'];
-//End of Personal Info
-//Educational Background
-	$varcahrPreELemSchoolGraduated = $_POST['txtbxPreElemSchoolGraduated'];
-	$varcahrPreELemSchoolAddress = $_POST['txtbxPreElemSchoolAddress'];
+if (isset($_POST['btnFinish'])) 
+{	
 
-	$varcahrPreElemYearAttended = $_POST['txtbxPreElemYearAttended'];
-	$varcharPreElemHonors = $_POST['txtbxPreElemHonors'];
-	$varcharElementarySchoolGraduated = $_POST['txtbxElementarySchoolGraduated'];
-	$varcharElementarySchoolAddress = $_POST['txtbxElementarySchoolAddress'];
-	$varcahrElementaryYearAttended = $_POST['txtbxElementaryYearAttended'];
-	$varcharElementaryHonors = $_POST['txtbxElementaryHonors'];
-	$varcharHighschoolSchoolGraduated = $_POST['txtbxHighschoolSchoolGraduated'];
-	$varcharHighschoolSchoolAddress = $_POST['txtbxHighschoolSchoolAddress'];
-	$varcharHighschoolYearAttended = $_POST['txtbxHighschoolYearAttended'];
-	$varcharHighschoolHonors = $_POST['txtbxHighschoolHonors'];
-	$varcharVocationalSchoolGraduated = $_POST['txtbxVocationalSchoolGraduated'];
-	$varcharVocationalSchoolAddress = $_POST['txtbxVocationalSchoolAddress'];
-	$varcharVocationalYearAttended = $_POST['txtbxVocationalYearAttended'];
-	$varcharVocationalHonors = $_POST['txtbxVocationalHonors'];
-	$varcharCollegeSchoolGraduated = $_POST['txtbxCollegeSchoolGraduated'];
-	$varcharCollegeSchoolAddress = $_POST['txtbxCollegeSchoolAddress'];
-	$varcharCollegeYearAttended = $_POST['txtbxCollegeYearAttended'];
-	$varcharCollegeHonors = $_POST['txtbxCollegeHonors'];
-//End of Educational Background
-//Family Background
-	$varcharMotherName = $_POST["txtbxMotherName"];
-	$varcharMotherAge = $_POST["txtbxMotherAge"];
-	$varcharMotherEducationalAttainment = $_POST["dropdownMotherEducationalAttainment"];
-	$varcharMotherOccupationType = $_POST["dropdownMotherOccupationType"];
-	$varcharOccupation = $_POST["txtbxMotherOccupation"];
-	$varcharMotherNameOfEmployer = $_POST["txtbxMotherNameOfEmployer"];
-	$varcharMotherAddressOfEmployer = $_POST["txtbxMotherAddressOfEmployer"];
-	$varcharFatherName = $_POST["txtbxFatherName"];
-	$varcharFatherAge = $_POST["txtbxFatherAge"];
-	$varcharGuardianRelationship = $_POST["dropdownGuardianRelationship"];
-	$varcharFatherEducationalAttainment = $_POST["dropdownFatherEducationalAttainment"];
-	$varcharFatherOccupationType = $_POST["dropdownFatherOccupationType"];
-	$varcharFatherOccupation = $_POST["txtbxFatherOccupation"];
-	$varcharFatherNameOfEmployer = $_POST["txtbxFatherNameOfEmployer"];
-	$varcharFatherAddressOfEmployer = $_POST["txtbxFatherAddressOfEmployer"];
-	$varcharGuardianName = $_POST["txtbxGuardianName"];
-	$varcharGuardianAge = $_POST["txtbxGuardianAge"];
-	$varcharGuardianEducationalAttainment = $_POST["dropdownGuardianEducationalAttainment"];
-	$varcharGuardianOccupationType = $_POST["dropdownGuardianOccupationType"];
-	$varcharGuardianOccupation = $_POST["txtbxGuardianOccupation"];
-	$varcharGuardianNameOfEmployer = $_POST["txtbxGuardianNameOfEmployer"];
-	$varcharGuardianAddressOfEmployer = $_POST["txtbxGuardianAddressOfEmployer"];
-	$varcharParentsMaritalRelationship = $_POST["dropdownParentsMaritalRelationship"];
-	$varcharNoOfChildrenInTheFamily = $_POST["txtbxNoOfChildrenInTheFamily"];
-	$varcharNoOfBrothers = $_POST["txtbxNoOfBrothers"];
-	$varcharNoOfSisters = $_POST["txtbxNoOfSisters"];
-	$varcharNoOfBrothersSistersGainfullyEmployed = $_POST["txtbxNoOfBrothersSistersGainfullyEmployed"];
-	$varcharOrdinalPosition = $_POST["dropdownOrdinalPosition"];
-	$varcharWhoFinancesYoureSchooling = $_POST["dropdownWhoFinancesYourSchooling"];
-	$varcharNatureOfResidence = $_POST["dropdownNatureOfResidence"];
-	$varcharWithWhom = $_POST["txtbxWithWhom"];
-	$doubleWeeklyAllowance = $_POST["txtbxWeeklyAllowance"];
-//End Of Family Background
-//Health Background
-	$varcharVisionProblem = $_POST["radioVision"];
-	if ($varcharVisionProblem == "Yes") {
-		$varcharVisionProblem = $_POST["txtbxVision"];
+
+	$message = $VarcharStudentNumber;
+	echo "<script type='text/javascript'>alert('$message');</script>";
+
+	$VarcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxFirstName']);
+
+	$VarcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxLastName']);
+
+	$VarcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxMiddleName']);
+
+	$VarcharStudentCourse = $varcharCourseCode;
+
+	$VarcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxYear']);
+
+	$VarcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxSection']);
+
+	$VarcharStudentCollege = $varcharCollegeCode;
+
+	$VarcharStudentGender = mysqli_real_escape_string($connect, $_POST['radioGender']);
+
+	$VarcharStudentSexuality = mysqli_real_escape_string($connect, $_POST['dropdownSexuality']);
+
+	$VarcharOthersSexuality = mysqli_real_escape_string($connect, $_POST['txtbxOthersSexuality']);
+
+	if($VarcharStudentSexuality == "Others")
+	{
+		$VarcharStudentSexuality = $VarcharOthersSexuality;
 	}
-	$varcharHearingProblem = $_POST["radioHearing"];
-	if ($varcharHearingProblem == "Yes") {
-		$varcharHearingProblem = $_POST["txtbxHearing"];
-	}
-	$varcharSpeachProblem = $_POST["radioSpeach"];
-	if ($varcharSpeachProblem == "Yes") {
-		$varcharSpeachProblem = $_POST["txtbxSpeach"];
-	}
-	$varcharGeneralHealthProblem = $_POST["radioGeneralHealth"];
-	if ($varcharGeneralHealthProblem == "Yes") {
-		$varcharGeneralHealthProblem = $_POST["txtbxGeneralHealth"];
+	else
+	{
+
 	}
 
-	$varcharPyschiatristConsult = $_POST["radioPsychiatrist"];
-	if ($varcharPyschiatristConsult == "Yes") {
-		$datePsychiatristWhen = $_POST["datePsychiatrist"];
-		$varcharPyschiatristReason = $_POST["txtareaForWhatPsychiatrist"];
-	} else {
-		$datePsychiatristWhen = null;
-		$varcharPyschiatristReason = null;
-	}
-	$varcharPyschologistConsult = $_POST["radioPsychologist"];
+	$VarcharStudentAge = mysqli_real_escape_string($connect, $_POST['txtbxAge']);
 
-	if ($varcharPyschologistConsult == "Yes") {
-		$datePsychologistWhen = $_POST["datePsychologist"];
-		$varcharPyschologistReason = $_POST["txtareaForWhatPsychologist"];
-	} else {
-		$datePsychologistWhen = null;
-		$varcharPyscologistReason = null;
-	}
-	$varcharCounselorConsult = $_POST["radioCounselor"];
+	$VarcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxYear']);
 
-	if ($varcharCounselorConsult == "Yes") {
-		$dateCounselorWhen = $_POST["datePsychiatrist"];
-		$varcharCounselorReason = $_POST["txtareaForWhatCounselor"];
-	} else {
-		$dateCounselorWhen = null;
-		$varcharCounselorReason = null;
+	$VarcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxSection']);
+
+	$VarcharStudentCivilStatus = mysqli_real_escape_string($connect, $_POST['dropdownCivilStatus']);
+
+	$VarcharStudentCivilStatusOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersCivilStatus']);
+
+	if ($VarcharStudentCivilStatus == "Others") 
+	{
+		$VarcharStudentCivilStatus = $VarcharStudentCivilStatusOthers;	
 	}
-//End Of Health Background
-//Interest and Hoobies
-	$varcharClubInterest = "";
+
+	$VarcharStudentBirthdate = mysqli_real_escape_string($connect, $_POST['dateDateOfBirth']);
+
+	$VarcharStudentHeight = mysqli_real_escape_string($connect, $_POST['txtbxHeight']);
+
+	$VarcharStudentWeight = mysqli_real_escape_string($connect, $_POST['txtbxWeight']);
+
+	$VarcharStudentComplexion = mysqli_real_escape_string($connect, $_POST['dropdownComplexion']);
+
+	$VarcharStudentComplexionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersComplexion']);
+
+	if ($VarcharStudentComplexion == "Others") {
+
+		$VarcharStudentComplexion = $VarcharStudentComplexionOthers;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentBirthplace = mysqli_real_escape_string($connect, $_POST['txtbxPlaceOfBirth']);
+
+	$VarcharStudentCity = mysqli_real_escape_string($connect, $_POST['dropdownCityAddress']);
+	$VarcharStudentCityArray = explode('~', $VarcharStudentCity);
+
+	$VarcharStudentCityHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxCityHouseNumber']);
+
+	$VarcharStudentCityProvince = $VarcharStudentCityArray[0];
+
+	$VarcharStudentCityCity = $VarcharStudentCityArray[1];
+
+	$VarcharStudentCityBarangay = mysqli_real_escape_string($connect, $_POST['txtbxCityBarangay']);
+
+	$VarcharStudentProvinceHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxProvinceHouseNumber']);
+
+	$VarcharStudentProvinceProvince = mysqli_real_escape_string($connect, $_POST['dropdownProvincialAddress']);
+
+	$VarcharStudentProvinceCity = mysqli_real_escape_string($connect, $_POST['txtbxProvinceCity']);
+
+	$VarcharStudentProvinceBarangay = mysqli_real_escape_string($connect, $_POST['txtbxProvinceBarangay']);
+
+	$VarcharStudentTelNum = mysqli_real_escape_string($connect, $_POST['txtbxTelNum']);
+
+	$VarcharStudentMobileNum = mysqli_real_escape_string($connect, $_POST['txtbxMobileNum']);
+
+	$VarcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxEmailAddress']);
+
+	$VarcharStudentHSGWA = mysqli_real_escape_string($connect, $_POST['txtbxHSGWA']);
+
+	$VarcharStudentReligion = mysqli_real_escape_string($connect, $_POST['dropdownReligion']);
+
+	$VarcharStudentReligionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersReligion']);
+
+	if ($VarcharStudentReligion == "Others")
+	{
+		$VarcharStudentReligion = $VarcharStudentReligionOthers;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxNameOfEmployer']);
+
+	$VarcharStudentEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxAddressOfEmployer']);
+
+	$VarcharStudentContactPersonName = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonName']);
+
+	$VarcharStudentContactPersonAddress = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonAddress']);
+
+	$VarcharStudentContactPersonRelationship = mysqli_real_escape_string($connect, $_POST['dropdownContactPersonRelationship']);
+
+	$VarcharStudentContactPersonRelationshipOthers = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonOthersRelationship']);
+
+	if ($VarcharStudentContactPersonRelationship == "Others") 
+	{
+		$VarcharStudentContactPersonRelationship = $VarcharStudentContactPersonRelationshipOthers;
+	}
+
+	$VarcharStudentContactPersonContactNumber = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonNumber']);
+					//End of the first form wizard-->
+
+					//Start of the second form wizard-->
+	$VarcharStudentPreSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxPreElemSchoolGraduated']);
+
+	$VarcharStudentPreSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxPreElemSchoolAddress']);
+
+	$VarcharStudentPreSchoolType = mysqli_real_escape_string($connect, $_POST['radioPreElemTypeOfSchool']);
+
+	$VarcharStudentPreSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxPreElemYearAttended1']);
+	$VarcharStudentPreSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxPreElemYearAttended2']);
+
+	$VarcharStudentPreSchoolYearAttended = $VarcharStudentPreSchoolYearAttended1 . ' - ' . $VarcharStudentPreSchoolYearAttended2;
+
+	$VarcharStudentPreSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxPreElemHonors']);
+
+	$VarcharStudentElementarySchoolName = mysqli_real_escape_string($connect, $_POST['txtbxElementarySchoolGraduated']);
+
+	$VarcharStudentElementarySchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxElementarySchoolAddress']);
+
+	$VarcharStudentElementaryType = mysqli_real_escape_string($connect, $_POST['radioElementaryTypeOfSchool']);
+
+	$VarcharStudentElementaryYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxElementaryYearAttended1']);
+	$VarcharStudentElementaryYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxElementaryYearAttended2']);
+
+	$VarcharStudentElementaryYearAttended = $VarcharStudentElementaryYearAttended1 . ' - ' . $VarcharStudentElementaryYearAttended2;
+
+
+	$VarcharStudentElementaryHonors = mysqli_real_escape_string($connect, $_POST['txtbxElementaryHonors']);
+
+	$VarcharStudentHSSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolSchoolGraduated']);
+
+	$VarcharStudentHSSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolSchoolAddress']);
+
+	$VarcharStudentHSSchoolType = mysqli_real_escape_string($connect, $_POST['radioHighschoolTypeOfSchool']);
+
+	$VarcharStudentHSSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolYearAttended1']);
+	$VarcharStudentHSSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolYearAttended2']);
+
+	$VarcharStudentHSSchoolYearAttended = $VarcharStudentHSSchoolYearAttended1 . ' - ' . $VarcharStudentHSSchoolYearAttended2;
+
+
+	$VarcharStudentHSSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolHonors']);
+
+	$VarcharStudentCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxCollegeSchoolGraduated']);
+
+	$VarcharStudentCollegeAddress = mysqli_real_escape_string($connect, $_POST['txtbxCollegeSchoolAddress']);
+
+	$VarcharStudentCollegeType = mysqli_real_escape_string($connect, $_POST['radioCollegeTypeOfSchool']);
+
+	$VarcharStudentCollegeYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxCollegeYearAttended1']);
+	$VarcharStudentCollegeYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxCollegeYearAttended2']);
+
+	$VarcharStudentCollegeYearAttended = $VarcharStudentCollegeYearAttended1 . ' - ' . $VarcharStudentCollegeYearAttended2;
+
+	$VarcharStudentCollegeHonors = mysqli_real_escape_string($connect, $_POST['txtbxCollegeHonors']);
+
+	$VarcharStudentVocationalName = mysqli_real_escape_string($connect, $_POST['txtbxVocationalSchoolGraduated']);
+
+	$VarcharStudentVocationalAddress = mysqli_real_escape_string($connect, $_POST['txtbxVocationalSchoolAddress']);
+
+	$VarcharStudentVocationalType = mysqli_real_escape_string($connect, $_POST['radioVocationalTypeOfSchool']);
+
+	$VarcharStudentVocationalYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxVocationalYearAttended1']);
+	$VarcharStudentVocationalYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxVocationalYearAttended2']);
+
+	$VarcharStudentVocationalYearAttended = $VarcharStudentVocationalYearAttended1 . ' - ' . $VarcharStudentVocationalYearAttended2;
+
+	$VarcharStudentVocationalHonors = mysqli_real_escape_string($connect, $_POST['txtbxVocationalHonors']);
+
+	$VarcharStudentNatureOfSchooling = mysqli_real_escape_string($connect, $_POST['radioNatureOfSchooling']);
+
+	$VarcharStudentInterruptedWhy = mysqli_real_escape_string($connect, $_POST['txtbxNatureOfSchoolingInterruptedReason']);
+
+	if($VarcharStudentNatureOfSchooling == "Interrupted")
+	{
+		$VarcharStudentNatureOfSchooling = $VarcharStudentInterruptedWhy;
+	}
+	else
+	{
+
+	}
+
+					//End Of part 2 of form wizard-->
+
+					//Start of part 3 of the form wizard -->
+
+	$VarcharStudentFatherName = mysqli_real_escape_string($connect, $_POST['txtbxFatherName']);
+
+	$VarcharStudentFatherAge = mysqli_real_escape_string($connect, $_POST['txtbxFatherAge']);
+
+	$VarcharStudentFatherStatus = mysqli_real_escape_string($connect, $_POST['radioFatherState']);
+
+	$VarcharStudentFatherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownFatherEducationalAttainment']);
+
+	$VarcharStudentFatherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxFatherOccupation']);
+
+	$VarcharStudentFatherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxFatherNameOfEmployer']);
+
+	$VarcharStudentFatherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxFatherAddressOfEmployer']);
+
+	$VarcharStudentMotherName = mysqli_real_escape_string($connect, $_POST['txtbxMotherName']);
+
+	$VarcharStudentMotherAge = mysqli_real_escape_string($connect, $_POST['txtbxMotherAge']);
+
+	$VarcharStudentMotherStatus = mysqli_real_escape_string($connect, $_POST['radioMotherState']);
+
+	$VarcharStudentMotherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownMotherEducationalAttainment']);
+
+	$VarcharStudentMotherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxMotherOccupation']);
+
+	$VarcharStudentMotherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxMotherNameOfEmployer']);
+
+	$VarcharStudentMotherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxMotherAddressOfEmployer']);
+
+	$VarcharStudentGuardianName = mysqli_real_escape_string($connect, $_POST['txtbxGuardianName']);
+
+	$VarcharStudentGuardianAge = mysqli_real_escape_string($connect, $_POST['txtbxGuardianAge']);
+
+	$VarcharStudentGuardianRelation = mysqli_real_escape_string($connect, $_POST['dropdownGuardianRelationship']);
+
+	$VarcharStudentGuardianRelationOthers = mysqli_real_escape_string($connect, $_POST['txtbxGuaridanOthersRelationship']);
+
+	$VarcharStudentGuardianEducationAttainment = mysqli_real_escape_string($connect, $_POST['dropdownGuardianEducationalAttainment']);
+
+	$VarcharStudentGuardianOccupation = mysqli_real_escape_string($connect, $_POST['txtbxGuardianOccupation']);
+
+	$VarcharStudentGuardianNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxGuardianNameOfEmployer']);
+
+	$VarcharStudentGuardianEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxGuardianAddressOfEmployer']);
+
+	$VarcharStudentParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['dropdownParentsMaritalRelationship']);
+
+	$VarcharOthersParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['txtbxOthersParentsMaritalRelationship']);
+
+	if ($VarcharStudentParentMaritalRelationship == "Others") 
+	{
+		$VarcharStudentParentMaritalRelationship = $VarcharOthersParentMaritalRelationship;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentNumOfChildren = mysqli_real_escape_string($connect, $_POST['txtbxNoOfChildrenInTheFamily']);
+
+	$VarcharStudentNumOfBrothers = mysqli_real_escape_string($connect, $_POST['txtbxNoOfBrothers']);
+
+	$VarcharStudentNumOfSisters = mysqli_real_escape_string($connect, $_POST['txtbxNoOfSisters']);
+
+	$VarcharStudentSiblingsEmployed = mysqli_real_escape_string($connect, $_POST['txtbxNoOfBrothersSistersGainfullyEmployed']);
+
+	//$VarcharStudentSiblingsEmployedMoreThan0 = mysqli_real_escape_string($connect, $_POST['dropdownSupportedByYourSibling']);
+
+	$VarcharStudentOrdinalPosition = mysqli_real_escape_string($connect, $_POST['dropdownOrdinalPosition']);
+
+	$VarcharStudentSiblingSupporter = mysqli_real_escape_string($connect, $_POST['dropdownSupportedByYourSibling']);
+
+	$VarcharStudentFinancer = mysqli_real_escape_string($connect, $_POST['dropdownWhoFinancesYourSchooling']);
+
+	$VarcharOthersFinancer = mysqli_real_escape_string($connect, $_POST['txtbxOthersWhoFinancesYourSchooling']);
+
+	if ($VarcharStudentFinancer == "Others") {
+		$VarcharStudentFinancer = $VarcharOthersFinancer;
+	}
+	else {
+						# code...
+	}
+
+	$VarcharStudentWeeklyAllowance = mysqli_real_escape_string($connect, $_POST['txtbxWeeklyAllowance']);
+
+	$VarcharStudentMonthlyIncome = mysqli_real_escape_string($connect, $_POST['dropdownParentsMonthlyIncome']);
+
+	$VarcharStudentStudyPlace = mysqli_real_escape_string($connect, $_POST['radioQuietPlaceToSTudy']);
+
+	$VarcharStudentRoomSharing = mysqli_real_escape_string($connect, $_POST['radioShareRoom']);
+
+	$VarcharStudentRoomSharingYes = mysqli_real_escape_string($connect, $_POST['txtbxWithWhom']);
+
+	if ($VarcharStudentRoomSharing == "Yes") 
+	{
+		$VarcharStudentRoomSharing = $VarcharStudentRoomSharingYes;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentNatureOfResidence = mysqli_real_escape_string($connect, $_POST['dropdownNatureOfResidence']);
+					//End of part 3 of the form wizard 
+
+					//Start of par4 of the form wizard
+
+	$VarcharStudentVision = mysqli_real_escape_string($connect, $_POST['radioVision']);
+
+	$VarcharStudentVisionSpecify = mysqli_real_escape_string($connect, $_POST['txtbxVision']);
+
+	if ($VarcharStudentVision == "Yes") {
+		$VarcharStudentVision = $VarcharStudentVisionSpecify;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentHearing = mysqli_real_escape_string($connect, $_POST['radioHearing']);
+
+	$VarcharStudentHearingSpecify = mysqli_real_escape_string($connect, $_POST['txtbxHearing']);
+
+	if ($VarcharStudentHearing == "Yes") 
+	{
+		$VarcharStudentHearing = $VarcharStudentHearingSpecify;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentSpeech = mysqli_real_escape_string($connect, $_POST['radioSpeach']);
+
+	$VarcharStudentSpeechSpecify = mysqli_real_escape_string($connect, $_POST['txtbxSpeach']);
+
+	if ($VarcharStudentSpeech == "Yes") 
+	{
+		$VarcharStudentSpeech = $VarcharStudentSpeechSpecify;
+	}
+	else
+	{
+
+	}
+
+	$VarcharStudentGeneralHealth = mysqli_real_escape_string($connect, $_POST['radioGeneralHealth']);
+
+	$VarcharStudentGeneralHealthSpecify = mysqli_real_escape_string($connect, $_POST['txtbxGeneralHealth']);
+
+	if ($VarcharStudentGeneralHealth == "Yes") 
+	{
+		$VarcharStudentGeneralHealth = $VarcharStudentGeneralHealthSpecify;
+	}
+
+	$VarcharStudentPsychiatristConsult = mysqli_real_escape_string($connect, $_POST['radioPsychiatrist']);
+
+	if ($VarcharStudentPsychiatristConsult == "Yes") 
+	{
+		$VarcharStudentPsychiatristWhen	= mysqli_real_escape_string($connect, $_POST['datePsychiatrist']);
+		$VarcharStudentPsychiatristWhat = mysqli_real_escape_string($connect, $_POST['txtareaForWhatPsychiatrist']);
+	} 
+	else 
+	{
+		$VarcharStudentPsychiatristWhen = NULL;
+		$VarcharStudentPsychiatristWhat = NULL;
+	}
+
+	$VarcharStudentPsychologistConsult = mysqli_real_escape_string($connect, $_POST['radioPsychologist']);
+	if ($VarcharStudentPsychologistConsult == "Yes")
+	{
+		$VarcharStudentPsychologistWhen = mysqli_real_escape_string($connect, $_POST['datePsychologist']);
+
+		$VarcharStudentPsychologistWhat = mysqli_real_escape_string($connect,$_POST['txtareaForWhatPsychologist']);
+	}
+	else
+	{
+		$VarcharStudentPsychologistWhen = NULL;
+
+		$VarcharStudentPsychologistWhat = NULL;
+	}
+	$VarcharStudentCounselorConsult = mysqli_real_escape_string($connect, $_POST['radioCounselor']);
+
+	if ($VarcharStudentCounselorConsult == "Yes") 
+	{
+		$VarcharStudentCounselorWhen = mysqli_real_escape_string($connect, $_POST['dateCounselor']);
+
+		$VarcharStudentCounselorWhat = mysqli_real_escape_string($connect, $_POST['txtareaForWhatCounselor']);
+	}
+	else
+	{
+		$VarcharStudentCounselorWhen = NULL;
+
+		$VarcharStudentCounselorWhat = NULL;
+	}
+
+
+					//End of Part 4 of the form wizard
+
+					//Start of part 5 of the form wizard 
+	$varchaeClubInterest ="";
 	if (isset($_POST['checkClubInterestNoInterest'])) {
 		$varcharClubInterest = "No Interest";
 	} else {
 		if (isset($_POST['checkClubInterest'])) {
-			$varcharClubInterestArray = $_POST['checkClubInterest'];
+			$varcharClubInterestArray = mysqli_real_escape_string($_POST['checkClubInterest']);
 			$n = count($varcharClubInterestArray);
 			for ($i = 0; $i < $n - 1; $i++) {
 				$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
 			}
 			$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
 			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = $_POST['txtbxOthersClubInterest'];
+				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
 				$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
 			}
 		} else {
 			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = $_POST['txtbxOthersClubInterest'];
+				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
 				$varcharClubInterest = $varcharClubInterestOthers;
 			}
 		}
 	}
 
-	$varcharFavoriteSubject = $_POST['txtareaFavoriteSubject'];
-	$varcharLeastFavoriteSubject = $_POST['txtareaLeastFavoriteSubject'];
-	$varcharHobby1 = $_POST['txtbxHobby1'];
-	$varcharHobby2 = $_POST['txtbxHobby2'];
-	$varcharHobby3 = $_POST['txtbxHobby3'];
-	$varcharHobby4 = $_POST['txtbxHobby4'];
-
+	$VarcharStudentFavoriteSubject = mysqli_real_escape_string($connect, $_POST['txtareaFavoriteSubject']);
+	$VarcharStudentLeastFavSubject = mysqli_real_escape_string($connect, $_POST['txtareaLeastFavoriteSubject']);
+	$VarcharStudentHobbies1 = mysqli_real_escape_string($connect, $_POST['txtbxHobby1']);
+	$VarcharStudentHobbies2 = mysqli_real_escape_string($connect, $_POST['txtbxHobby2']);
+	$VarcharStudentHobbies3 = mysqli_real_escape_string($connect, $_POST['txtbxHobby3']);
+	$VarcharStudentHobbies4 = mysqli_real_escape_string($connect, $_POST['txtbxHobby4']);
 
 	$varcharOrganizationInterest = "";
 	if (isset($_POST['checkOrganizationInterestNoInterest'])) {
 		$varcharOrganizationInterest = "No Interest";
 	} else {
 		if (isset($_POST['checkOrganizationInterest'])) {
-			$varcharOrganizationInterestArray = $_POST['checkOrganizationInterest'];
+			$varcharOrganizationInterestArray = mysqli_real_escape_string($_POST['checkOrganizationInterest']);
 			$n = count($varcharOrganizationInterestArray);
 			for ($i = 0; $i < $n - 1; $i++) {
 				$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
 			}
 			$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
 			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = $_POST['txtbxOthersOrganizationInterest'];
+				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
 				$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
 			}
 		} else {
 			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = $_POST['txtbxOthersOrganizationInterest'];
+				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
 				$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
 			}
 		}
 	}
+					// end of part 5 form wizard 
 
-//End Of Interest and Hobbies
+					// start of part 6 form wizard
+	$VarcharStudentTestDateInitial = mysqli_real_escape_string($connect, $_POST['dateTestResultDateInitial']);
+	$VarcharStudentTestNameInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultNameInitial']);
+	$VarcharStudentTestRSInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultRawScoreInitial']);
+	$VarcharStudentTestPRInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultPercentileRatingInitial']);
+	$VarcharStudentTestDescriptionInitial = mysqli_real_escape_string($connect, $_POST['txtareaTestResultDescriptionInitial']);
 
-	echo "<script type='text/javascript'>alert('$varcharOrganizationInterest');</script>";
+	if(empty($VarcharStudentNumber)) 
+	{
+
+		if(empty($VarcharStudentNumber)) 
+		{
+			$message = "Enter a valid Student Number";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+                        //link to the previous page
+                        //echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+	} 
+	else 
+	{ 
+
+		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonorso', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddFamilyBackground = "UPDATE `tbl_familybackground` SET `fatherName` = '$VarcharStudentFatherName', `fatherAge` = '$VarcharStudentFatherAge', `fatherStatus` = '$VarcharStudentFatherStatus', `fatherEducation` = '$VarcharStudentFatherEducationalAttainment', `fatherOccupation` = '$VarcharStudentFatherOccupation', `fatherEmployerName` = '$VarcharStudentFatherNameOfEmployer', `fatherEmployerAdd` = '$VarcharStudentFatherEmployerAddress', `motherName` = '$VarcharStudentMotherName', `motherAge` = '$VarcharStudentMotherAge', `motherStatus` = '$VarcharStudentMotherStatus', `motherEducation` = '$VarcharStudentMotherEducationalAttainment', `motherOccupation` = '$VarcharStudentMotherOccupation', `motherEmployerName` = '$VarcharStudentMotherNameOfEmployer', `motherEmployerAdd` = '$VarcharStudentMotherEmployerAddress', `guardianName` = '$VarcharStudentGuardianName', `guardianAge` = '$VarcharStudentGuardianAge', `guardianRelation` = '$VarcharStudentGuardianRelation', `guardianEducation` = '$VarcharStudentGuardianEducationAttainment', `guardianOccupation` = '$VarcharStudentGuardianOccupation', `guardianEmployerName` = '$VarcharStudentGuardianNameOfEmployer', `guardianEmployerAdd` = '$VarcharStudentGuardianEmployerAddress', `parentsMaritalRelation` = '$VarcharStudentParentMaritalRelationship', `noOfChildren` = '$VarcharStudentNumOfChildren', `noOfBrother` = '$VarcharStudentNumOfBrothers', `noOfSister` = '$VarcharStudentNumOfSisters', `broSisEmployed` = '$VarcharStudentSiblingsEmployed', `ordinalPosition` = '$VarcharStudentOrdinalPosition', `supportedByYourSibling` = '$VarcharStudentSiblingsEmployedMoreThan0', `schoolFinancer` = '$VarcharStudentFinancer', `weeklyAllowance` = '$VarcharStudentWeeklyAllowance', `totalMonthlyIncome` = '$VarcharStudentMonthlyIncome', `studyPlace` = '$VarcharStudentStudyPlace', `roomSharing` = '$VarcharStudentRoomSharing', `natureOfResidence` = 'VarcharStudentNatureOfResidence' WHERE `tbl_familybackground`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddHealth = "UPDATE `tbl_healthinfo` SET `visionProblem` = '$VarcharStudentVision', `hearingProblem` = '$VarcharStudentHearing', `speechProblem` = '$VarcharStudentSpeech', `generalHealth` = '$VarcharStudentGeneralHealth', `psychiatristConsult` = '$VarcharStudentPsychiatristConsult', `psychiatristWhen` = '$VarcharStudentPsychiatristWhen', `psychiatristReason` = '$VarcharStudentPsychiatristWhat', `psychologistConsult` = '$VarcharStudentPsychologistConsult', `psychologistWhen` = '$VarcharStudentPsychologistWhen', `psychologistReason` = '$VarcharStudentPsychologistWhat', `counselorConsult` = '$VarcharStudentCounselorConsult', `counselorWhen` = '$VarcharStudentCounselorWhen', `counselorReason` = '$VarcharStudentCounselorWhat' WHERE `tbl_healthinfo`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$varcharClubInterest', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$varcharOrganizationInterest', `organizationPosition` = 'Nothing' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddTestResultInitial = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial', `testName` = '$VarcharStudentTestNameInitial', `testRawScore` = '$VarcharStudentTestRSInitial', `testPercentile` = '$VarcharStudentTestPRInitial', `testDescription` = '$VarcharStudentTestDescriptionInitial' WHERE `tbl_testrecord`.`studentNumber` = '$VarcharStudentNumber'";
+                        						//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643',
+		if (mysqli_query($connect, $queryAddPersonalInfo)) {
+			$message = "Successfully Added In Personal Info";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Query Error #2";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+
+		if (mysqli_query($connect, $queryAddEducationalBackground)) {
+			$message = "Successfully Added In Educational Background";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Query Error #3";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+
+		if (mysqli_query($connect, $queryAddFamilyBackground)) {
+			$message = "Successfully Added In Family Background";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Query Error #4";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                           						 //redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+
+		if (mysqli_query($connect, $queryAddHealth)) {
+			$message = "Successfully Added In Health";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Query Error #5";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+
+		if (mysqli_query($connect, $queryAddInterests)) {
+			$message = "Successfully Added In Interest And Hobbies";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Query Error #6";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+
+		if (mysqli_query($connect, $queryAddTestResultInitial)) {
+			$message = "Successfully Added In Test Results";
+			echo "<script type='text/javascript'>alert('$message');</script>";                         
+		}
+		else
+		{
+			$message = "Query Error #7";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+		}
+		for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
+
+			echo $_POST['dateTestResultDate'][$i]; echo"<br>";
+			echo $_POST['txtbxTestResultName'][$i]; echo"<br>";
+			echo $_POST['txtbxTestResultRawScore'][$i]; echo"<br>";
+			echo $_POST['txtbxTestResultPercentileRating'][$i]; echo"<br>";
+			echo $_POST['txtareaTestResultDescription'][$i]; echo"<br>";
+
+			$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
+			$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
+			$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
+			$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
+			$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
+
+			$queryInsertingAdditionalTests = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, '$InsertingTestResultDate', '$InsertingTestResultName', '$InsertingTestRS', '$InsertingTestPR', '$InsertingTestResultDescription', '$VarcharStudentNumber')";
+
+			if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
+				$message = "Successfully Added In Test Results Additional".$i."";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+
+				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";                           
+			}
+			else
+			{
+				$message = "Query Error #8";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			}
 
 
+			$message = $_POST['txtbxTestResultName'][$i];
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}	
+	}
+
+	
 
 }
 ?>
@@ -251,1734 +678,1823 @@ require 'header.php';
 		<div class="main_container">
 			<!-- side navigation -->
 			<?php 
-		require 'sidebar.php';
-		?>
+			require 'sidebar.php';
+			?>
 			<!-- /side navigation -->
 			<!-- top navigation -->
 			<?php 
-		require 'navbar.php';
-		?>
+			require 'navbar.php';
+			?>
 			<!-- /top navigation -->
-		<!-- page content -->
+			<!-- page content -->
 
-		<div class="right_col" role="main">
-			<div class="">
-				<div class="page-title">
-					<div class="title_left">
-						<h3>Manage Individual Inventory Record</h3>
-					</div>
+			<div class="right_col" role="main">
+				<div class="">
+					<div class="page-title">
+						<div class="title_left">
+							<h3>Manage Individual Inventory Record</h3>
+						</div>
 
-					<div class="title_right">
-						<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-							<div class="input-group">
-								<input type="text" class="form-control" placeholder="Search for...">
-								<span class="input-group-btn">
-									<button class="btn btn-default" type="button">Go!</button>
-								</span>
+						<div class="title_right">
+							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
+								<div class="input-group">
+									<input type="text" class="form-control" placeholder="Search for...">
+									<span class="input-group-btn">
+										<button class="btn btn-default" type="button">Go!</button>
+									</span>
+								</div>
 							</div>
 						</div>
 					</div>
+					<div class="clearfix"></div>
+
+					<div class="row">
+						<div class="col-md-12 col-sm-12 col-xs-12">
+							<div class="x_panel">
+								<div class="x_title">
+									<h2>Individual Inventory Record Form<small></small></h2>
+									<div class="clearfix"></div>
+								</div>
+								<div class="wizard">
+									<div class="wizard-inner">
+										<div class="connecting-line"></div>
+										<ul class="nav nav-tabs" role="tablist">
+
+											<li role="presentation" class="active">
+												<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-user"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-education"></i>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-home"></i>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-plus-sign"></i>
+													</span>
+												</a>
+											</li>
+											<li role="presentation" class="disabled">
+												<a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-star"></i>
+													</span>
+												</a>
+											</li>
+
+											<li role="presentation" class="disabled">
+												<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
+													<span class="round-tab">
+														<i class="glyphicon glyphicon-list-alt"></i>
+													</span>
+												</a>
+											</li>
+										</ul>
+									</div>
+									<form method="post">
+										<div class="tab-content">
+											<div class="tab-pane active" role="tabpanel" id="step1">
+												<h3 class="text-center">Step 1</h3>
+												<div class="form-horizontal form-label-left">
+													<span class="section"> 
+														<h1 class="text-center">Personal Information</h1>
+													</span>
+													<span class="section" style="margin-left:90px;">I. Basic Information</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >First Name <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="txtbxFirstName" name="txtbxFirstName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharFirstName; ?>">
+														</div>	
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3" >Middle Name / Initial</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxMiddleName" name="txtbxMiddleName" value="<?php echo $varcharMiddleName; ?>">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Last Name <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="txtbxLastName" name="txtbxLastName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharLastName; ?>">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Gender</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioGender" value="M"> Male 
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioGender" value="F" checked=""> Female
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Sexuality(Sexual Orientation)</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" >
+																<option></option>
+																<option value="Heterosexual">Heterosexual</option>
+																<option value="Homosexual">Homosexual</option>
+																<option value="Bisexual">Bisexual</option>
+																<option value="Pansexual">Pansexual</option>
+																<option value="Demisexual">Demisexual</option>
+																<option value="Queer">Queer</option>
+																<option value="Asexual">Asexual</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" id="txtbxOthersSexuality" name="txtbxOthersSexuality" class="form-control col-md-7 col-xs-12" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Age</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Date Of Birth </label>
+														<div class="col-md-3 col-sm-3">
+															<input class="date-picker form-control col-md-7 col-xs-12" type="date" id="dateDateOfBirth" name="dateDateOfBirth">
+														</div>  
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Place of Birth</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPlaceOfBirth" name="txtbxPlaceOfBirth">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Civil Status</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownCivilStatus" id="dropdownCivilStatus">
+																<option></option>
+																<option value="Single">Single</option>
+																<option value="Married">Married</option>
+																<option value="Separated">Separated</option>
+																<option value="Widowed">Widowed</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" id="txtbxOthersCivilStatus" name="txtbxOthersCivilStatus" class="form-control col-md-7 col-xs-12" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Religion</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownReligion" id="dropdownReligion">
+																<option></option>
+																<option selected="" value=" "></option>
+																<option value="Aglipayan">Aglipayan</option>
+																<option value="Buddhism">Buddhism</option>
+																<option value="Born Again Christian">Born Again Christian</option>
+																<option value="Baptist">Baptist</option>
+																<option value="Catholic">Catholic</option>
+																<option value="Jehovas Witnesses">Jehovas Witnesses</option>
+																<option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
+																<option value="Islam">Islam</option>
+																<option value="Protestant">Protestant</option>
+																<option value="Seventh Day Adventist">Seventh Day Adventist</option>
+																<option value="Mormons (Latter Day Saints)">Mormons (Latter Day Saints)</option>
+																<option value="Methodist">Methodist</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" id="txtbxOthersReligion" name="txtbxOthersReligion" class="form-control col-md-7 col-xs-12" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Height</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHeight" name="txtbxHeight" >
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Weight</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxWeight" name="txtbxWeight" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Complexion</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownComplexion" id="dropdownComplexion">
+																<option></option>
+																<option  selected=""></option>
+																<option value="White Skin">White Skin</option>
+																<option value="Fair Skin">Fair Skin</option>
+																<option value="Medium Skin">Medium Skin</option>
+																<option value="Olive Skin">Olive Skin</option>
+																<option value="Tan Brown">Tan Brown</option>
+																<option value="Black Brown">Black Brown</option>
+																<option value="Dark Skin">Dark Skin</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" id="txtbxOthersComplexion" name="txtbxOthersComplexion" class="form-control col-md-7 col-xs-12" disabled="true">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">II. Student Information</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Student Number</label>
+														<div class="col-md-6 col-sm-6">
+															<input disabled="disabled" class="form-control col-md-7 col-xs-12" type="text" id="txtbxStudentNumber" name="txtbxStudentNumber" value="<?php echo $VarcharStudentNumber; ?>">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $varcharYear; ?>">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Section</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $varcharSection; ?>">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Highschool General Average</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHSGWA" name="txtbxHSGWA">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">III. Contact Informaltion</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">City Address</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" id="dropdownCityAddress" name="dropdownCityAddress" >
+																<option  selected=""></option>
+																<option>Metro Manila~Caloocan</option>
+																<option>Metro Manila~Las Pinas</option>
+																<option>Metro Manila~Makati</option>
+																<option>Metro Manila~Malabon</option>
+																<option>Metro Manila~Mandaluyong</option>
+																<option>Metro Manila~Manila</option>
+																<option>Metro Manila~Marikina</option>
+																<option>Metro Manila~Muntinlupa</option>
+																<option>Metro Manila~Navotas</option>
+																<option>Metro Manila~Paranaque</option>
+																<option>Metro Manila~Pasay</option>
+																<option>Metro Manila~Pasig</option>
+																<option>Metro Manila~Pateros</option>
+																<option>Metro Manila~Quezon City</option>
+																<option>Metro Manila~San Juan</option>
+																<option>Metro Manila~Taguig</option>
+																<option>Metro Manila~Valenzuela</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">City: House Number</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityHouseNumber" name="txtbxCityHouseNumber">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">City: Barangay</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityBarangay" name="txtbxCityBarangay">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Provincial Address</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" id="dropdownProvincialAddress" name="dropdownProvincialAddress" >
+																<option  selected=""></option>
+																<option>Abra</option>
+																<option>Agusan Del Norte</option>
+																<option>Agusan Del Sur</option>
+																<option>Aklan</option>
+																<option>Albay</option>
+																<option>Antique</option>
+																<option>Aurora</option>
+																<option>Basilan</option>
+																<option>Bataan</option>
+																<option>Batangas</option>
+																<option>Benguet</option>
+																<option>Biliran</option>
+																<option>Bohol</option>
+																<option>Bukidnon</option>
+																<option>Bulacan</option>
+																<option>Cagayan</option>
+																<option>Camarines Norte</option>
+																<option>Camarines Sur</option>
+																<option>Camiguin</option>
+																<option>Capiz</option>
+																<option>Catanduanes</option>
+																<option>Cavite</option>
+																<option>Cebu</option>
+																<option>Compostela Valley</option>
+																<option>Cotabato</option>
+																<option>Davao Del Norte</option>
+																<option>Davao Del Sur</option>
+																<option>Davao Oriental</option>
+																<option>Dinagat Islands</option>
+																<option>Eastern Samar</option>
+																<option>Guimaras</option>
+																<option>Ifugao</option>
+																<option>Ilocos Norte</option>
+																<option>Ilocos Sur</option>
+																<option>Iloilo</option>
+																<option>Isabela</option>
+																<option>Kalinga</option>
+																<option>La Union</option>
+																<option>Laguna</option>
+																<option>Lanao Del Norte</option>
+																<option>Lanao Del Sur</option>
+																<option>Lazada Office</option>
+																<option>Leyte</option>
+																<option>Maguindanao</option>
+																<option>Marinduque</option>
+																<option>Masbate</option>
+																<option>Misamis Occidental</option>
+																<option>Misamis Oriental</option>
+																<option>Mountain Province</option>
+																<option>Negros Occidental</option>
+																<option>Negros Oriental</option>
+																<option>North Cotabato</option>
+																<option>Northern Samar</option>
+																<option>Nueva Ecija</option>
+																<option>Nueva Vizcaya</option>
+																<option>Occidental Mindoro</option>
+																<option>Oriental Mindoro</option>
+																<option>Palawan</option>
+																<option>Pampanga</option>
+																<option>Pangasinan</option>
+																<option>Quezon</option>
+																<option>Quirino</option>
+																<option>Rizal</option>
+																<option>Romblon</option>
+																<option>Sarangani</option>
+																<option>Siquijor</option>
+																<option>Sorsogon</option>
+																<option>South Cotabato</option>
+																<option>Southern Leyte</option>
+																<option>Sultan Kudarat</option>
+																<option>Sulu</option>
+																<option>Surigao Del Norte</option>
+																<option>Surigao Del Sur</option>
+																<option>Tarlac</option>
+																<option>Tawi-Tawi</option>
+																<option>Western Samar</option>
+																<option>Zambales</option>
+																<option>Zamboanga Del Norte</option>
+																<option>Zamboanga Del Sur</option>
+																<option>Zamboanga Sibugay</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Province: House Number</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceHouseNumber" name="txtbxProvinceHouseNumber">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Province: Barangay</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceBarangay" name="txtbxProvinceBarangay">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Province: Municipality/City</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceCity" name="txtbxProvinceCity">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Email Address</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Mobile Number</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxMobileNum" name="txtbxMobileNum">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Tel. Number</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxTelNum" name="txtbxTelNum">
+														</div>
+													</div>
+
+													<span class="section" style="margin-left:90px;">IV. If You Are Working</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Name Of Employer</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxNameOfEmployer" name="txtbxNameOfEmployer">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Address Of Employer</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxAddressOfEmployer" name="txtbxAddressOfEmployer">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Who to contact in case of emergency?</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonName" name="txtbxContactPersonName">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Contact Person Address</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonAddress" name="txtbxContactPersonAddress">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Person Relationship</label>
+														<div class="col-md-2 col-sm-2 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownContactPersonRelationship" id="dropdownContactPersonRelationship">
+																<option></option>
+																<option selected=""></option>
+																<option value="Parent">Parent</option>
+																<option value="Brother/Sister<">Brother/Sister</option>
+																<option value="Aunt/Uncle">Aunt/Uncle</option>
+																<option value="Relatives">Relatives</option>
+																<option value="Grandparents">Grandparents</option>
+																<option value="Land lady">Land lady</option>
+																<option value="Step-Mother/Step-Father">Step-Mother/Step-Father</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxContactPersonOthersRelationship" id="txtbxContactPersonOthersRelationship">
+														</div>
+													</div>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Contact Person Contact Number</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonNumber" name="txtbxContactPersonNumber">
+														</div>
+													</div>	
+
+												</div>
+
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step2">
+												<h3 class="text-center">Step 2</h3>
+
+												<div class="form-horizontal form-label-left">
+													<span class="section"> <h1 class="text-center">Educational Background</h1></span>
+													<span class="section" style="margin-left:90px;">I. Pre-elementary</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >School Address <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPreElemTypeOfSchool" value="Public"> Public
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPreElemTypeOfSchool" value="Private"> Private
+																</label>
+																<input type="radio" name="radioPreElemTypeOfSchool" value=NULL checked="true" style="display: none;">
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">From Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPreElemYearAttended1" name="txtbxPreElemYearAttended1">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">To Year</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPreElemYearAttended2" name="txtbxPreElemYearAttended2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxPreElemHonors" id="txtbxPreElemHonors">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">II. Elementary</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolGraduated" name="txtbxElementarySchoolGraduated">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text"  class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolAddress" name="txtbxElementarySchoolAddress">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3" >Type of School<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioElementaryTypeOfSchool" value="Public"> Public
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioElementaryTypeOfSchool" value="Private" checked=""> Private
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">From Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended1" name="txtbxElementaryYearAttended1">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">To Year</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended2" name="txtbxElementaryYearAttended2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxElementaryHonors" id="txtbxElementaryHonors">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">III. High School</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolGraduated" name="txtbxHighschoolSchoolGraduated">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolAddress" name="txtbxHighschoolSchoolAddress">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Public"> Public
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" checked=""> Private
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">From Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended1" name="txtbxHighschoolYearAttended1">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">To Year</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended2" name="txtbxHighschoolYearAttended2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolHonors" id="txtbxHighschoolHonors">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">IV. Vocational</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolGraduated" id="txtbxVocationalSchoolGraduated" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolAddress" id="txtbxVocationalSchoolAddress" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioVocationalTypeOfSchool" value="Public"> Public
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioVocationalTypeOfSchool" value="Private"> Private
+																	<input type="radio" name="radioVocationalTypeOfSchool" value=NULL checked="true" style="display: none;">
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">From Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxVocationalYearAttended1" name="txtbxVocationalYearAttended1">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">To Year</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxVocationalYearAttended2" name="txtbxVocationalYearAttended2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxVocationalHonors" id="txtbxVocationalHonors" >
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">V. College</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolGraduated" id="txtbxCollegeSchoolGraduated" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolAddress" id="txtbxCollegeSchoolAddress" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioCollegeTypeOfSchool" value="Public"> Public
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioCollegeTypeOfSchool" value="Private"> Private
+																</label>
+																<input type="radio" name="radioCollegeTypeOfSchool" value=NULL checked="true" style="display: none;">
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">From Year</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCollegeYearAttended1" name="txtbxCollegeYearAttended1">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">To Year</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCollegeYearAttended2" name="txtbxCollegeYearAttended2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxCollegeHonors" id="txtbxCollegeHonors" >
+														</div>
+													</div>
+													<br>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">HighSchool General Average</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolGeneralAverage" id="txtbxHighschoolGeneralAverage" >
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Nature of schooling<span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<div class="btn-group" data-toggle="buttons" >
+																<label class="btn btn-default" data-toggle-class="btn-primary " style="padding-left: 22px; padding-right:22px;" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Continuous" checked="true"> Continuous
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 23px; padding-right:23px;">
+																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Interrupted" > Interrupted
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">If interrupted, why?</label>
+														<div class="col-md-6 col-sm-6">
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxNatureOfSchoolingInterruptedReason" id="txtbxNatureOfSchoolingInterruptedReason" disabled="true">
+														</div>
+													</div>
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+													<li><input type="submit" name="btnFinish" class="btn btn-primary next-step" value="Finish" ></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step3">
+												<h3 class="text-center">Step 3</h3>
+												<div class="form-horizontal form-label-left">
+													<span class="section"> <h1 class="text-center">Home and Family Background</h1></span>
+													<span class="section" style="margin-left:90px;">I. Mother</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherName" name="txtbxMotherName">
+														</div>
+
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge"> 
+														</div>
+														<div class="btn-group" data-toggle="buttons">
+															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<input type="radio" name="radioMotherState" value="Living"> Living 
+															</label>
+															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<input type="radio" name="radioMotherState" value="Deceased" checked=""> Deceased
+															</label>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownMotherEducationalAttainment" id="dropdownMotherEducationalAttainment">
+																<option></option>
+																<option  selected=""></option>
+																<option >Elementary Undergraduate</option>
+																<option >Elementary graduate</option>
+																<option >High School Undergraduate</option>
+																<option >High School Graduate</option>
+																<option >College undergraduate</option>
+																<option >Vocational Graduate</option>
+																<option >Masteral Unit</option>
+																<option >Doctoral Degree</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
+														<div class="col-md-2 col-sm-2 col-xs-12">
+															<select class="select2_group form-control" name="dropdownMotherOccupationType" id="dropdownMotherOccupationType">
+																<option  selected=""></option>
+																<optgroup label="Employed">
+																	<option value="Government">Local - Government</option>
+																	<option value="Private">Local - Private</option>
+																	<option value="Abroad">Abroad</option>
+																	<option value="Self-Employed">Self-Employed</option>
+																</optgroup>
+																<option value="Unemployed">Unemployed</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherOccupation" id="txtbxMotherOccupation">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherNameOfEmployer" id="txtbxMotherNameOfEmployer">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAddressOfEmployer" id="txtbxMotherAddressOfEmployer">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">II. Father</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherName" id="txtbxFatherName">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge">
+														</div>
+														<div class="btn-group" data-toggle="buttons">
+															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<input type="radio" name="radioFatherState" value="Living"> Living 
+															</label>
+															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<input type="radio" name="radioFatherState" value="Deceased" checked=""> Deceased
+															</label>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownFatherEducationalAttainment" id="dropdownFatherEducationalAttainment">
+																<option></option>
+																<option  selected=""></option>
+																<option >Elementary Undergraduate</option>
+																<option >Elementary graduate</option>
+																<option >High School Undergraduate</option>
+																<option >High School Graduate</option>
+																<option >College undergraduate</option>
+																<option >Vocational Graduate</option>
+																<option >Masteral Unit</option>
+																<option >Doctoral Degree</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
+														<div class="col-md-2 col-sm-2 col-xs-12">
+															<select class="select2_group form-control" name="dropdownFatherOccupationType" id="dropdownFatherOccupationType">
+																<option  selected=""></option>
+																<optgroup label="Employed">
+																	<option value="Government">Local - Government</option>
+																	<option value="Private">Local - Private</option>
+																	<option value="Abroad">Abroad</option>
+																	<option value="Self-Employed">Self-Employed</option>
+																</optgroup>
+																<option value="Unemployed">Unemployed</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherOccupation" id="txtbxFatherOccupation">
+														</div>
+													</div> 
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherNameOfEmployer" id="txtbxFatherNameOfEmployer">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAddressOfEmployer" id="txtbxFatherAddressOfEmployer">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">III. Guardian</span>
+
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianName" id="txtbxGuardianName">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAge" id="txtbxGuardianAge">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Relationship</label>
+														<div class="col-md-2 col-sm-2 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownGuardianRelationship" id="dropdownGuardianRelationship">
+																<option></option>
+																<option selected=""></option>
+																<option value="Parent">Parent</option>
+																<option value="Brother/Sister<">Brother/Sister</option>
+																<option value="Aunt/Uncle">Aunt/Uncle</option>
+																<option value="Relatives">Relatives</option>
+																<option value="Grandparents">Grandparents</option>
+																<option value="Vocational Graduate">Vocational Graduate</option>
+																<option value="Land lady">Land lady</option>
+																<option value="Step-Mother/Step-Father">Step-Mother/Step-Father</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxGuaridanOthersRelationship" id="txtbxGuaridanOthersRelationship">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownGuardianEducationalAttainment" id="dropdownGuardianEducationalAttainment">
+																<option></option>
+																<option  selected=""></option>
+																<option >Elementary Undergraduate</option>
+																<option >Elementary graduate</option>
+																<option >High School Undergraduate</option>
+																<option >High School Graduate</option>
+																<option >College undergraduate</option>
+																<option >Vocational Graduate</option>
+																<option >Masteral Unit</option>
+																<option >Doctoral Degree</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
+														<div class="col-md-2 col-sm-2 col-xs-12">
+															<select class="select2_group form-control" name="dropdownGuardianOccupationType" id="dropdownGuardianOccupationType">
+																<option  selected=""></option>
+																<optgroup label="Employed">
+																	<option value="Government">Local - Government</option>
+																	<option value="Private">Local - Private</option>
+																	<option value="Abroad">Abroad</option>
+																	<option value="Self-Employed">Self-Employed</option>
+																</optgroup>
+																<option value="Unemployed">Unemployed</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														</label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianOccupation" id="txtbxGuardianOccupation">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianNameOfEmployer" id="txtbxGuardianNameOfEmployer">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAddressOfEmployer" id="txtbxGuardianAddressOfEmployer">
+														</div>
+													</div>
+													<br>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Parent's Marital RelationShip</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownParentsMaritalRelationship" id="dropdownParentsMaritalRelationship">
+																<option></option>
+																<option  selected=""></option>
+																<option value="Married and staying together">Married and staying together</option>
+																<option value="ot married but living together">Not married but living together</option>
+																<option value="Single Parent">Single Parent</option>
+																<option value="Married but separated">Married but separated</option>
+																<option value="Others">Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersParentsMaritalRelationship" id="txtbxOthersParentsMaritalRelationship">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Number of children in the family including yourself</label>
+														<div class="col-md-2 col-sm-2">
+															<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfChildrenInTheFamily" id="txtbxNoOfChildrenInTheFamily">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Brothers</label>
+														<div class="col-md-1 col-sm-1">
+															<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfBrothers" id="txtbxNoOfBrothers">
+														</div>
+														<label class="control-label col-md-1 col-sm-1">Sisters</label>
+														<div class="col-md-1 col-sm-1">
+															<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfSisters" id="txtbxNoOfSisters">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3">Number of brother/s sisters gainfully employed</label>
+														<div class="col-md-3 col-sm-3">
+															<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfBrothersSistersGainfullyEmployed" id="txtbxNoOfBrothersSistersGainfullyEmployed">
+														</div>
+														<label class="control-label col-md-1 col-sm-1 col-xs-12">Ordinal Position</label>
+														<div class="col-md-2 col-sm-2 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownOrdinalPosition" id="dropdownOrdinalPosition">
+																<option  selected=""></option>
+																<option >Only Child</option>
+																<option >First</option>
+																<option >Second</option>
+																<option >Third</option>
+																<option >Fourth</option>
+																<option >Fifth</option>
+																<option >Sixth</option>
+																<option >Seventh</option>
+																<option >Eight</option>
+																<option >Ninth</option>
+																<option >Tenth</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"> Is your brother/sister who's gainfully employed providing support to : <span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2 col-xs-6">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownSupportedByYourSibling" id="dropdownSupportedByYourSibling">
+																<option  selected=""></option>
+																<option >Your Studies</option>
+																<option >Your Family</option>
+																<option >His/Her Family</option>
+																<option >Does Not Give Support</option>
+																<option >Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersSupportedByYourSibling" id="txtbxOthersSupportedByYourSibling">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Who finance your schooling?</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownWhoFinancesYourSchooling" id="dropdownWhoFinancesYourSchooling">
+																<option selected=""></option>
+																<option >Parents</option>
+																<option >Brother/Sister</option>
+																<option >Spouse</option>
+																<option >Scholarship</option>
+																<option >Relatives</option>
+																<option >Self-supporting/Working student</option>
+																<option >Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersWhoFinancesYourSchooling" id="txtbxOthersWhoFinancesYourSchooling">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >How much is your weekly allowance<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWeeklyAllowance" id="txtbxWeeklyAllowance">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Parent's monthly income</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+															<select class="select2_single form-control" name="dropdownParentsMonthlyIncome" id="dropdownParentsMonthlyIncome" tabindex="-1">
+																<option  selected=""></option>
+																<option >Below average</option>
+																<option >Average</option>
+																<option >Above average</option>
+															</select>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study?<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioQuietPlaceToSTudy" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioQuietPlaceToSTudy" value="No" checked=""> No
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Do you share your room with anyone?<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioShareRoom" id="radioShareRoom" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioShareRoom" id="radioShareRoom" value="No" checked=""> No
+																</label>
+															</div>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >If yes with whom?<span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWithWhom" id="txtbxWithWhom">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Nature of residence while attending school</label>
+														<div class="col-md-2 col-sm-2 col-xs-2">
+															<select class="select2_single form-control" tabindex="-1" name="dropdownNatureOfResidence" id="dropdownNatureOfResidence">
+																<option selected=""></option>
+																<option >Family home</option>
+																<option >Relative's house</option>
+																<option >Shares apartment with friends</option>
+																<option >Shares apartment with relatives</option>
+																<option >Bed spacer</option>
+																<option >Rented apartment</option>
+																<option >Dorm</option>
+																<option >Others</option>
+															</select>
+														</div>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
+														<div class="col-md-3 col-sm-3">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxGuaridanOthersRelationship" id="txtbxGuaridanOthersRelationship">
+														</div>
+													</div>
+
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step4">
+												<h3 class="text-center">Step 4</h3>
+												<div class="form-horizontal form-label-left">
+													<span class="section"> <h1 class="text-center">Health Background</h1></span>
+													<span class="section" style="margin-left:90px;">I. Physical</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Do you have problems with:
+														</label>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Your Vision<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioVision" value="Yes">Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioVision" value="None" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVision" id="txtbxVision" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Your Hearing<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioHearing" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioHearing" value="None" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHearing" id="txtbxHearing" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Your Speach<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioSpeach" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioSpeach" value="None" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxSpeach" id="txtbxSpeach" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Your General Health<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioGeneralHealth" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioGeneralHealth" value="None" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGeneralHealth" id="txtbxGeneralHealth" disabled="true">
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">II. Psychological</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Psychiatrist<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPsychiatrist" id="radioPsychiatrist" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPsychiatrist" id="radioPsychiatrist" value="Never" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychiatrist" id="datePsychiatrist" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<textarea class="form-control" name="txtareaForWhatPsychiatrist" id="txtareaForWhatPsychiatrist" disabled="true"></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Psychologist<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPsychologist" id="radioPsychologist" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioPsychologist" id="radioPsychologist" value="Never" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychologist" id="datePsychologist" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<textarea class="form-control" name="txtareaForWhatPsychologist" id="txtareaForWhatPsychologist" disabled="true"></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Counselor<span class="required">*</span>
+														</label>
+														<div class="col-md-2 col-sm-2">
+															<div class="btn-group" data-toggle="buttons">
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioCounselor" id="radioCounselor" value="Yes"> Yes
+																</label>
+																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioCounselor" id="radioCounselor" value="Never" checked=""> No
+																</label>
+															</div>
+														</div>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+															<input type="date" class="form-control col-md-7 col-xs-12" name="dateCounselor" id="dateCounselor" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<textarea class="form-control" name="txtareaForWhatCounselor" id="txtareaForWhatCounselor" disabled="true" ></textarea>
+														</div>
+													</div>
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+													<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="step5">
+												<h3 class="text-center">Step 5</h3>
+												<div class="form-horizontal form-label-left">
+													<span class="section"> <h1 class="text-center">Interest and Hobbies</h1></span>
+													<span class="section" style="margin-left:90px;">I. Academic</span>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Club Interests</label>
+														<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice1" value="Math Club"> <span class="label-text">Math Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice2" value="Science Club"> <span class="label-text">Science Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice3" value="English Club"> <span class="label-text">English Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice4" value="Filipino Club" ><span class="label-text">Filipino Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice5" value="Astronomy Club"> <span class="label-text">Astronomy Club</span>
+															</label><br>
+														</div>
+														<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice6" value="Quizzers Club"> <span class="label-text">Quizzers Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice7" value="Social Studies Club"> <span class="label-text">Social Studies Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice8" value="Statistics Club"> <span class="label-text">Statistics Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterestOthers" id="checkClubOthers" value="Others"> <span class="label-text">Others</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkClubInterestNoInterest" id="checkClubNoInterest" name="No Interest"> <span class="label-text">No Interest</span>
+															</label><br>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersClubInterest" id="txtbxOthersClubInterest" disabled="true">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >What is/are you favorite subject/s <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<textarea class="form-control" name="txtareaFavoriteSubject" id="txtareaFavoriteSubject" ></textarea>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >What is/are your least favorite subject <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" ></textarea>
+														</div>
+													</div>
+													<span class="section" style="margin-left:90px;">Ii. Extra-Culicular</span>
+													<div class="form-group">
+														<label class="control-label col-md-4 col-sm-4"  >Hobbies (according to preference) <span class="required">*</span>
+														</label>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >1. <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby1" id="txtbxHobby1">
+														</div>
+													</div><div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >2. <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby2" id="txtbxHobby2">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >3. <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby3" id="txtbxHobby3">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >4. <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby4" id="txtbxHobby4">
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Organization Interests</label>
+														<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice1" value="Athlectics"> <span class="label-text">Athletics</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice2" value="Dramatics"> <span class="label-text">Dramatics</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice3" value="Religious Organization"> <span class="label-text">Religious Org</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice5" value="Glee Club"> <span class="label-text">Glee Club</span>
+															</label><br>
+														</div>
+														<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice6" value="Scouting"> <span class="label-text">Scouting</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice4" value="Chess Club" ><span class="label-text">Chess Club</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterestOthers" id="checkOrganizationOthers" value="Others"> <span class="label-text">Others</span>
+															</label><br>
+															<label>
+																<input type="checkbox" name="checkOrganizationInterestNoInterest" id="checkOrganizationNoInterest" value="No Interest"> <span class="label-text">No Interest</span>
+															</label><br>
+														</div>
+													</div>
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
+														</label>
+														<div class="col-md-6 col-sm-6">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersOrganizationInterest" id="txtbxOthersOrganizationInterest" disabled="true">
+														</div>
+													</div>
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+													<li><button type="button" class="btn btn-default next-step">Skip</button></li>
+													<li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
+												</ul>
+											</div>
+											<div class="tab-pane" role="tabpanel" id="complete">
+												<h3 class="text-center">Step 6</h3>
+												<div class="form-horizontal form-label-left">
+													<span class="section"> <h1 class="text-center">Test Results</h1></span>
+
+													<div class="x_panel ">
+														<span class="section" style="margin-left:90px;">Test Result 1</span>
+														<div class="form-group ">
+															<label class="control-label col-md-3 col-sm-3">Date Of Test<span class="required">*</span>
+															</label>
+															<div class="col-md-6 col-sm-6">
+																<input id="dateTestResultDateInitial" name="dateTestResultDateInitial" value="" class="date-picker form-control col-md-7 col-xs-12" type="date">
+															</div>
+														</div>
+
+														<div class="form-group">
+															<label class="control-label col-md-3 col-sm-3"  >Name of Test <span class="required">*</span>
+															</label>
+															<div class="col-md-6 col-sm-6">
+																<input id="txtbxTestResultNameInitial" name="txtbxTestResultNameInitial" value="" type="text" class="form-control col-md-7 col-xs-12">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-3 col-sm-3"  >Raw Score(RS) <span class="required">*</span>
+															</label>
+															<div class="col-md-6 col-sm-6">
+																<input id="txtbxTestResultRawScoreInitial" name="txtbxTestResultRawScoreInitial" value="" type="text" class="form-control col-md-7 col-xs-12">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-3 col-sm-3"  >Percentile Rating(PR) <span class="required">*</span>
+															</label>
+															<div class="col-md-6 col-sm-6">
+																<input id="txtbxTestResultPercentileRatingInitial" name="txtbxTestResultPercentileRatingInitial" value="" type="text" class="form-control col-md-7 col-xs-12">
+															</div>
+														</div>
+														<div class="form-group">
+															<label class="control-label col-md-3 col-sm-3"  >Description<span class="required">*</span>
+															</label>
+															<div class="col-md-6 col-sm-6">
+																<textarea class="form-control" name="txtareaTestResultDescriptionInitial" id="txtareaTestResultDescriptionInitial" required=""></textarea>
+															</div>
+														</div>
+													</div>
+													<!--NEW FIELDS HERE-->
+													<div id="newTestFields">
+
+													</div>
+													<!--END OF NEW FIELDS-->
+													<div class="form-group">
+														<label class="control-label col-md-3 col-sm-3"></label>
+														<button class="btn btn-success col-md-6 col-sm-6" type="button"  onclick="education_fields();" >
+															<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Test Result
+														</button>
+													</div>
+												</div>
+												<ul class="list-inline pull-right">
+													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+													<li><input type="submit" name="btnFinish" class="btn btn-primary next-step" value="Finish" ></li>
+												</ul>
+											</div>
+											<div class="clearfix">
+											</div>
+										</div>
+									</form>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
 				</div>
 				<div class="clearfix"></div>
-
-				<div class="row">
-					<div class="col-md-12 col-sm-12 col-xs-12">
-						<div class="x_panel">
-							<div class="x_title">
-								<h2>Individual Inventory Record Form<small></small></h2>
-								<div class="clearfix"></div>
-							</div>
-							<div class="wizard">
-								<div class="wizard-inner">
-									<div class="connecting-line"></div>
-									<ul class="nav nav-tabs" role="tablist">
-
-										<li role="presentation" class="active">
-											<a href="#step1" data-toggle="tab" aria-controls="step1" role="tab" title="Step 1">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-user"></i>
-												</span>
-											</a>
-										</li>
-
-										<li role="presentation" class="disabled">
-											<a href="#step2" data-toggle="tab" aria-controls="step2" role="tab" title="Step 2">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-education"></i>
-												</span>
-											</a>
-										</li>
-										<li role="presentation" class="disabled">
-											<a href="#step3" data-toggle="tab" aria-controls="step3" role="tab" title="Step 3">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-home"></i>
-												</span>
-											</a>
-										</li>
-										<li role="presentation" class="disabled">
-											<a href="#step4" data-toggle="tab" aria-controls="step4" role="tab" title="Step 4">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-plus-sign"></i>
-												</span>
-											</a>
-										</li>
-										<li role="presentation" class="disabled">
-											<a href="#step5" data-toggle="tab" aria-controls="step5" role="tab" title="Step 5">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-star"></i>
-												</span>
-											</a>
-										</li>
-
-										<li role="presentation" class="disabled">
-											<a href="#complete" data-toggle="tab" aria-controls="complete" role="tab" title="Complete">
-												<span class="round-tab">
-													<i class="glyphicon glyphicon-list-alt"></i>
-												</span>
-											</a>
-										</li>
-									</ul>
-								</div>
-								<form method="post">
-									<div class="tab-content">
-										<div class="tab-pane" role="tabpanel" id="step1">
-											<h3 class="text-center">Step 1</h3>
-											<div class="form-horizontal form-label-left">
-												<span class="section"> 
-													<h1 class="text-center">Personal Information</h1>
-												</span>
-												<span class="section" style="margin-left:90px;">I. Basic Information</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >First Name <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" id="txtbxFirstName" name="txtbxFirstName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharFirstName; ?>">
-													</div>	
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3" >Middle Name / Initial</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxMiddleName" name="txtbxMiddleName" value="<?php echo $varcharMiddleName; ?>">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Last Name <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" id="txtbxLastName" name="txtbxLastName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharLastName; ?>">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Gender</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioGender" value="Male"> Male 
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioGender" value="female" checked=""> Female
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Sexuality(Sexual Orientation)</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" >
-															<option></option>
-															<option value="Heterosexual">Heterosexual</option>
-															<option value="Homosexual">Homosexual</option>
-															<option value="Bisexual">Bisexual</option>
-															<option value="Pansexual">Pansexual</option>
-															<option value="Demisexual">Demisexual</option>
-															<option value="Queer">Queer</option>
-															<option value="Asexual">Asexual</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" id="txtbxOthersSexuality" name="txtbxOthersSexuality" class="form-control col-md-7 col-xs-12" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Age</label>
-													<div class="col-md-2 col-sm-2">
-														<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge">
-													</div>
-													<label class="control-label col-md-1 col-sm-1">Date Of Birth </label>
-													<div class="col-md-3 col-sm-3">
-														<input class="date-picker form-control col-md-7 col-xs-12" type="date" id="dateDateOfBirth" name="dateDateOfBirth">
-													</div>  
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Place of Birth</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPlaceOfBirth" name="txtbxPlaceOfBirth">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Civil Status</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownCivilStatus" id="dropdownCivilStatus">
-															<option></option>
-															<option value="Single">Single</option>
-															<option value="Married">Married</option>
-															<option value="Separated">Separated</option>
-															<option value="Widowed">Widowed</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" id="txtbxOthersCivilStatus" name="txtbxOthersCivilStatus" class="form-control col-md-7 col-xs-12" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Religion</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownReligion" id="dropdownReligion">
-															<option></option>
-															<option selected="" value=" "></option>
-															<option value="Aglipayan">Aglipayan</option>
-															<option value="Buddhism">Buddhism</option>
-															<option value="Born Again Christian">Born Again Christian</option>
-															<option value="Baptist">Baptist</option>
-															<option value="Catholic">Catholic</option>
-															<option value="Jehovas Witnesses">Jehovas Witnesses</option>
-															<option value="Iglesia ni Cristo">Iglesia ni Cristo</option>
-															<option value="Islam">Islam</option>
-															<option value="Protestant">Protestant</option>
-															<option value="Seventh Day Adventist">Seventh Day Adventist</option>
-															<option value="Mormons (Latter Day Saints)">Mormons (Latter Day Saints)</option>
-															<option value="Methodist">Methodist</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" id="txtbxOthersReligion" name="txtbxOthersReligion" class="form-control col-md-7 col-xs-12" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Height</label>
-													<div class="col-md-2 col-sm-2">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHeight" name="txtbxHeight" >
-													</div>
-													<label class="control-label col-md-1 col-sm-1">Weight</label>
-													<div class="col-md-2 col-sm-2">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxWeight" name="txtbxWeight" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Complexion</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownComplexion" id="dropdownComplexion">
-															<option></option>
-															<option  selected=""></option>
-															<option value="White Skin">White Skin</option>
-															<option value="Fair Skin">Fair Skin</option>
-															<option value="Medium Skin">Medium Skin</option>
-															<option value="Olive Skin">Olive Skin</option>
-															<option value="Tan Brown">Tan Brown</option>
-															<option value="Black Brown">Black Brown</option>
-															<option value="Dark Skin">Dark Skin</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" id="txtbxOthersComplexion" name="txtbxOthersComplexion" class="form-control col-md-7 col-xs-12" disabled="true">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">II. Student Information</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Student Number</label>
-													<div class="col-md-6 col-sm-6">
-														<input disabled="disabled" class="form-control col-md-7 col-xs-12" type="text" id="txtbxStudentNumber" name="txtbxStudentNumber" value="<?php echo $varcharStudentNumber; ?>">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year</label>
-													<div class="col-md-2 col-sm-2">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $vacharYear; ?>">
-													</div>
-													<label class="control-label col-md-1 col-sm-1">Section</label>
-													<div class="col-md-3 col-sm-3">
-														<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $vacharSection; ?>">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">III. Contact Informaltion</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">City Address</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" id="dropdownCityAddress" name="dropdownCityAddress" >
-															<option  selected=""></option>
-															<option value="8262">Metro Manila~Caloocan</option>
-															<option value="22722">Metro Manila~Las Pinas</option>
-															<option value="24972">Metro Manila~Makati</option>
-															<option value="25007">Metro Manila~Malabon</option>
-															<option value="25030">Metro Manila~Mandaluyong</option>
-															<option value="88">Metro Manila~Manila</option>
-															<option value="25059">Metro Manila~Marikina</option>
-															<option value="27973">Metro Manila~Muntinlupa</option>
-															<option value="27984">Metro Manila~Navotas</option>
-															<option value="34589">Metro Manila~Paranaque</option>
-															<option value="34607">Metro Manila~Pasay</option>
-															<option value="34810">Metro Manila~Pasig</option>
-															<option value="34842">Metro Manila~Pateros</option>
-															<option value="36138">Metro Manila~Quezon City</option>
-															<option value="36861">Metro Manila~San Juan</option>
-															<option value="39826">Metro Manila~Taguig</option>
-															<option value="40599">Metro Manila~Valenzuela</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Provincial Address</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" id="dropdownProvincialAddress" name="dropdownProvincialAddress" >
-															<option  selected=""></option>
-															<option value="42">Abra</option>
-															<option value="43">Agusan Del Norte</option>
-															<option value="44">Agusan Del Sur</option>
-															<option value="45">Aklan</option>
-															<option value="46">Albay</option>
-															<option value="47">Antique</option>
-															<option value="2990">Aurora</option>
-															<option value="50">Basilan</option>
-															<option value="3372">Bataan</option>
-															<option value="53">Batangas</option>
-															<option value="54">Benguet</option>
-															<option value="55">Biliran</option>
-															<option value="56">Bohol</option>
-															<option value="57">Bukidnon</option>
-															<option value="6819">Bulacan</option>
-															<option value="7412">Cagayan</option>
-															<option value="60">Camarines Norte</option>
-															<option value="61">Camarines Sur</option>
-															<option value="62">Camiguin</option>
-															<option value="63">Capiz</option>
-															<option value="64">Catanduanes</option>
-															<option value="65">Cavite</option>
-															<option value="66">Cebu</option>
-															<option value="12832">Compostela Valley</option>
-															<option value="68">Cotabato</option>
-															<option value="69">Davao Del Norte</option>
-															<option value="70">Davao Del Sur</option>
-															<option value="71">Davao Oriental</option>
-															<option value="221">Dinagat Islands</option>
-															<option value="72">Eastern Samar</option>
-															<option value="73">Guimaras</option>
-															<option value="74">Ifugao</option>
-															<option value="75">Ilocos Norte</option>
-															<option value="76">Ilocos Sur</option>
-															<option value="77">Iloilo</option>
-															<option value="78">Isabela</option>
-															<option value="79">Kalinga</option>
-															<option value="19693">La Union</option>
-															<option value="20290">Laguna</option>
-															<option value="82">Lanao Del Norte</option>
-															<option value="83">Lanao Del Sur</option>
-															<option value="43805">Lazada Office</option>
-															<option value="84">Leyte</option>
-															<option value="24428">Maguindanao</option>
-															<option value="86">Marinduque</option>
-															<option value="87">Masbate</option>
-															<option value="91">Misamis Occidental</option>
-															<option value="92">Misamis Oriental</option>
-															<option value="93">Mountain Province</option>
-															<option value="94">Negros Occidental</option>
-															<option value="95">Negros Oriental</option>
-															<option value="29275">North Cotabato</option>
-															<option value="96">Northern Samar</option>
-															<option value="97">Nueva Ecija</option>
-															<option value="98">Nueva Vizcaya</option>
-															<option value="89">Occidental Mindoro</option>
-															<option value="90">Oriental Mindoro</option>
-															<option value="32177">Palawan</option>
-															<option value="32616">Pampanga</option>
-															<option value="101">Pangasinan</option>
-															<option value="34854">Quezon</option>
-															<option value="36282">Quirino</option>
-															<option value="36421">Rizal</option>
-															<option value="36624">Romblon</option>
-															<option value="36884">Sarangani</option>
-															<option value="108">Siquijor</option>
-															<option value="109">Sorsogon</option>
-															<option value="110">South Cotabato</option>
-															<option value="111">Southern Leyte</option>
-															<option value="38453">Sultan Kudarat</option>
-															<option value="113">Sulu</option>
-															<option value="114">Surigao Del Norte</option>
-															<option value="115">Surigao Del Sur</option>
-															<option value="116">Tarlac</option>
-															<option value="40384">Tawi~Tawi</option>
-															<option value="40634">Western Samar</option>
-															<option value="118">Zambales</option>
-															<option value="119">Zamboanga Del Norte</option>
-															<option value="120">Zamboanga Del Sur</option>
-															<option value="121">Zamboanga Sibugay</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Email Address</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress">
-													</div>
-												</div>
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-
-											</ul>
-										</div>
-										<div class="tab-pane" role="tabpanel" id="step2">
-											<h3 class="text-center">Step 2</h3>
-
-											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Educational Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Pre-elementary</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >School Address <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPreElemTypeOfSchool" value="Public"> Public
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPreElemTypeOfSchool" value="Private"> Private
-															</label>
-															<input type="radio" name="radioPreElemTypeOfSchool" value=NULL checked="true" style="display: none;">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year Attended</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxPreElemYearAttended" Id="txtbxPreElemYearAttended">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxPreElemHonors" id="txtbxPreElemHonors">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">II. Elementary</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolGraduated" name="txtbxElementarySchoolGraduated">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text"  class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolAddress" name="txtbxElementarySchoolAddress">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3" >Type of School<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioElementaryTypeOfSchool" value="Public"> Public
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioElementaryTypeOfSchool" value="Private" checked=""> Private
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year Attended</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text"  id="txtbxElementaryYearAttended" name="txtbxElementaryYearAttended" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxElementaryHonors" id="txtbxElementaryHonors">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">III. High School</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolGraduated" name="txtbxHighschoolSchoolGraduated">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolAddress" name="txtbxHighschoolSchoolAddress">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioHighschoolTypeOfSchool" value="Public"> Public
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" checked=""> Private
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year Attended</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolYearAttended" id="txtbxHighschoolYearAttended">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolHonors" id="txtbxHighschoolHonors">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">IV. Vocational</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolGraduated" id="txtbxVocationalSchoolGraduated" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolAddress" id="txtbxVocationalSchoolAddress" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioVocationalTypeOfSchool" value="Public"> Public
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioVocationalTypeOfSchool" value="Private"> Private
-																<input type="radio" name="radioVocationalTypeOfSchool" value=NULL checked="true" style="display: none;">
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year Attended</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxVocationalYearAttended" id="txtbxVocationalYearAttended" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxVocationalHonors" id="txtbxVocationalHonors" >
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">V. College</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolGraduated" id="txtbxCollegeSchoolGraduated" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolAddress" id="txtbxCollegeSchoolAddress" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioCollegeTypeOfSchool" value="Public"> Public
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioCollegeTypeOfSchool" value="Private"> Private
-															</label>
-															<input type="radio" name="radioCollegeTypeOfSchool" value=NULL checked="true" style="display: none;">
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Year Attended</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxCollegeYearAttended" id="txtbxCollegeYearAttended" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Honors Recieved/Special Awards</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxCollegeHonors" id="txtbxCollegeHonors" >
-													</div>
-												</div>
-												<br>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">HighSchool General Average</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolGeneralAverage" id="txtbxHighschoolGeneralAverage" >
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Nature of schooling<span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<div class="btn-group" data-toggle="buttons" >
-															<label class="btn btn-default" data-toggle-class="btn-primary " style="padding-left: 22px; padding-right:22px;" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Continuous" checked="true"> Continuous
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 23px; padding-right:23px;">
-																<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Interrupted" > Interrupted
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">If interrupted, why?</label>
-													<div class="col-md-6 col-sm-6">
-														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxNatureOfSchoolingInterruptedReason" id="txtbxNatureOfSchoolingInterruptedReason" disabled="true">
-													</div>
-												</div>
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-												<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-												<li><input type="submit" name="btnFinish" class="btn btn-primary next-step" value="Finish" ></li>
-											</ul>
-										</div>
-										<div class="tab-pane" role="tabpanel" id="step3">
-											<h3 class="text-center">Step 3</h3>
-											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Home and Family Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Mother</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherName" name="txtbxMotherName">
-													</div>
-
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge"> 
-													</div>
-													<div class="btn-group" data-toggle="buttons">
-														<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-															<input type="radio" name="radioMotherState" value="Living"> Living 
-														</label>
-														<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-															<input type="radio" name="radioMotherState" value="Deceased" checked=""> Deceased
-														</label>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownMotherEducationalAttainment" id="dropdownMotherEducationalAttainment">
-															<option></option>
-															<option  selected=""></option>
-															<option >Elementary Undergraduate</option>
-															<option >Elementary graduate</option>
-															<option >High School Undergraduate</option>
-															<option >High School Graduate</option>
-															<option >College undergraduate</option>
-															<option >Vocational Graduate</option>
-															<option >Masteral Unit</option>
-															<option >Doctoral Degree</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-													<div class="col-md-2 col-sm-2 col-xs-12">
-														<select class="select2_group form-control" name="dropdownMotherOccupationType" id="dropdownMotherOccupationType">
-															<option  selected=""></option>
-															<optgroup label="Employed">
-																<option value="Government">Local - Government</option>
-																<option value="Private">Local - Private</option>
-																<option value="Abroad">Abroad</option>
-																<option value="Self-Employed">Self-Employed</option>
-															</optgroup>
-															<option value="Unemployed">Unemployed</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherOccupation" id="txtbxMotherOccupation">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherNameOfEmployer" id="txtbxMotherNameOfEmployer">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAddressOfEmployer" id="txtbxMotherAddressOfEmployer">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">II. Father</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherName" id="txtbxFatherName">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge">
-													</div>
-													<div class="btn-group" data-toggle="buttons">
-														<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-															<input type="radio" name="radioFatherState" value="Living"> Living 
-														</label>
-														<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-															<input type="radio" name="radioFatherState" value="Deceased" checked=""> Deceased
-														</label>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownFatherEducationalAttainment" id="dropdownFatherEducationalAttainment">
-															<option></option>
-															<option  selected=""></option>
-															<option >Elementary Undergraduate</option>
-															<option >Elementary graduate</option>
-															<option >High School Undergraduate</option>
-															<option >High School Graduate</option>
-															<option >College undergraduate</option>
-															<option >Vocational Graduate</option>
-															<option >Masteral Unit</option>
-															<option >Doctoral Degree</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-													<div class="col-md-2 col-sm-2 col-xs-12">
-														<select class="select2_group form-control" name="dropdownFatherOccupationType" id="dropdownFatherOccupationType">
-															<option  selected=""></option>
-															<optgroup label="Employed">
-																<option value="Government">Local - Government</option>
-																<option value="Private">Local - Private</option>
-																<option value="Abroad">Abroad</option>
-																<option value="Self-Employed">Self-Employed</option>
-															</optgroup>
-															<option value="Unemployed">Unemployed</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherOccupation" id="txtbxFatherOccupation">
-													</div>
-												</div> 
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherNameOfEmployer" id="txtbxFatherNameOfEmployer">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAddressOfEmployer" id="txtbxFatherAddressOfEmployer">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">III. Guardian</span>
-
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianName" id="txtbxGuardianName">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAge" id="txtbxGuardianAge">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Relationship</label>
-													<div class="col-md-2 col-sm-2 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownGuardianRelationship" id="dropdownGuardianRelationship">
-															<option></option>
-															<option selected=""></option>
-															<option value="Parent">Parent</option>
-															<option value="Brother/Sister<">Brother/Sister</option>
-															<option value="Aunt/Uncle">Aunt/Uncle</option>
-															<option value="Relatives">Relatives</option>
-															<option value="Grandparents">Grandparents</option>
-															<option value="Vocational Graduate">Vocational Graduate</option>
-															<option value="Land lady">Land lady</option>
-															<option value="Step-Mother/Step-Father">Step-Mother/Step-Father</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxGuaridanOthersRelationship" id="txtbxGuaridanOthersRelationship">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Educational Attainment</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownGuardianEducationalAttainment" id="dropdownGuardianEducationalAttainment">
-															<option></option>
-															<option  selected=""></option>
-															<option >Elementary Undergraduate</option>
-															<option >Elementary graduate</option>
-															<option >High School Undergraduate</option>
-															<option >High School Graduate</option>
-															<option >College undergraduate</option>
-															<option >Vocational Graduate</option>
-															<option >Masteral Unit</option>
-															<option >Doctoral Degree</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-													<div class="col-md-2 col-sm-2 col-xs-12">
-														<select class="select2_group form-control" name="dropdownGuardianOccupationType" id="dropdownGuardianOccupationType">
-															<option  selected=""></option>
-															<optgroup label="Employed">
-																<option value="Government">Local - Government</option>
-																<option value="Private">Local - Private</option>
-																<option value="Abroad">Abroad</option>
-																<option value="Self-Employed">Self-Employed</option>
-															</optgroup>
-															<option value="Unemployed">Unemployed</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
-													</label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianOccupation" id="txtbxGuardianOccupation">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianNameOfEmployer" id="txtbxGuardianNameOfEmployer">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAddressOfEmployer" id="txtbxGuardianAddressOfEmployer">
-													</div>
-												</div>
-												<br>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Parent's Marital RelationShip</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownParentsMaritalRelationship" id="dropdownParentsMaritalRelationship">
-															<option></option>
-															<option  selected=""></option>
-															<option value="Married and staying together">Married and staying together</option>
-															<option value="ot married but living together">Not married but living together</option>
-															<option value="Single Parent">Single Parent</option>
-															<option value="Married but separated">Married but separated</option>
-															<option value="Others">Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersParentsMaritalRelationship" id="txtbxOthersParentsMaritalRelationship">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Number of children in the family including yourself</label>
-													<div class="col-md-2 col-sm-2">
-														<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfChildrenInTheFamily" id="txtbxNoOfChildrenInTheFamily">
-													</div>
-													<label class="control-label col-md-1 col-sm-1">Brothers</label>
-													<div class="col-md-1 col-sm-1">
-														<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfBrothers" id="txtbxNoOfBrothers">
-													</div>
-													<label class="control-label col-md-1 col-sm-1">Sisters</label>
-													<div class="col-md-1 col-sm-1">
-														<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfSisters" id="txtbxNoOfSisters">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3">Number of brother/s sisters gainfully employed</label>
-													<div class="col-md-3 col-sm-3">
-														<input class="form-control col-md-1 col-xs-1" type="text" name="txtbxNoOfBrothersSistersGainfullyEmployed" id="txtbxNoOfBrothersSistersGainfullyEmployed">
-													</div>
-													<label class="control-label col-md-1 col-sm-1 col-xs-12">Ordinal Position</label>
-													<div class="col-md-2 col-sm-2 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownOrdinalPosition" id="dropdownOrdinalPosition">
-															<option  selected=""></option>
-															<option >Only Child</option>
-															<option >First</option>
-															<option >Second</option>
-															<option >Third</option>
-															<option >Fourth</option>
-															<option >Fifth</option>
-															<option >Sixth</option>
-															<option >Seventh</option>
-															<option >Eight</option>
-															<option >Ninth</option>
-															<option >Tenth</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"> Is your brother/sister who's gainfully employed providing support to : <span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownSupportedByYourSibling" id="dropdownSupportedByYourSibling">
-															<option  selected=""></option>
-															<option >Your Studies</option>
-															<option >Your Family</option>
-															<option >His/Her Family</option>
-															<option >Does Not Give Support</option>
-															<option >Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersSupportedByYourSibling" id="txtbxOthersSupportedByYourSibling">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Who finance your schooling?</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownWhoFinancesYourSchooling" id="dropdownWhoFinancesYourSchooling">
-															<option selected=""></option>
-															<option >Parents</option>
-															<option >Brother/Sister</option>
-															<option >Spouse</option>
-															<option >Scholarship</option>
-															<option >Relatives</option>
-															<option >Self-supporting/Working student</option>
-															<option >Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxOthersWhoFinancesYourSchooling" id="txtbxOthersWhoFinancesYourSchooling">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >How much is your weekly allowance<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWeeklyAllowance" id="txtbxWeeklyAllowance">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Parent's monthly income</label>
-													<div class="col-md-6 col-sm-6 col-xs-6">
-														<select class="select2_single form-control" tabindex="-1">
-															<option  selected=""></option>
-															<option >Below average</option>
-															<option >Average</option>
-															<option >Above average</option>
-														</select>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study?<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioQuietPlaceToSTudy" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioQuietPlaceToSTudy" value="No" checked=""> No
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Do you share your room with anyone?<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="gender" value="male"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="gender" value="female" checked=""> No
-															</label>
-														</div>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >If yes with whom?<span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWithWhom" id="txtbxWithWhom">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Nature of residence while attending school</label>
-													<div class="col-md-2 col-sm-2 col-xs-2">
-														<select class="select2_single form-control" tabindex="-1" name="dropdownNatureOfResidence" id="dropdownNatureOfResidence">
-															<option selected=""></option>
-															<option >Family home</option>
-															<option >Relative's house</option>
-															<option >Shares apartment with friends</option>
-															<option >Shares apartment with relatives</option>
-															<option >Bed spacer</option>
-															<option >Rented apartment</option>
-															<option >Dorm</option>
-															<option >Others</option>
-														</select>
-													</div>
-													<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span></label>
-													<div class="col-md-3 col-sm-3">
-														<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxGuaridanOthersRelationship" id="txtbxGuaridanOthersRelationship">
-													</div>
-												</div>
-
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-												<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-											</ul>
-										</div>
-										<div class="tab-pane" role="tabpanel" id="step4">
-											<h3 class="text-center">Step 4</h3>
-											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Health Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Physical</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Do you have problems with:
-													</label>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Your Vision<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioVision" value="Yes">Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioVision" value="None" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVision" id="txtbxVision" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Your Hearing<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioHearing" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioHearing" value="None" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHearing" id="txtbxHearing" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Your Speach<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioSpeach" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioSpeach" value="None" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxSpeach" id="txtbxSpeach" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Your General Health<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioGeneralHealth" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioGeneralHealth" value="None" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGeneralHealth" id="txtbxGeneralHealth" disabled="true">
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">II. Psychological</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Psychiatrist<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPsychiatrist" id="radioPsychiatrist" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPsychiatrist" id="radioPsychiatrist" value="Never" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychiatrist" id="datePsychiatrist" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaForWhatPsychiatrist" id="txtareaForWhatPsychiatrist" disabled="true"></textarea>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Psychologist<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPsychologist" id="radioPsychologist" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPsychologist" id="radioPsychologist" value="Never" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychologist" id="datePsychologist" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaForWhatPsychologist" id="txtareaForWhatPsychologist" disabled="true"></textarea>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Counselor<span class="required">*</span>
-													</label>
-													<div class="col-md-2 col-sm-2">
-														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioCounselor" id="radioCounselor" value="Yes"> Yes
-															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioCounselor" id="radioCounselor" value="Never" checked=""> No
-															</label>
-														</div>
-													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
-														<input type="date" class="form-control col-md-7 col-xs-12" name="dateCounselor" id="dateCounselor" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaForWhatCounselor" id="txtareaForWhatCounselor" disabled="true" ></textarea>
-													</div>
-												</div>
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-												<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-											</ul>
-										</div>
-										<div class="tab-pane active" role="tabpanel" id="step5">
-											<h3 class="text-center">Step 5</h3>
-											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Interest and Hobbies</h1></span>
-												<span class="section" style="margin-left:90px;">I. Academic</span>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Club Interests</label>
-													<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice1" value="Math Club"> <span class="label-text">Math Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice2" value="Science Club"> <span class="label-text">Science Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice3" value="English Club"> <span class="label-text">English Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice4" value="Filipino Club" ><span class="label-text">Filipino Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice5" value="Astronomy Club"> <span class="label-text">Astronomy Club</span>
-														</label><br>
-													</div>
-													<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice6" value="Quizzers Club"> <span class="label-text">Quizzers Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice7" value="Social Studies Club"> <span class="label-text">Social Studies Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterest[]" id="checkClubChoice8" value="Statistics Club"> <span class="label-text">Statistics Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterestOthers" id="checkClubOthers" value="Others"> <span class="label-text">Others</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkClubInterestNoInterest" id="checkClubNoInterest" name="No Interest"> <span class="label-text">No Interest</span>
-														</label><br>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersClubInterest" id="txtbxOthersClubInterest" disabled="true">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >What is/are you favorite subject/s <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaFavoriteSubject" id="txtareaFavoriteSubject" ></textarea>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >What is/are your least favorite subject <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" ></textarea>
-													</div>
-												</div>
-												<span class="section" style="margin-left:90px;">Ii. Extra-Culicular</span>
-												<div class="form-group">
-													<label class="control-label col-md-4 col-sm-4"  >Hobbies (according to preference) <span class="required">*</span>
-													</label>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >1. <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby1" id="txtbxHobby1">
-													</div>
-												</div><div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >2. <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby2" id="txtbxHobby2">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >3. <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby3" id="txtbxHobby3">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >4. <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby4" id="txtbxHobby4">
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3 col-xs-12">Organization Interests</label>
-													<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice1" value="Athlectics"> <span class="label-text">Athletics</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice2" value="Dramatics"> <span class="label-text">Dramatics</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice3" value="Religious Organization"> <span class="label-text">Religious Org</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice5" value="Glee Club"> <span class="label-text">Glee Club</span>
-														</label><br>
-													</div>
-													<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice6" value="Scouting"> <span class="label-text">Scouting</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationChoice4" value="Chess Club" ><span class="label-text">Chess Club</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterestOthers" id="checkOrganizationOthers" value="Others"> <span class="label-text">Others</span>
-														</label><br>
-														<label>
-															<input type="checkbox" name="checkOrganizationInterestNoInterest" id="checkOrganizationNoInterest" value="No Interest"> <span class="label-text">No Interest</span>
-														</label><br>
-													</div>
-												</div>
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
-													</label>
-													<div class="col-md-6 col-sm-6">
-														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersOrganizationInterest" id="txtbxOthersOrganizationInterest" disabled="true">
-													</div>
-												</div>
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-												<li><button type="button" class="btn btn-default next-step">Skip</button></li>
-												<li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
-											</ul>
-										</div>
-										<div class="tab-pane" role="tabpanel" id="complete">
-											<h3 class="text-center">Step 6</h3>
-											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Test Results</h1></span>
-
-												<div class="x_panel ">
-													<span class="section" style="margin-left:90px;">Test Result 1</span>
-													<div class="form-group ">
-														<label class="control-label col-md-3 col-sm-3">Date Of Test<span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6">
-															<input id="dateTestResultDate[]" name="dateTestResultDate[]" value="" class="date-picker form-control col-md-7 col-xs-12" type="date">
-														</div>
-													</div>
-
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name of Test <span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6">
-															<input id="txtbxTestResultName[]" name="txtbxTestResultName[]" value="" type="text" class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Raw Score(RS) <span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6">
-															<input id="txtbxTestResultRawScore[]" name="txtbxTestResultRawScore[]" value="" type="text" class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Percentile Rating(PR) <span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6">
-															<input id="txtbxTestResultPercentileRating[]" name="txtbxTestResultPercentileRating[]" value="" type="text" class="form-control col-md-7 col-xs-12">
-														</div>
-													</div>
-													<div class="form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Description<span class="required">*</span>
-														</label>
-														<div class="col-md-6 col-sm-6">
-															<textarea class="form-control" name="txtareaTestResultDescription[]" id="txtareaTestResultDescription[]" required=""></textarea>
-														</div>
-													</div>
-												</div>
-												<!--NEW FIELDS HERE-->
-												<div id="newTestFields">
-
-												</div>
-												<!--END OF NEW FIELDS-->
-												<div class="form-group">
-													<label class="control-label col-md-3 col-sm-3"></label>
-													<button class="btn btn-success col-md-6 col-sm-6" type="button"  onclick="education_fields();" >
-														<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Test Result
-													</button>
-												</div>
-											</div>
-											<ul class="list-inline pull-right">
-												<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-												<li><input type="submit" name="btnFinish" class="btn btn-primary next-step" value="Finish" ></li>
-											</ul>
-										</div>
-										<div class="clearfix">
-										</div>
-									</div>
-								</form>
-							</div>
-						</div>
-					</div>
-				</div>
-			</div>
+			</footer>
+			<!-- /footer content -->
 		</div>
-		<!-- /page content -->
 
-		<!-- footer content -->
-		<footer>
-			<div class="pull-right">
-				Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-			</div>
-			<div class="clearfix"></div>
-		</footer>
-		<!-- /footer content -->
-	</div>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- jQuery Smart Wizard -->
+		<script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
+		<!-- Form Wizard JS -->
+		<script src="js/wizard/wizard.js"></script>
+		<!-- Dynamic Form  -->
+		<script src="js/dynamicForm/dynamicForm.js"></script>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
-	<!-- jQuery Smart Wizard -->
-	<script src="../vendors/jQuery-Smart-Wizard/js/jquery.smartWizard.js"></script>
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
-	<!-- Form Wizard JS -->
-	<script src="js/wizard/wizard.js"></script>
-	<!-- Dynamic Form  -->
-	<script src="js/dynamicForm/dynamicForm.js"></script>
-
-	<script>
-		$(function(){
-			$('#dropdownSexuality').change(function() {
-				var dropdownSexualityChoice = $(this).val();
-				if( dropdownSexualityChoice == 'Others')
-				{
-					document.getElementById("txtbxOthersSexuality").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersSexuality").disabled = true;
-				}
-
-			})
-			$('#dropdownCivilStatus').change(function() {
-				var dropdownCivilStatus = $(this).val();
-				if( dropdownCivilStatus == 'Others')
-				{
-					document.getElementById("txtbxOthersCivilStatus").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersCivilStatus").disabled = true;
-				}
-
-			})
-			$('#dropdownReligion').change(function() {
-				var dropdownReligion = $(this).val();
-				if( dropdownReligion == 'Others')
-				{
-					document.getElementById("txtbxOthersReligion").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersReligion").disabled = true;
-				}
-
-			})
-			$('#dropdownComplexion').change(function() {
-				var dropdownComplexion = $(this).val();
-				if( dropdownComplexion == 'Others')
-				{
-					document.getElementById("txtbxOthersComplexion").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersComplexion").disabled = true;
-				}
-			})
-			$('input[name="radioNatureOfSchooling"]').change(function() {
-				var radioNatureOfSchooling = $(this).val();
-				if( radioNatureOfSchooling == 'Interrupted')
-				{
-					document.getElementById("txtbxNatureOfSchoolingInterruptedReason").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxNatureOfSchoolingInterruptedReason").disabled = true;
-				}
-			})
-			$('#dropdownMotherOccupationType').change(function() {
-				if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
-				{
-					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
-					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
-				}
-				else
-				{
-					document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
-					document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
-				}
-			})
-			$('#dropdownFatherOccupationType').change(function() {
-				if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
-				{
-					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
-					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
-				}
-				else
-				{
-					document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
-					document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
-				}
-			})
-			$('#dropdownGuardianOccupationType').change(function() {
-				if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
-				{
-					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
-					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
-				}
-				else
-				{
-					document.getElementById("txtbxGuardianNameOfEmployer").disabled = false;
-					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
-				}
-			})
-			$('#dropdownGuardianRelationship').change(function() {
-				if( $(this).val() == 'Others')
-				{
-					document.getElementById("txtbxGuaridanOthersRelationship").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxGuaridanOthersRelationship").disabled = true;
-				}
-			})
-			$('#dropdownSupportedByYourSibling').change(function() {
-				if( $(this).val() == 'Others')
-				{
-					document.getElementById("txtbxOthersSupportedByYourSibling").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersSupportedByYourSibling").disabled = true;
-				}
-			})
-			$('#dropdownParentsMaritalRelationship').change(function() {
-				if( $(this).val() == 'Others')
-				{
-					document.getElementById("txtbxOthersParentsMaritalRelationship").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersParentsMaritalRelationship").disabled = true;
-				}
-			})
-			$('#txtbxNoOfChildrenInTheFamily').change(function() {
-				if( $(this).val() < 2)
-				{
-					document.getElementById("txtbxNoOfBrothers").disabled = true;
-					document.getElementById("txtbxNoOfSisters").disabled = true;
-					document.getElementById("txtbxNo").disabled = true;	
-				}
-				else
-				{
-					document.getElementById("txtbxNoOfBrothers").disabled = false;
-					document.getElementById("txtbxNoOfSisters").disabled = false;
-				}
-			})
-			$('#dropdownWhoFinancesYourSchooling').change(function() {
-				if( $(this).val() == 'Others')
-				{
-					document.getElementById("txtbxOthersWhoFinancesYourSchooling").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersWhoFinancesYourSchooling").disabled = true;
-				}
-			})
-			$('input[name="radioVision"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("txtbxVision").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxVision").disabled = true;
-				}
-			})
-			$('input[name="radioHearing"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("txtbxHearing").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxHearing").disabled = true;
-				}
-			})
-			$('input[name="radioSpeach"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("txtbxSpeach").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxSpeach").disabled = true;
-				}
-			})
-			$('input[name="radioGeneralHealth"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("txtbxGeneralHealth").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxGeneralHealth").disabled = true;
-				}
-			})
-			$('input[name="radioPsychiatrist"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("datePsychiatrist").disabled = false;
-					document.getElementById("txtareaForWhatPsychiatrist").disabled = false;
-				}
-				else
-				{
-					document.getElementById("datePsychiatrist").disabled = true;
-					document.getElementById("txtareaForWhatPsychiatrist").disabled = true;
-				}
-			})
-			$('input[name="radioPsychologist"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("datePsychologist").disabled = false;
-					document.getElementById("txtareaForWhatPsychologist").disabled = false;
-				}
-				else
-				{
-					document.getElementById("datePsychologist").disabled = true;
-					document.getElementById("txtareaForWhatPsychologist").disabled = true;
-				}
-			})
-			$('input[name="radioCounselor"]').change(function() {
-				if( $(this).val() == 'Yes')
-				{
-					document.getElementById("dateCounselor").disabled = false;
-					document.getElementById("txtareaForWhatCounselor").disabled = false;
-				}
-				else
-				{
-					document.getElementById("dateCounselor").disabled = true;
-					document.getElementById("txtareaForWhatCounselor").disabled = true;
-				}
-			})
-			$('#checkClubOthers').click(function() {
-				if($("#checkClubOthers").is(":checked")){
-					document.getElementById("txtbxOthersClubInterest").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersClubInterest").disabled = true;
-				}
-			})
-			$('#checkClubNoInterest').click(function() {
-				if($("#checkClubNoInterest").is(":checked")){
-					document.getElementById("txtbxOthersClubInterest").disabled = true;
-					document.getElementById("checkClubChoice1").disabled = true;
-					document.getElementById("checkClubChoice2").disabled = true;
-					document.getElementById("checkClubChoice3").disabled = true;
-					document.getElementById("checkClubChoice4").disabled = true;
-					document.getElementById("checkClubChoice5").disabled = true;
-					document.getElementById("checkClubChoice6").disabled = true;
-					document.getElementById("checkClubChoice7").disabled = true;
-					document.getElementById("checkClubChoice8").disabled = true;
-					document.getElementById("checkOthers").disabled = true;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersClubInterest").disabled = false;
-					document.getElementById("checkClubChoice1").disabled = false;
-					document.getElementById("checkClubChoice2").disabled = false;
-					document.getElementById("checkClubChoice3").disabled = false;
-					document.getElementById("checkClubChoice4").disabled = false;
-					document.getElementById("checkClubChoice5").disabled = false;
-					document.getElementById("checkClubChoice6").disabled = false;
-					document.getElementById("checkClubChoice7").disabled = false;
-					document.getElementById("checkClubChoice8").disabled = false;
-					document.getElementById("checkClubOthers").disabled = false;
-					if($("#checkClubOthers").is(":checked"))
+		<script>
+			$(function(){
+				$('#dropdownSexuality').change(function() {
+					var dropdownSexualityChoice = $(this).val();
+					if( dropdownSexualityChoice == 'Others')
 					{
-						document.getElementById("txtbxOthersClubInterest").disabled = false;
+						document.getElementById("txtbxOthersSexuality").disabled = false;
 					}
 					else
 					{
-						document.getElementById("txtbxOthersClubInterest").disabled = true;
+						document.getElementById("txtbxOthersSexuality").disabled = true;
 					}
-				}
+
+				})
+				$('#dropdownCivilStatus').change(function() {
+					var dropdownCivilStatus = $(this).val();
+					if( dropdownCivilStatus == 'Others')
+					{
+						document.getElementById("txtbxOthersCivilStatus").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersCivilStatus").disabled = true;
+					}
+
+				})
+				$('#dropdownReligion').change(function() {
+					var dropdownReligion = $(this).val();
+					if( dropdownReligion == 'Others')
+					{
+						document.getElementById("txtbxOthersReligion").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersReligion").disabled = true;
+					}
+
+				})
+				$('#dropdownComplexion').change(function() {
+					var dropdownComplexion = $(this).val();
+					if( dropdownComplexion == 'Others')
+					{
+						document.getElementById("txtbxOthersComplexion").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersComplexion").disabled = true;
+					}
+				})
+				$('input[name="radioNatureOfSchooling"]').change(function() {
+					var radioNatureOfSchooling = $(this).val();
+					if( radioNatureOfSchooling == 'Interrupted')
+					{
+						document.getElementById("txtbxNatureOfSchoolingInterruptedReason").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxNatureOfSchoolingInterruptedReason").disabled = true;
+					}
+				})
+				$('#dropdownMotherOccupationType').change(function() {
+					if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
+					{
+						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					}
+					else
+					{
+						document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
+						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
+					}
+				})
+				$('#dropdownFatherOccupationType').change(function() {
+					if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
+					{
+						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					}
+					else
+					{
+						document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
+						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
+					}
+				})
+				$('#dropdownGuardianOccupationType').change(function() {
+					if( $(this).val() == 'Unemployed' || $(this).val() == 'Self-Employed')
+					{
+						document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
+						document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
+					}
+					else
+					{
+						document.getElementById("txtbxGuardianNameOfEmployer").disabled = false;
+						document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
+					}
+				})
+				$('#dropdownGuardianRelationship').change(function() {
+					if( $(this).val() == 'Others')
+					{
+						document.getElementById("txtbxGuaridanOthersRelationship").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxGuaridanOthersRelationship").disabled = true;
+					}
+				})
+				$('#dropdownContactPersonRelationship').change(function() {
+					if( $(this).val() == 'Others')
+					{
+						document.getElementById("txtbxContactPersonOthersRelationship").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxContactPersonOthersRelationship").disabled = true;
+					}
+				})
+				$('#dropdownSupportedByYourSibling').change(function() {
+					if( $(this).val() == 'Others')
+					{
+						document.getElementById("txtbxOthersSupportedByYourSibling").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersSupportedByYourSibling").disabled = true;
+					}
+				})
+				$('#dropdownParentsMaritalRelationship').change(function() {
+					if( $(this).val() == 'Others')
+					{
+						document.getElementById("txtbxOthersParentsMaritalRelationship").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersParentsMaritalRelationship").disabled = true;
+					}
+				})
+				$('#txtbxNoOfChildrenInTheFamily').change(function() {
+					if( $(this).val() < 2)
+					{
+						document.getElementById("txtbxNoOfBrothers").disabled = true;
+						document.getElementById("txtbxNoOfSisters").disabled = true;
+						document.getElementById("txtbxNo").disabled = true;	
+					}
+					else
+					{
+						document.getElementById("txtbxNoOfBrothers").disabled = false;
+						document.getElementById("txtbxNoOfSisters").disabled = false;
+					}
+				})
+				$('#dropdownWhoFinancesYourSchooling').change(function() {
+					if( $(this).val() == 'Others')
+					{
+						document.getElementById("txtbxOthersWhoFinancesYourSchooling").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersWhoFinancesYourSchooling").disabled = true;
+					}
+				})
+				$('input[name="radioVision"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("txtbxVision").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxVision").disabled = true;
+					}
+				})
+				$('input[name="radioHearing"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("txtbxHearing").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxHearing").disabled = true;
+					}
+				})
+				$('input[name="radioSpeach"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("txtbxSpeach").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxSpeach").disabled = true;
+					}
+				})
+				$('input[name="radioGeneralHealth"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("txtbxGeneralHealth").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxGeneralHealth").disabled = true;
+					}
+				})
+				$('input[name="radioPsychiatrist"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("datePsychiatrist").disabled = false;
+						document.getElementById("txtareaForWhatPsychiatrist").disabled = false;
+					}
+					else
+					{
+						document.getElementById("datePsychiatrist").disabled = true;
+						document.getElementById("txtareaForWhatPsychiatrist").disabled = true;
+					}
+				})
+				$('input[name="radioPsychologist"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("datePsychologist").disabled = false;
+						document.getElementById("txtareaForWhatPsychologist").disabled = false;
+					}
+					else
+					{
+						document.getElementById("datePsychologist").disabled = true;
+						document.getElementById("txtareaForWhatPsychologist").disabled = true;
+					}
+				})
+				$('input[name="radioCounselor"]').change(function() {
+					if( $(this).val() == 'Yes')
+					{
+						document.getElementById("dateCounselor").disabled = false;
+						document.getElementById("txtareaForWhatCounselor").disabled = false;
+					}
+					else
+					{
+						document.getElementById("dateCounselor").disabled = true;
+						document.getElementById("txtareaForWhatCounselor").disabled = true;
+					}
+				})
 				$('#checkClubOthers').click(function() {
 					if($("#checkClubOthers").is(":checked")){
 						document.getElementById("txtbxOthersClubInterest").disabled = false;
@@ -1988,37 +2504,51 @@ require 'header.php';
 						document.getElementById("txtbxOthersClubInterest").disabled = true;
 					}
 				})
-			})
-			$('#checkOrganizationOthers').click(function() {
-				if($("#checkOrganizationOthers").is(":checked")){
-					document.getElementById("txtbxOthersOrganizationInterest").disabled = false;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersOrganizationInterest").disabled = true;
-				}
-			})    
-			$('#checkOrganizationNoInterest').click(function() {
-				if($("#checkOrganizationNoInterest").is(":checked")){
-					document.getElementById("txtbxOthersOrganizationInterest").disabled = true;
-					document.getElementById("checkOrganizationChoice1").disabled = true;
-					document.getElementById("checkOrganizationChoice2").disabled = true;
-					document.getElementById("checkOrganizationChoice3").disabled = true;
-					document.getElementById("checkOrganizationChoice4").disabled = true;
-					document.getElementById("checkOrganizationChoice5").disabled = true;
-					document.getElementById("checkOrganizationChoice6").disabled = true;
-					document.getElementById("checkOrganizationOthers").disabled = true;
-				}
-				else
-				{
-					document.getElementById("txtbxOthersOrganizationInterest").disabled = false;
-					document.getElementById("checkOrganizationChoice1").disabled = false;
-					document.getElementById("checkOrganizationChoice2").disabled = false;
-					document.getElementById("checkOrganizationChoice3").disabled = false;
-					document.getElementById("checkOrganizationChoice4").disabled = false;
-					document.getElementById("checkOrganizationChoice5").disabled = false;
-					document.getElementById("checkOrganizationChoice6").disabled = false;
-					document.getElementById("checkOrganizationOthers").disabled = false;
+				$('#checkClubNoInterest').click(function() {
+					if($("#checkClubNoInterest").is(":checked")){
+						document.getElementById("txtbxOthersClubInterest").disabled = true;
+						document.getElementById("checkClubChoice1").disabled = true;
+						document.getElementById("checkClubChoice2").disabled = true;
+						document.getElementById("checkClubChoice3").disabled = true;
+						document.getElementById("checkClubChoice4").disabled = true;
+						document.getElementById("checkClubChoice5").disabled = true;
+						document.getElementById("checkClubChoice6").disabled = true;
+						document.getElementById("checkClubChoice7").disabled = true;
+						document.getElementById("checkClubChoice8").disabled = true;
+						document.getElementById("checkOthers").disabled = true;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersClubInterest").disabled = false;
+						document.getElementById("checkClubChoice1").disabled = false;
+						document.getElementById("checkClubChoice2").disabled = false;
+						document.getElementById("checkClubChoice3").disabled = false;
+						document.getElementById("checkClubChoice4").disabled = false;
+						document.getElementById("checkClubChoice5").disabled = false;
+						document.getElementById("checkClubChoice6").disabled = false;
+						document.getElementById("checkClubChoice7").disabled = false;
+						document.getElementById("checkClubChoice8").disabled = false;
+						document.getElementById("checkClubOthers").disabled = false;
+						if($("#checkClubOthers").is(":checked"))
+						{
+							document.getElementById("txtbxOthersClubInterest").disabled = false;
+						}
+						else
+						{
+							document.getElementById("txtbxOthersClubInterest").disabled = true;
+						}
+					}
+					$('#checkClubOthers').click(function() {
+						if($("#checkClubOthers").is(":checked")){
+							document.getElementById("txtbxOthersClubInterest").disabled = false;
+						}
+						else
+						{
+							document.getElementById("txtbxOthersClubInterest").disabled = true;
+						}
+					})
+				})
+				$('#checkOrganizationOthers').click(function() {
 					if($("#checkOrganizationOthers").is(":checked")){
 						document.getElementById("txtbxOthersOrganizationInterest").disabled = false;
 					}
@@ -2026,10 +2556,39 @@ require 'header.php';
 					{
 						document.getElementById("txtbxOthersOrganizationInterest").disabled = true;
 					}
-				}
-			})
+				})    
+				$('#checkOrganizationNoInterest').click(function() {
+					if($("#checkOrganizationNoInterest").is(":checked")){
+						document.getElementById("txtbxOthersOrganizationInterest").disabled = true;
+						document.getElementById("checkOrganizationChoice1").disabled = true;
+						document.getElementById("checkOrganizationChoice2").disabled = true;
+						document.getElementById("checkOrganizationChoice3").disabled = true;
+						document.getElementById("checkOrganizationChoice4").disabled = true;
+						document.getElementById("checkOrganizationChoice5").disabled = true;
+						document.getElementById("checkOrganizationChoice6").disabled = true;
+						document.getElementById("checkOrganizationOthers").disabled = true;
+					}
+					else
+					{
+						document.getElementById("txtbxOthersOrganizationInterest").disabled = false;
+						document.getElementById("checkOrganizationChoice1").disabled = false;
+						document.getElementById("checkOrganizationChoice2").disabled = false;
+						document.getElementById("checkOrganizationChoice3").disabled = false;
+						document.getElementById("checkOrganizationChoice4").disabled = false;
+						document.getElementById("checkOrganizationChoice5").disabled = false;
+						document.getElementById("checkOrganizationChoice6").disabled = false;
+						document.getElementById("checkOrganizationOthers").disabled = false;
+						if($("#checkOrganizationOthers").is(":checked")){
+							document.getElementById("txtbxOthersOrganizationInterest").disabled = false;
+						}
+						else
+						{
+							document.getElementById("txtbxOthersOrganizationInterest").disabled = true;
+						}
+					}
+				})
 
-		});
-	</script>
-</body>
-</html>
+			});
+		</script>
+	</body>
+	</html>
