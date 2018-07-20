@@ -1,0 +1,15 @@
+<form-template>
+	<fields>
+		<field type="select" label="Select" class="form-control" name="select-1531999526195">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1531999524059">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="date" label="Date Field" class="form-control" name="date-1531999520099"></field>
+		<field type="header" subtype="h1" label="Header"></field>
+	</fields>
+</form-template>

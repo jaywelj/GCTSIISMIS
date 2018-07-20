@@ -17,7 +17,7 @@ while($res = mysqli_fetch_array($result))
 }
 ?>
 <div class="col-md-3 left_col">
-	<div class="left_col scroll-view">
+	<div class="left_col scroll-view" style="width:100%;">
 		<!-- menu profile quick info -->
 		<div style="border-bottom:5px solid #9a3532;">
 			<div class="clearfix"></div>
