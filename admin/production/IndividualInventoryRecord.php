@@ -114,23 +114,40 @@ require 'header.php';
 												include("connectionString.php");
 												$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college'";
 												$resultStudent = mysqli_query($connect, $queryStudent); 
+
+
+
 												while($row = mysqli_fetch_array($resultStudent))  
 												{  
 													?>  
 													<tr>
 														<td>
-
-															<div class="btn-group  btn-group-sm" >
-																<a href="IndividualInventoryRecordForm.php?id=<?php echo $row['studentNumber']; ?>" class="btn btn-primary btn-sm "><i class="fa fa-pencil"></i></a>
-															</div>
+															<?php 
+															if($row['age'] == 0 AND $row['sexuality'] == "Not Set")
+															{
+																echo "<div class='btn-group  btn-group-sm' >
+																<a href='IndividualInventoryRecordForm.php?id=".$row['studentNumber']."' class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
+																</div>";	
+															}
+															else
+															{
+																echo "<div class='btn-group  btn-group-sm' >
+																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
+																</div>";
+															}
+															?>
 															<div class="btn-group  btn-group-sm" >
 																<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_note_Modal">
 																	<i class="fa fa-edit"></i>
 																</button>
 															</div>
+
+
 															<div class="btn-group  btn-group-sm" >
 																<a href="individualInventoryRecordView.php?id=<?php echo $row['studentNumber'];?>" class="btn btn-info btn-sm "><i class="fa fa-list"></i></a>
 															</div>
+
+															
 
 														</td>
 														<td> <?php echo $row['studentNumber'];?> </td>
@@ -196,184 +213,184 @@ require 'header.php';
 												<th scope="row">Email</th>
 												<td>jaywelj@gmail.com</td>
 											</tr>
-									</tbody>
-								</table>
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/Modal view-->
-			<!--Modal Edit-->
-			<div id="edit_data_Modal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Update Account</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post" id="insert_form">
-								<label>First Name</label>
-								<input type="text" name="name" id="name" value="Jaywel" class="form-control" />
-								<br />
-								<label>Last Name</label>
-								<input type="text" name="name" id="name" value="Javier" class="form-control" />
-								<br />
-								<label>Middle Name</label>
-								<input type="text" name="name" id="name" value="Bisarra" class="form-control" />
-								<br />
-								<label>Student No.</label>
-								<input type="text" name="name" id="name" value="2015-04778-MN-0" class="form-control" />
-								<br />
-								<label>Email</label>
-								<input type="email" name="name" id="name" value="jaywelj@gmail.com" class="form-control" />
-								<br />
-								<label>Address</label>
-								<textarea name="address" id="address" class="form-control">Taytay, Rizal, Philippines</textarea>
-								<br />
-								<label>Select Gender</label>
-								<select name="gender" id="gender" class="form-control">
-									<option value="Male">Male</option>  
-									<option value="Female">Female</option>
-								</select>
-								<br />
-								<label>Date of Birth</label>
-								<input type="Date" name="name" id="name" value="" class="form-control" />
-								<br />  
-								<label>Contact No</label>
-								<input type="text" name="designation" value="09778711191" id="designation" class="form-control" />
-								<br />
-								<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
-								<input type="submit" name="insert" id="insert" value="Update" class="btn btn-success pull-right" />
-							</form>
+										</tbody>
+									</table>
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--/Modal Edit-->
-			<!--Modal Add-->
-			<div id="add_data_Modal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Add Account</h4>
+				<!--/Modal view-->
+				<!--Modal Edit-->
+				<div id="edit_data_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Update Account</h4>
+							</div>
+							<div class="modal-body">
+								<form method="post" id="insert_form">
+									<label>First Name</label>
+									<input type="text" name="name" id="name" value="Jaywel" class="form-control" />
+									<br />
+									<label>Last Name</label>
+									<input type="text" name="name" id="name" value="Javier" class="form-control" />
+									<br />
+									<label>Middle Name</label>
+									<input type="text" name="name" id="name" value="Bisarra" class="form-control" />
+									<br />
+									<label>Student No.</label>
+									<input type="text" name="name" id="name" value="2015-04778-MN-0" class="form-control" />
+									<br />
+									<label>Email</label>
+									<input type="email" name="name" id="name" value="jaywelj@gmail.com" class="form-control" />
+									<br />
+									<label>Address</label>
+									<textarea name="address" id="address" class="form-control">Taytay, Rizal, Philippines</textarea>
+									<br />
+									<label>Select Gender</label>
+									<select name="gender" id="gender" class="form-control">
+										<option value="Male">Male</option>  
+										<option value="Female">Female</option>
+									</select>
+									<br />
+									<label>Date of Birth</label>
+									<input type="Date" name="name" id="name" value="" class="form-control" />
+									<br />  
+									<label>Contact No</label>
+									<input type="text" name="designation" value="09778711191" id="designation" class="form-control" />
+									<br />
+									<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
+									<input type="submit" name="insert" id="insert" value="Update" class="btn btn-success pull-right" />
+								</form>
+							</div>
 						</div>
-						<div class="modal-body">
-							<form method="post" id="insert_form">
-								<label>First Name</label>
-								<input type="text" name="name" id="name" class="form-control" />
-								<br />
-								<label>Last Name</label>
-								<input type="text" name="name" id="name" class="form-control" />
-								<br />
-								<label>Middle Name</label>
-								<input type="text" name="name" id="name" class="form-control" />
-								<br />
-								<label>Student Number</label>
-								<input type="text" name="name" id="name" class="form-control" />
-								<br />
-								<label>Password</label>
-								<input type="password" name="name" id="name" value="" class="form-control" />
-								<br />
-								<label>Retype Password</label>
-								<input type="password" name="name" id="name" value="" class="form-control" />
+					</div>
+				</div>
+				<!--/Modal Edit-->
+				<!--Modal Add-->
+				<div id="add_data_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Add Account</h4>
+							</div>
+							<div class="modal-body">
+								<form method="post" id="insert_form">
+									<label>First Name</label>
+									<input type="text" name="name" id="name" class="form-control" />
+									<br />
+									<label>Last Name</label>
+									<input type="text" name="name" id="name" class="form-control" />
+									<br />
+									<label>Middle Name</label>
+									<input type="text" name="name" id="name" class="form-control" />
+									<br />
+									<label>Student Number</label>
+									<input type="text" name="name" id="name" class="form-control" />
+									<br />
+									<label>Password</label>
+									<input type="password" name="name" id="name" value="" class="form-control" />
+									<br />
+									<label>Retype Password</label>
+									<input type="password" name="name" id="name" value="" class="form-control" />
 
-								<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
-								<input type="submit" name="insert" id="insert" value="Update" class="btn btn-success pull-right" />
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-						</div>
-					</div>
-				</div>
-			</div>
-			<!--/Modal Add-->
-			<!--Modal Add note-->
-			<div id="add_note_Modal" class="modal fade">
-				<div class="modal-dialog">
-					<div class="modal-content">
-						<div class="modal-header">
-							<button type="button" class="close" data-dismiss="modal">&times;</button>
-							<h4 class="modal-title">Add Notes</h4>
-						</div>
-						<div class="modal-body">
-							<form method="post" id="insert_form">
-								<label>Student Name</label>
-								<input type="text" disabled="disabled" name="name" id="name" value="Jaywel Bisarra Javier" class="form-control" />
-								<br />
-								<label>Student No</label>
-								<input type="text" disabled="disabled" name="name" id="name" value="2015-04778-MN-0" class="form-control" />
-								<br />
-								<label>Date</label>
-								<input type="date" name="name" id="name" class="form-control" />
-								<br />
-								<label>Incident</label>
-								<textarea name="address" id="address" class="form-control"></textarea>
-								<br />
-								<label>Remarks</label>
-								<textarea name="address" id="address" class="form-control"></textarea>
-								<br />
-
-								<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
-								<input type="submit" name="insert" id="insert" value="Submit" class="btn btn-success pull-right" />
-							</form>
-						</div>
-						<div class="modal-footer">
-							<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+									<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
+									<input type="submit" name="insert" id="insert" value="Update" class="btn btn-success pull-right" />
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
 						</div>
 					</div>
 				</div>
-			</div>
-			<!--/Modal Add-->
+				<!--/Modal Add-->
+				<!--Modal Add note-->
+				<div id="add_note_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header">
+								<button type="button" class="close" data-dismiss="modal">&times;</button>
+								<h4 class="modal-title">Add Notes</h4>
+							</div>
+							<div class="modal-body">
+								<form method="post" id="insert_form">
+									<label>Student Name</label>
+									<input type="text" disabled="disabled" name="name" id="name" value="Jaywel Bisarra Javier" class="form-control" />
+									<br />
+									<label>Student No</label>
+									<input type="text" disabled="disabled" name="name" id="name" value="2015-04778-MN-0" class="form-control" />
+									<br />
+									<label>Date</label>
+									<input type="date" name="name" id="name" class="form-control" />
+									<br />
+									<label>Incident</label>
+									<textarea name="address" id="address" class="form-control"></textarea>
+									<br />
+									<label>Remarks</label>
+									<textarea name="address" id="address" class="form-control"></textarea>
+									<br />
 
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+									<input type="submit" name="insert" id="insert" value="Cancel" class="btn btn-danger pull-right" />
+									<input type="submit" name="insert" id="insert" value="Submit" class="btn btn-success pull-right" />
+								</form>
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+							</div>
+						</div>
+					</div>
 				</div>
-				<div class="clearfix">
-					
-				</div>
-			</footer>
-			<!-- /footer content -->
+				<!--/Modal Add-->
+
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix">
+
+					</div>
+				</footer>
+				<!-- /footer content -->
+			</div>
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
-	<!-- iCheck -->
-	<script src="../vendors/iCheck/icheck.min.js"></script>
-	<!-- Datatables -->
-	<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-	<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-	<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-	<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-	<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-	<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-	<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-	<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-	<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-	<script src="../vendors/jszip/dist/jszip.min.js"></script>
-	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="../vendors/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="../vendors/jszip/dist/jszip.min.js"></script>
+		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
 
-</body>
-</html>
+	</body>
+	</html>

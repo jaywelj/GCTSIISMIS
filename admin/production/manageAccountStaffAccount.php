@@ -223,7 +223,7 @@ require 'header.php';
 								<div class="x_title">
 									<h2>Accounts <small>Admin</small></h2>
 									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD STAFF ACCOUNT</button>
+										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">Edit Account</button>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -266,7 +266,21 @@ require 'header.php';
 													<td> <?php echo $row['adminLastName'];?> </td>
 													<td> 
 														<center>
-															<?php echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';?> 
+															<?php
+
+
+															$VarcharStudentProfileImage = $row['adminImage'];
+															if(empty($VarcharStudentProfileImage))
+															{
+																echo '
+																<img src="assets/img/default-user.png" height="200" width="200" style="object-fit:cover;">
+																';
+															}
+															else{
+																echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';
+															}
+
+															?> 
 														</center>
 													</td>
 												</tr>  
@@ -275,6 +289,16 @@ require 'header.php';
 											?> 
 
 										</tbody>
+										<tfoot>
+											<tr>
+												<th></th>
+												<th>Admin ID</th>
+												<th>First Name</th>
+												<th>Middle Name</th>
+												<th>Last Name</th>
+												<th>Image</th>
+											</tr>
+										</tfoot>
 									</table>
 								</div>
 							</div>

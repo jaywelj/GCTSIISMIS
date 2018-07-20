@@ -4,6 +4,26 @@ $varcharStudentAccountNumber = $_SESSION['sessionStudentAccountNumber'];
 $varcharStudentAccountPassword = $_SESSION['sessionStudentAccountPassword'];
 ?>
 <?php
+error_reporting(0);
+if (isset($_POST['btnTest'])) {
+		$message = "Button Is Pressedhalf";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
+
+		echo $_POST['dateTestResultDate'][$i]; echo"<br>";
+		echo $_POST['txtbxTestResultName'][$i]; echo"<br>";
+		echo $_POST['txtbxTestResultRawScore'][$i]; echo"<br>";
+		echo $_POST['txtbxTestResultPercentileRating'][$i]; echo"<br>";
+		echo $_POST['txtareaTestResultDescription'][$i]; echo"<br>";
+
+		$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
+		$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
+		$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
+		$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
+		$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
+	}	
+}
+
 if(isset($_POST['btnAdd'])) 
 {	
 
@@ -389,28 +409,7 @@ if(isset($_POST['btnAdd']))
 
 	$VarcharStudentClub = mysqli_real_escape_string($connect, $_POST['dropdownStudentClub']);
 
-	if (isset($_POST['checkClubInterestNoInterest'])) {
-		$varcharClubInterest = "No Interest";
-	} else {
-		if (isset($_POST['checkClubInterest'])) {
-			$varcharClubInterestArray = mysqli_real_escape_string($_POST['checkClubInterest']);
-			$n = count($varcharClubInterestArray);
-			for ($i = 0; $i < $n - 1; $i++) {
-				$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
-			}
-			$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
-			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
-				$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
-			}
-		} else {
-			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
-				$varcharClubInterest = $varcharClubInterestOthers;
-			}
-		}
-	}
-
+	
 
 	$VarcharStudentFavoriteSubject = mysqli_real_escape_string($connect, $_POST['txtbxStudentSubjectFavorite']);
 
@@ -419,40 +418,31 @@ if(isset($_POST['btnAdd']))
 	$VarcharStudentHobbies2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies2']);
 	$VarcharStudentHobbies3 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies3']);
 	$VarcharStudentHobbies4 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies4']);
-
-
-	$varcharOrganizationInterest = "";
-	if (isset($_POST['checkOrganizationInterestNoInterest'])) {
-		$varcharOrganizationInterest = "No Interest";
-	} else {
-		if (isset($_POST['checkOrganizationInterest'])) {
-			$varcharOrganizationInterestArray = mysqli_real_escape_string($_POST['checkOrganizationInterest']);
-			$n = count($varcharOrganizationInterestArray);
-			for ($i = 0; $i < $n - 1; $i++) {
-				$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
-			}
-			$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
-			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
-				$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
-			}
-		} else {
-			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
-				$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
-			}
-		}
-	}
-
+	$VarcharStudentOrganization = mysqli_real_escape_string($connect, $_POST['dropdownStudentOrganization']);
+	$VarcharStudentOrganizationInterest = mysqli_real_escape_string($connect, $_POST['txtbxOrganizationOthers']);
 	$VarcharStudentOrganizationPosition = mysqli_real_escape_string($connect, $_POST['txtbxOrganizationPosition']);
 					// end of part 5 form wizard 
 
 					// start of part 6 form wizard
-	$VarcharStudentTestDateInitial = mysqli_real_escape_string($connect, $_POST['dateTestResultDateInitial']);
-	$VarcharStudentTestNameInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultNameInitial']);
-	$VarcharStudentTestRSInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultRawScoreInitial']);
-	$VarcharStudentTestPRInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultPercentileRatingInitial']);
-	$VarcharStudentTestDescriptionInitial = mysqli_real_escape_string($connect, $_POST['txtareaTestResultDescriptionInitial']);
+	$VarcharStudentTestDate1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestResultDate1']);
+	$VarcharStudentTestName1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestResultName1']);
+	$VarcharStudentTestRS1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentRS1']);
+	$VarcharStudentTeustPR1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPR1']);
+	$VarcharStudentTestDescription1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestDescription1']);
+	$VarcharStudentTestDate2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestResultDate2']);
+	$VarcharStudentTestName2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestResultName2']);
+	$VarcharStudentRS2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentRS2']);
+	$VarcharStudentPR2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPR2']);
+	$VarcharStudentTestDescription2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentTestDescription2']);
+
+	$VarcharStudentClub = $_POST['checkStudentClub'];
+	$VarcharStudentOrganization = $_POST['checkStudentOrganization'];
+	$VarcharSpacerClub = "";
+
+	foreach($VarcharStudentClub as $VarcharStudentClubDB)  
+	{  
+		$VarcharSpacerClub .= $VarcharStudentClubDB . "/";  
+	}  
 
 					                    //first name validation if input is a space 
                     // checking empty fields
@@ -469,8 +459,9 @@ if(isset($_POST['btnAdd']))
 	} 
 	else 
 	{ 
+		$default = "0";
 
-		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = 'VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
+		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `year` = '$VarcharStudentYear', `section` = '$VarcharStudentSection', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
 
 		$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonorso', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
 
@@ -478,10 +469,26 @@ if(isset($_POST['btnAdd']))
 
 		$queryAddHealth = "UPDATE `tbl_healthinfo` SET `visionProblem` = '$VarcharStudentVision', `hearingProblem` = '$VarcharStudentHearing', `speechProblem` = '$VarcharStudentSpeech', `generalHealth` = '$VarcharStudentGeneralHealth', `psychiatristConsult` = '$VarcharStudentPsychiatristConsult', `psychiatristWhen` = '$VarcharStudentPsychiatristWhen', `psychiatristReason` = '$VarcharStudentPsychiatristWhat', `psychologistConsult` = '$VarcharStudentPsychologistConsult', `psychologistWhen` = '$VarcharStudentPsychologistWhen', `psychologistReason` = '$VarcharStudentPsychologistWhat', `counselorConsult` = '$VarcharStudentCounselorConsult', `counselorWhen` = '$VarcharStudentCounselorWhen', `counselorReason` = '$VarcharStudentCounselorWhat' WHERE `tbl_healthinfo`.`studentNumber` = '$VarcharStudentNumber'";
 
-		$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$varcharClubInterest', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$varcharOrganizationInterest', `organizationPosition` = 'Nothing' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
+		$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$VarcharSpacerClub', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$VarcharStudentOrganization', `organizationPosition` = '$VarcharStudentOrganizationPosition' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
 
-		$queryAddTestResultInitial = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial', `testName` = '$VarcharStudentTestNameInitial', `testRawScore` = '$VarcharStudentTestRSInitial', `testPercentile` = '$VarcharStudentTestPRInitial', `testDescription` = '$VarcharStudentTestDescriptionInitial' WHERE `tbl_testrecord`.`studentNumber` = '$VarcharStudentNumber'";
-                        						//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643',
+		$queryAddTestResults = "UPDATE `tbl_testrecord` SET `testDate` = '2018-07-11', `testName` = '3', `testRawScore` = '3', `testPercentile` = '3', `testDescription` = '3' WHERE `tbl_testrecord`.`studentNumber` = '$VarcharStudentNumber'";
+
+		$queryAddClub = "UPDATE `tbl_interesthobbies` SET `clubName` = '$VarcharSpacerClub' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
+                        						//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643', '43534534', '345345', '3454353', '345345', NULL, NULL, NULL)";
+		if (mysqli_query($connect, $queryAddClub)) {
+			$message = "Successfully Added Club";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$ImplodedSpacerClub = implode("/", $VarcharSpacerClub);
+                          						// $message = "Query Error #1";
+			echo "<script type='text/javascript'>alert('$VarcharSpacerClub');</script>";
+                           						 //redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+		}
+
 		if (mysqli_query($connect, $queryAddPersonalInfo)) {
 			$message = "Successfully Added In Personal Info";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -492,7 +499,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Query Error #2";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                             						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
 		}
 
 		if (mysqli_query($connect, $queryAddEducationalBackground)) {
@@ -505,7 +512,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Query Error #3";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                             						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
 		}
 
 		if (mysqli_query($connect, $queryAddFamilyBackground)) {
@@ -518,7 +525,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Query Error #4";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                            						 //redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
 		}
 
 		if (mysqli_query($connect, $queryAddHealth)) {
@@ -531,7 +538,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Query Error #5";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                             						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
 		}
 
 		if (mysqli_query($connect, $queryAddInterests)) {
@@ -544,60 +551,26 @@ if(isset($_POST['btnAdd']))
 			$message = "Query Error #6";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                             						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
 		}
 
-		if (mysqli_query($connect, $queryAddTestResultInitial)) {
+		if (mysqli_query($connect, $queryAddTestResults)) {
 			$message = "Successfully Added In Test Results";
-			echo "<script type='text/javascript'>alert('$message');</script>";                         
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+			echo "<script type='text/javascript'>location.href = 'clientLogin.php';</script>";                           
 		}
 		else
 		{
 			$message = "Query Error #7";
 			echo "<script type='text/javascript'>alert('$message');</script>";
                             						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+			echo "<script type='text/javascript'>location.href = 'clientHome.php';</script>";
 		}
-		for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
 
-			echo $_POST['dateTestResultDate'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultName'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultRawScore'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultPercentileRating'][$i]; echo"<br>";
-			echo $_POST['txtareaTestResultDescription'][$i]; echo"<br>";
-
-			$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
-			$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
-			$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
-			$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
-			$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
-
-			$queryInsertingAdditionalTests = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, '$InsertingTestResultDate', '$InsertingTestResultName', '$InsertingTestRS', '$InsertingTestPR', '$InsertingTestResultDescription', '$VarcharStudentNumber')";
-
-			if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
-				$message = "Successfully Added In Test Results Additional".$i."";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-
-				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";                           
-			}
-			else
-			{
-				$message = "Query Error #8";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-			}
-
-
-			$message = $_POST['txtbxTestResultName'][$i];
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}	
 	}
-
-	
-
 }
+
 ?>
 <!doctype html>
 <html lang="en">
@@ -682,7 +655,7 @@ if(isset($_POST['btnAdd']))
 					<!--      Wizard container        -->
 					<div class="wizard-container">
 						<div class="card wizard-card" data-color="red" id="wizard">
-							<form action="IIRNewSignUp.php" method="post" enctype="multipart/form-data">
+							<form action="IIRNewSignUpDump.php" method="post" enctype="multipart/form-data">
 								<!--        You can switch " data-color="rose" "  with one of the next bright colors: "blue", "green", "orange", "purple"        -->
 
 								<div class="wizard-header">
@@ -710,29 +683,15 @@ if(isset($_POST['btnAdd']))
 								{  
 
 									$VarcharStudentNumber = $row['studentNumber'];
-									$VarcharStudentFirstName = $row['firstName'];
-									$VarcharStudentMiddleName = $row['middleName'];
-									$VarcharStudentLastName = $row['lastName'];
+									$VarcharStudentFirstName = $row['studentFirstName'];
+									$VarcharStudentMiddleName = $row['studentMiddleName'];
+									$VarcharStudentLastName = $row['studentLastName'];
 									$VarcharStudentCourseCode = $row['courseCode'];
 									$VarcharStudentYear = $row['year'];
 									$VarcharStudentSection =  $row['section'];
-								}
 
-								$querySelectingCourse = "SELECT * FROM tbl_course WHERE `courseCode` = '$VarcharStudentCourseCode'";
-								$resSelectingCourse = mysqli_query($connect, $querySelectingCourse);
-								while($res = mysqli_fetch_array($resSelectingCourse))
-								{
-									$varcharStudentCourseCode = $res['courseCode'];
-									$varcharStudentCourseName = $res['courseName'];
-									$varcharStudentCollegeCode = $res['collegeCode'];
-								}
 
-								$querySelectingCollege = "SELECT * FROM tbl_college WHERE `collegeCode` = '$varcharStudentCollegeCode'";
-								$resSelectingCollege = mysqli_query($connect, $querySelectingCollege);
-								while ($res = mysqli_fetch_array($resSelectingCollege)) 
-								{
-									$VarcharStudentCollegeCode = $res['collegeCode'];
-									$VarcharStudentCollegeName = $res['collegeName'];
+
 								}
 
 								?> 
@@ -811,9 +770,8 @@ if(isset($_POST['btnAdd']))
 													<label class="control-label">College</label>
 													<select name="dropdownStudentCollege" class="form-control">
 														<option disabled=""></option>
-															<option value="<?php echo $VarcharStudentCollegeCode;?>"><?php echo $VarcharStudentCollegeCode;?> - <?php echo $VarcharStudentCollegeName;?></option>
 														<?php while($row = mysqli_fetch_array($resultCollege2)):;?>
-															<option value="<?php echo $row['collegeCode'];?>" disabled=""><?php echo $row['collegeCode'];?> - <?php echo $row['collegeName'];?></option>
+															<option value="<?php echo $row['collegeCode'];?>"><?php echo $row['collegeCode'];?> - <?php echo $row['collegeName'];?></option>
 														<?php endwhile;?>
 													</select>
 												</div>
@@ -822,9 +780,8 @@ if(isset($_POST['btnAdd']))
 													<label class="control-label">Course</label>
 													<select name="dropdownStudentCourse" class="form-control">
 														<option disabled=""></option>
-														<option value="<?php echo $VarcharStudentCourseCode;?>"><?php echo $VarcharStudentCourseCode;?> - <?php echo $VarcharStudentCourseName;?></option>
 														<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
-															<option value="<?php echo $row['courseCode'];?>" disabled=""><?php echo $row['courseCode'];?> - <?php echo $row['courseName'];?></option>
+															<option value="<?php echo $row['courseCode'];?>"><?php echo $row['courseCode'];?> - <?php echo $row['courseName'];?></option>
 														<?php endwhile;?>
 													</select>
 												</div>
@@ -1928,57 +1885,57 @@ if(isset($_POST['btnAdd']))
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestMath" value="Math club"> <span class="label-text">Math Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubMath" value="Math club"> <span class="label-text">Math Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestScience" value="Science club"> <span class="label-text">Science Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubScience" value="Science club"> <span class="label-text">Science Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestEnglish" value="English club"> <span class="label-text">English Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubEnglish" value="English club"> <span class="label-text">English Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestFilipino" value="Filipino club"> <span class="label-text">Filipino Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubFilipino" value="Filipino club"> <span class="label-text">Filipino Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestAstronomy" value="Astronomy club"> <span class="label-text">Astronomy Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubAstronomy" value="Astronomy club"> <span class="label-text">Astronomy Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestDebating" value="Debating club"> <span class="label-text">Debating Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubDebating" value="Debating club"> <span class="label-text">Debating Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestQuizzer" value="Quizzer's Club"><span class="label-text">Quizzer's Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubQuizzer" value="Quizzer's Club"><span class="label-text">Quizzer's Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestSocialStudies" value="Social studies club"> <span class="label-text">Social Studies Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubSocialStudies" value="Social studies club"> <span class="label-text">Social Studies Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestStatistics" value="Statistics club"> <span class="label-text">Statistics Club</span>
+            												<input type="checkbox" name="checkStudentClub[]" id="checkStudentClubStatistics" value="Statistics club"> <span class="label-text">Statistics Club</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest" id="checkClubInterestOthers" value="Others"><span class="label-text">Others</span>
+            												<input type="checkbox" name="checkStudentClubOthers" id="checkStudentClubOthers" value="Others"><span class="label-text">Others</span>
             											</label>
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterestNoInterest" id="checkClubInterestNoInterest" value="No interest"> <span class="label-text">No Interest</span>
+            												<input type="checkbox" name="checkStudentClubNoInterest" id="checkStudentClubNoInterest" value="No interest"> <span class="label-text">No Interest</span>
             											</label>
             										</div>	
 
@@ -2009,50 +1966,50 @@ if(isset($_POST['btnAdd']))
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestAthletics" value="Athletics" > <span class="label-text">Athletics</span>
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationAthletics" value="Athletics" > <span class="label-text">Athletics</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestDramatics" value="Dramatics" > <span class="label-text">Dramatics</span>
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationDramatics" value="Dramatics" > <span class="label-text">Dramatics</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestReligion" value="Religion"> <span class="label-text">Religious Organization</span>
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationReligion" value="Religion"> <span class="label-text">Religious Organization</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestGlee" value="Glee" > <span class="label-text">Glee Club</span>
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationGlee" value="Glee" > <span class="label-text">Glee Club</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestScouting" value="Scouting"> <span class="label-text">Scouting</span>
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationScouting" value="Scouting"> <span class="label-text">Scouting</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestChess" value="Chess" > <span class="label-text">Chess 
+            												<input type="checkbox" name="checkStudentOrganization[]" id="checkStudentOrganizationChess" value="Chess" > <span class="label-text">Chess 
             												club</span>
             											</label>
             										</div>
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterestOthers" id="checkOrganizationInterestOthers" value="Others" ><span class="label-text">Others</span>
+            												<input type="checkbox" name="checkStudentOrganizationOthers" id="checkStudentOrganizationOthers" value="Others" ><span class="label-text">Others</span>
             											</label>
             										</div>	
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterestNoInterest" id="checkOrganizationInterestNoInterest" value="No Interest" > <span class="label-text">No interest</span>
+            												<input type="checkbox" name="checkStudentOrganizationNoInterest" id="checkStudentOrganizationNoInterest" value="No Interest" > <span class="label-text">No interest</span>
             											</label>
             										</div>
 
@@ -2137,24 +2094,24 @@ if(isset($_POST['btnAdd']))
             								<div class="col-sm-12">
             									<h4 class="info-text"> VI. Test Results</h4>
 
-            									<div class="oldTestFields">
-            										<h3 class="info-text"> Test Result 1 </h3>
+            									<div class="Old field">
             										<div class="form-group label-floating">
+
             											<h4 class="info-text"> Date </h4>
-            											<input type="date" name="dateTestResultDateInitial">
+            											<input type="date" name="txtbxStudentTestResultDate[]">
             										</div>
 
             										<div class="form-group label-floating">
             											<label class="control-label">Name</label>
             											<div class="input-group">
-            												<input type="text" class="form-control" name="txtbxTestResultNameInitial">
+            												<input type="text" class="form-control" name="txtbxStudentTestResultName[]">
             											</div>
             										</div>
 
             										<div class="form-group label-floating">
             											<label class="control-label">RS</label>
             											<div class="input-group">
-            												<input type="text" class="form-control" name="txtbxTestResultRawScoreInitial">
+            												<input type="text" class="form-control" name="txtbxStudentRS[]">
 
             											</div>
             										</div>
@@ -2162,7 +2119,7 @@ if(isset($_POST['btnAdd']))
             										<div class="form-group label-floating">
             											<label class="control-label">PR</label>
             											<div class="input-group">
-            												<input type="text" class="form-control" name="txtbxTestResultPercentileRatingInitial">
+            												<input type="text" class="form-control" name="txtbxStudentPR[]">
 
             											</div>
             										</div>
@@ -2170,22 +2127,21 @@ if(isset($_POST['btnAdd']))
             										<div class="form-group label-floating">
             											<label class="control-label">Description</label>
             											<div class="input-group">
-            												<input type="text" class="form-control" name="txtareaTestResultDescriptionInitial">
+            												<input type="text" class="form-control" name="txtbxStudentTestDescription1">
 
             											</div>
             										</div>
 
-            										
-            									</div>
+            										            									</div>
             									<div id="newTestFields">
 
             									</div>
             									<div class="form-group label-floating">
-            										<label class="control-label"></label>
-            										<button class="btn btn-success" type="button"  onclick="education_fields();" >
-            											<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Test Result
-            										</button>
-            									</div>
+            											<label class="control-label"></label>
+            											<button class="btn btn-success" type="button"  onclick="education_fields();" >
+            												<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Test Result
+            											</button>
+            										</div>
 
 
 
@@ -2209,7 +2165,7 @@ if(isset($_POST['btnAdd']))
             						<div class="pull-right">
             							<input type='button' class='btn btn-next btn-fill btn-primary btn-wd' name='next' value='Next' />
 
-            							<input type='submit' class='btn btn-finish btn-fill btn-primary btn-wd' name='btnAdd' value='Submit'/>
+            							<input type='submit' class='btn btn-finish btn-fill btn-primary btn-wd' name='btnTest' value='Submit'/>
             						</div>
             					</div>
 

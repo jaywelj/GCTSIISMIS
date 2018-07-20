@@ -515,7 +515,7 @@ if (isset($_POST['btnFinish']))
 	else 
 	{ 
 
-		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
+		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = 'VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
 
 		$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonorso', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
 
@@ -644,7 +644,207 @@ if (isset($_POST['btnFinish']))
 
 }
 ?>
+<?php
+$varcharStudentAccountNumber = $_GET['id'];
+$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
+																		//$res = mysqli_fetch_assoc($result);
+																		//$varcharAccountImage = $res['admin_image'];
+while($res = mysqli_fetch_array($result))
+{
 
+	$varcharStudentNumber = $res['studentNumber'];
+	$varcharStudentAbout = $res['aboutStudent'];
+	$varcharStudentDisplayPic = $res['studentDisplayPic'];
+
+}
+$result2 = mysqli_query($connect, "SELECT * FROM `tbl_personalinfo` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `infoID` DESC LIMIT 1");
+
+while($res2 = mysqli_fetch_array($result2))
+{
+
+	$varcharStudentFirstName = $res2['firstName'];
+	$varcharStudentMiddleName = $res2['middleName'];
+	$varcharStudentLastName = $res2['lastName'];
+	$varcharStudentCollege = $res2['collegeCode'];
+	$varcharStudentCourse = $res2['courseCode'];
+	$varcharStudentSex = $res2['sex'];
+	$varcharStudentSexuality = $res2['sexuality'];
+	$varcharStudentAge = $res2['age'];
+	$varcharStudentYear = $res2['year'];
+	$varcharStudentSection = $res2['section'];
+	$varcharStudentCivilStatus = $res2['civilStatus'];
+	$varcharStudentBirthdate = $res2['birthDate'];
+	$varcharStudentHeight = $res2['height'];
+	$varcharStudentWeight = $res2['weight'];
+	$varcharStudentComplexion = $res2['complexion'];
+	$varcharStudentBirthplace = $res2['birthPlace'];
+	$varcharStudentCityHouseNumber = $res2['cityHouseNumber'];
+	$varcharStudentCityProvince = $res2['cityProvince'];
+	$varcharStudentCityCity = $res2['cityName'];
+	$varcharStudentCityBarangay = $res2['cityBarangay'];
+
+	$tempStudentCityAddress = $varcharStudentCityHouseNumber .' '. $varcharStudentCityProvince .' '. $varcharStudentCityCity .' '. $varcharStudentCityBarangay; 
+
+	$varcharStudentProvinceHouseNumber = $res2['provinceHouseNumber'];
+	$varcharStudentProvinceProvince = $res2['provinceProvincial'];
+	$varcharStudentProvinceCity = $res2['provinceName'];
+	$varcharStudentProvinceBarangay = $res2['provinceBarangay'];
+
+	$tempStudentProvinceAddress = $varcharStudentProvinceHouseNumber .' '.  $varcharStudentProvinceProvince . ' ' . $varcharStudentProvinceCity . ' ' .  $varcharStudentProvinceBarangay;
+
+	$varcharStudentEmail = $res2['email'];
+	$varcharStudentMobileNum = $res2['mobileNumber'];
+	$varcharStudentTelNum = $res2['telNumber'];
+	$varcharStudentHSGWA = $res2['hsGWA'];
+	$varcharStudentReligion = $res2['religion'];
+	$varcharStudentEmployerName = $res2['employerName'];
+	$varcharStudentEmployerAddress = $res2['employerAddress'];
+	$varcharStudentContactPersonName = $res2['contactPersonName'];
+	$varcharStudentContactPersonAdress = $res2['cpAddress'];
+	$varcharStudentContactPersonRelationship = $res2['cpRelationship'];
+	$varcharStudentContactPersonContactNumber = $res2['cpContactNumber'];
+}
+
+$result2point5 = mysqli_query($connect, "SELECT * FROM `tbl_educationalbackground` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `educationID` DESC LIMIT 1");
+while($res2point5 = mysqli_fetch_array($result2point5)){
+	$varcharStudentPreSchoolName = $res2point5['prepSchoolName'];
+	$varcharStudentPreSchoolAddress = $res2point5['prepSchoolAddress'];
+	$varcharStudentPreSchoolType = $res2point5['prepType'];
+	$varcharStudentPreSchoolYearAttended = $res2point5['prepYearAttended'];
+	$varcharStudentPreSchoolYearAttendedArray = explode('-', $varcharStudentPreSchoolYearAttended);
+	$varcharStudentPreSchoolYearAttended1 = $varcharStudentPreSchoolYearAttendedArray[0];
+	$varcharStudentPreSchoolYearAttended2 = $varcharStudentPreSchoolYearAttendedArray[1];
+	$varcharStudentPreSchoolAwards = $res2point5['prepAwards'];
+	$varcharStudentPreSchoolImage = $res2point5['prepImage'];
+	$varcharStudentElementarySchoolName = $res2point5['elemSchoolName'];
+	$varcharStudentElementarySchoolAddress = $res2point5['elemSchoolAddress'];
+	$varcharStudentElementarySchoolType = $res2point5['elemType'];
+	$varcharStudentElementarySchoolYearAttended = $res2point5['elemYearAttended'];
+	$varcharStudentElementarySchoolAwards = $res2point5['elemAwards'];
+	$varcharStudentELemntarySchoolImage = $res2point5['elemImage'];
+	$varcharStudentHSSchoolName = $res2point5['hsSchoolName'];
+	$varcharStudentHSSchoolAddress = $res2point5['hsSchoolAddress'];
+	$varcharStudentHSSchoolType = $res2point5['hsType'];
+	$varcharStudentHSSchoolYearAttended = $res2point5['hsYearAttended'];
+	$varcharStudentHSSchoolAwards = $res2point5['hsAwards'];
+	$varcharStudentHSSchoolImage = $res2point5['hsImage'];
+	$varcharStudentVocationalSchoolName = $res2point5['vocSchoolName'];
+	$varcharStudentVocationalSchoolAddress = $res2point5['vocSchoolAddress'];
+	$varcharStudentVocationalSchoolType = $res2point5['vocType'];
+	$varcharStudentVocationalSchoolYearAttended = $res2point5['vocYearAttended'];
+	$varcharStudentVocationalAwards = $res2point5['vocAwards'];
+	$varcharStudentVocationalImage = $res2point5['vocImage'];
+	$varcharStudentCollegeSchoolName = $res2point5['collegeSchoolName'];
+	$varcharStudentCollegeSchoolAddress = $res2point5['collegeSchoolAddress'];
+	$varcharStudentCollegeSchoolType = $res2point5['collegeType'];
+	$varcharStudentCollegeSchoolYearAttended = $res2point5['collegeYearAttended'];
+	$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards'];
+	$varcharStudentCollegeSchoolImage = $res2point5['collegeImage'];
+	$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
+	$varcharStudentInterruptedWhy = $res2point5['interruptedWhy'];
+
+}
+
+
+$result3 = mysqli_query($connect, "SELECT * FROM `tbl_familybackground` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `familyID` DESC LIMIT 1");
+while($res3 = mysqli_fetch_array($result3)){
+	$varcharStudentFatherName = $res3['fatherName'];
+	$varcharStudentFatherAge = $res3['fatherAge'];
+	$varcharStudentFatherStatus = $res3['fatherStatus'];
+	$varcharStudentFatherEducation = $res3['fatherEducation'];
+	$varcharStudentFatherOccupationType = $res3['fatherOccupationType'];
+	$varcharStudentFatherOccupation = $res3['fatherOccupation'];
+	$varcharStudentFatherEmployerName = $res3['fatherEmployerName'];
+	$varcharStudentFatherEmployerAddress = $res3['fatherEmployerAdd'];
+
+	$varcharStudentMotherName = $res3['motherName'];
+	$varcharStudentMotherAge = $res3['motherAge'];
+	$varcharStudentMotherStatus = $res3['motherStatus'];
+	$varcharStudentMotherEducation = $res3['motherEducation'];
+	$varcharStudentMotherOccupationType = $res3['motherOccupationType'];
+	$varcharStudentMotherOccupation = $res3['motherOccupation'];
+	$varcharStudentMotherEmployerName = $res3['motherEmployerName'];
+	$varcharStudentMotherEmployerAddress = $res3['motherEmployerAdd'];
+
+	$varcharStudentGuardianName = $res3['guardianName'];
+	$varcharStudentGuardianAge = $res3['guardianAge'];
+	$varcharStudentGuardianRelation = $res3['guardianRelation'];
+	$varcharStudentGuardianEducation = $res3['guardianEducation'];
+	$varcharStudentGuardianOccupationType = $res3['guardianOccupationType'];
+	$varcharStudentGuardianOccupation = $res3['guardianOccupation'];
+	$varcharStudentGuardianEmployerName = $res3['guardianEmployerName'];
+	$varcharStudentGuardianEmployerAddress = $res3['guardianEmployerAdd'];
+
+	$varcharStudentMaritalRelationship = $res3['parentsMaritalRelation'];
+	$varcharStudentNumOfChildren = $res3['noOfChildren'];
+	$varcharStudentNumOfBrother = $res3['noOfBrother'];
+	$varcharStudentNumOfSister = $res3['noOfSister'];
+	$varcharStudentSiblingsEmployed = $res3['broSisEmployed'];
+	$varcharStudentOrdinalPosition = $res3['ordinalPosition'];
+	$varcharStudentSiblingSupporter = $res3['supportedByYourSibling'];
+	$varcharStudentSchoolFinancer = $res3['schoolFinancer'];
+	$varcharStudentWeeklyAllowance = $res3['weeklyAllowance'];
+	$varcharStudentMonthlyIncome = $res3['totalMonthlyIncome'];
+	$varcharStudentStudyPlace = $res3['studyPlace'];
+	$varcharStudentRoomSharing = $res3['roomSharing'];
+	$varcharStudentNatureOfResidence = $res3['natureOfResidence'];
+}
+
+$result4 = mysqli_query($connect, "SELECT * FROM `tbl_healthinfo` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `healthID` DESC LIMIT 1");
+while($res4 = mysqli_fetch_array($result4)){
+	$varcharStudentHealthID = $res4['healthID'];
+	$varcharStudentVisionProblem = $res4['visionProblem'];
+	$varcharStudentHearingProblem = $res4['hearingProblem'];
+	$varcharStudentSpeechProblem = $res4['speechProblem'];
+	$varcharStudentGeneralHealth = $res4['generalHealth'];
+	$varcharStudentPsychiatristConsult = $res4['psychiatristConsult'];
+	$varcharStudentPsychiatristWhen = $res4['psychiatristWhen'];
+	$varcharStudentPsychiatristReason  = $res4['psychiatristReason'];
+	$varcharStudentPsychologistConsult = $res4['psychologistConsult'];
+	$varcharStudentPsychologistWhen = $res4['psychologistWhen'];
+	$varcharStudentPsychologistReason = $res4['psychologistReason'];
+	$varcharStudentCounselorConsult = $res4['counselorConsult'];
+	$varcharStudentCounselorWhen = $res4['counselorWhen'];
+	$varcharStudentCounselorReason = $res4['counselorReason'];
+
+
+}
+$result5 = mysqli_query($connect, "SELECT * FROM `tbl_interesthobbies` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `interestID` DESC LIMIT 1");
+while($res5 = mysqli_fetch_array($result5)){
+	$varcharStudentInterestID = $res5['interestID'];
+	$varcharStudentClubName = $res5['clubName'];
+	$varcharStudentFavSubject = $res5['favSubject'];
+	$varcharStudentLeastFavSubject = $res5['leastFavSubject'];
+	$varcharStudentHobby1 = $res5['hobby1'];
+	$varcharStudentHobby2 = $res5['hobby2'];
+	$varcharStudentHobby3 = $res5['hobby3'];
+	$varcharStudentHobby4 = $res5['hobby4'];
+	$varcharStudentInterestOrganization = $res5['interestOrganization'];
+	$varcharStudentOrganizationPosition = $res5['organizationPosition'];
+
+}
+$result6 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC LIMIT 1");
+while($res6 = mysqli_fetch_array($result6)){
+
+	$varcharStudentTestID = $res6['testID'];
+	$varcharStudentTestDate = $res6['testDate'];
+	$varcharStudentTestName = $res6['testName'];
+	$varcharStudentTestRawScore = $res6['testRawScore']; 
+	$varcharStudentTestPercentile = $res6['testPercentile'];
+	$varcharStudentTestDescription = $res6['testDescription'];
+
+
+}
+
+
+if($varcharStudentSex = "F"){
+	$varcharStudentSexFull = "Female";
+}
+else if($varcharStudentSex = "M"){
+	$varcharStudentSexFull = "Male";
+}
+
+?>
 <html lang="en">
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
@@ -801,10 +1001,10 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="M"> Male 
+																	<input type="radio" name="radioGender" value="M" <?php echo ($varcharStudentSexFull =='Male')?'checked':'' ?> > Male 
 																</label>
 																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="F" checked=""> Female
+																	<input type="radio" name="radioGender" value="F" <?php echo ($varcharStudentSexFull =='Female')?'checked':'' ?> > Female
 																</label>
 															</div>
 														</div>
@@ -814,6 +1014,7 @@ require 'header.php';
 														<div class="col-md-2 col-sm-2 col-xs-2">
 															<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" >
 																<option></option>
+																<option value="<?php echo $varcharStudentSexuality ?>"><?php echo $varcharStudentSexuality;?></option>
 																<option value="Heterosexual">Heterosexual</option>
 																<option value="Homosexual">Homosexual</option>
 																<option value="Bisexual">Bisexual</option>
@@ -833,17 +1034,17 @@ require 'header.php';
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Age</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge" value="<?php echo $varcharStudentAge; ?>">
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Date Of Birth </label>
 														<div class="col-md-3 col-sm-3">
-															<input class="date-picker form-control col-md-7 col-xs-12" type="date" id="dateDateOfBirth" name="dateDateOfBirth">
+															<input class="date-picker form-control col-md-7 col-xs-12" type="date" id="dateDateOfBirth" name="dateDateOfBirth" value="<?php echo $varcharStudentBirthdate; ?>">
 														</div>  
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Place of Birth</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPlaceOfBirth" name="txtbxPlaceOfBirth">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPlaceOfBirth" name="txtbxPlaceOfBirth" value="<?php echo $varcharStudentBirthplace; ?>">
 														</div>
 													</div>
 													<div class="form-group">
@@ -851,6 +1052,7 @@ require 'header.php';
 														<div class="col-md-2 col-sm-2 col-xs-2">
 															<select class="select2_single form-control" tabindex="-1" name="dropdownCivilStatus" id="dropdownCivilStatus">
 																<option></option>
+																<option value="<?php echo $varcharStudentCivilStatus;  ?>"><?php echo $varcharStudentCivilStatus;  ?></option>
 																<option value="Single">Single</option>
 																<option value="Married">Married</option>
 																<option value="Separated">Separated</option>
@@ -870,6 +1072,7 @@ require 'header.php';
 															<select class="select2_single form-control" tabindex="-1" name="dropdownReligion" id="dropdownReligion">
 																<option></option>
 																<option selected="" value=" "></option>
+																<option value="<?php echo $varcharStudentReligion;  ?>"><?php echo $varcharStudentReligion;  ?></option>
 																<option value="Aglipayan">Aglipayan</option>
 																<option value="Buddhism">Buddhism</option>
 																<option value="Born Again Christian">Born Again Christian</option>
@@ -894,11 +1097,11 @@ require 'header.php';
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Height</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHeight" name="txtbxHeight" >
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHeight" name="txtbxHeight" value="<?php echo $varcharStudentHeight;  ?>" >
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Weight</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxWeight" name="txtbxWeight" >
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxWeight" name="txtbxWeight" value="<?php echo $varcharStudentWeight;  ?>" >
 														</div>
 													</div>
 													<div class="form-group">
@@ -907,6 +1110,7 @@ require 'header.php';
 															<select class="select2_single form-control" tabindex="-1" name="dropdownComplexion" id="dropdownComplexion">
 																<option></option>
 																<option  selected=""></option>
+																<option value="<?php echo $varcharStudentComplexion;  ?>"><?php echo $varcharStudentComplexion;  ?></option>
 																<option value="White Skin">White Skin</option>
 																<option value="Fair Skin">Fair Skin</option>
 																<option value="Medium Skin">Medium Skin</option>
@@ -933,17 +1137,17 @@ require 'header.php';
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Year</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $varcharYear; ?>">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $varcharStudentYear; ?>">
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Section</label>
 														<div class="col-md-3 col-sm-3">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $varcharSection; ?>">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $varcharStudentSection; ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Highschool General Average</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHSGWA" name="txtbxHSGWA">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHSGWA" name="txtbxHSGWA" value="<?php echo $varcharStudentHSGWA;  ?>" >
 														</div>
 													</div>
 													<span class="section" style="margin-left:90px;">III. Contact Informaltion</span>
@@ -952,6 +1156,7 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" id="dropdownCityAddress" name="dropdownCityAddress" >
 																<option  selected=""></option>
+																<option><?php echo $varcharStudentCityProvince;  ?>~<?php echo $varcharStudentCityCity;  ?> </option>
 																<option>Metro Manila~Caloocan</option>
 																<option>Metro Manila~Las Pinas</option>
 																<option>Metro Manila~Makati</option>
@@ -975,11 +1180,11 @@ require 'header.php';
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">City: House Number</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityHouseNumber" name="txtbxCityHouseNumber">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityHouseNumber" name="txtbxCityHouseNumber" value="<?php echo $varcharStudentCityHouseNumber;  ?>">
 														</div>
 														<label class="control-label col-md-1 col-sm-1">City: Barangay</label>
 														<div class="col-md-3 col-sm-3">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityBarangay" name="txtbxCityBarangay">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxCityBarangay" name="txtbxCityBarangay" value="<?php echo $varcharStudentCityBarangay;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
@@ -987,6 +1192,7 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" id="dropdownProvincialAddress" name="dropdownProvincialAddress" >
 																<option  selected=""></option>
+																<option><?php echo $varcharStudentProvinceProvince;  ?></option>
 																<option>Abra</option>
 																<option>Agusan Del Norte</option>
 																<option>Agusan Del Sur</option>
@@ -1067,41 +1273,42 @@ require 'header.php';
 																<option>Zamboanga Del Norte</option>
 																<option>Zamboanga Del Sur</option>
 																<option>Zamboanga Sibugay</option>
+															
 															</select>
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Province: House Number</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceHouseNumber" name="txtbxProvinceHouseNumber">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceHouseNumber" name="txtbxProvinceHouseNumber" value="<?php echo $varcharStudentProvinceHouseNumber;  ?>">
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Province: Barangay</label>
 														<div class="col-md-3 col-sm-3">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceBarangay" name="txtbxProvinceBarangay">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceBarangay" name="txtbxProvinceBarangay" value="<?php echo $varcharStudentProvinceBarangay;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Province: Municipality/City</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceCity" name="txtbxProvinceCity">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceCity" name="txtbxProvinceCity" value="<?php echo $varcharStudentProvinc;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Email Address</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress">
+															<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress" value="<?php echo $varcharStudentEmail;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Mobile Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxMobileNum" name="txtbxMobileNum">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxMobileNum" name="txtbxMobileNum" value="<?php echo $varcharStudentMobileNum;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Tel. Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxTelNum" name="txtbxTelNum">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxTelNum" name="txtbxTelNum" value="<?php echo $varcharStudentTelNum;  ?>">
 														</div>
 													</div>
 
@@ -1109,25 +1316,25 @@ require 'header.php';
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Name Of Employer</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxNameOfEmployer" name="txtbxNameOfEmployer">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxNameOfEmployer" name="txtbxNameOfEmployer" value="<?php echo $varcharStudentEmployerName;  ?>"> 
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Address Of Employer</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxAddressOfEmployer" name="txtbxAddressOfEmployer">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxAddressOfEmployer" name="txtbxAddressOfEmployer" value="<?php echo $varcharStudentEmployerAddress;  ?>" >
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Who to contact in case of emergency?</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonName" name="txtbxContactPersonName">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonName" name="txtbxContactPersonName" value="<?php echo $varcharStudentContactPersonName;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Contact Person Address</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonAddress" name="txtbxContactPersonAddress">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonAddress" name="txtbxContactPersonAddress" value="<?php echo $varcharStudentContactPersonAdress;  ?>">
 														</div>
 													</div>
 
@@ -1137,6 +1344,7 @@ require 'header.php';
 															<select class="select2_single form-control" tabindex="-1" name="dropdownContactPersonRelationship" id="dropdownContactPersonRelationship">
 																<option></option>
 																<option selected=""></option>
+																<option><?php echo $varcharStudentContactPersonRelationship;  ?></option>
 																<option value="Parent">Parent</option>
 																<option value="Brother/Sister<">Brother/Sister</option>
 																<option value="Aunt/Uncle">Aunt/Uncle</option>
@@ -1150,14 +1358,14 @@ require 'header.php';
 														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxContactPersonOthersRelationship" id="txtbxContactPersonOthersRelationship">
+															<input type="text" class="form-control col-md-7 col-xs-12" disabled="true" name="txtbxContactPersonOthersRelationship" id="txtbxContactPersonOthersRelationship" >
 														</div>
 													</div>
 
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Contact Person Contact Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonNumber" name="txtbxContactPersonNumber">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonNumber" name="txtbxContactPersonNumber" value="<?php echo $varcharStudentContactPersonContactNumber;  ?>">
 														</div>
 													</div>	
 
@@ -1178,14 +1386,14 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="required">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12">
+															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolName;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3"  >School Address <span class="required">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12">
+															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolAddress;  ?>">
 														</div>
 													</div>
 													<div class="form-group">
@@ -1194,19 +1402,19 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioPreElemTypeOfSchool" value="Public"> Public
+																	<input type="radio" name="radioPreElemTypeOfSchool" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
 																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioPreElemTypeOfSchool" value="Private"> Private
+																	<input type="radio" name="radioPreElemTypeOfSchool" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
-																<input type="radio" name="radioPreElemTypeOfSchool" value=NULL checked="true" style="display: none;">
+																<input type="radio" name="radioPreElemTypeOfSchool" value=NULL style="display: none;">
 															</div>
 														</div>
 													</div>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPreElemYearAttended1" name="txtbxPreElemYearAttended1">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxPreElemYearAttended1" name="txtbxPreElemYearAttended1" value="">
 														</div>
 														<label class="control-label col-md-1 col-sm-1">To Year</label>
 														<div class="col-md-3 col-sm-3">
