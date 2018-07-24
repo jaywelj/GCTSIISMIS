@@ -164,6 +164,18 @@ require 'header.php';
 												?> 
 												
 											</tbody>
+											<tfoot>
+												<tr>
+													<th></th>
+													<th>Student Number</th>
+													<th>First Name</th>
+													<th>Middle Name</th>
+													<th>Last Name</th>
+													<th>Course</th>
+													<th>Year</th>
+													<th>Section</th>
+												</tr>
+											</tfoot>
 										</table>
 									</div>
 								</div>
