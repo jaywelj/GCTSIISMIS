@@ -4,6 +4,30 @@ $varcharStudentAccountNumber = $_SESSION['sessionStudentAccountNumber'];
 $varcharStudentAccountPassword = $_SESSION['sessionStudentAccountPassword'];
 ?>
 <?php
+
+
+include("connectionString.php");
+
+$VarcharStudentNumber = $_SESSION['sessionStudentAccountNumber'];
+$queryStudentAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$VarcharStudentNumber'";
+$arrayStudentAccount = mysqli_query($connect, $queryStudentAccount);
+while ($res = mysqli_fetch_array($arrayStudentAccount)) {
+
+}
+$queryPersonalInfo = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$VarcharStudentNumber'";
+$arrayPersonalInfo = mysqli_query($connect, $queryPersonalInfo);
+while ($res = mysqli_fetch_array($arrayPersonalInfo)) {
+	$varcharYear= $res['year'];
+	$varcharSection = $res['section'];
+	$varcharCourse = $res['courseCode'];
+	$varcharFirstName = $res['firstName'];
+	$varcharMiddleName = $res['middleName'];
+	$varcharLastName = $res['lastName'];
+	$varcharCourseCode = $res['courseCode'];
+	$varcharCollegeCode = $res['collegeCode'];
+}
+?>
+<?php
 if(isset($_POST['btnAdd'])) 
 {	
 
@@ -25,7 +49,20 @@ if(isset($_POST['btnAdd']))
 
 	$VarcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
 
-	$VarcharStudentCollege = mysqli_real_escape_string($connect, $_POST['dropdownStudentCollege']);
+	$queryCourse = "SELECT * FROM tbl_course WHERE courseCode = '$VarcharStudentCourse'";
+	$resultCourse = mysqli_query($connect, $queryCourse);
+	while ($res = mysqli_fetch_array($resultCourse)) {
+
+		$VarcharStudentCourseName = $res['courseName'];
+		$VarcharStudentCollegeCode = $res['collegeCode'];
+	}
+
+	$queryCollege = "SELECT * FROM tbl_college WHERE collegeCode = '$VarcharStudentCollegeCode'";
+	$resultCollege = mysqli_query($connect, $queryCollege);
+	while ($res1 = mysqli_fetch_array($resultCollege)) {
+		$VarcharStudentCollege = $res['collegeCode'];
+		$VarcharStudentCollegeName = $res['collegeName'];
+	}
 
 	$VarcharStudentGender = mysqli_real_escape_string($connect, $_POST['radioGender']);
 
@@ -69,533 +106,545 @@ if(isset($_POST['btnAdd']))
 
 	if ($VarcharStudentComplexion == "Others") {
 
-		$VarcharStudentComplexion = $VarcharStudentComplexionOthers;
-	}
-	else
-	{
+	$VarcharStudentComplexion = $VarcharStudentComplexionOthers;
+}
+else
+{
 
-	}
+}
 
-	$VarcharStudentBirthplace = mysqli_real_escape_string($connect, $_POST['txtbxStudentPlaceOfBirth']);
+$VarcharStudentBirthplace = mysqli_real_escape_string($connect, $_POST['txtbxStudentPlaceOfBirth']);
 
-	$VarcharStudentCityHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityHouseNumber']);
+$VarcharStudentCityHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityHouseNumber']);
 
-	$VarcharStudentCityProvince = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityProvince']);
+$VarcharStudentCityProvince = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityProvince']);
 
-	$VarcharStudentCityCity = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityCity']);
+$VarcharStudentCityCity = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityCity']);
 
-	$VarcharStudentCityBarangay = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityBarangay']);
+$VarcharStudentCityBarangay = mysqli_real_escape_string($connect, $_POST['txtbxStudentCityBarangay']);
 
-	$VarcharStudentProvinceHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialHouseNumber']);
+$VarcharStudentProvinceHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialHouseNumber']);
 
-	$VarcharStudentProvinceProvince = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialProvince']);
+$VarcharStudentProvinceProvince = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialProvince']);
 
-	$VarcharStudentProvinceCity = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialCity']);
+$VarcharStudentProvinceCity = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialCity']);
 
-	$VarcharStudentProvinceBarangay = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialBarangay']);
+$VarcharStudentProvinceBarangay = mysqli_real_escape_string($connect, $_POST['txtbxStudentProvincialBarangay']);
 
-	$VarcharStudentTelNum = mysqli_real_escape_string($connect, $_POST['txtbxStudentTelNum']);
+$VarcharStudentTelNum = mysqli_real_escape_string($connect, $_POST['txtbxStudentTelNum']);
 
-	$VarcharStudentMobileNum = mysqli_real_escape_string($connect, $_POST['txtbxStudentMobileNum']);
+$VarcharStudentMobileNum = mysqli_real_escape_string($connect, $_POST['txtbxStudentMobileNum']);
 
-	$VarcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxStudentEmail']);
+$VarcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxStudentEmail']);
 
-	$VarcharStudentHSGWA = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSGenAve']);
+$VarcharStudentHSGWA = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSGenAve']);
 
-	$VarcharStudentReligion = mysqli_real_escape_string($connect, $_POST['dropdownStudentReligion']);
+$VarcharStudentReligion = mysqli_real_escape_string($connect, $_POST['dropdownStudentReligion']);
 
-	$VarcharStudentReligionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersReligion']);
+$VarcharStudentReligionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersReligion']);
 
-	if($VarcharStudentReligion == "Others")
-	{
-		$VarcharStudentReligion = $VarcharStudentReligionOthers;
-	}
-	else
-	{
+if($VarcharStudentReligion == "Others")
+{
+	$VarcharStudentReligion = $VarcharStudentReligionOthers;
+}
+else
+{
 
-	}
+}
 
-	$VarcharStudentNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentNameOfEmployer']);
+$VarcharStudentNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentNameOfEmployer']);
 
-	$VarcharStudentEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentAddressoFEmployer']);
+$VarcharStudentEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentAddressoFEmployer']);
 
-	$VarcharStudentContactPersonName = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonName']);
+$VarcharStudentContactPersonName = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonName']);
 
-	$VarcharStudentContactPersonAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonAddress']);
+$VarcharStudentContactPersonAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonAddress']);
 
-	$VarcharStudentContactPersonRelationship = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonRelationship']);
+$VarcharStudentContactPersonRelationshipOthers = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonRelationOthers']);
 
-	$VarcharStudentContactPersonContactNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonContactNumber']);
-					//End of the first form wizard-->
+$VarcharStudentContactPersonRelationship = mysqli_real_escape_string($connect, $_POST['dropdownstudentContactPersonRelation']);
 
-					//Start of the second form wizard-->
-	$VarcharStudentPreSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemGrad']);
+if ($VarcharStudentContactPersonRelationship == "Others") {
+$VarcharStudentContactPersonRelationship = $VarcharStudentContactPersonRelationshipOthers;
+}
 
-	$VarcharStudentPreSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemAddress']);
+$VarcharStudentContactPersonContactNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentContactPersonContactNumber']);
+//End of the first form wizard-->
 
-	$VarcharStudentPreSchoolType = mysqli_real_escape_string($connect, $_POST['radioPrepType']);
+//Start of the second form wizard-->
+$VarcharStudentPreSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemGrad']);
 
-	$VarcharStudentPreSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemNumOfAttendance1']);
-	$VarcharStudentPreSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemNumOfAttendance2']);
+$VarcharStudentPreSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemAddress']);
 
-	$VarcharStudentPreSchoolYearAttended = $VarcharStudentPreSchoolYearAttended1 . ' - ' . $VarcharStudentPreSchoolYearAttended2;
+$VarcharStudentPreSchoolType = mysqli_real_escape_string($connect, $_POST['radioPrepType']);
 
-	$VarcharStudentPreSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemHonors']);
+$VarcharStudentPreSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemNumOfAttendance1']);
+$VarcharStudentPreSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemNumOfAttendance2']);
 
-	$VarcharStudentElementarySchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemGrad']);
+$VarcharStudentPreSchoolYearAttended = $VarcharStudentPreSchoolYearAttended1 . ' - ' . $VarcharStudentPreSchoolYearAttended2;
 
-	$VarcharStudentElementarySchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemAddress']);
+$VarcharStudentPreSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentPre-ElemHonors']);
 
-	$VarcharStudentElementaryType = mysqli_real_escape_string($connect, $_POST['radioElemType']);
+$VarcharStudentElementarySchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemGrad']);
 
-	$VarcharStudentElementaryYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemNumOfAttendance1']);
-	$VarcharStudentElementaryYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemNumOfAttendance2']);
+$VarcharStudentElementarySchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemAddress']);
 
-	$VarcharStudentElementaryYearAttended = $VarcharStudentElementaryYearAttended1 . ' - ' . $VarcharStudentElementaryYearAttended2;
+$VarcharStudentElementaryType = mysqli_real_escape_string($connect, $_POST['radioElemType']);
 
+$VarcharStudentElementaryYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemNumOfAttendance1']);
+$VarcharStudentElementaryYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemNumOfAttendance2']);
 
-	$VarcharStudentElementaryHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemHonors']);
+$VarcharStudentElementaryYearAttended = $VarcharStudentElementaryYearAttended1 . ' - ' . $VarcharStudentElementaryYearAttended2;
 
-	$VarcharStudentHSSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSGrad']);
 
-	$VarcharStudentHSSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSAddress']);
+$VarcharStudentElementaryHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentElemHonors']);
 
-	$VarcharStudentHSSchoolType = mysqli_real_escape_string($connect, $_POST['radioHSType']);
+$VarcharStudentHSSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSGrad']);
 
-	$VarcharStudentHSSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSNumOfAttendance1']);
-	$VarcharStudentHSSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSNumOfAttendance2']);
+$VarcharStudentHSSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSAddress']);
 
-	$VarcharStudentHSSchoolYearAttended = $VarcharStudentHSSchoolYearAttended1 . ' - ' . $VarcharStudentHSSchoolYearAttended2;
+$VarcharStudentHSSchoolType = mysqli_real_escape_string($connect, $_POST['radioHSType']);
 
+$VarcharStudentHSSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSNumOfAttendance1']);
+$VarcharStudentHSSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSNumOfAttendance2']);
 
-	$VarcharStudentHSSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSHonors']);
+$VarcharStudentHSSchoolYearAttended = $VarcharStudentHSSchoolYearAttended1 . ' - ' . $VarcharStudentHSSchoolYearAttended2;
 
-	$VarcharStudentCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeGrad']);
 
-	$VarcharStudentCollegeAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeAddress']);
+$VarcharStudentHSSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentHSHonors']);
 
-	$VarcharStudentCollegeType = mysqli_real_escape_string($connect, $_POST['radioCollegeType']);
+$VarcharStudentCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeGrad']);
 
-	$VarcharStudentCollegeYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeNumofAttendance1']);
-	$VarcharStudentCollegeYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeNumofAttendance2']);
+$VarcharStudentCollegeAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeAddress']);
 
-	$VarcharStudentCollegeYearAttended = $VarcharStudentCollegeYearAttended1 . ' - ' . $VarcharStudentCollegeYearAttended2;
+$VarcharStudentCollegeType = mysqli_real_escape_string($connect, $_POST['radioCollegeType']);
 
-	$VarcharStudentCollegeHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeHonors']);
+$VarcharStudentCollegeYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeNumofAttendance1']);
+$VarcharStudentCollegeYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeNumofAttendance2']);
 
-	$VarcharStudentVocationalName = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalGrad']);
+$VarcharStudentCollegeYearAttended = $VarcharStudentCollegeYearAttended1 . ' - ' . $VarcharStudentCollegeYearAttended2;
 
-	$VarcharStudentVocationalAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalAddress']);
+$VarcharStudentCollegeHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentCollegeHonors']);
 
-	$VarcharStudentVocationalType = mysqli_real_escape_string($connect, $_POST['radioVocationalType']);
+$VarcharStudentVocationalName = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalGrad']);
 
-	$VarcharStudentVocationalYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalNumOfAttendance1']);
-	$VarcharStudentVocationalYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalNumOfAttendance2']);
+$VarcharStudentVocationalAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalAddress']);
 
-	$VarcharStudentVocationalYearAttended = $VarcharStudentVocationalYearAttended1 . ' - ' . $VarcharStudentVocationalYearAttended2;
+$VarcharStudentVocationalType = mysqli_real_escape_string($connect, $_POST['radioVocationalType']);
 
-	$VarcharStudentVocationalHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalHonors']);
+$VarcharStudentVocationalYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalNumOfAttendance1']);
+$VarcharStudentVocationalYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalNumOfAttendance2']);
 
-	$VarcharStudentNatureOfSchooling = mysqli_real_escape_string($connect, $_POST['dropdownStudentNatureOfSchooling']);
+$VarcharStudentVocationalYearAttended = $VarcharStudentVocationalYearAttended1 . ' - ' . $VarcharStudentVocationalYearAttended2;
 
-	$VarcharStudentInterruptedWhy = mysqli_real_escape_string($connect, $_POST['txtbxStudentInterruptedWhy']);
+$VarcharStudentVocationalHonors = mysqli_real_escape_string($connect, $_POST['txtbxStudentVocationalHonors']);
 
-	if($VarcharStudentNatureOfSchooling == "Interrupted")
-	{
-		$VarcharStudentNatureOfSchooling = $VarcharStudentInterruptedWhy;
-	}
-	else
-	{
+$VarcharStudentNatureOfSchooling = mysqli_real_escape_string($connect, $_POST['dropdownStudentNatureOfSchooling']);
 
-	}
+$VarcharStudentInterruptedWhy = mysqli_real_escape_string($connect, $_POST['txtbxStudentInterruptedWhy']);
 
-					//End Of part 2 of form wizard-->
+if($VarcharStudentNatureOfSchooling == "Interrupted")
+{
+	$VarcharStudentNatureOfSchooling = $VarcharStudentInterruptedWhy;
+}
+else
+{
 
-					//Start of part 3 of the form wizard -->
+}
 
-	$VarcharStudentFatherName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherName']);
+//End Of part 2 of form wizard-->
 
-	$VarcharStudentFatherAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherAge']);
+//Start of part 3 of the form wizard -->
 
-	$VarcharStudentFatherStatus = mysqli_real_escape_string($connect, $_POST['radioStudentFatherStatus']);
+$VarcharStudentFatherName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherName']);
 
-	$VarcharStudentFatherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownStudentFatherEducationalAttainment']);
+$VarcharStudentFatherAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherAge']);
 
-	$VarcharStudentFatherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherOccupation']);
+$VarcharStudentFatherStatus = mysqli_real_escape_string($connect, $_POST['radioStudentFatherStatus']);
 
-	$VarcharStudentFatherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherNameOfEmployer']);
+$VarcharStudentFatherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownStudentFatherEducationalAttainment']);
 
-	$VarcharStudentFatherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherEmployerAddress']);
+$VarcharStudentFatherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherOccupation']);
 
-	$VarcharStudentMotherName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherName']);
+$VarcharStudentFatherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherNameOfEmployer']);
 
-	$VarcharStudentMotherAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherAge']);
+$VarcharStudentFatherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentFatherEmployerAddress']);
 
-	$VarcharStudentMotherStatus = mysqli_real_escape_string($connect, $_POST['radioStudentMotherStatus']);
+$VarcharStudentMotherName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherName']);
 
-	$VarcharStudentMotherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownStudentMotherEducationalAttainment']);
+$VarcharStudentMotherAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherAge']);
 
-	$VarcharStudentMotherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherOccupation']);
+$VarcharStudentMotherStatus = mysqli_real_escape_string($connect, $_POST['radioStudentMotherStatus']);
 
-	$VarcharStudentMotherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherNameOfEmployer']);
+$VarcharStudentMotherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownStudentMotherEducationalAttainment']);
 
-	$VarcharStudentMotherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherAddressOfEmployer']);
+$VarcharStudentMotherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherOccupation']);
 
-	$VarcharStudentGuardianName = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianName']);
+$VarcharStudentMotherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherNameOfEmployer']);
 
-	$VarcharStudentGuardianAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianAge']);
+$VarcharStudentMotherEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentMotherAddressOfEmployer']);
 
-	$VarcharStudentGuardianRelation = mysqli_real_escape_string($connect, $_POST['dropdownstudentGuardianRelation']);
+$VarcharStudentGuardianName = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianName']);
 
-	$VarcharStudentGuardianEducationAttainment = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianEducationalAttainment']);
+$VarcharStudentGuardianAge = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianAge']);
 
-	$VarcharStudentGuardianOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianOccupation']);
+$VarcharStudentGuardianRelation = mysqli_real_escape_string($connect, $_POST['dropdownstudentGuardianRelation']);
 
-	$VarcharStudentGuardianNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianNameOfEmployer']);
+$VarcharStudentGuardianRelationOthers = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianRelationOthers']);
 
-	$VarcharStudentGuardianEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianAddressOfEmployer']);
+if ($VarcharStudentGuardianRelation == "Others") {
+$VarcharStudentGuardianRelation = $VarcharStudentGuardianRelationOthers;
+}
 
-	$VarcharStudentParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['dropdownStudentParentMaritalRelationship']);
+$VarcharStudentGuardianEducationAttainment = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianEducationalAttainment']);
 
-	$VarcharOthersParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['txtbxStudentParentMaritalRelationshipOthers']);
+$VarcharStudentGuardianOccupation = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianOccupation']);
 
-	if ($VarcharStudentParentMaritalRelationship == "Others") 
-	{
-		$VarcharStudentParentMaritalRelationship = $VarcharOthersParentMaritalRelationship;
-	}
-	else
-	{
+$VarcharStudentGuardianNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianNameOfEmployer']);
 
-	}
+$VarcharStudentGuardianEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxStudentGuardianAddressOfEmployer']);
 
-	$VarcharStudentNumOfChildren = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfChildren']);
+$VarcharStudentParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['dropdownStudentParentMaritalRelationship']);
 
-	$VarcharStudentNumOfBrothers = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfBrothers']);
+$VarcharOthersParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['txtbxStudentParentMaritalRelationshipOthers']);
 
-	$VarcharStudentNumOfSisters = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfSisters']);
+if ($VarcharStudentParentMaritalRelationship == "Others") 
+{
+	$VarcharStudentParentMaritalRelationship = $VarcharOthersParentMaritalRelationship;
+}
+else
+{
 
-	$VarcharStudentSiblingsEmployed = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfSiblingsEmployed']);
+}
 
-	$VarcharStudentSiblingsEmployedMoreThan0 = mysqli_real_escape_string($connect, $_POST['dropdownStudentProvidingSupport']);
+$VarcharStudentNumOfChildren = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfChildren']);
 
+$VarcharStudentNumOfBrothers = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfBrothers']);
 
-	$VarcharStudentOrdinalPosition = mysqli_real_escape_string($connect, $_POST['dropdownStudentOrdinalPosition']);
+$VarcharStudentNumOfSisters = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfSisters']);
 
-	$VarcharStudentSiblingSupporter = mysqli_real_escape_string($connect, $_POST['dropdownStudentProvidingSupport']);
+$VarcharStudentSiblingsEmployed = mysqli_real_escape_string($connect, $_POST['txtbxStudentNumOfSiblingsEmployed']);
 
-	$VarcharStudentFinancer = mysqli_real_escape_string($connect, $_POST['dropdownStudentFinancer']);
+$VarcharStudentSiblingsEmployedMoreThan0 = mysqli_real_escape_string($connect, $_POST['dropdownStudentProvidingSupport']);
 
-	$VarcharOthersFinancer = mysqli_real_escape_string($connect, $_POST['txtbxOthersFinancer']);
 
-	if ($VarcharStudentFinancer == "Others") {
-		$VarcharStudentFinancer = $VarcharOthersFinancer;
-	}
-	else {
-						# code...
-	}
+$VarcharStudentOrdinalPosition = mysqli_real_escape_string($connect, $_POST['dropdownStudentOrdinalPosition']);
 
-	$VarcharStudentWeeklyAllowance = mysqli_real_escape_string($connect, $_POST['txtbxStudentWeeklyAllowance']);
+$VarcharStudentSiblingSupporter = mysqli_real_escape_string($connect, $_POST['dropdownStudentProvidingSupport']);
 
-	$VarcharStudentMonthlyIncome = mysqli_real_escape_string($connect, $_POST['dropdownStudentTotallyMonthlyIncome']);
+$VarcharStudentFinancer = mysqli_real_escape_string($connect, $_POST['dropdownStudentFinancer']);
 
-	$VarcharStudentStudyPlace = mysqli_real_escape_string($connect, $_POST['radioStudentQuietPlace']);
+$VarcharOthersFinancer = mysqli_real_escape_string($connect, $_POST['txtbxOthersFinancer']);
 
-	$VarcharStudentRoomSharing = mysqli_real_escape_string($connect, $_POST['radioStudentShareRoom']);
+if ($VarcharStudentFinancer == "Others") {
+$VarcharStudentFinancer = $VarcharOthersFinancer;
+}
+else {
+# code...
+}
 
-	$VarcharStudentRoomSharingYes = mysqli_real_escape_string($connect, $_POST['txtbxStudentWithWhom']);
+$VarcharStudentWeeklyAllowance = mysqli_real_escape_string($connect, $_POST['txtbxStudentWeeklyAllowance']);
 
-	if ($VarcharStudentRoomSharing == "Yes") 
-	{
-		$VarcharStudentRoomSharing = $VarcharStudentRoomSharingYes;
-	}
-	else
-	{
+$VarcharStudentMonthlyIncome = mysqli_real_escape_string($connect, $_POST['dropdownStudentTotallyMonthlyIncome']);
 
-	}
+$VarcharStudentStudyPlace = mysqli_real_escape_string($connect, $_POST['radioStudentQuietPlace']);
 
-	$VarcharStudentNatureOfResidence = mysqli_real_escape_string($connect, $_POST['dropdownStudentNatureOfResidence']);
-					//End of part 3 of the form wizard 
+$VarcharStudentRoomSharing = mysqli_real_escape_string($connect, $_POST['radioStudentShareRoom']);
 
-					//Start of par4 of the form wizard
+$VarcharStudentRoomSharingYes = mysqli_real_escape_string($connect, $_POST['txtbxStudentWithWhom']);
 
-	$VarcharStudentVision = mysqli_real_escape_string($connect, $_POST['radioStudentVision']);
+if ($VarcharStudentRoomSharing == "Yes") 
+{
+	$VarcharStudentRoomSharing = $VarcharStudentRoomSharingYes;
+}
+else
+{
 
-	$VarcharStudentVisionSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentSpeechSpecify']);
+}
 
-	if ($VarcharStudentVision == "Yes") {
-		$VarcharStudentVision = $VarcharStudentVisionSpecify;
-	}
-	else
-	{
+$VarcharStudentNatureOfResidence = mysqli_real_escape_string($connect, $_POST['dropdownStudentNatureOfResidence']);
+//End of part 3 of the form wizard 
 
-	}
+//Start of par4 of the form wizard
 
-	$VarcharStudentHearing = mysqli_real_escape_string($connect, $_POST['radioStudentHearing']);
+$VarcharStudentVision = mysqli_real_escape_string($connect, $_POST['radioStudentVision']);
 
-	$VarcharStudentHearingSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentHearingSpecify']);
+$VarcharStudentVisionSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentSpeechSpecify']);
 
-	if ($VarcharStudentHearing == "Yes") 
-	{
-		$VarcharStudentHearing = $VarcharStudentHearingSpecify;
-	}
-	else
-	{
+if ($VarcharStudentVision == "Yes") {
+$VarcharStudentVision = $VarcharStudentVisionSpecify;
+}
+else
+{
 
-	}
+}
 
-	$VarcharStudentSpeech = mysqli_real_escape_string($connect, $_POST['radioStudentSpeech']);
+$VarcharStudentHearing = mysqli_real_escape_string($connect, $_POST['radioStudentHearing']);
 
-	$VarcharStudentSpeechSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentSpeechSpecify']);
+$VarcharStudentHearingSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentHearingSpecify']);
 
-	if ($VarcharStudentSpeech == "Yes") 
-	{
-		$VarcharStudentSpeech = $VarcharStudentSpeechSpecify;
-	}
-	else
-	{
+if ($VarcharStudentHearing == "Yes") 
+{
+	$VarcharStudentHearing = $VarcharStudentHearingSpecify;
+}
+else
+{
 
-	}
+}
 
-	$VarcharStudentGeneralHealth = mysqli_real_escape_string($connect, $_POST['radioStudentGeneralHealth']);
+$VarcharStudentSpeech = mysqli_real_escape_string($connect, $_POST['radioStudentSpeech']);
 
-	$VarcharStudentGeneralHealthSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentGeneralHealthSpecify']);
+$VarcharStudentSpeechSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentSpeechSpecify']);
 
-	if ($VarcharStudentGeneralHealth == "Yes") 
-	{
-		$VarcharStudentGeneralHealth = $VarcharStudentGeneralHealthSpecify;
-	}
+if ($VarcharStudentSpeech == "Yes") 
+{
+	$VarcharStudentSpeech = $VarcharStudentSpeechSpecify;
+}
+else
+{
 
-	$VarcharStudentPsychiatristConsult = mysqli_real_escape_string($connect, $_POST['radioStudentPsychiatrist']);
+}
 
-	$VarcharStudentPsychiatristWhen	= mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychiatristWhen']);
+$VarcharStudentGeneralHealth = mysqli_real_escape_string($connect, $_POST['radioStudentGeneralHealth']);
 
-	$VarcharStudentPsychiatristWhat = mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychiatristWhat']);
+$VarcharStudentGeneralHealthSpecify = mysqli_real_escape_string($connect, $_POST['txtbxStudentGeneralHealthSpecify']);
 
-	$VarcharStudentPsychologistConsult = mysqli_real_escape_string($connect, $_POST['radioStudentPsychologist']);
+if ($VarcharStudentGeneralHealth == "Yes") 
+{
+	$VarcharStudentGeneralHealth = $VarcharStudentGeneralHealthSpecify;
+}
 
-	$VarcharStudentPsychologistWhen = mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychologistWhen']);
+$VarcharStudentPsychiatristConsult = mysqli_real_escape_string($connect, $_POST['radioStudentPsychiatrist']);
 
-	$VarcharStudentPsychologistWhat = mysqli_real_escape_string($connect,$_POST['txtbxStudentPsychologistWhat']);
+$VarcharStudentPsychiatristWhen	= mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychiatristWhen']);
 
-	$VarcharStudentCounselorConsult = mysqli_real_escape_string($connect, $_POST['radioStudentCounselor']);
+$VarcharStudentPsychiatristWhat = mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychiatristWhat']);
 
-	$VarcharStudentCounselorWhen = mysqli_real_escape_string($connect, $_POST['txtbxStudentCounselorWhen']);
+$VarcharStudentPsychologistConsult = mysqli_real_escape_string($connect, $_POST['radioStudentPsychologist']);
 
-	$VarcharStudentCounselorWhat = mysqli_real_escape_string($connect, $_POST['txtbxStudentCounselorWhat']);
+$VarcharStudentPsychologistWhen = mysqli_real_escape_string($connect, $_POST['txtbxStudentPsychologistWhen']);
 
-					//End of Part 4 of the form wizard
+$VarcharStudentPsychologistWhat = mysqli_real_escape_string($connect,$_POST['txtbxStudentPsychologistWhat']);
 
-					//Start of part 5 of the form wizard 
+$VarcharStudentCounselorConsult = mysqli_real_escape_string($connect, $_POST['radioStudentCounselor']);
 
-	$VarcharStudentClub = mysqli_real_escape_string($connect, $_POST['dropdownStudentClub']);
+$VarcharStudentCounselorWhen = mysqli_real_escape_string($connect, $_POST['txtbxStudentCounselorWhen']);
 
-	if (isset($_POST['checkClubInterestNoInterest'])) {
-		$varcharClubInterest = "No Interest";
-	} else {
-		if (isset($_POST['checkClubInterest'])) {
-			$varcharClubInterestArray = mysqli_real_escape_string($_POST['checkClubInterest']);
-			$n = count($varcharClubInterestArray);
-			for ($i = 0; $i < $n - 1; $i++) {
-				$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
-			}
-			$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
-			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
-				$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
-			}
-		} else {
-			if (isset($_POST['checkClubInterestOthers'])) {
-				$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
-				$varcharClubInterest = $varcharClubInterestOthers;
-			}
-		}
-	}
+$VarcharStudentCounselorWhat = mysqli_real_escape_string($connect, $_POST['txtbxStudentCounselorWhat']);
 
+//End of Part 4 of the form wizard
 
-	$VarcharStudentFavoriteSubject = mysqli_real_escape_string($connect, $_POST['txtbxStudentSubjectFavorite']);
+//Start of part 5 of the form wizard 
 
-	$VarcharStudentLeastFavSubject = mysqli_real_escape_string($connect, $_POST['txtbxStudentSubjectLeastLike']);
-	$VarcharStudentHobbies1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies1']);
-	$VarcharStudentHobbies2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies2']);
-	$VarcharStudentHobbies3 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies3']);
-	$VarcharStudentHobbies4 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies4']);
+$VarcharStudentClub = mysqli_real_escape_string($connect, $_POST['dropdownStudentClub']);
 
+if (isset($_POST['checkClubInterestNoInterest'])) {
+$varcharClubInterest = "No Interest";
+} else {
+if (isset($_POST['checkClubInterest'])) {
+$varcharClubInterestArray = mysqli_real_escape_string($_POST['checkClubInterest']);
+$n = count($varcharClubInterestArray);
+for ($i = 0; $i < $n - 1; $i++) {
+$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
+}
+$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
+if (isset($_POST['checkClubInterestOthers'])) {
+$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
+$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
+}
+} else {
+if (isset($_POST['checkClubInterestOthers'])) {
+$varcharClubInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersClubInterest']);
+$varcharClubInterest = $varcharClubInterestOthers;
+}
+}
+}
 
-	$varcharOrganizationInterest = "";
-	if (isset($_POST['checkOrganizationInterestNoInterest'])) {
-		$varcharOrganizationInterest = "No Interest";
-	} else {
-		if (isset($_POST['checkOrganizationInterest'])) {
-			$varcharOrganizationInterestArray = mysqli_real_escape_string($_POST['checkOrganizationInterest']);
-			$n = count($varcharOrganizationInterestArray);
-			for ($i = 0; $i < $n - 1; $i++) {
-				$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
-			}
-			$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
-			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
-				$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
-			}
-		} else {
-			if (isset($_POST['checkOrganizationInterestOthers'])) {
-				$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
-				$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
-			}
-		}
-	}
 
-	$VarcharStudentOrganizationPosition = mysqli_real_escape_string($connect, $_POST['txtbxOrganizationPosition']);
-					// end of part 5 form wizard 
+$VarcharStudentFavoriteSubject = mysqli_real_escape_string($connect, $_POST['txtbxStudentSubjectFavorite']);
 
-					// start of part 6 form wizard
-	$VarcharStudentTestDateInitial = mysqli_real_escape_string($connect, $_POST['dateTestResultDateInitial']);
-	$VarcharStudentTestNameInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultNameInitial']);
-	$VarcharStudentTestRSInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultRawScoreInitial']);
-	$VarcharStudentTestPRInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultPercentileRatingInitial']);
-	$VarcharStudentTestDescriptionInitial = mysqli_real_escape_string($connect, $_POST['txtareaTestResultDescriptionInitial']);
+$VarcharStudentLeastFavSubject = mysqli_real_escape_string($connect, $_POST['txtbxStudentSubjectLeastLike']);
+$VarcharStudentHobbies1 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies1']);
+$VarcharStudentHobbies2 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies2']);
+$VarcharStudentHobbies3 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies3']);
+$VarcharStudentHobbies4 = mysqli_real_escape_string($connect, $_POST['txtbxStudentHobbies4']);
 
-					                    //first name validation if input is a space 
-                    // checking empty fields
+
+$varcharOrganizationInterest = "";
+if (isset($_POST['checkOrganizationInterestNoInterest'])) {
+$varcharOrganizationInterest = "No Interest";
+} else {
+if (isset($_POST['checkOrganizationInterest'])) {
+$varcharOrganizationInterestArray = mysqli_real_escape_string($_POST['checkOrganizationInterest']);
+$n = count($varcharOrganizationInterestArray);
+for ($i = 0; $i < $n - 1; $i++) {
+$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
+}
+$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
+if (isset($_POST['checkOrganizationInterestOthers'])) {
+$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
+$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
+}
+} else {
+if (isset($_POST['checkOrganizationInterestOthers'])) {
+$varcharOrganizationInterestOthers = mysqli_real_escape_string($_POST['txtbxOthersOrganizationInterest']);
+$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
+}
+}
+}
+
+$VarcharStudentOrganizationPosition = mysqli_real_escape_string($connect, $_POST['txtbxOrganizationPosition']);
+// end of part 5 form wizard 
+
+// start of part 6 form wizard
+$VarcharStudentTestDateInitial = mysqli_real_escape_string($connect, $_POST['dateTestResultDateInitial']);
+$VarcharStudentTestNameInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultNameInitial']);
+$VarcharStudentTestRSInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultRawScoreInitial']);
+$VarcharStudentTestPRInitial = mysqli_real_escape_string($connect, $_POST['txtbxTestResultPercentileRatingInitial']);
+$VarcharStudentTestDescriptionInitial = mysqli_real_escape_string($connect, $_POST['txtareaTestResultDescriptionInitial']);
+
+//first name validation if input is a space 
+// checking empty fields
+if(empty($VarcharStudentNumber)) 
+{
+
 	if(empty($VarcharStudentNumber)) 
 	{
-
-		if(empty($VarcharStudentNumber)) 
-		{
-			$message = "Enter a valid Student Number";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}
-                        //link to the previous page
-                        //echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-	} 
-	else 
-	{ 
-
-		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = 'VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonorso', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddFamilyBackground = "UPDATE `tbl_familybackground` SET `fatherName` = '$VarcharStudentFatherName', `fatherAge` = '$VarcharStudentFatherAge', `fatherStatus` = '$VarcharStudentFatherStatus', `fatherEducation` = '$VarcharStudentFatherEducationalAttainment', `fatherOccupation` = '$VarcharStudentFatherOccupation', `fatherEmployerName` = '$VarcharStudentFatherNameOfEmployer', `fatherEmployerAdd` = '$VarcharStudentFatherEmployerAddress', `motherName` = '$VarcharStudentMotherName', `motherAge` = '$VarcharStudentMotherAge', `motherStatus` = '$VarcharStudentMotherStatus', `motherEducation` = '$VarcharStudentMotherEducationalAttainment', `motherOccupation` = '$VarcharStudentMotherOccupation', `motherEmployerName` = '$VarcharStudentMotherNameOfEmployer', `motherEmployerAdd` = '$VarcharStudentMotherEmployerAddress', `guardianName` = '$VarcharStudentGuardianName', `guardianAge` = '$VarcharStudentGuardianAge', `guardianRelation` = '$VarcharStudentGuardianRelation', `guardianEducation` = '$VarcharStudentGuardianEducationAttainment', `guardianOccupation` = '$VarcharStudentGuardianOccupation', `guardianEmployerName` = '$VarcharStudentGuardianNameOfEmployer', `guardianEmployerAdd` = '$VarcharStudentGuardianEmployerAddress', `parentsMaritalRelation` = '$VarcharStudentParentMaritalRelationship', `noOfChildren` = '$VarcharStudentNumOfChildren', `noOfBrother` = '$VarcharStudentNumOfBrothers', `noOfSister` = '$VarcharStudentNumOfSisters', `broSisEmployed` = '$VarcharStudentSiblingsEmployed', `ordinalPosition` = '$VarcharStudentOrdinalPosition', `supportedByYourSibling` = '$VarcharStudentSiblingsEmployedMoreThan0', `schoolFinancer` = '$VarcharStudentFinancer', `weeklyAllowance` = '$VarcharStudentWeeklyAllowance', `totalMonthlyIncome` = '$VarcharStudentMonthlyIncome', `studyPlace` = '$VarcharStudentStudyPlace', `roomSharing` = '$VarcharStudentRoomSharing', `natureOfResidence` = 'VarcharStudentNatureOfResidence' WHERE `tbl_familybackground`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddHealth = "UPDATE `tbl_healthinfo` SET `visionProblem` = '$VarcharStudentVision', `hearingProblem` = '$VarcharStudentHearing', `speechProblem` = '$VarcharStudentSpeech', `generalHealth` = '$VarcharStudentGeneralHealth', `psychiatristConsult` = '$VarcharStudentPsychiatristConsult', `psychiatristWhen` = '$VarcharStudentPsychiatristWhen', `psychiatristReason` = '$VarcharStudentPsychiatristWhat', `psychologistConsult` = '$VarcharStudentPsychologistConsult', `psychologistWhen` = '$VarcharStudentPsychologistWhen', `psychologistReason` = '$VarcharStudentPsychologistWhat', `counselorConsult` = '$VarcharStudentCounselorConsult', `counselorWhen` = '$VarcharStudentCounselorWhen', `counselorReason` = '$VarcharStudentCounselorWhat' WHERE `tbl_healthinfo`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$varcharClubInterest', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$varcharOrganizationInterest', `organizationPosition` = 'Nothing' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddTestResultInitial = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial', `testName` = '$VarcharStudentTestNameInitial', `testRawScore` = '$VarcharStudentTestRSInitial', `testPercentile` = '$VarcharStudentTestPRInitial', `testDescription` = '$VarcharStudentTestDescriptionInitial' WHERE `tbl_testrecord`.`studentNumber` = '$VarcharStudentNumber'";
-                        						//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643',
-		if (mysqli_query($connect, $queryAddPersonalInfo)) {
-			$message = "Successfully Added In Personal Info";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #2";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddEducationalBackground)) {
-			$message = "Successfully Added In Educational Background";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #3";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddFamilyBackground)) {
-			$message = "Successfully Added In Family Background";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #4";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                           						 //redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddHealth)) {
-			$message = "Successfully Added In Health";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #5";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddInterests)) {
-			$message = "Successfully Added In Interest And Hobbies";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #6";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddTestResultInitial)) {
-			$message = "Successfully Added In Test Results";
-			echo "<script type='text/javascript'>alert('$message');</script>";                         
-		}
-		else
-		{
-			$message = "Query Error #7";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-		}
-		for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
-
-			echo $_POST['dateTestResultDate'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultName'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultRawScore'][$i]; echo"<br>";
-			echo $_POST['txtbxTestResultPercentileRating'][$i]; echo"<br>";
-			echo $_POST['txtareaTestResultDescription'][$i]; echo"<br>";
-
-			$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
-			$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
-			$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
-			$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
-			$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
-
-			$queryInsertingAdditionalTests = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, '$InsertingTestResultDate', '$InsertingTestResultName', '$InsertingTestRS', '$InsertingTestPR', '$InsertingTestResultDescription', '$VarcharStudentNumber')";
-
-			if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
-				$message = "Successfully Added In Test Results Additional".$i."";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-
-				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";                           
-			}
-			else
-			{
-				$message = "Query Error #8";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
-			}
-
-
-			$message = $_POST['txtbxTestResultName'][$i];
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}	
+		$message = "Enter a valid Student Number";
+		echo "<script type='text/javascript'>alert('$message');</script>";
 	}
+	//link to the previous page
+	//echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+} 
+else 
+{ 
 
-	
+	$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityProvince` = '$VarcharStudentCityProvince', `cityName` = '$VarcharStudentCityCity', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = 'VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
+
+	$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonorso', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
+
+	$queryAddFamilyBackground = "UPDATE `tbl_familybackground` SET `fatherName` = '$VarcharStudentFatherName', `fatherAge` = '$VarcharStudentFatherAge', `fatherStatus` = '$VarcharStudentFatherStatus', `fatherEducation` = '$VarcharStudentFatherEducationalAttainment', `fatherOccupation` = '$VarcharStudentFatherOccupation', `fatherEmployerName` = '$VarcharStudentFatherNameOfEmployer', `fatherEmployerAdd` = '$VarcharStudentFatherEmployerAddress', `motherName` = '$VarcharStudentMotherName', `motherAge` = '$VarcharStudentMotherAge', `motherStatus` = '$VarcharStudentMotherStatus', `motherEducation` = '$VarcharStudentMotherEducationalAttainment', `motherOccupation` = '$VarcharStudentMotherOccupation', `motherEmployerName` = '$VarcharStudentMotherNameOfEmployer', `motherEmployerAdd` = '$VarcharStudentMotherEmployerAddress', `guardianName` = '$VarcharStudentGuardianName', `guardianAge` = '$VarcharStudentGuardianAge', `guardianRelation` = '$VarcharStudentGuardianRelation', `guardianEducation` = '$VarcharStudentGuardianEducationAttainment', `guardianOccupation` = '$VarcharStudentGuardianOccupation', `guardianEmployerName` = '$VarcharStudentGuardianNameOfEmployer', `guardianEmployerAdd` = '$VarcharStudentGuardianEmployerAddress', `parentsMaritalRelation` = '$VarcharStudentParentMaritalRelationship', `noOfChildren` = '$VarcharStudentNumOfChildren', `noOfBrother` = '$VarcharStudentNumOfBrothers', `noOfSister` = '$VarcharStudentNumOfSisters', `broSisEmployed` = '$VarcharStudentSiblingsEmployed', `ordinalPosition` = '$VarcharStudentOrdinalPosition', `supportedByYourSibling` = '$VarcharStudentSiblingsEmployedMoreThan0', `schoolFinancer` = '$VarcharStudentFinancer', `weeklyAllowance` = '$VarcharStudentWeeklyAllowance', `totalMonthlyIncome` = '$VarcharStudentMonthlyIncome', `studyPlace` = '$VarcharStudentStudyPlace', `roomSharing` = '$VarcharStudentRoomSharing', `natureOfResidence` = '$VarcharStudentNatureOfResidence' WHERE `tbl_familybackground`.`studentNumber` = '$VarcharStudentNumber'";
+
+	$queryAddHealth = "UPDATE `tbl_healthinfo` SET `visionProblem` = '$VarcharStudentVision', `hearingProblem` = '$VarcharStudentHearing', `speechProblem` = '$VarcharStudentSpeech', `generalHealth` = '$VarcharStudentGeneralHealth', `psychiatristConsult` = '$VarcharStudentPsychiatristConsult', `psychiatristWhen` = '$VarcharStudentPsychiatristWhen', `psychiatristReason` = '$VarcharStudentPsychiatristWhat', `psychologistConsult` = '$VarcharStudentPsychologistConsult', `psychologistWhen` = '$VarcharStudentPsychologistWhen', `psychologistReason` = '$VarcharStudentPsychologistWhat', `counselorConsult` = '$VarcharStudentCounselorConsult', `counselorWhen` = '$VarcharStudentCounselorWhen', `counselorReason` = '$VarcharStudentCounselorWhat' WHERE `tbl_healthinfo`.`studentNumber` = '$VarcharStudentNumber'";
+
+	$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$varcharClubInterest', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$varcharOrganizationInterest', `organizationPosition` = 'Nothing' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
+
+	$queryAddTestResultInitial = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial', `testName` = '$VarcharStudentTestNameInitial', `testRawScore` = '$VarcharStudentTestRSInitial', `testPercentile` = '$VarcharStudentTestPRInitial', `testDescription` = '$VarcharStudentTestDescriptionInitial' WHERE `tbl_testrecord`.`studentNumber` = '$VarcharStudentNumber'";
+	//$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentFirstName`, `studentMiddleName`, `studentLastName`, `studentPassword`, `aboutStudent`, `studentDisplayPic`, `studentCoverPhoto`) VALUES ('435345643',
+	if (mysqli_query($connect, $queryAddPersonalInfo)) {
+	$message = "Successfully Added In Personal Info";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+
+}
+else
+{
+	$message = "Query Error #2";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+if (mysqli_query($connect, $queryAddEducationalBackground)) {
+$message = "Successfully Added In Educational Background";
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+}
+else
+{
+	$message = "Query Error #3";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+if (mysqli_query($connect, $queryAddFamilyBackground)) {
+$message = "Successfully Added In Family Background";
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+}
+else
+{
+	$message = "Query Error #4";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+if (mysqli_query($connect, $queryAddHealth)) {
+$message = "Successfully Added In Health";
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+}
+else
+{
+	$message = "Query Error #5";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+if (mysqli_query($connect, $queryAddInterests)) {
+$message = "Successfully Added In Interest And Hobbies";
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+}
+else
+{
+	$message = "Query Error #6";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+if (mysqli_query($connect, $queryAddTestResultInitial)) {
+$message = "Successfully Added In Test Results";
+echo "<script type='text/javascript'>alert('$message');</script>";                         
+}
+else
+{
+	$message = "Query Error #7";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
+
+echo $_POST['dateTestResultDate'][$i]; echo"<br>";
+echo $_POST['txtbxTestResultName'][$i]; echo"<br>";
+echo $_POST['txtbxTestResultRawScore'][$i]; echo"<br>";
+echo $_POST['txtbxTestResultPercentileRating'][$i]; echo"<br>";
+echo $_POST['txtareaTestResultDescription'][$i]; echo"<br>";
+
+$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
+$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
+$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
+$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
+$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
+
+$queryInsertingAdditionalTests = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, '$InsertingTestResultDate', '$InsertingTestResultName', '$InsertingTestRS', '$InsertingTestPR', '$InsertingTestResultDescription', '$VarcharStudentNumber')";
+
+if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
+$message = "Successfully Added In Test Results Additional".$i."";
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";                           
+}
+else
+{
+	$message = "Query Error #8";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+	//redirectig to the display page. In our case, it is index.php
+	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+}
+
+
+$message = $_POST['txtbxTestResultName'][$i];
+echo "<script type='text/javascript'>alert('$message');</script>";
+
+}	
+}
+
+
 
 }
 ?>
@@ -807,16 +856,16 @@ if(isset($_POST['btnAdd']))
 												?>
 												<h4 class="info-text"> Course, Year and Section </h4>
 
-												<div class="form-group label-floating">
+												<!-- <div class="form-group label-floating">
 													<label class="control-label">College</label>
 													<select name="dropdownStudentCollege" class="form-control">
 														<option disabled=""></option>
-															<option value="<?php echo $VarcharStudentCollegeCode;?>"><?php echo $VarcharStudentCollegeCode;?> - <?php echo $VarcharStudentCollegeName;?></option>
+														<option value="<?php echo $VarcharStudentCollegeCode;?>"><?php echo $VarcharStudentCollegeCode;?> - <?php echo $VarcharStudentCollegeName;?></option>
 														<?php while($row = mysqli_fetch_array($resultCollege2)):;?>
 															<option value="<?php echo $row['collegeCode'];?>" disabled=""><?php echo $row['collegeCode'];?> - <?php echo $row['collegeName'];?></option>
 														<?php endwhile;?>
 													</select>
-												</div>
+												</div> -->
 
 												<div class="form-group label-floating">
 													<label class="control-label">Course</label>
@@ -1028,8 +1077,23 @@ if(isset($_POST['btnAdd']))
 												</div>
 
 												<div class="form-group label-floating">
-													<label class="control-label">Contact Person Relationship</label>
-													<input type="text" class="form-control" id="txtbxStudentContactPersonRelationship" name="txtbxStudentContactPersonRelationship">
+													<label class="control-label">Relation</label>
+													<select name="dropdownstudentContactPersonRelation" id="dropdownstudentContactPersonRelation" class="form-control">
+														<option disabled="" selected=""></option>
+														<option value="Parent">Parent</option>
+														<option value="Step-parent">Step-parent</option>
+														<option value="Grandparent">Grandparent</option>
+														<option value="Relative">Relative</option>
+														<option value="Others">Others</option>
+													</select>
+												</div>
+
+												<div class="form-group label-floating">
+													<label class="control-label">Others</label>
+													<div class="input-group">
+														<input type="text" class="form-control" id="txtbxStudentContactPersonRelationOthers" name="txtbxStudentContactPersonRelationOthers" disabled="true">
+														<span class="input-group-addon">If Others Is Selected</span>
+													</div>
 												</div>
 
 												<div class="form-group label-floating">
@@ -1632,17 +1696,9 @@ if(isset($_POST['btnAdd']))
 		                                        	<label class="control-label">Parent's Total Monthly Income:</label>
 		                                        	<select name="dropdownStudentTotallyMonthlyIncome" class="form-control">
 		                                        		<option disabled="" selected=""></option>
-		                                        		<option value="Below 5,000">Below 5,000</option>
-		                                        		<option value="5,001 - 10,000">5,001 - 10,000</option>
-		                                        		<option value="10,001 - 15,000">10,001 - 15,000</option>
-		                                        		<option value="15,001 - 20,000">15,001 - 20,000</option>
-		                                        		<option value="20,001 - 25,000">20,001 - 25,000</option>
-		                                        		<option value="25,001 - 30,000">25,001 - 30,000</option>
-		                                        		<option value="30,001 - 35,000">30,001 - 35,000</option>
-		                                        		<option value="35,001 - 40,000">35,001 - 40,000</option>
-		                                        		<option value="40,001 - 45,000">40,001 - 45,000</option>
-		                                        		<option value="45,001 - 50,000">45,001 - 50,000</option>
-		                                        		<option value="Above 50,001">Above 50,001</option>
+		                                        		<option>Below Average</option>
+		                                        		<option>Average</option>
+		                                        		<option>Above Average</option>
 		                                        	</select>
 		                                        </div>
 
@@ -1741,7 +1797,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentVision" id="radioStudentVision" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentVision" id="radioStudentVision" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentVision" id="radioStudentVision" autocomplete="off" value="None"><span class="label-text">None</span>
             											</label>
             										</div>
             									</div>
@@ -1761,7 +1817,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentHearing" id="radioStudentHearing" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentHearing" id="radioStudentHearing" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentHearing" id="radioStudentHearing" autocomplete="off" value="None"><span class="label-text">None</span>
             											</label>
             										</div>
             									</div>
@@ -1781,7 +1837,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentSpeech" id="radioStudentSpeech" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentSpeech" id="radioStudentSpeech" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentSpeech" id="radioStudentSpeech" autocomplete="off" value="None"><span class="label-text">None</span>
             											</label>
             										</div>
             									</div>
@@ -1800,7 +1856,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentGeneralHealth" id="radioStudentGeneralHealth" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentGeneralHealth" id="radioStudentGeneralHealth" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentGeneralHealth" id="radioStudentGeneralHealth" autocomplete="off" value="None"><span class="label-text">None</span>
             											</label>
             										</div>
             									</div>
@@ -1827,7 +1883,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentPsychiatrist" id="radioStudentPsychiatrist" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentPsychiatrist" id="radioStudentPsychiatrist" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentPsychiatrist" id="radioStudentPsychiatrist" autocomplete="off" value="Never"><span class="label-text">Never</span>
             											</label>
             										</div>
             									</div>
@@ -1853,7 +1909,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentPsychologist" id="radioStudentPsychologist" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentPsychologist" id="radioStudentPsychologist" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentPsychologist" id="radioStudentPsychologist" autocomplete="off" value="Never"><span class="label-text">Never</span>
             											</label>
             										</div>
             									</div>
@@ -1882,7 +1938,7 @@ if(isset($_POST['btnAdd']))
             												<input type="radio" name="radioStudentCounselor" id="radioStudentCounselor" autocomplete="off" value="Yes"><span class="label-text">Yes</span>
             											</label>
             											<label class="btn btn-primary">
-            												<input type="radio" name="radioStudentCounselor" id="radioStudentCounselor" autocomplete="off" value="None"><span class="label-text">No</span>
+            												<input type="radio" name="radioStudentCounselor" id="radioStudentCounselor" autocomplete="off" value="Never"><span class="label-text">Never</span>
             											</label>
             										</div>
             									</div>
@@ -1958,7 +2014,7 @@ if(isset($_POST['btnAdd']))
             										</div>
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestQuizzer" value="Quizzer's Club"><span class="label-text">Quizzer's Club</span>
+            												<input type="checkbox" name="checkClubInterest[]" id="checkClubInterestQuizzer" value="Quizzers Club"><span class="label-text">Quizzer's Club</span>
             											</label>
             										</div>
             										<div class="form-check">
@@ -2021,7 +2077,7 @@ if(isset($_POST['btnAdd']))
 
             										<div class="form-check">
             											<label>
-            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestReligion" value="Religion"> <span class="label-text">Religious Organization</span>
+            												<input type="checkbox" name="checkOrganizationInterest[]" id="checkOrganizationInterestReligion" value="Religious Organization"> <span class="label-text">Religious Organization</span>
             											</label>
             										</div>
 
