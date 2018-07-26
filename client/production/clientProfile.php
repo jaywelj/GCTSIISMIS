@@ -266,45 +266,30 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
       <div class="overly_bg">
        <div class="container">
         <div class="row">
-         <!--Navigation  Start Here-->
-         <nav class="menu_wrapper os-animation">
+          <?php 
+          $_SESSION['WebsiteState'] = "Profile";
+          ?>
+          <!--Navigation  Start Here-->
+          <?php 
+          require 'clientNavbar.php';
+          ?> 
+          <!--Navigation  End Here-->
+          <div class="clearfix" style="height:100px;"></div>
+          <div class="text-center os-animation">
 
-          <image class="navbar-left" src="PUPLogo88x88.png" style="padding-top:5px"></image>
-          <div class="navbar-header" style="font-family:'Cinzel'; font-weight:bold; padding:5px; color:#b22222;">
-            <h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
-            <p style="margin-bottom: 0;">THE COUNTRY'S 1ST POLYTECHNICU</p>
-            <h4 style="margin-top: 0; font-weight: bold;">GUIDANCE COUNCIL AND TESTING SERVICES</h4>
+            <img src="assets/img/white_icon.png" alt="">
 
+          </div> 
+          <h1 class="os-animation">Hello <br>
+            <?php echo $varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName ?> 
+            <br>
+            Welcome!
+          </h1>
 
-          </div>
-          <div id="nav_wrapper">
-           <ul>
-             <li class="page-scroll"><span class="submenu-button submenu-opened"></span><a href="clientHome.php"><span> Home</span></a>
-             </li>
-             <li class="page-scroll  active"><a class="profile" href="clientProfile.php"><span>Profile </span></a></li>
-             <li class="page-scroll"><a href="IIR.php"><span>Individual Inventory Report</span></a></li>
-             <li class="page-scroll"><a class="logout" href="clientLogout.php"><span>Log Out </span></a></li>
-           </ul>
-         </div>
-         <div class="clearfix"></div>
-       </nav> 
-       <!--Navigation  End Here-->
-       <div class="clearfix" style="height:100px;"></div>
-       <div class="text-center os-animation">
-
-        <img src="assets/img/white_icon.png" alt="">
-
-      </div> 
-      <h1 class="os-animation">Hello <br>
-        <?php echo $varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName ?> 
-        <br>
-        Welcome!
-      </h1>
-
-    </div>    
-  </div>
-</div>
-</header>   
+        </div>    
+      </div>
+    </div>
+  </header>   
 </head>
 <body>   
 	
@@ -768,8 +753,8 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 
 
 
+    </div>
   </div>
-</div>
 </section>
 <br>
 <!--Interests and Hobbies end here-->
