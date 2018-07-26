@@ -175,6 +175,8 @@ if(isset($_POST['btnUpdate']))
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+	<link href="assets/css/demo.css" rel="stylesheet">
+	<link href="assets/css/demoRender.css" rel="stylesheet">
 </head>
 
 <?php
