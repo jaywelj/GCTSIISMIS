@@ -1,0 +1,26 @@
+<form-template>
+	<fields>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532011948539">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532011950002">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532011950665">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="select" label="Select" name="select-1532011949225">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="date" label="Date Field" name="date-1532011947317"></field>
+	</fields>
+</form-template>

@@ -8,7 +8,7 @@
 	<!-- Font Awesome -->
 	<link href="../vendors/font-awesome/css/font-awesome.min.css" rel="stylesheet">
 	<!-- Custom CSS-->
-	<link href="../css/survey.css" rel="stylesheet">
+	<link href="css/survey.css" rel="stylesheet">
 
 
 	<!--===============================================================================================-->
