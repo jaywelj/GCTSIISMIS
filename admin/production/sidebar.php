@@ -113,6 +113,24 @@ while($res = mysqli_fetch_array($result))
 							?>
 						</ul>
 					</li>
+					<li><a><i class="fa fa-bookmark"></i>Signficant Notes<span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<?php
+							include("connectionString.php");  
+							$queryCollege = "SELECT * FROM tbl_college";
+							$resultCollege = mysqli_query($connect, $queryCollege); 
+							while($row = mysqli_fetch_array($resultCollege))  
+							{  
+								$collegeCode = $row['collegeCode'];
+								$collegeName = $row['collegeName'];
+								?>
+								<li><a href="manageNotesStudent.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
+								<?php  
+							}
+
+							?>
+						</ul>
+					</li>
 					<li><a><i class="fa fa-list"></i> Survey <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="surveySurveyForms.php">Survey Forms</a></li>
@@ -133,10 +151,16 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="manageCollege.php">College</a></li>
 						</ul>
 					</li>
-					<li><a><i class="fa fa-trash"></i> Archived <span class="fa fa-chevron-down"></span></a>
+					<li><a><i class="fa fa-clipboard"></i> Programs <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="managePrograms.php">Programs</a></li>
+						</ul>
+					</li>
+					<li><a><i class="fa fa-trash"></i> Archive <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="manageCourseArchived.php">Course</a></li>
 							<li><a href="manageCollegeArchived.php">College</a></li>
+							<li><a href="manageNotesStudentArchived.php">Significant Notes</a></li>
 							<li><a href="manageAccountAdminAccountArchived.php">Account - Admin</a></li>
 							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>
 							<li><a href="manageAccountStudentAccountArchived.php">Account - Student</a></li>

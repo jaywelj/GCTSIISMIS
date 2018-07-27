@@ -57,7 +57,7 @@ else
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 }
 
-if ($resultdeletinghealthinfo = mysqli_query($connect, $resultdeletinghealthinfo))
+if ($resultdeletinghealthinfo = mysqli_query($connect, $querydeletinghealthinfo))
 {
     $message = "Successful deleting health to archive";
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -70,7 +70,7 @@ else
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 }
 
-if ($resultdeletingtestrecord = mysqli_query($connect, $resultdeletingtestrecord))
+if ($resultdeletingtestrecord = mysqli_query($connect, $querydeletingtestrecord))
 {
     $message = "Successful deleting test record";
     echo "<script type='text/javascript'>alert('$message');</script>";
@@ -83,7 +83,7 @@ else
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 }
 
-if ($resultdeletingsignificantnotes = mysqli_query($connect, $resultdeletingsignificantnotes))
+if ($resultdeletingsignificantnotes = mysqli_query($connect, $querydeletingsignificantnotes))
 {
     $message = "Query Successful deleting significant notes";
     echo "<script type='text/javascript'>alert('$message');</script>";

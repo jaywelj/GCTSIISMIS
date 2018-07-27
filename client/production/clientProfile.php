@@ -211,27 +211,6 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 <html>
 <head>
 	<meta charset="utf-8" /> 
-	<title>:: Guidance Counseling and Testing services ::</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">  
-	<meta name="description" content="">
-	<meta name="keywords" content="">
-	<meta name="author" content="">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<!-- Google font here -->
-	<link href='https://fonts.googleapis.com/css?family=Roboto+Slab:300,400,700' rel='stylesheet' type='text/css'>
-	<link href='https://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
-	<!-- Latest compiled and minified CSS -->
-
-	<link rel='stylesheet' type='text/css' href="assets/bootstrap/css/bootstrap.min.css">
-
-	<!--  Font Awesome CSS -->
-	<link rel='stylesheet' type='text/css' href="assets/custom/css/font-awesome.min.css">
-	<link rel='stylesheet' type='text/css' href="assets/custom/css/animate.css">
-
-
-	<!--menu style-->	
-	<link rel="stylesheet" href="assets/menu/styles.css">
 
 	<!--FancyBox CSS -->
 	<link rel="stylesheet" href="assets/fancybox/css/jquery.fancybox-buttons.css">
