@@ -71,27 +71,38 @@ require 'header.php';
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<div id="stage1" class="build-wrap">
-
+									<div class="form-group">
+										<div class="form-group">
+											<center>
+												<label class="col-md-2 col-sm-2"></label>
+												<label class="col-md-8 col-sm-8"> </label>
+											</center>
+										</div>
+										<div class="form-group">
+											<label class="col-md-2 col-sm-2" style="margin:10px 0 0 40px;">Survey Form Name</label>
+											<div class="col-md-4 col-sm-4">
+												<input type="text" id="txtbxSurveyFormName" name="txtbxSurveyFormName" class="form-control col-md-7 col-xs-12" value="">
+											</div>	
+										</div>
+										<div class="form-group">
+										</label>
+										<label class="control-label col-md-2 col-sm-2"  style="margin:10px 0 0 40px;">Survey Details<span class="required">*</span>
+										</label>
+										<div class="col-md-6 col-sm-6" >
+											<textarea class="form-control" name="txtareaSurveyFormDetails" id="txtareaSurveyFormDetails"></textarea>
+										</div>
 									</div>
+									<strong>
+										<div id="stage1" class="build-wrap" style="margin-top:50px;">
+
+										</div>
+									</strong>
 									<form class="render-wrap">
 
 									</form>
-									<button id="edit-form" class="btn btn-primary edit-form pull-right">Edit Form</button>
 									<div class="action-buttons">
 										<h2>Actions</h2>
-										<button id="showData" type="button">Show Data</button>
-										<button id="clearFields" type="button">Clear All Fields</button>
-										<button id="getData" type="button">Get Data</button>
-										<button id="getXML" type="button">Get XML Data</button>
-										<button id="getJSON" type="button">Get JSON Data</button>
-										<button id="getJS" type="button">Get JS Data</button>
-										<button id="setData" type="button">Set Data</button>
-										<button id="addField" type="button">Add Field</button>
-										<button id="removeField" type="button">Remove Field</button>
 										<button id="testSubmit" type="submit">Test Submit</button>
-										<button id="resetDemo" type="button">Reset Demo</button>
-										<button id="saveData" type="button">saveData</button>
 									</div>
 									<div id="xmldatadiv"></div>
 								</div>
@@ -100,36 +111,40 @@ require 'header.php';
 					</div>
 				</div>
 			</div>
-			<!-- /page content -->
-
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
+			
 		</div>
 	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
+	<!-- /page content -->
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+	<!-- footer content -->
+	<footer>
+		<div class="pull-right">
+			Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+		</div>
+		<div class="clearfix"></div>
+	</footer>
+	<!-- /footer content -->
+</div>
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="../vendors/nprogress/nprogress.js"></script>
 
-	<script src="assets/js/demo.js"></script>
-	<script src="assets/js/jquery-ui.min.js"></script>
-	<script src="assets/js/form-builder.min.js"></script>
-	<script src="assets/js/form-render.min.js"></script>
-	<script src="assets/js/jquery.rateyo.min.js"></script>
-	
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
+
+<script src="assets/js/demo.js"></script>
+<script src="assets/js/jquery-ui.min.js"></script>
+<script src="assets/js/form-builder.min.js"></script>
+<script src="assets/js/form-render.min.js"></script>
+<script src="assets/js/jquery.rateyo.min.js"></script>
+
+
+
 </body>
 </html>

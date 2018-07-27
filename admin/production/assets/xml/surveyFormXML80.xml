@@ -1,0 +1,17 @@
+<form-template>
+	<fields>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519261">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519437">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519621">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519789">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+	</fields>
+</form-template>
