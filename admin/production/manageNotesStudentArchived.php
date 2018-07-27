@@ -1,4 +1,22 @@
 <?php
+session_start();
+include ("connectionString.php");
+$sessionEmail = $_SESSION['sessionAdminEmail'];
+$queryGettingAdmin = "SELECT * FROM tbl_adminaccount WHERE `adminEmail` = '$sessionEmail' LIMIT 1";
+$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin); 
+
+
+
+while($row = mysqli_fetch_array($resultGettingAdmin))  
+{
+
+	$LoggedInAdminEmail = $row['adminEmail'];
+	$LoggedInAdminID = $row['adminId'];
+	$LoggedInAdminFirstName = $row['adminFirstName'];
+	$LoggedInAdminMiddleName = $row['adminMiddleName'];
+	$LoggedInAdminLastName = $row['adminLastName'];
+
+}
 
 ?>
 
@@ -31,7 +49,6 @@
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
 </head>
-
 <?php
 require 'header.php';
 ?>
@@ -52,9 +69,10 @@ require 'header.php';
 			<!-- page content -->
 			<div class="right_col" role="main">
 				<div class="">
+
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage Archived Staff Accounts<small></small></h3>
+							<h3>Manage Notes<small></small></h3>
 						</div>
 
 						<div class="title_right">
@@ -72,13 +90,12 @@ require 'header.php';
 					<div class="clearfix"></div>
 
 					<div class="row">
-
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Accounts <small>Admin</small></h2>
+									<h2>Significant Notes <small>Archived</small></h2>
 									<ul class="nav navbar-right">
-										<!-- <button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD STAFF ACCOUNT</button> -->
+										<!-- <button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD NEW NOTE</button> -->
 									</ul>
 									<div class="clearfix"></div>
 								</div>
@@ -88,69 +105,104 @@ require 'header.php';
 										<thead>
 											<tr>
 												<th></th>
-												<th>Admin ID</th>
-												<th>First Name</th>
-												<th>Middle Name</th>
-												<th>Last Name</th>
-												<th>Image</th>
+												<th>Note ID</th>
+												<th>Student</th>
+												<th>Date</th>
+												<th>Type Of Visitation</th>
+												<th>Added by</th>
 											</tr>
 										</thead>
 
 
 										<tbody>
+											
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccountarchive WHERE adminAccessLevel = 'Staff' ORDER BY adminId DESC";
-											$resultCourse = mysqli_query($connect, $queryCourse); 
-											while($row = mysqli_fetch_array($resultCourse))  
-											{  
-												?>  
-												<tr>
-													<td width="14%" >
-														<center>
-															<a title="Revive" class="btn btn-info" href="manageAccountStaffAccountReturn.php?id=<?php echo$row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to return?')"><span class="fa fa-share-square"></span></a>	
+											$querySignificantNotesOnly = "SELECT * FROM tbl_significantnotesarchive INNER JOIN tbl_personalinfo ON tbl_significantnotesarchive.studentNumber = tbl_personalinfo.studentNumber";
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountStaffAccountArchivedDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>													</center>
-														</td>
-														<td> <?php echo $row['adminEmail'];?> </td>
-														<td> <?php echo $row['adminFirstName'];?> </td>
-														<td> <?php echo $row['adminMiddleName'];?> </td>
-														<td> <?php echo $row['adminLastName'];?> </td>
-														<td> 
+											$resultSignificantNotesOnly = mysqli_query($connect, $querySignificantNotesOnly);
+											
+											while($row = mysqli_fetch_array($resultSignificantNotesOnly))  
+											{  
+												
+													?>  
+													<tr>
+														<td width="14%" >
 															<center>
 																<?php
-
-
-															$VarcharStudentProfileImage = $row['adminImage'];
-															if(empty($VarcharStudentProfileImage))
-															{
-																echo '
-																<img src="assets/img/default-user.png" height="200" width="200" style="object-fit:cover;">
+																
+																echo '<a title="Revive" class="btn btn-info" href="manageNotesStudentReturn.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to return?")"><span class="fa fa-share-square"></span></a>
 																';
-															}
-															else{
-																echo '<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />';
-															}
+																
 
-															?> 
+																?>
+
+																<?php
+
+																echo '<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to delete?")"><span class="glyphicon glyphicon-trash"></span></a>
+																';
+
+
+																?>
+
 															</center>
 														</td>
-													</tr>  
-													<?php
-												}
-												?> 
+														<td>
+															<?php
+															echo $row['noteID'];
+															?>
+														</td>
+														<td> 
+															<?php
+															echo $row['studentNumber']; echo "&nbsp; &nbsp;"; echo $row['firstName']; echo $row['lastName'];
+															?>
 
+														</td>
+														<td> 
+															<?php
+															echo $row['noteDate'];
+															?>
+														</td>
+
+														<?php
+														$TableCategoryID = $row['categoryID'];
+														$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = ".$TableCategoryID." ";
+														$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
+														while($res = mysqli_fetch_array($resultGettingCategoryName))  
+														{ 
+															?>
+															<td> <?php echo $res['categoryName'];?> </td>
+															<?php 
+														}
+														?>
+														<?php 
+														$VarcharAdminID = $row['adminId'];
+														$TableAdminID = $row['adminId'];
+														$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = ".$TableAdminID." ";
+														$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
+														while($res2 = mysqli_fetch_array($resultGettingAdminID))  
+														{ 
+
+
+															?>
+															<td> <?php echo $res2['adminFirstName']; ?> <?php echo $res2['adminLastName'];  ?></td>
+
+															<?php
+														}
+													}
+
+												?> 
 											</tbody>
 											<tfoot>
-											<tr>
-												<th></th>
-												<th>Admin ID</th>
-												<th>First Name</th>
-												<th>Middle Name</th>
-												<th>Last Name</th>
-												<th>Image</th>
-											</tr>
-										</tfoot>
+												<tr>
+													<th></th>
+													<th>Note ID</th>
+													<th>Student</th>
+													<th>Date</th>
+													<th>Type Of Visitation</th>
+													<th>Added by</th>
+												</tr>
+											</tfoot>
 										</table>
 									</div>
 								</div>
@@ -161,13 +213,13 @@ require 'header.php';
 				</div>
 				<!-- /page content -->
 				<!--Modal view-->
-				
+
 				<!--/Modal view-->
 				<!--Modal Edit-->
 
 				<!--/Modal Edit-->
 				<!--Modal Add-->
-				
+
 				<!--/Modal Edit-->
 
 				<!-- footer content -->
@@ -187,7 +239,7 @@ require 'header.php';
 		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
 		<!-- FastClick -->
 		<script src="../vendors/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->	
+		<!-- NProgress -->
 		<script src="../vendors/nprogress/nprogress.js"></script>
 		<!-- iCheck -->
 		<script src="../vendors/iCheck/icheck.min.js"></script>
@@ -210,8 +262,5 @@ require 'header.php';
 
 		<!-- Custom Theme Scripts -->
 		<script src="../build/js/custom.min.js"></script>
-
-
-
 	</body>
 	</html>

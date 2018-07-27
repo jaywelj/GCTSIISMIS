@@ -541,7 +541,7 @@ else
 	$message = "Query Error #2";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 if (mysqli_query($connect, $queryAddEducationalBackground)) {
@@ -554,7 +554,7 @@ else
 	$message = "Query Error #3";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 if (mysqli_query($connect, $queryAddFamilyBackground)) {
@@ -567,7 +567,7 @@ else
 	$message = "Query Error #4";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 if (mysqli_query($connect, $queryAddHealth)) {
@@ -580,7 +580,7 @@ else
 	$message = "Query Error #5";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 if (mysqli_query($connect, $queryAddInterests)) {
@@ -593,7 +593,7 @@ else
 	$message = "Query Error #6";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 if (mysqli_query($connect, $queryAddTestResultInitial)) {
@@ -605,7 +605,7 @@ else
 	$message = "Query Error #7";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
 
@@ -627,14 +627,14 @@ if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
 $message = "Successfully Added In Test Results Additional".$i."";
 echo "<script type='text/javascript'>alert('$message');</script>";
 
-echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";                           
+echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";                           
 }
 else
 {
 	$message = "Query Error #8";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	//redirectig to the display page. In our case, it is index.php
-	echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordForm.php?id=$VarcharStudentNumber';</script>";
+	echo "<script type='text/javascript'>location.href = 'clientHome.php?id=$VarcharStudentNumber';</script>";
 }
 
 

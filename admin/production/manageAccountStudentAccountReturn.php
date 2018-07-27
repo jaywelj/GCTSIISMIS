@@ -106,12 +106,12 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             echo "<script type='text/javascript'>alert('$message');</script>";
             echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
         }
-        if ($resultmovinghealthinfotoarchive = mysqli_query($connect, $resultmovinghealthinfotoarchive))
+        if ($resultmovinghealthinfotoarchive = mysqli_query($connect, $querymovinghealthinfotoarchive))
         {   
             $message = "Successful moving health to archive";
             echo "<script type='text/javascript'>alert('$message');</script>";
 
-            if ($resultdeletinghealthinfo = mysqli_query($connect, $resultdeletinghealthinfo))
+            if ($resultdeletinghealthinfo = mysqli_query($connect, $querydeletinghealthinfo))
             {
                 $message = "Successful deleting health to archive";
                 echo "<script type='text/javascript'>alert('$message');</script>";
@@ -131,12 +131,12 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
         }
 
-        if ($resultmovingtestrecordtoarchive = mysqli_query($connect, $resultmovingtestrecordtoarchive))
+        if ($resultmovingtestrecordtoarchive = mysqli_query($connect, $querymovingtestrecordtoarchive))
         {
             $message = "Successful moving test record";
             echo "<script type='text/javascript'>alert('$message');</script>";
 
-            if ($resultdeletingtestrecord = mysqli_query($connect, $resultdeletingtestrecord))
+            if ($resultdeletingtestrecord = mysqli_query($connect, $querydeletingtestrecord))
             {
                 $message = "Successful deleting test record";
                 echo "<script type='text/javascript'>alert('$message');</script>";
@@ -155,12 +155,12 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             echo "<script type='text/javascript'>alert('$message');</script>";
             echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
         }
-        if ($resultmovingsignificantnotestoarchive = mysqli_query($connect, $resultmovingsignificantnotestoarchive))
+        if ($resultmovingsignificantnotestoarchive = mysqli_query($connect, $querymovingsignificantnotestoarchive))
         {   
             $message = "Query Successful moving significant notes ";
             echo "<script type='text/javascript'>alert('$message');</script>";
             
-            if ($resultdeletingsignificantnotes = mysqli_query($connect, $resultdeletingsignificantnotes))
+            if ($resultdeletingsignificantnotes = mysqli_query($connect, $querydeletingsignificantnotes))
             {
                 $message = "Query Successful deleting significant notes";
                 echo "<script type='text/javascript'>alert('$message');</script>";
