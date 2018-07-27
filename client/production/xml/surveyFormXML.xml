@@ -1,0 +1,14 @@
+<form-template>
+	<fields>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="date" label="Date Field" class="form-control" name="date-1531930600214"></field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1531930600829">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1531930601420">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+	</fields>
+</form-template>

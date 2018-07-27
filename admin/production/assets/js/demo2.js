@@ -26,8 +26,6 @@ jQuery(function ($) {
 	var fbRender = document.getElementById('stage1');
 	var xmldata;
 	var xhttp = new XMLHttpRequest();
-	xhttp.open("POST","assets/xml/"+xmldataFileName, true);
-	xhttp.send();
 	xhttp.onreadystatechange = function(){
 		if (this.readyState == 4 && this.status == 200) {
 			var xmldata = this.responseText;
@@ -114,4 +112,8 @@ jQuery(function ($) {
 			};
 		}
 	};
+	
+	xhttp.open("POST","assets/xml/"+xmldataFileName, true);
+	xhttp.send();
+
 });

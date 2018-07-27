@@ -233,6 +233,13 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentEmail']);
 
+	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ;";
+	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
+	while ($row = mysqli_fetch_array($queryGetCollegeArray))
+	{
+		$varcharStudentCollege = $row['collegeCode'];
+	}
+
 
 	if(!empty($_FILES['fileEditStudentImage']['tmp_name']) && file_exists($_FILES['fileEditStudentImage']['tmp_name'])) 
 	{
@@ -264,7 +271,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo', `studentDisplayPic` = '$varcharStudentImage' 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo', `studentDisplayPic` = '$varcharStudentImage' 
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -275,7 +282,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo'
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo'
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";

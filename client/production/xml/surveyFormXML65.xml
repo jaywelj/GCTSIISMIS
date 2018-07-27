@@ -1,0 +1,13 @@
+<form-template>
+	<fields>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532052877145">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532052877913">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="header" subtype="h1" label="Header"></field>
+	</fields>
+</form-template>

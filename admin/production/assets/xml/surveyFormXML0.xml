@@ -1,13 +1,31 @@
 <form-template>
 	<fields>
-		<field type="radio-group" label="Radio Group" name="radio-group-1531928873548">
+		<field type="header" subtype="h1" label="Header"></field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604280277">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604280429">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604280589">
+			<option label="Option 1" value="option-1" selected="true">Option 1</option>
+		</field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532604281021">
 			<option label="Option 1" value="option-1">Option 1</option>
 			<option label="Option 2" value="option-2">Option 2</option>
 			<option label="Option 3" value="option-3">Option 3</option>
 		</field>
-		<field type="text" label="jaywel" name="text-1531928874676" subtype="text" class="red form-control"></field>
-		<field type="header" subtype="h1" label="Header"></field>
-		<field type="date" label="Date Field" class="form-control" name="date-1531928872450"></field>
-		<field type="date" label="Date Field" class="form-control" name="date-1531928871511"></field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532604281173">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="radio-group" label="Radio Group" name="radio-group-1532604281324">
+			<option label="Option 1" value="option-1">Option 1</option>
+			<option label="Option 2" value="option-2">Option 2</option>
+			<option label="Option 3" value="option-3">Option 3</option>
+		</field>
+		<field type="text" label="Text Field" class="form-control" name="text-1532604281901" subtype="text"></field>
+		<field type="text" label="Text Field" class="form-control" name="text-1532604282069" subtype="text"></field>
 	</fields>
 </form-template>
