@@ -971,36 +971,101 @@ require 'header.php';
 													<ul class="messages">
 														<li>
 															<div class="message_wrapper">
+
 																<h4 class="heading">Significant Notes</h4>
 																<table class="table">
-																	<tbody>
-																		<tr>
-																			<th scope="row" style="width: 400px;">Date</th>
-																			<td><?php echo $varcharStudentTestDate; ?></td>
-																		</tr>
-																		<tr>
-																			<th scope="row">Name of Test</th>
-																			<td><?php echo $varcharStudentTestName; ?></td>
-																		</tr>
-																		<tr>
-																			<th scope="row">Raw Score</th>
-																			<td><?php echo $varcharStudentTestRawScore; ?></td>
-																		</tr>
-																		<tr>
-																			<th scope="row">Percentage Rating</th>
-																			<td><?php echo $varcharStudentTestPercentile; ?></td>
-																		</tr>
-																		<tr>
-																			<th scope="row">Description</th>
-																			<td><?php echo $varcharStudentTestDescription; ?></td>
-																		</tr>
-																	</tbody>
-																</table>
-																<br/>
-															</div>
-														</li>
-													</ul>
-													<!-- end recent activity -->
+																	<?php
+																	$result7 = mysqli_query($connect, "SELECT * FROM tbl_significantnotes INNER JOIN tbl_personalinfo ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
+																	$i = 0;
+																	while($res7 = mysqli_fetch_array($result7)){
+
+																		$varcharStudentNoteID = $res7['noteID'];
+																		$varcharStudentNoteDate = $res7['noteDate'];
+																		$varcharStudentCategoryID = $res7['categoryID'];
+																		$varcharStudentSubCategoryID = $res7['subCategoryID'];
+																		$varcharStudentNoteRemarks = $res7['noteRemarks'];
+																		$varcharStudentAdminAddedBy = $res7['adminId'];
+																		
+
+
+																		$i = $i + 1 ;
+																		?>
+																		<tbody>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Note ID <?php echo $varcharStudentNoteID; ?></th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Date Note Created</th>
+																				<td><?php echo $varcharStudentNoteDate; ?></td>
+																			</tr>
+																			<?php
+																			$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = '$varcharStudentCategoryID' ";
+																			$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
+																			while($res = mysqli_fetch_array($resultGettingCategoryName))  
+																			{ 
+																				$varcharStudentCategoryName = $res['categoryName'];
+
+
+																				
+																				?>
+																				<tr>
+																					<th scope="row">Type Of visitation</th>
+																					<td><?php echo $varcharStudentCategoryName; ?></td>
+																				</tr>
+																				<?php
+																			}
+																			?>
+																			<?php
+																			$queryGettingSubCategoryName = "SELECT * FROM tbl_incidentsubcategory WHERE `subCategoryID` = '$varcharStudentSubCategoryID' ";
+																			$resultGettingSubCategoryName = mysqli_query($connect, $queryGettingSubCategoryName); 
+																			while($res2 = mysqli_fetch_array($resultGettingCategoryName))  
+																			{ 
+																				$varcharStudentSubCategoryName = $res2['subCategoryName'];
+																				?>
+																				<tr>
+																					<th scope="row">Reason for visitation</th>
+																					<td><?php echo $varcharStudentSubCategoryName; ?></td>
+																				</tr>
+																				<?php
+																			}
+																			?>
+																			<tr>
+																				<th scope="row">Remarks</th>
+																				<td><?php echo $varcharStudentNoteRemarks; ?></td>
+																			</tr>
+																			<?php
+																			$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = '$varcharStudentAdminAddedBy' ";
+																			$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
+																			while($res3 = mysqli_fetch_array($resultGettingAdminID))  
+																			{ 
+																				$varcharStudentAdminFirstName = $res3['adminFirstName']; 
+																				$varcharStudentAdminLastName = $res3['adminLastName'];
+																				?>
+																				<tr>
+																					<th scope="row">Added by</th>
+																					<td><?php echo $varcharStudentFirstName; ?> <?php echo $varcharStudentLastName; ?> </td>
+																				</tr>
+																				<?php 
+																			}
+																			?>
+																				<tr>
+																					<th scope="row" style="width: 400px;">  </th>
+																				</tr>
+																				<?php
+
+																			}
+																			?>
+																		</tbody>
+																	</table>
+																	<br/>
+																</div>
+															</li>
+														</ul>
+														<!-- end recent activity -->
+													</div>
 												</div>
 											</div>
 										</div>
@@ -1010,39 +1075,38 @@ require 'header.php';
 						</div>
 					</div>
 				</div>
+				<!-- /page content -->
+
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix"></div>
+				</footer>
+				<!-- /footer content -->
 			</div>
-			<!-- /page content -->
-
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
-	<!-- morris.js -->
-	<script src="../vendors/raphael/raphael.min.js"></script>
-	<script src="../vendors/morris.js/morris.min.js"></script>
-	<!-- bootstrap-progressbar -->
-	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-	<!-- bootstrap-daterangepicker -->
-	<script src="../vendors/moment/min/moment.min.js"></script>
-	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- morris.js -->
+		<script src="../vendors/raphael/raphael.min.js"></script>
+		<script src="../vendors/morris.js/morris.min.js"></script>
+		<!-- bootstrap-progressbar -->
+		<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+		<!-- bootstrap-daterangepicker -->
+		<script src="../vendors/moment/min/moment.min.js"></script>
+		<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
 
-</body>
-</html>
+	</body>
+	</html>
