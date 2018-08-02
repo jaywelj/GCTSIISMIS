@@ -1,3 +1,6 @@
+<?
+if()
+	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -68,34 +71,42 @@ require 'header.php';
 
 					<div class="row">
 						<?php	
-						$college = $_GET['id']; 	
+						$college = $_GET['id']; 
+						$course = $_GET['course'];
+						echo "<script>
+						alert('$course');</script>";
+						$query = "SELECT * FROM tbl_college WHERE collegeCode = '$college'";
+						$queryArray = mysqli_query($connect,$query);
+						while ($row = mysqli_fetch_array($queryArray)) {
+							$collegeName = $row['collegeName'];
+						}	
 						?>
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-md-12 col-sm-12 col-xs-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Individual Inventory Record <small><?php echo"$college"; ?></small></h2>
-										<!--NAVBAR TOOLBOX<ul class="nav navbar-right panel_toolbox">
-											<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-											</li>
-											<li class="dropdown">
-												<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-												<ul class="dropdown-menu" role="menu">
-													<li><a href="#">Settings 1</a>
-													</li>
-													<li><a href="#">Settings 2</a>
-													</li>
-												</ul>
-											</li>
-											<li><a class="close-link"><i class="fa fa-close"></i></a>
-											</li>
-										</ul>-->
-										<div class="clearfix"></div>
+									<h2><?php echo"$collegeName"; ?><small><?php echo"$college"; ?></small></h2>
+									<div class="form-group col-md-5 col-sm-5 col-xs-5 pull-right">
+										<form method="post">
+											<select class="form-control" id="selectCourse" name="selectCourse" onchange="course()">
+												<option value="all">------------- All Course ----------------</option>
+												<?php 
+												$query = "SELECT * FROM tbl_course WHERE collegeCode = '$college'";
+												$queryArray = mysqli_query($connect, $query);
+												while($row = mysqli_fetch_array($queryArray))
+												{
+													echo "<option name=".$row['courseCode']." id=".$row['courseCode']." value=".$row['courseCode']." >".$row['courseCode']." | ".$row['courseName']."</option>";
+												}
+												?>
+											</select>
+										</form>
 									</div>
-									<div class="x_content">
+									<div class="clearfix"></div>
+								</div>
+								<div class="x_content">
 										<!--<p class="text-muted font-13 m-b-30">
 											The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 										</p>-->
-										<table id="datatable-buttons" class="table table-striped table-bordered">
+										<table id="datatable-buttons" class="table table-striped table-bordered" style="width: 100%">
 											<thead>
 												<tr>
 													<th></th>
@@ -112,7 +123,12 @@ require 'header.php';
 											<tbody>
 												<?php  
 												include("connectionString.php");
-												$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college'";
+												if($course == "all"){
+													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college'";
+												}
+												else{
+													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college' AND courseCode = '$course'";
+												}
 												$resultStudent = mysqli_query($connect, $queryStudent); 
 
 
@@ -120,8 +136,8 @@ require 'header.php';
 												while($row = mysqli_fetch_array($resultStudent))  
 												{  
 													?>  
-													<tr>
-														<td>
+													<tr >
+														<td width="110px">
 															<?php 
 															if($row['age'] == 0 AND $row['sexuality'] == "Not Set")
 															{
@@ -130,7 +146,7 @@ require 'header.php';
 																</div>";	
 															}
 															else
-															{
+															{	
 																echo "<div class='btn-group  btn-group-sm' >
 																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
 																</div>";
@@ -403,6 +419,14 @@ require 'header.php';
 
 		<!-- Custom Theme Scripts -->
 		<script src="../build/js/custom.min.js"></script>
+		<script type="text/javascript">
+			function course(){
+				var selected = document.getElementById('selectCourse').value;
+				window.location.replace('IndividualInventoryRecord.php?id=CCIS&course='+selected);
+			}
+			var temp="<?php echo $course;?>"; 
+			$("#selectCourse").val(temp);
+		</script>
 
 	</body>
 	</html>

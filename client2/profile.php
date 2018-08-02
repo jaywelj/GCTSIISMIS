@@ -23,7 +23,8 @@ while($res = mysqli_fetch_array($result))
 }
 $result2 = mysqli_query($connect, "SELECT * FROM `tbl_personalinfo` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `infoID` DESC LIMIT 1");
 
-while($res2 = mysqli_fetch_array($result2)){
+while($res2 = mysqli_fetch_array($result2))
+{
 
 	$varcharStudentFirstName = $res2['firstName'];
 	$varcharStudentMiddleName = $res2['middleName'];
@@ -35,7 +36,6 @@ while($res2 = mysqli_fetch_array($result2)){
 	$varcharStudentAge = $res2['age'];
 	$varcharStudentYear = $res2['year'];
 	$varcharStudentSection = $res2['section'];
-	$varcharStudentEmail = $res2['email'];
 	$varcharStudentCivilStatus = $res2['civilStatus'];
 	$varcharStudentBirthdate = $res2['birthDate'];
 	$varcharStudentHeight = $res2['height'];
@@ -56,8 +56,9 @@ while($res2 = mysqli_fetch_array($result2)){
 
 	$tempStudentProvinceAddress = $varcharStudentProvinceHouseNumber .' '.  $varcharStudentProvinceProvince . ' ' . $varcharStudentProvinceCity . ' ' .  $varcharStudentProvinceBarangay;
 
-	$varcharStudentTelNum = $res2['telNumber'];
+	$varcharStudentEmail = $res2['email'];
 	$varcharStudentMobileNum = $res2['mobileNumber'];
+	$varcharStudentTelNum = $res2['telNumber'];
 	$varcharStudentHSGWA = $res2['hsGWA'];
 	$varcharStudentReligion = $res2['religion'];
 	$varcharStudentEmployerName = $res2['employerName'];
@@ -103,10 +104,6 @@ while($res2point5 = mysqli_fetch_array($result2point5)){
 	$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
 	$varcharStudentInterruptedWhy = $res2point5['interruptedWhy'];
 
-
-
-
-
 }
 
 
@@ -116,6 +113,7 @@ while($res3 = mysqli_fetch_array($result3)){
 	$varcharStudentFatherAge = $res3['fatherAge'];
 	$varcharStudentFatherStatus = $res3['fatherStatus'];
 	$varcharStudentFatherEducation = $res3['fatherEducation'];
+	$varcharStudentFatherOccupationType = $res3['fatherOccupationType'];
 	$varcharStudentFatherOccupation = $res3['fatherOccupation'];
 	$varcharStudentFatherEmployerName = $res3['fatherEmployerName'];
 	$varcharStudentFatherEmployerAddress = $res3['fatherEmployerAdd'];
@@ -124,6 +122,7 @@ while($res3 = mysqli_fetch_array($result3)){
 	$varcharStudentMotherAge = $res3['motherAge'];
 	$varcharStudentMotherStatus = $res3['motherStatus'];
 	$varcharStudentMotherEducation = $res3['motherEducation'];
+	$varcharStudentMotherOccupationType = $res3['motherOccupationType'];
 	$varcharStudentMotherOccupation = $res3['motherOccupation'];
 	$varcharStudentMotherEmployerName = $res3['motherEmployerName'];
 	$varcharStudentMotherEmployerAddress = $res3['motherEmployerAdd'];
@@ -132,6 +131,7 @@ while($res3 = mysqli_fetch_array($result3)){
 	$varcharStudentGuardianAge = $res3['guardianAge'];
 	$varcharStudentGuardianRelation = $res3['guardianRelation'];
 	$varcharStudentGuardianEducation = $res3['guardianEducation'];
+	$varcharStudentGuardianOccupationType = $res3['guardianOccupationType'];
 	$varcharStudentGuardianOccupation = $res3['guardianOccupation'];
 	$varcharStudentGuardianEmployerName = $res3['guardianEmployerName'];
 	$varcharStudentGuardianEmployerAddress = $res3['guardianEmployerAdd'];
@@ -180,7 +180,6 @@ while($res5 = mysqli_fetch_array($result5)){
 	$varcharStudentHobby2 = $res5['hobby2'];
 	$varcharStudentHobby3 = $res5['hobby3'];
 	$varcharStudentHobby4 = $res5['hobby4'];
-	$varcharStudentJoinedOrganization = $res5['interestOrganization'];
 	$varcharStudentInterestOrganization = $res5['interestOrganization'];
 	$varcharStudentOrganizationPosition = $res5['organizationPosition'];
 
@@ -189,6 +188,7 @@ $result6 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentN
 while($res6 = mysqli_fetch_array($result6)){
 
 	$varcharStudentTestID = $res6['testID'];
+	$varcharStudentTestDate = $res6['testDate'];
 	$varcharStudentTestName = $res6['testName'];
 	$varcharStudentTestRawScore = $res6['testRawScore']; 
 	$varcharStudentTestPercentile = $res6['testPercentile'];
@@ -291,7 +291,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 	<!--/ Banner-->
 	<div class="container">
 		<div class="row">
-			<div class="col-md-9 col-sm-9 col-xs-12" style="">
+			<div class="col-md-9 col-sm-9 col-xs-12 col-lg-9 col-lg-offset-2" style="">
 				<div class="" role="tabpanel" data-example-id="togglable-tabs">
 					<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 						<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
@@ -416,7 +416,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 							<!-- end recent activity -->
 
 						</div>
-						<div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
+						<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
 							<!-- start recent activity -->
 							<ul class="messages">
 								<li>
@@ -552,7 +552,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 							</ul>
 							<!-- end recent activity -->
 						</div>
-						<div role="tabpanel" class="tab-pane fade active in" id="tab_content3" aria-labelledby="home-tab">
+						<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="home-tab">
 							<!-- start recent activity -->
 							<ul class="messages">
 								<li>
@@ -726,7 +726,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 							</ul>
 							<!-- end recent activity -->
 						</div>
-						<div role="tabpanel" class="tab-pane fade active in" id="tab_content4" aria-labelledby="home-tab">
+						<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
 							<!-- start recent activity -->
 							<ul class="messages">
 								<li>
@@ -815,7 +815,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 							</ul>
 							<!-- end recent activity -->
 						</div>
-						<div role="tabpanel" class="tab-pane fade active in" id="tab_content5" aria-labelledby="home-tab">
+						<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="home-tab">
 							<!-- start recent activity -->
 							<ul class="messages">
 								<li>
@@ -876,7 +876,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 							</ul>
 							<!-- end recent activity -->
 						</div>
-						<div role="tabpanel" class="tab-pane fade active in" id="tab_content6" aria-labelledby="home-tab">
+						<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="home-tab">
 							<!-- start recent activity -->
 							<ul class="messages">
 								<li>
