@@ -723,45 +723,89 @@ while($res2point5 = mysqli_fetch_array($result2point5)){
 	$varcharStudentPreSchoolAddress = $res2point5['prepSchoolAddress'];
 	$varcharStudentPreSchoolType = $res2point5['prepType'];
 	$varcharStudentPreSchoolYearAttended = $res2point5['prepYearAttended'];
-	$varcharStudentPreSchoolYearAttendedArray = explode('-', $varcharStudentPreSchoolYearAttended);
-	$varcharStudentPreSchoolYearAttended1 = $varcharStudentPreSchoolYearAttendedArray[0];
-	$varcharStudentPreSchoolYearAttended2 = $varcharStudentPreSchoolYearAttendedArray[1];
+	if(isset($varcharStudentPreSchoolYearAttended))
+	{
+		$varcharStudentPreSchoolYearAttendedArray = explode('-', $varcharStudentPreSchoolYearAttended);
+		$varcharStudentPreSchoolYearAttended1 = $varcharStudentPreSchoolYearAttendedArray[0];
+		$varcharStudentPreSchoolYearAttended2 = $varcharStudentPreSchoolYearAttendedArray[1];
+	}
+	else
+	{
+		$varcharStudentPreSchoolYearAttended1 = NULL;
+		$varcharStudentPreSchoolYearAttended2 = NULL;
+	}
 	$varcharStudentPreSchoolAwards = $res2point5['prepAwards'];
 	$varcharStudentPreSchoolImage = $res2point5['prepImage'];
 	$varcharStudentElementarySchoolName = $res2point5['elemSchoolName'];
 	$varcharStudentElementarySchoolAddress = $res2point5['elemSchoolAddress'];
 	$varcharStudentElementarySchoolType = $res2point5['elemType'];
 	$varcharStudentElementarySchoolYearAttended = $res2point5['elemYearAttended'];
-	$varcharStudentElementarySchoolYearAttendedArray = explode('-', $varcharStudentElementarySchoolYearAttended);
-	$varcharStudentElementarySchoolYearAttended1 = $varcharStudentElementarySchoolYearAttendedArray[0];
-	$varcharStudentElementarySchoolYearAttended2 = $varcharStudentElementarySchoolYearAttendedArray[1];
+	if(isset($varcharStudentElementarySchoolYearAttended))
+	{
+
+		$varcharStudentElementarySchoolYearAttendedArray = explode('-', $varcharStudentElementarySchoolYearAttended);
+		$varcharStudentElementarySchoolYearAttended1 = $varcharStudentElementarySchoolYearAttendedArray[0];
+		$varcharStudentElementarySchoolYearAttended2 = $varcharStudentElementarySchoolYearAttendedArray[1];
+	}
+	else
+	{
+		$varcharStudentElementarySchoolYearAttended1 = NULL;
+		$varcharStudentElementarySchoolYearAttended2 = NULL;
+	}
 	$varcharStudentElementarySchoolAwards = $res2point5['elemAwards'];
 	$varcharStudentELemntarySchoolImage = $res2point5['elemImage'];
 	$varcharStudentHSSchoolName = $res2point5['hsSchoolName'];
 	$varcharStudentHSSchoolAddress = $res2point5['hsSchoolAddress'];
 	$varcharStudentHSSchoolType = $res2point5['hsType'];
 	$varcharStudentHSSchoolYearAttended = $res2point5['hsYearAttended'];
-	$varcharStudentHSSchoolYearAttendedArray = explode('-', $varcharStudentHSSchoolYearAttended);
-	$varcharStudentHSSchoolYearAttended1 = $varcharStudentHSSchoolYearAttendedArray[0];
-	$varcharStudentHSSchoolYearAttended2 = $varcharStudentHSSchoolYearAttendedArray[1];
+	if(isset($varcharStudentHSSchoolYearAttended))
+	{
+
+		$varcharStudentHSSchoolYearAttendedArray = explode('-', $varcharStudentHSSchoolYearAttended);
+		$varcharStudentHSSchoolYearAttended1 = $varcharStudentHSSchoolYearAttendedArray[0];
+		$varcharStudentHSSchoolYearAttended2 = $varcharStudentHSSchoolYearAttendedArray[1];
+	}
+	else
+	{
+
+		$varcharStudentHSSchoolYearAttended1 = NULL;
+		$varcharStudentHSSchoolYearAttended2 = NULL;
+	}
 	$varcharStudentHSSchoolAwards = $res2point5['hsAwards'];
 	$varcharStudentHSSchoolImage = $res2point5['hsImage'];
 	$varcharStudentVocationalSchoolName = $res2point5['vocSchoolName'];
 	$varcharStudentVocationalSchoolAddress = $res2point5['vocSchoolAddress'];
 	$varcharStudentVocationalSchoolType = $res2point5['vocType'];
 	$varcharStudentVocationalSchoolYearAttended = $res2point5['vocYearAttended'];
-	$varcharStudentVocationalSchoolYearAttendedArray = explode('-', $varcharStudentVocationalSchoolYearAttended);
-	$varcharStudentVocationalSchoolYearAttended1 = $varcharStudentVocationalSchoolYearAttendedArray[0];
-	$varcharStudentVocationalSchoolYearAttended2 = $varcharStudentVocationalSchoolYearAttendedArray[1];
+	if(isset($varcharStudentVocationalSchoolYearAttended))
+	{
+
+		$varcharStudentVocationalSchoolYearAttendedArray = explode('-', $varcharStudentVocationalSchoolYearAttended);
+		$varcharStudentVocationalSchoolYearAttended1 = $varcharStudentVocationalSchoolYearAttendedArray[0];
+		$varcharStudentVocationalSchoolYearAttended2 = $varcharStudentVocationalSchoolYearAttendedArray[1];
+	}
+	else
+	{
+		$varcharStudentVocationalSchoolYearAttended1 = NULL;
+		$varcharStudentVocationalSchoolYearAttended2 = NULL;
+	}
 	$varcharStudentVocationalAwards = $res2point5['vocAwards'];
 	$varcharStudentVocationalImage = $res2point5['vocImage'];
 	$varcharStudentCollegeSchoolName = $res2point5['collegeSchoolName'];
 	$varcharStudentCollegeSchoolAddress = $res2point5['collegeSchoolAddress'];
 	$varcharStudentCollegeSchoolType = $res2point5['collegeType'];
 	$varcharStudentCollegeSchoolYearAttended = $res2point5['collegeYearAttended'];
-	$varcharStudentCollegeSchoolYearAttendedArray = explode('-', $varcharStudentCollegeSchoolYearAttended);
-	$varcharStudentCollegeSchoolYearAttended1 = $varcharStudentCollegeSchoolYearAttendedArray[0];
-	$varcharStudentCollegeSchoolYearAttended2 = $varcharStudentCollegeSchoolYearAttendedArray[1];
+	if(isset($varcharStudentCollegeSchoolYearAttended))
+	{
+		$varcharStudentCollegeSchoolYearAttendedArray = explode('-', $varcharStudentCollegeSchoolYearAttended);
+		$varcharStudentCollegeSchoolYearAttended1 = $varcharStudentCollegeSchoolYearAttendedArray[0];
+		$varcharStudentCollegeSchoolYearAttended2 = $varcharStudentCollegeSchoolYearAttendedArray[1];
+	}
+	else
+	{
+		$varcharStudentCollegeSchoolYearAttended1 = NULL;
+		$varcharStudentCollegeSchoolYearAttended2 = NULL;
+	}
 	$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards'];
 	$varcharStudentCollegeSchoolImage = $res2point5['collegeImage'];
 	$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
@@ -1038,8 +1082,6 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Sexuality(Sexual Orientation)</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
 															<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" >
-																<option></option>
-																<option value="<?php echo $varcharStudentSexuality ?>"><?php echo $varcharStudentSexuality;?></option>
 																<option value="Heterosexual">Heterosexual</option>
 																<option value="Homosexual">Homosexual</option>
 																<option value="Bisexual">Bisexual</option>
@@ -1056,6 +1098,12 @@ require 'header.php';
 															<input type="text" id="txtbxOthersSexuality" name="txtbxOthersSexuality" class="form-control col-md-7 col-xs-12" disabled="true">
 														</div>
 													</div>
+													<script>
+														var temp="<?php echo $varcharStudentSexuality;?>"; 
+														$("#dropdownSexuality").val(temp);
+														alert(temp);
+
+													</script>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3">Age</label>
 														<div class="col-md-2 col-sm-2">
@@ -1091,6 +1139,11 @@ require 'header.php';
 															<input type="text" id="txtbxOthersCivilStatus" name="txtbxOthersCivilStatus" class="form-control col-md-7 col-xs-12" disabled="true">
 														</div>
 													</div>
+													<script>
+														var temp="<?php echo $varcharStudentSexuality;?>"; 
+														$("#dropdownSexuality").val(temp);
+														alert(temp);
+													</script>
 													<div class="form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Religion</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
@@ -1180,8 +1233,6 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">City Address</label>
 														<div class="col-md-6 col-sm-6 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" id="dropdownCityAddress" name="dropdownCityAddress" >
-																<option  selected=""></option>
-																<option><?php echo $varcharStudentCityProvince;  ?>~<?php echo $varcharStudentCityCity;  ?> </option>
 																<option>Metro Manila~Caloocan</option>
 																<option>Metro Manila~Las Pinas</option>
 																<option>Metro Manila~Makati</option>
@@ -1216,8 +1267,6 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Provincial Address</label>
 														<div class="col-md-6 col-sm-6 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" id="dropdownProvincialAddress" name="dropdownProvincialAddress" >
-																<option  selected=""></option>
-																<option><?php echo $varcharStudentProvinceProvince;  ?></option>
 																<option>Abra</option>
 																<option>Agusan Del Norte</option>
 																<option>Agusan Del Sur</option>
@@ -1367,9 +1416,6 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Person Relationship</label>
 														<div class="col-md-2 col-sm-2 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" name="dropdownContactPersonRelationship" id="dropdownContactPersonRelationship">
-																<option></option>
-																<option selected=""></option>
-																<option><?php echo $varcharStudentContactPersonRelationship;  ?></option>
 																<option value="Parent">Parent</option>
 																<option value="Brother/Sister<">Brother/Sister</option>
 																<option value="Aunt/Uncle">Aunt/Uncle</option>
@@ -1425,10 +1471,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioPreElemTypeOfSchool" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioPreElemTypeOfSchool" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 																<input type="radio" name="radioPreElemTypeOfSchool" value=NULL style="display: none;">
@@ -1472,10 +1518,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioElementaryTypeOfSchool" value="Public" <?php echo ($varcharStudentElementarySchoolType =='Public')?'checked':'' ?>> Public
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioElementaryTypeOfSchool" value="Private" <?php echo ($varcharStudentElementarySchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 															</div>
@@ -1518,10 +1564,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Public" <?php echo ($varcharStudentHSSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" <?php echo ($varcharStudentHSSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 															</div>
@@ -1564,10 +1610,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentVocationalSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioVocationalTypeOfSchool" value="Public" <?php echo ($varcharStudentVocationalSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentVocationalSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioVocationalTypeOfSchool" value="Private" <?php echo ($varcharStudentVocationalSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 															</div>
@@ -1610,10 +1656,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentCollegeSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioCollegeTypeOfSchool" value="Public" <?php echo ($varcharStudentCollegeSchoolType =='Private')?'checked':'' ?>> Public
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentCollegeSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioCollegeTypeOfSchool" value="Private" <?php echo ($varcharStudentCollegeSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 															</div>
@@ -1641,10 +1687,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<div class="btn-group" data-toggle="buttons" >
-																<label class="btn btn-default" data-toggle-class="btn-primary " style="padding-left: 22px; padding-right:22px;" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Continuous" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'checked':'' ?>> Continuous
+																<label class="btn btn-default <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'active':''?>" data-toggle-class="btn-primary " style="padding-left: 22px; padding-right:22px;" data-toggle-passive-class="btn-default">
+																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Continuous" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'checked':''?>> Continuous
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 23px; padding-right:23px;">
+																<label class="btn btn-default <?php echo ($varcharStudentNatureOfSchooling =='Interrupted')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 23px; padding-right:23px;">
 																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Interrupted" <?php echo ($varcharStudentNatureOfSchooling =='Interrupted')?'checked':'' ?>> Interrupted
 																</label>
 															</div>
@@ -1660,7 +1706,6 @@ require 'header.php';
 												<ul class="list-inline pull-right">
 													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
 													<li><button type="button" class="btn btn-primary next-step">Save and continue</button></li>
-													<li><input type="submit" name="btnSubmit" class="btn btn-primary next-step" value="Finish" ></li>
 												</ul>
 											</div>
 											<div class="tab-pane" role="tabpanel" id="step3">
@@ -1683,10 +1728,10 @@ require 'header.php';
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge" value="<?php echo $varcharStudentMotherAge;  ?>"> 
 														</div>
 														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+															<label class="btn btn-default <?php echo ($varcharStudentMotherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																<input type="radio" name="radioMotherState" value="Living" <?php echo ($varcharStudentMotherStatus =='Living')?'checked':'' ?>> Living 
 															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+															<label class="btn btn-default <?php echo ($varcharStudentMotherStatus =='Deceased')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																<input type="radio" name="radioMotherState" value="Deceased" <?php echo ($varcharStudentMotherStatus =='Deceased')?'checked':'' ?>> Deceased
 															</label>
 														</div>
@@ -1760,10 +1805,10 @@ require 'header.php';
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge" value="<?php echo $varcharStudentFatherAge;  ?>">
 														</div>
 														<div class="btn-group" data-toggle="buttons">
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+															<label class="btn btn-default <?php echo ($varcharStudentFatherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																<input type="radio" name="radioFatherState" value="Living" <?php echo ($varcharStudentFatherStatus =='Living')?'checked':'' ?>> Living 
 															</label>
-															<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+															<label class="btn btn-default <?php echo ($varcharStudentFatherStatus =='Deceased')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																<input type="radio" name="radioFatherState" value="Deceased" <?php echo ($varcharStudentFatherStatus =='Deceased')?'checked':'' ?>> Deceased
 															</label>
 														</div>
@@ -2047,10 +2092,10 @@ require 'header.php';
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentRoomSharing =='Yes')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioShareRoom" id="radioShareRoom" value="Yes" <?php echo ($varcharStudentRoomSharing =='Yes')?'checked':'' ?>> Yes
 																</label>
-																<label class="btn btn-default" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentRoomSharing =='No')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input type="radio" name="radioShareRoom" id="radioShareRoom" value="No" <?php echo ($varcharStudentRoomSharing =='No')?'checked':'' ?>> No
 																</label>
 															</div>
@@ -2391,7 +2436,6 @@ require 'header.php';
 												</div>
 												<ul class="list-inline pull-right">
 													<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
-													<li><button type="button" class="btn btn-default next-step">Skip</button></li>
 													<li><button type="button" class="btn btn-primary btn-info-full next-step">Save and continue</button></li>
 												</ul>
 											</div>
@@ -2506,6 +2550,7 @@ require 'header.php';
 		<script src="js/wizard/wizard.js"></script>
 		<!-- Dynamic Form  -->
 		<script src="js/dynamicForm/dynamicForm.js"></script>
+		<script src="js/IIR/IIRFormEdit.php"></script>
 
 		<script>
 			$(function(){
@@ -2834,8 +2879,22 @@ require 'header.php';
 						}
 					}
 				})
-
+				var temp="<?php echo $varcharStudentSexuality;?>"; 
+				$("#dropdownSexuality").val(temp);
+				var temp="<?php echo $varcharStudentCivilStatus;?>"; 
+				$("#dropdownCivilStatus").val(temp);
+				var temp="<?php echo $varcharStudentReligion;?>"; 
+				$("#dropdownReligion").val(temp);
+				var temp="<?php echo $varcharStudentComplexion;?>"; 
+				$("#dropdownComplexion").val(temp);
+				var temp="<?php echo $varcharStudentCityCity;?>"; 
+				$("#dropdownCityAddress").val(temp);
+				var temp="<?php echo $varcharStudentProvinceCity;?>"; 
+				$("#dropdownProvincialAddress").val(temp);
+				var temp="<?php echo $varcharStudentContactPersonRelationship;?>"; 
+				$("#dropdownContactPersonRelationship").val(temp);
 			});
+
 		</script>
 	</body>
 	</html>
