@@ -69,7 +69,7 @@
 				<div class="login-box-body">
 					<p class="login-box-msg">Create an account</p>
 					<div class="form-group">
-						<form name="" id="loginForm" method="post">
+						<form name="" id="signUpForm" method="post">
 							<div class="row">
 								<div class="col-lg-6">
 									<div class="form-group has-feedback">
