@@ -2,8 +2,6 @@
 session_start();
 //$varcharStudentAccountNumber = $_SESSION['sessionStudentAccountNumber'];
 //$varcharStudentAccountPassword = $_SESSION['sessionStudentAccountPassword'];
-
-
 $varcharStudentAccountNumber = $_GET['id'];
 ?>
 <?php
@@ -196,6 +194,19 @@ while($res6 = mysqli_fetch_array($result6)){
 
 }
 
+$result7 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC LIMIT 1");
+while($res7 = mysqli_fetch_array($result7)){
+
+	$varcharStudentTestID = $res6['testID'];
+	$varcharStudentTestDate = $res6['testDate'];
+	$varcharStudentTestName = $res6['testName'];
+	$varcharStudentTestRawScore = $res6['testRawScore']; 
+	$varcharStudentTestPercentile = $res6['testPercentile'];
+	$varcharStudentTestDescription = $res6['testDescription'];
+
+
+}
+
 
 if($varcharStudentSex = "F"){
 	$varcharStudentSex = "Female";
@@ -348,6 +359,8 @@ require 'header.php';
 												<li role="presentation" class=""  ><a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Hobbies and Interests</a>
 												</li>
 												<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Test Results</a>
+												</li>
+												<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Significant Notes</a>
 												</li>
 											</ul>
 											<div id="myTabContent" class="tab-content">
@@ -598,6 +611,7 @@ require 'header.php';
 														</ul>
 														<!-- end recent activity -->
 													</div>
+													
 													<div role="tabpanel" class="tab-pane fade active in" id="tab_content3" aria-labelledby="home-tab">
 														<!-- start recent activity -->
 														<ul class="messages">
@@ -930,6 +944,42 @@ require 'header.php';
 																	<li>
 																		<div class="message_wrapper">
 																			<h4 class="heading">Test Result</h4>
+																			<table class="table">
+																				<tbody>
+																					<tr>
+																						<th scope="row" style="width: 400px;">Date</th>
+																						<td><?php echo $varcharStudentTestDate; ?></td>
+																					</tr>
+																					<tr>
+																						<th scope="row">Name of Test</th>
+																						<td><?php echo $varcharStudentTestName; ?></td>
+																					</tr>
+																					<tr>
+																						<th scope="row">Raw Score</th>
+																						<td><?php echo $varcharStudentTestRawScore; ?></td>
+																					</tr>
+																					<tr>
+																						<th scope="row">Percentage Rating</th>
+																						<td><?php echo $varcharStudentTestPercentile; ?></td>
+																					</tr>
+																					<tr>
+																						<th scope="row">Description</th>
+																						<td><?php echo $varcharStudentTestDescription; ?></td>
+																					</tr>
+																				</tbody>
+																			</table>
+																			<br/>
+																		</div>
+																	</li>
+																</ul>
+																<!-- end recent activity -->
+															</div>
+															<div role="tabpanel" class="tab-pane fade active in" id="tab_content7" aria-labelledby="home-tab">
+																<!-- start recent activity -->
+																<ul class="messages">
+																	<li>
+																		<div class="message_wrapper">
+																			<h4 class="heading">Significant Notes</h4>
 																			<table class="table">
 																				<tbody>
 																					<tr>

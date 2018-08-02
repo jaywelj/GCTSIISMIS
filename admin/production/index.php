@@ -51,7 +51,7 @@ require 'header.php';
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-user"></i> Total Students</span>
 						<div class="count">17299</div>
-						<span class="count_bottom"><i class="green">4% </i> From last Week</span>
+						<span class="count_bottom"><i class="green">77% </i> From last Week</span>
 					</div>
 					<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 						<span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>

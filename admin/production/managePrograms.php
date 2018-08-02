@@ -88,31 +88,27 @@ if(isset($_POST['btnUpdate']))
 {
 	include_once("connectionString.php");
 
-	$varcharEditNoteDate = mysqli_real_escape_string($connect, $_POST['dateEditNoteDate']);
+	$varcharEditProgramID = mysqli_real_escape_string($connect, $_POST['hiddenEditProgramID']);
 
-	$varcharEditNoteCategory = mysqli_real_escape_string($connect, $_POST['optionEditNoteCategory']);
+	$varcharEditProgramName = mysqli_real_escape_string($connect, $_POST['txtbxEditProgramName']);
 
-	$varcharEditNoteSubCategory = mysqli_real_escape_string($connect, $_POST['optionEditNoteSubCategory']);
+	$varcharEditProgramSubCategory = mysqli_real_escape_string($connect, $_POST['optionEditProgramSubCategory']);
 
-	$varcharEditNoteRemarks = mysqli_real_escape_string($connect, $_POST['txtareaEditNoteRemarks']);
-
-	$varcharEditNoteID = mysqli_real_escape_string($connect, $_POST['hiddenEditNoteID']);
-
-	$varcharEditCollege = mysqli_real_escape_string($connect, $_POST['hiddenEditCollege']);
+	$varcharEditProgramDescription = mysqli_real_escape_string($connect, $_POST['txtareaEditProgramDescription']);
 
 	// checking empty fields
-	if(empty($varcharEditNoteRemarks) OR (empty($varcharEditNoteDate))) 
+	if(empty($varcharEditProgramName) OR (empty($varcharEditProgramSubCategory))) 
 	{
 
-		if(empty($varcharEditNoteRemarks))
+		if(empty($varcharEditProgramName))
 		{
-			$message = "Empty Note Remarks";
+			$message = "Program Name Empty";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 
-		if (empty($varcharEditNoteDate)) 
+		if (empty($varcharEditProgramSubCategory)) 
 		{
-			$message = "Empty Date";
+			$message = "Sub Category Empty";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		//link to the previous page
@@ -122,7 +118,7 @@ if(isset($_POST['btnUpdate']))
 	{ 
 		// if all the fields are filled (not empty) 
 		//insert data to database   
-		$queryEdit = "UPDATE `tbl_significantnotes` SET `noteDate` = '$varcharEditNoteDate', `categoryID` = '$varcharEditNoteCategory', `subCategoryID` = '$varcharEditNoteSubCategory', `noteRemarks` = '$varcharEditNoteRemarks' WHERE `tbl_significantnotes`.`noteID` = '$varcharEditNoteID'";
+		$queryEdit = "UPDATE `tbl_recommendedprogram` SET `programName` = '$varcharEditProgramName', `programDescription` = '$varcharProgramDescription', `subCategoryID` = '$varcharEditProgramSubCategory' WHERE `tbl_recommendedprogram`.`programID` = '$varcharEditProgramID'";
 		if(!mysqli_query($connect, $queryEdit))
 		{
 			$message = "Query Error" ;
@@ -304,9 +300,9 @@ require 'header.php';
 							<div class="modal-content">
 								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
 									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">STUDENT SIGNIFICANT NOTES</h4>
+									<h4 class="modal-title text-center">Program</h4>
 								</div>
-								<div class="modal-body" id="studentNoteDetails"    style=" padding: 5px 50px 5px 50px;">
+								<div class="modal-body" id="programDetails"    style=" padding: 5px 50px 5px 50px;">
 
 								</div>
 								<div class="modal-footer">
@@ -326,7 +322,7 @@ require 'header.php';
 									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
 									<h4 class="modal-title text-center">EDIT STUDENT ACCOUNT DETAILS</h4>
 								</div>
-								<div class="modal-body" id="editNoteDetails"    style=" padding: 25px 50px 5px 50px;">
+								<div class="modal-body" id="editProgramDetails"    style=" padding: 25px 50px 5px 50px;">
 
 								</div>
 								<div class="modal-footer">
@@ -361,7 +357,7 @@ require 'header.php';
 									?>
 									<label>Topic</label>
 									<select name="dropdownSubCategory" id="dropdownSubCategory" class="form-control">
-										<option value="NULL" selected disabled="">Reason for visitation?</option>
+										<option value="NULL" selected disabled="">Program Topic</option>
 										<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
 											<option value="<?php echo $row['subCategoryID'];?>"><?php echo $row['subCategoryName'];?></option>
 										<?php endwhile;?>
@@ -428,25 +424,25 @@ require 'header.php';
 		<script>
 			$(document).ready(function(){
 				$(document).on('click','.btn-view',function(){
-					var noteID = $(this).attr("id");
+					var programID = $(this).attr("id");
 					$.ajax({
-						url:"viewNotes.php",
+						url:"viewPrograms.php",
 						method:"post",
-						data:{noteID:noteID},
+						data:{programID:programID},
 						success:function(data){
-							$('#studentNoteDetails').html(data);
+							$('#programDetails').html(data);
 							$('#view_data_Modal').modal('show');
 						}
 					});
 				});
 				$(document).on('click','.btn-edit',function(){
-					var noteID = $(this).attr("id");
+					var programID = $(this).attr("id");
 					$.ajax({
-						url:"editNotes.php",
+						url:"editPrograms.php",
 						method:"post",
-						data:{noteID:noteID},
+						data:{programID:programID},
 						success:function(data){
-							$('#editNoteDetails').html(data);
+							$('#editProgramDetails').html(data);
 							$('#edit_data_Modal').modal('show');
 						}
 					});

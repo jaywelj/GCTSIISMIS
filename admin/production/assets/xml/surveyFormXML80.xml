@@ -1,17 +1,9 @@
 <form-template>
 	<fields>
-		<field type="header" subtype="h1" label="Header"></field>
-		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519261">
-			<option label="Option 1" value="option-1" selected="true">Option 1</option>
-		</field>
-		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519437">
-			<option label="Option 1" value="option-1" selected="true">Option 1</option>
-		</field>
-		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519621">
-			<option label="Option 1" value="option-1" selected="true">Option 1</option>
-		</field>
-		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532604519789">
-			<option label="Option 1" value="option-1" selected="true">Option 1</option>
-		</field>
+		<field type="header" subtype="h1" label="Guidance Survey"></field>
+		<field type="text" label="Smoking" class="form-control" name="text-1533118995444" subtype="text"></field>
+		<field type="text" label="Text Field" class="form-control" name="text-1533119061243" subtype="text"></field>
+		<field type="text" label="Text Field" class="form-control" name="text-1533119061281" subtype="text"></field>
+		<field type="text" label="Text Field" class="form-control" name="text-1533119062329" subtype="text"></field>
 	</fields>
 </form-template>
