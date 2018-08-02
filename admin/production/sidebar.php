@@ -88,7 +88,7 @@ while($res = mysqli_fetch_array($result))
 								$collegeName = $row['collegeName'];
 								?>
 
-								<li><a href="IndividualInventoryRecord.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
+								<li><a href="IndividualInventoryRecord.php?id=<?php echo $collegeCode; ?>&course=all"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
 								<?php  
 							}
 
@@ -106,7 +106,7 @@ while($res = mysqli_fetch_array($result))
 								$collegeCode = $row['collegeCode'];
 								$collegeName = $row['collegeName'];
 								?>
-								<li><a href="Tallytables.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
+								<li><a href="Tallytables.php?id=<?php echo $collegeCode; ?>&course=all"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
 								<?php  
 							}
 
@@ -124,7 +124,7 @@ while($res = mysqli_fetch_array($result))
 								$collegeCode = $row['collegeCode'];
 								$collegeName = $row['collegeName'];
 								?>
-								<li><a href="manageNotesStudent.php?id=<?php echo $collegeCode; ?>"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
+								<li><a href="manageNotesStudent.php?id=<?php echo $collegeCode; ?>&course=all"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
 								<?php  
 							}
 
