@@ -183,18 +183,7 @@ while($res5 = mysqli_fetch_array($result5)){
 	$varcharStudentOrganizationPosition = $res5['organizationPosition'];
 
 }
-$result6 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC LIMIT 1");
-while($res6 = mysqli_fetch_array($result6)){
 
-	$varcharStudentTestID = $res6['testID'];
-	$varcharStudentTestDate = $res6['testDate'];
-	$varcharStudentTestName = $res6['testName'];
-	$varcharStudentTestRawScore = $res6['testRawScore']; 
-	$varcharStudentTestPercentile = $res6['testPercentile'];
-	$varcharStudentTestDescription = $res6['testDescription'];
-
-
-}
 
 
 if($varcharStudentSex = "F"){
@@ -272,7 +261,7 @@ require 'header.php';
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>User Report <small>Personal Information</small></h2>
+									<h2> <?php echo $varcharStudentNumber; ?>  <small>Personal Information</small></h2>
 									<ul class="nav navbar-right panel_toolbox">
 										<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 										</li>
@@ -331,7 +320,7 @@ require 'header.php';
 									<div class="col-md-9 col-sm-9 col-xs-12" style="margin-left: -30px;">
 										<div class="" role="tabpanel" data-example-id="togglable-tabs">
 											<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-												<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
+												<li role="presentation" class="active in"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
 												</li>
 												<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Educational</a>
 												</li>
@@ -342,6 +331,8 @@ require 'header.php';
 												<li role="presentation" class=""  ><a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Hobbies and Interests</a>
 												</li>
 												<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Test Results</a>
+												</li>
+												<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Significant Notes</a>
 												</li>
 											</ul>
 											<div id="myTabContent" class="tab-content">
@@ -453,7 +444,7 @@ require 'header.php';
 													<!-- end recent activity -->
 
 												</div>
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -589,7 +580,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content3" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content3" aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -763,7 +754,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content4" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -852,7 +843,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content5" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -913,12 +904,74 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content6" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
 															<div class="message_wrapper">
-																<h4 class="heading">Test Result</h4>
+
+																<h4 class="heading">Test Results</h4>
+																<table class="table">
+																	<?php
+																	$result6 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC");
+																	$i = 0;
+																	while($res6 = mysqli_fetch_array($result6)){
+
+																		$varcharStudentTestID = $res6['testID'];
+																		$varcharStudentTestDate = $res6['testDate'];
+																		$varcharStudentTestName = $res6['testName'];
+																		$varcharStudentTestRawScore = $res6['testRawScore']; 
+																		$varcharStudentTestPercentile = $res6['testPercentile'];
+																		$varcharStudentTestDescription = $res6['testDescription'];
+																		$i = $i + 1 ;
+																		?>
+																		<tbody>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Test <?php echo $i; ?></th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Date</th>
+																				<td><?php echo $varcharStudentTestDate; ?></td>
+																			</tr>
+																			<tr>
+																				<th scope="row">Name of Test</th>
+																				<td><?php echo $varcharStudentTestName; ?></td>
+																			</tr>
+																			<tr>
+																				<th scope="row">Raw Score</th>
+																				<td><?php echo $varcharStudentTestRawScore; ?></td>
+																			</tr>
+																			<tr>
+																				<th scope="row">Percentage Rating</th>
+																				<td><?php echo $varcharStudentTestPercentile; ?></td>
+																			</tr>
+																			<tr>
+																				<th scope="row">Description</th>
+																				<td><?php echo $varcharStudentTestDescription; ?></td>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<?php
+																		}
+																		?>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade" id="tab_content7" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">Significant Notes</h4>
 																<table class="table">
 																	<tbody>
 																		<tr>
