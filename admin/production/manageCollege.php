@@ -5,9 +5,9 @@ if(isset($_POST['btnAdd']))
 										//including the database connection file
 	include_once("connectionString.php");
 
-	$varcharCollegeCode = mysqli_real_escape_string($connect, $_POST['txtbxEditCollegeCode']);
+	$varcharCollegeCode = mysqli_real_escape_string($connect, $_POST['txtbxCollegeCode']);
 
-	$varcharCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxEditCollegeName']);
+	$varcharCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxCollegeName']);
 
 
 										//first name validation if input is a space 
