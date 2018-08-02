@@ -73,8 +73,6 @@ require 'header.php';
 						<?php	
 						$college = $_GET['id']; 
 						$course = $_GET['course'];
-						echo "<script>
-						alert('$course');</script>";
 						$query = "SELECT * FROM tbl_college WHERE collegeCode = '$college'";
 						$queryArray = mysqli_query($connect,$query);
 						while ($row = mysqli_fetch_array($queryArray)) {
