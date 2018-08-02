@@ -294,11 +294,7 @@ require 'header.php';
 									<div class="col-md-3 col-sm-3 col-xs-12 profile_left">
 										<div class="profile_img">
 											<div id="crop-avatar">
-												<!-- Current avatar -->
-											<!-- 	<?php
-												// echo '
-												// <img src="data:image/jpeg;base64,'.base64_encode($varcharStudentDisplayPic).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover; display: block; margin-left: auto; margin-right: auto;">';
-												?> -->
+
 												<?php
 
 												$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount` WHERE `studentNumber` = '$varcharStudentAccountNumber'");
@@ -312,9 +308,8 @@ require 'header.php';
 														<img src="assets/img/default-user.png">
 														';
 													}
-													 else{
-													// 	<img class="img-responsive avatar-view" src="images/picture.jpg" alt="Avatar" title="Change the avatar">
-	 													echo '
+													else{
+														echo '
 														<img class="img-responsive avatar-view" src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic']).'"  alt="Avatar" title='.$res['studentNumber'].'>
 														';
 													}
@@ -325,14 +320,13 @@ require 'header.php';
 										<h3><?php echo $varcharStudentFirstName.' '.$varcharStudentLastName;  ?></h3>
 
 										<ul class="list-unstyled user_data">
-											<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityProvince ; ?>, <?php echo $varcharStudentCityCity ;?>
-											</li>
+											<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityProvince ; ?>, <?php echo $varcharStudentCityCity ;?></li>
 										</ul>
 
 										<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
 										<br />
 
-										
+
 									</div>
 									<div class="col-md-9 col-sm-9 col-xs-12" style="margin-left: -30px;">
 										<div class="" role="tabpanel" data-example-id="togglable-tabs">
@@ -351,7 +345,7 @@ require 'header.php';
 												</li>
 											</ul>
 											<div id="myTabContent" class="tab-content">
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1"aria-labelledby="home-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -424,544 +418,536 @@ require 'header.php';
 																			<th scope="row">Section</th>
 																			<td><?php echo $varcharStudentSection; ?></td>
 																		</tr>
-																			<!-- <tr>
-																				<th scope="row">Student Type</th>
-																				<td></td>
-																			</tr> -->
-																		</tbody>
-																	</table>
-																	<h4 class="heading">III. Contact Information</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">City Address</th>
-																				<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityProvince.$varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Provincial Address</th>
-																				<td><?php echo $varcharStudentProvinceHouseNumber.$varcharStudentProvinceProvince.$varcharStudentProvinceCity.$varcharStudentProvinceBarangay; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Email</th>
-																				<td><?php echo $varcharStudentEmail; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Mobile No.</th>
-																				<td><?php echo $varcharStudentMobileNum; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Telephone No.</th>
-																				<td><?php echo $varcharStudentTelNum; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<br/>
-																</div>
-															</li>
-														</ul>
-														<!-- end recent activity -->
 
-													</div>
-													<div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
-														<!-- start recent activity -->
-														<ul class="messages">
-															<li>
-																<div class="message_wrapper">
-																	<h4 class="heading">I. Pre-elementary</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">School Graduated</th>
-																				<td><?php echo $varcharStudentPreSchoolName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">School Address</th>
-																				<td><?php echo $varcharStudentPreSchoolAddress; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Type of School</th>
-																				<td><?php echo $varcharStudentPreSchoolType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Year Attended</th>
-																				<td><?php echo $varcharStudentPreSchoolYearAttended; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Honors Recieved/Special Awards</th>
-																				<td><?php echo $varcharStudentPreSchoolAwards; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">II. Elementary</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">School Graduated</th>
-																				<td><?php echo $varcharStudentElementarySchoolName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">School Address</th>
-																				<td><?php echo $varcharStudentElementarySchoolAddress; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Type of School</th>
-																				<td><?php echo $varcharStudentElementarySchoolType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Year Attended</th>
-																				<td><?php echo $varcharStudentElementarySchoolYearAttended; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Honors Recieved/Special Awards</th>
-																				<td><?php echo $varcharStudentElementarySchoolAwards; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">III. High School</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">School Graduated</th>
-																				<td><?php echo $varcharStudentHSSchoolName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">School Address</th>
-																				<td><?php echo $varcharStudentHSSchoolAddress; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Type of School</th>
-																				<td><?php echo $varcharStudentHSSchoolType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Year Attended</th>
-																				<td><?php echo $varcharStudentHSSchoolYearAttended; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Honors Recieved/Special Awards</th>
-																				<td><?php echo $varcharStudentHSSchoolAwards; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">IV. Vocational</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">School Graduated</th>
-																				<td><?php echo $varcharStudentVocationalSchoolName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">School Address</th>
-																				<td><?php echo $varcharStudentVocationalSchoolAddress; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Type of School</th>
-																				<td><?php echo $varcharStudentVocationalSchoolType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Year Attended</th>
-																				<td><?php echo $varcharStudentVocationalSchoolYearAttended; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Honors Recieved/Special Awards</th>
-																				<td><?php echo $varcharStudentVocationalAwards; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">V. College</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">School Graduated</th>
-																				<td><?php echo $varcharStudentCollegeSchoolName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">School Address</th>
-																				<td><?php echo $varcharStudentCollegeSchoolAddress; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Type of School</th>
-																				<td><?php echo $varcharStudentCollegeSchoolType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Year Attended</th>
-																				<td><?php echo $varcharStudentCollegeSchoolYearAttended; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Honors Recieved/Special Awards</th>
-																				<td><?php echo $varcharStudentCollegeSchoolAwards; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<br/>
-																</div>
-															</li>
-														</ul>
-														<!-- end recent activity -->
-													</div>
-													<div role="tabpanel" class="tab-pane fade active in" id="tab_content3" aria-labelledby="home-tab">
-														<!-- start recent activity -->
-														<ul class="messages">
-															<li>
-																<div class="message_wrapper">
-																	<h4 class="heading">I. Father</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Name</th>
-																				<td><?php echo $varcharStudentFatherName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Age</th>
-																				<td><?php echo $varcharStudentFatherAge; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">State</th>
-																				<td><?php echo $varcharStudentFatherStatus; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Educational Attainment</th>
-																				<td><?php echo $varcharStudentFatherEducation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Occupation Type</th>
-																				<td><?php echo $varcharStudentFatherOccupationType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Occupation</th>
-																				<td><?php echo $varcharStudentFatherOccupation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Employer</th>
-																				<td><?php echo $varcharStudentFatherEmployerName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Address of Employer</th>
-																				<td><?php echo $varcharStudentFatherEmployerAddress; ?></td> 
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">II. Mother</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Name</th>
-																				<td><?php echo $varcharStudentMotherName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Age</th>
-																				<td><?php echo $varcharStudentMotherAge; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">State</th>
-																				<td><?php echo $varcharStudentMotherStatus; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Educational Attainment</th>
-																				<td><?php echo $varcharStudentMotherEducation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Occupation Type</th>
-																				<td><?php echo $varcharStudentMotherOccupationType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Occupation</th>
-																				<td><?php echo $varcharStudentMotherOccupation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Employer</th>
-																				<td><?php echo $varcharStudentMotherEmployerName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Address of Employer</th>
-																				<td><?php echo $varcharStudentMotherEmployerAddress; ?></td> 
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">III. Guardian</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Name</th>
-																				<td><?php echo $varcharStudentGuardianName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Age</th>
-																				<td><?php echo $varcharStudentGuardianAge; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Relationship</th>
-																				<td><?php echo $varcharStudentGuardianRelation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Educational Attainment</th>
-																				<td><?php echo $varcharStudentGuardianEducation; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Occupation Type</th>
-																				<td><?php echo $varcharStudentGuardianOccupationType; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Employer</th>
-																				<td><?php echo $varcharStudentGuardianEmployerName; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Address of Employer</th>
-																				<td><?php echo $varcharStudentGuardianEmployerAddress; ?></td> 
-																			</tr>
-																			<tr>
-																				<td><br></td><td><br></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Parent's Marital Relationship</th>
-																				<td><?php echo $varcharStudentMaritalRelationship; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Number of children in the family including yourself</th>
-																				<td><?php echo $varcharStudentNumOfChildren; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Number of Brothers</th>
-																				<td><?php echo $varcharStudentNumOfBrother; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Number of Sisters</th>
-																				<td><?php echo $varcharStudentNumOfSister; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Number of brothers/sisters gainfully employed</th>
-																				<td><?php echo $varcharStudentSiblingsEmployed; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">He/She is providing unto</th>
-																				<td><?php echo $varcharStudentSiblingSupporter; ?></td>
-																			</tr> 
-																			<tr>
-																				<th scope="row">Ordinal position</th>
-																				<td><?php echo $varcharStudentOrdinalPosition; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Who finances your schooling</th>
-																				<td><?php echo $varcharStudentSchoolFinancer; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">How much is your weekly allowance</th>
-																				<td><?php echo $varcharStudentWeeklyAllowance; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Parent's total monthly income</th>
-																				<td><?php echo $varcharStudentMonthlyIncome; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Has a quite place to study?</th>
-																				<td><?php echo $varcharStudentStudyPlace; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Shares a room with someone</th>
-																				<td><?php echo $varcharStudentRoomSharing; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Nature of Residence while attending school</th>
-																				<td><?php echo $varcharStudentNatureOfResidence; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	
-																	<br/>
-																</div>
-															</li>
-														</ul>
-														<!-- end recent activity -->
-													</div>
-													<div role="tabpanel" class="tab-pane fade active in" id="tab_content4" aria-labelledby="home-tab">
-														<!-- start recent activity -->
-														<ul class="messages">
-															<li>
-																<div class="message_wrapper">
-																	<h4 class="heading">I. Physical</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Problems with the ff:</th>
-																				<td></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Vision</th>
-																				<td><?php echo $varcharStudentVisionProblem; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Hearing</th>
-																				<td><?php echo $varcharStudentHearingProblem; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Speach</th>
-																				<td><?php echo $varcharStudentSpeechProblem; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Your general health</th>
-																				<td><?php echo $varcharStudentGeneralHealth; ?></td>
-																			</tr>
-																		</tbody>
-																	</table>
-																	<h4 class="heading">II. Psychological</h4>
-																	<table class="table">
-																		<tbody>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Consulted any of the ff</th>
-																				<td></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Psychiatrist</th>
-																				<td><?php echo $varcharStudentPsychiatristConsult; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">When</th>
-																				<td><?php echo $varcharStudentPsychiatristWhen; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">For What</th>
-																				<td><?php echo $varcharStudentPsychiatristReason; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row" style="width: 400px;">Consulted any of the ff</th>
-																				<td></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">Psychologist</th>
-																				<td><?php echo $varcharStudentPsychologistConsult; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">When</th>
-																				<td><?php echo $varcharStudentPsychologistWhen; ?></td>
-																			</tr>
-																			<tr>
-																				<th scope="row">For What</th>
-																				<td><?php echo $varcharStudentPsychologistReason; ?></td>
-																			</tr>
-																			<tr>
-																				<tr>
-																					<th scope="row" style="width: 400px;">Consulted any of the ff</th>
-																					<td></td>
-																				</tr>
-																				<tr>
-																					<th scope="row">Counselor</th>
-																					<td><?php echo $varcharStudentCounselorConsult; ?></td>
-																				</tr>
-																				<tr>
-																					<th scope="row">When</th>
-																					<td><?php echo $varcharStudentCounselorWhen; ?></td>
-																				</tr>
-																				<tr>
-																					<th scope="row">For What</th>
-																					<td><?php echo $varcharStudentCounselorReason; ?></td>
-																				</tr>
-																				<tr>
-																				</tbody>
-																			</table>
-																			<br/>
-																		</div>
-																	</li>
-																</ul>
-																<!-- end recent activity -->
+																	</tbody>
+																</table>
+																<h4 class="heading">III. Contact Information</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">City Address</th>
+																			<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityProvince.$varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Provincial Address</th>
+																			<td><?php echo $varcharStudentProvinceHouseNumber.$varcharStudentProvinceProvince.$varcharStudentProvinceCity.$varcharStudentProvinceBarangay; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Email</th>
+																			<td><?php echo $varcharStudentEmail; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Mobile No.</th>
+																			<td><?php echo $varcharStudentMobileNum; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Telephone No.</th>
+																			<td><?php echo $varcharStudentTelNum; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<br/>
 															</div>
-															<div role="tabpanel" class="tab-pane fade active in" id="tab_content5" aria-labelledby="home-tab">
-																<!-- start recent activity -->
-																<ul class="messages">
-																	<li>
-																		<div class="message_wrapper">
-																			<h4 class="heading">I. Academic</h4>
-																			<table class="table">
-																				<tbody>
-																					<tr>
-																						<th scope="row" style="width: 400px;">Club most likely to join</th>
-																						<td><?php echo $varcharStudentClubName; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Favorite subjects</th>
-																						<td><?php echo $varcharStudentFavSubject; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Least favorite Subjects</th>
-																						<td><?php echo $varcharStudentLeastFavSubject; ?></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<h4 class="heading">II. Extra-curricular</h4>
-																			<table class="table">
-																				<tbody>
-																					<tr>
-																						<th scope="row" style="width: 400px;">Hobbies according to preference</th>
-																						<td></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;">1.</th>
-																						<td><?php echo $varcharStudentHobby1; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;">2.</th>
-																						<td><?php echo $varcharStudentHobby2; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;">3.</th>
-																						<td><?php echo $varcharStudentHobby3; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;"></th>
-																						<td><?php echo $varcharStudentHobby4; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;">Organization Interest</th>
-																						<td><?php echo $varcharStudentInterestOrganization; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row" style="width: 400px;">Organization Position</th>
-																						<td><?php echo $varcharStudentOrganizationPosition; ?></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<br/>
-																		</div>
-																	</li>
-																</ul>
-																<!-- end recent activity -->
+														</li>
+													</ul>
+													<!-- end recent activity -->
+
+												</div>
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content2" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">I. Pre-elementary</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">School Graduated</th>
+																			<td><?php echo $varcharStudentPreSchoolName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">School Address</th>
+																			<td><?php echo $varcharStudentPreSchoolAddress; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Type of School</th>
+																			<td><?php echo $varcharStudentPreSchoolType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Year Attended</th>
+																			<td><?php echo $varcharStudentPreSchoolYearAttended; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Honors Recieved/Special Awards</th>
+																			<td><?php echo $varcharStudentPreSchoolAwards; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">II. Elementary</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">School Graduated</th>
+																			<td><?php echo $varcharStudentElementarySchoolName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">School Address</th>
+																			<td><?php echo $varcharStudentElementarySchoolAddress; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Type of School</th>
+																			<td><?php echo $varcharStudentElementarySchoolType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Year Attended</th>
+																			<td><?php echo $varcharStudentElementarySchoolYearAttended; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Honors Recieved/Special Awards</th>
+																			<td><?php echo $varcharStudentElementarySchoolAwards; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">III. High School</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">School Graduated</th>
+																			<td><?php echo $varcharStudentHSSchoolName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">School Address</th>
+																			<td><?php echo $varcharStudentHSSchoolAddress; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Type of School</th>
+																			<td><?php echo $varcharStudentHSSchoolType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Year Attended</th>
+																			<td><?php echo $varcharStudentHSSchoolYearAttended; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Honors Recieved/Special Awards</th>
+																			<td><?php echo $varcharStudentHSSchoolAwards; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">IV. Vocational</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">School Graduated</th>
+																			<td><?php echo $varcharStudentVocationalSchoolName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">School Address</th>
+																			<td><?php echo $varcharStudentVocationalSchoolAddress; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Type of School</th>
+																			<td><?php echo $varcharStudentVocationalSchoolType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Year Attended</th>
+																			<td><?php echo $varcharStudentVocationalSchoolYearAttended; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Honors Recieved/Special Awards</th>
+																			<td><?php echo $varcharStudentVocationalAwards; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">V. College</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">School Graduated</th>
+																			<td><?php echo $varcharStudentCollegeSchoolName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">School Address</th>
+																			<td><?php echo $varcharStudentCollegeSchoolAddress; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Type of School</th>
+																			<td><?php echo $varcharStudentCollegeSchoolType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Year Attended</th>
+																			<td><?php echo $varcharStudentCollegeSchoolYearAttended; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Honors Recieved/Special Awards</th>
+																			<td><?php echo $varcharStudentCollegeSchoolAwards; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<br/>
 															</div>
-															<div role="tabpanel" class="tab-pane fade active in" id="tab_content6" aria-labelledby="home-tab">
-																<!-- start recent activity -->
-																<ul class="messages">
-																	<li>
-																		<div class="message_wrapper">
-																			<h4 class="heading">Test Result</h4>
-																			<table class="table">
-																				<tbody>
-																					<tr>
-																						<th scope="row" style="width: 400px;">Date</th>
-																						<td><?php echo $varcharStudentTestDate; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Name of Test</th>
-																						<td><?php echo $varcharStudentTestName; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Raw Score</th>
-																						<td><?php echo $varcharStudentTestRawScore; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Percentage Rating</th>
-																						<td><?php echo $varcharStudentTestPercentile; ?></td>
-																					</tr>
-																					<tr>
-																						<th scope="row">Description</th>
-																						<td><?php echo $varcharStudentTestDescription; ?></td>
-																					</tr>
-																				</tbody>
-																			</table>
-																			<br/>
-																		</div>
-																	</li>
-																</ul>
-																<!-- end recent activity -->
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content3" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">I. Father</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Name</th>
+																			<td><?php echo $varcharStudentFatherName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Age</th>
+																			<td><?php echo $varcharStudentFatherAge; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">State</th>
+																			<td><?php echo $varcharStudentFatherStatus; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Educational Attainment</th>
+																			<td><?php echo $varcharStudentFatherEducation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Occupation Type</th>
+																			<td><?php echo $varcharStudentFatherOccupationType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Occupation</th>
+																			<td><?php echo $varcharStudentFatherOccupation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Employer</th>
+																			<td><?php echo $varcharStudentFatherEmployerName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Address of Employer</th>
+																			<td><?php echo $varcharStudentFatherEmployerAddress; ?></td> 
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">II. Mother</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Name</th>
+																			<td><?php echo $varcharStudentMotherName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Age</th>
+																			<td><?php echo $varcharStudentMotherAge; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">State</th>
+																			<td><?php echo $varcharStudentMotherStatus; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Educational Attainment</th>
+																			<td><?php echo $varcharStudentMotherEducation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Occupation Type</th>
+																			<td><?php echo $varcharStudentMotherOccupationType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Occupation</th>
+																			<td><?php echo $varcharStudentMotherOccupation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Employer</th>
+																			<td><?php echo $varcharStudentMotherEmployerName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Address of Employer</th>
+																			<td><?php echo $varcharStudentMotherEmployerAddress; ?></td> 
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">III. Guardian</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Name</th>
+																			<td><?php echo $varcharStudentGuardianName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Age</th>
+																			<td><?php echo $varcharStudentGuardianAge; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Relationship</th>
+																			<td><?php echo $varcharStudentGuardianRelation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Educational Attainment</th>
+																			<td><?php echo $varcharStudentGuardianEducation; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Occupation Type</th>
+																			<td><?php echo $varcharStudentGuardianOccupationType; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Employer</th>
+																			<td><?php echo $varcharStudentGuardianEmployerName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Address of Employer</th>
+																			<td><?php echo $varcharStudentGuardianEmployerAddress; ?></td> 
+																		</tr>
+																		<tr>
+																			<td><br></td><td><br></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Parent's Marital Relationship</th>
+																			<td><?php echo $varcharStudentMaritalRelationship; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Number of children in the family including yourself</th>
+																			<td><?php echo $varcharStudentNumOfChildren; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Number of Brothers</th>
+																			<td><?php echo $varcharStudentNumOfBrother; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Number of Sisters</th>
+																			<td><?php echo $varcharStudentNumOfSister; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Number of brothers/sisters gainfully employed</th>
+																			<td><?php echo $varcharStudentSiblingsEmployed; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">He/She is providing unto</th>
+																			<td><?php echo $varcharStudentSiblingSupporter; ?></td>
+																		</tr> 
+																		<tr>
+																			<th scope="row">Ordinal position</th>
+																			<td><?php echo $varcharStudentOrdinalPosition; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Who finances your schooling</th>
+																			<td><?php echo $varcharStudentSchoolFinancer; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">How much is your weekly allowance</th>
+																			<td><?php echo $varcharStudentWeeklyAllowance; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Parent's total monthly income</th>
+																			<td><?php echo $varcharStudentMonthlyIncome; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Has a quite place to study?</th>
+																			<td><?php echo $varcharStudentStudyPlace; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Shares a room with someone</th>
+																			<td><?php echo $varcharStudentRoomSharing; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Nature of Residence while attending school</th>
+																			<td><?php echo $varcharStudentNatureOfResidence; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+
+																<br/>
 															</div>
-														</div>
-													</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content4" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">I. Physical</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Problems with the ff:</th>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Vision</th>
+																			<td><?php echo $varcharStudentVisionProblem; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Hearing</th>
+																			<td><?php echo $varcharStudentHearingProblem; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Speach</th>
+																			<td><?php echo $varcharStudentSpeechProblem; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Your general health</th>
+																			<td><?php echo $varcharStudentGeneralHealth; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">II. Psychological</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Consulted any of the ff</th>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Psychiatrist</th>
+																			<td><?php echo $varcharStudentPsychiatristConsult; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">When</th>
+																			<td><?php echo $varcharStudentPsychiatristWhen; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">For What</th>
+																			<td><?php echo $varcharStudentPsychiatristReason; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Consulted any of the ff</th>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Psychologist</th>
+																			<td><?php echo $varcharStudentPsychologistConsult; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">When</th>
+																			<td><?php echo $varcharStudentPsychologistWhen; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">For What</th>
+																			<td><?php echo $varcharStudentPsychologistReason; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Consulted any of the ff</th>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Counselor</th>
+																			<td><?php echo $varcharStudentCounselorConsult; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">When</th>
+																			<td><?php echo $varcharStudentCounselorWhen; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">For What</th>
+																			<td><?php echo $varcharStudentCounselorReason; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content5" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">I. Academic</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Club most likely to join</th>
+																			<td><?php echo $varcharStudentClubName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Favorite subjects</th>
+																			<td><?php echo $varcharStudentFavSubject; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Least favorite Subjects</th>
+																			<td><?php echo $varcharStudentLeastFavSubject; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<h4 class="heading">II. Extra-curricular</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Hobbies according to preference</th>
+																			<td></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">1.</th>
+																			<td><?php echo $varcharStudentHobby1; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">2.</th>
+																			<td><?php echo $varcharStudentHobby2; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">3.</th>
+																			<td><?php echo $varcharStudentHobby3; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;"></th>
+																			<td><?php echo $varcharStudentHobby4; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Organization Interest</th>
+																			<td><?php echo $varcharStudentInterestOrganization; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Organization Position</th>
+																			<td><?php echo $varcharStudentOrganizationPosition; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content6" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+																<h4 class="heading">Test Result</h4>
+																<table class="table">
+																	<tbody>
+																		<tr>
+																			<th scope="row" style="width: 400px;">Date</th>
+																			<td><?php echo $varcharStudentTestDate; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Name of Test</th>
+																			<td><?php echo $varcharStudentTestName; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Raw Score</th>
+																			<td><?php echo $varcharStudentTestRawScore; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Percentage Rating</th>
+																			<td><?php echo $varcharStudentTestPercentile; ?></td>
+																		</tr>
+																		<tr>
+																			<th scope="row">Description</th>
+																			<td><?php echo $varcharStudentTestDescription; ?></td>
+																		</tr>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
 												</div>
 											</div>
 										</div>
@@ -969,38 +955,41 @@ require 'header.php';
 								</div>
 							</div>
 						</div>
-						<!-- /page content -->
-
-						<!-- footer content -->
-						<footer>
-							<div class="pull-right">
-								Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-							</div>
-							<div class="clearfix"></div>
-						</footer>
-						<!-- /footer content -->
 					</div>
 				</div>
+			</div>
+			<!-- /page content -->
 
-				<!-- jQuery -->
-				<script src="../vendors/jquery/dist/jquery.min.js"></script>
-				<!-- Bootstrap -->
-				<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-				<!-- FastClick -->
-				<script src="../vendors/fastclick/lib/fastclick.js"></script>
-				<!-- NProgress -->
-				<script src="../vendors/nprogress/nprogress.js"></script>
-				<!-- morris.js -->
-				<script src="../vendors/raphael/raphael.min.js"></script>
-				<script src="../vendors/morris.js/morris.min.js"></script>
-				<!-- bootstrap-progressbar -->
-				<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-				<!-- bootstrap-daterangepicker -->
-				<script src="../vendors/moment/min/moment.min.js"></script>
-				<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
-				
-				<!-- Custom Theme Scripts -->
-				<script src="../build/js/custom.min.js"></script>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
+		</div>
+	</div>
 
-			</body>
-			</html>
+	<!-- jQuery -->
+	<script src="../vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="../vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="../vendors/nprogress/nprogress.js"></script>
+	<!-- morris.js -->
+	<script src="../vendors/raphael/raphael.min.js"></script>
+	<script src="../vendors/morris.js/morris.min.js"></script>
+	<!-- bootstrap-progressbar -->
+	<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+	<!-- bootstrap-daterangepicker -->
+	<script src="../vendors/moment/min/moment.min.js"></script>
+	<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
+
+</body>
+</html>

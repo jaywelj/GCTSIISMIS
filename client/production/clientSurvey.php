@@ -83,7 +83,7 @@ $_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
 							<h5>Survey Id. <?php echo $row['surveyFormId']; ?></h5>
 						</div>
 						<div class="card-body" style="">
-							<strong><h3 class="card-title" style="margin-top:0px;"><?php echo $row['surveyFormName']; ?></h3></strong>
+							<h3 class="card-title" style="margin-top:0px;"><?php echo $row['surveyFormName']; ?></h3>
 							<h4 class="card-text"><?php echo $row['surveyFormDetails']; ?></h4>
 						</div>
 						<div class="card-footer">

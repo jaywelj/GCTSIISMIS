@@ -1,0 +1,12 @@
+<form-template>
+	<fields>
+		<field type="header" subtype="h3" label="Polytechnic University of the Philippines" class="text-center"></field>
+		<field type="header" subtype="h1" label="Office of Counselling and Psychological Services" class="text-center"></field>
+		<field type="header" subtype="h2" label="Sta. Mesa Manila" class="text-center"></field>
+		<field type="header" subtype="h1" label="Survey of Problems" class="text-center"></field>
+		<field type="text" label="Name" class="form-control" name="text-1533133939688" subtype="text"></field>
+		<field type="text" label="Course Year and Section" class="form-control" name="text-1533133998440" subtype="text"></field>
+		<field type="text" subtype="datetime-local" label="Date" class="form-control" name="text-1533134024688"></field>
+		<field type="header" subtype="h2" label="Directions: Read each item very carefully and place ranks on the problems which are troubling you.&amp;nbsp;"></field>
+	</fields>
+</form-template>

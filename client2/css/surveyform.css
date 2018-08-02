@@ -1,0 +1,17 @@
+div label{
+	display:inline;
+}
+.container .jumbotron{
+	border-radius: 15px;
+}
+.jumbotron-survey{
+	margin-top: 20px;
+}
+.surveybg
+{
+	background: url('../img/hands-art.jpg');
+}
+.container-shadow{
+	 box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2), 4px 8px 20px 0px rgba(0, 0, 0, 0.19);
+	 border-radius: 15px;
+}

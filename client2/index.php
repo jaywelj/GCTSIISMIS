@@ -213,9 +213,8 @@ if(isset($_POST['btnAdd']))
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
-	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+	<link rel="stylesheet" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
 	<link rel="stylesheet" type="text/css" href="css/style.css">
 </head>

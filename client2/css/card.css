@@ -1,0 +1,26 @@
+.card{
+	border-radius: 3px;
+	color: white;
+	float: none;
+
+}
+
+.card-header{
+	padding:10px;
+	background-color: #800;
+}
+.card-body{
+	padding:10px;
+
+}
+.card-footer{
+	padding:10px;
+	background-color: #800;
+}
+.card-text {
+	font-size: 13px;
+}
+hr{
+	margin-top:10px;
+	margin-bottom:10px;
+}
