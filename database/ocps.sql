@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 05:25 AM
+-- Generation Time: Aug 03, 2018 at 06:48 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -854,7 +854,7 @@ CREATE TABLE `tbl_personalinfoarchive` (
 
 CREATE TABLE `tbl_programcategory` (
   `programCategoryId` int(11) NOT NULL,
-  `programId` int(11) NOT NULL,
+  `programName` varchar(255) NOT NULL,
   `subCategoryId` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -881,6 +881,15 @@ CREATE TABLE `tbl_recommendedprogram` (
   `programName` varchar(255) NOT NULL,
   `programDescription` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_recommendedprogram`
+--
+
+INSERT INTO `tbl_recommendedprogram` (`programID`, `programName`, `programDescription`) VALUES
+(1, 'Self Awareness Program', 'Program for self awareness'),
+(2, 'Drug Awareness', 'Education on drugs'),
+(3, 'HIV-AIDS: Everything You Need to Know', 'A seminar about HIV-aids and other');
 
 -- --------------------------------------------------------
 
@@ -1432,8 +1441,8 @@ ALTER TABLE `tbl_personalinfoarchive`
 --
 ALTER TABLE `tbl_programcategory`
   ADD PRIMARY KEY (`programCategoryId`),
-  ADD KEY `programId` (`programId`),
-  ADD KEY `subCategoryId` (`subCategoryId`);
+  ADD KEY `subCategoryId` (`subCategoryId`),
+  ADD KEY `programName` (`programName`);
 
 --
 -- Indexes for table `tbl_programcategoryarchive`
@@ -1447,7 +1456,8 @@ ALTER TABLE `tbl_programcategoryarchive`
 -- Indexes for table `tbl_recommendedprogram`
 --
 ALTER TABLE `tbl_recommendedprogram`
-  ADD PRIMARY KEY (`programID`);
+  ADD PRIMARY KEY (`programID`),
+  ADD UNIQUE KEY `programName` (`programName`);
 
 --
 -- Indexes for table `tbl_recommendedprogramarchive`
@@ -1633,7 +1643,7 @@ ALTER TABLE `tbl_programcategory`
 -- AUTO_INCREMENT for table `tbl_recommendedprogram`
 --
 ALTER TABLE `tbl_recommendedprogram`
-  MODIFY `programID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `programID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `tbl_significantnotes`
@@ -1789,8 +1799,8 @@ ALTER TABLE `tbl_personalinfoarchive`
 -- Constraints for table `tbl_programcategory`
 --
 ALTER TABLE `tbl_programcategory`
-  ADD CONSTRAINT `tbl_programcategory_ibfk_1` FOREIGN KEY (`programId`) REFERENCES `tbl_recommendedprogram` (`programID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_programcategory_ibfk_2` FOREIGN KEY (`subCategoryId`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_programcategory_ibfk_2` FOREIGN KEY (`subCategoryId`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_programcategory_ibfk_3` FOREIGN KEY (`programName`) REFERENCES `tbl_recommendedprogram` (`programName`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_programcategoryarchive`
