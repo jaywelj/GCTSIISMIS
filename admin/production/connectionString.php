@@ -1,7 +1,7 @@
 <?php
 
 $databaseHost = 'localhost';
-$databaseName = 'gctsiismis';
+$databaseName = 'ocps';
 $databaseUsername = 'root';
 $databasePassword = '';
 
