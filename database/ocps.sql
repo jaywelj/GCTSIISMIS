@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 08:31 AM
+-- Generation Time: Aug 03, 2018 at 01:41 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -169,7 +169,6 @@ CREATE TABLE `tbl_college` (
 --
 
 INSERT INTO `tbl_college` (`collegeCode`, `collegeName`) VALUES
-('BPE', 'Bachelor of Science in Physical Education'),
 ('CAF', 'College of Accountancy and Finance'),
 ('CAFA', 'College of Architecture and Fine Arts'),
 ('CAL', 'College of Arts and Letters'),
@@ -416,7 +415,7 @@ CREATE TABLE `tbl_familybackground` (
   `noOfBrother` int(11) DEFAULT NULL,
   `noOfSister` int(11) DEFAULT NULL,
   `broSisEmployed` varchar(10) NOT NULL DEFAULT 'None',
-  `ordinalPosition` varchar(5) NOT NULL DEFAULT 'NA',
+  `ordinalPosition` varchar(45) NOT NULL DEFAULT 'NA',
   `supportedByYourSibling` varchar(45) NOT NULL DEFAULT 'Not Set',
   `schoolFinancer` varchar(45) NOT NULL DEFAULT 'Not Set',
   `weeklyAllowance` float NOT NULL,
@@ -471,7 +470,7 @@ CREATE TABLE `tbl_familybackgroundarchive` (
   `noOfBrother` int(11) DEFAULT NULL,
   `noOfSister` int(11) DEFAULT NULL,
   `broSisEmployed` varchar(10) NOT NULL,
-  `ordinalPosition` varchar(5) NOT NULL,
+  `ordinalPosition` varchar(45) NOT NULL,
   `supportedByYourSibling` varchar(45) NOT NULL,
   `schoolFinancer` varchar(45) NOT NULL,
   `weeklyAllowance` float NOT NULL,
@@ -740,7 +739,6 @@ CREATE TABLE `tbl_personalinfo` (
   `complexion` varchar(45) DEFAULT NULL,
   `birthPlace` varchar(45) DEFAULT NULL,
   `cityHouseNumber` varchar(45) DEFAULT NULL,
-  `cityProvince` varchar(45) DEFAULT NULL,
   `cityName` varchar(45) DEFAULT NULL,
   `cityBarangay` varchar(45) DEFAULT NULL,
   `provinceHouseNumber` varchar(45) DEFAULT NULL,
@@ -767,8 +765,8 @@ CREATE TABLE `tbl_personalinfo` (
 -- Dumping data for table `tbl_personalinfo`
 --
 
-INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES
-(1, 'Javier', 'Javier', 'Bisarra', 'M', 'Homosexual', 19, '4', '2', 'Single', '1998-08-17', 172, 54, 'Fair', 'Pasig City', '113', 'Rizal', 'Taytay', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', 92.5, 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '09086966016', 'CCIS', 'BSIT', '2015-04778-MN-0');
+INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES
+(1, 'Javier', 'Javier', 'Bisarra', 'M', 'Homosexual', 19, '4', '2', 'Single', '1998-08-17', 172, 54, 'Fair', 'Pasig City', '113', 'Taytay', 'San Juan', '113', 'Rizal', 'Rizal', 'San Juan', '6354478', '09086966016', 'jaywelj@gmail.com', 92.5, 'Catholic', 'None', 'None', 'None', 'None', 'Tito', '09086966016', 'CCIS', 'BSIT', '2015-04778-MN-0');
 
 -- --------------------------------------------------------
 
@@ -849,17 +847,18 @@ CREATE TABLE `tbl_programcategoryarchive` (
 CREATE TABLE `tbl_recommendedprogram` (
   `programID` int(11) NOT NULL,
   `programName` varchar(255) NOT NULL,
-  `programDescription` varchar(255) DEFAULT NULL
+  `programDescription` varchar(255) DEFAULT NULL,
+  `programImage` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `tbl_recommendedprogram`
 --
 
-INSERT INTO `tbl_recommendedprogram` (`programID`, `programName`, `programDescription`) VALUES
-(1, 'Self Awareness Program', 'Program for self awareness'),
-(2, 'Drug Awareness', 'Education on drugs'),
-(3, 'HIV-AIDS: Everything You Need to Know', 'A seminar about HIV-aids and other');
+INSERT INTO `tbl_recommendedprogram` (`programID`, `programName`, `programDescription`, `programImage`) VALUES
+(1, 'Self Awareness Program', 'Program for self awareness', NULL),
+(2, 'Drug Awareness', 'Education on drugs', NULL),
+(3, 'HIV-AIDS: Everything You Need to Know', 'A seminar about HIV-aids and other', NULL);
 
 -- --------------------------------------------------------
 
@@ -870,7 +869,8 @@ INSERT INTO `tbl_recommendedprogram` (`programID`, `programName`, `programDescri
 CREATE TABLE `tbl_recommendedprogramarchive` (
   `programID` int(11) NOT NULL,
   `programName` varchar(255) NOT NULL,
-  `programDescription` varchar(255) DEFAULT NULL
+  `programDescription` varchar(255) DEFAULT NULL,
+  `programImage` longblob
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
