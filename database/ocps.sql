@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 03, 2018 at 05:21 AM
+-- Generation Time: Aug 03, 2018 at 05:25 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -879,8 +879,7 @@ CREATE TABLE `tbl_programcategoryarchive` (
 CREATE TABLE `tbl_recommendedprogram` (
   `programID` int(11) NOT NULL,
   `programName` varchar(255) NOT NULL,
-  `programDescription` varchar(255) DEFAULT NULL,
-  `subCategoryName` varchar(510) NOT NULL
+  `programDescription` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -892,8 +891,7 @@ CREATE TABLE `tbl_recommendedprogram` (
 CREATE TABLE `tbl_recommendedprogramarchive` (
   `programID` int(11) NOT NULL,
   `programName` varchar(255) NOT NULL,
-  `programDescription` varchar(255) DEFAULT NULL,
-  `subCategoryName` varchar(510) NOT NULL
+  `programDescription` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1449,8 +1447,7 @@ ALTER TABLE `tbl_programcategoryarchive`
 -- Indexes for table `tbl_recommendedprogram`
 --
 ALTER TABLE `tbl_recommendedprogram`
-  ADD PRIMARY KEY (`programID`),
-  ADD KEY `subCategoryID` (`subCategoryName`);
+  ADD PRIMARY KEY (`programID`);
 
 --
 -- Indexes for table `tbl_recommendedprogramarchive`
