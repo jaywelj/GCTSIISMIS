@@ -45,6 +45,7 @@
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="contactform/contactform.js"></script>
+	
 	<script src="dist/tagify.polyfills.js"></script>
 	<script src="dist/tagify.js"></script>
 	<script src="dist/jQuery.tagify.js"></script>

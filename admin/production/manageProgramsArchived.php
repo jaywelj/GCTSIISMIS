@@ -331,7 +331,7 @@ require 'header.php';
 
 											<?php  
 											include("connectionString.php");  
-											$queryManageProgram = "SELECT * FROM tbl_recommendedprogram";
+											$queryManageProgram = "SELECT * FROM tbl_recommendedprogramarchive";
 											$resultManageProgram = mysqli_query($connect, $queryManageProgram); 
 											while($row = mysqli_fetch_array($resultManageProgram))  
 											{  
@@ -340,11 +340,11 @@ require 'header.php';
 												<tr>
 													<td width="15%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['programID'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['programID'];?>> <i class="fa fa-edit"></i></button>
+															<a title="Revive" class="btn btn-info" href="manageProgramsReturn.php?id=<?php echo$row['courseCode']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-share-square"></span></a>	
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageProgramsDelete.php?id=<?php echo $row['programID']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+															<a title="Delete" class="btn btn-danger" title="Delete" href="manageProgramsArchivedDelete.php?id=<?php echo $row['programID']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+
 														</center>
 													</td>
 													<td width="5%"> <?php echo $row['programID'];?> </td>
@@ -352,7 +352,7 @@ require 'header.php';
 													<td width="35%"> <?php echo $row['programDescription'];?> </td>
 													<?php 
 													$tempProgramName = $row['programName'];
-													$queryProgram = "SELECT * FROM tbl_programcategory WHERE `programName` = '$tempProgramName' ";
+													$queryProgram = "SELECT * FROM tbl_programcategoryarchive WHERE `programName` = '$tempProgramName' ";
 													$resultProgram = mysqli_query($connect, $queryProgram); 
 
 													?>
