@@ -5,9 +5,7 @@ if(empty($_SESSION['sessionAdminEmail']))
 {
 	header("Location: logout.php");
 }
-
 ?>
-
 <div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:5px; padding:7px;" >
 	<image class="navbar-left" src="images/PUPLogo88x88.png"></image>
 	<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">

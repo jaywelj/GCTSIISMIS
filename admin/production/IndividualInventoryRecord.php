@@ -1,6 +1,3 @@
-<?
-if()
-	?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -137,18 +134,18 @@ require 'header.php';
 													<tr >
 														<td width="110px">
 															<?php 
-															if($row['age'] == 0 AND $row['sexuality'] == "Not Set")
-															{
-																echo "<div class='btn-group  btn-group-sm' >
-																<a href='IndividualInventoryRecordForm.php?id=".$row['studentNumber']."' class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
-																</div>";	
-															}
-															else
-															{	
+															// if($row['age'] == 0 AND $row['sexuality'] == "Not Set")
+															// {
+															// 	echo "<div class='btn-group  btn-group-sm' >
+															// 	<a href='IndividualInventoryRecordForm.php?id=".$row['studentNumber']."' class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
+															// 	</div>";	
+															// }
+															// else
+															// {	
 																echo "<div class='btn-group  btn-group-sm' >
 																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
 																</div>";
-															}
+															// }
 															?>
 															<div class="btn-group  btn-group-sm" >
 																<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_note_Modal">
