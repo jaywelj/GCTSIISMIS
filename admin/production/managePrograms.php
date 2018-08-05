@@ -5,7 +5,49 @@ $sessionEmail = $_SESSION['sessionAdminEmail'];
 $queryGettingAdmin = "SELECT * FROM tbl_adminaccount WHERE `adminEmail` = '$sessionEmail' LIMIT 1";
 $resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin); 
 
+$queryGettingSuggestions = "SELECT *,tbl_incidentsubcategory.subCategoryName AS subCategoryNameWithoutProgram FROM tbl_incidentsubcategory LEFT JOIN tbl_programcategory ON tbl_programcategory.subCategoryName = tbl_incidentsubcategory.subCategoryName WHERE `tbl_programcategory`.programName IS NULL";
+$resultGettingSuggestions = mysqli_query($connect,$queryGettingSuggestions);
 
+$ProgramWithoutTopicString = "";
+while ($row = mysqli_fetch_array($resultGettingSuggestions))
+{
+	$ProgramWithoutTopicArray[] = $row['subCategoryNameWithoutProgram'];
+	$ProgramWithoutTopic = $row['subCategoryNameWithoutProgram'];
+}
+$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
+if (empty($ProgramWithoutTopicArray)) {
+	$message = "All Topics Has A Program!";
+	echo "<script type='text/javascript'>alert('$message');</script>";     
+}
+else{
+	$message = "There is no program assigned to ".$ProgramWithoutTopicValue."";
+	echo "<script type='text/javascript'>alert('$message');</script>";
+}
+
+$queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes = "SELECT *,tbl_significantnotes.subCategoryID,COUNT(*) as count FROM tbl_significantnotes where noteDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY subCategoryID ORDER BY count DESC";
+$resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes = mysqli_query($connect, $queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes);
+
+$ProgramWithoutTopicString = "";
+while ($row = mysqli_fetch_array($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes))
+{
+	$CountedValueArray[] = $row['count'];
+	$SubCategoryIDArray[] = $row['subCategoryID'];
+}
+$CountedValueFirstElement = array_shift( $CountedValueArray );
+$CountedSubCategoryIDFirstElement = array_shift( $SubCategoryIDArray );
+
+$queryGettingSubCategoryName = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement'";
+$resultGettingSubCategoryName = mysqli_query($connect,$queryGettingSubCategoryName);
+while ($row = mysqli_fetch_array($resultGettingSubCategoryName))
+{
+	$SubCategoryName = $row['subCategoryName'];
+
+}
+
+
+
+$message = "The most hottest topic recorded is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
+echo "<script type='text/javascript'>alert('$message');</script>";
 
 while($row = mysqli_fetch_array($resultGettingAdmin))  
 {
@@ -100,7 +142,7 @@ if(isset($_POST['btnAdd']))
 				echo $InsertingProgramSubCategory;
 
 				echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
+													//redirectig to the display page. In our case, it is index.php
 			}
 		}
 	}
@@ -193,7 +235,7 @@ if(isset($_POST['btnUpdate']))
 						echo $InsertingEditProgramSubCategory;
 
 						echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
+													//redirectig to the display page. In our case, it is index.php
 					}
 				}
 
@@ -336,7 +378,6 @@ require 'header.php';
 											while($row = mysqli_fetch_array($resultManageProgram))  
 											{  
 												?>   
-												<?php echo $row['programID'];?>
 												<tr>
 													<td width="15%" >
 														<center>
@@ -433,6 +474,31 @@ require 'header.php';
 									<h4 class="modal-title text-center">ADD NEW PROGRAM</h4>
 								</div>
 								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+									<?php
+									if (empty($ProgramWithoutTopicArray)) 
+									{
+										$message = "All Topics Has A Program!";
+										echo '
+										<div class="alert alert-success fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Congratulations!</strong> '.$message.'; 
+										</div>';   
+									}
+									else
+									{
+										$message = "There is no program assigned to ".$ProgramWithoutTopicValue."";
+										echo '
+										<div class="alert alert-warning fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Warning!</strong> There is no program assigned to <strong>'.$ProgramWithoutTopicValue.' </strong> ; 
+										</div>';
+									}
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Warning!</strong> The most hottest topic recorded is <strong> <?php echo $SubCategoryName; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement; ?> </strong> records this past 6 months 
+									</div>
+									
 									<label>Program Name</label>
 									<input type="text" id="txtbxProgramName" name="txtbxProgramName" class="form-control">
 									<br />
