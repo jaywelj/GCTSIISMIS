@@ -88,7 +88,8 @@ $_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
 						</div>
 						<div class="card-footer">
 							<small>Deployed: <?php echo $row['surveyFormDateDeployed']; ?></small>
-							<a href="#" class="btn btn-default pull-right btn-sm">Answer This Survey</a>
+							
+							
 						</div>
 					</div>
 					<?php
