@@ -42,11 +42,10 @@ while($res2 = mysqli_fetch_array($result2))
 	$varcharStudentComplexion = $res2['complexion'];
 	$varcharStudentBirthplace = $res2['birthPlace'];
 	$varcharStudentCityHouseNumber = $res2['cityHouseNumber'];
-	$varcharStudentCityProvince = $res2['cityProvince'];
 	$varcharStudentCityCity = $res2['cityName'];
 	$varcharStudentCityBarangay = $res2['cityBarangay'];
 
-	$tempStudentCityAddress = $varcharStudentCityHouseNumber .' '. $varcharStudentCityProvince .' '. $varcharStudentCityCity .' '. $varcharStudentCityBarangay; 
+	$tempStudentCityAddress = $varcharStudentCityHouseNumber .' '. $varcharStudentCityCity .' '. $varcharStudentCityBarangay; 
 
 	$varcharStudentProvinceHouseNumber = $res2['provinceHouseNumber'];
 	$varcharStudentProvinceProvince = $res2['provinceProvincial'];
@@ -309,7 +308,7 @@ require 'header.php';
 									<h3><?php echo $varcharStudentFirstName.' '.$varcharStudentLastName;  ?></h3>
 
 									<ul class="list-unstyled user_data">
-										<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityProvince ; ?>, <?php echo $varcharStudentCityCity ;?></li>
+										<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityCity ;?></li>
 									</ul>
 
 									<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
@@ -417,7 +416,7 @@ require 'header.php';
 																<tbody>
 																	<tr>
 																		<th scope="row" style="width: 400px;">City Address</th>
-																		<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityProvince.$varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
+																		<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Provincial Address</th>

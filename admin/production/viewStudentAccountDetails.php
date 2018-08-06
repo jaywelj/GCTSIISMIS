@@ -39,10 +39,6 @@ if(isset($_POST["studentNumber"]))
 							<tr>
 								<th scope="row">Birth Date</th>
 								<td>'.$row["birthDate"].'</td>
-							</tr>	
-							<tr>
-								<th scope="row">Address</th>
-								<td>'.$row["cityName"]." ".$row["cityProvince"].'</td>
 							</tr>
 							<tr>
 								<th scope="row">Contact No.</th>
