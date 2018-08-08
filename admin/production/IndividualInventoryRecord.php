@@ -142,9 +142,9 @@ require 'header.php';
 															// }
 															// else
 															// {	
-																echo "<div class='btn-group  btn-group-sm' >
-																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
-																</div>";
+															echo "<div class='btn-group  btn-group-sm' >
+															<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-pencil'></i></a>
+															</div>";
 															// }
 															?>
 															<div class="btn-group  btn-group-sm" >
@@ -416,8 +416,11 @@ require 'header.php';
 		<script src="../build/js/custom.min.js"></script>
 		<script type="text/javascript">
 			function course(){
+				var url = window.location.href;
+				var url = new URL(url);
+				var college = url.searchParams.get("id");
 				var selected = document.getElementById('selectCourse').value;
-				window.location.replace('IndividualInventoryRecord.php?id=CCIS&course='+selected);
+				window.location.replace('IndividualInventoryRecord.php?id='+college+'&course='+selected);
 			}
 			var temp="<?php echo $course;?>"; 
 			$("#selectCourse").val(temp);
