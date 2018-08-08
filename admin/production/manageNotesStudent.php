@@ -393,11 +393,11 @@ require 'header.php';
 									<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 										<?php 
 										date_default_timezone_set('Asia/Manila');
-										$datetoday = date("Ymd");   
+										$datetoday = date("Y-m-d");   
 
 										?>
-
-										<input type="hidden" name="hiddenNoteDate" id="hiddenNoteDate" class="form-control" value="<?php echo $datetoday; ?>" />
+										<label>Date Note Added(Date Today By Default)</label>
+										<input type="date" name="hiddenNoteDate" id="hiddenNoteDate" class="form-control" value="<?php echo $datetoday; ?>" />
 										<br />
 
 										<?php 

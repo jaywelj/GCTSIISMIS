@@ -69,13 +69,9 @@ if(isset($_POST['btnAdd']))
 
 	$varcharProgramSubCategoryReplaced = str_replace('"', "'", $varcharProgramSubCategory);
 
-	echo "1".$varcharProgramSubCategory."1"."<br />";
-
 	echo "<script type='text/javascript'>alert('$varcharProgramSubCategoryReplaced');</script>";
 
 	$varcharProgramSubCategoryReplaced2 = str_replace("'", "", $varcharProgramSubCategoryReplaced);
-
-	echo "2".$varcharProgramSubCategoryReplaced2."2"."<br />";
 
 	echo "<script type='text/javascript'>alert('$varcharProgramSubCategoryReplaced2');</script>";
 
@@ -120,12 +116,6 @@ if(isset($_POST['btnAdd']))
 		}
 		foreach($varcharProgramSubCategoryArray as $InsertingProgramSubCategory) 
 		{
-			$urlencode = urlencode($InsertingProgramSubCategory);
-
-			echo $urlencode."<br />";
-			echo $InsertingProgramSubCategory."<br />";
-
-			echo "<script type='text/javascript'>alert('$urlencode');</script>";
 
 			$queryInsertingProgramSubCategory = "INSERT INTO `tbl_programcategory` (`programCategoryId`, `programName`, `subCategoryName`) VALUES (NULL, '$varcharProgramName', '$InsertingProgramSubCategory')";
 
@@ -139,7 +129,6 @@ if(isset($_POST['btnAdd']))
 			{
 				$message = "Query Error Adding Program Sub Category";
 				echo "<script type='text/javascript'>alert('$message');</script>";
-				echo $InsertingProgramSubCategory;
 
 				echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
 													//redirectig to the display page. In our case, it is index.php
@@ -167,13 +156,9 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharEditProgramSubCategoryReplaced = str_replace('"', "'", $varcharEditProgramSubCategory);
 
-	echo "1".$varcharEditProgramSubCategory."1"."<br />";
-
 	echo "<script type='text/javascript'>alert('$varcharEditProgramSubCategoryReplaced');</script>";
 
 	$varcharEditProgramSubCategoryReplaced2 = str_replace("'", "", $varcharEditProgramSubCategoryReplaced);
-
-	echo "2".$varcharEditProgramSubCategoryReplaced2."2"."<br />";
 
 	echo "<script type='text/javascript'>alert('$varcharEditProgramSubCategoryReplaced2');</script>";
 
@@ -213,12 +198,6 @@ if(isset($_POST['btnUpdate']))
 			{
 				foreach($varcharEditProgramSubCategoryArray as $InsertingEditProgramSubCategory) 
 				{
-					$urlencode = urlencode($InsertingEditProgramSubCategory);
-
-					echo $urlencode."<br />";
-					echo $InsertingEditProgramSubCategory."<br />";
-
-					echo "<script type='text/javascript'>alert('$urlencode');</script>";
 
 					$queryEditInsertingProgramSubCategory = "INSERT INTO `tbl_programcategory` (`programCategoryId`, `programName`, `subCategoryName`) VALUES (NULL, '$varcharEditProgramName', '$InsertingEditProgramSubCategory')";
 
