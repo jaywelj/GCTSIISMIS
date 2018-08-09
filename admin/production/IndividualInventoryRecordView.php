@@ -203,6 +203,7 @@ else if($varcharStudentSex = "M"){
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
+	<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
 	<title>IIR View | OCPS</title>
 
 	<!-- Bootstrap -->
