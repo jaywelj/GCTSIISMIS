@@ -25,714 +25,6 @@ if(isset($_GET["id"]))
 	}
 	?>
 	<?php
-	include 'IndividualInventoryRecordFormSubmit.php';
-
-
-	if (isset($_POST['btnFinish'])) 
-	{	
-		$message = $VarcharStudentNumber;
-		echo "<script type='text/javascript'>alert('$message');</script>";
-
-		$VarcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxFirstName']);
-
-		$VarcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxLastName']);
-
-		$VarcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxMiddleName']);
-
-		$VarcharStudentCourse = $varcharCourseCode;
-
-		$VarcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxYear']);
-
-		$VarcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxSection']);
-
-		$VarcharStudentCollege = $varcharCollegeCode;
-
-		$VarcharStudentGender = mysqli_real_escape_string($connect, $_POST['radioGender']);
-
-		$VarcharStudentSexuality = mysqli_real_escape_string($connect, $_POST['dropdownSexuality']);
-
-		if($VarcharStudentSexuality == "Others")
-		{
-			$VarcharOthersSexuality = mysqli_real_escape_string($connect, $_POST['txtbxOthersSexuality']);
-			$VarcharStudentSexuality = $VarcharOthersSexuality;
-		}
-
-		$VarcharStudentAge = mysqli_real_escape_string($connect, $_POST['txtbxAge']);
-
-		$VarcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxYear']);
-
-		$VarcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxSection']);
-
-		$VarcharStudentCivilStatus = mysqli_real_escape_string($connect, $_POST['dropdownCivilStatus']);
-
-
-		if ($VarcharStudentCivilStatus == "Others") 
-		{
-
-			$VarcharStudentCivilStatusOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersCivilStatus']);
-			$VarcharStudentCivilStatus = $VarcharStudentCivilStatusOthers;	
-		}
-
-		$VarcharStudentBirthdate = mysqli_real_escape_string($connect, $_POST['dateDateOfBirth']);
-
-		$VarcharStudentHeight = mysqli_real_escape_string($connect, $_POST['txtbxHeight']);
-
-		$VarcharStudentWeight = mysqli_real_escape_string($connect, $_POST['txtbxWeight']);
-
-		$VarcharStudentComplexion = mysqli_real_escape_string($connect, $_POST['dropdownComplexion']);
-
-
-		if ($VarcharStudentComplexion == "Others") {
-			$VarcharStudentComplexionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersComplexion']);
-			$VarcharStudentComplexion = $VarcharStudentComplexionOthers;
-		}
-
-		$VarcharStudentBirthplace = mysqli_real_escape_string($connect, $_POST['txtbxPlaceOfBirth']);
-
-		$VarcharStudentCityAddress = mysqli_real_escape_string($connect, $_POST['dropdownCityAddress']);
-
-		$VarcharStudentCityHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxCityHouseNumber']);
-
-		$VarcharStudentCityBarangay = mysqli_real_escape_string($connect, $_POST['txtbxCityBarangay']);
-
-		$VarcharStudentProvinceHouseNumber = mysqli_real_escape_string($connect, $_POST['txtbxProvinceHouseNumber']);
-
-		$VarcharStudentProvinceProvince = mysqli_real_escape_string($connect, $_POST['dropdownProvincialAddress']);
-
-		$VarcharStudentProvinceCity = mysqli_real_escape_string($connect, $_POST['txtbxProvinceCity']);
-
-		$VarcharStudentProvinceBarangay = mysqli_real_escape_string($connect, $_POST['txtbxProvinceBarangay']);
-
-		$VarcharStudentTelNum = mysqli_real_escape_string($connect, $_POST['txtbxTelNum']);
-
-		$VarcharStudentMobileNum = mysqli_real_escape_string($connect, $_POST['txtbxMobileNum']);
-
-		$VarcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxEmailAddress']);
-
-		$VarcharStudentHSGWA = mysqli_real_escape_string($connect, $_POST['txtbxHSGWA']);
-
-		$VarcharStudentReligion = mysqli_real_escape_string($connect, $_POST['dropdownReligion']);
-
-		if ($VarcharStudentReligion == "Others")
-		{
-			$VarcharStudentReligionOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersReligion']);
-			$VarcharStudentReligion = $VarcharStudentReligionOthers;
-		}
-
-		$VarcharStudentNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxNameOfEmployer']);
-
-		$VarcharStudentEmployerAddress = mysqli_real_escape_string($connect, $_POST['txtbxAddressOfEmployer']);
-
-		$VarcharStudentContactPersonName = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonName']);
-
-		$VarcharStudentContactPersonAddress = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonAddress']);
-
-		$VarcharStudentContactPersonRelationship = mysqli_real_escape_string($connect, $_POST['dropdownContactPersonRelationship']);
-
-		if ($VarcharStudentContactPersonRelationship == "Others") 
-		{
-			$VarcharStudentContactPersonRelationshipOthers = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonOthersRelationship']);
-			$VarcharStudentContactPersonRelationship = $VarcharStudentContactPersonRelationshipOthers;
-		}
-
-		$VarcharStudentContactPersonContactNumber = mysqli_real_escape_string($connect, $_POST['txtbxContactPersonNumber']);
-					//End of the first form wizard-->
-
-					//Start of the second form wizard-->
-		$VarcharStudentPreSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxPreElemSchoolGraduated']);
-
-		$VarcharStudentPreSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxPreElemSchoolAddress']);
-
-		$VarcharStudentPreSchoolType = mysqli_real_escape_string($connect, $_POST['radioPreElemTypeOfSchool']);
-
-		$VarcharStudentPreSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxPreElemYearAttended1']);
-		$VarcharStudentPreSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxPreElemYearAttended2']);
-
-		$VarcharStudentPreSchoolYearAttended = $VarcharStudentPreSchoolYearAttended1 . '-' . $VarcharStudentPreSchoolYearAttended2;
-
-		$VarcharStudentPreSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxPreElemHonors']);
-
-		$VarcharStudentElementarySchoolName = mysqli_real_escape_string($connect, $_POST['txtbxElementarySchoolGraduated']);
-
-		$VarcharStudentElementarySchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxElementarySchoolAddress']);
-
-		$VarcharStudentElementaryType = mysqli_real_escape_string($connect, $_POST['radioElementaryTypeOfSchool']);
-
-		$VarcharStudentElementaryYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxElementaryYearAttended1']);
-		$VarcharStudentElementaryYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxElementaryYearAttended2']);
-
-		$VarcharStudentElementaryYearAttended = $VarcharStudentElementaryYearAttended1 . '-' . $VarcharStudentElementaryYearAttended2;
-
-
-		$VarcharStudentElementaryHonors = mysqli_real_escape_string($connect, $_POST['txtbxElementaryHonors']);
-
-		$VarcharStudentHSSchoolName = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolSchoolGraduated']);
-
-		$VarcharStudentHSSchoolAddress = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolSchoolAddress']);
-
-		$VarcharStudentHSSchoolType = mysqli_real_escape_string($connect, $_POST['radioHighschoolTypeOfSchool']);
-
-		$VarcharStudentHSSchoolYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolYearAttended1']);
-		$VarcharStudentHSSchoolYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolYearAttended2']);
-
-		$VarcharStudentHSSchoolYearAttended = $VarcharStudentHSSchoolYearAttended1 . '-' . $VarcharStudentHSSchoolYearAttended2;
-
-		$VarcharStudentHSSchoolHonors = mysqli_real_escape_string($connect, $_POST['txtbxHighschoolHonors']);
-
-		$VarcharStudentCollegeName = mysqli_real_escape_string($connect, $_POST['txtbxCollegeSchoolGraduated']);
-
-		$VarcharStudentCollegeAddress = mysqli_real_escape_string($connect, $_POST['txtbxCollegeSchoolAddress']);
-
-		if(isset($_POST['radioCollegeTypeOfSchool']))
-			$VarcharStudentCollegeType = mysqli_real_escape_string($connect, $_POST['radioCollegeTypeOfSchool']);
-		else
-			$VarcharStudentCollegeType = NULL;	
-
-		$VarcharStudentCollegeYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxCollegeYearAttended1']);
-		$VarcharStudentCollegeYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxCollegeYearAttended2']);
-
-		$VarcharStudentCollegeYearAttended = $VarcharStudentCollegeYearAttended1 . '-' . $VarcharStudentCollegeYearAttended2;
-
-		$VarcharStudentCollegeHonors = mysqli_real_escape_string($connect, $_POST['txtbxCollegeHonors']);
-
-		$VarcharStudentVocationalName = mysqli_real_escape_string($connect, $_POST['txtbxVocationalSchoolGraduated']);
-
-		$VarcharStudentVocationalAddress = mysqli_real_escape_string($connect, $_POST['txtbxVocationalSchoolAddress']);
-
-		if(isset($_POST['radioVocationalTypeOfSchool']))
-			$VarcharStudentVocationalType = mysqli_real_escape_string($connect, $_POST['radioVocationalTypeOfSchool']);
-		else
-			$VarcharStudentVocationalType = NULL;
-
-		$VarcharStudentVocationalYearAttended1 = mysqli_real_escape_string($connect, $_POST['txtbxVocationalYearAttended1']);
-		$VarcharStudentVocationalYearAttended2 = mysqli_real_escape_string($connect, $_POST['txtbxVocationalYearAttended2']);
-
-		$VarcharStudentVocationalYearAttended = $VarcharStudentVocationalYearAttended1 . '-' . $VarcharStudentVocationalYearAttended2;
-
-		$VarcharStudentVocationalHonors = mysqli_real_escape_string($connect, $_POST['txtbxVocationalHonors']);
-
-		$VarcharStudentNatureOfSchooling = mysqli_real_escape_string($connect, $_POST['radioNatureOfSchooling']);
-
-		if($VarcharStudentNatureOfSchooling == "Interrupted")
-			$VarcharStudentInterruptedWhy = mysqli_real_escape_string($connect, $_POST['txtbxNatureOfSchoolingInterruptedReason']);
-		else
-			$VarcharStudentInterruptedWhy = NULL;
-
-					//End Of part 2 of form wizard-->
-
-					//Start of part 3 of the form wizard -->
-
-		$VarcharStudentFatherName = mysqli_real_escape_string($connect, $_POST['txtbxFatherName']);
-
-		$VarcharStudentFatherAge = mysqli_real_escape_string($connect, $_POST['txtbxFatherAge']);
-
-		$VarcharStudentFatherStatus = mysqli_real_escape_string($connect, $_POST['radioFatherState']);
-
-		$VarcharStudentFatherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownFatherEducationalAttainment']);
-
-		$VarcharStudentFatherOccupationType = mysqli_real_escape_string($connect, $_POST['dropdownFatherOccupationType']);
-
-		$VarcharStudentFatherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxFatherOccupation']);
-		if(isset($_POST['txtbxFatherNameOfEmployer']))
-		{
-			$VarcharStudentFatherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxFatherNameOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentFatherNameOfEmployer = NULL;
-		}
-		if(isset($_POST['txtbxFatherAddressOfEmployer']))
-		{
-			$VarcharStudentFatherAddressOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxFatherAddressOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentFatherAddressOfEmployer = NULL;
-		}
-		if(isset($_POST['txtbxMotherNameOfEmployer']))
-		{
-			$VarcharStudentMotherNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxMotherNameOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentMotherNameOfEmployer = NULL;
-		}
-		if(isset($_POST['txtbxMotherAddressOfEmployer']))
-		{
-			$VarcharStudentMotherAddressOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxMotherAddressOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentMotherAddressOfEmployer = NULL;
-		}
-		if(isset($_POST['txtbxGuardianNameOfEmployer']))
-		{
-			$VarcharStudentGuardianNameOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxGuardianNameOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentGuardianNameOfEmployer = NULL;
-		}
-		if(isset($_POST['txtbxGuardianAddressOfEmployer']))
-		{
-			$VarcharStudentGuardianAddressOfEmployer = mysqli_real_escape_string($connect, $_POST['txtbxGuardianAddressOfEmployer']);
-		}
-		else
-		{
-			$VarcharStudentGuardianAddressOfEmployer = NULL;
-		}
-
-		$VarcharStudentMotherName = mysqli_real_escape_string($connect, $_POST['txtbxMotherName']);
-
-		$VarcharStudentMotherAge = mysqli_real_escape_string($connect, $_POST['txtbxMotherAge']);
-
-		$VarcharStudentMotherStatus = mysqli_real_escape_string($connect, $_POST['radioMotherState']);
-
-		$VarcharStudentMotherEducationalAttainment = mysqli_real_escape_string($connect, $_POST['dropdownMotherEducationalAttainment']);
-
-		$VarcharStudentMotherOccupation = mysqli_real_escape_string($connect, $_POST['txtbxMotherOccupation']);
-
-		$VarcharStudentMotherOccupationType = mysqli_real_escape_string($connect, $_POST['dropdownMotherOccupationType']);
-
-		$VarcharStudentGuardianName = mysqli_real_escape_string($connect, $_POST['txtbxGuardianName']);
-
-		$VarcharStudentGuardianAge = mysqli_real_escape_string($connect, $_POST['txtbxGuardianAge']);
-
-		$VarcharStudentGuardianRelation = mysqli_real_escape_string($connect, $_POST['dropdownGuardianRelationship']);
-
-		if($VarcharStudentGuardianRelation == "Others")
-		{
-			$VarcharStudentGuardianRelation = mysqli_real_escape_string($connect, $_POST['txtbxGuaridanOthersRelationship']);
-		}
-
-		$VarcharStudentGuardianEducationAttainment = mysqli_real_escape_string($connect, $_POST['dropdownGuardianEducationalAttainment']);
-
-		$VarcharStudentGuardianOccupation = mysqli_real_escape_string($connect, $_POST['txtbxGuardianOccupation']);
-
-
-		$VarcharStudentGuardianOccupationType = mysqli_real_escape_string($connect, $_POST['dropdownGuardianOccupationType']);
-
-		$VarcharStudentParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['dropdownParentsMaritalRelationship']);
-
-
-
-		if ($VarcharStudentParentMaritalRelationship == "Others") 
-		{
-			$VarcharStudentParentMaritalRelationship = $VarcharOthersParentMaritalRelationship;
-			$VarcharOthersParentMaritalRelationship = mysqli_real_escape_string($connect, $_POST['txtbxOthersParentsMaritalRelationship']);
-		}
-
-		$VarcharStudentNumOfChildren = mysqli_real_escape_string($connect, $_POST['txtbxNoOfChildrenInTheFamily']);
-
-		if(isset($_POST['txtbxNoOfBrothers']))
-		{
-			$VarcharStudentNumOfBrothers = mysqli_real_escape_string($connect, $_POST['txtbxNoOfBrothers']);
-		}
-		else
-		{
-			$VarcharStudentNumOfBrothers = NULL;
-		}
-
-		if(isset($_POST['txtbxNoOfSisters']))
-		{
-			$VarcharStudentNumOfSisters = mysqli_real_escape_string($connect, $_POST['txtbxNoOfSisters']);
-		}
-		else
-		{
-			$VarcharStudentNumOfSisters = NULL;
-		}
-
-
-		$VarcharStudentSiblingsEmployed = mysqli_real_escape_string($connect, $_POST['txtbxNoOfBrothersSistersGainfullyEmployed']);
-
-		//$VarcharStudentSiblingsEmployedMoreThan0 = mysqli_real_escape_string($connect, $_POST['dropdownSupportedByYourSibling']);
-
-		if(isset($_POST['dropdownOrdinalPosition']))
-		{
-			$VarcharStudentOrdinalPosition = mysqli_real_escape_string($connect, $_POST['dropdownOrdinalPosition']);
-		}
-		else
-		{
-			$VarcharStudentOrdinalPosition = "Only Child";
-		}
-
-
-		if(isset($_POST['dropdownSupportedByYourSibling']))
-		{
-			if($_POST['dropdownSupportedByYourSibling'] == "Others")
-			{
-				$VarcharStudentSiblingSupporter = mysqli_real_escape_string($connect, $_POST['txtbxOthersSupportedByYourSibling']);
-			}
-			else
-			{
-				$VarcharStudentSiblingSupporter = mysqli_real_escape_string($connect, $_POST['dropdownSupportedByYourSibling']);
-			}
-		}
-		else	
-		{
-			$VarcharStudentSiblingSupporter = "";
-		}
-
-		$VarcharStudentFinancer = mysqli_real_escape_string($connect, $_POST['dropdownWhoFinancesYourSchooling']);
-
-
-		if ($VarcharStudentFinancer == "Others") {
-
-			$VarcharOthersFinancer = mysqli_real_escape_string($connect, $_POST['txtbxOthersWhoFinancesYourSchooling']);
-			$VarcharStudentFinancer = $VarcharOthersFinancer;
-		}
-
-		$VarcharStudentWeeklyAllowance = mysqli_real_escape_string($connect, $_POST['txtbxWeeklyAllowance']);
-
-		$VarcharStudentMonthlyIncome = mysqli_real_escape_string($connect, $_POST['dropdownParentsMonthlyIncome']);
-
-		$VarcharStudentStudyPlace = mysqli_real_escape_string($connect, $_POST['radioQuietPlaceToSTudy']);
-
-		$VarcharStudentRoomSharing = mysqli_real_escape_string($connect, $_POST['radioShareRoom']);
-
-
-		if ($VarcharStudentRoomSharing == "Yes") 
-		{
-			$VarcharStudentRoomSharingYes = mysqli_real_escape_string($connect, $_POST['txtbxWithWhom']);
-			$VarcharStudentRoomSharing = $VarcharStudentRoomSharingYes;
-		}
-
-		$VarcharStudentNatureOfResidence = mysqli_real_escape_string($connect, $_POST['dropdownNatureOfResidence']);
-		if($VarcharStudentNatureOfResidence	== "Others")
-		{
-			$VarcharStudentNatureOfResidence = mysqli_real_escape_string($connect, $_POST['txtbxOthersNatureOfResidence']);
-		}
-					//End of part 3 of the form wizard 
-
-					//Start of par4 of the form wizard
-
-		$VarcharStudentVision = mysqli_real_escape_string($connect, $_POST['radioVision']);
-
-
-		if ($VarcharStudentVision == "Yes") {
-			$VarcharStudentVisionSpecify = mysqli_real_escape_string($connect, $_POST['txtbxVision']);
-			$VarcharStudentVision = $VarcharStudentVisionSpecify;
-		}
-		else
-		{
-			$VarcharStudentVisionSpecify = NULL;
-		}
-		$VarcharStudentHearing = mysqli_real_escape_string($connect, $_POST['radioHearing']);
-
-
-		if ($VarcharStudentHearing == "Yes") 
-		{
-			$VarcharStudentHearingSpecify = mysqli_real_escape_string($connect, $_POST['txtbxHearing']);
-			$VarcharStudentHearing = $VarcharStudentHearingSpecify;
-		}
-		else
-			$VarcharStudentHearingSpecify = NULL;
-
-		$VarcharStudentSpeech = mysqli_real_escape_string($connect, $_POST['radioSpeach']);
-
-
-		if ($VarcharStudentSpeech == "Yes") 
-		{
-			$VarcharStudentSpeechSpecify = mysqli_real_escape_string($connect, $_POST['txtbxSpeach']);
-			$VarcharStudentSpeech = $VarcharStudentSpeechSpecify;
-		}
-		else
-			$VarcharStudentSpeechSpecify = NULL;
-
-		$VarcharStudentGeneralHealth = mysqli_real_escape_string($connect, $_POST['radioGeneralHealth']);
-
-
-		if ($VarcharStudentGeneralHealth == "Yes") 
-		{
-			$VarcharStudentGeneralHealthSpecify = mysqli_real_escape_string($connect, $_POST['txtbxGeneralHealth']);
-			$VarcharStudentGeneralHealth = $VarcharStudentGeneralHealthSpecify;
-		}
-		else
-			$VarcharStudentGeneralHealthSpecify = NULL;
-
-		$VarcharStudentPsychiatristConsult = mysqli_real_escape_string($connect, $_POST['radioPsychiatrist']);
-
-		if ($VarcharStudentPsychiatristConsult == "Yes") 
-		{
-			$VarcharStudentPsychiatristWhen	= mysqli_real_escape_string($connect, $_POST['datePsychiatrist']);
-			$VarcharStudentPsychiatristWhat = mysqli_real_escape_string($connect, $_POST['txtareaForWhatPsychiatrist']);
-		} 
-		else 
-		{
-			$VarcharStudentPsychiatristWhen = NULL;
-			$VarcharStudentPsychiatristWhat = NULL;
-		}
-
-		$VarcharStudentPsychologistConsult = mysqli_real_escape_string($connect, $_POST['radioPsychologist']);
-		if ($VarcharStudentPsychologistConsult == "Yes")
-		{
-			$VarcharStudentPsychologistWhen = mysqli_real_escape_string($connect, $_POST['datePsychologist']);
-
-			$VarcharStudentPsychologistWhat = mysqli_real_escape_string($connect,$_POST['txtareaForWhatPsychologist']);
-		}
-		else
-		{
-			$VarcharStudentPsychologistWhen = NULL;
-			$VarcharStudentPsychologistWhat = NULL;
-		}
-		$VarcharStudentCounselorConsult = mysqli_real_escape_string($connect, $_POST['radioCounselor']);
-
-		if ($VarcharStudentCounselorConsult == "Yes") 
-		{
-			$VarcharStudentCounselorWhen = mysqli_real_escape_string($connect, $_POST['dateCounselor']);
-
-			$VarcharStudentCounselorWhat = mysqli_real_escape_string($connect, $_POST['txtareaForWhatCounselor']);
-		}
-		else
-		{
-			$VarcharStudentCounselorWhen = NULL;
-			$VarcharStudentCounselorWhat = NULL;
-		}
-
-
-					//End of Part 4 of the form wizard
-
-					//Start of part 5 of the form wizard 
-		$varcharClubInterest ="";
-		if (isset($_POST['checkClubInterestNoInterest'])) {
-			$varcharClubInterest = "No Interest";
-		} 
-		else 
-		{
-			if (isset($_POST['checkClubInterest'])) 
-			{
-				$varcharClubInterestArray = $_POST['checkClubInterest'];
-				$n = count($varcharClubInterestArray);
-				for ($i = 0; $i < $n - 1; $i++) {
-					$varcharClubInterest = $varcharClubInterestArray[$i] . "/" . $varcharClubInterest;
-				}
-				$varcharClubInterest = $varcharClubInterest . $varcharClubInterestArray[$n - 1];
-				if (isset($_POST['checkClubInterestOthers'])) {
-					$varcharClubInterestOthers = mysqli_real_escape_string($connect,$_POST['txtbxOthersClubInterest']);
-					$varcharClubInterest = $varcharClubInterest . "/" . $varcharClubInterestOthers;
-				}
-			} 
-			else {
-				echo "<script>alert('2');</script>";
-				if (isset($_POST['checkClubInterestOthers'])) {
-					$varcharClubInterestOthers = mysqli_real_escape_string($connect,$_POST['txtbxOthersClubInterest']);
-					$varcharClubInterest = $varcharClubInterestOthers;
-				}
-			}
-		}
-
-		$VarcharStudentFavoriteSubject = mysqli_real_escape_string($connect, $_POST['txtareaFavoriteSubject']);
-		$VarcharStudentLeastFavSubject = mysqli_real_escape_string($connect, $_POST['txtareaLeastFavoriteSubject']);
-		$VarcharStudentHobbies1 = mysqli_real_escape_string($connect, $_POST['txtbxHobby1']);
-		$VarcharStudentHobbies2 = mysqli_real_escape_string($connect, $_POST['txtbxHobby2']);
-		$VarcharStudentHobbies3 = mysqli_real_escape_string($connect, $_POST['txtbxHobby3']);
-		$VarcharStudentHobbies4 = mysqli_real_escape_string($connect, $_POST['txtbxHobby4']);
-
-		$varcharOrganizationInterest = "";
-		if (isset($_POST['checkOrganizationInterestNoInterest'])) 
-		{
-			$varcharOrganizationInterest = "No Interest";
-		} 
-		else 
-		{
-			if (isset($_POST['checkOrganizationInterest'])) {
-				$varcharOrganizationInterestArray = $_POST['checkOrganizationInterest'];
-				$n = count($varcharOrganizationInterestArray);
-				for ($i = 0; $i < $n - 1; $i++) {
-					$varcharOrganizationInterest = $varcharOrganizationInterestArray[$i] . "/" . $varcharOrganizationInterest;
-				}
-				$varcharOrganizationInterest = $varcharOrganizationInterest . $varcharOrganizationInterestArray[$n - 1];
-				if (isset($_POST['checkOrganizationInterestOthers'])) {
-					$varcharOrganizationInterestOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersOrganizationInterest']);
-					$varcharOrganizationInterest = $varcharOrganizationInterest . "/" . $varcharOrganizationInterestOthers;
-				}
-			} else {
-				if (isset($_POST['checkOrganizationInterestOthers'])) {
-					$varcharOrganizationInterestOthers = mysqli_real_escape_string($connect, $_POST['txtbxOthersOrganizationInterest']);
-					$varcharOrganizationInterest = $varcharOrganizationInterestOthers;
-				}
-			}
-		}
-		// end of part 5 form wizard 
-
-		// start of part 6 form wizard
-		$VarcharStudentTestIdInitial = $_POST['testID'];
-		$VarcharStudentTestDateInitial = $_POST['dateTestResultDateInitial'];
-		$VarcharStudentTestNameInitial = $_POST['txtbxTestResultNameInitial'];
-		$VarcharStudentTestRSInitial = $_POST['txtbxTestResultRawScoreInitial'];
-		$VarcharStudentTestPRInitial =$_POST['txtbxTestResultPercentileRatingInitial'];
-		$VarcharStudentTestDescriptionInitial = $_POST['txtareaTestResultDescriptionInitial'];
-
-		if(isset($_POST['txtbxTestResultNameNew']))
-		{
-			$VarcharStudentTestDateNew = $_POST['dateTestResultDateNew'];
-			$VarcharStudentTestNameNew = $_POST['txtbxTestResultNameNew'];
-			$VarcharStudentTestRSNew = $_POST['txtbxTestResultRawScoreNew'];
-			$VarcharStudentTestPRNew = $_POST['txtbxTestResultPercentileRatingNew'];
-			$VarcharStudentTestDescriptionNew = $_POST['txtareaTestResultDescriptionNew'];
-		}
-		
-		
-
-
-		$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityName` = '$VarcharStudentCityAddress', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonors', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryYearAttended', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentPreSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddFamilyBackground = "UPDATE `tbl_familybackground` SET `fatherName` = '$VarcharStudentFatherName', `fatherAge` = '$VarcharStudentFatherAge', `fatherStatus` = '$VarcharStudentFatherStatus', `fatherEducation` = '$VarcharStudentFatherEducationalAttainment', `fatherOccupation` = '$VarcharStudentFatherOccupation', `fatherOccupationType` = '$VarcharStudentFatherOccupationType', `fatherEmployerName` = '$VarcharStudentFatherNameOfEmployer', `fatherEmployerAdd` = '$VarcharStudentFatherAddressOfEmployer', `motherName` = '$VarcharStudentMotherName', `motherAge` = '$VarcharStudentMotherAge', `motherStatus` = '$VarcharStudentMotherStatus', `motherEducation` = '$VarcharStudentMotherEducationalAttainment', `motherOccupation` = '$VarcharStudentMotherOccupation', `motherOccupationType` = '$VarcharStudentMotherOccupationType',  `motherEmployerName` = '$VarcharStudentMotherNameOfEmployer', `motherEmployerAdd` = '$VarcharStudentMotherAddressOfEmployer', `guardianName` = '$VarcharStudentGuardianName', `guardianAge` = '$VarcharStudentGuardianAge', `guardianRelation` = '$VarcharStudentGuardianRelation', `guardianEducation` = '$VarcharStudentGuardianEducationAttainment', `guardianOccupation` = '$VarcharStudentGuardianOccupation', `guardianOccupationType` = '$VarcharStudentGuardianOccupationType', `guardianEmployerName` = '$VarcharStudentGuardianNameOfEmployer', `guardianEmployerAdd` = '$VarcharStudentGuardianAddressOfEmployer', `parentsMaritalRelation` = '$VarcharStudentParentMaritalRelationship', `noOfChildren` = '$VarcharStudentNumOfChildren', `noOfBrother` = '$VarcharStudentNumOfBrothers', `noOfSister` = '$VarcharStudentNumOfSisters', `broSisEmployed` = '$VarcharStudentSiblingsEmployed', `supportedByYourSibling` = '$VarcharStudentSiblingSupporter', `ordinalPosition` = '$VarcharStudentOrdinalPosition', `schoolFinancer` = '$VarcharStudentFinancer', `weeklyAllowance` = '$VarcharStudentWeeklyAllowance', `totalMonthlyIncome` = '$VarcharStudentMonthlyIncome', `studyPlace` = '$VarcharStudentStudyPlace', `roomSharing` = '$VarcharStudentRoomSharing', `natureOfResidence` = '$VarcharStudentNatureOfResidence' WHERE `tbl_familybackground`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddHealth = "UPDATE `tbl_healthinfo` SET `visionProblem` = '$VarcharStudentVision', `hearingProblem` = '$VarcharStudentHearing', `speechProblem` = '$VarcharStudentSpeech', `generalHealth` = '$VarcharStudentGeneralHealth', `psychiatristConsult` = '$VarcharStudentPsychiatristConsult', `psychiatristWhen` = '$VarcharStudentPsychiatristWhen', `psychiatristReason` = '$VarcharStudentPsychiatristWhat', `psychologistConsult` = '$VarcharStudentPsychologistConsult', `psychologistWhen` = '$VarcharStudentPsychologistWhen', `psychologistReason` = '$VarcharStudentPsychologistWhat', `counselorConsult` = '$VarcharStudentCounselorConsult', `counselorWhen` = '$VarcharStudentCounselorWhen', `counselorReason` = '$VarcharStudentCounselorWhat' WHERE `tbl_healthinfo`.`studentNumber` = '$VarcharStudentNumber'";
-
-		$queryAddInterests = "UPDATE `tbl_interesthobbies` SET `clubName` = '$varcharClubInterest', `favSubject` = '$VarcharStudentFavoriteSubject', `leastFavSubject` = '$VarcharStudentLeastFavSubject', `hobby1` = '$VarcharStudentHobbies1', `hobby2` = '$VarcharStudentHobbies2', `hobby3` = '$VarcharStudentHobbies3', `hobby4` = '$VarcharStudentHobbies4', `interestOrganization` = '$varcharOrganizationInterest', `organizationPosition` = 'Nothing' WHERE `tbl_interesthobbies`.`studentNumber` = '$VarcharStudentNumber'";
-
-		foreach ($VarcharStudentTestIdInitial as $key => $value) {
-			
-			$query = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial[$key]', `testName` = '$VarcharStudentTestNameInitial[$key]', `testRawScore` = '$VarcharStudentTestRSInitial[$key]', `testPercentile` = '$VarcharStudentTestPRInitial[$key]', `testDescription` = '$VarcharStudentTestDescriptionInitial[$key]' WHERE `tbl_testrecord`.`testID` = '$value'";
-			if(mysqli_query($connect,$query))
-			{
-				echo "<script>alert('Successfully updated note #'+'$value');</script>";
-			}
-			else
-			{
-				echo "error:". mysqli_error($connect);
-			}
-		}
-		if(isset($_POST['txtbxTestResultNameNew']))
-		{
-			foreach ($VarcharStudentTestNameNew as $key => $value) {
-				
-				$query = "INSERT INTO tbl_testrecord (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL,'$VarcharStudentTestDateNew[$key]','$VarcharStudentTestNameNew[$key]','$VarcharStudentTestRSNew[$key]','VarcharStudentTestPRNew[$key]','$VarcharStudentTestDescriptionNew[$key]', '$VarcharStudentNumber') ";
-				if(mysqli_query($connect,$query))
-				{
-					echo "<script>alert('Successfully updated note #'+'$value');</script>";
-				}
-				else
-				{
-					echo "error:". mysqli_error($connect);
-				}
-			}
-		}
-		if (mysqli_query($connect, $queryAddPersonalInfo)) {
-			$message = "Successfully Added In Personal Info";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}
-		else
-		{
-			$message = "Query Error #2";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddEducationalBackground)) {
-			$message = "Successfully Added In Educational Background";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #3";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddFamilyBackground)) {
-			$message = "Successfully Added In Family Background";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #4";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                           						 //redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddHealth)) {
-			$message = "Successfully Added In Health";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #5";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		}
-
-		if (mysqli_query($connect, $queryAddInterests)) {
-			$message = "Successfully Added In Interest And Hobbies";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-		}
-		else
-		{
-			$message = "Query Error #6";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		}
-		// for($i=0;$i<=count($_POST['txtbxTestResultNameInitial']);$i++){
-
-
-		// 	$InsertingTestResultDateInitial = $_POST['dateTestResultDateInitial'][$i];
-		// 	$InsertingTestResultNameInitial = $_POST['txtbxTestResultNameInitial'][$i];
-		// 	$InsertingTestRSInitial = $_POST['txtbxTestResultRawScoreInitial'][$i];
-		// 	$InsertingTestPRInitial = $_POST['txtbxTestResultPercentileRatingInitial'][$i];
-		// 	$InsertingTestResultDescriptionInitial = $_POST['txtareaTestResultDescriptionInitial'][$i];
-		// 	$InsertingTestIDInitial = $_POST['hiddenTestID'][$i];
-
-		// 	$queryAddTestResultInitial = "
-		// 	UPDATE `tbl_testrecord` SET `testDate` = '$InsertingTestResultDateInitial', `testName` = '$InsertingTestResultNameInitial', `testRawScore` = '$InsertingTestRSInitial', `testPercentile` = '$InsertingTestPRInitial', `testDescription` = '$InsertingTestResultDescriptionInitial' WHERE `tbl_testrecord`.`testID` = '$InsertingTestIDInitial'";
-
-
-		// 	if (mysqli_query($connect, $queryAddTestResultInitial)) {
-		// 		$message = "Successfully Added In Test Results";
-		// 		//echo "<script type='text/javascript'>alert('$message');</script>";                         
-		// 	}
-		// 	else
-		// 	{
-		// 		$message = "Query Error #7";
-		// 		echo "<script type='text/javascript'>alert('$message');</script>";
-  //                           						//redirectig to the display page. In our case, it is index.php
-		// 		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		// 	}
-
-		// }
-
-
-		// for($i=0;$i<=count($_POST['txtbxTestResultName']);$i++){
-
-		// 	$InsertingTestResultDate = $_POST['dateTestResultDate'][$i];
-		// 	$InsertingTestResultName = $_POST['txtbxTestResultName'][$i];
-		// 	$InsertingTestRS = $_POST['txtbxTestResultRawScore'][$i];
-		// 	$InsertingTestPR = $_POST['txtbxTestResultPercentileRating'][$i];
-		// 	$InsertingTestResultDescription = $_POST['txtareaTestResultDescription'][$i];
-
-		// 	$queryInsertingAdditionalTests = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, '$InsertingTestResultDate', '$InsertingTestResultName', '$InsertingTestRS', '$InsertingTestPR', '$InsertingTestResultDescription', '$VarcharStudentNumber')";
-
-		// 	if (mysqli_query($connect, $queryInsertingAdditionalTests)) {
-		// 		$message = "Successfully Added In Test Results Additional".$i."";
-		// 		echo "<script type='text/javascript'>alert('$message');</script>";
-
-		// 		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";                           
-		// 	}
-		// 	else
-		// 	{
-		// 		$message = "Query Error #8";
-		// 		echo "<script type='text/javascript'>alert('$message');</script>";
-  //                           						//redirectig to the display page. In our case, it is index.php
-		// 		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-		// 	}
-		// 	$message = $_POST['txtbxTestResultName'][$i];
-		// 	echo "<script type='text/javascript'>alert('$message');</script>";
-		// }	
-	}
-	?>
-	<?php
 	$varcharStudentAccountNumber = $_GET['id'];
 	$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
 																		//$res = mysqli_fetch_assoc($result);
@@ -1124,10 +416,10 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">I. Basic Information</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >First Name <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >First Name <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxFirstName" name="txtbxFirstName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharFirstName; ?>" data-validate-length-range="6" data-validate-words="2" placeholder="both name(s) e.g Jon Doe" required="required">
+															<input type="text" id="txtbxFirstName" name="txtbxFirstName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharFirstName; ?>" >
 														</div>	
 													</div>
 
@@ -1138,10 +430,10 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Last Name <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Last Name <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxLastName" name="txtbxLastName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharLastName; ?>" required>
+															<input type="text" id="txtbxLastName" name="txtbxLastName" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharLastName; ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1149,10 +441,10 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentSexFull == 'Male')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="M" <?php echo ($varcharStudentSexFull =='Male')?'checked':'' ?> required > Male 
+																	<input type="radio" name="radioGender" value="M" <?php echo ($varcharStudentSexFull =='Male')?'checked':'' ?>  > Male 
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentSexFull =='Female')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="F" <?php echo ($varcharStudentSexFull =='Female')?'checked':'' ?> required > Female
+																	<input type="radio" name="radioGender" value="F" <?php echo ($varcharStudentSexFull =='Female')?'checked':'' ?>  > Female
 																</label>
 															</div>
 														</div>
@@ -1160,7 +452,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Sexuality(Sexual Orientation)</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
-															<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" required>
+															<select class="select2_single form-control" tabindex="-1" name="dropdownSexuality" id="dropdownSexuality" >
 																<option value="Heterosexual">Heterosexual</option>
 																<option value="Homosexual">Homosexual</option>
 																<option value="Bisexual">Bisexual</option>
@@ -1171,16 +463,16 @@ require 'header.php';
 																<option value="Others">Others</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" id="txtbxOthersSexuality" name="txtbxOthersSexuality" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentSexuality; ?>" required>
+															<input type="text" id="txtbxOthersSexuality" name="txtbxOthersSexuality" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentSexuality; ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Age</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge" value="<?php echo $varcharStudentAge; ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge" value="<?php echo $varcharStudentAge; ?>" >
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Date Of Birth </label>
 														<div class="col-md-3 col-sm-3">
@@ -1196,7 +488,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Civil Status</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
-															<select class="select2_single form-control" tabindex="-1" name="dropdownCivilStatus" id="dropdownCivilStatus" required>
+															<select class="select2_single form-control" tabindex="-1" name="dropdownCivilStatus" id="dropdownCivilStatus" >
 																<option value="Single">Single</option>
 																<option value="Married">Married</option>
 																<option value="Separated">Separated</option>
@@ -1207,13 +499,13 @@ require 'header.php';
 														<label class="control-label col-md-1 col-sm-1"  >Others: <span ></span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" id="txtbxOthersCivilStatus" name="txtbxOthersCivilStatus" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentCivilStatus; ?>" required >
+															<input type="text" id="txtbxOthersCivilStatus" name="txtbxOthersCivilStatus" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentCivilStatus; ?>"  >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Religion</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
-															<select class="select2_single form-control" tabindex="-1" name="dropdownReligion" id="dropdownReligion" required>
+															<select class="select2_single form-control" tabindex="-1" name="dropdownReligion" id="dropdownReligion" >
 																<option value="Aglipayan">Aglipayan</option>
 																<option value="Buddhism">Buddhism</option>
 																<option value="Born Again Christian">Born Again Christian</option>
@@ -1229,10 +521,10 @@ require 'header.php';
 																<option value="Others">Others</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" id="txtbxOthersReligion" name="txtbxOthersReligion" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentReligion; ?>" required>
+															<input type="text" id="txtbxOthersReligion" name="txtbxOthersReligion" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentReligion; ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1248,7 +540,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Complexion</label>
 														<div class="col-md-2 col-sm-2 col-xs-2">
-															<select class="select2_single form-control" tabindex="-1" name="dropdownComplexion" id="dropdownComplexion" required>
+															<select class="select2_single form-control" tabindex="-1" name="dropdownComplexion" id="dropdownComplexion" >
 																<option value="White Skin">White Skin</option>
 																<option value="Fair Skin">Fair Skin</option>
 																<option value="Medium Skin">Medium Skin</option>
@@ -1259,29 +551,52 @@ require 'header.php';
 																<option value="Others">Others</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" id="txtbxOthersComplexion" name="txtbxOthersComplexion" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentComplexion; ?>" required>
+															<input type="text" id="txtbxOthersComplexion" name="txtbxOthersComplexion" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentComplexion; ?>" >
 														</div>
 													</div>
 													<span class="section" style="margin-left:90px;">II. Student Information</span>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Student Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input disabled="disabled" class="form-control col-md-7 col-xs-12" type="text" id="txtbxStudentNumber" name="txtbxStudentNumber" value="<?php echo $VarcharStudentNumber; ?>">
+															<input readonly="" class="form-control col-md-7 col-xs-12" type="text" id="txtbxStudentNumber" name="txtbxStudentNumber" value="<?php echo $VarcharStudentNumber; ?>">
 														</div>
+													</div>
+
+													<div class="item form-group">
+														<?php
+														// php select option value from database
+														include("connectionString.php");
+
+														// mysql select query
+														$queryCourse2 = "SELECT * FROM tbl_course";
+
+														// for method 1/
+														$resultCourse2 = mysqli_query($connect, $queryCourse2);
+
+														?>
+														<label class="control-label col-md-3 col-sm-3 col-xs-12">Course</label>
+														<div class="col-md-6 col-sm-6 col-xs-6">
+														<select  name="selectStudentCourse" id="selectStudentCourse" class="form-control" >
+															<option value="NULL" selected>Select A Course</option>
+															<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
+																<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
+															<?php endwhile;?>
+														</select>
+													</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $varcharStudentYear; ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxYear" name="txtbxYear" value="<?php echo $varcharStudentYear; ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Section</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $varcharStudentSection; ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxSection" name="txtbxSection" value="<?php echo $varcharStudentSection; ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1432,13 +747,13 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Email Address</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress" value="<?php echo $varcharStudentEmail;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="email" id="txtbxEmailAddress" name="txtbxEmailAddress" value="<?php echo $varcharStudentEmail;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Mobile Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxMobileNum" name="txtbxMobileNum" value="<?php echo $varcharStudentMobileNum;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxMobileNum" name="txtbxMobileNum" value="<?php echo $varcharStudentMobileNum;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1450,7 +765,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Who to contact in case of emergency?</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonName" name="txtbxContactPersonName" value="<?php echo $varcharStudentContactPersonName;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonName" name="txtbxContactPersonName" value="<?php echo $varcharStudentContactPersonName;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1463,7 +778,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Contact Person Relationship</label>
 														<div class="col-md-2 col-sm-2 col-xs-6">
-															<select class="select2_single form-control" tabindex="-1" name="dropdownContactPersonRelationship" id="dropdownContactPersonRelationship" required>
+															<select class="select2_single form-control" tabindex="-1" name="dropdownContactPersonRelationship" id="dropdownContactPersonRelationship" >
 																<option value="Parent">Parent</option>
 																<option value="Brother/Sister<">Brother/Sister</option>
 																<option value="Aunt/Uncle">Aunt/Uncle</option>
@@ -1474,17 +789,17 @@ require 'header.php';
 																<option value="Others">Others</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxContactPersonOthersRelationship" id="txtbxContactPersonOthersRelationship" value="<?php echo $varcharStudentContactPersonRelationship; ?>" required>
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxContactPersonOthersRelationship" id="txtbxContactPersonOthersRelationship" value="<?php echo $varcharStudentContactPersonRelationship; ?>" >
 														</div>
 													</div>
 
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Contact Person Contact Number</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonNumber" name="txtbxContactPersonNumber" value="<?php echo $varcharStudentContactPersonContactNumber;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxContactPersonNumber" name="txtbxContactPersonNumber" value="<?php echo $varcharStudentContactPersonContactNumber;  ?>" >
 														</div>
 													</div>	
 
@@ -1516,21 +831,21 @@ require 'header.php';
 													<span class="section"> <h1 class="text-center">Educational Background</h1></span>
 													<span class="section" style="margin-left:90px;">I. Pre-elementary</span>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolName;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >School Address <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolAddress;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
@@ -1565,29 +880,29 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">II. Elementary</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolGraduated" name="txtbxElementarySchoolGraduated" value="<?php echo $varcharStudentElementarySchoolName;  ?> " required>
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolGraduated" name="txtbxElementarySchoolGraduated" value="<?php echo $varcharStudentElementarySchoolName;  ?> " >
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text"  class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolAddress" name="txtbxElementarySchoolAddress" value="<?php echo $varcharStudentElementarySchoolAddress;  ?>" required> 
+															<input type="text"  class="form-control col-md-7 col-xs-12" id="txtbxElementarySchoolAddress" name="txtbxElementarySchoolAddress" value="<?php echo $varcharStudentElementarySchoolAddress;  ?>" > 
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3" >Type of School<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3" >Type of School<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioElementaryTypeOfSchool" value="Public" <?php echo ($varcharStudentElementarySchoolType =='Public')?'checked':'' ?> required> Public
+																	<input type="radio" name="radioElementaryTypeOfSchool" value="Public" <?php echo ($varcharStudentElementarySchoolType =='Public')?'checked':'' ?> > Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioElementaryTypeOfSchool" value="Private" <?php echo ($varcharStudentElementarySchoolType =='Private')?'checked':'' ?> required> Private
+																	<input type="radio" name="radioElementaryTypeOfSchool" value="Private" <?php echo ($varcharStudentElementarySchoolType =='Private')?'checked':'' ?> > Private
 																</label>
 															</div>
 														</div>
@@ -1595,13 +910,13 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended1" name="txtbxElementaryYearAttended1" value="<?php echo $varcharStudentElementarySchoolYearAttended1;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended1" name="txtbxElementaryYearAttended1" value="<?php echo $varcharStudentElementarySchoolYearAttended1;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">To Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended2" name="txtbxElementaryYearAttended2" value="<?php echo $varcharStudentElementarySchoolYearAttended2;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxElementaryYearAttended2" name="txtbxElementaryYearAttended2" value="<?php echo $varcharStudentElementarySchoolYearAttended2;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1613,29 +928,29 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">III. High School</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolGraduated" name="txtbxHighschoolSchoolGraduated" value="<?php echo $varcharStudentHSSchoolName;  ?>" required>
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolGraduated" name="txtbxHighschoolSchoolGraduated" value="<?php echo $varcharStudentHSSchoolName;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolAddress" name="txtbxHighschoolSchoolAddress" value="<?php echo $varcharStudentHSSchoolAddress;  ?> " required> 
+															<input type="text" class="form-control col-md-7 col-xs-12" id="txtbxHighschoolSchoolAddress" name="txtbxHighschoolSchoolAddress" value="<?php echo $varcharStudentHSSchoolAddress;  ?> " > 
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Public" <?php echo ($varcharStudentHSSchoolType =='Public')?'checked':'' ?> required> Public
+																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Public" <?php echo ($varcharStudentHSSchoolType =='Public')?'checked':'' ?> > Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" <?php echo ($varcharStudentHSSchoolType =='Private')?'checked':'' ?> required> Private
+																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" <?php echo ($varcharStudentHSSchoolType =='Private')?'checked':'' ?> > Private
 																</label>
 															</div>
 														</div>
@@ -1643,11 +958,11 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended1" name="txtbxHighschoolYearAttended1" value="<?php echo $varcharStudentHSSchoolYearAttended1;  ?>" required> 
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended1" name="txtbxHighschoolYearAttended1" value="<?php echo $varcharStudentHSSchoolYearAttended1;  ?>" > 
 														</div>
 														<label class="control-label col-md-1 col-sm-1">To Year</label>
 														<div class="col-md-3 col-sm-3">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended2" name="txtbxHighschoolYearAttended2" value="<?php echo $varcharStudentHSSchoolYearAttended2;  ?>" required>
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxHighschoolYearAttended2" name="txtbxHighschoolYearAttended2" value="<?php echo $varcharStudentHSSchoolYearAttended2;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1659,21 +974,21 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">IV. Vocational</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolGraduated" id="txtbxVocationalSchoolGraduated" value="<?php echo $varcharStudentVocationalSchoolName;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVocationalSchoolAddress" id="txtbxVocationalSchoolAddress" value="<?php echo $varcharStudentVocationalSchoolAddress;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Type of School<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
@@ -1707,21 +1022,21 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">V. College</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolGraduated" id="txtbxCollegeSchoolGraduated" value="<?php echo $varcharStudentCollegeSchoolName;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">School Address <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxCollegeSchoolAddress" id="txtbxCollegeSchoolAddress" value="<?php echo $varcharStudentCollegeSchoolAddress;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3">Type of School<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3">Type of School<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
@@ -1753,7 +1068,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Nature of schooling<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Nature of schooling<span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<div class="btn-group" data-toggle="buttons" >
@@ -1784,7 +1099,7 @@ require 'header.php';
 													<span class="section"> <h1 class="text-center">Home and Family Background</h1></span>
 													<span class="section" style="margin-left:90px;">I. Mother</span>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherName" name="txtbxMotherName" value="<?php echo $varcharStudentMotherName;  ?>">
@@ -1792,7 +1107,7 @@ require 'header.php';
 
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge" value="<?php echo $varcharStudentMotherAge;  ?>"> 
@@ -1824,7 +1139,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
 														<div class="col-md-2 col-sm-2 col-xs-12">
-															<select class="select2_group form-control" name="dropdownMotherOccupationType" id="dropdownMotherOccupationType" required="">
+															<select class="select2_group form-control" name="dropdownMotherOccupationType" id="dropdownMotherOccupationType" ="">
 																<optgroup label="Employed">
 																	<option value="Government">Local - Government</option>
 																	<option value="Private">Local - Private</option>
@@ -1834,21 +1149,21 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
-															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherOccupation" id="txtbxMotherOccupation" value="<?php echo $varcharStudentMotherOccupation;  ?>" required>
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherOccupation" id="txtbxMotherOccupation" value="<?php echo $varcharStudentMotherOccupation;  ?>" >
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherNameOfEmployer" id="txtbxMotherNameOfEmployer" value="<?php echo $varcharStudentMotherEmployerName;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAddressOfEmployer" id="txtbxMotherAddressOfEmployer" value="<?php echo $varcharStudentMotherEmployerAddress;  ?>">
@@ -1857,14 +1172,14 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">II. Father</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherName" id="txtbxFatherName" value="<?php echo $varcharStudentFatherName;  ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge" value="<?php echo $varcharStudentFatherAge;  ?>">
@@ -1906,21 +1221,21 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherOccupation" id="txtbxFatherOccupation" value="<?php echo $varcharStudentFatherOccupation ; ?>">
 														</div>
 													</div> 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherNameOfEmployer" id="txtbxFatherNameOfEmployer" value="<?php echo $varcharStudentFatherEmployerName; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAddressOfEmployer" id="txtbxFatherAddressOfEmployer" value="<?php echo $varcharStudentFatherEmployerAddress; ?>">
@@ -1929,14 +1244,14 @@ require 'header.php';
 													<span class="section" style="margin-left:90px;">III. Guardian</span>
 
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianName" id="txtbxGuardianName" value="<?php echo $varcharStudentGuardianName; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Age <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Age <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAge" id="txtbxGuardianAge" value="<?php echo $varcharStudentGuardianAge; ?>">
@@ -1957,7 +1272,7 @@ require 'header.php';
 																<option value="Others">Others</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Others: <span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuaridanOthersRelationship" id="txtbxGuaridanOthersRelationship" value="<?php echo $varcharStudentGuardianRelation; ?>">
@@ -1991,21 +1306,21 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="required">*</span>
+														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
 														</label>
 														<div class="col-md-3 col-sm-3">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianOccupation" id="txtbxGuardianOccupation" value="<?php echo $varcharStudentFatherOccupation; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Name of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianNameOfEmployer" id="txtbxGuardianNameOfEmployer" value="<?php echo $varcharStudentFatherEmployerName; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Address of Employer <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAddressOfEmployer" id="txtbxGuardianAddressOfEmployer" value="<?php echo $varcharStudentFatherEmployerAddress; ?>">
@@ -2065,7 +1380,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"> Is your brother/sister who's gainfully employed providing support to : <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"> Is your brother/sister who's gainfully employed providing support to : <span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2 col-xs-6">
 															<select class="select2_single form-control" tabindex="-1" name="dropdownSupportedByYourSibling" id="dropdownSupportedByYourSibling">
@@ -2100,7 +1415,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >How much is your weekly allowance<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >How much is your weekly allowance<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="number" class="form-control col-md-7 col-xs-12" name="txtbxWeeklyAllowance" id="txtbxWeeklyAllowance" value="<?php echo $varcharStudentWeeklyAllowance; ?>">
@@ -2117,7 +1432,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study?<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study?<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
@@ -2131,7 +1446,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Do you share your room with anyone?<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Do you share your room with anyone?<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
@@ -2145,7 +1460,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >If yes with whom?<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >If yes with whom?<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWithWhom" id="txtbxWithWhom">
@@ -2187,7 +1502,7 @@ require 'header.php';
 														</label>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Your Vision<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Your Vision<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2199,13 +1514,13 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxVision" id="txtbxVision" value="<?php echo $varcharStudentVisionProblem ; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Your Hearing<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Your Hearing<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2217,13 +1532,13 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHearing" id="txtbxHearing" value=<?php echo $varcharStudentHearingProblem ; ?>>
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Your Speach<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Your Speach<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2235,13 +1550,13 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxSpeach" id="txtbxSpeach" value=<?php echo $varcharStudentSpeechProblem; ?>>
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Your General Health<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Your General Health<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2253,14 +1568,14 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >If yes <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGeneralHealth" id="txtbxGeneralHealth" value="<?php echo $varcharStudentGeneralHealth; ?>">
 														</div>
 													</div>
 													<span class="section" style="margin-left:90px;">II. Psychological</span>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Psychiatrist<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Psychiatrist<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2272,20 +1587,20 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychiatrist" id="datePsychiatrist" value="<?php echo $varcharStudentPsychiatristWhen; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<textarea class="form-control" name="txtareaForWhatPsychiatrist" id="txtareaForWhatPsychiatrist"><?php echo $varcharStudentPsychiatristReason; ?></textarea>
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Psychologist<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Psychologist<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2297,20 +1612,20 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychologist" id="datePsychologist" value="<?php echo $varcharStudentPsychologistWhen; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<textarea class="form-control" name="txtareaForWhatPsychologist" id="txtareaForWhatPsychologist" ><?php echo $varcharStudentPsychologistReason; ?></textarea>
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Counselor<span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Counselor<span class="">*</span>
 														</label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
@@ -2322,13 +1637,13 @@ require 'header.php';
 																</label>
 															</div>
 														</div>
-														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="required">*</span></label>
+														<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
 														<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 															<input type="date" class="form-control col-md-7 col-xs-12" name="dateCounselor" id="dateCounselor" value="<?php echo $varcharStudentCounselorWhen; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >For what? <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<textarea class="form-control" name="txtareaForWhatCounselor" id="txtareaForWhatCounselor" ><?php echo $varcharStudentCounselorReason; ?></textarea>
@@ -2383,21 +1698,21 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersClubInterest" id="txtbxOthersClubInterest">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >What is/are you favorite subject/s <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >What is/are you favorite subject/s <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<textarea class="form-control" name="txtareaFavoriteSubject" id="txtareaFavoriteSubject" ><?php echo $varcharStudentFavSubject; ?></textarea>
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >What is/are your least favorite subject <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >What is/are your least favorite subject <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" ><?php echo $varcharStudentLeastFavSubject; ?></textarea>
@@ -2405,31 +1720,31 @@ require 'header.php';
 													</div>
 													<span class="section" style="margin-left:90px;">Ii. Extra-Culicular</span>
 													<div class="item form-group">
-														<label class="control-label col-md-4 col-sm-4"  >Hobbies (according to preference) <span class="required">*</span>
+														<label class="control-label col-md-4 col-sm-4"  >Hobbies (according to preference) <span class="">*</span>
 														</label>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >1. <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >1. <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby1" id="txtbxHobby1" value="<?php echo $varcharStudentHobby1; ?>">
 														</div>
 													</div><div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >2. <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >2. <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby2" id="txtbxHobby2" value="<?php echo $varcharStudentHobby2; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >3. <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >3. <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby3" id="txtbxHobby3" value="<?php echo $varcharStudentHobby3; ?>">
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >4. <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >4. <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxHobby4" id="txtbxHobby4" value="<?php echo $varcharStudentHobby4; ?>">
@@ -2467,7 +1782,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="required">*</span>
+														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersOrganizationInterest" id="txtbxOthersOrganizationInterest">
@@ -2572,6 +1887,8 @@ require 'header.php';
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
+			<div id="insertphp"></div>
+			
 		</div>
 
 		<!-- jQuery -->
@@ -3046,6 +2363,8 @@ require 'header.php';
 				$("#dropdownParentsMonthlyIncome").val(temp);
 				var temp="<?php echo $varcharStudentNatureOfResidence ?>"; 
 				$("#dropdownNatureOfResidence").val(temp);
+				var temp="<?php echo $varcharStudentCourse ?>"; 
+				$("#selectStudentCourse").val(temp);
 
 				$("#dropdownSexuality").val('Others');
 				$('#dropdownSexuality option').each(function(){
@@ -3333,6 +2652,7 @@ require 'header.php';
 					}
 				}
 			});
+
 		</script>
 	</body>
 	</html>

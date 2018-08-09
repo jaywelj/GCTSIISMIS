@@ -1799,11 +1799,10 @@ function init_JQVmap(){
 			/* VALIDATOR */
 
 			function init_validator () {
+				var count=0;
 
 				if( typeof (validator) === 'undefined'){ return; }
 				console.log('init_validator'); 
-
-				var submitcount = 0;
 
 				// initialize the validator function
 				validator.message.date = 'not a real date';
@@ -1817,7 +1816,6 @@ function init_JQVmap(){
     			$('.multi.required').on('keyup blur', 'input', function() {
     				validator.checkField.apply($(this).siblings().last()[0]);
     			});
-
     			$('form').submit(function(e) {
     				e.preventDefault();
     				var submit = true;
@@ -1833,19 +1831,65 @@ function init_JQVmap(){
         				n.show();
         				$('html,body').scrollTop(465);
         			}
-
         			if (submit)
         			{
+        				count++;
+
         				var $active = $('.wizard .nav-tabs li.active');
         				$active.next().removeClass('disabled');
         				nextTab($active);
         				function nextTab(elem) {
+        					
         					$(elem).next().find('a[data-toggle="tab"]').click();
+        					$(elem).addClass('disabled');
         					$('html,body').scrollTop(230);
+        				}
+        				
+        				if(count==6)
+        				{
+        					var myform = document.getElementById("formWizard");
+        					var fd = new FormData(myform );
+        					$.ajax({
+        						url: "IIRFormData.php",
+        						data: fd,
+        						cache: false,
+        						processData: false,
+        						contentType: false,
+        						type: 'POST',
+        						success: function (dataofconfirm) {
+            						$('#insertphp').html(dataofconfirm);
+            						location.reload();
+            					}
+            				});
         				}
         			}
         			return false;
         		});
+    			//Initialize tooltips
+    			$('.nav-tabs > li a[title]').tooltip();
+
+    			//Wizard
+    			$('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
+
+    				var $target = $(e.target);
+
+    				if ($target.parent().hasClass('disabled')) {
+    					return false;
+    				}
+    			});
+    			$(".prev-step").click(function (e) {
+    				var $active = $('.wizard .nav-tabs li.active');
+    				$active.prev().removeClass('disabled');
+    				prevTab($active);
+    			});
+
+    			function prevTab(elem) {
+    				$(elem).prev().find('a[data-toggle="tab"]').click();
+    				$(elem).addClass('disabled');
+    				count--;
+    				$('html,body').scrollTop(230);
+
+    			}
     		};
 
 
@@ -5019,7 +5063,6 @@ function init_JQVmap(){
 
 
 $(document).ready(function() {
-
 	init_sparklines();
 	init_flot_chart();
 	init_sidebar();
