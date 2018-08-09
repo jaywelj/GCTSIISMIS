@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2018 at 06:11 PM
+-- Generation Time: Aug 09, 2018 at 07:34 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -98,65 +98,15 @@ INSERT INTO `tbl_adminaccountarchive` (`adminId`, `adminEmail`, `adminFirstName`
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_answer`
+-- Table structure for table `tbl_answerproblem`
 --
 
-CREATE TABLE `tbl_answer` (
+CREATE TABLE `tbl_answerproblem` (
   `answerID` int(11) NOT NULL,
-  `answer1` varchar(255) NOT NULL,
-  `answer2` varchar(255) NOT NULL,
-  `answer3` varchar(255) NOT NULL,
-  `answer4` varchar(255) NOT NULL,
-  `answer5` varchar(255) NOT NULL,
-  `answer6` varchar(255) DEFAULT NULL,
-  `answer7` varchar(255) DEFAULT NULL,
-  `answer8` varchar(255) DEFAULT NULL,
-  `answer9` varchar(255) DEFAULT NULL,
-  `answer10` varchar(255) DEFAULT NULL,
-  `answer11` varchar(255) DEFAULT NULL,
-  `answer12` varchar(255) DEFAULT NULL,
-  `answer13` varchar(255) DEFAULT NULL,
-  `answer14` varchar(255) DEFAULT NULL,
-  `answer15` varchar(255) DEFAULT NULL,
-  `answer16` varchar(255) DEFAULT NULL,
-  `answer17` varchar(255) DEFAULT NULL,
-  `answer18` varchar(255) DEFAULT NULL,
-  `answer19` varchar(255) DEFAULT NULL,
-  `answer20` varchar(255) DEFAULT NULL,
-  `surveyID` int(11) NOT NULL,
-  `studentNumber` varchar(15) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_answerarchive`
---
-
-CREATE TABLE `tbl_answerarchive` (
-  `answerID` int(11) NOT NULL,
-  `answer1` varchar(255) DEFAULT NULL,
-  `answer2` varchar(255) DEFAULT NULL,
-  `answer3` varchar(255) DEFAULT NULL,
-  `answer4` varchar(255) DEFAULT NULL,
-  `answer5` varchar(255) DEFAULT NULL,
-  `answer6` varchar(255) DEFAULT NULL,
-  `answer7` varchar(255) DEFAULT NULL,
-  `answer8` varchar(255) DEFAULT NULL,
-  `answer9` varchar(255) DEFAULT NULL,
-  `answer10` varchar(255) DEFAULT NULL,
-  `answer11` varchar(255) DEFAULT NULL,
-  `answer12` varchar(255) DEFAULT NULL,
-  `answer13` varchar(255) DEFAULT NULL,
-  `answer14` varchar(255) DEFAULT NULL,
-  `answer15` varchar(255) DEFAULT NULL,
-  `answer16` varchar(255) DEFAULT NULL,
-  `answer17` varchar(255) DEFAULT NULL,
-  `answer18` varchar(255) DEFAULT NULL,
-  `answer19` varchar(255) DEFAULT NULL,
-  `answer20` varchar(255) DEFAULT NULL,
-  `surveyID` int(11) NOT NULL,
-  `studentNumber` varchar(15) NOT NULL
+  `problemID` int(11) NOT NULL,
+  `answerProblem` varchar(255) NOT NULL,
+  `studentNumber` varchar(15) NOT NULL,
+  `answerDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1044,70 +994,6 @@ INSERT INTO `tbl_studentaccountarchive` (`studentNumber`, `studentPassword`, `ab
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_survey`
---
-
-CREATE TABLE `tbl_survey` (
-  `surveyID` int(11) NOT NULL,
-  `surveyName` varchar(255) NOT NULL DEFAULT 'GCTS Survey',
-  `surveyType` varchar(50) NOT NULL DEFAULT 'Not Set',
-  `question1` varchar(255) NOT NULL,
-  `question2` varchar(255) NOT NULL,
-  `question3` varchar(255) NOT NULL,
-  `question4` varchar(255) NOT NULL,
-  `question5` varchar(255) NOT NULL,
-  `question6` varchar(255) DEFAULT NULL,
-  `question7` varchar(255) DEFAULT NULL,
-  `question8` varchar(255) DEFAULT NULL,
-  `question9` varchar(255) DEFAULT NULL,
-  `question10` varchar(255) DEFAULT NULL,
-  `question11` varchar(255) DEFAULT NULL,
-  `question12` varchar(255) DEFAULT NULL,
-  `question13` varchar(255) DEFAULT NULL,
-  `question14` varchar(255) DEFAULT NULL,
-  `question15` varchar(255) DEFAULT NULL,
-  `question16` varchar(255) DEFAULT NULL,
-  `question17` varchar(255) DEFAULT NULL,
-  `question18` varchar(255) DEFAULT NULL,
-  `question19` varchar(255) DEFAULT NULL,
-  `question20` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
--- Table structure for table `tbl_surveyarchive`
---
-
-CREATE TABLE `tbl_surveyarchive` (
-  `surveyD` int(11) NOT NULL,
-  `surveyName` varchar(255) DEFAULT NULL,
-  `surveyType` varchar(50) DEFAULT NULL,
-  `question1` varchar(255) DEFAULT NULL,
-  `question2` varchar(255) DEFAULT NULL,
-  `question3` varchar(255) DEFAULT NULL,
-  `question4` varchar(255) DEFAULT NULL,
-  `question5` varchar(255) DEFAULT NULL,
-  `question6` varchar(255) DEFAULT NULL,
-  `question7` varchar(255) DEFAULT NULL,
-  `question8` varchar(255) DEFAULT NULL,
-  `question9` varchar(255) DEFAULT NULL,
-  `question10` varchar(255) DEFAULT NULL,
-  `question11` varchar(255) DEFAULT NULL,
-  `question12` varchar(255) DEFAULT NULL,
-  `question13` varchar(255) DEFAULT NULL,
-  `question14` varchar(255) DEFAULT NULL,
-  `question15` varchar(255) DEFAULT NULL,
-  `question16` varchar(255) DEFAULT NULL,
-  `question17` varchar(255) DEFAULT NULL,
-  `question18` varchar(255) DEFAULT NULL,
-  `question19` varchar(255) DEFAULT NULL,
-  `question20` varchar(255) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `tbl_surveyform`
 --
 
@@ -1170,6 +1056,17 @@ CREATE TABLE `tbl_surveyformarchive` (
   `surveyFormStatus` varchar(50) NOT NULL,
   `surveyFormIsDeployed` tinyint(4) NOT NULL,
   `surveyFormDateDeployed` date NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_surveyofproblems`
+--
+
+CREATE TABLE `tbl_surveyofproblems` (
+  `problemID` int(11) NOT NULL,
+  `problemName` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1287,20 +1184,11 @@ ALTER TABLE `tbl_adminaccountarchive`
   ADD PRIMARY KEY (`adminId`);
 
 --
--- Indexes for table `tbl_answer`
+-- Indexes for table `tbl_answerproblem`
 --
-ALTER TABLE `tbl_answer`
+ALTER TABLE `tbl_answerproblem`
   ADD PRIMARY KEY (`answerID`),
-  ADD KEY `questionID` (`surveyID`),
   ADD KEY `studentNumber` (`studentNumber`);
-
---
--- Indexes for table `tbl_answerarchive`
---
-ALTER TABLE `tbl_answerarchive`
-  ADD PRIMARY KEY (`answerID`),
-  ADD KEY `studentNumber` (`studentNumber`),
-  ADD KEY `surveyID` (`surveyID`);
 
 --
 -- Indexes for table `tbl_college`
@@ -1520,18 +1408,6 @@ ALTER TABLE `tbl_studentaccountarchive`
   ADD PRIMARY KEY (`studentNumber`);
 
 --
--- Indexes for table `tbl_survey`
---
-ALTER TABLE `tbl_survey`
-  ADD PRIMARY KEY (`surveyID`);
-
---
--- Indexes for table `tbl_surveyarchive`
---
-ALTER TABLE `tbl_surveyarchive`
-  ADD PRIMARY KEY (`surveyD`);
-
---
 -- Indexes for table `tbl_surveyform`
 --
 ALTER TABLE `tbl_surveyform`
@@ -1542,6 +1418,12 @@ ALTER TABLE `tbl_surveyform`
 --
 ALTER TABLE `tbl_surveyformarchive`
   ADD PRIMARY KEY (`surveyFormId`);
+
+--
+-- Indexes for table `tbl_surveyofproblems`
+--
+ALTER TABLE `tbl_surveyofproblems`
+  ADD PRIMARY KEY (`problemID`);
 
 --
 -- Indexes for table `tbl_surveyquestion`
@@ -1581,9 +1463,9 @@ ALTER TABLE `tbl_adminaccountarchive`
   MODIFY `adminId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
--- AUTO_INCREMENT for table `tbl_answer`
+-- AUTO_INCREMENT for table `tbl_answerproblem`
 --
-ALTER TABLE `tbl_answer`
+ALTER TABLE `tbl_answerproblem`
   MODIFY `answerID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
@@ -1659,16 +1541,16 @@ ALTER TABLE `tbl_significantnotes`
   MODIFY `noteID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
--- AUTO_INCREMENT for table `tbl_survey`
---
-ALTER TABLE `tbl_survey`
-  MODIFY `surveyID` int(11) NOT NULL AUTO_INCREMENT;
-
---
 -- AUTO_INCREMENT for table `tbl_surveyform`
 --
 ALTER TABLE `tbl_surveyform`
   MODIFY `surveyFormId` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=82;
+
+--
+-- AUTO_INCREMENT for table `tbl_surveyofproblems`
+--
+ALTER TABLE `tbl_surveyofproblems`
+  MODIFY `problemID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tbl_testrecord`
@@ -1681,18 +1563,10 @@ ALTER TABLE `tbl_testrecord`
 --
 
 --
--- Constraints for table `tbl_answer`
+-- Constraints for table `tbl_answerproblem`
 --
-ALTER TABLE `tbl_answer`
-  ADD CONSTRAINT `tbl_answer_ibfk_1` FOREIGN KEY (`surveyID`) REFERENCES `tbl_survey` (`surveyID`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_answer_ibfk_2` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_answerarchive`
---
-ALTER TABLE `tbl_answerarchive`
-  ADD CONSTRAINT `tbl_answerarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccountarchive` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `tbl_answerarchive_ibfk_2` FOREIGN KEY (`surveyID`) REFERENCES `tbl_survey` (`surveyID`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_answerproblem`
+  ADD CONSTRAINT `tbl_answerproblem_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_course`
