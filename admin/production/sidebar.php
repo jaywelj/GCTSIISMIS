@@ -156,12 +156,18 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="managePrograms.php">Programs</a></li>
 						</ul>
 					</li>
+					<li><a><i class="fa fa-envelope"></i> Messages <span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<li><a href="manageMessage.php">Messages</a></li>
+						</ul>
+					</li>
 					<li><a><i class="fa fa-trash"></i> Archive <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="manageCourseArchived.php">Course</a></li>
 							<li><a href="manageCollegeArchived.php">College</a></li>
 							<li><a href="manageNotesStudentArchived.php">Significant Notes</a></li>
 							<li><a href="manageProgramsArchived.php">Programs</a> </li>
+							<li><a href="manageMessageArchived.php">Messages</a> </li>
 							<li><a href="manageAccountAdminAccountArchived.php">Account - Admin</a></li>
 							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>
 							<li><a href="manageAccountStudentAccountArchived.php">Account - Student</a></li>

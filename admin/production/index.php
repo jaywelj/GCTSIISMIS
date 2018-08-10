@@ -905,7 +905,11 @@ require 'header.php';
 																	</div>
 																</div>
 																<!-- /page content -->
-
+																<!-- 	Message Modal -->
+																<?php 
+																require 'viewMessageModal.php';
+																?>
+																<!-- /Message Modal -->
 																<!-- footer content -->
 																<footer>
 																	<div class="pull-right">
@@ -981,6 +985,24 @@ require 'header.php';
 															$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
 														}
 														?>
+
+														<script>
+															$(document).ready(function(){
+																$(document).on('click','.message-view',function(){
+																	var messageID = $(this).attr("id");
+																	$.ajax({
+																		url:"viewMessage.php",
+																		method:"post",
+																		data:{messageID:messageID},
+																		success:function(data){
+																			$('#messageDetails').html(data);
+																			$('#view_message_Modal').modal('show');
+																		}
+																	});
+																});
+
+															});
+														</script>
 														
 														<script>
 															function init_chart_doughnut(){

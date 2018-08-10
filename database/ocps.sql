@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.8.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 09, 2018 at 07:34 PM
--- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- Generation Time: Aug 10, 2018 at 12:36 PM
+-- Server version: 10.1.33-MariaDB
+-- PHP Version: 7.2.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -616,11 +616,9 @@ INSERT INTO `tbl_incidentsubcategory` (`subCategoryID`, `subCategoryName`) VALUE
 (2, 'Family Problem'),
 (10, 'Financial Problem'),
 (1, 'Health Problem'),
-(13, 'Others2'),
 (6, 'Personal Problem'),
 (8, 'Social Problem'),
-(11, 'Spiritual Problem'),
-(14, 'subOthers');
+(11, 'Spiritual Problem');
 
 -- --------------------------------------------------------
 
@@ -696,8 +694,19 @@ CREATE TABLE `tbl_message` (
   `senderEmail` varchar(50) NOT NULL,
   `subCategoryID` int(11) DEFAULT NULL,
   `messageContent` varchar(255) NOT NULL DEFAULT 'A student messaging the GCTS office',
-  `messageStatus` varchar(45) NOT NULL
+  `messageStatus` varchar(45) NOT NULL,
+  `messageDateSent` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `studentNumber` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `tbl_message`
+--
+
+INSERT INTO `tbl_message` (`messageID`, `senderName`, `senderEmail`, `subCategoryID`, `messageContent`, `messageStatus`, `messageDateSent`, `studentNumber`) VALUES
+(2, 'Mitsuha', 'roronoa@gmail.com', 4, 'Bad Weather', 'Read', '2018-08-10 06:39:10', NULL),
+(3, 'Jaywel  Javier', 'roronoa@gmail.com', 4, 'Absent Letter ', 'Unread', '2018-08-10 03:49:02', '2015-04778-MN-0'),
+(4, 'Nefertari', 'roma@gmail.com', 2, 'Nefertari has oogly boogly', 'Read', '2018-08-10 06:54:25', NULL);
 
 -- --------------------------------------------------------
 
@@ -711,7 +720,9 @@ CREATE TABLE `tbl_messagearchive` (
   `senderEmail` varchar(50) NOT NULL,
   `subCategoryID` int(11) DEFAULT NULL,
   `messageContent` varchar(255) NOT NULL,
-  `messageStatus` varchar(45) NOT NULL
+  `messageStatus` varchar(45) NOT NULL,
+  `messageDateSent` datetime NOT NULL,
+  `studentNumber` varchar(15) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -764,7 +775,7 @@ CREATE TABLE `tbl_personalinfo` (
 --
 
 INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES
-(1, '', '', '', '', '', 0, '4', '2', '', '0000-00-00', 0, 0, '', '', '', '', '', '', '', '', '', '', '', '', 0, '', '', '', '', '', '', '', 'CCIS', 'BSIT', '2015-04778-MN-0'),
+(1, 'Javier', 'Jaywel', '', '', '', 0, '4', '2', '', '0000-00-00', 0, 0, '', '', '', '', '', '', '', '', '', '', '', 'roronoa@gmail.com', 0, '', '', '', '', '', '', '', 'CCIS', 'BSIT', '2015-04778-MN-0'),
 (2, 'Romeo', 'Muyco', 'Labana', '', 'Not Set', 0, 'Not Set', 'Not Set', 'Maganda', '0000-00-00', 0, 0, 'White Skin', '', '', 'Metro Manila~Caloocan', '', '', 'Abra', '', '', '', '', 'jaywelj@gmail.com', 0, 'Not Set', '', '', 'Not Set', '', 'Not Set', 'Not Set', 'COED', 'BSEDSS', '2015-01093-MN-0'),
 (3, 'Gie Myla', 'Dela Cruz', '', 'NA', 'Not Set', 0, 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'CCIS', 'BSCS', '2009-00310-MN-0');
 
@@ -950,7 +961,7 @@ CREATE TABLE `tbl_studentaccount` (
   `studentPassword` varchar(20) NOT NULL DEFAULT 'studentpwd',
   `aboutStudent` varchar(255) DEFAULT NULL,
   `studentDisplayPic` longblob,
-  `studentDateAccountCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+  `studentDateAccountCreated` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -1317,7 +1328,8 @@ ALTER TABLE `tbl_interesthobbiesarchive`
 --
 ALTER TABLE `tbl_message`
   ADD PRIMARY KEY (`messageID`),
-  ADD KEY `subCategoryID` (`subCategoryID`);
+  ADD KEY `subCategoryID` (`subCategoryID`),
+  ADD KEY `studentNumber` (`studentNumber`);
 
 --
 -- Indexes for table `tbl_messagearchive`
@@ -1514,7 +1526,7 @@ ALTER TABLE `tbl_interesthobbies`
 -- AUTO_INCREMENT for table `tbl_message`
 --
 ALTER TABLE `tbl_message`
-  MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `messageID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `tbl_personalinfo`
@@ -1644,13 +1656,8 @@ ALTER TABLE `tbl_interesthobbiesarchive`
 -- Constraints for table `tbl_message`
 --
 ALTER TABLE `tbl_message`
-  ADD CONSTRAINT `tbl_message_ibfk_2` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE SET NULL ON UPDATE CASCADE;
-
---
--- Constraints for table `tbl_messagearchive`
---
-ALTER TABLE `tbl_messagearchive`
-  ADD CONSTRAINT `tbl_messagearchive_ibfk_2` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategoryarchive` (`subCategoryID`) ON DELETE SET NULL ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_message_ibfk_2` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `tbl_message_ibfk_3` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_personalinfo`
