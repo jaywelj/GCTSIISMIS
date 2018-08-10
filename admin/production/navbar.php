@@ -30,18 +30,18 @@ include("connectionString.php");
 							$varcharAdminPassword = $res['adminPassword'];
 							$varcharAdminAccessLevel = $res['adminAccessLevel'];
 							$varcharAdminImage = $res['adminImage'];
-						if(empty($varcharAdminImage))
-						{
-							echo '
-							<img src="assets/img/default-user.png">
-							';
+							if(empty($varcharAdminImage))
+							{
+								echo '
+								<img src="assets/img/default-user.png">
+								';
+							}
+							else{
+								echo '
+								<img src="data:image/jpeg;base64,'.base64_encode($res['adminImage']).'"  alt="">
+								';
+							}
 						}
-						else{
-							echo '
-							<img src="data:image/jpeg;base64,'.base64_encode($res['adminImage']).'"  alt="">
-							';
-						}
-					}
 						?>
 						<?php echo $varcharAdminFirstName;?>
 						<span class=" fa fa-angle-down"></span>
@@ -60,10 +60,21 @@ include("connectionString.php");
 					</ul>
 				</li>
 
+				<?php 
+				$queryMessageUnread = "SELECT COUNT(*) AS NumberOfMessageUnread FROM tbl_message WHERE messageStatus = 'Unread'";
+
+				$resultMessageUnread = mysqli_query($connect, $queryMessageUnread);
+				while ($row = mysqli_fetch_array($resultMessageUnread)) {
+					$CurrentNumberOfStudentMale = $row['NumberOfMessageUnread'];
+
+				}
+
+				?>
+
 				<li role="presentation" class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
 						<i class="fa fa-envelope-o"></i>
-						<span class="badge bg-green">6</span>
+						<span class="badge bg-green"><?php echo $CurrentNumberOfStudentMale; ?></span>
 					</a>
 					<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
 						<li>

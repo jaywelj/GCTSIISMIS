@@ -7,6 +7,53 @@ $queryArray = mysqli_query($connect,$query);
 while ($res = mysqli_fetch_array($queryArray)) {
 	$name = $res['firstName'];
 }
+
+
+if(isset($_POST['btnEmailSend'])) 
+{
+
+	include_once("connectionString.php");
+
+	$VarcharSenderName = mysqli_real_escape_string($connect, $_POST['txtbxSenderName']);
+	$VarcharSenderEmail = mysqli_real_escape_string($connect, $_POST['txtbxSenderEmail']);
+	$VarcharSenderSubject = mysqli_real_escape_string($connect, $_POST['dropdownSenderSubject']);
+	$VarcharSenderMessage = mysqli_real_escape_string($connect, $_POST['txtbxSenderMessage']);
+
+	if(empty($VarcharSenderName) || empty($VarcharSenderEmail) || empty($VarcharSenderMessage)) 
+	{
+
+		if(empty($VarcharSenderName))
+		{
+			$message = "Enter Your Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharSenderEmail)) 
+		{
+			$message = "Enter Your Email";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharSenderMessage)) 
+		{
+			$message = "Message field empty";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+
+	}
+	$queryInsertingMessage = "INSERT INTO `tbl_message` (`messageID`, `senderName`, `senderEmail`, `subCategoryID`, `messageContent`, `messageStatus`) VALUES (NULL, '$VarcharSenderName', '$VarcharSenderEmail', '$VarcharSenderSubject', '$VarcharSenderMessage', 'Unread')";
+
+	if(mysqli_query($connect, $queryInsertingMessage))
+	{   
+		$message = "Successfully Added Message";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else
+	{
+		$message = "Message Not Sent Due To Wrong Information";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+
+	}
+}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -440,32 +487,44 @@ while ($res = mysqli_fetch_array($queryArray)) {
 				</div>
 				<div id="sendmessage">Your message has been sent. Thank you!</div>
 				<div id="errormessage"></div>
-				<form action="" method="post" role="form" class="contactForm">
+				<form method="post">
 					<div class="col-md-6 col-sm-6 col-xs-12 left">
 						<div class="form-group">
-							<input type="text" name="name" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="email" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
 							<div class="validation"></div>
 						</div>
-						<div class="form-group">
-							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" />
+						<div class="form-group"><!-- 
+							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" /> -->
+							<?php 
+							include("connectionString.php");
+							$queryIncidentSubCategory = "SELECT * FROM tbl_incidentsubcategory";
+							$resultIncidentSubCategory = mysqli_query($connect, $queryIncidentSubCategory);
+							?> 
+							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control">
+								<option value="NULL" selected disabled="">Subject</option>
+								<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
+									<option value="<?php echo $row['subCategoryID'];?>"><?php echo $row['subCategoryName'];?></option>
+								<?php endwhile;?>
+							</select>
 							<div class="validation"></div>
 						</div>
 					</div>
 
 					<div class="col-md-6 col-sm-6 col-xs-12 right">
 						<div class="form-group">
-							<textarea class="form-control" name="message" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+							<textarea class="form-control" name="txtbxSenderMessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
 							<div class="validation"></div>
 						</div>
 					</div>
 
 					<div class="col-xs-12">
-						<!-- Button -->
-						<button type="submit" id="submit" name="submit" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button>
+						<!-- Button --><!-- 
+						<button type="submit" id="btnEmailSend" name="btnEmailSend" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button> -->
+						<input type="submit" name="btnEmailSend" id="btnEmailSend" class="light-form-button oswald light">
 					</div>
 				</form>
 
