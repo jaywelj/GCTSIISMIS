@@ -7,8 +7,7 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
-	<title>Dashboard | OCPS</title>
+	<title>DataTables | Gentelella</title>
 
 	<!-- Bootstrap -->
 	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -96,6 +95,7 @@ require 'header.php';
 									</div>
 									<div class="clearfix"></div>
 								</div>
+								
 								<div class="x_content">
 									<div class="col-md-9 col-sm-12 col-xs-12">
 										<div class="demo-container" style="height:280px">
