@@ -280,9 +280,9 @@ require 'header.php';
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									<div class="col-md-3 col-sm-3 col-xs-12 profile_left" style="z-index:  2; ">
-									<div class="profile_img">
-										<div id="crop-avatar">
+									<div class="col-md-2 col-sm-2 col-xs-6 profile_left" style="z-index:  2; ">
+									<div class="profile_img" style="width:200px;">
+										<div id="crop-avatar" >
 
 											<?php
 
@@ -317,7 +317,7 @@ require 'header.php';
 
 
 								</div>
-								<div class="col-md-9 col-sm-9 col-xs-12" style="margin-left: -30px;">
+								<div class="col-md-10 col-sm-10 col-xs-12" >
 									<div class="" role="tabpanel" data-example-id="togglable-tabs">
 										<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
 											<li role="presentation" class="active in"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>

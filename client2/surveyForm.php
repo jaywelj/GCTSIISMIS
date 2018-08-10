@@ -20,12 +20,6 @@ echo "<script>var surveyFormId = '$surveyFormId';</script>";
 
 	<!-- Custom CSS-->
 	<link href="css/surveyForm.css" rel="stylesheet">
-  <!-- =======================================================
-	Theme Name: Mentor
-	Theme URL: https://bootstrapmade.com/mentor-free-education-bootstrap-theme/
-	Author: BootstrapMade.com
-	Author URL: https://bootstrapmade.com
-	======================================================= -->
 </head>
 
 <body class="surveybg">

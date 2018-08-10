@@ -307,8 +307,6 @@ else
 	<link href="css/checkbox/checkbox.css" rel="stylesheet">
 	<!--Noty-->
 	<link href="assets/lib/noty.css" rel="stylesheet">
-
-
 </head>
 <?php
 require 'header.php';

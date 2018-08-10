@@ -43,11 +43,10 @@ while($res2 = mysqli_fetch_array($result2))
 	$varcharStudentComplexion = $res2['complexion'];
 	$varcharStudentBirthplace = $res2['birthPlace'];
 	$varcharStudentCityHouseNumber = $res2['cityHouseNumber'];
-	$varcharStudentCityProvince = $res2['cityProvince'];
 	$varcharStudentCityCity = $res2['cityName'];
 	$varcharStudentCityBarangay = $res2['cityBarangay'];
 
-	$tempStudentCityAddress = $varcharStudentCityHouseNumber .' '. $varcharStudentCityProvince .' '. $varcharStudentCityCity .' '. $varcharStudentCityBarangay; 
+	$tempStudentCityAddress = $varcharStudentCityHouseNumber .'  '. $varcharStudentCityCity .' '. $varcharStudentCityBarangay; 
 
 	$varcharStudentProvinceHouseNumber = $res2['provinceHouseNumber'];
 	$varcharStudentProvinceProvince = $res2['provinceProvincial'];
@@ -217,8 +216,6 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 	<title>Mentor Education Bootstrap Theme</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
-
-	<link rel="stylesheet" type="text/css" href="https://fonts.googleapis.com/css?family=Open+Sans|Candal|Alegreya+Sans">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
@@ -389,7 +386,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 											<tbody>
 												<tr>
 													<th scope="row" style="width: 400px;">City Address</th>
-													<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityProvince.$varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
+													<td><?php echo $varcharStudentCityHouseNumber.$varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
 												</tr>
 												<tr>
 													<th scope="row">Provincial Address</th>
