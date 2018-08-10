@@ -6,6 +6,9 @@ $query = "SELECT * FROM tbl_personalinfo WHERE studentNumber = '$id'";
 $queryArray = mysqli_query($connect,$query);
 while ($res = mysqli_fetch_array($queryArray)) {
 	$name = $res['firstName'];
+	$email = $res['email'];
+	$lastName = $res['lastName'];
+	$middleName = $res['middleName'];
 }
 
 
@@ -39,7 +42,7 @@ if(isset($_POST['btnEmailSend']))
 		}
 
 	}
-	$queryInsertingMessage = "INSERT INTO `tbl_message` (`messageID`, `senderName`, `senderEmail`, `subCategoryID`, `messageContent`, `messageStatus`) VALUES (NULL, '$VarcharSenderName', '$VarcharSenderEmail', '$VarcharSenderSubject', '$VarcharSenderMessage', 'Unread')";
+	$queryInsertingMessage = "INSERT INTO `tbl_message` (`messageID`, `senderName`, `senderEmail`, `subCategoryID`, `messageContent`, `messageStatus`,`messageDateSent`, `studentNumber`) VALUES (NULL, '$VarcharSenderName', '$VarcharSenderEmail', '$VarcharSenderSubject', '$VarcharSenderMessage', 'Unread',CURRENT_TIMESTAMP,'$id')";
 
 	if(mysqli_query($connect, $queryInsertingMessage))
 	{   
@@ -490,11 +493,11 @@ if(isset($_POST['btnEmailSend']))
 				<form method="post">
 					<div class="col-md-6 col-sm-6 col-xs-12 left">
 						<div class="form-group">
-							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" value="<?php echo $name ?> <?php echo $middleName ?> <?php echo $lastName ?>" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" value="<?php echo $email ?>" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group"><!-- 

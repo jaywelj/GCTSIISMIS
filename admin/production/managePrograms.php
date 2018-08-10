@@ -372,7 +372,12 @@ require 'header.php';
 			{
 				$ProgramWithoutTopicArray[] = $row['subCategoryNameWithoutProgram'];
 			}
+			// $String = $ProgramWithoutTopicArray[1];
+			// print_r($ProgramWithoutTopicArray);
 			$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
+			$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
+			// // echo $ProgramWithoutTopicValue;
+			// echo "<script type='text/javascript'>alert('$ProgramWithoutTopicValue');</script>";
 			if (empty($ProgramWithoutTopicArray)) {
 				$message = "All Topics Has A Program!";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
@@ -481,7 +486,7 @@ require 'header.php';
 									echo '
 									<div class="alert alert-warning fade in">
 									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Warning!</strong> There is no program assigned to <strong>'.$ProgramWithoutTopicValue.' </strong> ; 
+									<strong>Warning!</strong> There is no program assigned to <strong>'.$ProgramWithoutTopicValue.' </strong> 
 									</div>';
 								}
 								?>

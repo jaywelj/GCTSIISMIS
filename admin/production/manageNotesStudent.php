@@ -471,7 +471,11 @@ require 'header.php';
 						</div>
 					</form>
 					<!--/Modal Edit-->
-
+					<!-- Modal Message -->
+					<?php 
+					require 'viewMessageModal.php';
+					?>
+					<!-- /Modal Message -->
 					<!-- footer content -->
 					<footer>
 						<div class="pull-right">
@@ -540,7 +544,6 @@ require 'header.php';
 						});
 					});
 				});
-				
 			</script>
 
 
