@@ -66,36 +66,95 @@ require 'header.php';
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
-									
+									<div class="tab-pane" role="tabpanel" id="complete">
+										<h3 class="text-center">Step 6</h3>
+										<div class="form-horizontal form-label-left">
+											<div class="x_panel">
+												<span class="section" style="margin-left:90px;">Test Result '.$i.'</span>
+												<div class="form-group ">
+													<label class="control-label col-md-3 col-sm-3">Date Of Test<span class="">*</span>
+													</label>
+													<div class="col-md-6 col-sm-6">
+														<input id="dateTestResultDateInitial" name="dateTestResultDateInitial[]" value="'.$resu['testDate'].'" class="date-picker form-control col-md-7 col-xs-12" type="date">
+													</div>
+												</div>
+
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Name of Test <span class="">*</span></label>
+													<div class="col-md-6 col-sm-6">
+														<input id="txtbxTestResultNameInitial" name="txtbxTestResultNameInitial[]" value="'.$resu['testName'].'" type="text" class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Raw Score(RS) <span class="">*</span>
+													</label>
+													<div class="col-md-6 col-sm-6">
+														<input id="txtbxTestResultRawScoreInitial" name="txtbxTestResultRawScoreInitial[]" value="'.$resu['testRawScore'].'" type="text" class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Percentile Rating(PR) <span class="">*</span>
+													</label>
+													<div class="col-md-6 col-sm-6">
+														<input id="txtbxTestResultPercentileRatingInitial" name="txtbxTestResultPercentileRatingInitial[]" value="'.$resu['testPercentile'].'" type="text" class="form-control col-md-7 col-xs-12">
+													</div>
+												</div>
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Description<span class="">*</span>
+													</label>
+													<div class="col-md-6 col-sm-6">
+														<textarea class="form-control" name="txtareaTestResultDescriptionInitial[]" id="txtareaTestResultDescriptionInitial" ="" placeholder = "'.$resu['testDescription'].'"	>'.$resu['testDescription'].'</textarea>
+													</div>
+													<input type="hidden" id="testID" name="testID[]" value="'.$resu['testID'].'">
+												</div>
+											</div>
+											<!--NEW FIELDS HERE-->
+											<div id="newTestFields">
+
+											</div>
+											<!--END OF NEW FIELDS-->
+											<div class="item form-group">
+												<label class="control-label col-md-3 col-sm-3"></label>
+												<button class="btn btn-success col-md-6 col-sm-6" type="button"  onclick="education_fields();" >
+													<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add Test Result
+												</button>
+											</div>
+										</div>
+										<ul class="list-inline pull-right">
+											<li><button type="button" class="btn btn-default prev-step">Previous</button></li>
+											<li><input type="submit" name="btnFinish" class="btn btn-primary next-step" value="Finish" ></li>
+										</ul>
+									</div>
+									<div class="clearfix">
+									</div>
 								</div>
 							</div>
 						</div>
 					</div>
 				</div>
+				<!-- /page content -->
+
+				<!-- footer content -->
+				<footer>
+					<div class="pull-right">
+						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+					</div>
+					<div class="clearfix"></div>
+				</footer>
+				<!-- /footer content -->
 			</div>
-			<!-- /page content -->
-
-			<!-- footer content -->
-			<footer>
-				<div class="pull-right">
-					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-				</div>
-				<div class="clearfix"></div>
-			</footer>
-			<!-- /footer content -->
 		</div>
-	</div>
 
-	<!-- jQuery -->
-	<script src="../vendors/jquery/dist/jquery.min.js"></script>
-	<!-- Bootstrap -->
-	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-	<!-- FastClick -->
-	<script src="../vendors/fastclick/lib/fastclick.js"></script>
-	<!-- NProgress -->
-	<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->
+		<script src="../vendors/nprogress/nprogress.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
-</body>
-</html>
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
+	</body>
+	</html>

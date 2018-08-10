@@ -135,7 +135,7 @@ while($res = mysqli_fetch_array($result))
 						<ul class="nav child_menu">
 							<li><a href="surveySurveyForms.php">Survey Forms</a></li>
 							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li>
-							<li><a href="surveyRenderSurveyForm.php">Render Survey Forms</a></li>
+							<li><a href="surveyProblemSurveyForm.php">Problem Survey Form</a></li>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-desktop"></i> Accounts <span class="fa fa-chevron-down"></span></a>
