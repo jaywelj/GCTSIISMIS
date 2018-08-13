@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.4
+-- version 4.7.7
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 11:20 AM
+-- Generation Time: Aug 13, 2018 at 12:03 PM
 -- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.1
+-- PHP Version: 7.2.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -1095,6 +1095,22 @@ CREATE TABLE `tbl_surveyofproblems` (
   `subCategoryID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `tbl_surveyofproblems`
+--
+
+INSERT INTO `tbl_surveyofproblems` (`problemID`, `problemName`, `subCategoryID`) VALUES
+(1, 'Addiction (cyber, alcohol, drug, etc.)', 3),
+(2, 'Assertiveness (wanting to assert and impose myself, views and opinions)', 6),
+(3, 'Bullying (oral, cyber and any forms of bullying)', 3),
+(4, 'Career Planning (career choice, setting goals in my future)', 1),
+(5, 'Courtship, Sex, Marriage', 3),
+(6, 'Home Adjustment (broken family, sibling rivalry and others)', 5),
+(7, 'Identity Crises/Homosexuality', 1),
+(8, 'Interpersonal Relationship', 3),
+(9, 'Lacking Leadership Ability', 2),
+(10, 'Lacks Decision Making Skills', 4);
+
 -- --------------------------------------------------------
 
 --
@@ -1603,7 +1619,7 @@ ALTER TABLE `tbl_surveyform`
 -- AUTO_INCREMENT for table `tbl_surveyofproblems`
 --
 ALTER TABLE `tbl_surveyofproblems`
-  MODIFY `problemID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `problemID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 
 --
 -- AUTO_INCREMENT for table `tbl_testrecord`
