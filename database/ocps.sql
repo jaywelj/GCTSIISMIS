@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.7.7
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 12:03 PM
+-- Generation Time: Aug 13, 2018 at 01:49 PM
 -- Server version: 10.1.30-MariaDB
--- PHP Version: 7.2.2
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -112,10 +112,10 @@ CREATE TABLE `tbl_answerproblem` (
 -- --------------------------------------------------------
 
 --
--- Table structure for table `tbl_anwerproblemarchive`
+-- Table structure for table `tbl_answerproblemarchive`
 --
 
-CREATE TABLE `tbl_anwerproblemarchive` (
+CREATE TABLE `tbl_answerproblemarchive` (
   `answerID` int(11) NOT NULL,
   `problemID` int(11) NOT NULL,
   `answerProblem` varchar(255) NOT NULL,
@@ -1245,9 +1245,9 @@ ALTER TABLE `tbl_answerproblem`
   ADD KEY `studentNumber` (`studentNumber`);
 
 --
--- Indexes for table `tbl_anwerproblemarchive`
+-- Indexes for table `tbl_answerproblemarchive`
 --
-ALTER TABLE `tbl_anwerproblemarchive`
+ALTER TABLE `tbl_answerproblemarchive`
   ADD KEY `studentNumber` (`studentNumber`);
 
 --
@@ -1638,10 +1638,10 @@ ALTER TABLE `tbl_answerproblem`
   ADD CONSTRAINT `tbl_answerproblem_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
--- Constraints for table `tbl_anwerproblemarchive`
+-- Constraints for table `tbl_answerproblemarchive`
 --
-ALTER TABLE `tbl_anwerproblemarchive`
-  ADD CONSTRAINT `tbl_anwerproblemarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+ALTER TABLE `tbl_answerproblemarchive`
+  ADD CONSTRAINT `tbl_answerproblemarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_course`
