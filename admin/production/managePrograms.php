@@ -372,12 +372,8 @@ require 'header.php';
 			{
 				$ProgramWithoutTopicArray[] = $row['subCategoryNameWithoutProgram'];
 			}
-			// $String = $ProgramWithoutTopicArray[1];
-			// print_r($ProgramWithoutTopicArray);
 			$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
 			$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
-			// // echo $ProgramWithoutTopicValue;
-			// echo "<script type='text/javascript'>alert('$ProgramWithoutTopicValue');</script>";
 			if (empty($ProgramWithoutTopicArray)) {
 				$message = "All Topics Has A Program!";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
@@ -405,9 +401,32 @@ require 'header.php';
 			{
 				$SubCategoryName = $row['subCategoryName'];
 			}
-			$message = "The most hottest topic recorded is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
+			$message = "The most hottest topic recorded in significant notes is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
 			echo "<script>var notyMessage = '$message';</script>";
 //PROBLEM
+			//START
+			$queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage = "SELECT *,tbl_message.subCategoryID,COUNT(*) as count FROM tbl_message where messageDateSent > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY subCategoryID ORDER BY count DESC";
+			$resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage = mysqli_query($connect, $queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage);
+
+			while ($row = mysqli_fetch_array($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage))
+			{
+				$CountedValueArray2[] = $row['count'];
+				$SubCategoryIDArray2[] = $row['subCategoryID'];
+			}
+			$CountedValueFirstElement2 = array_shift( $CountedValueArray2 );
+			$CountedSubCategoryIDFirstElement2 = array_shift( $SubCategoryIDArray2 );
+
+			$queryGettingSubCategoryName2 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement2'";
+			$resultGettingSubCategoryName2 = mysqli_query($connect,$queryGettingSubCategoryName2);
+			while ($row = mysqli_fetch_array($resultGettingSubCategoryName2))
+			{
+				$SubCategoryName2 = $row['subCategoryName'];
+			}
+			$message2 = "The most hottest topic recorded in messages is ".$SubCategoryName2." with a total of ".$CountedValueFirstElement2." records this past 6 months ";
+
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script>var notyMessage2 = '$message2';</script>";
+			//End 2 
 			while($row = mysqli_fetch_array($resultGettingAdmin))  
 			{
 
@@ -492,7 +511,12 @@ require 'header.php';
 								?>
 								<div class="alert alert-info fade in">
 									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Warning!</strong> The most hottest topic recorded is <strong> <?php echo $SubCategoryName; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement; ?> </strong> records this past 6 months 
+									<strong>Notice!</strong> The most hottest topic recorded in significant notes is <strong> <?php echo $SubCategoryName; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement; ?> </strong> records this past 6 months 
+								</div>
+
+								<div class="alert alert-info fade in">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>Notice!</strong> The most hottest topic recorded in messages is <strong> <?php echo $SubCategoryName2; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement2; ?> </strong> records this past 6 months 
 								</div>
 
 								<label>Program Name</label>
@@ -714,6 +738,12 @@ require 'header.php';
 		}
 		var n = new Noty({
 			text: notyMessage,
+			type: 'info',
+			timeout: '10000'
+		});
+		n.show();
+		var n = new Noty({
+			text: notyMessage2,
 			type: 'info',
 			timeout: '10000'
 		});

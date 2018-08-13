@@ -10,8 +10,8 @@ include("connectionString.php");
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
-	<title>DataTables | Gentelella</title>
-
+	<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
+	<title>Dashboard | OCPS</title>
 	<!-- Bootstrap -->
 	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
 	<!-- Font Awesome -->
@@ -61,7 +61,6 @@ require 'header.php';
 					$CurrentNumberOfStudentAccounts = $row['NumberOfStudentAccounts'];
 					while ($res =  mysqli_fetch_array($resultStudentAccount6MonthsAgo)) {
 						$NumberOfStudentAccounts6MonthsAgo = $res['NumberOfStudentAccounts6MonthsAgo'];
-
 						$NewNumberOfStudentAccounts = $CurrentNumberOfStudentAccounts - $NumberOfStudentAccounts6MonthsAgo;
 						if ($CurrentNumberOfStudentAccounts = $NumberOfStudentAccounts6MonthsAgo || $CurrentNumberOfStudentAccounts == 0) {
 							$PercentageOfIncreaseOfStudentAccounts = 0;

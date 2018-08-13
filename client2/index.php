@@ -94,15 +94,14 @@ if(isset($_POST['btnAdd']))
 	else 
 	{ 
 
-		$default = "0";
-
 		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', 'Not Interested', NULL)";
 
-		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityProvince`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountFirstName', '$VarcharStudentAccountLastName', '$VarcharStudentAccountMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', '$dateStudentAccountDate', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
+		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
 
-		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$VarcharStudentAccountNumber')";
+		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$VarcharStudentAccountNumber')
+		";
 
-		$queryAddFamilyBackground = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '0', 'Not Set', 'NA', 'Not Set', 'Not Set', '12'), (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '0', 'Not Set', 'NA', 'Not Set', 'Not Set', '$VarcharStudentAccountNumber')";
+		$queryAddFamilyBackground = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '', 'Not Set', 'NA', 'Not Set', 'Not Set', '$VarcharStudentAccountNumber')";
 
 		$queryAddHealth = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'NA', NULL, NULL, 'NA', NULL, NULL, 'NA', NULL, NULL, '$VarcharStudentAccountNumber')";
 
@@ -114,7 +113,8 @@ if(isset($_POST['btnAdd']))
 		{   
 			$message = "Successfully Added Student Account";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			if (mysqli_query($connect, $queryAddPersonalInfo)) {
+			if (mysqli_query($connect, $queryAddPersonalInfo)) 
+			{
 				$message = "Successfully Added In Personal Info";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				if (mysqli_query($connect, $queryAddEducationalBackground)) {
@@ -145,7 +145,7 @@ if(isset($_POST['btnAdd']))
 									$message = "Query Error #7";
 									echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-									echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+									echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 								}
 
 							}
@@ -154,7 +154,7 @@ if(isset($_POST['btnAdd']))
 								$message = "Query Error #6";
 								echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-								echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+								echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 							}
 
 						}
@@ -163,7 +163,7 @@ if(isset($_POST['btnAdd']))
 							$message = "Query Error #5";
 							echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-							echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+							echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 						}
 
 					}
@@ -172,7 +172,7 @@ if(isset($_POST['btnAdd']))
 						$message = "Query Error #4";
 						echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-						echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+						echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 					}
 
 				}
@@ -181,7 +181,7 @@ if(isset($_POST['btnAdd']))
 					$message = "Query Error #3";
 					echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-					echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+					echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 				}
 			}
 			else
@@ -189,7 +189,7 @@ if(isset($_POST['btnAdd']))
 				$message = "Query Error #2";
 				echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'clientRegister.php';</script>";
+				echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 			}
 
 
@@ -545,180 +545,255 @@ if(isset($_POST['btnEmailSend']))
 			<div class="row">
 				<div class="header-section text-center">
 					<h2>Meet Our Faculty Member</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+					<p>Here Is The Administrators Of OCPS</p>
 					<hr class="bottom-line">
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
-						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
-						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
+				<?php
+				include_once("connectionString.php");
+				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
+				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
+				while ($row = mysqli_fetch_array($resultGettingAdmin)) 
+				{
+					$adminFirstName = $row['adminFirstName'];
+					$adminMiddleName = $row['adminMiddleName'];
+					$adminLastName = $row['adminLastName'];
+					$adminEmail = $row['adminEmail'];
+					$adminGender = $row['adminGender'];
 
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
+					if($adminGender == "M")
+					{
+						$adminGender = "Male";
+					}
+					else if($adminGender == "F")
+					{
+						$adminGender = "Female";
+					}
+
+					$adminContactNo = $row['adminContactNo'];
+					$adminAddress = $row['adminAddress'];
+
+
+					?>
+					<?php
+
+					$VarcharStudentProfileImage = $row['adminImage'];
+					if(empty($VarcharStudentProfileImage))
+					{
+						echo ' 
+						<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
+						<div class="pm-staff-profile-image">
+						<img src="img/default-user.png" alt="" class="img-thumbnail img-circle" />
+						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
+						</div>
+						</div>
+						</div>';
+					}
+					else{
+						echo ' 
+						<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+						<div class="pm-staff-profile-image-wrapper text-center">
+						<div class="pm-staff-profile-image">
+						<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" alt="" class="img-thumbnail img-circle" />
+						</div>
+						</div>
+						<div class="pm-staff-profile-details text-center">
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
+						</div>
+						</div>
+						</div>';
+					}
 
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+
+				}
+				?>
+<!-- 					<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
+							<div class="pm-staff-profile-image-wrapper text-center">
+								<div class="pm-staff-profile-image">
+									<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
+								</div>
+							</div>
+							<div class="pm-staff-profile-details text-center">
+								<p class="pm-staff-profile-name">Bryan Johnson</p>
+								<p class="pm-staff-profile-title">Lead Software Engineer</p>
+
+								<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+							</div>
+						</div>
+					</div> -->
+				</div>
+			</div>
+		</section>
+		<!--/ Faculity member-->
+		<!--Testimonial-->
+		<section id="testimonial" class="section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="header-section text-center">
+						<h2 class="white">See What Our Customer Are Saying?</h2>
+						<p class="white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+						<hr class="bottom-line bg-white">
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="text-comment">
+							<p class="text-par">"Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, nec sagittis sem"</p>
+							<p class="text-name">Abraham Doe - Creative Dırector</p>
+						</div>
+					</div>
+					<div class="col-md-6 col-sm-6">
+						<div class="text-comment">
+							<p class="text-par">"Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, nec sagittis sem"</p>
+							<p class="text-name">Abraham Doe - Creative Dırector</p>
 						</div>
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!--/ Faculity member-->
-	<!--Testimonial-->
-	<section id="testimonial" class="section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="header-section text-center">
-					<h2 class="white">See What Our Customer Are Saying?</h2>
-					<p class="white">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
-					<hr class="bottom-line bg-white">
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="text-comment">
-						<p class="text-par">"Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, nec sagittis sem"</p>
-						<p class="text-name">Abraham Doe - Creative Dırector</p>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="text-comment">
-						<p class="text-par">"Proin gravida nibh vel velit auctor aliquet. Aenean sollicitudin, nec sagittis sem"</p>
-						<p class="text-name">Abraham Doe - Creative Dırector</p>
+		</section>
+		<!--/ Testimonial-->
+		<!--Courses-->
+		<section id="courses" class="section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="header-section text-center">
+						<h2>Programs Offered</h2>
+						<p></p>
+						<hr class="bottom-line">
 					</div>
 				</div>
 			</div>
-		</div>
-	</section>
-	<!--/ Testimonial-->
-	<!--Courses-->
-	<section id="courses" class="section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="header-section text-center">
-					<h2>Courses</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
-					<hr class="bottom-line">
+			<div class="container">
+				<div class="row">
+					<?php 
+					include("connectionString.php");  
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
+					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
+					while($row = mysqli_fetch_array($resultGettingProgram))  
+					{  
+						$programID = $row['programID'];
+						$programName = $row['programName'];
+						$programDescription = $row['programDescription'];
+						$programImage = $row['programImage'];
+						?>
+						<?php
+						if (empty($programImage)) {
+							
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right">
+							<figure class="imghvr-fold-up">
+							<img src="img/noimgavailable.jpg" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+						}
+						else
+						{
+							
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right">
+							<figure class="imghvr-fold-up">
+							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+
+						}
+						?>
+						<?php 
+					}
+					?>
+					<!-- <div class="col-md-4 col-sm-6 padleft-right">
+						<figure class="imghvr-fold-up">
+							<img src="img/course02.jpg" class="img-responsive">
+							<figcaption>
+								<h3>Course Name</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
+							</figcaption>
+							<a href="#"></a>
+						</figure>
+					</div>
+					<div class="col-md-4 col-sm-6 padleft-right">
+						<figure class="imghvr-fold-up">
+							<img src="img/course03.jpg" class="img-responsive">
+							<figcaption>
+								<h3>Course Name</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
+							</figcaption>
+							<a href="#"></a>
+						</figure>
+					</div>
+					<div class="col-md-4 col-sm-6 padleft-right">
+						<figure class="imghvr-fold-up">
+							<img src="img/course04.jpg" class="img-responsive">
+							<figcaption>
+								<h3>Course Name</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
+							</figcaption>
+							<a href="#"></a>
+						</figure>
+					</div>
+					<div class="col-md-4 col-sm-6 padleft-right">
+						<figure class="imghvr-fold-up">
+							<img src="img/course05.jpg" class="img-responsive">
+							<figcaption>
+								<h3>Course Name</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
+							</figcaption>
+							<a href="#"></a>
+						</figure>
+					</div>
+					<div class="col-md-4 col-sm-6 padleft-right">
+						<figure class="imghvr-fold-up">
+							<img src="img/course06.jpg" class="img-responsive">
+							<figcaption>
+								<h3>Course Name</h3>
+								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
+							</figcaption>
+							<a href="#"></a>
+						</figure>
+					</div> -->
 				</div>
 			</div>
-		</div>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course01.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course02.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course03.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course04.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course05.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course06.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-			</div>
-		</div>
-	</section>
-	<!--/ Courses-->
-	<!--Contact-->
-	<section id="contact" class="section-padding">
-		<div class="container">
-			<div class="row">
-				<div class="header-section text-center">
-					<h2>Message Us</h2>
-					<p>If you have any concerns, message us! It could be a really big help for someone who needs help :) <br> </p>
-					<hr class="bottom-line">
-				</div>
-				<div id="sendmessage">Your message has been sent. Thank you!</div>
-				<div id="errormessage"></div>
-				<form method="post">
-					<div class="col-md-6 col-sm-6 col-xs-12 left">
-						<div class="form-group">
-							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
-							<div class="validation"></div>
-						</div>
-						<div class="form-group">
-							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
-							<div class="validation"></div>
-						</div>
+		</section>
+		<!--/ Courses-->
+		<!--Contact-->
+		<section id="contact" class="section-padding">
+			<div class="container">
+				<div class="row">
+					<div class="header-section text-center">
+						<h2>Message Us</h2>
+						<p>If you have any concerns, message us! It could be a really big help for someone who needs help :) <br> </p>
+						<hr class="bottom-line">
+					</div>
+					<div id="sendmessage">Your message has been sent. Thank you!</div>
+					<div id="errormessage"></div>
+					<form method="post">
+						<div class="col-md-6 col-sm-6 col-xs-12 left">
+							<div class="form-group">
+								<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<div class="validation"></div>
+							</div>
+							<div class="form-group">
+								<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+								<div class="validation"></div>
+							</div>
 						<div class="form-group"><!-- 
 							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" /> -->
 							<?php 
