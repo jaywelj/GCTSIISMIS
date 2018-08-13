@@ -8,9 +8,13 @@ $id = $_GET['id'];
 
 //deleting the row from table
 //$query ="DELETE FROM tbl_destination WHERE destination_ID=$id";
-
+$archivingquery = "INSERT INTO `tbl_course` SELECT * FROM `tbl_coursearchive` WHERE `courseCode` = '$id'";
 $deletingquery = "DELETE FROM `tbl_coursearchive` WHERE `tbl_coursearchive`.`courseCode` = '$id'";
 
+if (mysqli_query($connect, $archivingquery))
+{
+	$message = "Success Moving";
+	echo "<script type='text/javascript'>alert('$message');</script>";
 	if (mysqli_query($connect, $deletingquery)) 
 	{
 	$message = "Success Deleting";
@@ -26,6 +30,8 @@ $deletingquery = "DELETE FROM `tbl_coursearchive` WHERE `tbl_coursearchive`.`cou
 }
 else
 {
+	$message = "Query Error Moving";
+	echo "<script type='text/javascript'>alert('$message');</script>";
 	echo "<script type='text/javascript'>location.href = 'manageCourseArchived.php';</script>";
 }
 }
@@ -33,7 +39,6 @@ else
 {
 	echo "<script type='text/javascript'>location.href = 'manageCourseArchived.php';</script>";
 }
-
 //Clearing Tour Package dependencies 
 
 

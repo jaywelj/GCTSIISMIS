@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id'])) {
 $studentNumber = $_GET['id'];
 
 //deleting the row from table
@@ -214,7 +215,11 @@ else{
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
     
 }
-
+}
+else
+{
+    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+}
 //redirecting to the display page (index.php in our case)
 
 ?>

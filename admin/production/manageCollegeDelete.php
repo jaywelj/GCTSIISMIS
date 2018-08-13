@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id'])) {
 $id = $_GET['id'];
 
 //deleting the row from table
@@ -34,7 +35,11 @@ else
 	echo "<script type='text/javascript'>location.href = 'manageCollege.php';</script>";
 }
 //Clearing Tour Package dependencies 
-
+}
+else
+{
+	echo "<script type='text/javascript'>location.href = 'manageCollege.php';</script>";
+}
 
 
 		

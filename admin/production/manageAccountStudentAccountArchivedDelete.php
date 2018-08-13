@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id'])) {
 $studentNumber = $_GET['id'];
 
 //deleting the row from table
@@ -31,7 +32,7 @@ else
 {
     $message = "Error deleting personal info";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
 }
 if ($resultdeletingeducationalbackground = mysqli_query($connect, $querydeletingeducationalbackground))
 {
@@ -54,7 +55,7 @@ else
 {
     $message = "Error deleting family background";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
 }
 
 if ($resultdeletinghealthinfo = mysqli_query($connect, $querydeletinghealthinfo))
@@ -67,7 +68,7 @@ else
 {
     $message = "Error deleting health";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
 }
 
 if ($resultdeletingtestrecord = mysqli_query($connect, $querydeletingtestrecord))
@@ -80,7 +81,7 @@ else
 {
     $message = "Query Error moving test record";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
 }
 
 if ($resultdeletingsignificantnotes = mysqli_query($connect, $querydeletingsignificantnotes))
@@ -93,7 +94,7 @@ else
 {
     $message = "Query Error deleting significant notes";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
 }
 
 if ($resultdeletingstudentaccount = mysqli_query($connect, $querydeletingstudentaccount))
@@ -101,16 +102,20 @@ if ($resultdeletingstudentaccount = mysqli_query($connect, $querydeletingstudent
 
     $message = "Successful Deleting Student Account";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
     
 }
 else{
     $message = "Error Deleting Student Account";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
     
 }
-
+}
+else
+{
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
+}
 
 
 //redirecting to the display page (index.php in our case)

@@ -328,51 +328,74 @@ if(isset($_POST['btnEmailSend']))
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
 					<hr class="bottom-line">
 				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
+					<?php
+				include_once("connectionString.php");
+				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
+				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
+				while ($row = mysqli_fetch_array($resultGettingAdmin)) 
+				{
+					$adminFirstName = $row['adminFirstName'];
+					$adminMiddleName = $row['adminMiddleName'];
+					$adminLastName = $row['adminLastName'];
+					$adminEmail = $row['adminEmail'];
+					$adminGender = $row['adminGender'];
+
+					if($adminGender == "M")
+					{
+						$adminGender = "Male";
+					}
+					else if($adminGender == "F")
+					{
+						$adminGender = "Female";
+					}
+
+					$adminContactNo = $row['adminContactNo'];
+					$adminAddress = $row['adminAddress'];
+
+
+					?>
+					<?php
+
+					$VarcharStudentProfileImage = $row['adminImage'];
+					if(empty($VarcharStudentProfileImage))
+					{
+						echo ' 
+						<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
+						<div class="pm-staff-profile-image">
+						<img src="img/default-user.png" alt="" class="img-thumbnail img-circle" />
+						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
-
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
 						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
+						</div>
+						</div>';
+					}
+					else{
+						echo ' 
+						<div class="col-lg-4 col-md-4 col-sm-4">
+						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
+						<div class="pm-staff-profile-image">
+						<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" alt="" class="img-thumbnail img-circle" />
+						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
+						</div>
+						</div>
+						</div>';
+					}
 
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-						</div>
-					</div>
-				</div>
-				<div class="col-lg-4 col-md-4 col-sm-4">
-					<div class="pm-staff-profile-container">
-						<div class="pm-staff-profile-image-wrapper text-center">
-							<div class="pm-staff-profile-image">
-								<img src="img/mentor.jpg" alt="" class="img-thumbnail img-circle" />
-							</div>
-						</div>
-						<div class="pm-staff-profile-details text-center">
-							<p class="pm-staff-profile-name">Bryan Johnson</p>
-							<p class="pm-staff-profile-title">Lead Software Engineer</p>
 
-							<p class="pm-staff-profile-bio">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec et placerat dui. In posuere metus et elit placerat tristique. Maecenas eu est in sem ullamcorper tincidunt. </p>
-						</div>
-					</div>
-				</div>
+				}
+				?>
 			</div>
 		</div>
 	</section>
@@ -407,74 +430,60 @@ if(isset($_POST['btnEmailSend']))
 		<div class="container">
 			<div class="row">
 				<div class="header-section text-center">
-					<h2>Courses</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+					<h2>Programs Offered</h2>
+					<p></p>
 					<hr class="bottom-line">
 				</div>
 			</div>
 		</div>
 		<div class="container">
 			<div class="row">
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course01.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course02.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course03.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course04.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course05.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
-				<div class="col-md-4 col-sm-6 padleft-right">
-					<figure class="imghvr-fold-up">
-						<img src="img/course06.jpg" class="img-responsive">
-						<figcaption>
-							<h3>Course Name</h3>
-							<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-						</figcaption>
-						<a href="#"></a>
-					</figure>
-				</div>
+									<?php 
+					include("connectionString.php");  
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
+					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
+					while($row = mysqli_fetch_array($resultGettingProgram))  
+					{  
+						$programID = $row['programID'];
+						$programName = $row['programName'];
+						$programDescription = $row['programDescription'];
+						$programImage = $row['programImage'];
+						?>
+						<?php
+						if (empty($programImage)) {
+							
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right">
+							<figure class="imghvr-fold-up">
+							<img src="img/noimgavailable.jpg" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+						}
+						else
+						{
+							
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right">
+							<figure class="imghvr-fold-up">
+							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+
+						}
+						?>
+						<?php 
+					}
+					?>
 			</div>
 		</div>
 	</section>

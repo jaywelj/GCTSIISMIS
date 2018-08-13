@@ -3,6 +3,7 @@
  include("connectionString.php");
 
 //getting id of the data from url
+ if (isset($_GET['id'])) {
  $noteID = $_GET['id'];
 
 //deleting the row from table
@@ -14,13 +15,18 @@
 
  if ($resultdeleting = mysqli_query($connect, $querydeleting))
  {
- 	header("Location:manageNotesStudentArchived.php");
+ 	echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";
  }
  else{
  	$message = "Error Deleting";
  	echo "<script type='text/javascript'>alert('$message');</script>";
- 	header("Location:manageNotesStudentArchived.php");
+ 	echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";
  }
+}
+else
+{
+	echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";
+}
 
 //redirecting to the display page (index.php in our case)
 

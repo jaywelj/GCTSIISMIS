@@ -68,7 +68,7 @@ if(isset($_POST['btnAdd']))
 				$message = "Query Error " . mysqli_connect_error();
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				//redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccount	.php';</script>";
+				echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccount.php';</script>";
 			}
 		}
 	}

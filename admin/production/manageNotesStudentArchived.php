@@ -132,7 +132,7 @@ require 'header.php';
 															<center>
 																<?php
 																
-																echo '<a title="Revive" class="btn btn-info" href="manageNotesStudentReturn.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to return?")"><span class="fa fa-share-square"></span></a>
+																echo '<a title="Revive" class="btn btn-info" href="manageNotesStudentReturn.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to restore?")"><span class="fa fa-share-square"></span></a>
 																';
 																
 

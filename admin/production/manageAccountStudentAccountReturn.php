@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id'])) {
 $studentNumber = $_GET['id'];
 
 //deleting the row from table
@@ -50,14 +51,14 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             {
                 $message = "Error deleting personal info";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+                echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
             }
         }
         else
         {
             $message = "Error moving personal info to archive";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
         if ($resultmovingeducationalbackgroundtoarchive = mysqli_query($connect, $querymovingeducationalbackgroundtoarchive))
         {
@@ -80,7 +81,7 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
         {
             $message = "Error moving tbl_educationalbackground to archive";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
         if ($resultmovingfamilybackgroundtoarchive = mysqli_query($connect, $querymovingfamilybackgroundtoarchive))
         {
@@ -97,14 +98,14 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             {
                 $message = "Error deleting family background";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+                echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
             }
         }
         else
         {
             $message = "Error moving family background to archive";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
         if ($resultmovinghealthinfotoarchive = mysqli_query($connect, $querymovinghealthinfotoarchive))
         {   
@@ -121,14 +122,14 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             {
                 $message = "Error deleting health";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+                echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
             }
         }
         else
         {
             $message = "Query Error moving health";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
 
         if ($resultmovingtestrecordtoarchive = mysqli_query($connect, $querymovingtestrecordtoarchive))
@@ -146,14 +147,14 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             {
                 $message = "Query Error moving test record";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+                echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
             }
         }
         else
         {
             $message = "Query Error deleting test record";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
         if ($resultmovingsignificantnotestoarchive = mysqli_query($connect, $querymovingsignificantnotestoarchive))
         {   
@@ -170,27 +171,27 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
             {
                 $message = "Query Error deleting significant notes";
                 echo "<script type='text/javascript'>alert('$message');</script>";
-                echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+                echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
             }
         }
         else
         {
             $message = "Query Error moving significant notes";
             echo "<script type='text/javascript'>alert('$message');</script>";
-            echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+            echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         }
     if ($resultdeletingstudentaccount = mysqli_query($connect, $querydeletingstudentaccount))
     {
 
         $message = "Successful Deleting Student Account";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+        echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
        
     }
     else{
         $message = "Error Deleting Student Account";
         echo "<script type='text/javascript'>alert('$message');</script>";
-        echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+           echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
         
     }
     
@@ -198,10 +199,14 @@ if ($resultmovingstudentaccounttoarchive = mysqli_query($connect, $querymovingst
 else{
 	$message = "Error Moving Student Account";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
     
 }
-
+}
+else
+{
+    echo "<script type='text/javascript'>location.href = 'manageAccountStaffAccountArchived.php';</script>";
+}
 //redirecting to the display page (index.php in our case)
 
 ?>

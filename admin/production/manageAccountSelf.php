@@ -44,8 +44,6 @@ if(isset($_POST['btnAdd']))
 			$message = "Enter a valid Email";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
 	else 
 	{ 
@@ -62,7 +60,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Admin Account added successfully!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
+			echo "<script type='text/javascript'>location.href = 'manageAccountAdminSelf.php';</script>";
 
 		}
 		else
@@ -77,7 +75,7 @@ if(isset($_POST['btnAdd']))
 				$message = "Query Error " . mysqli_connect_error();
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				//redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount	.php';</script>";
+				echo "<script type='text/javascript'>location.href = 'manageAccountAdminSelf.php';</script>";
 			}
 		}
 	}
@@ -120,8 +118,6 @@ if(isset($_POST['btnEdit']))
 			$message = "Enter a First Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
 	else 
 	{ 
