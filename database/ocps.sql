@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 4.8.1
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 10, 2018 at 12:36 PM
--- Server version: 10.1.33-MariaDB
--- PHP Version: 7.2.6
+-- Generation Time: Aug 13, 2018 at 11:20 AM
+-- Server version: 10.1.30-MariaDB
+-- PHP Version: 7.2.1
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -107,6 +107,20 @@ CREATE TABLE `tbl_answerproblem` (
   `answerProblem` varchar(255) NOT NULL,
   `studentNumber` varchar(15) NOT NULL,
   `answerDate` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_anwerproblemarchive`
+--
+
+CREATE TABLE `tbl_anwerproblemarchive` (
+  `answerID` int(11) NOT NULL,
+  `problemID` int(11) NOT NULL,
+  `answerProblem` varchar(255) NOT NULL,
+  `studentNumber` varchar(15) NOT NULL,
+  `answerDate` datetime NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1077,7 +1091,20 @@ CREATE TABLE `tbl_surveyformarchive` (
 
 CREATE TABLE `tbl_surveyofproblems` (
   `problemID` int(11) NOT NULL,
-  `problemName` varchar(255) NOT NULL
+  `problemName` varchar(255) NOT NULL,
+  `subCategoryID` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `tbl_surveyofproblemsarchive`
+--
+
+CREATE TABLE `tbl_surveyofproblemsarchive` (
+  `problemID` int(11) NOT NULL,
+  `problemName` varchar(255) NOT NULL,
+  `subCategoryID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
@@ -1199,6 +1226,12 @@ ALTER TABLE `tbl_adminaccountarchive`
 --
 ALTER TABLE `tbl_answerproblem`
   ADD PRIMARY KEY (`answerID`),
+  ADD KEY `studentNumber` (`studentNumber`);
+
+--
+-- Indexes for table `tbl_anwerproblemarchive`
+--
+ALTER TABLE `tbl_anwerproblemarchive`
   ADD KEY `studentNumber` (`studentNumber`);
 
 --
@@ -1435,7 +1468,15 @@ ALTER TABLE `tbl_surveyformarchive`
 -- Indexes for table `tbl_surveyofproblems`
 --
 ALTER TABLE `tbl_surveyofproblems`
-  ADD PRIMARY KEY (`problemID`);
+  ADD PRIMARY KEY (`problemID`),
+  ADD KEY `subCategoryID` (`subCategoryID`);
+
+--
+-- Indexes for table `tbl_surveyofproblemsarchive`
+--
+ALTER TABLE `tbl_surveyofproblemsarchive`
+  ADD PRIMARY KEY (`problemID`),
+  ADD KEY `subCategoryID` (`subCategoryID`);
 
 --
 -- Indexes for table `tbl_surveyquestion`
@@ -1514,7 +1555,7 @@ ALTER TABLE `tbl_incidentcategory`
 -- AUTO_INCREMENT for table `tbl_incidentsubcategory`
 --
 ALTER TABLE `tbl_incidentsubcategory`
-  MODIFY `subCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `subCategoryID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `tbl_interesthobbies`
@@ -1579,6 +1620,12 @@ ALTER TABLE `tbl_testrecord`
 --
 ALTER TABLE `tbl_answerproblem`
   ADD CONSTRAINT `tbl_answerproblem_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_anwerproblemarchive`
+--
+ALTER TABLE `tbl_anwerproblemarchive`
+  ADD CONSTRAINT `tbl_anwerproblemarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_course`
@@ -1704,6 +1751,18 @@ ALTER TABLE `tbl_significantnotesarchive`
   ADD CONSTRAINT `tbl_significantnotesarchive_ibfk_2` FOREIGN KEY (`categoryID`) REFERENCES `tbl_incidentcategoryarchive` (`categoryID`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_significantnotesarchive_ibfk_3` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategoryarchive` (`subCategoryID`) ON DELETE SET NULL ON UPDATE CASCADE,
   ADD CONSTRAINT `tbl_significantnotesarchive_ibfk_4` FOREIGN KEY (`adminId`) REFERENCES `tbl_adminaccountarchive` (`adminId`) ON DELETE SET NULL ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_surveyofproblems`
+--
+ALTER TABLE `tbl_surveyofproblems`
+  ADD CONSTRAINT `tbl_surveyofproblems_ibfk_1` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+
+--
+-- Constraints for table `tbl_surveyofproblemsarchive`
+--
+ALTER TABLE `tbl_surveyofproblemsarchive`
+  ADD CONSTRAINT `tbl_surveyofproblemsarchive_ibfk_1` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_surveyquestion`
