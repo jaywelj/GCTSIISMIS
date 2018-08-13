@@ -267,7 +267,7 @@ require 'header.php';
 			<?php foreach ($optionIdArray as $key => $value) {
 				?>+'<option value=<?php echo $value; ?>><?php echo $optionNameArray[$key]; ?></option>'<?php
 			}?>
-			+'<select></td></tr><td><button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus " aria-hidden="true"></span> </button></td>';
+			+'<select></td></tr><td><button class="btn btn-danger" title="Remove" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus " aria-hidden="true"></span> </button></td>';
 
 			objTo.appendChild(divtest)
 		}
