@@ -8,11 +8,12 @@ if(isset($_POST['btnFinish']))
 	{
 		$varcharProblemInitial = $_POST['problemInitial'];
 		$varcharProblemInitial2 = $_POST['problemInitial2'];
+		$intSubCategoryId = $_POST['selectSubCategoryName'];
 		foreach ($varcharProblemInitial as $key => $value) {
-			$query = "UPDATE `tbl_surveyofproblems` SET `problemName` = '$varcharProblemInitial[$key]' WHERE `tbl_surveyofproblems`.`problemname` = '$varcharProblemInitial2[$key]'";
+			$query = "UPDATE `tbl_surveyofproblems` SET `problemName` = '$varcharProblemInitial[$key]', subCategoryID = '$intSubCategoryId[$key]' WHERE `tbl_surveyofproblems`.`problemname` = '$varcharProblemInitial2[$key]' ";
 			if(mysqli_query($connect,$query))
 			{
-				echo "<script>alert('$value');</script>";
+				//echo "<script>alert('success');</script>";
 			}
 			else
 			{
@@ -23,11 +24,12 @@ if(isset($_POST['btnFinish']))
 	if(isset($_POST['problemNew']))
 	{
 		$varcharProblemNew = $_POST['problemNew'];
+		$intSubCategoryIdNew = $_POST['selectSubCategoryNameNew'];
 		foreach ($varcharProblemNew as $key => $value) {
-			$query = "INSERT INTO tbl_surveyofproblems (`problemID`, `problemName`) VALUES (NULL,'$varcharProblemNew[$key]') ";
+			$query = "INSERT INTO tbl_surveyofproblems (`problemID`, `problemName`, `subCategoryID`) VALUES (NULL,'$varcharProblemNew[$key]','$intSubCategoryIdNew[$key]') ";
 			if(mysqli_query($connect,$query))
 			{
-				echo "<script>alert('Successfully updated note #'+'$value');</script>";
+				echo "<script>alert('Successfully created note #'+'$value');</script>";
 			}
 			else
 			{
@@ -35,6 +37,27 @@ if(isset($_POST['btnFinish']))
 			}
 		}
 	}
+}
+$query = "SELECT * FROM tbl_surveyofproblems";
+$queryArray = mysqli_query($connect,$query);
+$i = 1;
+while($row = mysqli_fetch_array($queryArray))
+{
+	$intSubCategory[$i] = $row['subCategoryID'];
+	//echo "<script>alert('$intSubCategory[$i]');</script>";
+	$i++;
+	
+}
+$i = 1;
+
+$query = "SELECT * FROM tbl_incidentsubcategory";
+$query = mysqli_query($connect,$query);
+$optionIdArray = array();
+$optionNameArray = array();
+while($resu2 = mysqli_fetch_array($query))
+{
+	array_push($optionIdArray, $resu2['subCategoryID']);
+	array_push($optionNameArray, $resu2['subCategoryName']);
 }
 ?>
 <!DOCTYPE html>
@@ -57,6 +80,15 @@ if(isset($_POST['btnFinish']))
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+	<style type="text/css">
+	th {
+		padding-top: 12px;
+		padding-bottom: 12px;
+		text-align: left;
+		background-color: #800;
+		color: white;
+	}
+</style>
 </head>
 <?php
 require 'header.php';
@@ -108,50 +140,87 @@ require 'header.php';
 									<div class="x_panel">
 										<form method="post">
 											<div class="form-horizontal form-label-left">
+												<table class=" table table-striped">
+													<thead>
+														<tr>
+															<th>
+																Problem Number
+															</th>
+															<th>
+																Problem Name
+															</th>
+															<th>
+																Category
+															</th>
+															<th>
+															</th>
+														</tr>
+													</thead>
+													<tbody id="newTestFields">
+														
 
-												<h1 style="margin-left:200px;"> Registered choices in the Problem Survey </h1>
-												<?php
-												$i = 0;
-												$resultTest = mysqli_query($connect, "SELECT * FROM `tbl_surveyofproblems`");
-												$noOfProblem = mysqli_num_rows($resultTest);
-												echo "<script>var formCount = '$noOfProblem'</script>";
-												while($resu = mysqli_fetch_array($resultTest)){
+														<h1 style="margin-left:200px;"> Registered choices in the Problem Survey </h1>
+														<?php
+														$i = 0;
+														$resultTest = mysqli_query($connect, "SELECT * FROM `tbl_surveyofproblems`");
+														$noOfProblem = mysqli_num_rows($resultTest);
+														echo "<script>var formCount = '$noOfProblem'</script>";
+														while($resu = mysqli_fetch_array($resultTest)){
 
-													$i ++ ;
+															$i ++ ;
 
-													echo '
-													<div class="form-group ">
-													<label class="control-label col-md-2 col-sm-2">Problem # '.$i.':
-													</label>
-													<div class="col-md-6 col-sm-6">
-													<input id="problemInitial[]" name="problemInitial[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="text">
-													<input id="problemInitial2[]" name="problemInitial2[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="hidden" >
-													</div>
-													<div class="col-md-2 col-sm-2">
-														<select>
-															<option>HAHAHAHAHAHAHAHAHA</option>
-														</select>
-													</div>
-													</div>';
-												}
-												?>
-												
-												<!--NEW FIELDS HERE-->
-												<div id="newTestFields">
+															echo '
+															<tr>
+															<td>
+															<label class="control-label">Problem # '.$i.':
+															</label>
+															</td>
+															<td>
+															<input id="problemInitial[]" name="problemInitial[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="text">
+															<input id="problemInitial2[]" name="problemInitial2[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="hidden" >
+															</td>
+															<td>
+															<select class="form-control" name="selectSubCategoryName[]" id="selectSubCategoryName'.$i.'">
+															';
+															$query = "SELECT * FROM tbl_incidentsubcategory";
+															$query = mysqli_query($connect,$query);
+															while($resu2 = mysqli_fetch_array($query))
+															{
+																echo '<option value='.$resu2["subCategoryID"].'>'.$resu2["subCategoryName"].'</option>';
+															}
+															echo '
+															</select>
+															</td>
+															<td>
+															<a class="btn btn-danger" type="button" title="Archive" href="surveyProblemSurveyFormDelete.php?id='.$resu['problemID'].'" onClick="return confirm('."'Answers associated with the question will also be moved to archive.     Do you still wish to proceed? '".')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
+															</td>
 
-												</div>
+															</tr>
+															<script>
+															</script>';
+														}
+														?>
+														<!--NEW FIELDS HERE-->
+														<tr>
+															<td style="text-align: center;">
+																Add New Problem Fields
+															</td>
+															<td>
+															</td>
+															<td>
+															</td>
+														</tr>
+													</tbody>
+												</table>
 												<!--END OF NEW FIELDS-->
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"></label>
-													<button class="btn btn-success col-md-6 col-sm-6" type="button"  onclick="education_fields();" >
-														<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Problem
+													<button class="btn btn-success col-md-4 col-sm-4" type="button"  onclick="education_fields();" >
+														<span class="glyphicon glyphicon-plus" aria-hidden="true"></span> Add New Problem Field
 													</button>
+													<button type="submit" name="btnFinish" id="btnFinish" class="btn btn-primary col-md-4 col-sm-4">Finish</button>
 												</div>
-												<div class="item form-group">
-													<div class="control-label col-md-3 col-sm-3 col-md-offset-7" >
-														<button type="submit" name="btnFinish" id="btnFinish" class="btn btn-primary  ">Finish</button>
-													</div>
-												</div>
+												
 											</div>
 										</form>
 									</div>
@@ -191,10 +260,14 @@ require 'header.php';
 			room++;
 			formCount++;
 			var objTo = document.getElementById('newTestFields')
-			var divtest = document.createElement("div");
+			var divtest = document.createElement("tr");
 			var rdiv = 'removeclass'+room;
-			divtest.setAttribute("class", "form-group "+rdiv);
-			divtest.innerHTML = ' <div > </div><div class="form-group "><label class="control-label col-md-3 col-sm-3">Problem # '+formCount+':</label><div class="col-md-6 col-sm-6"><input id="problemNew[]" name="problemNew[]" value="" class="date-picker form-control col-md-7 col-xs-12" type="text"></div><button class="btn btn-danger" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus " aria-hidden="true"></span> </button></div>';
+			divtest.setAttribute("class", rdiv);
+			divtest.innerHTML ='<tr><td><label class="control-label">Problem # '+formCount+':</label></td><td><input id="problemNew[]" name="problemNew[]" value="" class="date-picker form-control col-md-7 col-xs-12" type="text"></td><td><select class="form-control" name="selectSubCategoryNameNew[]">'
+			<?php foreach ($optionIdArray as $key => $value) {
+				?>+'<option value=<?php echo $value; ?>><?php echo $optionNameArray[$key]; ?></option>'<?php
+			}?>
+			+'<select></td></tr><td><button class="btn btn-danger" title="Remove" type="button" onclick="remove_education_fields('+ room +');"> <span class="glyphicon glyphicon-minus " aria-hidden="true"></span> </button></td>';
 
 			objTo.appendChild(divtest)
 		}
@@ -203,5 +276,15 @@ require 'header.php';
 			formCount--;
 		}
 	</script>
+	<?php
+	$ctr = 1;
+	foreach($intSubCategory as $value)
+	{
+			//echo "<script>alert('$value');</script>";
+		echo "<script>var temp='".$value."'</script>";
+		echo '<script>$("#selectSubCategoryName"+'.$ctr.').val(temp);</script>';
+		$ctr++;
+	}
+	?>
 </body>
 </html>

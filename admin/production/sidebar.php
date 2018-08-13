@@ -167,6 +167,7 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="manageCollegeArchived.php">College</a></li>
 							<li><a href="manageNotesStudentArchived.php">Significant Notes</a></li>
 							<li><a href="manageProgramsArchived.php">Programs</a> </li>
+							<li><a href="surveyProblemSurveyFormArchive.php">Survey</a> </li>
 							<li><a href="manageMessageArchived.php">Messages</a> </li>
 							<li><a href="manageAccountAdminAccountArchived.php">Account - Admin</a></li>
 							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>

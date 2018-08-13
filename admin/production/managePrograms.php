@@ -232,6 +232,7 @@ foreach($SubCategoryArray as $SubCategoryValue)
 	<link href="js/tagify/dist/tagify.css" rel="stylesheet">
 	<!--Noty-->
 	<link href="assets/lib/noty.css" rel="stylesheet">
+	
 </head>
 <?php
 require 'header.php';
