@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 14, 2018 at 05:05 AM
+-- Generation Time: Aug 14, 2018 at 05:57 PM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -1642,7 +1642,7 @@ ALTER TABLE `tbl_answerproblem`
 -- Constraints for table `tbl_answerproblemarchive`
 --
 ALTER TABLE `tbl_answerproblemarchive`
-  ADD CONSTRAINT `tbl_answerproblemarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccount` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_answerproblemarchive_ibfk_1` FOREIGN KEY (`studentNumber`) REFERENCES `tbl_studentaccountarchive` (`studentNumber`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_course`
@@ -1779,7 +1779,7 @@ ALTER TABLE `tbl_surveyofproblems`
 -- Constraints for table `tbl_surveyofproblemsarchive`
 --
 ALTER TABLE `tbl_surveyofproblemsarchive`
-  ADD CONSTRAINT `tbl_surveyofproblemsarchive_ibfk_1` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategory` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
+  ADD CONSTRAINT `tbl_surveyofproblemsarchive_ibfk_1` FOREIGN KEY (`subCategoryID`) REFERENCES `tbl_incidentsubcategoryarchive` (`subCategoryID`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --
 -- Constraints for table `tbl_surveyquestion`
