@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id']) AND isset($_GET['college'])) {
 $noteID = $_GET['id'];
 $college = $_GET['college'];
 
@@ -19,19 +20,23 @@ if ($resultmovingtoarchive = mysqli_query($connect, $querymovingtoarchive))
 {
   if ($resultdeleting = mysqli_query($connect, $querydeleting))
   {
-    header("Location:manageNotesStudent.php?id=$college");
+    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
 }
 else{
     $message = "Error Deleting";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    header("Location:manageNotesStudent.php?id=$college");
+    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
 }
 
 }
 else{
   $message = "Error Moving";
   echo "<script type='text/javascript'>alert('$message');</script>";
-  header("Location:manageNotesStudent.php?id=$college");
+  echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
+}
+else
+{
+	echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
 }
 
 //redirecting to the display page (index.php in our case)

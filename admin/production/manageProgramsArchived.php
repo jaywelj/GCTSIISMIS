@@ -48,8 +48,6 @@ if(isset($_POST['btnAdd']))
 			$message = "No Program Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
 
 	else
@@ -74,7 +72,6 @@ if(isset($_POST['btnAdd']))
 		{
 			$message = "Program Error";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 		}
 		foreach($varcharProgramSubCategoryArray as $InsertingProgramSubCategory) 
 		{

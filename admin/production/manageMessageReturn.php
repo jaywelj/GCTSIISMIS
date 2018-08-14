@@ -4,6 +4,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id'])) {
 $id = $_GET['id'];
 
 //deleting the row from table
@@ -32,6 +33,11 @@ else
 {
 	$message = "Query Error Moving";
 	echo "<script type='text/javascript'>alert('$message');</script>";
+	echo "<script type='text/javascript'>location.href = 'manageMessageArchived.php';</script>";
+}
+}
+else
+{
 	echo "<script type='text/javascript'>location.href = 'manageMessageArchived.php';</script>";
 }
 //Clearing Tour Package dependencies 

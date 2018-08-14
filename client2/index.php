@@ -1,5 +1,6 @@
 <?php
-if (isset($_POST['btnLogin'])) {
+if(isset($_POST['btnLogin'])) 
+{
 	include("connectionString.php");
 	$varcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['loginid']);
 	$varcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['loginpw']);
@@ -9,18 +10,22 @@ if (isset($_POST['btnLogin'])) {
 	echo "<script type='text/javascript'>alert('$varcharStudentAccountNumber');</script>";
 
 	$queryArray = mysqli_query($connect, $queryAccount);
-	if (mysqli_num_rows($queryArray) > 0) {
+	if (mysqli_num_rows($queryArray)>0) 
+	{
 		session_start();
 		$_SESSION['sessionStudentAccountNumber'] = $varcharStudentAccountNumber;
 		$_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
 		$message = "You will now be redirected to your account";
 		echo "<script type='text/javascript'>alert('$message');window.location.replace('index2.php');</script>";
-	} else {
+	}
+	else 
+	{
 		$message = "No account matches the given information";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 	}
 }
-if (isset($_POST['btnAdd'])) {
+if(isset($_POST['btnAdd'])) 
+{
                     //including the database connection file
 	include_once("connectionString.php");
 
@@ -45,7 +50,8 @@ if (isset($_POST['btnAdd'])) {
 
 	$querySelectingCollege = "SELECT * FROM tbl_course WHERE `courseCode` = '$VarcharStudentAccountCourse'";
 	$resSelectingCollege = mysqli_query($connect, $querySelectingCollege);
-	while ($res = mysqli_fetch_array($resSelectingCollege)) {
+	while($res = mysqli_fetch_array($resSelectingCollege))
+	{
 
 		$varcharCourseCode = $res['courseCode'];
 		$varcharCourseName = $res['courseName'];
@@ -58,7 +64,8 @@ if (isset($_POST['btnAdd'])) {
 	$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$VarcharStudentAccountNumber' ";
 	$result = mysqli_query($connect, $query);
 
-	if (mysqli_num_rows($result) == 1) {
+	if (mysqli_num_rows($result) == 1 )
+	{
 
 		$message = "Student Number Already Registered ";
 		echo "<script type='text/javascript'>alert('$message');</script>";
@@ -67,19 +74,25 @@ if (isset($_POST['btnAdd'])) {
 	}
 
 
-	if (empty($VarcharStudentAccountFirstName) || empty($VarcharStudentAccountNumber)) {
+	if(empty($VarcharStudentAccountFirstName) || empty($VarcharStudentAccountNumber)) 
+	{
 
-		if (empty($VarcharStudentAccountFirstName)) {
+		if(empty($VarcharStudentAccountFirstName))
+		{
 			$message = "Enter a First Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		if (empty($VarcharStudentAccountNumber)) {
+		if(empty($VarcharStudentAccountNumber)) 
+		{
 			$message = "Enter a valid Student Number";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
                         //link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-	} else {
+	}
+
+	else 
+	{ 
 
 		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', 'Not Interested', NULL)";
 
@@ -96,10 +109,12 @@ if (isset($_POST['btnAdd'])) {
 
 		$queryAddTestResults = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$VarcharStudentAccountNumber')";
 
-		if (mysqli_query($connect, $queryAddStudentAccount)) {
+		if(mysqli_query($connect, $queryAddStudentAccount))
+		{   
 			$message = "Successfully Added Student Account";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			if (mysqli_query($connect, $queryAddPersonalInfo)) {
+			if (mysqli_query($connect, $queryAddPersonalInfo)) 
+			{
 				$message = "Successfully Added In Personal Info";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				if (mysqli_query($connect, $queryAddEducationalBackground)) {
@@ -124,41 +139,53 @@ if (isset($_POST['btnAdd'])) {
 									echo "<script type='text/javascript'>alert('$message');</script>";
 									echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
 
-								} else {
+								}
+								else
+								{
 									$message = "Query Error #7";
 									echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
 									echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 								}
 
-							} else {
+							}
+							else
+							{
 								$message = "Query Error #6";
 								echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
 								echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 							}
 
-						} else {
+						}
+						else
+						{
 							$message = "Query Error #5";
 							echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
 							echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 						}
 
-					} else {
+					}
+					else
+					{
 						$message = "Query Error #4";
 						echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
 						echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 					}
 
-				} else {
+				}
+				else
+				{
 					$message = "Query Error #3";
 					echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
 					echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 				}
-			} else {
+			}
+			else
+			{
 				$message = "Query Error #2";
 				echo "<script type='text/javascript'>alert('$message');</script>";
                             //redirectig to the display page. In our case, it is index.php
@@ -166,14 +193,17 @@ if (isset($_POST['btnAdd'])) {
 			}
 
 
-		} else {
+		}
+		else
+		{
 			$message = "Query Error #1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 	}
 }
 
-if (isset($_POST['btnEmailSend'])) {
+if(isset($_POST['btnEmailSend'])) 
+{
 
 	include_once("connectionString.php");
 
@@ -182,17 +212,21 @@ if (isset($_POST['btnEmailSend'])) {
 	$VarcharSenderSubject = mysqli_real_escape_string($connect, $_POST['dropdownSenderSubject']);
 	$VarcharSenderMessage = mysqli_real_escape_string($connect, $_POST['txtbxSenderMessage']);
 
-	if (empty($VarcharSenderName) || empty($VarcharSenderEmail) || empty($VarcharSenderMessage)) {
+	if(empty($VarcharSenderName) || empty($VarcharSenderEmail) || empty($VarcharSenderMessage)) 
+	{
 
-		if (empty($VarcharSenderName)) {
+		if(empty($VarcharSenderName))
+		{
 			$message = "Enter Your Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		if (empty($VarcharSenderEmail)) {
+		if(empty($VarcharSenderEmail)) 
+		{
 			$message = "Enter Your Email";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		if (empty($VarcharSenderMessage)) {
+		if(empty($VarcharSenderMessage)) 
+		{
 			$message = "Message field empty";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
@@ -200,10 +234,13 @@ if (isset($_POST['btnEmailSend'])) {
 	}
 	$queryInsertingMessage = "INSERT INTO `tbl_message` (`messageID`, `senderName`, `senderEmail`, `subCategoryID`, `messageContent`, `messageStatus`, `messageDateSent`,`studentNumber`) VALUES (NULL, '$VarcharSenderName', '$VarcharSenderEmail', '$VarcharSenderSubject', '$VarcharSenderMessage', 'Unread', CURRENT_TIMESTAMP,NULL)";
 
-	if (mysqli_query($connect, $queryInsertingMessage)) {
+	if(mysqli_query($connect, $queryInsertingMessage))
+	{   
 		$message = "Successfully Added Message";
 		echo "<script type='text/javascript'>alert('$message');</script>";
-	} else {
+	}
+	else
+	{
 		$message = "Message Not Sent Due To Wrong Information";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 
@@ -512,32 +549,37 @@ if (isset($_POST['btnEmailSend'])) {
 					<hr class="bottom-line">
 				</div>
 				<?php
-			include_once("connectionString.php");
-			$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
-			$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
-			while ($row = mysqli_fetch_array($resultGettingAdmin)) {
-				$adminFirstName = $row['adminFirstName'];
-				$adminMiddleName = $row['adminMiddleName'];
-				$adminLastName = $row['adminLastName'];
-				$adminEmail = $row['adminEmail'];
-				$adminGender = $row['adminGender'];
+				include_once("connectionString.php");
+				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
+				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
+				while ($row = mysqli_fetch_array($resultGettingAdmin)) 
+				{
+					$adminFirstName = $row['adminFirstName'];
+					$adminMiddleName = $row['adminMiddleName'];
+					$adminLastName = $row['adminLastName'];
+					$adminEmail = $row['adminEmail'];
+					$adminGender = $row['adminGender'];
 
-				if ($adminGender == "M") {
-					$adminGender = "Male";
-				} else if ($adminGender == "F") {
-					$adminGender = "Female";
-				}
+					if($adminGender == "M")
+					{
+						$adminGender = "Male";
+					}
+					else if($adminGender == "F")
+					{
+						$adminGender = "Female";
+					}
 
-				$adminContactNo = $row['adminContactNo'];
-				$adminAddress = $row['adminAddress'];
+					$adminContactNo = $row['adminContactNo'];
+					$adminAddress = $row['adminAddress'];
 
 
-				?>
+					?>
 					<?php
 
-				$VarcharStudentProfileImage = $row['adminImage'];
-				if (empty($VarcharStudentProfileImage)) {
-					echo ' 
+					$VarcharStudentProfileImage = $row['adminImage'];
+					if(empty($VarcharStudentProfileImage))
+					{
+						echo ' 
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
@@ -546,33 +588,34 @@ if (isset($_POST['btnEmailSend'])) {
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
-						<p class="pm-staff-profile-name">' . $adminFirstName . ' ' . $adminMiddleName . ' ' . $adminLastName . '</p>
-						<p class="pm-staff-profile-title">' . $adminEmail . '</p>
-						<p class="pm-staff-profile-bio">' . $adminGender . ' ' . $adminContactNo . ' ' . $adminAddress . '</p>
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
 						</div>
 						</div>
 						</div>';
-				} else {
-					echo ' 
+					}
+					else{
+						echo ' 
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
 						<div class="pm-staff-profile-image">
-						<img src="data:image/jpeg;base64,' . base64_encode($row['adminImage']) . '" alt="" class="img-thumbnail img-circle" />
+						<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" alt="" class="img-thumbnail img-circle" />
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
-						<p class="pm-staff-profile-name">' . $adminFirstName . ' ' . $adminMiddleName . ' ' . $adminLastName . '</p>
-						<p class="pm-staff-profile-title">' . $adminEmail . '</p>
-						<p class="pm-staff-profile-bio">' . $adminGender . ' ' . $adminContactNo . ' ' . $adminAddress . '</p>
+						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
+						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
+						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
 						</div>
 						</div>
 						</div>';
+					}
+
+
 				}
-
-
-			}
-			?>
+				?>
 <!-- 					<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 							<div class="pm-staff-profile-image-wrapper text-center">
@@ -631,48 +674,51 @@ if (isset($_POST['btnEmailSend'])) {
 			<div class="container">
 				<div class="row">
 					<?php 
-				include("connectionString.php");
-				$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
-				$resultGettingProgram = mysqli_query($connect, $queryGettingProgram);
-				while ($row = mysqli_fetch_array($resultGettingProgram)) {
-					$programID = $row['programID'];
-					$programName = $row['programName'];
-					$programDescription = $row['programDescription'];
-					$programImage = $row['programImage'];
-					?>
+					include("connectionString.php");  
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
+					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
+					while($row = mysqli_fetch_array($resultGettingProgram))  
+					{  
+						$programID = $row['programID'];
+						$programName = $row['programName'];
+						$programDescription = $row['programDescription'];
+						$programImage = $row['programImage'];
+						?>
 						<?php
-					if (empty($programImage)) {
-
-						echo '
+						if (empty($programImage)) {
+							
+							echo '
 							<div class="col-md-4 col-sm-6 padleft-right">
 							<figure class="imghvr-fold-up">
 							<img src="img/noimgavailable.jpg" class="img-responsive">
 							<figcaption>
-							<h3>' . $programName . '</h3>
-							<p>' . $programDescription . '</p>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
 							</figcaption>
 							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
 							</figure>
 							</div>';
-					} else {
-
-						echo '
+						}
+						else
+						{
+							
+							echo '
 							<div class="col-md-4 col-sm-6 padleft-right">
 							<figure class="imghvr-fold-up">
-							<img src="data:image/jpeg;base64,' . base64_encode($row['programImage']) . '" class="img-responsive">
+							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
 							<figcaption>
-							<h3>' . $programName . '</h3>
-							<p>' . $programDescription . '</p>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
 							</figcaption>
 							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
 							</figure>
 							</div>';
 
+						}
+						?>
+						<?php 
 					}
 					?>
-						<?php 
-				}
-				?>
 					<!-- <div class="col-md-4 col-sm-6 padleft-right">
 						<figure class="imghvr-fold-up">
 							<img src="img/course02.jpg" class="img-responsive">
@@ -751,15 +797,15 @@ if (isset($_POST['btnEmailSend'])) {
 						<div class="form-group"><!-- 
 							<input type="text" class="form-control" name="subject" id="subject" placeholder="Subject" data-rule="minlen:4" data-msg="Please enter at least 8 chars of subject" /> -->
 							<?php 
-						include("connectionString.php");
-						$queryIncidentSubCategory = "SELECT * FROM tbl_incidentsubcategory";
-						$resultIncidentSubCategory = mysqli_query($connect, $queryIncidentSubCategory);
-						?> 
+							include("connectionString.php");
+							$queryIncidentSubCategory = "SELECT * FROM tbl_incidentsubcategory";
+							$resultIncidentSubCategory = mysqli_query($connect, $queryIncidentSubCategory);
+							?> 
 							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control">
 								<option value="NULL" selected disabled="">Subject</option>
-								<?php while ($row = mysqli_fetch_array($resultIncidentSubCategory)) :; ?>
-									<option value="<?php echo $row['subCategoryID']; ?>"><?php echo $row['subCategoryName']; ?></option>
-								<?php endwhile; ?>
+								<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
+									<option value="<?php echo $row['subCategoryID'];?>"><?php echo $row['subCategoryName'];?></option>
+								<?php endwhile;?>
 							</select>
 							<div class="validation"></div>
 						</div>
@@ -785,8 +831,8 @@ if (isset($_POST['btnEmailSend'])) {
 	<!--/ Contact-->
 	<!-- Login Modal -->
 	<?php
-include("login.php");
-?>
+	include("login.php");
+	?>
 	<!-- / Login Modal -->
 	
 	<!--Footer-->

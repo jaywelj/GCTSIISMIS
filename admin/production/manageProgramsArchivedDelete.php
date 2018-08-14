@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+if (isset($_GET['id']) AND isset($_GET['id2'])) {
 $id = $_GET['id'];
 $id2 = $_GET['id2'];
 
@@ -37,6 +38,11 @@ else
 {
 	$message = "Query Error Deleting Recommended Program";
 	echo "<script type='text/javascript'>alert('$message');</script>";
+	echo "<script type='text/javascript'>location.href = 'manageProgramsArchived.php';</script>";
+}
+}
+else
+{
 	echo "<script type='text/javascript'>location.href = 'manageProgramsArchived.php';</script>";
 }
 
