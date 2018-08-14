@@ -103,7 +103,16 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharEditProgramSubCategory = $_POST['txtareaEditProgramSubCategory'];
 
-	$varcharEditProgramImage =  addslashes(file_get_contents($_FILES["fileEditProgramImage"]["tmp_name"]));
+	if($_FILES["fileProgramImage"]==NULL)
+	{
+		
+	}
+	else
+	{
+		$varcharEditProgramImage =  addslashes(file_get_contents($_FILES["fileEditProgramImage"]["tmp_name"]));
+	}
+
+	
 
 	$varcharEditProgramSubCategoryReplaced = str_replace('"', "'", $varcharEditProgramSubCategory);
 
@@ -375,7 +384,7 @@ require 'header.php';
 			}
 			$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
 			$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
-			if(mysqli_fetch_array($resultGettingSuggestions) == 0) {
+			if(mysqli_num_rows($resultGettingSuggestions) == 0) {
 				$message = "All Topics Has A Program!";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
 			}
@@ -491,7 +500,7 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<?php
-								if (empty($ProgramWithoutTopicArray)) 
+								if(mysqli_num_rows($resultGettingSuggestions) == 0) {
 								{
 									$message = "All Topics Has A Program!";
 									echo '
