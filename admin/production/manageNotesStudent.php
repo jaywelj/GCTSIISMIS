@@ -241,17 +241,34 @@ require 'header.php';
 					<div class="clearfix"></div>
 
 					<div class="row">
-						<?php
+						<?php	
 						$college = $_GET['id']; 
+						$course = $_GET['course'];
+						$query = "SELECT * FROM tbl_college WHERE collegeCode = '$college'";
+						$queryArray = mysqli_query($connect,$query);
+						while ($row = mysqli_fetch_array($queryArray)) {
+							$collegeName = $row['collegeName'];
+						}	
 						?>
-						
-						<div class="col-md-12 col-sm-12 col-xs-12">
+						<div class="col-md-12 col-sm-12 col-xs-12 ">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Significant Notes <small><?php echo $college; ?></small></h2>
-									<ul class="nav navbar-right">
-										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD NEW NOTE</button>
-									</ul>
+									<h2><?php echo"$collegeName"; ?><small><?php echo"$college"; ?></small></h2>
+									<div class="form-group col-md-5 col-sm-5 col-xs-5 pull-right">
+										<form method="post">
+											<select class="form-control" id="selectCourse" name="selectCourse" onchange="course()">
+												<option value="all">------------- All Course ----------------</option>
+												<?php 
+												$query = "SELECT * FROM tbl_course WHERE collegeCode = '$college'";
+												$queryArray = mysqli_query($connect, $query);
+												while($row = mysqli_fetch_array($queryArray))
+												{
+													echo "<option name=".$row['courseCode']." id=".$row['courseCode']." value=".$row['courseCode']." >".$row['courseCode']." | ".$row['courseName']."</option>";
+												}
+												?>
+											</select>
+										</form>
+									</div>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -276,62 +293,69 @@ require 'header.php';
 											$queryStudent = "SELECT * FROM tbl_significantnotes INNER JOIN tbl_personalinfo ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE `collegeCode` = '$college'";
 											$resultStudent = mysqli_query($connect, $queryStudent); 
 											while($row = mysqli_fetch_array($resultStudent))  
-											{  
-												?>  
-												<tr>
-													<td width="14%" >
-														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['noteID'];?>><i class="fa fa-list"></i></button>
+												{
+													?>  
+													<tr>
+														<td width="14%" >
+															<center>
+																<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['noteID'];?>><i class="fa fa-list"></i></button>
 
-															<button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['noteID'];?>> <i class="fa fa-edit"></i></button>
+																<button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['noteID'];?>> <i class="fa fa-edit"></i></button>
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id=<?php echo $row['noteID']; ?>&college=<?php echo $college; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
-														</center>
-													</td>
-													<td> <?php echo $row['noteID'];?> </td>
-													<td> <?php echo $row['studentNumber'];?> &nbsp; &nbsp; <?php echo $row['firstName']; ?> <?php echo $row['lastName']; ?></td>
-													<td> <?php echo $row['noteDate'];?> </td>
-													
-													<?php 
-													
-													$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = ".$row['categoryID']." ";
-													$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
-													while($res = mysqli_fetch_array($resultGettingCategoryName))  
-													{ 
+																<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id=<?php echo $row['noteID']; ?>&college=<?php echo $college; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+															</center>
+														</td>
+														<td> 
+															<?php echo $row['noteID'];?> 
+														</td>
+														<td> 
+															<?php echo $row['studentNumber'];?> &nbsp; &nbsp; <?php echo $row['firstName']; ?> <?php echo $row['lastName']; ?>
 
+														</td>
+														<td> 
+															<?php echo $row['noteDate'];?> 
+														</td>
 
-														?>
-														<td> <?php echo $res['categoryName'];?> </td>
 														<?php 
-													}
-													?>
-													<?php 
-													
-													$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = ".$row['adminId']." ";
-													$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
-													while($res2 = mysqli_fetch_array($resultGettingAdminID))  
-													{ 
+
+														$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = ".$row['categoryID']." ";
+														$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
+														while($res = mysqli_fetch_array($resultGettingCategoryName))  
+														{ 
 
 
+															?>
+															<td> <?php echo $res['categoryName'];?> </td>
+															<?php 
+														}
 														?>
-														<td> <?php echo $res2['adminFirstName']; ?> <?php echo $res2['adminLastName'];  ?></td>
+														<?php 
 
-														<?php
+														$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = ".$row['adminId']." ";
+														$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
+														while($res2 = mysqli_fetch_array($resultGettingAdminID))  
+														{ 
+
+															?>
+															<td> <?php echo $res2['adminFirstName']; ?> <?php echo $res2['adminLastName'];  ?></td>
+
+															<?php
+														}
 													}
-												}
-												?> 
-											</tbody>
-											<tfoot>
-												<tr>
-													<th></th>
-													<th>Note ID</th>
-													<th>Student</th>
-													<th>Date</th>
-													<th>Type Of Visitation</th>
-													<th>Added by</th>
-												</tr>
-											</tfoot>
-										</table>
+													?> 
+												</tbody>
+												<tfoot>
+													<tr>
+														<th></th>
+														<th>Note ID</th>
+														<th>Student</th>
+														<th>Date</th>
+														<th>Type Of Visitation</th>
+														<th>Added by</th>
+													</tr>
+												</tfoot>
+											</table>
+										</div>
 									</div>
 								</div>
 							</div>
@@ -622,7 +646,17 @@ require 'header.php';
 
 				})
 			})
-
-		</script>
-	</body>
-	</html>
+			</script>
+			<script type="text/javascript">
+				function course(){
+					var url = window.location.href;
+					var url = new URL(url);
+					var college = url.searchParams.get("id");
+					var selected = document.getElementById('selectCourse').value;
+					window.location.replace('manageNotesStudent.php?id='+college+'&course='+selected);
+				}
+				var temp="<?php echo $course;?>"; 
+				$("#selectCourse").val(temp);
+			</script>
+		</body>
+		</html>

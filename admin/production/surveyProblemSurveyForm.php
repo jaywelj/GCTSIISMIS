@@ -68,8 +68,8 @@ while($resu2 = mysqli_fetch_array($query))
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-
-	<title>Gentelella Alela! | </title>
+	<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
+	<title>Problem Survey Form | OCPS </title>
 
 	<!-- Bootstrap -->
 	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -78,8 +78,12 @@ while($resu2 = mysqli_fetch_array($query))
 	<!-- NProgress -->
 	<link href="../vendors/nprogress/nprogress.css" rel="stylesheet">
 
+	<!--Noty-->
+	<link href="assets/lib/noty.css" rel="stylesheet">
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
+
 	<style type="text/css">
 	th {
 		padding-top: 12px;
@@ -138,7 +142,7 @@ require 'header.php';
 								</div>
 								<div class="x_content">
 									<div class="x_panel">
-										<form method="post">
+										<form method="post" onsubmit="return confirm('Submit and confirm this survey form?')">
 											<div class="form-horizontal form-label-left">
 												<table class=" table table-striped">
 													<thead>
@@ -176,11 +180,11 @@ require 'header.php';
 															</label>
 															</td>
 															<td>
-															<input id="problemInitial[]" name="problemInitial[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="text">
+															<input id="problemInitial[]" name="problemInitial[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="text" required>
 															<input id="problemInitial2[]" name="problemInitial2[]" value="'.$resu['problemName'].'" class="date-picker form-control col-md-7 col-xs-12" type="hidden" >
 															</td>
 															<td>
-															<select class="form-control" name="selectSubCategoryName[]" id="selectSubCategoryName'.$i.'">
+															<select class="form-control" name="selectSubCategoryName[]" id="selectSubCategoryName'.$i.'" required>
 															';
 															$query = "SELECT * FROM tbl_incidentsubcategory";
 															$query = mysqli_query($connect,$query);
@@ -240,6 +244,40 @@ require 'header.php';
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
+			<?php
+
+			$queryGettingSuggestions = "SELECT *,tbl_incidentsubcategory.subCategoryName AS subCategoryNameWithoutProgram FROM tbl_incidentsubcategory LEFT JOIN tbl_surveyofproblems ON tbl_surveyofproblems.subCategoryID = tbl_incidentsubcategory.subCategoryID WHERE `tbl_surveyofproblems`.`problemName` IS NULL";
+			if($resultGettingSuggestions = mysqli_query($connect,$queryGettingSuggestions))
+			{
+				$ProgramWithoutTopicString = "";
+				$ProgramWithoutTopicArray[] = "";
+				while ($row = mysqli_fetch_array($resultGettingSuggestions))
+				{
+					$ProgramWithoutTopicArray[] = $row['subCategoryNameWithoutProgram'];
+				}
+				// $String = $ProgramWithoutTopicArray[1];
+				// print_r($ProgramWithoutTopicArray);
+				$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
+				$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
+				// // echo $ProgramWithoutTopicValue;
+				// echo "<script type='text/javascript'>alert('$ProgramWithoutTopicValue');</script>";
+				if (mysqli_num_rows($resultGettingSuggestions)<=0)
+				{
+					$message = "All Topics Has A Question!";
+					echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
+				}
+				else{
+					$message = "There is no problem questions assigned to ".$ProgramWithoutTopicValue."";
+					echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='false';</script>";  
+				}
+			}
+			else
+			{
+				echo "<script>alert('Query Error');</script>";
+			}
+
+			
+			?>
 		</div>
 	</div>
 
@@ -254,6 +292,13 @@ require 'header.php';
 
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
+
+	<!-- Noty -->
+	<script src="assets/lib/noty.js" type="text/javascript"></script>
+	<!-- mo.js -->
+	<script src="assets/lib/mo.min.js" type="text/javascript"></script>
+	<!-- custom noty -->
+	<script src="assets/lib/custom.js" type="text/javascript"></script>
 	<script>
 		var room = 0;
 		function education_fields() {
@@ -263,7 +308,7 @@ require 'header.php';
 			var divtest = document.createElement("tr");
 			var rdiv = 'removeclass'+room;
 			divtest.setAttribute("class", rdiv);
-			divtest.innerHTML ='<tr><td><label class="control-label">Problem # '+formCount+':</label></td><td><input id="problemNew[]" name="problemNew[]" value="" class="date-picker form-control col-md-7 col-xs-12" type="text"></td><td><select class="form-control" name="selectSubCategoryNameNew[]">'
+			divtest.innerHTML ='<tr><td><label class="control-label">Problem # '+formCount+':</label></td><td><input id="problemNew[]" name="problemNew[]" value="" class="date-picker form-control col-md-7 col-xs-12" type="text" required></td><td><select class="form-control" name="selectSubCategoryNameNew[]" required>'
 			<?php foreach ($optionIdArray as $key => $value) {
 				?>+'<option value=<?php echo $value; ?>><?php echo $optionNameArray[$key]; ?></option>'<?php
 			}?>
@@ -274,6 +319,22 @@ require 'header.php';
 		function remove_education_fields(rid) {
 			$('.removeclass'+rid).remove();
 			formCount--;
+		}
+		if(topicFlag == "true"){
+			var n = new Noty({
+				text: notyMessageTopicStatus,
+				type: 'success',
+				timeout: '10000'
+			});
+			n.show();
+		}
+		else if(topicFlag == "false"){
+			var n = new Noty({
+				text: notyMessageTopicStatus,
+				type: 'warning',
+				timeout: '10000'
+			});
+			n.show();
 		}
 	</script>
 	<?php
