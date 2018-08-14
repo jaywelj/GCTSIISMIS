@@ -364,6 +364,7 @@ require 'header.php';
 			<?php
 
 			$queryGettingSuggestions = "SELECT *,tbl_incidentsubcategory.subCategoryName AS subCategoryNameWithoutProgram FROM tbl_incidentsubcategory LEFT JOIN tbl_programcategory ON tbl_programcategory.subCategoryName = tbl_incidentsubcategory.subCategoryName WHERE `tbl_programcategory`.programName IS NULL";
+			
 			$resultGettingSuggestions = mysqli_query($connect,$queryGettingSuggestions);
 
 			$ProgramWithoutTopicString = "";
@@ -374,7 +375,7 @@ require 'header.php';
 			}
 			$ProgramWithoutTopicValue = implode(",",$ProgramWithoutTopicArray);
 			$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
-			if (empty($ProgramWithoutTopicArray)) {
+			if(mysqli_fetch_array($resultGettingSuggestions) == 0) {
 				$message = "All Topics Has A Program!";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
 			}
