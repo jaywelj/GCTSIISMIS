@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Aug 13, 2018 at 01:49 PM
+-- Generation Time: Aug 14, 2018 at 05:05 AM
 -- Server version: 10.1.30-MariaDB
 -- PHP Version: 7.2.1
 
@@ -1248,6 +1248,7 @@ ALTER TABLE `tbl_answerproblem`
 -- Indexes for table `tbl_answerproblemarchive`
 --
 ALTER TABLE `tbl_answerproblemarchive`
+  ADD PRIMARY KEY (`answerID`),
   ADD KEY `studentNumber` (`studentNumber`);
 
 --
