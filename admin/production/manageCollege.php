@@ -25,8 +25,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Enter a Legitimate College Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-												//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+
 	} 
 	else 
 	{ 
@@ -87,16 +86,12 @@ if(isset($_POST['btnUpdate']))
 		$message = "Enter a College Code";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
 	else if(empty($varcharCollegeName))
 	{
 		$message = "Enter a College Name";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		
-		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
 	else 
 	{ 

@@ -3,6 +3,7 @@
 include("connectionString.php");
 
 //getting id of the data from url
+ if(isset($_GET['id'])) {
 $adminUserName = $_GET['id'];
 
 //deleting the row from table
@@ -18,19 +19,24 @@ if ($resultmovingtoarchive = mysqli_query($connect, $querymovingtoarchive))
 {
   if ($resultdeleting = mysqli_query($connect, $querydeleting))
   {
-    header("Location:manageAccountStaffAccountArchived.php");
+    echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
 }
 else{
     $message = "Error Deleting";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    header("Location:manageAccountStaffAccountArchived.php");
+    echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
 }
 
 }
 else{
   $message = "Error Moving";
   echo "<script type='text/javascript'>alert('$message');</script>";
-  header("Location:manageAccountStaffAccountArchived.php");
+  echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
+}
+}
+else
+{
+	echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
 }
 
 //redirecting to the display page (index.php in our case)

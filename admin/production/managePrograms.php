@@ -173,7 +173,6 @@ if(isset($_POST['btnUpdate']))
 		{
 			$message = "Program Error";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 		}
 
 

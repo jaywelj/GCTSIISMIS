@@ -126,7 +126,7 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<a title="Revive" class="btn btn-info" href="manageMessageReturn.php?id=<?php echo $row['messageID'] ?> " onClick="return confirm('Are you sure you want to return?')"><span class="fa fa-share-square"></span></a>
+															<a title="Revive" class="btn btn-info" href="manageMessageReturn.php?id=<?php echo $row['messageID'] ?> " onClick="return confirm('Are you sure you want to restore?')"><span class="fa fa-share-square"></span></a>
 
 															<!-- <button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['messageID'];?>> <i class="fa fa-edit"></i></button> -->
 
