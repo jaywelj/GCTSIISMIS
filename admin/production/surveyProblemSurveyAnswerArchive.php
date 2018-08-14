@@ -1,5 +1,29 @@
 <?php
-
+include("connectionString.php");  
+if(isset($_POST['btnSubmit']))
+{
+	$query = "INSERT INTO tbl_answerproblem SELECT * FROM tbl_answerproblemarchive";
+	$query2 = "DELETE FROM tbl_answerproblemarchive";
+	if(mysqli_query($connect,$query))
+	{
+		echo "<script type='text/javascript'>alert('Moving to Archive Successfull');</script>";
+		if(mysqli_query($connect,$query2))
+		{
+			echo "<script type='text/javascript'>alert('Deleted');</script>";
+			echo "<script type='text/javascript'>location.href = 'surveyProblemSurveyAnswerArchive.php';</script>";
+		}
+		else
+		{
+			echo "<script type='text/javascript'>alert('Query Error2');</script>";
+			echo "<script type='text/javascript'>location.href = 'surveyProblemSurveyAnswerArchive	.php';</script>";
+		}	
+	}
+	else
+	{
+		echo "<script type='text/javascript'>alert('Query Error');</script>";
+		echo "<script type='text/javascript'>location.href = 'surveyProblemSurveyAnswerArchive.php';</script>";
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -11,7 +35,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 
 	<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
-	<title>Survey Question Archive | OCPS</title>
+	<title>Survey Answers Archive | OCPS</title>
 
 	<!-- Bootstrap -->
 	<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -53,7 +77,7 @@ require 'header.php';
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>Manage Problem Questions Archive<small></small></h3>
+							<h3>Manage Answers Archive<small></small></h3>
 						</div>
 
 						<div class="title_right">
@@ -75,27 +99,30 @@ require 'header.php';
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>Questions List <small></small></h2>
+									<h2>List of students <small></small></h2>
 									<ul class="nav navbar-right">
-										<!-- <button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD COURSE</button> -->
+										<ul class="nav navbar-right">
+											<form method="post">
+												<button name="btnSubmit" title="Restore All" class="btn btn-default btn-info" type="submit" onclick="return confirm('Are you sure you want to restore all answer records from archive?')">Restore All</button>
+											</form>
+										</ul>
 									</ul>
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
 									<table id="datatable-buttons" class="table table-striped table-bordered">
-
 										<thead>
 											<tr>
 												<th></th>
-												<th>Problem ID</th>
-												<th>Problem</th>
-												<th>SubCategory</th>
+												<th>Student Number</th>
+												<th>Name</th>
+												<th>Answer Date</th>
 											</tr>
 										</thead>
 										<tbody>
 											<?php  
-											include("connectionString.php");  
-											$query = "SELECT * FROM tbl_surveyofproblemsarchive";
+											
+											$query = "SELECT DISTINCT tbl_answerproblemarchive.studentNumber,firstName,lastName,middleName,answerDate FROM tbl_answerproblemarchive INNER JOIN tbl_personalinfo on tbl_answerproblemarchive.studentNumber = tbl_personalinfo.studentNumber";
 											$result = mysqli_query($connect, $query); 
 											while($row = mysqli_fetch_array($result))  
 											{  
@@ -103,15 +130,15 @@ require 'header.php';
 												<tr>
 													<td width="9%" >
 														<center>
-															<a title="Restore" class="btn btn-info" href="surveyProblemSurveyFormReturn.php?id=<?php echo$row['problemID']; ?>" onClick="return confirm('Are you sure you want to restore this problem question? Answers associated with the question will also be restored.')"><span class="fa fa-share-square"></span></a>	
+															<a title="Restore" class="btn btn-info" href="surveyProblemSurveyAnswerReturn.php?id=<?php echo$row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to restore this student's answers?')"><span class="fa fa-share-square"></span></a>	
 
-															<a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyFormArchiveDelete.php?id=<?php echo $row['problemID'];?>" onClick="return confirm('Permanently delete this problem question. Answers associated with the question will also be permanently deleted. Do you still wish to proceed?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
+															<a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyAnswerDelete.php?id=<?php echo $row['studentNumber'];?>" onClick="return confirm('Delete all survey answers associated with this student?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
 														</center>
 														
 													</td>
-													<td> <?php echo $row['problemID'];?> </td>
-													<td> <?php echo $row['problemName'];?> </td>
-													<td> <?php echo $row['subCategoryID'];?> </td>
+													<td> <?php echo $row['studentNumber'];?> </td>
+													<td> <?php echo $row['firstName']." ".$row['middleName']." ".$row['lastName'];?> </td>
+													<td> <?php echo $row['answerDate'];?> </td>
 												</tr>  
 												<?php
 											}
@@ -119,10 +146,9 @@ require 'header.php';
 										</tbody>
 										<tfoot>
 											<tr>
-												<th></th>
-												<th>Problem ID</th>
-												<th>Problem</th>
-												<th>SubCategory</th>
+												<th>Student Number</th>
+												<th>Name</th>
+												<th>Answer Date</th>
 											</tr>
 										</tfoot>
 									</table>
