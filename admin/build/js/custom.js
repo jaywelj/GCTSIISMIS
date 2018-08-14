@@ -1807,9 +1807,10 @@ function init_JQVmap(){
 				// initialize the validator function
 				validator.message.date = 'not a real date';
 
+
     			// validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
     			$('form')
-    			.on('blur', 'input[required], input.optional, select.required', validator.checkField)
+    			.on('blur', 'input[required], input.optional, select.required, input[type = "date"], input[type = "number"]', validator.checkField)
     			.on('change', 'select.required', validator.checkField)
     			.on('keypress', 'input[required][pattern]', validator.keypress);
 
