@@ -154,10 +154,7 @@ if(isset($_POST['btnUpdate']))
 			$queryDeleting ="DELETE FROM `tbl_programcategory` WHERE `tbl_programcategory`.`programName` = '$varcharEditProgramName'";
 			if(mysqli_query($connect, $queryInsertingProgram))
 			{
-				foreach($varcharEditProgramSubCategoryArray as $InsertingEditProgramSubCategory) 
-				{
-
-					$queryEditInsertingProgramSubCategory = "INSERT INTO `tbl_programcategory` (`programCategoryId`, `programName`, `subCategoryName`) VALUES (NULL, '$varcharEditProgramName', '$InsertingEditProgramSubCategory')";
+				
 
 					if (mysqli_query($connect, $queryEditInsertingProgramSubCategory)) {
 						$message = "Successfully Added In Program Sub Category";
@@ -174,7 +171,7 @@ if(isset($_POST['btnUpdate']))
 						echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
 													//redirectig to the display page. In our case, it is index.php
 					}
-				}
+				
 
 			}
 		}
@@ -500,7 +497,7 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<?php
-								if(mysqli_num_rows($resultGettingSuggestions) == 0) {
+								if(mysqli_num_rows($resultGettingSuggestions) == 0) 
 								{
 									$message = "All Topics Has A Program!";
 									echo '

@@ -1132,6 +1132,8 @@ require 'header.php';
 																<option >College undergraduate</option>
 																<option >Vocational Graduate</option>
 																<option >Masteral Unit</option>
+																<option >Masteral Degree</option>
+																<option >Doctoral Unit</option>
 																<option >Doctoral Degree</option>
 															</select>
 														</div>
@@ -1204,6 +1206,8 @@ require 'header.php';
 																<option >College undergraduate</option>
 																<option >Vocational Graduate</option>
 																<option >Masteral Unit</option>
+																<option >Masteral Degree</option>
+																<option >Doctoral Unit</option>
 																<option >Doctoral Degree</option>
 															</select>
 														</div>
@@ -1289,6 +1293,8 @@ require 'header.php';
 																<option >College undergraduate</option>
 																<option >Vocational Graduate</option>
 																<option >Masteral Unit</option>
+																<option >Masteral Degree</option>
+																<option >Doctoral Unit</option>
 																<option >Doctoral Degree</option>
 															</select>
 														</div>
