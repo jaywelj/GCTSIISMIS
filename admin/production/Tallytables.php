@@ -99,7 +99,7 @@ require 'header.php';
 									<div class="clearfix"></div>
 								</div>								<div class="x_content">
 									<p class="text-muted font-13 m-b-30">
-										Individual Inventory Tally of Records for the Student of <b> College of Computer and Information Sciences (CCIS) </b>
+										<b>Student Individual Inventory Tally of Records</b>
 									</p>
 									<table id="datatable-buttons" class="table table-striped table-bordered">
 										<?php  
@@ -174,7 +174,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>Total</th>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentSexTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentSexTotal))  
@@ -351,7 +351,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>Total</th>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentAgeTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentAgeTotal))  
@@ -372,8 +372,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Civil Status</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCivilStatus = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCivilStatus))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCivilStatus = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCivilStatus = mysqli_query($connect,$queryCountingSpacesForCivilStatus);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCivilStatus)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Single</td>
@@ -476,7 +489,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>Total</th>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentCivilStatusTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentCivilStatusTotal))  
@@ -497,8 +510,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>City Address</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress = "SELECT count(*) AS NumberOfAllCityAddress FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress = mysqli_query($connect,$queryCountingSpacesForCityAddress);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Caloocan</td>
@@ -521,7 +547,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Las Pinas</td>
+												<td>Las Piñas</td>
 												<?php 
 												$resultStudentCityAddressLasPinas = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentCityAddressLasPinas))  
@@ -681,7 +707,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Paranaque</td>
+												<td>Parañaque</td>
 												<?php 
 												$resultStudentCityAddressParanaque = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentCityAddressParanaque))  
@@ -850,7 +876,7 @@ require 'header.php';
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
 
-													$queryCountingCityAddressNA = "SELECT cityName, count(*) AS NumberOfCityAddressNA FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND cityName != 'Metro Manila~Valenzuela' AND cityName != 'Metro Manila~Manila' AND cityName != 'Metro Manila~Navotas' AND cityName != 'Metro Manila~Taguig' AND cityName != 'Metro Manila~San Juan' AND cityName != 'Metro Manila~Quezon City' AND cityName != 'Metro Manila~Pateros' AND cityName != 'Metro Manila~Pasig' AND cityName != 'Metro Manila~Pasay' AND cityName != 'Metro Manila~Paranaque' AND cityName != 'Metro Manila~Paranaque' AND cityName != 'Metro Manila~Muntinlupa' AND cityName != 'Metro Manila~Marikina' AND cityName != 'Metro Manila~Caloocan' AND cityName != 'Metro Manila~Malabon' AND cityName != 'Metro Manila~Las Pinas' AND cityName != 'Metro Manila~Mandaluyong' AND cityName != 'Metro Manila~Caloocan' ";
+													$queryCountingCityAddressNA = "SELECT cityName, courseCode, count(*) AS NumberOfCityAddressNA FROM tbl_personalinfo WHERE courseCode='$currentCourse' AND year='$currentYear' AND section='$currentSection' AND cityName != 'Metro Manila~Valenzuela' AND cityName != 'Metro Manila~Manila' AND cityName != 'Metro Manila~Navotas' AND cityName != 'Metro Manila~Taguig' AND cityName != 'Metro Manila~San Juan' AND cityName != 'Metro Manila~Quezon City' AND cityName != 'Metro Manila~Pateros' AND cityName != 'Metro Manila~Pasig' AND cityName != 'Metro Manila~Pasay' AND cityName != 'Metro Manila~Parañaque' AND cityName != 'Metro Manila~Muntinlupa' AND cityName != 'Metro Manila~Marikina' AND cityName != 'Metro Manila~Makati'AND cityName != 'Metro Manila~Mandaluyong' AND cityName != 'Metro Manila~Malabon' AND cityName != 'Metro Manila~Las Piñas' AND cityName != 'Metro Manila~Mandaluyong' AND cityName != 'Metro Manila~Caloocan' ";
 
 													$resultCountingCityAddressNA = mysqli_query($connect,$queryCountingCityAddressNA);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
@@ -861,7 +887,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>Total</th>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentCityAddressTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentCityAddressTotal))  
@@ -882,13 +908,39 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Provincial Address</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForProvincialAddress = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForProvincialAddress))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForProvincialAddress = "SELECT provinceProvincial,count(*) AS NumberOfAllProvincialAddress FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForProvincialAddress = mysqli_query($connect,$queryCountingSpacesForProvincialAddress);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForProvincialAddress)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Region I. Ilocos Region</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForProvincialAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForProvincialAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForProvincialAddress2 = "SELECT provinceProvincial,count(*) AS NumberOfAllProvincialAddress FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForProvincialAddress2 = mysqli_query($connect,$queryCountingSpacesForProvincialAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForProvincialAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Ilocos Norte</td>
@@ -964,8 +1016,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region II. Cagayan Valley</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForProvincialAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForProvincialAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForProvincialAddress2 = "SELECT provinceProvincial,count(*) AS NumberOfAllProvincialAddress FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForProvincialAddress2 = mysqli_query($connect,$queryCountingSpacesForProvincialAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForProvincialAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Quirino</td>
@@ -1004,9 +1069,40 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
+												<td>Isabela</td>
+												<?php 
+												$resultStudentProvincialAddressIsabela = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentProvincialAddressIsabela))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryProvincialAddressIsabela = "SELECT provinceProvincial,count(*) AS NumberOfProvincialAddressIsabela FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND provinceProvincial = 'Isabela' ";
+
+													$resultProvincialAddressIsabela = mysqli_query($connect,$queryProvincialAddressIsabela);
+													while ($row = mysqli_fetch_array($resultProvincialAddressIsabela)) {
+														echo "<td>".$row['NumberOfProvincialAddressIsabela']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
 												<th>Region III. Central Luzon</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentProvincialAddressCagayan2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentProvincialAddressCagayan2))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryProvincialAddressCagayan2 = "SELECT provinceProvincial,count(*) AS NumberOfProvincialAddressCagayan FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND provinceProvincial = 'Pangasinan' ";
+
+													$resultProvincialAddressCagayan2 = mysqli_query($connect,$queryProvincialAddressCagayan);
+													while ($row = mysqli_fetch_array($resultProvincialAddressCagayan2)) {
+														echo "<td></td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Bataan</td>
@@ -1043,7 +1139,7 @@ require 'header.php';
 													}
 												}
 												?>
-
+											
 											</tr>
 											<tr>
 												<td>Nueva Ecija</td>
@@ -1138,8 +1234,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region IV-A CALABARZON</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Batangas</td>
@@ -1233,8 +1342,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region IV-B MIMAROPA</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Mindoro Occidental</td>
@@ -1328,8 +1450,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region V: Bicol Region</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Albay</td>
@@ -1441,8 +1576,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region IV: Western Visayas</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Aklan</td>
@@ -1554,8 +1702,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region VII: Central Visayas</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Bohol</td>
@@ -1613,8 +1774,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region VIII: Eastern Visayas</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Eastern Samar</td>
@@ -1708,8 +1882,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>Region IX: Western Mindanao</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Basilan</td>
@@ -1748,6 +1935,24 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
+												<td>Zamboanga Del Sur</td>
+												<?php 
+												$resultStudentProvincialAddressZamboangaDelSur = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentProvincialAddressZamboangaDelSur))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryProvincialAddressZamboangaDelSur = "SELECT provinceProvincial,count(*) AS NumberOfProvincialAddressZamboangaDelSur FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND provinceProvincial = 'Zamboanga Del Sur' ";
+
+													$resultProvincialAddressZamboangaDelSur = mysqli_query($connect,$queryProvincialAddressZamboangaDelSur);
+													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaDelSur)) {
+														echo "<td>".$row['NumberOfProvincialAddressZamboangaDelSur']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
 												<td>Zambaonga Sibugay</td>
 												<?php 
 												$resultStudentProvincialAddressZamboangaSibugay = mysqli_query($connect, $queryStudent); 
@@ -1766,10 +1971,23 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-
+										
 												<th>Region X: Northern Mindanao</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Bukidnon</td>
@@ -1791,8 +2009,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>ARMM</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 												
 											</tr>
 											<tr>
@@ -1851,8 +2082,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>CAR</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Benguet</td>
@@ -1964,8 +2208,21 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>CARAGA</th>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForCityAddress2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForCityAddress2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForCityAddress2 = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForCityAddress2 = mysqli_query($connect,$queryCountingSpacesForCityAddress2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForCityAddress2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Davao</td>
@@ -2024,23 +2281,25 @@ require 'header.php';
 											<tr>
 												<td>Not Indicated</td>
 												<?php 
-												$resultStudentProvincialAddressNotIndicated = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentProvincialAddressNotIndicated))
+												$resultStudentCityAddressNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentCityAddressNA))  
 												{  
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryProvincialAddressNotIndicated = "SELECT provinceProvincial,count(*) AS NumberOfProvincialAddressNotIndicated FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND provinceProvincial = 'Not Indicated' ";
 
-													$resultProvincialAddressNotIndicated = mysqli_query($connect,$queryProvincialAddressNotIndicated);
-													while ($row = mysqli_fetch_array($resultProvincialAddressNotIndicated)) {
-														echo "<td>".$row['NumberOfProvincialAddressNotIndicated']."</td>";
+													$queryCountingCityAddressNA = "SELECT provinceName, count(*) AS NumberOfProvincialAddressNA FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND provinceName != 'Ilocos Norte' AND provinceName != 'Ilocos Sur' AND provinceName != 'La Union' AND provinceName != 'Pangasinan' AND provinceName != 'Quirino' AND provinceName != 'Cagayan' AND provinceName != 'Isabela' AND provinceName != 'Bataan' AND provinceName != 'Bulacan' AND provinceName != 'Nueva Ecija' AND provinceName != 'Pampanga' AND provinceName != 'Tarlac' AND provinceName != 'Zambales' AND provinceName != 'Aurora' AND provinceName != 'Batangas' AND provinceName != 'Cavite' AND provinceName != 'Laguna' AND provinceName != 'Quezon'  AND provinceName != 'Rizal' AND provinceName != 'Mindoro Oriental' AND provinceName != 'Marinduque' AND provinceName != 'Romblon' AND provinceName != 'Palawan' AND provinceName != 'Albay' AND provinceName != 'Camarines Norte' AND provinceName != 'Camarines Sur' AND provinceName != 'Catanduanes' AND provinceName != 'Masbate' AND provinceName != 'Sorsogon' AND provinceName != 'Aklan' AND provinceName != 'Antique' AND provinceName != 'Capiz' AND provinceName != 'Iloilo' AND provinceName != 'Negros Occidental' AND provinceName != 'Negros Oriental' AND provinceName != 'Bohol' AND provinceName != 'Cebu' AND provinceName != 'Siquijor' AND provinceName != 'Eastern Samar' AND provinceName != 'Northern Samar' AND provinceName != 'Samar' AND provinceName != 'Biliran' AND provinceName != 'Leyte' AND provinceName != 'Basilan' AND provinceName != 'Zamboanga Del Norte' AND provinceName != 'Zamboanga Del Sur' AND provinceName != 'Zamboanga Sibugay' AND provinceName != 'Bukidnon' AND provinceName != 'Maguindanao' AND provinceName != 'Sulu' AND provinceName != 'Tawi Tawi' AND provinceName != 'Benguet' AND provinceName != 'Mt. Province' AND provinceName != 'Abra' AND provinceName != 'Apayao' AND provinceName != 'Kalinga' AND provinceName != 'Ifugao' AND provinceName != 'Davao' AND provinceName != 'Surigao Del Sur' AND provinceName != 'Surigao Del Norte' ";
+
+													$resultCountingCityAddressNA = mysqli_query($connect,$queryCountingCityAddressNA);
+													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
+														$NumberCountingCityAddressNA = $row['NumberOfProvincialAddressNA'];
+														echo "<td>".$row['NumberOfProvincialAddressNA']."</td>";
 													}
 												}
 												?>
 											</tr>
 											<tr>
-												<th>Total</th>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentProvincialAddressTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentProvincialAddressTotal))  
@@ -2049,7 +2308,7 @@ require 'header.php';
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
 
-													$queryProvincialAddressTotal = "SELECT civilStatus, count(*) AS NumberOfProvincialAddressTotal FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+													$queryProvincialAddressTotal = "SELECT provinceName, count(*) AS NumberOfProvincialAddressTotal FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 
 													$resultCountingProvincialAddressTotal = mysqli_query($connect,$queryProvincialAddressTotal);
 													while ($row = mysqli_fetch_array($resultCountingProvincialAddressTotal)) {
@@ -2061,103 +2320,285 @@ require 'header.php';
 											</tr>
 											<tr>
 												<th>II. Educational Background</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForEducationalBackground = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForEducationalBackground))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForEducationalBackground = "SELECT count(*) AS NumberOfAll FROM tbl_educationalbackground INNER JOIN tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForEducationalBackground = mysqli_query($connect,$queryCountingSpacesForEducationalBackground);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForEducationalBackground)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Elementary</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForEducationalBackgroundElementary = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForEducationalBackgroundElementary))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForEducationalBackgroundElementary = "SELECT count(*) AS NumberOfAll FROM tbl_educationalbackground INNER JOIN tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForEducationalBackgroundElementary = mysqli_query($connect,$queryCountingSpacesForEducationalBackgroundElementary);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForEducationalBackgroundElementary)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Public</td>
-												<td>40</td>
-												<td>40</td>
-												<td>46</td>
-												<td>48</td>
-												<td>43</td>
-												<td>36</td>
-												<td>40</td>
+												<?php 
+												$resultStudentEducationalBackgroundElementaryPublic = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundElementaryPublic))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundElementaryPublic = "SELECT elemType,count(elemType) AS TotalPublicElementarySchool FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND elemType = 'Public' ";
+
+													$resultEducationalBackgroundElementaryPublic = mysqli_query($connect,$queryEducationalBackgroundElementaryPublic);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPublic)) {
+														echo "<td>".$row['TotalPublicElementarySchool']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Private</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentEducationalBackgroundElementaryPrivate = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundElementaryPrivate))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundElementaryPrivate = "SELECT elemType,count(elemType) AS TotalPrivateElementarySchool FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND elemType = 'Private' ";
+
+													$resultEducationalBackgroundElementaryPrivate = mysqli_query($connect,$queryEducationalBackgroundElementaryPrivate);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPrivate)) {
+														echo "<td>".$row['TotalPrivateElementarySchool']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentEducationalBackgroundElementaryNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundElementaryNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingEducationalBackgroundElementaryNA = "SELECT elemType, count(*) AS NumberOfEducationalBackgroundElementaryNA FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND elemType != 'Public' AND elemType != 'Private' ";
+
+													$resultEducationalBackgroundElementaryNA = mysqli_query($connect,$queryCountingEducationalBackgroundElementaryNA);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryNA)) {
+														$NumberOfEducationalBackgroundElementaryNA = $row['NumberOfEducationalBackgroundElementaryNA'];
+														echo "<td>".$row['NumberOfEducationalBackgroundElementaryNA']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentEducationalBackgroundElementaryTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundElementaryTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryEducationalBackgroundElementaryTotal = "SELECT elemType, count(elemType) AS NumberOfEducationalBackgroundElementaryTotal FROM tbl_educationalbackground inner join tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingEducationalBackgroundElementaryTotal = mysqli_query($connect,$queryEducationalBackgroundElementaryTotal);
+													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundElementaryTotal)) {
+														$NumberOfEducationalBackgroundElementaryTotal = $row['NumberOfEducationalBackgroundElementaryTotal'];
+														echo "<td>".$row['NumberOfEducationalBackgroundElementaryTotal']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<th>High School</th>
+												<?php 
+												$resultStudentSpaceForEducationalBackgroundHighSchool = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForEducationalBackgroundHighSchool))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForEducationalBackgroundHighSchool = "SELECT count(*) AS NumberOfAll FROM tbl_educationalbackground INNER JOIN tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForEducationalBackgroundHighSchool = mysqli_query($connect,$queryCountingSpacesForEducationalBackgroundHighSchool);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForEducationalBackgroundHighSchool)) {
+														echo "<th></th>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Public</td>
+												<?php 
+												$resultStudentEducationalBackgroundHighSchoolPublic = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundHighSchoolPublic))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundHighSchoolPublic = "SELECT hsType,count(hsType) AS TotalPublicHighSchool FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hsType = 'Public' ";
+
+													$resultEducationalBackgroundHighSchoolPublic = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPublic);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPublic)) {
+														echo "<td>".$row['TotalPublicHighSchool']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Private</td>
+												<?php 
+												$resultStudentEducationalBackgroundHighSchoolPrivate = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundHighSchoolPrivate))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundHighSchoolPrivate = "SELECT hsType,count(hsType) AS TotalPrivateHighSchool FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hsType = 'Private' ";
+
+													$resultEducationalBackgroundHighSchoolPrivate = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPrivate);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPrivate)) {
+														echo "<td>".$row['TotalPrivateHighSchool']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Not Indicated</td>
+												<?php 
+												$resultStudentEducationalBackgroundHighSchoolNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundHighSchoolNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingEducationalBackgroundHighSchoolNA = "SELECT hsType, count(hsType) AS NumberOfEducationalBackgroundHighSchoolNA FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND elemType != 'Public' AND elemType != 'Private' ";
+
+													$resultEducationalBackgroundHighSchoolNA = mysqli_query($connect,$queryCountingEducationalBackgroundHighSchoolNA);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolNA)) {
+														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundHighSchoolNA'];
+														echo "<td>".$row['NumberOfEducationalBackgroundHighSchoolNA']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentEducationalBackgroundHighSchoolTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundHighSchoolTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryEducationalBackgroundHighSchoolTotal = "SELECT hsType, count(hsType) AS NumberOfEducationalBackgroundHighSchoolTotal FROM tbl_educationalbackground inner join tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingEducationalBackgroundHighSchoolTotal = mysqli_query($connect,$queryEducationalBackgroundHighSchoolTotal);
+													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundHighSchoolTotal)) {
+														$NumberOfEducationalBackgroundHighSchoolTotal = $row['NumberOfEducationalBackgroundHighSchoolTotal'];
+														echo "<td>".$row['NumberOfEducationalBackgroundHighSchoolTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Continuous</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<?php 
+												$resultStudentEducationalBackgroundContinuous = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundContinuous))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundContinuous = "SELECT natureOfSchooling,count(natureOfSchooling) AS TotalContinuousSchooling FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfSchooling = 'Continuous' ";
+
+													$resultEducationalBackgroundContinuous = mysqli_query($connect,$queryEducationalBackgroundContinuous);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundContinuous)) {
+														echo "<td>".$row['TotalContinuousSchooling']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Interrupted</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentEducationalBackgroundInterrupted = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundInterrupted))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryEducationalBackgroundInterrupted = "SELECT natureOfSchooling,count(natureOfSchooling) AS TotalInterruptedSchooling FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfSchooling = 'Interrupted' ";
+
+													$resultEducationalBackgroundInterrupted = mysqli_query($connect,$queryEducationalBackgroundInterrupted);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundInterrupted)) {
+														echo "<td>".$row['TotalInterruptedSchooling']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentEducationalBackgroundNatureOfSchoolingNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundNatureOfSchoolingNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingEducationalBackgroundNatureOfSchoolingNA = "SELECT natureOfSchooling, count(natureOfSchooling) AS NumberOfEducationalBackgroundNatureOfSchoolingNA FROM tbl_educationalbackground inner join tbl_personalinfo on tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfSchooling != 'Continuous' AND natureOfSchooling != 'Interrupted' ";
+
+													$resultEducationalBackgroundNatureOfSchoolingNA = mysqli_query($connect,$queryCountingEducationalBackgroundNatureOfSchoolingNA);
+													while ($row = mysqli_fetch_array($resultEducationalBackgroundNatureOfSchoolingNA)) {
+														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundNatureOfSchoolingNA'];
+														echo "<td>".$row['NumberOfEducationalBackgroundNatureOfSchoolingNA']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentEducationalBackgroundNatureOfSchoolingTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentEducationalBackgroundNatureOfSchoolingTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryEducationalBackgroundNatureOfSchoolingTotal = "SELECT natureOfSchooling, count(natureOfSchooling) AS NumberOfEducationalBackgroundNatureOfSchoolingTotal FROM tbl_educationalbackground inner join tbl_personalinfo ON tbl_educationalbackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingEducationalBackgroundNatureOfSchoolingTotal = mysqli_query($connect,$queryEducationalBackgroundNatureOfSchoolingTotal);
+													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundNatureOfSchoolingTotal)) {
+														$NumberOfEducationalBackgroundNatureOfSchoolingTotal = $row['NumberOfEducationalBackgroundNatureOfSchoolingTotal'];
+														echo "<td>".$row['NumberOfEducationalBackgroundNatureOfSchoolingTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>III. Home And Family Background</th>
@@ -2251,7 +2692,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentFatherStatusTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentFatherStatusTotal))
@@ -2356,7 +2797,7 @@ require 'header.php';
 														echo "<td>".$row['NumberOfFatherEducationVocationalGraduate']."</td>";
 													}
 												}
-												?>											
+												?>	
 											</tr>
 											<tr>
 												<td>College Graduate</td>
@@ -2485,7 +2926,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentFatherEducationTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentFatherEducationTotal))
@@ -2639,7 +3080,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentFatherOccupationTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentFatherOccupationTotal))
@@ -2656,7 +3097,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>mother</th>
+												<th>Mother</th>
 												<?php 
 												$resultStudentSpaceFormother = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentSpaceFormother))  
@@ -2729,7 +3170,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentmotherStatusTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentmotherStatusTotal))
@@ -2747,7 +3188,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>mother's Educational Attainment</th>
+												<th>Mother's Educational Attainment</th>
 												<?php 
 												$resultStudentSpaceFormotherEducation = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentSpaceFormotherEducation))
@@ -2963,7 +3404,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentmotherEducationTotal = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentmotherEducationTotal))
@@ -3117,7 +3558,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentmotherOccupationTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentmotherOccupationTotal))
@@ -3407,7 +3848,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php 
 												$resultStudentTotalNumberOfChildrenTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentTotalNumberOfChildrenTotal))
@@ -3544,7 +3985,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentBroSisEmployedTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentBroSisEmployedTotal))
@@ -3646,7 +4087,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentSupportedByYourSiblingTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentSupportedByYourSiblingTotal))
@@ -3782,7 +4223,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultschoolFinancerTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultschoolFinancerTotal))
@@ -3892,7 +4333,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentWeeklyAllowanceNotIndicated = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 1000 AND < 0";
+													$queryCountingStudentWeeklyAllowanceNotIndicated = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 1000 AND weeklyAllowance < 0";
 													$resultCountingStudentWeeklyAllowanceNotIndicated = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceNotIndicated)) {
 														echo "<td>".$row['NumberOfWeeklyAllowanceNotIndicated']."</td>";
@@ -3901,7 +4342,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentWeeklyAllowanceTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentWeeklyAllowanceTotal))
@@ -3969,7 +4410,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentQuietPlaceTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentQuietPlaceTotal))
@@ -3986,7 +4427,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentQuietPlaceTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentQuietPlaceTotal))
@@ -4054,7 +4495,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentRoomSharingTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentRoomSharingTotal))
@@ -4224,7 +4665,7 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<td>Total</td>
+												<th>TOTAL</th>
 												<?php
 												$resultStudentNatureOfResidenceTotal  = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceTotal))
@@ -4241,244 +4682,521 @@ require 'header.php';
 												?>
 											</tr>
 											<tr>
-												<th>IV. Health</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<th>IV. Health Background</th>
+												<?php 
+												$resultStudentSpaceForHealthBackground = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackground))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackground = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackground = mysqli_query($connect,$queryCountingSpacesForHealthBackground);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackground)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>A. Physical</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPhysical = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPhysical))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPhysical = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPhysical = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPhysical);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPhysical)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Yes</th>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPhysical2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPhysical2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPhysical2 = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPhysical2 = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPhysical2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPhysical2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Vision</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
-												<td>20</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalVision = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalVision))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem = 'Yes' ";
+
+													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
+														echo "<td>".$row['TotalVisionProblem']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Hearing</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalHearing = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalHearing))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem = 'Yes' ";
+
+													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
+														echo "<td>".$row['TotalHearingProblem']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Speech</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalSpeech = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalSpeech))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = 'Yes' ";
+
+													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
+														echo "<td>".$row['TotalSpeechProblem']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>General Health</td>
-												<td>2</td>
-												<td>2</td>
-												<td>2</td>
-												<td>2</td>
-												<td>2</td>
-												<td>2</td>
-												<td>2</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalGenHealth = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalGenHealth))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = 'Yes' ";
+
+													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
+														echo "<td>".$row['TotalGenHealthProblem']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>No</th>
-												<td>25</td>
-												<td>27</td>
-												<td>31</td>
-												<td>33</td>
-												<td>28</td>
-												<td>16</td>
-												<td>20</td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPhysical2 = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPhysical2))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPhysical2 = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPhysical2 = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPhysical2);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPhysical2)) {
+														echo "<th></th>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Vision</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalVision = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalVision))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem = 'No' ";
+
+													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
+														echo "<td>".$row['TotalVisionProblem']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Hearing</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalHearing = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalHearing))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem = 'No' ";
+
+													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
+														echo "<td>".$row['TotalHearingProblem']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Speech</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalSpeech = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalSpeech))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = 'No' ";
+
+													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
+														echo "<td>".$row['TotalSpeechProblem']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>General Health</td>
+												<?php 
+												$resultStudentHealthBackgroundPhysicalGenHealth = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPhysicalGenHealth))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = 'No' ";
+
+													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
+														echo "<td>".$row['TotalGenHealthProblem']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Psychological</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPsychological = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPsychological))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPsychological = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPsychological = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPsychological);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPsychological)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Psychiatrist</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPsychologicalPsychiatrist))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPsychologicalPsychiatrist = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPsychologicalPsychiatrist);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPsychologicalPsychiatrist)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Yes</td>
-												<td>1</td>
-												<td>2</td>
-												<td>3</td>
-												<td>4</td>
-												<td>5</td>
-												<td>6</td>
-												<td>7</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychiatrist))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalPsychiatrist = "SELECT psychiatristConsult,count(psychiatristConsult) AS TotalPsychiatristConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult = 'Yes' ";
+
+													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
+														echo "<td>".$row['TotalPsychiatristConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>No</td>
-												<td>44</td>
-												<td>45</td>
-												<td>49</td>
-												<td>49</td>
-												<td>43</td>
-												<td>30</td>
-												<td>33</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychiatrist))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalPsychiatrist = "SELECT psychiatristConsult,count(psychiatristConsult) AS TotalPsychiatristConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult = 'No' ";
+
+													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
+														echo "<td>".$row['TotalPsychiatristConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychiatristNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingHealthBackgroundPsychologicalPsychiatristNA = "SELECT psychiatristConsult, count(psychiatristConsult) AS NumberOfHealthBackgroundPsychologicalPsychiatristNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult != 'Yes' AND psychiatristConsult != 'No' ";
+
+													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
+														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychiatristTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychiatristTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryHealthBackgroundPsychologicalPsychiatristTotal = "SELECT psychiatristConsult, count(psychiatristConsult) AS NumberOfHealthBackgroundPsychologicalPsychiatristTotal FROM tbl_healthinfo inner join tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingHealthBackgroundPsychologicalPsychiatristTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatristTotal);
+													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychiatristTotal)) {
+														$NumberOfHealthBackgroundPsychologicalPsychiatristTotal = $row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Psychologist</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPsychologicalPsychologist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPsychologicalPsychologist))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPsychologicalPsychologist = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPsychologicalPsychologist);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPsychologicalPsychologist)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Yes</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychologist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychologist))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalPsychologist = "SELECT psychologistConsult,count(psychologistConsult) AS TotalPsychologistConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult = 'Yes' ";
+
+													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
+														echo "<td>".$row['TotalPsychologistConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>No</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychologist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychologist))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalPsychologist = "SELECT psychologistConsult,count(psychologistConsult) AS TotalPsychologistConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult = 'No' ";
+
+													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
+														echo "<td>".$row['TotalPsychologistConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychologistNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychologistNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingHealthBackgroundPsychologicalPsychologistNA = "SELECT psychologistConsult, count(psychologistConsult) AS NumberOfHealthBackgroundPsychologicalPsychologistNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult != 'Yes' AND psychologistConsult != 'No' ";
+
+													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
+														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Total</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalPsychologistTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalPsychologistTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryHealthBackgroundPsychologicalPsychologistTotal = "SELECT psychologistConsult, count(psychologistConsult) AS NumberOfHealthBackgroundPsychologicalPsychologistTotal FROM tbl_healthinfo inner join tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingHealthBackgroundPsychologicalPsychologistTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologistTotal);
+													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychologistTotal)) {
+														$NumberOfHealthBackgroundPsychologicalPsychologistTotal = $row['NumberOfHealthBackgroundPsychologicalPsychologistTotal'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychologistTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Counselor</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php 
+												$resultStudentSpaceForHealthBackgroundPsychologicalCounselor = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPsychologicalCounselor))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForHealthBackgroundPsychologicalCounselor = "SELECT count(*) AS NumberOfAll FROM tbl_healthinfo INNER JOIN tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryCountingSpacesForHealthBackgroundPsychologicalCounselor);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForHealthBackgroundPsychologicalCounselor)) {
+														echo "<th></th>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Yes</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalCounselor = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalCounselor))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalCounselor = "SELECT counselorConsult,count(counselorConsult) AS TotalCounselorConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult = 'Yes' ";
+
+													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
+														echo "<td>".$row['TotalCounselorConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>No</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalCounselor = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalCounselor))
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryHealthBackgroundPsychologicalCounselor = "SELECT counselorConsult,count(counselorConsult) AS TotalCounselorConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult = 'No' ";
+
+													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
+														echo "<td>".$row['TotalCounselorConsult']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalCounselorNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalCounselorNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingHealthBackgroundPsychologicalCounselorNA = "SELECT counselorConsult, count(counselorConsult) AS NumberOfHealthBackgroundPsychologicalCounselorNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult != 'Yes' AND counselorConsult != 'No' ";
+
+													$resultHealthBackgroundPsychologicalCounselorNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalCounselorNA);
+													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselorNA)) {
+														$NumberOfHealthBackgroundPsychologicalCounselorNA = $row['NumberOfHealthBackgroundPsychologicalCounselorNA'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalCounselorNA']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Total</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+								
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentHealthBackgroundPsychologicalCounselorTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentHealthBackgroundPsychologicalCounselorTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryHealthBackgroundPsychologicalCounselorTotal = "SELECT counselorConsult, count(counselorConsult) AS NumberOfHealthBackgroundPsychologicalCounselorTotal FROM tbl_healthinfo inner join tbl_personalinfo ON tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingHealthBackgroundPsychologicalCounselorTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselorTotal);
+													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalCounselorTotal)) {
+														$NumberOfHealthBackgroundPsychologicalCounselorTotal = $row['NumberOfHealthBackgroundPsychologicalCounselorTotal'];
+														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalCounselorTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 
 
