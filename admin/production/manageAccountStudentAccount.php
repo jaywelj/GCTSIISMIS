@@ -20,7 +20,7 @@ if(isset($_POST['btnAdd']))
 
 	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
 
-	if($_FILES["fileStudentImage"]==NULL)
+	if($_FILES["fileStudentImage"] == NULL)
 	{
 		
 	}
