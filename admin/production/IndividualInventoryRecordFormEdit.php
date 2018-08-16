@@ -1477,7 +1477,7 @@ require 'header.php';
 														<div class="col-md-2 col-sm-2 col-xs-2">
 															<select required="required" class="select2_single form-control" tabindex="-1" name="dropdownNatureOfResidence" id="dropdownNatureOfResidence">
 																<option >Family home</option>
-																<option >Relative's house</option>
+																<option >Relative`s house</option>
 																<option >Shares apartment with friends</option>
 																<option >Shares apartment with relatives</option>
 																<option >Bed spacer</option>

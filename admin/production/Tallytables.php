@@ -3665,15 +3665,15 @@ require 'header.php';
 											<tr>
 												<th>Who Support Your Schooling?</th>
 												<?php
-												$resultStudentFinancer  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancer))
+												$resultschoolFinancer  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancer))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancer = "SELECT studentFinancer,count(*) AS NumberOfFinancer FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
-													$resultCountingStudentFinancer = mysqli_query($connect,$queryCountingStudentFinancer);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancer)) {
+													$queryCountingschoolFinancer = "SELECT schoolFinancer,count(*) AS NumberOfFinancer FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingschoolFinancer = mysqli_query($connect,$queryCountingschoolFinancer);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancer)) {
 														echo "<td></td>";
 													}
 												}
@@ -3682,15 +3682,15 @@ require 'header.php';
 											<tr>
 												<td>Parents</td>
 												<?php
-												$resultStudentFinancerParents  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerParents))
+												$resultschoolFinancerParents  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerParents))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerParents = "SELECT studentFinancer,count(*) AS NumberOfFinancerParents FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer = 'Parents' ";
-													$resultCountingStudentFinancerParents = mysqli_query($connect,$queryCountingStudentFinancerParents);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerParents)) {
+													$queryCountingschoolFinancerParents = "SELECT schoolFinancer,count(*) AS NumberOfFinancerParents FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Parents' ";
+													$resultCountingschoolFinancerParents = mysqli_query($connect,$queryCountingschoolFinancerParents);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerParents)) {
 														echo "<td>".$row['NumberOfFinancerParents']."</td>";
 													}
 												}
@@ -3699,15 +3699,15 @@ require 'header.php';
 											<tr>
 												<td>Sibling</td>
 												<?php
-												$resultStudentFinancerSibling  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerSibling))
+												$resultschoolFinancerSibling  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerSibling))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerSibling = "SELECT studentFinancer,count(*) AS NumberOfFinancerSibling FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer = 'Brother/Sister' ";
-													$resultCountingStudentFinancerSibling = mysqli_query($connect,$queryCountingStudentFinancerSibling);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerSibling)) {
+													$queryCountingschoolFinancerSibling = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSibling FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Brother/Sister' ";
+													$resultCountingschoolFinancerSibling = mysqli_query($connect,$queryCountingschoolFinancerSibling);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSibling)) {
 														echo "<td>".$row['NumberOfFinancerSibling']."</td>";
 													}
 												}
@@ -3716,15 +3716,15 @@ require 'header.php';
 											<tr>
 												<td>Spouse</td>
 												<?php
-												$resultStudentFinancerSpouse  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerSpouse))
+												$resultschoolFinancerSpouse  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerSpouse))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerSpouse = "SELECT studentFinancer,count(*) AS NumberOfFinancerSpouse FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer = 'Spouse' ";
-													$resultCountingStudentFinancerSpouse = mysqli_query($connect,$queryCountingStudentFinancerSpouse);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerSpouse)) {
+													$queryCountingschoolFinancerSpouse = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSpouse FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Spouse' ";
+													$resultCountingschoolFinancerSpouse = mysqli_query($connect,$queryCountingschoolFinancerSpouse);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSpouse)) {
 														echo "<td>".$row['NumberOfFinancerSpouse']."</td>";
 													}
 												}
@@ -3733,15 +3733,15 @@ require 'header.php';
 											<tr>
 												<td>Scholarship</td>
 												<?php
-												$resultStudentFinancerScholarship  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerScholarship))
+												$resultschoolFinancerScholarship  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerScholarship))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerScholarship = "SELECT studentFinancer,count(*) AS NumberOfFinancerScholarship FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer = 'Scholarship' ";
-													$resultCountingStudentFinancerScholarship = mysqli_query($connect,$queryCountingStudentFinancerScholarship);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerScholarship)) {
+													$queryCountingschoolFinancerScholarship = "SELECT schoolFinancer,count(*) AS NumberOfFinancerScholarship FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Scholarship' ";
+													$resultCountingschoolFinancerScholarship = mysqli_query($connect,$queryCountingschoolFinancerScholarship);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerScholarship)) {
 														echo "<td>".$row['NumberOfFinancerScholarship']."</td>";
 													}
 												}
@@ -3750,15 +3750,15 @@ require 'header.php';
 											<tr>
 												<td>Self-supporting</td>
 												<?php
-												$resultStudentFinancerSelfSupporting  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerSelfSupporting))
+												$resultschoolFinancerSelfSupporting  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerSelfSupporting))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerSelfSupporting = "SELECT studentFinancer,count(*) AS NumberOfFinancerSelfSupporting FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer = 'Self-supporting/Working student' ";
-													$resultCountingStudentFinancerSelfSupporting = mysqli_query($connect,$queryCountingStudentFinancerSelfSupporting);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerSelfSupporting)) {
+													$queryCountingschoolFinancerSelfSupporting = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSelfSupporting FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Self-supporting/Working student' ";
+													$resultCountingschoolFinancerSelfSupporting = mysqli_query($connect,$queryCountingschoolFinancerSelfSupporting);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSelfSupporting)) {
 														echo "<td>".$row['NumberOfFinancerSelfSupporting']."</td>";
 													}
 												}
@@ -3767,15 +3767,15 @@ require 'header.php';
 											<tr>
 												<td>Not indicated</td>
 												<?php
-												$resultStudentFinancerNotIndicated  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerNotIndicated))
+												$resultschoolFinancerNotIndicated  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerNotIndicated))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerNotIndicated = "SELECT studentFinancer,count(*) AS NumberOfFinancerNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studentFinancer != 'Self-supporting/Working student' AND studentFinancer != 'Self-supporting/Working student' AND studentFinancer != 'Scholarship' AND studentFinancer != 'Spouse' AND studentFinancer != 'Brother/Sister' AND studentFinancer != 'Parents' ";
-													$resultCountingStudentFinancerNotIndicated = mysqli_query($connect,$queryCountingStudentFinancerNotIndicated);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerNotIndicated)) {
+													$queryCountingschoolFinancerNotIndicated = "SELECT schoolFinancer,count(*) AS NumberOfFinancerNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer != 'Self-supporting/Working student' AND schoolFinancer != 'Self-supporting/Working student' AND schoolFinancer != 'Scholarship' AND schoolFinancer != 'Spouse' AND schoolFinancer != 'Brother/Sister' AND schoolFinancer != 'Parents' ";
+													$resultCountingschoolFinancerNotIndicated = mysqli_query($connect,$queryCountingschoolFinancerNotIndicated);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerNotIndicated)) {
 														echo "<td>".$row['NumberOfFinancerNotIndicated']."</td>";
 													}
 												}
@@ -3784,15 +3784,15 @@ require 'header.php';
 											<tr>
 												<td>Total</td>
 												<?php
-												$resultStudentFinancerTotal  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentFinancerTotal))
+												$resultschoolFinancerTotal  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultschoolFinancerTotal))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFinancerTotal = "SELECT studentFinancer,count(*) AS NumberOfFinancerTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
-													$resultCountingStudentFinancerTotal = mysqli_query($connect,$queryCountingStudentFinancerTotal);
-													while ($row = mysqli_fetch_array($resultCountingStudentFinancerTotal)) {
+													$queryCountingschoolFinancerTotal = "SELECT schoolFinancer,count(*) AS NumberOfFinancerTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+													$resultCountingschoolFinancerTotal = mysqli_query($connect,$queryCountingschoolFinancerTotal);
+													while ($row = mysqli_fetch_array($resultCountingschoolFinancerTotal)) {
 														echo "<td>".$row['NumberOfFinancerTotal']."</td>";
 													}
 												}
@@ -3807,7 +3807,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentWeeklyAllowance = "SELECT studentFinancer,count(*) AS NumberOfWeeklyAllowance FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+													$queryCountingStudentWeeklyAllowance = "SELECT schoolFinancer,count(*) AS NumberOfWeeklyAllowance FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingStudentWeeklyAllowance = mysqli_query($connect,$queryCountingStudentWeeklyAllowance);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowance)) {
 														echo "<td></td>";
@@ -3937,209 +3937,308 @@ require 'header.php';
 											<tr>
 												<td>Yes</td>
 												<?php
-												$resultStudentQuietPlaceToStudy  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentQuietPlaceToStudy))
+												$resultStudentQuietPlaceToStudyYes  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentQuietPlaceToStudyYes))
 												{
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentQuietPlaceToStudy = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceToStudy FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
-													$resultCountingStudentQuietPlaceToStudy = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudy);
-													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudy)) {
-														echo "<td>".$row['NumberOfQuietPlaceToStudy']."</td>";
+													$queryCountingStudentQuietPlaceToStudyYes = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceToStudyYes FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studyPlace = 'Yes' ";
+													$resultCountingStudentQuietPlaceToStudyYes = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyYes);
+													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyYes)) {
+														echo "<td>".$row['NumberOfQuietPlaceToStudyYes']."</td>";
 													}
 												}
 												?>
 											</tr>
 											<tr>
 												<td>No</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
-												<td>5</td>
+												<?php
+												$resultStudentQuietPlaceToStudyNo  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentQuietPlaceToStudyNo))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentQuietPlaceToStudyNo = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceToStudyNo FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studyPlace = 'No' ";
+													$resultCountingStudentQuietPlaceToStudyNo = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyNo);
+													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyNo)) {
+														echo "<td>".$row['NumberOfQuietPlaceToStudyNo']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<?php
+												$resultStudentQuietPlaceTotal  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentQuietPlaceTotal))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentQuietPlaceTotal = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
+													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
+														echo "<td>".$row['NumberOfQuietPlaceTotal']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Total</td>
+												<?php
+												$resultStudentQuietPlaceTotal  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentQuietPlaceTotal))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentQuietPlaceTotal = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
+													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
+														echo "<td>".$row['NumberOfQuietPlaceTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Do you share your room with anyone?</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php
+												$resultStudentRoomSharing  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentRoomSharing))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentRoomSharing = "SELECT roomSharing,count(*) AS NumberOfRoomSharing FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingStudentRoomSharing = mysqli_query($connect,$queryCountingStudentRoomSharing);
+													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharing)) {
+														echo "<td></td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Yes</td>
-												<td>1</td>
-												<td>1</td>
-												<td>1</td>
-												<td>1</td>
-												<td>1</td>
-												<td>1</td>
-												<td>1</td>
+												<?php
+												$resultStudentRoomSharingYes  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentRoomSharingYes))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentRoomSharingYes = "SELECT roomSharing,count(*) AS NumberOfRoomSharingYes FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND roomSharing != 'No' ";
+													$resultCountingStudentRoomSharingYes = mysqli_query($connect,$queryCountingStudentRoomSharingYes);
+													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingYes)) {
+														echo "<td>".$row['NumberOfRoomSharingYes']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>No</td>
-												<td>44</td>
-												<td>46</td>
-												<td>50</td>
-												<td>52</td>
-												<td>47</td>
-												<td>35</td>
-												<td>39</td>
-											</tr>
-											<tr>
-												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php
+												$resultStudentRoomSharingNo  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentRoomSharingNo))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentRoomSharingNo = "SELECT roomSharing,count(*) AS NumberOfRoomSharingNo FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND roomSharing = 'No' ";
+													$resultCountingStudentRoomSharingNo = mysqli_query($connect,$queryCountingStudentRoomSharingNo);
+													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingNo)) {
+														echo "<td>".$row['NumberOfRoomSharingNo']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<?php
+												$resultStudentRoomSharingTotal  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentRoomSharingTotal))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentRoomSharingTotal = "SELECT roomSharing,count(*) AS NumberOfRoomSharingTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingStudentRoomSharingTotal = mysqli_query($connect,$queryCountingStudentRoomSharingTotal);
+													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingTotal)) {
+														echo "<td>".$row['NumberOfRoomSharingTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>Nature Of Residence</th>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
-												<td></td>
+												<?php
+												$resultStudentNatureOfResidence  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidence))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidence = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidence FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
+													$resultCountingStudentNatureOfResidence = mysqli_query($connect,$queryCountingStudentNatureOfResidence);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidence)) {
+														echo "<td></td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Family</td>
-												<td>30</td>
-												<td>30</td>
-												<td>25</td>
-												<td>25</td>
-												<td>30</td>
-												<td>25</td>
-												<td>25</td>
+												<?php
+												$resultStudentNatureOfResidenceFamily  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceFamily))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceFamily = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceFamily FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Family home' ";
+													$resultCountingStudentNatureOfResidenceFamily = mysqli_query($connect,$queryCountingStudentNatureOfResidenceFamily);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceFamily)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceFamily']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Relative's house</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php
+												$resultStudentNatureOfResidenceRelative  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceRelative))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceRelative = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceRelative FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Relative`s house' ";
+													$resultCountingStudentNatureOfResidenceRelative = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRelative);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRelative)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceRelative']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>Shares Apartment</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<td>Shares Apartment With Friends</td>
+												<?php
+												$resultStudentNatureOfResidenceApartmentFriends  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceApartmentFriends))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceApartmentFriends = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceApartmentFriends FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Shares apartment with friends' ";
+													$resultCountingStudentNatureOfResidenceApartmentFriends = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentFriends);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentFriends)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceApartmentFriends']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
-												<td>With Friends</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-											</tr>
-											<tr>
-												<td>With Relatives</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<td>Shares Apartment With Relatives</td>
+												<?php
+												$resultStudentNatureOfResidenceApartmentRelatives  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceApartmentRelatives))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceApartmentRelatives = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceApartmentRelatives FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Shares apartment with relatives' ";
+													$resultCountingStudentNatureOfResidenceApartmentRelatives = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentRelatives);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentRelatives)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceApartmentRelatives']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Bed Spacer</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php
+												$resultStudentNatureOfResidenceBedSpacer  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceBedSpacer))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceBedSpacer = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceBedSpacer FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Bed spacer' ";
+													$resultCountingStudentNatureOfResidenceBedSpacer = mysqli_query($connect,$queryCountingStudentNatureOfResidenceBedSpacer);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceBedSpacer)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceBedSpacer']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Rented Apartment</td>
-												<td>12</td>
-												<td>10</td>
-												<td>7</td>
-												<td>13</td>
-												<td>14</td>
-												<td>15</td>
-												<td>16</td>
-											</tr>
-											<tr>
-												<td>House of married brother/sister</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php
+												$resultStudentNatureOfResidenceRentedApartment  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceRentedApartment))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceRentedApartment = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceRentedApartment FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Rented apartment' ";
+													$resultCountingStudentNatureOfResidenceRentedApartment = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRentedApartment);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRentedApartment)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceRentedApartment']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Dorm</td>
-												<td>3</td>
-												<td>2</td>
-												<td>3</td>
-												<td>1</td>
-												<td>2</td>
-												<td>3</td>
-												<td>1</td>
+												<?php
+												$resultStudentNatureOfResidenceDorm  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceDorm))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceDorm = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceDorm FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Dorm' ";
+													$resultCountingStudentNatureOfResidenceDorm = mysqli_query($connect,$queryCountingStudentNatureOfResidenceDorm);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceDorm)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceDorm']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Not Indicated</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
-												<td>0</td>
+												<?php
+												$resultStudentNatureOfResidenceNotIndicated  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceNotIndicated))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceNotIndicated = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence != 'Dorm' AND natureOfResidence != 'Rented apartment' AND natureOfResidence != 'Bed spacer' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Shares apartment with friends' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Relative`s house' AND natureOfResidence != 'Family home' ";
+													$resultCountingStudentNatureOfResidenceNotIndicated = mysqli_query($connect,$queryCountingStudentNatureOfResidenceNotIndicated);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceNotIndicated)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceNotIndicated']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<td>Total</td>
-												<td>45</td>
-												<td>47</td>
-												<td>51</td>
-												<td>53</td>
-												<td>48</td>
-												<td>36</td>
-												<td>40</td>
+												<?php
+												$resultStudentNatureOfResidenceTotal  = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentNatureOfResidenceTotal))
+												{
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingStudentNatureOfResidenceTotal = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+													$resultCountingStudentNatureOfResidenceTotal = mysqli_query($connect,$queryCountingStudentNatureOfResidenceTotal);
+													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceTotal)) {
+														echo "<td>".$row['NumberOfNatureOfResidenceTotal']."</td>";
+													}
+												}
+												?>
 											</tr>
 											<tr>
 												<th>IV. Health</th>

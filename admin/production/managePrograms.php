@@ -156,21 +156,21 @@ if(isset($_POST['btnUpdate']))
 			{
 				
 
-					if (mysqli_query($connect, $queryEditInsertingProgramSubCategory)) {
-						$message = "Successfully Added In Program Sub Category";
-						echo "<script type='text/javascript'>alert('$message');</script>";
+				if (mysqli_query($connect, $queryEditInsertingProgramSubCategory)) {
+					$message = "Successfully Added In Program Sub Category";
+					echo "<script type='text/javascript'>alert('$message');</script>";
 
-						echo "<script type='text/javascript'>location.href = 'managePrograms.php';</script>";                           
-					}
-					else
-					{
-						$message = "Query Error Adding Program Sub Category";
-						echo "<script type='text/javascript'>alert('$message');</script>";
-						echo $InsertingEditProgramSubCategory;
+					echo "<script type='text/javascript'>location.href = 'managePrograms.php';</script>";                           
+				}
+				else
+				{
+					$message = "Query Error Adding Program Sub Category";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					echo $InsertingEditProgramSubCategory;
 
-						echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
+					echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
 													//redirectig to the display page. In our case, it is index.php
-					}
+				}
 				
 
 			}
@@ -434,6 +434,62 @@ require 'header.php';
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			echo "<script>var notyMessage2 = '$message2';</script>";
 			//End 2 
+			$queryGettingSuggestionsBasedOnSurvey = "SELECT *,SUM(answerProblem) AS talliedAnswers, (SUM(answerProblem) / (SELECT COUNT(*) FROM tbl_answerproblem )) * 100 AS 'averageRating', COUNT(tbl_surveyofproblems.problemID) AS countedBiggestProblem FROM tbl_answerproblem INNER JOIN tbl_surveyofproblems ON tbl_answerproblem.problemID = tbl_surveyofproblems.problemID where answerDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY tbl_answerproblem.problemID ORDER BY talliedAnswers DESC LIMIT 5";
+			$resultGettingSuggestionsBasedOnSurvey = mysqli_query($connect, $queryGettingSuggestionsBasedOnSurvey);
+
+			while ($row = mysqli_fetch_array($resultGettingSuggestionsBasedOnSurvey))
+			{
+				$AverageRatingArray3[] = $row['averageRating'];
+				$SubCategoryIDArray3[] = $row['subCategoryID'];
+				$ProblemNameArray3[] = $row['problemName'];
+				// $message = $row['averageRating'];
+				// echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+			$AverageRatingFirstElement3 = array_shift( $AverageRatingArray3 );
+			$CountedSubCategoryIDFirstElement3 = array_shift( $SubCategoryIDArray3 );
+			$ProblemNameFirstElement3 = array_shift($ProblemNameArray3);
+
+			$queryGettingSubCategoryName3 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement3'";
+			$resultGettingSubCategoryName3 = mysqli_query($connect,$queryGettingSubCategoryName3);
+			while ($row = mysqli_fetch_array($resultGettingSubCategoryName3))
+			{
+				$SubCategoryName3 = $row['subCategoryName'];
+			}
+
+			
+			
+			$message3 = "The most severe problem in the survey is ".$ProblemNameFirstElement3." with a percentage severity of ".$AverageRatingFirstElement3."% that corresponds to the Topic ".$SubCategoryName3." this past 6 months ";
+
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script>var notyMessage3 = '$message3';</script>";
+
+			$queryGettingSuggestionsBasedOnSurvey2 = "SELECT *,SUM(answerProblem) AS talliedAnswers, (SUM(answerProblem) / (SELECT COUNT(*) FROM tbl_answerproblem )) * 100 AS 'AverageRating', COUNT(tbl_surveyofproblems.problemID) AS countedBiggestProblem FROM tbl_answerproblem INNER JOIN tbl_surveyofproblems ON tbl_answerproblem.problemID = tbl_surveyofproblems.problemID where answerDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY tbl_answerproblem.problemID ORDER BY countedBiggestProblem DESC,talliedAnswers DESC LIMIT 5";
+			$resultGettingSuggestionsBasedOnSurvey2 = mysqli_query($connect, $queryGettingSuggestionsBasedOnSurvey2);
+
+			while ($row = mysqli_fetch_array($resultGettingSuggestionsBasedOnSurvey2))
+			{
+				$CountedProblemNameArray4[] = $row['problemName'];
+				$CountedBiggestProblemArray4[] = $row['countedBiggestProblem'];
+				$SubCategoryIDArray4[] = $row['subCategoryID'];
+			}
+			$CountedBiggestProblemFirstElement4 = array_shift( $CountedBiggestProblemArray4 );
+			$CountedSubCategoryIDFirstElement4 = array_shift( $SubCategoryIDArray4 );
+			$CountedProblemNameFirstElement4 = array_shift( $CountedProblemNameArray4 );
+
+			$queryGettingSubCategoryName4 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement4'";
+			$resultGettingSubCategoryName4 = mysqli_query($connect,$queryGettingSubCategoryName4);
+			while ($row = mysqli_fetch_array($resultGettingSubCategoryName4))
+			{
+				$SubCategoryName4 = $row['subCategoryName'];
+			}
+
+			$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
+
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script>var notyMessage4 = '$message4';</script>";
+
+
+
 			while($row = mysqli_fetch_array($resultGettingAdmin))  
 			{
 
@@ -751,6 +807,18 @@ require 'header.php';
 		n.show();
 		var n = new Noty({
 			text: notyMessage2,
+			type: 'info',
+			timeout: '10000'
+		});
+		n.show();
+		var n = new Noty({
+			text: notyMessage3,
+			type: 'info',
+			timeout: '10000'
+		});
+		n.show();
+		var n = new Noty({
+			text: notyMessage4,
 			type: 'info',
 			timeout: '10000'
 		});
