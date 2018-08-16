@@ -1,4 +1,5 @@
 <?php
+include("errorReport.php");
 session_start();
 include ("connectionString.php");
 $sessionEmail = $_SESSION['sessionAdminEmail'];

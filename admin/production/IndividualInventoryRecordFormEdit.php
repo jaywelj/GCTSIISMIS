@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <?php
-
+include("errorReport.php");
 if(isset($_GET["id"]))
 {
 	include("connectionString.php");
@@ -440,10 +440,10 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentSexFull == 'Male')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="M" <?php echo ($varcharStudentSexFull =='Male')?'checked':'' ?>  > Male 
+																	<input type="radio" name="radioGender" id="radioMale" value="M" <?php echo ($varcharStudentSexFull =='Male')?'checked':'' ?> required > Male 
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentSexFull =='Female')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioGender" value="F" <?php echo ($varcharStudentSexFull =='Female')?'checked':'' ?>  > Female
+																	<input type="radio" name="radioGender" id="radioFemale" value="F" <?php echo ($varcharStudentSexFull =='Female')?'checked':'' ?> required > Female
 																</label>
 															</div>
 														</div>
@@ -579,12 +579,12 @@ require 'header.php';
 														?>
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Course</label>
 														<div class="col-md-6 col-sm-6 col-xs-6">
-														<select required="required" name="selectStudentCourse" id="selectStudentCourse" class="form-control" >
-															<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
-																<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
-															<?php endwhile;?>
-														</select>
-													</div>
+															<select required="required" name="selectStudentCourse" id="selectStudentCourse" class="form-control" >
+																<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
+																	<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
+																<?php endwhile;?>
+															</select>
+														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Year</label>
@@ -731,17 +731,17 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Province: House Number</label>
 														<div class="col-md-2 col-sm-2">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceHouseNumber" name="txtbxProvinceHouseNumber" value="<?php echo $varcharStudentProvinceHouseNumber;  ?>" style="text-transform:uppercase;" pattern="^[\u00F1A-Za-z0-9-]+$" disabled="true">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceHouseNumber" name="txtbxProvinceHouseNumber" value="<?php echo $varcharStudentProvinceHouseNumber;  ?>" style="text-transform:uppercase;" pattern="^[\u00F1A-Za-z0-9-]+$" >
 														</div>
 														<label class="control-label col-md-1 col-sm-1">Province: Barangay</label>
 														<div class="col-md-3 col-sm-3">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceBarangay" name="txtbxProvinceBarangay" value="<?php echo $varcharStudentProvinceBarangay;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$" disabled="true">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceBarangay" name="txtbxProvinceBarangay" value="<?php echo $varcharStudentProvinceBarangay;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$" >
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Province: Municipality/City</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceCity" name="txtbxProvinceCity" value="<?php echo $varcharStudentProvinceCity;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-.'()\s]+$" disabled="true">
+															<input class="form-control col-md-7 col-xs-12" type="text" id="txtbxProvinceCity" name="txtbxProvinceCity" value="<?php echo $varcharStudentProvinceCity;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-.'()\s]+$" >
 														</div>
 													</div>
 													<div class="item form-group">
@@ -834,14 +834,14 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolName;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-.'(),\s]+$" required="required">
+															<input type="text" id="txtbxPreElemSchoolGraduated" name="txtbxPreElemSchoolGraduated" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolName;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-.'(),\s]+$">
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >School Address <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolAddress;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$" required="required">
+															<input type="text" id="txtbxPreElemSchoolAddress" name="txtbxPreElemSchoolAddress" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentPreSchoolAddress;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$">
 														</div>
 													</div>
 													<div class="item form-group">
@@ -862,13 +862,13 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxPreElemYearAttended1" name="txtbxPreElemYearAttended1" value="<?php echo $varcharStudentPreSchoolYearAttended1;  ?>" required="required" min="1960" max="2050">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxPreElemYearAttended1" name="txtbxPreElemYearAttended1" value="<?php echo $varcharStudentPreSchoolYearAttended1;  ?>" min="1960" max="2050">
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">To Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxPreElemYearAttended2" name="txtbxPreElemYearAttended2" value="<?php echo $varcharStudentPreSchoolYearAttended2;  ?>" required="required" min="1961" max="2050">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxPreElemYearAttended2" name="txtbxPreElemYearAttended2" value="<?php echo $varcharStudentPreSchoolYearAttended2;  ?>" min="1961" max="2050">
 														</div>
 													</div>
 													<div class="item form-group">
@@ -899,10 +899,10 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioElementaryTypeOfSchool" value="Public" <?php echo ($varcharStudentElementarySchoolType =='Public')?'checked':'' ?> > Public
+																	<input type="radio" name="radioElementaryTypeOfSchool" id="radioElementaryTypeOfSchoolPub" value="Public" <?php echo ($varcharStudentElementarySchoolType =='Public')?'checked':'' ?> > Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentElementarySchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioElementaryTypeOfSchool" value="Private" <?php echo ($varcharStudentElementarySchoolType =='Private')?'checked':'' ?> > Private
+																	<input type="radio" name="radioElementaryTypeOfSchool" id="radioElementaryTypeOfSchoolPri" value="Private" <?php echo ($varcharStudentElementarySchoolType =='Private')?'checked':'' ?> > Private
 																</label>
 															</div>
 														</div>
@@ -947,21 +947,23 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Public" <?php echo ($varcharStudentHSSchoolType =='Public')?'checked':'' ?> > Public
+																	<input type="radio" name="radioHighschoolTypeOfSchool" id="radioHighschoolTypeOfSchoolPub" value="Public" <?php echo ($varcharStudentHSSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentHSSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioHighschoolTypeOfSchool" value="Private" <?php echo ($varcharStudentHSSchoolType =='Private')?'checked':'' ?> > Private
+																	<input type="radio" name="radioHighschoolTypeOfSchool" id="radioHighschoolTypeOfSchoolPri" value="Private" <?php echo ($varcharStudentHSSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
 															</div>
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
-														<div class="col-md-2 col-sm-2">
+														<div class="col-md-6 col-sm-6">
 															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxHighschoolYearAttended1" name="txtbxHighschoolYearAttended1" value="<?php echo $varcharStudentHSSchoolYearAttended1;  ?>" required="required" min="1967" max="2050">
 														</div>
-														<label class="control-label col-md-1 col-sm-1">To Year</label>
-														<div class="col-md-3 col-sm-3">
+													</div>
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3">To Year</label>
+														<div class="col-md-6 col-sm-6">
 															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxHighschoolYearAttended2" name="txtbxHighschoolYearAttended2" value="<?php echo $varcharStudentHSSchoolYearAttended2;  ?>" required="required" min="1971" max="2050">
 														</div>
 													</div>
@@ -1004,13 +1006,13 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxVocationalYearAttended1" name="txtbxVocationalYearAttended1" value="<?php echo $varcharStudentVocationalSchoolYearAttended1;  ?>" optional="optional" min="1971" max="2050">
+															<input class="form-control col-md-7 col-xs-12 " type="number" id="txtbxVocationalYearAttended1" name="txtbxVocationalYearAttended1" value="<?php echo $varcharStudentVocationalSchoolYearAttended1;  ?>" data-validate-minmax="1971,2050">
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">To Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxVocationalYearAttended2" name="txtbxVocationalYearAttended2" value="<?php echo $varcharStudentVocationalSchoolYearAttended2;  ?>" optional="optional" min="1973" max="2050">
+															<input class="form-control col-md-7 col-xs-12 " type="number" id="txtbxVocationalYearAttended2" name="txtbxVocationalYearAttended2" value="<?php echo $varcharStudentVocationalSchoolYearAttended2;  ?>" optional="optional" min="1973" max="2050">
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1073,10 +1075,10 @@ require 'header.php';
 														<div class="col-md-3 col-sm-3">
 															<div class="btn-group" data-toggle="buttons" >
 																<label class="btn btn-default <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'active':''?>" data-toggle-class="btn-primary " style="padding-left: 22px; padding-right:22px;" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Continuous" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'checked':''?>> Continuous
+																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchoolingC" value="Continuous" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'checked':''?>> Continuous
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentNatureOfSchooling =='Interrupted')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default" style="padding-left: 23px; padding-right:23px;">
-																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchooling" value="Interrupted" <?php echo ($varcharStudentNatureOfSchooling =='Interrupted')?'checked':''; ?> > Interrupted
+																	<input type="radio" name="radioNatureOfSchooling" id="radioNatureOfSchoolingI" value="Interrupted" <?php echo ($varcharStudentNatureOfSchooling =='Interrupted')?'checked':''; ?> > Interrupted
 																</label>
 															</div>
 														</div>
@@ -1084,7 +1086,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">If interrupted, why?</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxNatureOfSchoolingInterruptedReason" id="txtbxNatureOfSchoolingInterruptedReason" value="<?php echo $varcharStudentInterruptedWhy;  ?>" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'disabled':''; ?>>
+															<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxNatureOfSchoolingInterruptedReason" id="txtbxNatureOfSchoolingInterruptedReason" value="<?php echo $varcharStudentInterruptedWhy;  ?>" <?php echo ($varcharStudentNatureOfSchooling =='Continuous')?'disabled':''; ?> requried>
 														</div>
 													</div>
 												</div>
@@ -1114,10 +1116,10 @@ require 'header.php';
 														</div>
 														<div class="btn-group" data-toggle="buttons">
 															<label class="btn btn-default <?php echo ($varcharStudentMotherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioMotherState" value="Living" <?php echo ($varcharStudentMotherStatus =='Living')?'checked':'' ?>> Living 
+																<input type="radio" name="radioMotherState" id="radioMotherStateL" value="Living" <?php echo ($varcharStudentMotherStatus =='Living')?'checked':'' ?>> Living 
 															</label>
 															<label class="btn btn-default <?php echo ($varcharStudentMotherStatus =='Deceased')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioMotherState" value="Deceased" <?php echo ($varcharStudentMotherStatus =='Deceased')?'checked':'' ?>> Deceased
+																<input type="radio" name="radioMotherState" id="radioMotherStateD" value="Deceased" <?php echo ($varcharStudentMotherStatus =='Deceased')?'checked':'' ?>> Deceased
 															</label>
 														</div>
 													</div>
@@ -1138,7 +1140,7 @@ require 'header.php';
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-														<div class="col-md-2 col-sm-2 col-xs-12">
+														<div class="col-md-6 col-sm-6 col-xs-12">
 															<select required="required" class="select2_group form-control" name="dropdownMotherOccupationType" id="dropdownMotherOccupationType" ="">
 																<optgroup label="Employed">
 																	<option value="Government">Local - Government</option>
@@ -1149,9 +1151,11 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
+													</div>
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Occupation:<span class="">*</span>
 														</label>
-														<div class="col-md-3 col-sm-3">
+														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherOccupation" id="txtbxMotherOccupation" value="<?php echo $varcharStudentMotherOccupation;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z()-:',.\s]+$" required="required">
 														</div>
 													</div>
@@ -1186,10 +1190,10 @@ require 'header.php';
 														</div>
 														<div class="btn-group" data-toggle="buttons">
 															<label class="btn btn-default <?php echo ($varcharStudentFatherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioFatherState" value="Living" <?php echo ($varcharStudentFatherStatus =='Living')?'checked':'' ?>> Living 
+																<input type="radio" name="radioFatherState" id="radioFatherStateL" value="Living" <?php echo ($varcharStudentFatherStatus =='Living')?'checked':'' ?>> Living 
 															</label>
 															<label class="btn btn-default <?php echo ($varcharStudentFatherStatus =='Deceased')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioFatherState" value="Deceased" <?php echo ($varcharStudentFatherStatus =='Deceased')?'checked':'' ?>> Deceased
+																<input type="radio" name="radioFatherState" id="radioFatherStateD" value="Deceased" <?php echo ($varcharStudentFatherStatus =='Deceased')?'checked':'' ?>> Deceased
 															</label>
 														</div>
 													</div>
@@ -1210,7 +1214,7 @@ require 'header.php';
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-														<div class="col-md-2 col-sm-2 col-xs-12">
+														<div class="col-md-6 col-sm-6 col-xs-12">
 															<select required="required" class="select2_group form-control" name="dropdownFatherOccupationType" id="dropdownFatherOccupationType">
 																<optgroup label="Employed">
 																	<option value="Government">Local - Government</option>
@@ -1221,9 +1225,11 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
+													</div> 
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Occupation:<span class="">*</span>
 														</label>
-														<div class="col-md-3 col-sm-3">
+														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherOccupation" id="txtbxFatherOccupation" value="<?php echo $varcharStudentFatherOccupation ; ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z()-:',.\s]+$" required="required">
 														</div>
 													</div> 
@@ -1295,7 +1301,7 @@ require 'header.php';
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3 col-xs-12">Occupation Type</label>
-														<div class="col-md-2 col-sm-2 col-xs-12">
+														<div class="col-md-6 col-sm-6 col-xs-12">
 															<select required="required" class="select2_group form-control" name="dropdownGuardianOccupationType" id="dropdownGuardianOccupationType">
 																<optgroup label="Employed">
 																	<option value="Government">Local - Government</option>
@@ -1306,9 +1312,11 @@ require 'header.php';
 																<option value="Unemployed">Unemployed</option>
 															</select>
 														</div>
-														<label class="control-label col-md-1 col-sm-1"  >Occupation:<span class="">*</span>
+													</div>
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3"  >Occupation:<span class="">*</span>
 														</label>
-														<div class="col-md-3 col-sm-3">
+														<div class="col-md-6 col-sm-6">
 															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianOccupation" id="txtbxGuardianOccupation" value="<?php echo $varcharStudentFatherOccupation; ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z()-:',.\s]+$" required="required">
 														</div>
 													</div>
@@ -1463,7 +1471,7 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >If yes with whom?<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWithWhom" id="txtbxWithWhom">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxWithWhom" id="txtbxWithWhom" value="<?php echo $varcharStudentRoomSharing; ?>" required>
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1510,7 +1518,7 @@ require 'header.php';
 																	<input type="radio" name="radioVision" value="Yes" <?php echo ($varcharStudentVisionProblem <> "")?'checked':'' ?>>Yes
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentVisionProblem =='')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioVision" value="" checked="" <?php echo ($varcharStudentVisionProblem =='')?'checked':'' ?>> No
+																	<input type="radio" name="radioVision" value=""  <?php echo ($varcharStudentVisionProblem == "")?'checked':'' ?>> No
 																</label>
 															</div>
 														</div>
@@ -1701,14 +1709,14 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersClubInterest" id="txtbxOthersClubInterest" style="text-transform:capitalize;">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersClubInterest" id="txtbxOthersClubInterest" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.,\s]+$" required="">
 														</div>
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >What is/are you favorite subject/s <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<textarea class="form-control" name="txtareaFavoriteSubject" id="txtareaFavoriteSubject" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" required="required"><?php echo $varcharStudentFavSubject; ?></textarea>
+															<textarea class="form-control" name="txtareaFavoriteSubject" id="txtareaFavoriteSubject" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.,\s]+$" required="required"><?php echo $varcharStudentFavSubject; ?></textarea>
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1785,7 +1793,7 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >Others, please specify: <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersOrganizationInterest" id="txtbxOthersOrganizationInterest" style="text-transform:capitalize;">
+															<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxOthersOrganizationInterest" id="txtbxOthersOrganizationInterest" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.,\s]+$" required="">
 														</div>
 													</div>
 												</div>
@@ -1822,28 +1830,28 @@ require 'header.php';
 														<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >Name of Test <span class="">*</span></label>
 														<div class="col-md-6 col-sm-6">
-														<input id="txtbxTestResultNameInitial" name="txtbxTestResultNameInitial[]" value="'.$resu['testName'].'" type="text" class="form-control col-md-7 col-xs-12"  style="text-transform:capitalize;" required="required">
+														<input id="txtbxTestResultNameInitial" name="txtbxTestResultNameInitial[]" value="'.$resu['testName'].'" type="text" class="form-control col-md-7 col-xs-12"  style="text-transform:capitalize;">
 														</div>
 														</div>
 														<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >Raw Score(RS) <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-														<input id="txtbxTestResultRawScoreInitial" name="txtbxTestResultRawScoreInitial[]" value="'.$resu['testRawScore'].'" type="number" class="form-control col-md-7 col-xs-12" required="required" min="0">
+														<input id="txtbxTestResultRawScoreInitial" name="txtbxTestResultRawScoreInitial[]" value="'.$resu['testRawScore'].'" type="number" class="form-control col-md-7 col-xs-12" min="0">
 														</div>
 														</div>
 														<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >Percentile Rating(PR) <span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-														<input id="txtbxTestResultPercentileRatingInitial" name="txtbxTestResultPercentileRatingInitial[]" value="'.$resu['testPercentile'].'" type="number" class="form-control col-md-7 col-xs-12" required="required" min="0" max="100">
+														<input id="txtbxTestResultPercentileRatingInitial" name="txtbxTestResultPercentileRatingInitial[]" value="'.$resu['testPercentile'].'" type="number" class="form-control col-md-7 col-xs-12" min="0" max="100">
 														</div>
 														</div>
 														<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3"  >Description<span class="">*</span>
 														</label>
 														<div class="col-md-6 col-sm-6">
-														<textarea class="form-control" name="txtareaTestResultDescriptionInitial[]" id="txtareaTestResultDescriptionInitial" ="" placeholder = "'.$resu['testDescription'].'" required="required">'.$resu['testDescription'].'</textarea>
+														<textarea class="form-control" name="txtareaTestResultDescriptionInitial[]" id="txtareaTestResultDescriptionInitial" ="" placeholder = "'.$resu['testDescription'].'" >'.$resu['testDescription'].'</textarea>
 														</div>
 														<input type="hidden" id="testID" name="testID[]" value="'.$resu['testID'].'">
 														</div>
@@ -1937,18 +1945,18 @@ require 'header.php';
 				$('#dateDateOfBirth').blur(function() {
 					var dateDateOfBirthday = $(this).val();
 					var today = new Date();
-				    var birthDate = new Date(dateDateOfBirthday);
-				    var age = today.getFullYear() - birthDate.getFullYear();
-				    var m = today.getMonth() - birthDate.getMonth();
-				    if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
-				        age--;
-				    }
-				    if (age < 13 || age > 115)
-				    {
-				    	alert("Invalid Date of Birth");
-				    	age = "";
-				    }
-				    var calculatedAge = age;
+					var birthDate = new Date(dateDateOfBirthday);
+					var age = today.getFullYear() - birthDate.getFullYear();
+					var m = today.getMonth() - birthDate.getMonth();
+					if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+						age--;
+					}
+					if (age < 13 || age > 115)
+					{
+						alert("Invalid Date of Birth");
+						age = "";
+					}
+					var calculatedAge = age;
 					document.getElementById("txtbxAge").value = calculatedAge;
 				})
 				$('#txtbxHeight').blur(function() {
@@ -2031,14 +2039,14 @@ require 'header.php';
 						document.getElementById("txtbxHighschoolYearAttended2").value = "";
 					}
 				})
-				$('#txtbxVocationalYearAttended1').blur(function() {
-					var txtbxVocationalYearAttended1 = $(this).val();
-					if( txtbxVocationalYearAttended1 < 1971 || txtbxVocationalYearAttended1 > 2050)
-					{
-						alert("Invalid Year");
-						document.getElementById("txtbxVocationalYearAttended1").value = "";
-					}
-				})
+				// $('#txtbxVocationalYearAttended1').blur(function() {
+				// 	var txtbxVocationalYearAttended1 = $(this).val();
+				// 	if( txtbxVocationalYearAttended1 < 1971 || txtbxVocationalYearAttended1 > 2050)
+				// 	{
+				// 		alert("Invalid Year");
+				// 		document.getElementById("txtbxVocationalYearAttended1").value = "";
+				// 	}
+				// })
 				$('#txtbxCollegeYearAttended1').blur(function() {
 					var txtbxCollegeYearAttended1 = $(this).val();
 					if( txtbxCollegeYearAttended1 < 1971 || txtbxCollegeYearAttended1 > 2050)
@@ -2156,21 +2164,21 @@ require 'header.php';
 					var txtbxNoOfSisters = $('#txtbxNoOfSisters').val();
 					var NoOfSiblings = Number(txtbxNoOfBrothers) + (Number(txtbxNoOfSisters) + 1);
 					var txtbxNoOfChildrenInTheFamily = $('#txtbxNoOfChildrenInTheFamily').val();
-				    if(NoOfSiblings != txtbxNoOfChildrenInTheFamily)
-				    {
-				    	alert("Invalid Number of Brother/s or Sister/s");
-				    }
+					if(NoOfSiblings != txtbxNoOfChildrenInTheFamily)
+					{
+						alert("Invalid Number of Brother/s or Sister/s");
+					}
 				})
 				$('#txtbxNoOfBrothersSistersGainfullyEmployed').blur(function() {
 					var txtbxNoOfBrothers = $('#txtbxNoOfBrothers').val();
 					var txtbxNoOfSisters = $('#txtbxNoOfSisters').val();
 					var NoOfSiblings = Number(txtbxNoOfBrothers) + Number(txtbxNoOfSisters);
 					var txtbxNoOfBrothersSistersGainfullyEmployed = $('#txtbxNoOfBrothersSistersGainfullyEmployed').val();
-				    if(txtbxNoOfBrothersSistersGainfullyEmployed > NoOfSiblings || txtbxNoOfBrothersSistersGainfullyEmployed < 0)
-				    {
-				    	alert("Invalid Number of Brother/s or Sister/s Gainfully Employed");
-				    	document.getElementById("txtbxNoOfBrothersSistersGainfullyEmployed").value = "";
-				    }
+					if(txtbxNoOfBrothersSistersGainfullyEmployed > NoOfSiblings || txtbxNoOfBrothersSistersGainfullyEmployed < 0)
+					{
+						alert("Invalid Number of Brother/s or Sister/s Gainfully Employed");
+						document.getElementById("txtbxNoOfBrothersSistersGainfullyEmployed").value = "";
+					}
 				})
 				$('#dropdownCivilStatus').change(function() {
 					var dropdownCivilStatus = $(this).val();
@@ -2276,6 +2284,29 @@ require 'header.php';
 						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 					}
 				})
+				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+					{
+						document.getElementById("txtbxMotherOccupation").disabled = true;
+						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+						document.getElementById("txtbxMotherOccupation").value = "";
+						document.getElementById("txtbxMotherNameOfEmployer").value = "";
+						document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+					}
+					else if($(this).val() == 'Self-Employed')
+					{
+						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+						document.getElementById("txtbxMotherNameOfEmployer").value = "";
+						document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+						document.getElementById("txtbxMotherOccupation").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxMotherOccupation").disabled = false;
+						document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
+						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
+					}
 				$('#dropdownFatherOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2301,6 +2332,29 @@ require 'header.php';
 						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 					}
 				})
+				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+					{
+						document.getElementById("txtbxFatherOccupation").disabled = true;
+						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+						document.getElementById("txtbxFatherOccupation").value = "";
+						document.getElementById("txtbxFatherNameOfEmployer").value = "";
+						document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+					}
+					else if($(this).val() == 'Self-Employed')
+					{
+						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+						document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+						document.getElementById("txtbxFatherNameOfEmployer").value = "";
+						document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+						document.getElementById("txtbxFatherOccupation").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxFatherOccupation").disabled = false;
+						document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
+						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
+					}
 				$('#dropdownGuardianOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2326,6 +2380,29 @@ require 'header.php';
 						document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
 					}
 				})
+				if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unemployed')
+				{
+					document.getElementById("txtbxGuardianOccupation").disabled = true;
+					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
+					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxGuardianOccupation").value = "";
+					document.getElementById("txtbxGuardianNameOfEmployer").value = "";
+					document.getElementById("txtbxGuardianAddressOfEmployer").value = "";
+				}
+				else if($("#dropdownGuardianOccupationType").val() == 'Self-Employed')
+				{
+					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
+					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxGuardianNameOfEmployer").value = "";
+					document.getElementById("txtbxGuardianAddressOfEmployer").value = "";
+					document.getElementById("txtbxGuardianOccupation").disabled = false;
+				}
+				else
+				{
+					document.getElementById("txtbxGuardianOccupation").disabled = false;
+					document.getElementById("txtbxGuardianNameOfEmployer").disabled = false;
+					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
+				}
 				$('#dropdownGuardianRelationship').change(function() {
 					if( $(this).val() == 'Others')
 					{
@@ -2410,7 +2487,7 @@ require 'header.php';
 						document.getElementById("dropdownOrdinalPosition").disabled = "true"
 						document.getElementById("dropdownSupportedByYourSibling").disabled = "true";
 						document.getElementById("txtbxOthersSupportedByYourSibling").value = "";
-					
+
 					}
 					else
 					{
@@ -2656,8 +2733,8 @@ require 'header.php';
 				// $("#dropdownComplexion").val(temp);
 				// var temp="<?php echo $varcharStudentCityCity;?>"; 
 				// $("#dropdownCityAddress").val(temp);
-				// var temp="<?php echo $varcharStudentProvinceCity;?>"; 
-				// $("#dropdownProvincialAddress").val(temp);
+				var temp="<?php echo $varcharStudentProvinceProvince;?>"; 
+				$("#dropdownProvincialAddress").val(temp);
 				// var temp="<?php echo $varcharStudentContactPersonRelationship;?>"; 
 				// $("#dropdownContactPersonRelationship").val(temp);
 				var temp="<?php echo $varcharStudentMotherEducation;?>"; 
@@ -2790,7 +2867,12 @@ require 'header.php';
 					document.getElementById("txtbxOthersSupportedByYourSibling").value = "";
 					document.getElementById("txtbxOthersSupportedByYourSibling").disabled = false;
 				}
-
+				if ("<?php echo $varcharStudentProvinceProvince?>" == "") 
+				{
+					document.getElementById("txtbxProvinceHouseNumber").disabled = true;
+					document.getElementById("txtbxProvinceBarangay").disabled = true;
+					document.getElementById("txtbxProvinceCity").disabled = true;
+				}
 				$("#dropdownGuardianRelationship").val('Others');
 				$('#dropdownGuardianRelationship option').each(function(){
 					if (this.value == "<?php echo $varcharStudentGuardianRelation;?>") {
@@ -2883,6 +2965,7 @@ require 'header.php';
 				var clubInterestArray = "<?php echo $varcharClubInterestName?>";
 				var clubInterestArray = clubInterestArray.split("/");
 				var tags = document.getElementsByName('checkClubInterest[]');
+				var otherClubInterest = "";
 				for (var i = 0; i < clubInterestArray.length; i++) {
 					purge = 0;
 					for(var j = 0; j < tags.length; j++){
@@ -2926,6 +3009,7 @@ require 'header.php';
 				var orgInterestArray = "<?php echo $varcharOrgInterestName?>";
 				var orgInterestArray = orgInterestArray.split("/");
 				var tags = document.getElementsByName('checkOrganizationInterest[]');
+				var otherOrgInterest = "";
 				for (var i = 0; i < orgInterestArray.length; i++) 
 				{
 					purge = 0;
@@ -2969,12 +3053,12 @@ require 'header.php';
 				}
 			});
 
-			document.querySelectorAll('input[data-max-words]').forEach(input => {
+document.querySelectorAll('input[data-max-words]').forEach(input => {
 			  // Remember the word limit for the current input
 			  let maxWords = parseInt(input.getAttribute('data-max-words') || 0)
 			  // Add an eventlistener to test for key inputs
 			  input.addEventListener('keydown', e => {
-			    let target = e.currentTarget
+			  	let target = e.currentTarget
 			    // Split the text in the input and get the current number of words
 			    let words = target.value.split(/\s+/).length
 			    // If the word count is > than the max amount and a space is pressed
@@ -2984,8 +3068,8 @@ require 'header.php';
 			      // If the first two tests fail allow the key to be inserted
 			      // Otherwise we prevent the default from happening
 			      words >= maxWords && e.keyCode == 32 && e.preventDefault()
-			    else
-			      words >= maxWords && e.keyCode == 32 && (e.preventDefault() || alert('Word Limit Reached'))
+			      else
+			      	words >= maxWords && e.keyCode == 32 && (e.preventDefault() || alert('Word Limit Reached'))
 			  })
 			})
 		</script>

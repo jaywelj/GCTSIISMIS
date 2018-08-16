@@ -1,4 +1,5 @@
 <?php
+include("errorReport.php");
 include("session.php");
 include("connectionString.php");
 if(isset($_POST['btnFinish']))
@@ -32,7 +33,8 @@ if(isset($_POST['btnFinish']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mentor Education Bootstrap Theme</title>
+	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
+	<title>Survey | OCPS</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 

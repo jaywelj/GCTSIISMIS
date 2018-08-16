@@ -18,7 +18,7 @@
 				<li id="iir"><a href="individualInventory.php">Individual Inventory</a></li>
 				<!-- <li id="survey"><a href="survey.php">Surveys</a></li> -->
 				<li id="survey"><a href="problemSurvey.php">Surveys</a></li>
-				<li id="abouts"><a href="abouts.php">Abouts</a></li>
+				<li id="abouts"><a href="abouts2.php">Abouts</a></li>
 				<li id="abouts"><a href="logout.php">Logout</a></li>
 				<!-- <li id="log-in"><a href="#" data-target="#login" data-toggle="modal">Login</a></li> -->
 
