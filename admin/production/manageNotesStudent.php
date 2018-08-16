@@ -366,7 +366,7 @@ require 'header.php';
 			</div>
 			<!-- /page content -->
 			<?php
-			$queryGettingSuggestionFromMessages = "SELECT *,tbl_studentaccount.studentNumber AS studentNumberMessagedButWithoutNote FROM tbl_studentaccount LEFT JOIN tbl_message ON tbl_message.studentNumber = tbl_studentaccount.studentNumber WHERE `tbl_studentaccount`.`studentNumber` IS NULL";
+			$queryGettingSuggestionFromMessages = "SELECT *,tbl_studentaccount.studentNumber AS studentNumberMessagedButWithoutNote FROM tbl_studentaccount LEFT JOIN tbl_message ON tbl_message.studentNumber = tbl_studentaccount.studentNumber WHERE `tbl_studentaccount`.`studentNumber` IS NULL AND messageDateSent > DATE_SUB(now(), INTERVAL 1 WEEK)";
 			$resultGettingSuggestionFromMessages = mysqli_query($connect, $queryGettingSuggestionFromMessages);
 
 			while ($row = mysqli_fetch_array($resultGettingSuggestionFromMessages)) 
