@@ -131,7 +131,7 @@ require 'header.php';
 															<?php
 
 
-															$VarcharStudentProfileImage = $res['studentDisplayPic'];
+															$VarcharStudentProfileImage = $row['studentDisplayPic'];
 															if(empty($VarcharStudentProfileImage))
 															{
 																echo '
@@ -139,7 +139,7 @@ require 'header.php';
 																';
 															}
 															else{
-																echo '<img src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic'] ).'" height="200" width="200" style="object-fit:cover;" />';
+																echo '<img src="data:image/jpeg;base64,'.base64_encode($row['studentDisplayPic'] ).'" height="200" width="200" style="object-fit:cover;" />';
 															}
 
 															?>

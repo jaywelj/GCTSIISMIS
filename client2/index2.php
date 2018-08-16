@@ -64,7 +64,8 @@ if(isset($_POST['btnEmailSend']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mentor Education Bootstrap Theme</title>
+	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
+	<title>Home | OCPS</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -330,7 +331,7 @@ if(isset($_POST['btnEmailSend']))
 				</div>
 					<?php
 				include_once("connectionString.php");
-				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
+				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount` ORDER BY rand()  LIMIT 6";
 				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
 				while ($row = mysqli_fetch_array($resultGettingAdmin)) 
 				{
@@ -363,8 +364,8 @@ if(isset($_POST['btnEmailSend']))
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-						<div class="pm-staff-profile-image">
-						<img src="img/default-user.png" alt="" class="img-thumbnail img-circle" />
+						<div class="">
+						<img class="img-circle" src="img/default-user.png" height="200" width="200" style="object-fit:cover;" />
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
@@ -380,8 +381,8 @@ if(isset($_POST['btnEmailSend']))
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-						<div class="pm-staff-profile-image">
-						<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" alt="" class="img-thumbnail img-circle" />
+						<div class="">
+						<img class="img-circle" src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
@@ -440,7 +441,7 @@ if(isset($_POST['btnEmailSend']))
 			<div class="row">
 									<?php 
 					include("connectionString.php");  
-					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY programImage DESC LIMIT 6";
 					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
 					while($row = mysqli_fetch_array($resultGettingProgram))  
 					{  
@@ -453,7 +454,7 @@ if(isset($_POST['btnEmailSend']))
 						if (empty($programImage)) {
 							
 							echo '
-							<div class="col-md-4 col-sm-6 padleft-right">
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;">
 							<figure class="imghvr-fold-up">
 							<img src="img/noimgavailable.jpg" class="img-responsive">
 							<figcaption>
@@ -466,9 +467,8 @@ if(isset($_POST['btnEmailSend']))
 						}
 						else
 						{
-							
 							echo '
-							<div class="col-md-4 col-sm-6 padleft-right">
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;" >
 							<figure class="imghvr-fold-up">
 							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
 							<figcaption>
@@ -478,7 +478,6 @@ if(isset($_POST['btnEmailSend']))
 							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
 							</figure>
 							</div>';
-
 						}
 						?>
 						<?php 

@@ -294,12 +294,12 @@ require 'header.php';
 												if(empty($VarcharStudentProfileImage))
 												{
 													echo '
-													<img clas="img-responsive avatar-view" src="assets/img/default-user.png">
+													<img class="img-responsive avatar-view" src="assets/img/default-user.png">
 													';
 												}
 												else{
 													echo '
-													<img class="img-responsive avatar-view" src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic']).'"  alt="Avatar" title='.$res['studentNumber'].'>
+													<img class="img-responsive avatar-view" src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic']).'"  alt="Avatar" title='.$res['studentNumber'].' >
 													';
 												}
 											}

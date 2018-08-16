@@ -1,4 +1,5 @@
 <?php
+include("errorReport.php");
 $ArchivedStudentNumber = "";
 $ActiveStudentNumber = "";
 
@@ -20,17 +21,20 @@ if(isset($_POST['btnAdd']))
 
 	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
 
-	if($_FILES["fileStudentImage"] == NULL)
+	if(!empty(["fileStudentImage"]))
 	{
-		
+		echo "<script type='text/javascript'>alert('meron');</script>";
+		$varcharStudentImage =  addslashes(file_get_contents($_FILES["fileStudentImage"]["tmp_name"]));
 	}
 	else
 	{
-		$varcharStudentImage =  addslashes(file_get_contents($_FILES["fileStudentImage"]["tmp_name"]));
+		echo "<script type='text/javascript'>alert('wala');</script>";
+		$varcharStudentImage = NULL;
 	}
 
 
 	$varcharStudentPassword= mysqli_real_escape_string($connect, $_POST['txtbxStudentPassword']);
+	$varcharStudentCPassword= mysqli_real_escape_string($connect, $_POST['txtbxStudentCPassword']);
 
 	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ";
 	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
@@ -38,7 +42,6 @@ if(isset($_POST['btnAdd']))
 	{
 		$varcharStudentCollege = $row['collegeCode'];
 	}
-	echo "<script type='text/javascript'>alert('$varcharStudentImage');</script>";
 
 	$queryGetArchivedAccount = "SELECT * FROM tbl_personalinfoarchive WHERE `studentNumber` = '$varcharStudentNumber' ";
 	$resultGetArchivedAccount = mysqli_query($connect, $queryGetArchivedAccount);
@@ -84,139 +87,115 @@ if(isset($_POST['btnAdd']))
 				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
 		}
+		else if($varcharStudentCPassword<>$varcharStudentPassword)
+		{
+			$message = "Password does not match";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
 		else
 		{
 			if(!empty($varcharStudentImage))
 			{ 						  				
 
 				$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$varcharStudentNumber', '$varcharStudentPassword', 'Not Interested', '$varcharStudentImage')";
-
-				$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$varcharStudentLastName', '$varcharStudentFirstName', '$varcharStudentMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
-
-				$queryAdd3 = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$varcharStudentNumber')
-				";
-
-				$queryAdd5 = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '', 'Not Set', 'NA', 'Not Set', 'Not Set', '$varcharStudentNumber')";
-
-				$queryAdd6 = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'NA', NULL, NULL, 'NA', NULL, NULL, 'NA', NULL, NULL, '$varcharStudentNumber')";
-
-				$queryAdd7 = "INSERT INTO `tbl_interesthobbies` (`interestID`, `clubName`, `favSubject`, `leastFavSubject`, `hobby1`, `hobby2`, `hobby3`, `hobby4`, `interestOrganization`, `organizationPosition`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$varcharStudentNumber')";
-
-				$queryAdd8 = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$varcharStudentNumber'";
 			}
 			else
 			{
-				
-				$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$varcharStudentNumber', '$varcharStudentPassword', 'Not Interested', '$varcharStudentImage')";
-
-				$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$varcharStudentLastName', '$varcharStudentFirstName', '$varcharStudentMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
-
-				$queryAdd3 = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$varcharStudentNumber')
-				";
-
-				$queryAdd5 = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '', 'Not Set', 'NA', 'Not Set', 'Not Set', '$varcharStudentNumber')";
-
-				$queryAdd6 = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'NA', NULL, NULL, 'NA', NULL, NULL, 'NA', NULL, NULL, '$varcharStudentNumber')";
-
+				$queryAdd = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$varcharStudentNumber', '$varcharStudentPassword', 'Not Interested', NULL)";
+			}
+			$queryAdd2 = "INSERT INTO `tbl_personalinfo` (`infoID`, `firstName`, `lastName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`,  `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$varcharStudentFirstName', '$varcharStudentLastName', '$varcharStudentMiddleName', '', '', '0', '$varcharStudentYear', '$varcharStudentSection', '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$varcharStudentCollege', '$varcharStudentCourse', '$varcharStudentNumber')";
+				$queryAdd3 = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$varcharStudentNumber')";
+				$queryAdd5 = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, '', NULL, '', '', '', '', NULL, NULL, '', NULL, '', '', '', '', NULL, NULL, '', NULL, '', '', '', '', NULL, NULL, '', '', NULL, NULL, '', '', '', '', '', '', '', '', '', '$varcharStudentNumber')";
+				$queryAdd6 = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, '', '', '', '', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '$varcharStudentNumber')";
 				$queryAdd7 = "INSERT INTO `tbl_interesthobbies` (`interestID`, `clubName`, `favSubject`, `leastFavSubject`, `hobby1`, `hobby2`, `hobby3`, `hobby4`, `interestOrganization`, `organizationPosition`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$varcharStudentNumber')";
-
-				$queryAdd8 = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$varcharStudentNumber'";
-			} 
-		}
-	}
-
-
-
-	if(mysqli_query($connect, $queryAdd))
-	{   
-		if(mysqli_query($connect, $queryAdd2))
-		{
-			if(mysqli_query($connect, $queryAdd3))
-			{
-				if(mysqli_query($connect, $queryAdd5))
+				$queryAdd8 = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$varcharStudentNumber')";
+			if(mysqli_query($connect, $queryAdd))
+			{   
+				if(mysqli_query($connect, $queryAdd2))
 				{
-					if(mysqli_query($connect, $queryAdd6))
+					if(mysqli_query($connect, $queryAdd3))
 					{
-						if(mysqli_query($connect, $queryAdd7))
+						if(mysqli_query($connect, $queryAdd5))
 						{
-							if(mysqli_query($connect, $queryAdd8))
+							if(mysqli_query($connect, $queryAdd6))
 							{
-								$message = "Student Account added successfully!";
-								echo "<script type='text/javascript'>alert('$message');</script>";
+								if(mysqli_query($connect, $queryAdd7))
+								{
+									if(mysqli_query($connect, $queryAdd8))
+									{
+										$message = "Student Account added successfully!";
+										echo "<script type='text/javascript'>alert('$message');</script>";
 								//redirectig to the display page. In our case, it is index.php
-								echo "<script type='text/javascript'>location.href = 
-								'manageAccountStudentAccount.php';</script>";
+										echo "<script type='text/javascript'>location.href = 
+										'manageAccountStudentAccount.php';</script>";
+									}
+									else
+									{
+										$message = "7";
+										echo "<script type='text/javascript'>alert('$message');</script>";
+										echo("Error description7: " . mysqli_error($connect));
+									}
+								}
+								else
+								{
+									$message = "6";
+									echo "<script type='text/javascript'>alert('$message');</script>";
+									echo("Error description6: " . mysqli_error($connect));
+								}
 							}
 							else
 							{
-								$message = "7";
+								$message = "5";
 								echo "<script type='text/javascript'>alert('$message');</script>";
-								echo("Error description: " . mysqli_error($connect));
+								echo("Error description5: " . mysqli_error($connect));
 							}
+
 						}
 						else
 						{
-							$message = "6";
+							$message = "3";
 							echo "<script type='text/javascript'>alert('$message');</script>";
-							echo("Error description: " . mysqli_error($connect));
+							echo("Error description4: " . mysqli_error($connect));
 						}
 					}
 					else
 					{
-						$message = "5";
+						$message = "2";
 						echo "<script type='text/javascript'>alert('$message');</script>";
-						echo("Error description: " . mysqli_error($connect));
+						echo("Error description3: " . mysqli_error($connect));
 					}
 
 				}
 				else
 				{
-					$message = "3";
+					$message = "1";
 					echo "<script type='text/javascript'>alert('$message');</script>";
-					echo("Error description: " . mysqli_error($connect));
+					echo("Error description2: " . mysqli_error($connect));
 				}
 			}
 			else
 			{
-				$message = "2";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				echo("Error description: " . mysqli_error($connect));
+				$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentNumber' ";
+				$result = mysqli_query($connect, $query);
+
+				if (mysqli_num_rows($result) == 1) {
+					$message = "Student Number Already Registered";
+					echo "<script type='text/javascript'>alert('$message');</script>";
+					$message = "Query Error";
+
+					echo "<script type='text/javascript'>alert('$message');</script>";
+														//redirectig to the display page. In our case, it is index.php
+					echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+				}
+				else
+				{
+					$message = "Query Error";
+
+					echo "<script type='text/javascript'>alert('$message');</script>";
+														//redirectig to the display page. In our case, it is index.php
+					echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
+				}
 			}
-
-		}
-		else
-		{
-			$message = "1";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo("Error description: " . mysqli_error($connect));
-		}
-	}
-	else
-	{
-		$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentNumber' ";
-		$result = mysqli_query($connect, $query);
-
-		if (mysqli_num_rows($result) == 1) {
-			$message = "Student Number Already Registered";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-
-
-
-
-
-			$message = "Query Error";
-
-			echo "<script type='text/javascript'>alert('$message');</script>";
-														//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
-		}
-		else
-		{
-			$message = "Query Error";
-
-			echo "<script type='text/javascript'>alert('$message');</script>";
-														//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 		}
 	}
 }
@@ -241,22 +220,12 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentSection']);
 
-	$varcharStudentGender = mysqli_real_escape_string($connect, $_POST['optionEditStudentGender']);
-
-	$varcharStudentBirthdate = mysqli_real_escape_string($connect, $_POST['dateEditStudentBirthdate']);
-
-	$varcharStudentContactNo = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentContactNo']);
-
-	$varcharStudentEmail = mysqli_real_escape_string($connect, $_POST['txtbxEditStudentEmail']);
-
 	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ;";
 	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
 	while ($row = mysqli_fetch_array($queryGetCollegeArray))
 	{
 		$varcharStudentCollege = $row['collegeCode'];
 	}
-
-
 	if(!empty($_FILES['fileEditStudentImage']['tmp_name']) && file_exists($_FILES['fileEditStudentImage']['tmp_name'])) 
 	{
 		$varcharStudentImage = addslashes(file_get_contents($_FILES["fileEditStudentImage"]["tmp_name"]));
@@ -287,7 +256,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo', `studentDisplayPic` = '$varcharStudentImage' 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage' 
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -298,7 +267,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', `birthDate` = '$varcharStudentBirthdate', `sex` = '$varcharStudentGender', `cpContactNumber` = '$varcharStudentContactNo'
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection'
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -573,9 +542,15 @@ require 'header.php';
 								<label>Password</label>
 								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
 								<br />
+								<label>Confirm Password</label>
+								<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" />
+								<div id="divCheckPasswordMatch">
+								</div>
+								<br />
 								<label>Image</label>
 								<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" />
 								<br />
+								
 							</div>
 							<div class="modal-footer">
 								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
@@ -655,6 +630,50 @@ require 'header.php';
 				});
 			});
 		});
+	</script>
+	<script type="text/javascript">
+		document.getElementById("txtbxStudentCPassword").onkeyup = function(){
+			checkPassword();
+		};
+		document.getElementById("txtbxStudentPassword").onkeyup = function(){
+			checkPassword();
+		};
+		function checkPassword(){
+			var password = document.getElementById("txtbxStudentPassword").value;
+			var cpassword = document.getElementById("txtbxStudentCPassword").value;
+			if(cpassword != "")
+			{
+				if(password == "")
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
+				}
+				else if( password != cpassword)
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+				}
+				else
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+				}
+			}
+			else if(cpassword == "" && password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			}
+			
+		}
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#editProfilePicture')
+					.attr('src', e.target.result)
+				};
+
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
 	</script>
 
 </body>

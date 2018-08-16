@@ -38,6 +38,7 @@ if(isset($_POST['btnAdd']))
 	$VarcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountNumber']);
 
 	$VarcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountPassword']);
+	$VarcharStudentAccountCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountCPassword']);
 
 	$VarcharStudentAccountCourse = mysqli_real_escape_string($connect, $_POST['dropdownStudentAccountCourse']);
 
@@ -90,24 +91,30 @@ if(isset($_POST['btnAdd']))
                         //link to the previous page
 		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
+	else if($VarcharStudentAccountPassword<>$VarcharStudentAccountCPassword)
+	{
+		$message = "Password does not match";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	}
 
 	else 
 	{ 
 
 		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', 'Not Interested', NULL)";
 
-		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
+		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', '', '', '0', '', '', '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
 
-		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$VarcharStudentAccountNumber')
+		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$VarcharStudentAccountNumber')
 		";
 
-		$queryAddFamilyBackground = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '', 'Not Set', 'NA', 'Not Set', 'Not Set', '$VarcharStudentAccountNumber')";
+		$queryAddFamilyBackground = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, '', NULL, '', '', '', '', NULL, NULL, '', NULL, '', '', '', '', NULL, NULL, '', NULL, '', '', '', '', NULL, NULL, '', '0', NULL, NULL, '', '', '', '', '', '', '', '', '', '$VarcharStudentAccountNumber')";
 
-		$queryAddHealth = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'NA', NULL, NULL, 'NA', NULL, NULL, 'NA', NULL, NULL, '$VarcharStudentAccountNumber')";
+		$queryAddHealth = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, '', '', '', '', '', NULL, NULL, '', NULL, NULL, '', NULL, NULL, '$VarcharStudentAccountNumber')";
 
 		$queryAddInterests = "INSERT INTO `tbl_interesthobbies` (`interestID`, `clubName`, `favSubject`, `leastFavSubject`, `hobby1`, `hobby2`, `hobby3`, `hobby4`, `interestOrganization`, `organizationPosition`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$VarcharStudentAccountNumber')";
 
 		$queryAddTestResults = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$VarcharStudentAccountNumber')";
+		
 
 		if(mysqli_query($connect, $queryAddStudentAccount))
 		{   
@@ -253,7 +260,8 @@ if(isset($_POST['btnEmailSend']))
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mentor Education Bootstrap Theme</title>
+	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
+	<title>Home | OCPS</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 
@@ -550,7 +558,7 @@ if(isset($_POST['btnEmailSend']))
 				</div>
 				<?php
 				include_once("connectionString.php");
-				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount`";
+				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount` ORDER BY rand()  LIMIT 6";
 				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
 				while ($row = mysqli_fetch_array($resultGettingAdmin)) 
 				{
@@ -583,8 +591,8 @@ if(isset($_POST['btnEmailSend']))
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-						<div class="pm-staff-profile-image">
-						<img src="img/default-user.png" alt="" class="img-thumbnail img-circle" />
+						<div class="">
+						<img class="img-circle" src="img/default-user.png" height="200" width="200" style="object-fit:cover;" />
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
@@ -600,8 +608,8 @@ if(isset($_POST['btnEmailSend']))
 						<div class="col-lg-4 col-md-4 col-sm-4">
 						<div class="pm-staff-profile-container">
 						<div class="pm-staff-profile-image-wrapper text-center">
-						<div class="pm-staff-profile-image">
-						<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" alt="" class="img-thumbnail img-circle" />
+						<div class="">
+						<img class="img-circle" src="data:image/jpeg;base64,'.base64_encode($row['adminImage'] ).'" height="200" width="200" style="object-fit:cover;" />
 						</div>
 						</div>
 						<div class="pm-staff-profile-details text-center">
@@ -635,7 +643,7 @@ if(isset($_POST['btnEmailSend']))
 			</div>
 		</section>
 		<!--/ Faculity member-->
-		<!--Testimonial-->
+		<!--Testimonial
 		<section id="testimonial" class="section-padding">
 			<div class="container">
 				<div class="row">
@@ -659,7 +667,7 @@ if(isset($_POST['btnEmailSend']))
 				</div>
 			</div>
 		</section>
-		<!--/ Testimonial-->
+		/ Testimonial-->
 		<!--Courses-->
 		<section id="courses" class="section-padding">
 			<div class="container">
@@ -675,7 +683,7 @@ if(isset($_POST['btnEmailSend']))
 				<div class="row">
 					<?php 
 					include("connectionString.php");  
-					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram";
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY `tbl_recommendedprogram`.`programImage` DESC LIMIT 6";
 					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
 					while($row = mysqli_fetch_array($resultGettingProgram))  
 					{  
@@ -688,7 +696,7 @@ if(isset($_POST['btnEmailSend']))
 						if (empty($programImage)) {
 							
 							echo '
-							<div class="col-md-4 col-sm-6 padleft-right">
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;">
 							<figure class="imghvr-fold-up">
 							<img src="img/noimgavailable.jpg" class="img-responsive">
 							<figcaption>
@@ -701,9 +709,8 @@ if(isset($_POST['btnEmailSend']))
 						}
 						else
 						{
-							
 							echo '
-							<div class="col-md-4 col-sm-6 padleft-right">
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;" >
 							<figure class="imghvr-fold-up">
 							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
 							<figcaption>
@@ -713,62 +720,11 @@ if(isset($_POST['btnEmailSend']))
 							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
 							</figure>
 							</div>';
-
 						}
 						?>
 						<?php 
 					}
 					?>
-					<!-- <div class="col-md-4 col-sm-6 padleft-right">
-						<figure class="imghvr-fold-up">
-							<img src="img/course02.jpg" class="img-responsive">
-							<figcaption>
-								<h3>Course Name</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-							</figcaption>
-							<a href="#"></a>
-						</figure>
-					</div>
-					<div class="col-md-4 col-sm-6 padleft-right">
-						<figure class="imghvr-fold-up">
-							<img src="img/course03.jpg" class="img-responsive">
-							<figcaption>
-								<h3>Course Name</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-							</figcaption>
-							<a href="#"></a>
-						</figure>
-					</div>
-					<div class="col-md-4 col-sm-6 padleft-right">
-						<figure class="imghvr-fold-up">
-							<img src="img/course04.jpg" class="img-responsive">
-							<figcaption>
-								<h3>Course Name</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-							</figcaption>
-							<a href="#"></a>
-						</figure>
-					</div>
-					<div class="col-md-4 col-sm-6 padleft-right">
-						<figure class="imghvr-fold-up">
-							<img src="img/course05.jpg" class="img-responsive">
-							<figcaption>
-								<h3>Course Name</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-							</figcaption>
-							<a href="#"></a>
-						</figure>
-					</div>
-					<div class="col-md-4 col-sm-6 padleft-right">
-						<figure class="imghvr-fold-up">
-							<img src="img/course06.jpg" class="img-responsive">
-							<figcaption>
-								<h3>Course Name</h3>
-								<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Magnam atque, nostrum veniam consequatur libero fugiat, similique quis.</p>
-							</figcaption>
-							<a href="#"></a>
-						</figure>
-					</div> -->
 				</div>
 			</div>
 		</section>
@@ -857,6 +813,38 @@ if(isset($_POST['btnEmailSend']))
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="contactform/contactform.js"></script>
+	<script type="text/javascript">
+		document.getElementById("txtbxStudentAccountCPassword").onkeyup = function(){
+			checkPassword();
+		};
+		document.getElementById("txtbxStudentAccountPassword").onkeyup = function(){
+			checkPassword();
+		};
+		function checkPassword(){
+			var password = document.getElementById("txtbxStudentAccountPassword").value;
+			var cpassword = document.getElementById("txtbxStudentAccountCPassword").value;
+			if(cpassword != "")
+			{
+				if(password == "")
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
+				}
+				else if( password != cpassword)
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+				}
+				else
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+				}
+			}
+			else if(cpassword == "" && password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			}
+			
+		}
+	</script>
 
 </body>
 

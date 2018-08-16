@@ -31,22 +31,6 @@ if(isset($_POST["studentNumber"]))
 							<tr>
 								<th scope="row">Year and Section</th>
 								<td>'.$row["year"]." - ".$row["section"].'</td>
-							</tr>
-							<tr>
-								<th scope="row">Gender</th>
-								<td>'.$row["sex"].'</td>
-							</tr>
-							<tr>
-								<th scope="row">Birth Date</th>
-								<td>'.$row["birthDate"].'</td>
-							</tr>
-							<tr>
-								<th scope="row">Contact No.</th>
-								<td>'.$row["cpContactNumber"].'</td>
-							</tr>
-							<tr>
-								<th scope="row">Email</th>
-								<td>'.$row["email"].'</td>
 							</tr>';
 						}
 						$output .= '

@@ -1,4 +1,5 @@
 <?php 
+include("errorReport.php");
 include("connectionString.php");
 $varcharAdminEmail = $_SESSION['sessionAdminEmail'];
 $result = mysqli_query($connect,"SELECT * FROM `tbl_adminaccount` WHERE `adminEmail` = '$varcharAdminEmail'");
@@ -142,7 +143,6 @@ while($res = mysqli_fetch_array($result))
 					<li><a><i class="fa fa-desktop"></i> Accounts <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<li><a href="manageAccountAdminAccount.php">Admin Account</a></li>
-							<li><a href="manageAccountStaffAccount.php">Staff Account</a></li>
 							<li><a href="manageAccountStudentAccount.php">Student Account</a></li>
 						</ul>
 					</li>

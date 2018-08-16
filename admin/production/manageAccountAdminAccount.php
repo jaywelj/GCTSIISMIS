@@ -1,4 +1,5 @@
 <?php
+include("errorReport.php");
 if(isset($_POST['btnAdd'])) 
 {
 	//including the database connection file

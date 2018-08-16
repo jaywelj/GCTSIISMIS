@@ -192,8 +192,6 @@ while($res6 = mysqli_fetch_array($result6)){
 	$varcharStudentTestRawScore = $res6['testRawScore']; 
 	$varcharStudentTestPercentile = $res6['testPercentile'];
 	$varcharStudentTestDescription = $res6['testDescription'];
-
-
 }
 
 
@@ -206,6 +204,105 @@ else if($varcharStudentSex = "M"){
 
 $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 
+if(isset($_POST['btnUpdate']))
+{
+	include_once("connectionString.php");
+
+	$varcharStudentNumber	= $varcharStudentNumber;
+
+	$varcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFirstName']);
+
+	$varcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMiddleName']);
+
+	$varcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentLastName']);
+
+	$varcharStudentCourse = mysqli_real_escape_string($connect, $_POST['selectStudentCourse']);
+
+	$varcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentYear']);
+
+	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
+
+	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ;";
+	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
+	while ($row = mysqli_fetch_array($queryGetCollegeArray))
+	{
+		$varcharStudentCollege = $row['collegeCode'];
+	}
+	if(!empty($_FILES['fileEditStudentImage']['tmp_name']) && file_exists($_FILES['fileEditStudentImage']['tmp_name'])) 
+	{
+		$varcharStudentImage = addslashes(file_get_contents($_FILES["fileEditStudentImage"]["tmp_name"]));
+	}
+	else
+	{
+		$varcharStudentImage = NULL;
+	}
+	$varcharStudentPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentPassword']);
+	$varcharStudentCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCPassword']);
+	$varcharStudentCurPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCurPassword']);
+	// checking empty fields
+	if(empty($varcharStudentFirstName)) 
+	{
+
+		if(empty($varcharStudentFirstName))
+		{
+			$message = "Enter a First Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		//link to the previous page
+		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+	} 
+	else if($varcharStudentCPassword<>$varcharStudentPassword)
+	{
+		$message = "Password does not match";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else if($varcharStudentCurPassword <> $varcharStudentAccountPassword)
+	{
+		$message = "Wrong password";
+		echo "<script type='text/javascript'>alert('$message');</script>";
+	}
+	else 
+	{ 
+		// if all the fields are filled (not empty) 
+		//insert data to database   
+		if (!empty($varcharStudentImage)) 
+		{
+			$queryEdit = "
+			UPDATE `tbl_studentaccount` AS A
+			INNER JOIN tbl_personalinfo AS B 
+			ON A.studentNumber = B.studentNumber 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage', studentPassword = '$varcharStudentPassword' 
+			WHERE A.studentNumber = '$varcharStudentNumber'";
+			$message = "0";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		else
+		{
+			$queryEdit = "
+			UPDATE `tbl_studentaccount` AS A
+			INNER JOIN tbl_personalinfo AS B 
+			ON A.studentNumber = B.studentNumber 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', studentPassword = '$varcharStudentPassword'
+			WHERE A.studentNumber = '$varcharStudentNumber'";
+			$message = "1";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(!mysqli_query($connect, $queryEdit))
+		{
+			$message = "Query Error" ;
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			echo("Error description: " . mysqli_error($connect));
+		}
+		else
+		{
+			$_SESSION['sessionStudentAccountPassword'] = $varcharStudentPassword;
+			$message = "Student Account Updated Successfully!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'profile.php';</script>";	
+		}
+	}
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -213,7 +310,8 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<title>Mentor Education Bootstrap Theme</title>
+	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
+	<title>Profile | OCPS</title>
 	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
 	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
@@ -243,7 +341,7 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 			<div class="container">
 				<div class="row">
 					<div class="banner-text text-center" style="margin-top:-40px">
-						<div class="text-border" style="border-color: white">
+						<div class="text-border" style="border:none;">
 							<figure>
 								<?php
 								$resultDisplayImage = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentNumber'");
@@ -253,10 +351,12 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 									$studentDisplayPic = $resDisplayImage['studentDisplayPic'];
 									if(empty($studentDisplayPic))
 									{
-										echo '  
+										echo '   
 										<tr>  
 										<td>  
-										<img src="img/user.png"  height="260" width="260" class="img-thumnail" />  
+										<label for="fileEditStudentImage"title="CHANGE PROFILE PICTURE">
+										<img src="img/user.png"  height="260" width="260" class="img-thumnail"  style="margin: 10px 0 10px 0; object-fit:cover; "/>  
+										</label>
 										</td>  
 										</tr>  
 										';  
@@ -264,8 +364,10 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 									else{
 										echo '  
 										<tr>  
-										<td>  
-										<img src="data:image/jpeg;base64,'.base64_encode($resDisplayImage['studentDisplayPic'] ).'" height="260" width="260" class="img-thumnail" />  
+										<td>
+										<label for="fileEditStudentImage" title="CHANGE PROFILE PICTURE">  
+										<img src="data:image/jpeg;base64,'.base64_encode($studentDisplayPic).'" height="260" width="260" class="img-thumnail"  style="margin: 10px 0 10px 0; object-fit:cover; "/>  
+										</label>
 										</td>  
 										</tr>  
 										';  
@@ -273,12 +375,14 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 								}
 
 								?>
+								<br />
 							</figure>
+
 						</div>
 						<div class="intro-para text-center quote">
 							<p class="big-text"><?php echo $varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName ?> </p>
 							<p class="small-text"><?php echo $varcharStudentAbout ?></p>
-							
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_data_Modal" id="btn-edit" name="btn-edit">Edit Info</button>
 						</div>
 					</div>
 				</div>
@@ -920,7 +1024,95 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 	include("footer.php");
 	?>
 	<!--/ Footer-->
+	<!--Modal Add-->
+	<form method="post" enctype="multipart/form-data">
+		<div id="edit_data_Modal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+						<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+						<h4 class="modal-title text-center" style="color:white">EDIT ACCOUNT DETAILS</h4>
+					</div>
+					<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+						<label for="fileEditStudentImage" class="btn btn-default" style="border-radius:50%; margin-left:25%;" title="CHANGE PROFILE PICTURE">
+							<?php
+							if(!empty($studentDisplayPic))
+							{
+								echo '<img src="data:image/jpeg;base64,'.base64_encode($studentDisplayPic).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%" id="editProfilePicture">';
+							}
+							else
+							{
+								echo '<img src="images/default-user.png"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%" id="editProfilePicture">';
+							}
+							?>
+						</label>
+						<br>
 
+						<i class="fa fa-pencil" style="margin-left:46%;"></i>
+						<br>
+						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" accept="image/*" style="display:none" onchange="readURL(this);">
+						<label>First Name</label>
+						<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" value="<?php echo $varcharStudentFirstName; ?>"/>
+						<br />
+						<label>Middle Name</label>
+						<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" value="<?php echo $varcharStudentMiddleName; ?>" />
+						<br />
+						<label>Last Name</label>
+						<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" value="<?php echo $varcharStudentLastName; ?>" />
+						<br />
+						<?php
+
+								// php select option value from database
+						include("connectionString.php");
+
+								// mysql select query
+						$queryCourse2 = "SELECT * FROM tbl_course";
+
+								// for method 1/
+						$resultCourse2 = mysqli_query($connect, $queryCourse2);
+
+						?>
+						<label>Course</label>
+						<select name="selectStudentCourse" id="selectStudentCourse" class="form-control">
+							<option value="NULL" selected>Select A Course</option>
+							<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
+								<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
+							<?php endwhile;?>
+						</select>
+						<br />
+						<label>Year</label>
+						<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" value="<?php echo $varcharStudentYear; ?>"/>
+						<br />
+						<label>Section</label>
+						<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" value="<?php echo $varcharStudentSection; ?>" />
+						<br />
+						<label>Password</label>
+						<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" />
+						<br />
+						<label>Confirm Password</label>
+						<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" />
+						<small>	
+							<div id="divCheckPasswordMatch">
+							</div>
+						</small>
+
+						<label>Enter Current Password</label>
+						<input type="password" name="txtbxStudentCurPassword" id="txtbxStudentCurPassword" class="form-control" required="" />
+						<small>	
+							<div id="divCheckPasswordMatch">
+							</div>
+						</small>
+
+					</div>
+					<div class="modal-footer">
+						<input type="submit" name="btnUpdate" id="btnUpdate" value="Confirm Changes" class="btn btn-warning " />
+						<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
+					</div>
+				</div>
+			</div>
+		</div>
+	</form>
+	<!--/Modal Edit-->
 
 	
 	
@@ -930,6 +1122,54 @@ $varcharStudentDisplayPic =  "getimage.php?id=2015-01438-MN-0";
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/custom.js"></script>
 	<script src="contactform/contactform.js"></script>
+	<script type="text/javascript">
+		document.getElementById("txtbxStudentCPassword").onkeyup = function(){
+			checkPassword();
+		};
+		document.getElementById("txtbxStudentPassword").onkeyup = function(){
+			checkPassword();
+		};
+		function checkPassword(){
+			var password = document.getElementById("txtbxStudentPassword").value;
+			var cpassword = document.getElementById("txtbxStudentCPassword").value;
+			if(cpassword != "")
+			{
+				if(password == "")
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
+				}
+				else if( password != cpassword)
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+				}
+				else
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+				}
+			}
+			else if(cpassword == "" && password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			}
+			
+		}
+		function readURL(input) {
+			if (input.files && input.files[0]) {
+				var reader = new FileReader();
+
+				reader.onload = function (e) {
+					$('#editProfilePicture')
+					.attr('src', e.target.result)
+				};
+				reader.readAsDataURL(input.files[0]);
+			}
+		}
+	</script>
+
+	<script>
+		var course = '<?php echo $varcharStudentCourse;?>';
+		$("#selectStudentCourse").val(course).change();
+	</script>
 
 </body>
 
