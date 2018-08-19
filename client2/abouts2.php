@@ -1,218 +1,8 @@
-<?php
-if(isset($_POST['btnLogin'])) 
-{
-	include("connectionString.php");
-	$varcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['loginid']);
-	$varcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['loginpw']);
 
-	$queryAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentAccountNumber' AND studentPassword='$varcharStudentAccountPassword' ";
-	echo "<script type='text/javascript'>alert('$queryAccount');</script>";
-	echo "<script type='text/javascript'>alert('$varcharStudentAccountNumber');</script>";
-
-	$queryArray = mysqli_query($connect, $queryAccount);
-	if (mysqli_num_rows($queryArray)>0) 
-	{
-		session_start();
-		$_SESSION['sessionStudentAccountNumber'] = $varcharStudentAccountNumber;
-		$_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
-		$message = "You will now be redirected to your account";
-		echo "<script type='text/javascript'>alert('$message');window.location.replace('index2.php');</script>";
-	}
-	else 
-	{
-		$message = "No account matches the given information";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-	}
-}
-if(isset($_POST['btnAdd'])) 
-{
-                    //including the database connection file
-	include_once("connectionString.php");
-
-	$VarcharStudentAccountFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountFirstName']);
-
-	$VarcharStudentAccountLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountLastName']);
-
-	$VarcharStudentAccountMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountMiddleName']);
-
-	$VarcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountNumber']);
-
-	$VarcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountPassword']);
-	$VarcharStudentAccountCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountCPassword']);
-
-	$VarcharStudentAccountCourse = mysqli_real_escape_string($connect, $_POST['dropdownStudentAccountCourse']);
-
-	$VarcharStudentAccountYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountYear']);
-
-	$VarcharStudentAccountSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountSection']);
-
-	$dateStudentAccountDate = mysqli_real_escape_string($connect, $_POST['dateStudentAccountBirthDate']);
-
-
-	$querySelectingCollege = "SELECT * FROM tbl_course WHERE `courseCode` = '$VarcharStudentAccountCourse'";
-	$resSelectingCollege = mysqli_query($connect, $querySelectingCollege);
-	while($res = mysqli_fetch_array($resSelectingCollege))
-	{
-
-		$varcharCourseCode = $res['courseCode'];
-		$varcharCourseName = $res['courseName'];
-		$varcharCollegeCode = $res['collegeCode'];
-
-	}
-	$VarcharStudentAccountCollege = $varcharCollegeCode;
-                    //first name validation if input is a space 
-                    // checking empty fields
-	$query = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$VarcharStudentAccountNumber' ";
-	$result = mysqli_query($connect, $query);
-
-	if (mysqli_num_rows($result) == 1 )
-	{
-
-		$message = "Student Number Already Registered ";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-
-		echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-	}
-
-
-	if(empty($VarcharStudentAccountFirstName) || empty($VarcharStudentAccountNumber)) 
-	{
-
-		if(empty($VarcharStudentAccountFirstName))
-		{
-			$message = "Enter a First Name";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}
-		if(empty($VarcharStudentAccountNumber)) 
-		{
-			$message = "Enter a valid Student Number";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}
-                        //link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
-	}
-	else if($VarcharStudentAccountPassword<>$VarcharStudentAccountCPassword)
-	{
-		$message = "Password does not match";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-	}
-
-	else 
-	{ 
-
-		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', '', NULL)";
-
-		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', 'NA', 'Not Set', '0', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', NULL, 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
-
-		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `prepImage`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `elemImage`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `hsImage`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `vocImage`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `collegeImage`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'Not Set', NULL, '$VarcharStudentAccountNumber')
-		";
-
-		$queryAddFamilyBackground = "INSERT INTO `tbl_familybackground` (`familyID`, `fatherName`, `fatherAge`, `fatherStatus`, `fatherEducation`, `fatherOccupationType`, `fatherOccupation`, `fatherEmployerName`, `fatherEmployerAdd`, `motherName`, `motherAge`, `motherStatus`, `motherEducation`, `motherOccupationType`, `motherOccupation`, `motherEmployerName`, `motherEmployerAdd`, `guardianName`, `guardianAge`, `guardianRelation`, `guardianEducation`, `guardianOccupationType`, `guardianOccupation`, `guardianEmployerName`, `guardianEmployerAdd`, `parentsMaritalRelation`, `noOfChildren`, `noOfBrother`, `noOfSister`, `broSisEmployed`, `ordinalPosition`, `supportedByYourSibling`, `schoolFinancer`, `weeklyAllowance`, `totalMonthlyIncome`, `studyPlace`, `roomSharing`, `natureOfResidence`, `studentNumber`) VALUES (NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', NULL, NULL, 'Not Set', '0', NULL, NULL, 'None', 'NA', 'Not Set', 'Not Set', '', 'Not Set', 'NA', 'Not Set', 'Not Set', '$VarcharStudentAccountNumber')";
-
-		$queryAddHealth = "INSERT INTO `tbl_healthinfo` (`healthID`, `visionProblem`, `hearingProblem`, `speechProblem`, `generalHealth`, `psychiatristConsult`, `psychiatristWhen`, `psychiatristReason`, `psychologistConsult`, `psychologistWhen`, `psychologistReason`, `counselorConsult`, `counselorWhen`, `counselorReason`, `studentNumber`) VALUES (NULL, 'Not Set', 'Not Set', 'Not Set', 'Not Set', 'NA', NULL, NULL, 'NA', NULL, NULL, 'NA', NULL, NULL, '$VarcharStudentAccountNumber')";
-
-		$queryAddInterests = "INSERT INTO `tbl_interesthobbies` (`interestID`, `clubName`, `favSubject`, `leastFavSubject`, `hobby1`, `hobby2`, `hobby3`, `hobby4`, `interestOrganization`, `organizationPosition`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '$VarcharStudentAccountNumber')";
-
-		$queryAddTestResults = "INSERT INTO `tbl_testrecord` (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '$VarcharStudentAccountNumber')";
-
-		if(mysqli_query($connect, $queryAddStudentAccount))
-		{   
-			$message = "Successfully Added Student Account";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			if (mysqli_query($connect, $queryAddPersonalInfo)) 
-			{
-				$message = "Successfully Added In Personal Info";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				if (mysqli_query($connect, $queryAddEducationalBackground)) {
-					$message = "Successfully Added In Educational Background";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-					if (mysqli_query($connect, $queryAddFamilyBackground)) {
-						$message = "Successfully Added In Family Background";
-						echo "<script type='text/javascript'>alert('$message');</script>";
-						if (mysqli_query($connect, $queryAddHealth)) {
-							$message = "Successfully Added In Health";
-							echo "<script type='text/javascript'>alert('$message');</script>";
-							if (mysqli_query($connect, $queryAddInterests)) {
-								$message = "Successfully Added In Interest And Hobbies";
-								echo "<script type='text/javascript'>alert('$message');</script>";
-								if (mysqli_query($connect, $queryAddTestResults)) {
-									$message = "Successfully Added In Test Results";
-									echo "<script type='text/javascript'>alert('$message');</script>";
-									session_start();
-									$_SESSION['sessionStudentAccountNumber'] = $VarcharStudentAccountNumber;
-									$_SESSION['sessionStudentAccountPassword'] = $VarcharStudentAccountPassword;
-									$message = "You will now be redirected to your account";
-									echo "<script type='text/javascript'>alert('$message');</script>";
-									echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
-
-								}
-								else
-								{
-									$message = "Query Error #7";
-									echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-									echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-								}
-
-							}
-							else
-							{
-								$message = "Query Error #6";
-								echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-								echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-							}
-
-						}
-						else
-						{
-							$message = "Query Error #5";
-							echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-							echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-						}
-
-					}
-					else
-					{
-						$message = "Query Error #4";
-						echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-						echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-					}
-
-				}
-				else
-				{
-					$message = "Query Error #3";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-					echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-				}
-			}
-			else
-			{
-				$message = "Query Error #2";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-                            //redirectig to the display page. In our case, it is index.php
-				echo "<script type='text/javascript'>location.href = 'index.php';</script>";
-			}
-
-
-		}
-		else
-		{
-			$message = "Query Error #1";
-			echo "<script type='text/javascript'>alert('$message');</script>";
-		}
-	}
-}
-?>
 <!DOCTYPE html>
 <html lang="en">
 
 <head>
-
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
@@ -235,41 +25,9 @@ if(isset($_POST['btnAdd']))
 <body>
 
 	<!--Navigation bar-->
-	<nav class="navbar navbar-default navbar-fixed-top">
-		<div class="container">
-			<div class="navbar-header">
-				<button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-					<span class="icon-bar"></span>
-				</button>
-				<a class="navbar-brand" href="index.html">
-					GCT<span>S</span>
-				</a>
-			</div>
-			<div class="collapse navbar-collapse" id="myNavbar">
-				<ul class="nav navbar-nav navbar-right">
-					<li id="home"><a href="index.php">Home</a></li>
-					<!-- <li id="profile"><a href="profile.php">Profile</a></li> -->
-					<!-- <li id="iir"><a href="individualInventory.php">Individual Inventory</a></li> -->
-					<!-- <li id="survey"><a href="survey.php">Surveys</a></li> -->
-					<li id="abouts"><a href="abouts.php">Abouts</a></li>
-					<li id="log-in"><a href="#" data-target="#login" data-toggle="modal">Login</a></li>
-					<li id="sign-up"><a href="#" data-target="#signup" data-toggle="modal">Sign up</a></li>
-					<!-- <li id="logout"><a href="#" data-target="#login" data-toggle="modal">Logout</a></li> -->
-					<!-- <li class="btn-trial"><a href="#footer">Free Trail</a></li> -->
-				</ul>
-			</div>
-		</div>
-	</nav>
-	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:5px; padding:7px; margin-top: 70px;" >
-		<image class="navbar-left" src="img/PUPLogo88x88.png"></image>
-		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">
-			<h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
-			<p style="margin-bottom: 0; font-size: 14px;">THE COUNTRY'S 1ST POLYTECHNICU</p>
-			<h4 style="margin-top: 0; font-weight: bold;">GUIDANCE COUNSELLING AND TESTING SERVICES</h4>
-		</div>
-	</div>
+	<?php
+	include("navbar.php");
+	?>
 	<!--/ Navigation bar-->
 
 
@@ -550,11 +308,6 @@ if(isset($_POST['btnAdd']))
 			</div>
 		</div>
 
-		<!-- Login Modal -->
-		<?php
-		include("login.php");
-		?>
-		<!-- / Login Modal -->
 
 		<!--Footer-->
 		<?php
@@ -572,38 +325,6 @@ if(isset($_POST['btnAdd']))
 				jQuery('.collapse').collapse('hide');
 			});
 		</script>
-		<script type="text/javascript">
-		document.getElementById("txtbxStudentAccountCPassword").onkeyup = function(){
-			checkPassword();
-		};
-		document.getElementById("txtbxStudentAccountPassword").onkeyup = function(){
-			checkPassword();
-		};
-		function checkPassword(){
-			var password = document.getElementById("txtbxStudentAccountPassword").value;
-			var cpassword = document.getElementById("txtbxStudentAccountCPassword").value;
-			if(cpassword != "")
-			{
-				if(password == "")
-				{
-					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
-				}
-				else if( password != cpassword)
-				{
-					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
-				}
-				else
-				{
-					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
-				}
-			}
-			else if(cpassword == "" && password == "")
-			{
-				document.getElementById("divCheckPasswordMatch").innerHTML = "";
-			}
-			
-		}
-	</script>
 
 	</body>
 

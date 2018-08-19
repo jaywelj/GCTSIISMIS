@@ -126,71 +126,71 @@ require 'header.php';
 											while($row = mysqli_fetch_array($resultSignificantNotesOnly))  
 											{  
 												
-													?>  
-													<tr>
-														<td width="14%" >
-															<center>
-																<?php
-																
-																echo '<a title="Revive" class="btn btn-info" href="manageNotesStudentReturn.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to restore?")"><span class="fa fa-share-square"></span></a>
-																';
-																
-
-																?>
-
-																<?php
-
-																echo '<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to delete?")"><span class="glyphicon glyphicon-trash"></span></a>
-																';
-
-
-																?>
-
-															</center>
-														</td>
-														<td>
+												?>  
+												<tr>
+													<td width="14%" >
+														<center>
 															<?php
-															echo $row['noteID'];
-															?>
-														</td>
-														<td> 
-															<?php
-															echo $row['studentNumber']; echo "&nbsp; &nbsp;"; echo $row['firstName']; echo $row['lastName'];
+															
+															echo '<a title="Revive" class="btn btn-info" href="manageNotesStudentReturn.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to restore?")"><span class="fa fa-share-square"></span></a>
+															';
+															
+
 															?>
 
-														</td>
-														<td> 
 															<?php
-															echo $row['noteDate'];
+
+															echo '<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to delete?")"><span class="glyphicon glyphicon-trash"></span></a>
+															';
+
+
 															?>
-														</td>
+
+														</center>
+													</td>
+													<td>
+														<?php
+														echo $row['noteID'];
+														?>
+													</td>
+													<td> 
+														<?php
+														echo $row['studentNumber']; echo "&nbsp; &nbsp;"; echo $row['firstName']; echo $row['lastName'];
+														?>
+
+													</td>
+													<td> 
+														<?php
+														echo $row['noteDate'];
+														?>
+													</td>
+
+													<?php
+													$TableCategoryID = $row['categoryID'];
+													$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = ".$TableCategoryID." ";
+													$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
+													while($res = mysqli_fetch_array($resultGettingCategoryName))  
+													{ 
+														?>
+														<td> <?php echo $res['categoryName'];?> </td>
+														<?php 
+													}
+													?>
+													<?php 
+													$VarcharAdminID = $row['adminId'];
+													$TableAdminID = $row['adminId'];
+													$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = ".$TableAdminID." ";
+													$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
+													while($res2 = mysqli_fetch_array($resultGettingAdminID))  
+													{ 
+
+
+														?>
+														<td> <?php echo $res2['adminFirstName']; ?> <?php echo $res2['adminLastName'];  ?></td>
 
 														<?php
-														$TableCategoryID = $row['categoryID'];
-														$queryGettingCategoryName = "SELECT * FROM tbl_incidentcategory WHERE `categoryID` = ".$TableCategoryID." ";
-														$resultGettingCategoryName = mysqli_query($connect, $queryGettingCategoryName); 
-														while($res = mysqli_fetch_array($resultGettingCategoryName))  
-														{ 
-															?>
-															<td> <?php echo $res['categoryName'];?> </td>
-															<?php 
-														}
-														?>
-														<?php 
-														$VarcharAdminID = $row['adminId'];
-														$TableAdminID = $row['adminId'];
-														$queryGettingAdminID = "SELECT * FROM tbl_adminaccount WHERE `adminId` = ".$TableAdminID." ";
-														$resultGettingAdminID = mysqli_query($connect, $queryGettingAdminID); 
-														while($res2 = mysqli_fetch_array($resultGettingAdminID))  
-														{ 
-
-
-															?>
-															<td> <?php echo $res2['adminFirstName']; ?> <?php echo $res2['adminLastName'];  ?></td>
-
-															<?php
-														}
 													}
+												}
 
 												?> 
 											</tbody>
@@ -222,7 +222,9 @@ require 'header.php';
 				<!--Modal Add-->
 
 				<!--/Modal Edit-->
-
+				<?php 
+				require 'viewMessageModal.php';
+				?>
 				<!-- footer content -->
 				<footer>
 					<div class="pull-right">
@@ -263,5 +265,23 @@ require 'header.php';
 
 		<!-- Custom Theme Scripts -->
 		<script src="../build/js/custom.min.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.message-view',function(){
+					var messageID = $(this).attr("id");
+					$.ajax({
+						url:"viewMessage.php",
+						method:"post",
+						data:{messageID:messageID},
+						success:function(data){
+							$('#messageDetails').html(data);
+							$('#view_message_Modal').modal('show');
+						}
+					});
+				});
+
+			});
+		</script>
 	</body>
 	</html>

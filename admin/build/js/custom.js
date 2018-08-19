@@ -1810,7 +1810,7 @@ function init_JQVmap(){
 
     			// validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
     			$('form')
-    			.on('blur', 'input[required], input.optional, select.required, input[type = "date"], input[type = "number"]', validator.checkField)
+    			.on('blur', 'input[required], input.optional, select.required, input[type = "date"]', validator.checkField)
     			.on('change', 'select.required', validator.checkField)
     			.on('keypress', 'input[required][pattern]', validator.keypress);
 
@@ -1828,6 +1828,72 @@ function init_JQVmap(){
         					text: 'You have invalid inputs',
         					type: 'error',
         					timeout: '10000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioMale").checked)&&!(document.getElementById("radioFemale").checked))
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Please choose a Gender',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioElementaryTypeOfSchoolPub").checked)&&!(document.getElementById("radioElementaryTypeOfSchoolPri").checked)&&count==1)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select a type of Elementary School',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioHighschoolTypeOfSchoolPub").checked)&&!(document.getElementById("radioHighschoolTypeOfSchoolPri").checked)&&count==1)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select a type of Highschool School',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioNatureOfSchoolingI").checked)&&!(document.getElementById("radioNatureOfSchoolingC").checked)&&count==1)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select Nature of Schooling',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioFatherStateD").checked)&&!(document.getElementById("radioFatherStateL").checked)&&count==2)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select Father:Deceased/Living',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
+        			if(!(document.getElementById("radioMotherStateD").checked)&&!(document.getElementById("radioMotherStateL").checked)&&count==2)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select Mother:Deceased/Living',
+        					type: 'error',
+        					timeout: '5000'
         				});
         				n.show();
         				$('html,body').scrollTop(465);
