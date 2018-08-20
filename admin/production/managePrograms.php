@@ -612,6 +612,10 @@ require 'header.php';
 				</div>
 			</form>
 			<!--/Modal Edit-->
+
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 		</div>
 	</div>
 
@@ -653,6 +657,24 @@ require 'header.php';
 	<script src="assets/lib/mo.min.js" type="text/javascript"></script>
 	<!-- custom noty -->
 	<script src="assets/lib/custom.js" type="text/javascript"></script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
 
 	<script>
 		$(document).ready(function(){

@@ -235,7 +235,9 @@ require 'header.php';
 				</div>
 			</div>
 			<!-- /page content -->
-
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -299,6 +301,25 @@ require 'header.php';
 	<script src="assets/lib/mo.min.js" type="text/javascript"></script>
 	<!-- custom noty -->
 	<script src="assets/lib/custom.js" type="text/javascript"></script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
+
 	<script>
 		var room = 0;
 		function education_fields() {

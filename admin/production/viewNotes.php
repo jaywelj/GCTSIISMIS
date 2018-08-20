@@ -65,7 +65,7 @@ if(isset($_POST["noteID"]))
 					<tr>	
 					<tr>
 					<th scope="row">Address</th>
-					<td>'.$row["cityName"]." ".$row["cityProvince"].'</td>
+					<td>'.$row["cityName"].'</td>
 					</tr>
 					<tr>
 					<th scope="row">Contact No.</th>

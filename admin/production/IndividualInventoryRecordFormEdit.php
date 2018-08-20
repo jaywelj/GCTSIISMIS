@@ -1892,6 +1892,9 @@ require 'header.php';
 				</div>
 			</div>
 			<!-- /page content -->
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 
 			<!-- footer content -->
 			<footer>
@@ -1930,6 +1933,25 @@ require 'header.php';
 		<!-- custom noty -->
 		<script src="assets/lib/custom.js" type="text/javascript"></script>
 
+		
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.message-view',function(){
+					var messageID = $(this).attr("id");
+					$.ajax({
+						url:"viewMessage.php",
+						method:"post",
+						data:{messageID:messageID},
+						success:function(data){
+							$('#messageDetails').html(data);
+							$('#view_message_Modal').modal('show');
+						}
+					});
+				});
+
+			});
+		</script>
+		
 
 
 		<script>
@@ -2291,6 +2313,30 @@ require 'header.php';
 					}
 				})
 				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+<<<<<<< HEAD
+				{
+					document.getElementById("txtbxMotherOccupation").disabled = true;
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherOccupation").value = "";
+					document.getElementById("txtbxMotherNameOfEmployer").value = "";
+					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+				}
+				else if($(this).val() == 'Self-Employed')
+				{
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherNameOfEmployer").value = "";
+					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+					document.getElementById("txtbxMotherOccupation").disabled = false;
+				}
+				else
+				{
+					document.getElementById("txtbxMotherOccupation").disabled = false;
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
+				}
+=======
 					{
 						document.getElementById("txtbxMotherOccupation").disabled = true;
 						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
@@ -2313,6 +2359,7 @@ require 'header.php';
 						document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
 						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 					}
+>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 				$('#dropdownFatherOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2339,6 +2386,30 @@ require 'header.php';
 					}
 				})
 				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+<<<<<<< HEAD
+				{
+					document.getElementById("txtbxFatherOccupation").disabled = true;
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherOccupation").value = "";
+					document.getElementById("txtbxFatherNameOfEmployer").value = "";
+					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+				}
+				else if($(this).val() == 'Self-Employed')
+				{
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherNameOfEmployer").value = "";
+					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+					document.getElementById("txtbxFatherOccupation").disabled = false;
+				}
+				else
+				{
+					document.getElementById("txtbxFatherOccupation").disabled = false;
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
+				}
+=======
 					{
 						document.getElementById("txtbxFatherOccupation").disabled = true;
 						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
@@ -2361,6 +2432,7 @@ require 'header.php';
 						document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
 						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 					}
+>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 				$('#dropdownGuardianOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{

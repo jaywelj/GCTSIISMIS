@@ -125,7 +125,9 @@ require 'header.php';
 			</div>
 		</div>
 		<!-- /page content -->
-
+		<?php 
+		require 'viewMessageModal.php';
+		?>
 		<!-- footer content -->
 		<footer>
 			<div class="pull-right">
@@ -154,6 +156,26 @@ require 'header.php';
 <script src="assets/js/form-builder.min.js"></script>
 <script src="assets/js/form-render.min.js"></script>
 <script src="assets/js/jquery.rateyo.min.js"></script>
+
+
+<script>
+	$(document).ready(function(){
+		$(document).on('click','.message-view',function(){
+			var messageID = $(this).attr("id");
+			$.ajax({
+				url:"viewMessage.php",
+				method:"post",
+				data:{messageID:messageID},
+				success:function(data){
+					$('#messageDetails').html(data);
+					$('#view_message_Modal').modal('show');
+				}
+			});
+		});
+
+	});
+</script>
+
 
 </body>
 </html>
