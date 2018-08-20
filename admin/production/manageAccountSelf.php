@@ -592,6 +592,15 @@ require 'header.php';
 					</div>
 				</form>
 				<!--/Modal Edit Self-->
+<<<<<<< HEAD
+				
+				<!-- MODAL FOR MESSAGE -->
+				<?php 
+				require 'viewMessageModal.php';
+				?>
+				<!-- /MODAL FOR MESSAGE -->
+=======
+>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 
 
 				<!-- footer content -->
@@ -604,6 +613,90 @@ require 'header.php';
 				<!-- /footer content -->
 			</div>
 		</div>
+<<<<<<< HEAD
+
+		<!-- jQuery -->
+		<script src="../vendors/jquery/dist/jquery.min.js"></script>
+		<!-- Bootstrap -->
+		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+		<!-- FastClick -->
+		<script src="../vendors/fastclick/lib/fastclick.js"></script>
+		<!-- NProgress -->	
+		<script src="../vendors/nprogress/nprogress.js"></script>
+		<!-- iCheck -->
+		<script src="../vendors/iCheck/icheck.min.js"></script>
+		<!-- Datatables -->
+		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+		<script src="../vendors/jszip/dist/jszip.min.js"></script>
+		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+
+		<!-- Custom Theme Scripts -->
+		<script src="../build/js/custom.min.js"></script>
+
+
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.message-view',function(){
+					var messageID = $(this).attr("id");
+					$.ajax({
+						url:"viewMessage.php",
+						method:"post",
+						data:{messageID:messageID},
+						success:function(data){
+							$('#messageDetails').html(data);
+							$('#view_message_Modal').modal('show');
+						}
+					});
+				});
+
+			});
+		</script>
+		
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.btn-view',function(){
+					var adminEmail = $(this).attr("id");
+					$.ajax({
+						url:"viewAccountDetails.php",
+						method:"post",
+						data:{adminEmail:adminEmail},
+						success:function(data){
+							$('#accountDetails').html(data);
+							$('#view_data_Modal').modal('show');
+						}
+					});
+				});
+				$(document).on('click','.btn-edit',function(){
+					var adminEmail = $(this).attr("id");
+					$.ajax({
+						url:"editAccountDetails.php",
+						method:"post",
+						data:{adminEmail:adminEmail},
+						success:function(data){
+							$('#editAccountDetails').html(data);
+							$('#edit_data_Modal').modal('show');
+						}
+					});
+				});
+				$(document).on('click','.btn-change-password',function(){
+					var adminEmail = $(this).attr("id");
+					$('#change_password_Modal').modal('show');
+				});
+			});
+		</script>
+=======
 
 		<!-- jQuery -->
 		<script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -667,6 +760,7 @@ require 'header.php';
 				});
 			});
 		</script>
+>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 		<script type="text/javascript">
 			document.getElementById("txtbxEditAdminAccountPassword").onkeyup = function(){
 				checkPassword();

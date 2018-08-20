@@ -177,6 +177,12 @@ require 'header.php';
 
 			<!--/Modal Change Password-->
 
+			<!-- MODAL FOR MESSAGE -->
+			<?php 
+			require 'viewMessageModal.php';
+			?>
+			<!-- /MODAL FOR MESSAGE -->
+
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -218,6 +224,24 @@ require 'header.php';
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
 
+	
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
 
 </body>
 </html>
