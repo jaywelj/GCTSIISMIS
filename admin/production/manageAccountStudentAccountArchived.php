@@ -106,11 +106,11 @@ require 'header.php';
 											$queryPersonalInfo = "SELECT * FROM tbl_personalinfoarchive ORDER BY tbl_personalinfoarchive.studentNumber DESC";
 											$resultPersonalInfo = mysqli_query($connect, $queryPersonalInfo);
 											while($row = mysqli_fetch_array($resultStudent) AND $res = mysqli_fetch_array($resultPersonalInfo))   
-												{
-  
-											 
+											{
+
+
 																								 	# code...
-												  
+
 												?>  
 												<tr>
 													<td width="14%" >
@@ -144,14 +144,14 @@ require 'header.php';
 
 															?>
 														</td>
-														</center>
-													</tr>  
-													<?php
-												}
+													</center>
+												</tr>  
+												<?php
+											}
 											
-												?> 
-											</tbody>
-											<tfoot>
+											?> 
+										</tbody>
+										<tfoot>
 											<tr>
 												<th></th>
 												<th>Student Number</th>
@@ -161,190 +161,215 @@ require 'header.php';
 												<th>Image</th>
 											</tr>
 										</tfoot>
-										</table>
-									</div>
+									</table>
 								</div>
 							</div>
-							<!--Other Tables othertables/-->
+						</div>
+						<!--Other Tables othertables/-->
+					</div>
+				</div>
+			</div>
+			<!-- /page content -->
+			<!--Modal view-->
+			<form method="post" enctype="multipart/form-data">
+				<div id="view_data_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+								<h4 class="modal-title text-center">STUDENT ACCOUNT DETAILS</h4>
+							</div>
+							<div class="modal-body" id="studentAccountDetails"    style=" padding: 5px 50px 5px 50px;">
+
+							</div>
+							<div class="modal-footer">
+								<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+							</div>
 						</div>
 					</div>
 				</div>
-				<!-- /page content -->
-				<!--Modal view-->
-				<form method="post" enctype="multipart/form-data">
-					<div id="view_data_Modal" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">STUDENT ACCOUNT DETAILS</h4>
-								</div>
-								<div class="modal-body" id="studentAccountDetails"    style=" padding: 5px 50px 5px 50px;">
+			</form>
+			<!--/Modal view-->
+			<!--Modal Edit-->
+			<form method="post" enctype="multipart/form-data">
+				<div id="edit_data_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+								<h4 class="modal-title text-center">EDIT STUDENT ACCOUNT DETAILS</h4>
+							</div>
+							<div class="modal-body" id="editStudentAccountDetails"    style=" padding: 25px 50px 5px 50px;">
 
-								</div>
-								<div class="modal-footer">
-									<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
-								</div>
+							</div>
+							<div class="modal-footer">
+								<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" class="btn btn-success"/>
+								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button>
 							</div>
 						</div>
 					</div>
-				</form>
-				<!--/Modal view-->
-				<!--Modal Edit-->
-				<form method="post" enctype="multipart/form-data">
-					<div id="edit_data_Modal" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">EDIT STUDENT ACCOUNT DETAILS</h4>
-								</div>
-								<div class="modal-body" id="editStudentAccountDetails"    style=" padding: 25px 50px 5px 50px;">
-
-								</div>
-								<div class="modal-footer">
-									<input type="submit" name="btnUpdate" id="btnUpdate" value="Update" class="btn btn-success"/>
-									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button>
-								</div>
+				</div>
+			</form>
+			<!--/Modal Edit-->
+			<!--Modal Add-->
+			<form method="post" enctype="multipart/form-data">
+				<div id="add_data_Modal" class="modal fade">
+					<div class="modal-dialog">
+						<div class="modal-content">
+							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+								<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
 							</div>
-						</div>
-					</div>
-				</form>
-				<!--/Modal Edit-->
-				<!--Modal Add-->
-				<form method="post" enctype="multipart/form-data">
-					<div id="add_data_Modal" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">ADD NEW ACCOUNT</h4>
-								</div>
-								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-									<label>Student Number</label>
-									<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" />
-									<br />
-									<label>First Name</label>
-									<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
-									<br />
-									<label>Middle Name</label>
-									<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
-									<br />
-									<label>Last Name</label>
-									<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
-									<br />
-									<?php
+							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
+								<label>Student Number</label>
+								<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" />
+								<br />
+								<label>First Name</label>
+								<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
+								<br />
+								<label>Middle Name</label>
+								<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
+								<br />
+								<label>Last Name</label>
+								<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
+								<br />
+								<?php
 
 								// php select option value from database
-									include("connectionString.php");
+								include("connectionString.php");
 
 								// mysql select query
-									$queryCourse2 = "SELECT * FROM tbl_course";
+								$queryCourse2 = "SELECT * FROM tbl_course";
 
 								// for method 1/
-									$resultCourse2 = mysqli_query($connect, $queryCourse2);
+								$resultCourse2 = mysqli_query($connect, $queryCourse2);
 
-									?>
-									<label>Course</label>
-									<select name="selectStudentCourse" id="selectStudentCourse" class="form-control">
-										<option value="NULL" selected>Select A Course</option>
-										<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
-											<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
-										<?php endwhile;?>
-									</select>
-									<br />
-									<label>Year</label>
-									<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" />
-									<br />
-									<label>Section</label>
-									<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" />
-									<br />
-									<label>Password</label>
-									<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
-									<br />
-									<label>Image</label>
-									<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" />
-									<br />
-								</div>
-								<div class="modal-footer">
-									<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
-									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
-								</div>
+								?>
+								<label>Course</label>
+								<select name="selectStudentCourse" id="selectStudentCourse" class="form-control">
+									<option value="NULL" selected>Select A Course</option>
+									<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
+										<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
+									<?php endwhile;?>
+								</select>
+								<br />
+								<label>Year</label>
+								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" />
+								<br />
+								<label>Section</label>
+								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" />
+								<br />
+								<label>Password</label>
+								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
+								<br />
+								<label>Image</label>
+								<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" />
+								<br />
+							</div>
+							<div class="modal-footer">
+								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 							</div>
 						</div>
 					</div>
-				</form>
-				<!--/Modal Edit-->
+				</div>
+			</form>
+			<!--/Modal Edit-->
+			
+			<!-- MODAL FOR MESSAGE -->
+			<?php 
+			require 'viewMessageModal.php';
+			?>
+			<!-- /MODAL FOR MESSAGE -->
 
-				<!-- footer content -->
-				<footer>
-					<div class="pull-right">
-						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-					</div>
-					<div class="clearfix"></div>
-				</footer>
-				<!-- /footer content -->
-			</div>
+			<!-- footer content -->
+			<footer>
+				<div class="pull-right">
+					Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+				</div>
+				<div class="clearfix"></div>
+			</footer>
+			<!-- /footer content -->
 		</div>
+	</div>
 
-		<!-- jQuery -->
-		<script src="../vendors/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="../vendors/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->
-		<script src="../vendors/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="../vendors/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="../vendors/jszip/dist/jszip.min.js"></script>
-		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+	<!-- jQuery -->
+	<script src="../vendors/jquery/dist/jquery.min.js"></script>
+	<!-- Bootstrap -->
+	<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+	<!-- FastClick -->
+	<script src="../vendors/fastclick/lib/fastclick.js"></script>
+	<!-- NProgress -->
+	<script src="../vendors/nprogress/nprogress.js"></script>
+	<!-- iCheck -->
+	<script src="../vendors/iCheck/icheck.min.js"></script>
+	<!-- Datatables -->
+	<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+	<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+	<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+	<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+	<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+	<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+	<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+	<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+	<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+	<script src="../vendors/jszip/dist/jszip.min.js"></script>
+	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-		<!-- Custom Theme Scripts -->
-		<script src="../build/js/custom.min.js"></script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
 
-		<script>
-			$(document).ready(function(){
-				$(document).on('click','.btn-view',function(){
-					var studentNumber = $(this).attr("id");
-					$.ajax({
-						url:"viewStudentAccountDetails.php",
-						method:"post",
-						data:{studentNumber:studentNumber},
-						success:function(data){
-							$('#studentAccountDetails').html(data);
-							$('#view_data_Modal').modal('show');
-						}
-					});
-				});
-				$(document).on('click','.btn-edit',function(){
-					var studentNumber = $(this).attr("id");
-					$.ajax({
-						url:"editStudentAccountDetails.php",
-						method:"post",
-						data:{studentNumber:studentNumber},
-						success:function(data){
-							$('#editStudentAccountDetails').html(data);
-							$('#edit_data_Modal').modal('show');
-						}
-					});
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
 				});
 			});
-		</script>
 
-	</body>
-	</html>
+		});
+	</script>
+
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.btn-view',function(){
+				var studentNumber = $(this).attr("id");
+				$.ajax({
+					url:"viewStudentAccountDetails.php",
+					method:"post",
+					data:{studentNumber:studentNumber},
+					success:function(data){
+						$('#studentAccountDetails').html(data);
+						$('#view_data_Modal').modal('show');
+					}
+				});
+			});
+			$(document).on('click','.btn-edit',function(){
+				var studentNumber = $(this).attr("id");
+				$.ajax({
+					url:"editStudentAccountDetails.php",
+					method:"post",
+					data:{studentNumber:studentNumber},
+					success:function(data){
+						$('#editStudentAccountDetails').html(data);
+						$('#edit_data_Modal').modal('show');
+					}
+				});
+			});
+		});
+	</script>
+
+</body>
+</html>

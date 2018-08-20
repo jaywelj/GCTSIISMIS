@@ -461,6 +461,10 @@ require 'header.php';
 				</form>
 				<!--/Modal Edit-->
 
+				<?php 
+				require 'viewMessageModal.php';
+				?>
+
 				<!-- footer content -->
 				<footer>
 					<div class="pull-right">
@@ -503,6 +507,24 @@ require 'header.php';
 		<script src="js/tagify/dist/tagify.polyfills.js"></script>
 		<script src="js/tagify/dist/tagify.js"></script>
 		<script src="js/tagify/dist/jQuery.tagify.js"></script>
+
+		<script>
+			$(document).ready(function(){
+				$(document).on('click','.message-view',function(){
+					var messageID = $(this).attr("id");
+					$.ajax({
+						url:"viewMessage.php",
+						method:"post",
+						data:{messageID:messageID},
+						success:function(data){
+							$('#messageDetails').html(data);
+							$('#view_message_Modal').modal('show');
+						}
+					});
+				});
+
+			});
+		</script>
 
 		<script>
 			$(document).ready(function(){
