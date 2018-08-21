@@ -138,6 +138,7 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li>
 							<li><a href="surveyProblemSurveyForm.php">Problem Survey Form</a></li>
 							<li><a href="surveyProblemSurveyAnswer.php">List of Student Who Answered</a></li>
+							<li><a href="surveyProblemSurveyTally.php">Survey Tally</a></li>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-desktop"></i> Accounts <span class="fa fa-chevron-down"></span></a>
@@ -175,6 +176,8 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>
 							<li><a href="manageAccountStudentAccountArchived.php">Account - Student</a></li>
 						</ul>
+					</li>
+					<li><a href="queryBuilder.php"><i class="fa fa-envelope"></i> Queries </a>
 					</li>
 				</ul>
 			</div>

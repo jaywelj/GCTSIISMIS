@@ -580,9 +580,18 @@ require 'header.php';
 
 								<div class="alert alert-info fade in">
 									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Notice!</strong> The most hottest topic recorded in messages is <strong> <?php echo $SubCategoryName2; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement2; ?> </strong> records this past 6 months 
+									<strong>Notice!</strong> The most hottest topic recorded in messages is <strong> <?php echo $SubCategoryName2; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement2; ?> </strong> records this past 6 months
 								</div>
 
+								<div class="alert alert-info fade in">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>Notice!</strong> The most severe problem in the survey is <strong> <?php echo $ProblemNameFirstElement3; ?> </strong> with a percentage of of <strong> <?php echo $AverageRatingFirstElement3; ?>% </strong> that corresponds with the topic <strong><?php echo $SubCategoryName3; ?></strong> this past 6 months
+								</div>
+
+								<div class="alert alert-info fade in">
+									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+									<strong>Notice!</strong> The most selected problem in the survey is <strong> <?php echo $CountedProblemNameFirstElement4; ?> </strong> with it being picked <strong> <?php echo $CountedBiggestProblemFirstElement4; ?> times </strong> that corresponds with the topic <strong><?php echo $SubCategoryName4; ?></strong> this past 6 months
+								</div>
 								<label>Program Name</label>
 								<input type="text" id="txtbxProgramName" name="txtbxProgramName" class="form-control">
 								<br />

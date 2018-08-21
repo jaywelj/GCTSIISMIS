@@ -529,11 +529,13 @@ require 'header.php';
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Height(cm)</label>
-														<div class="col-md-2 col-sm-2">
+														<div class="col-md-6 col-sm-6">
 															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxHeight" name="txtbxHeight" value="<?php echo $varcharStudentHeight;  ?>" required="required" min="1" max="300">
 														</div>
-														<label class="control-label col-md-1 col-sm-1">Weight(kg)</label>
-														<div class="col-md-3 col-sm-3">
+													</div>
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3">Weight(kg)</label>
+														<div class="col-md-6 col-sm-6">
 															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxWeight" name="txtbxWeight" value="<?php echo $varcharStudentWeight;  ?>" required="required" min="1" max="500">
 														</div>
 													</div>
