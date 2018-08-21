@@ -329,7 +329,7 @@ if(isset($_POST['btnEmailSend']))
 					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
 					<hr class="bottom-line">
 				</div>
-					<?php
+				<?php
 				include_once("connectionString.php");
 				$queryGettingAdmin = "SELECT * FROM `tbl_adminaccount` ORDER BY rand()  LIMIT 6";
 				$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin);
@@ -439,9 +439,14 @@ if(isset($_POST['btnEmailSend']))
 		</div>
 		<div class="container">
 			<div class="row">
-									<?php 
-					include("connectionString.php");  
-					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY programImage DESC LIMIT 6";
+				<?php 
+				include("connectionString.php");
+
+				$queryCheckingIfStudentNumberHasSignificantNotes = "SELECT tbl_personalinfo.studentNumber AS studentNumberMessagedButWithoutNote FROM tbl_personalinfo LEFT JOIN tbl_significantnotes ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE `tbl_significantnotes`.`studentNumber` IS NULL AND tbl_personalinfo.studentNumber = '$id'";
+				$resultCheckingIfStudentNumberHasSignificantNotes = mysqli_query($connect, $queryCheckingIfStudentNumberHasSignificantNotes);
+
+				if(mysqli_num_rows($resultCheckingIfStudentNumberHasSignificantNotes) == 0) {
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY programImage DESC LIMIT 9";
 					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
 					while($row = mysqli_fetch_array($resultGettingProgram))  
 					{  
@@ -482,7 +487,101 @@ if(isset($_POST['btnEmailSend']))
 						?>
 						<?php 
 					}
-					?>
+				}
+				else
+				{
+					$queryGettingSignificantNote = "SELECT studentNumber,tbl_significantnotes.subCategoryID,tbl_incidentsubcategory.subCategoryName, count(tbl_significantnotes.subCategoryID) AS subCategoryIDCount FROM tbl_significantnotes INNER JOIN tbl_incidentsubcategory ON tbl_significantnotes.subCategoryID = tbl_incidentsubcategory.subCategoryID WHERE studentNumber = '$id' ORDER BY subCategoryIDCount";
+					$resultGettingSignificantNote = mysqli_query($connect, $queryGettingSignificantNote);
+					$howManyRecommendedProgramsAvailable = 0;
+					while ($row = mysqli_fetch_array($resultGettingSignificantNote)) {
+						$subCategoryID = $row['subCategoryID'];
+						$subCategoryName = $row['subCategoryName'];
+						$subCategoryNameArray[] = $row['subCategoryName'];
+
+						$queryGettingRecommendedPrograms = "SELECT * FROM `tbl_recommendedprogram` INNER JOIN tbl_programcategory ON tbl_programcategory.programName = tbl_recommendedprogram.programName WHERE subCategoryName = '$subCategoryName'";
+						$resultGettingRecommendedPrograms = mysqli_query($connect, $queryGettingRecommendedPrograms);
+						$howManyRecommendedProgramsAvailable += mysqli_num_rows($resultGettingRecommendedPrograms);
+						while($row = mysqli_fetch_array($resultGettingRecommendedPrograms))  
+						{  
+							$programID = $row['programID'];
+							$programName = $row['programName'];
+							$programDescription = $row['programDescription'];
+							$programImage = $row['programImage'];
+							if (empty($programImage)) {
+
+								echo '
+								<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;">
+								<figure class="imghvr-fold-up">
+								<img src="img/noimgavailable.jpg" class="img-responsive">
+								<figcaption>
+								<h3>'.$programName.'</h3>
+								<p>'.$programDescription.'</p>
+								</figcaption>
+								<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+								</figure>
+								</div>';
+							}
+							else
+							{
+								echo '
+								<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;" >
+								<figure class="imghvr-fold-up">
+								<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
+								<figcaption>
+								<h3>'.$programName.'</h3>
+								<p>'.$programDescription.'</p>
+								</figcaption>
+								<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+								</figure>
+								</div>';
+							}
+						}
+					}
+					$fillInNumberGetting = 6 - $howManyRecommendedProgramsAvailable;
+					$queryGettingNotInSuggestion = "SELECT * FROM tbl_recommendedprogram WHERE programName NOT IN ( '" . implode( "', '" , $subCategoryNameArray ) . "' )ORDER BY programImage ASC LIMIT $fillInNumberGetting";
+					$resultGettingNotInSuggestion = mysqli_query($connect, $queryGettingNotInSuggestion);
+					while($row = mysqli_fetch_array($resultGettingNotInSuggestion))  
+					{  
+						$programID = $row['programID'];
+						$programName = $row['programName'];
+						$programDescription = $row['programDescription'];
+						$programImage = $row['programImage'];
+						if (empty($programImage)) {
+
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;">
+							<figure class="imghvr-fold-up">
+							<img src="img/noimgavailable.jpg" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+						}
+						else
+						{
+							echo '
+							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;" >
+							<figure class="imghvr-fold-up">
+							<img src="data:image/jpeg;base64,'.base64_encode($row['programImage'] ).'" class="img-responsive">
+							<figcaption>
+							<h3>'.$programName.'</h3>
+							<p>'.$programDescription.'</p>
+							</figcaption>
+							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							</figure>
+							</div>';
+						}
+						
+					}
+
+
+
+				}
+
+				?>
 			</div>
 		</div>
 	</section>
