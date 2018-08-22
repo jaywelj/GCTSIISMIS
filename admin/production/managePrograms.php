@@ -489,6 +489,15 @@ require 'header.php';
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			echo "<script>var notyMessage4 = '$message4';</script>";
 
+			if ($subCategoryName == $SubCategoryName2 == $SubCategoryName3 == $SubCategoryName4)
+			{
+
+				$message5 = "".$SubCategoryName." is the hottest topic all across the boards";
+
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+				echo "<script>var notyMessage5 = '$message5';</script>";
+			}
+
 
 
 			while($row = mysqli_fetch_array($resultGettingAdmin))  
@@ -851,6 +860,13 @@ require 'header.php';
 		n.show();
 		var n = new Noty({
 			text: notyMessage4,
+			type: 'info',
+			timeout: '10000'
+		});
+		n.show();
+
+		var n = new Noty({
+			text: notyMessage5,
 			type: 'info',
 			timeout: '10000'
 		});
