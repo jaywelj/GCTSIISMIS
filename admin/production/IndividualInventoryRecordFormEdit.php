@@ -1133,8 +1133,10 @@ require 'header.php';
 																<option >Elementary graduate</option>
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
-																<option >College undergraduate</option>
+																<option >College Undergraduate</option>
+																<option >College Ggraduate</option>
 																<option >Vocational Graduate</option>
+																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
 																<option >Masteral Degree</option>
 																<option >Doctoral Unit</option>
@@ -1209,8 +1211,10 @@ require 'header.php';
 																<option >Elementary graduate</option>
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
-																<option >College undergraduate</option>
+																<option >College Undergraduate</option>
+																<option >College Ggraduate</option>
 																<option >Vocational Graduate</option>
+																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
 																<option >Masteral Degree</option>
 																<option >Doctoral Unit</option>
@@ -1298,8 +1302,10 @@ require 'header.php';
 																<option >Elementary graduate</option>
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
-																<option >College undergraduate</option>
+																<option >College Undergraduate</option>
+																<option >College Ggraduate</option>
 																<option >Vocational Graduate</option>
+																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
 																<option >Masteral Degree</option>
 																<option >Doctoral Unit</option>
