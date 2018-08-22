@@ -312,7 +312,7 @@ require 'header.php';
 										<li><i class="fa fa-map-marker user-profile-icon"></i> <?php echo $varcharStudentCityCity ;?></li>
 									</ul>
 
-									<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a>
+									<!-- <a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>Edit Profile</a> -->
 									<br />
 
 

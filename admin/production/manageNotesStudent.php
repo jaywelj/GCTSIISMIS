@@ -529,7 +529,7 @@ require 'header.php';
 
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+									<input type="submit" name="btnAdd" id="btnAdd" value="Add Significant Note" class="btn btn-success " />
 									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 								</div>
 							</div>
