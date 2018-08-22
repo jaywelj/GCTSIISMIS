@@ -509,7 +509,7 @@ require 'header.php';
 						<div class="modal-content">
 							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
 								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">STUDENT SIGNIFICANT NOTES</h4>
+								<h4 class="modal-title text-center">A RECOMMENDED PROGRAM</h4>
 							</div>
 							<div class="modal-body" id="programDetails"    style=" padding: 5px 50px 5px 50px;">
 
@@ -613,7 +613,7 @@ require 'header.php';
 
 							</div>
 							<div class="modal-footer">
-								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+								<input type="submit" name="btnAdd" id="btnAdd" value="Add Program" class="btn btn-success " />
 								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 							</div>
 						</div>
