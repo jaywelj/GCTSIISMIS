@@ -55,8 +55,6 @@ if(isset($_POST["adminEmail"]))
 							<input type="number" name="txtbxEditAdminAccountContactNo" value="'.$row["adminContactNo"]. '" id="txtbxEditAdminAccountContactNo" class="form-control" />
 							<br />
 							<center>
-							<button class="btn btn-default btn-warning btn-change-password" type="button" id="'.$row["adminEmail"].'" data-dismiss="modal"><i class="fa fa-lock"> Change Password</i></button>
-							</center>
 							';
 						}
 						$output .= '

@@ -1,5 +1,4 @@
 <?php
-include("errorReport.php");
 $ArchivedStudentNumber = "";
 $ActiveStudentNumber = "";
 

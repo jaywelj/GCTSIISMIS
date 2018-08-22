@@ -195,10 +195,10 @@ while($res6 = mysqli_fetch_array($result6)){
 }
 
 
-if($varcharStudentSex = "F"){
+if($varcharStudentSex == "F"){
 	$varcharStudentSex = "Female";
 }
-else if($varcharStudentSex = "M"){
+else if($varcharStudentSex == "M"){
 	$varcharStudentSex = "Male";
 }
 
@@ -215,6 +215,8 @@ if(isset($_POST['btnUpdate']))
 	$varcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMiddleName']);
 
 	$varcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentLastName']);
+
+	$varcharStudentAbout = mysqli_real_escape_string($connect, $_POST['txtbxStudentAbout']);
 
 	$varcharStudentCourse = mysqli_real_escape_string($connect, $_POST['selectStudentCourse']);
 
@@ -271,7 +273,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage', studentPassword = '$varcharStudentPassword' 
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', 'aboutStudent' = '$varcharStudentAbout', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage', studentPassword = '$varcharStudentPassword' 
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -282,7 +284,7 @@ if(isset($_POST['btnUpdate']))
 			UPDATE `tbl_studentaccount` AS A
 			INNER JOIN tbl_personalinfo AS B 
 			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', studentPassword = '$varcharStudentPassword'
+			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', aboutStudent = '$varcharStudentAbout', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', studentPassword = '$varcharStudentPassword'
 			WHERE A.studentNumber = '$varcharStudentNumber'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
@@ -1042,7 +1044,7 @@ if(isset($_POST['btnUpdate']))
 							}
 							else
 							{
-								echo '<img src="images/default-user.png"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%" id="editProfilePicture">';
+								echo '<img src="img/default-user.png"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%" id="editProfilePicture">';
 							}
 							?>
 						</label>
@@ -1059,6 +1061,9 @@ if(isset($_POST['btnUpdate']))
 						<br />
 						<label>Last Name</label>
 						<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" value="<?php echo $varcharStudentLastName; ?>" />
+						<br />
+						<label>Student Description</label>
+						<input type="text" name="txtbxStudentAbout" id="txtbxStudentAbout" class="form-control" value="<?php echo $varcharStudentAbout; ?>" />
 						<br />
 						<?php
 

@@ -257,6 +257,7 @@ require 'header.php';
 									<h2><?php echo"$collegeName"; ?><small><?php echo"$college"; ?></small></h2>
 									<div class="form-group col-md-5 col-sm-5 col-xs-5 pull-right">
 										<form method="post">
+											<button type="button" data-toggle="modal" class="form-control btn btn-success pull-right" data-target="#add_data_Modal">Add Notes</button>
 											<select class="form-control" id="selectCourse" name="selectCourse" onchange="course()">
 												<option value="all">------------- All Course ----------------</option>
 												<?php 
@@ -369,12 +370,12 @@ require 'header.php';
 			</div>
 			<!-- /page content -->
 			<?php
-			$queryGettingSuggestionFromMessages = "SELECT *,tbl_studentaccount.studentNumber AS studentNumberMessagedButWithoutNote FROM tbl_studentaccount LEFT JOIN tbl_message ON tbl_message.studentNumber = tbl_studentaccount.studentNumber WHERE `tbl_studentaccount`.`studentNumber` IS NULL AND messageDateSent > DATE_SUB(now(), INTERVAL 1 WEEK)";
+			$queryGettingSuggestionFromMessages = "SELECT *,tbl_message.studentNumber AS MessageWithOutNote FROM `tbl_message` LEFT JOIN tbl_significantnotes on tbl_significantnotes.studentNumber = tbl_message.studentNumber WHERE tbl_message.studentNumber IS NOT NULL AND tbl_significantnotes.studentNumber IS NULL AND messageDateSent > DATE_SUB(now(), INTERVAL 1 WEEK)";
 			$resultGettingSuggestionFromMessages = mysqli_query($connect, $queryGettingSuggestionFromMessages);
 
 			while ($row = mysqli_fetch_array($resultGettingSuggestionFromMessages)) 
 			{
-				$studentNumberMessagedButWithoutNoteArray[] = $row['studentNumberMessagedButWithoutNote'];
+				$studentNumberMessagedButWithoutNoteArray[] = $row['MessageWithOutNote'];
 			}
 
 			if(mysqli_num_rows($resultGettingSuggestionFromMessages) == 0) {

@@ -50,13 +50,13 @@ include("connectionString.php");
 					
 					<ul class="dropdown-menu dropdown-usermenu pull-right">
 						<li><a href="manageAccountSelf.php"> Profile</a></li>
-						<li>
+						<!-- <li>
 							<a href="javascript:;">
 								<span class="badge bg-red pull-right">50%</span>
 								<span>Settings</span>
 							</a>
 						</li>
-						<li><a href="javascript:;">Help</a></li>
+						<li><a href="javascript:;">Help</a></li> -->
 						<li><a href="logout.php"><i class="fa fa-sign-out pull-right"></i> Log Out</a></li>
 					</ul>
 				</li>
@@ -146,8 +146,25 @@ include("connectionString.php");
 									{
 
 										$studentDisplayPic = $res['studentDisplayPic'];
+										if (empty($studentDisplayPic)) {
+										 echo '
+										<li style="background:'.$style.';">
+										<a id='.$messageID.' class="message-view">
+										<span class="image"><img src="images/default-user.png" alt="Profile Image" /></span>
+										<span>
+										<span class="message"><i class="'.$messageStatus.'"></i></span>
+										<span>'.$senderName.'</span>
+										<span class="time">'.$messageDatePassed->format("%d d %h h %i m %s s ago").'</span>
+										</span>
+										<span class="message">
+										'.$subCategoryName.'
+										</span>
+										</a>
+										</li>';
+										}
+										else{
 										echo '
-										<li>
+										<li style="background:'.$style.';">
 										<a id='.$messageID.' class="message-view">
 										<span class="image"><img src="data:image/jpeg;base64,'.base64_encode($res['studentDisplayPic'] ).'" alt="Profile Image" /></span>
 										<span>
@@ -160,6 +177,7 @@ include("connectionString.php");
 										</span>
 										</a>
 										</li>';
+									}
 									}
 								}
 

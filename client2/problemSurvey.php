@@ -2,6 +2,14 @@
 include("errorReport.php");
 include("session.php");
 include("connectionString.php");
+$studentNumber = $_SESSION['sessionStudentAccountNumber'];
+$query="SELECT DISTINCT studentNumber FROM tbl_answerproblem WHERE studentNumber = '$studentNumber'";
+$queryArray = mysqli_query($connect,$query);
+if(mysqli_num_rows($queryArray)>0)
+{
+	echo"<script type='text/javascript'>alert('You have already answered for thhe survey! :)');</script>";
+	echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
+}
 if(isset($_POST['btnFinish']))
 {
 	if(isset($_POST['checkboxProblem']))
@@ -18,8 +26,10 @@ if(isset($_POST['btnFinish']))
 			else
 			{
 				echo "<script type='text/javascript'>alert('error');</script>";
-			}
+					}
 		}
+		echo"<script type='text/javascript'>alert('Thankyou for participating the survey!');</script>";
+		echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
 	}
 	else
 	{

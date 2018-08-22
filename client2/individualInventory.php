@@ -1,5 +1,4 @@
 <?php
-include("errorReport.php");
 include("session.php");
 $surveyFormId=$_SESSION['sessionStudentAccountNumber'];
 echo "<script>var surveyFormId = '$surveyFormId';</script>";
