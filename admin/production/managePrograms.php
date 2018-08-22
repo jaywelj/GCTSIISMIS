@@ -489,7 +489,7 @@ require 'header.php';
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			echo "<script>var notyMessage4 = '$message4';</script>";
 
-			if ($subCategoryName == $SubCategoryName2 == $SubCategoryName3 == $SubCategoryName4)
+			if ($SubCategoryName == $SubCategoryName2 && $SubCategoryName3 == $SubCategoryName4 && $SubCategoryName2 == $SubCategoryName3)
 			{
 
 				$message5 = "".$SubCategoryName." is the hottest topic all across the boards";
