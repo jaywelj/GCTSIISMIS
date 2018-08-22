@@ -148,11 +148,11 @@ require 'header.php';
 															</div>";
 															// }
 															?>
-															<div class="btn-group  btn-group-sm" >
+															<!-- <div class="btn-group  btn-group-sm" >
 																<button type="button" class="btn btn-success btn-sm" data-toggle="modal" data-target="#add_note_Modal">
 																	<i class="fa fa-edit"></i>
 																</button>
-															</div>
+															</div> -->
 
 
 															<div class="btn-group  btn-group-sm" >
