@@ -197,7 +197,6 @@ require 'header.php';
 									<ul class="nav navbar-right">
 										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD COLLEGE</button>
 									</ul>
-									
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">

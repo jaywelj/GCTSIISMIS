@@ -953,6 +953,18 @@ require 'header.php';
 			type: 'info',
 			timeout: '10000'
 		});
+
+		var n = new Noty({
+			text: notyMessageProto,
+			type: 'success',
+			timeout: '10000'
+		});
+
+		var n = new Noty({
+			text: notyMessageProto2,
+			type: 'error',
+			timeout: '10000'
+		});
 		n.show();
 		if(topicFlag == "true"){
 			var n = new Noty({
