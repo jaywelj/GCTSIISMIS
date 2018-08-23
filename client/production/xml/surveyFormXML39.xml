@@ -1,5 +1,0 @@
-<form-template>
-	<fields>
-		<field type="header" subtype="h1" label="Header"></field>
-	</fields>
-</form-template>
