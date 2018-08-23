@@ -1,8 +1,0 @@
-<form-template>
-	<fields>
-		<field type="checkbox-group" label="Checkbox Group" name="checkbox-group-1532006400076">
-			<option label="Option 1" value="option-1" selected="true">Option 1</option>
-		</field>
-		<field type="date" label="Date Field" class="form-control" name="date-1532006399197"></field>
-	</fields>
-</form-template>
