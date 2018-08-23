@@ -632,9 +632,7 @@ require 'header.php';
 									<?php 
 								}
 								?>
-
 								<?php
-
 								if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage) == 0 ) {
 									?>
 									<div class="alert alert-info fade in">
@@ -653,7 +651,6 @@ require 'header.php';
 								}
 								?>
 								<?php
-
 								if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey) == 0 ) {
 									?>
 									<div class="alert alert-info fade in">
@@ -672,7 +669,6 @@ require 'header.php';
 								}
 								?>
 								<?php
-
 								if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
 									?>
 

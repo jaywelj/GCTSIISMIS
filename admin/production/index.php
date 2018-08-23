@@ -458,7 +458,7 @@ require 'header.php';
 														<td>
 															<table class="tile_info">
 																<?php 
-																$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1";
+																$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
 																$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
 																$color=array("blue","green","purple","aero","red");
 																$arraycounter = 0;
