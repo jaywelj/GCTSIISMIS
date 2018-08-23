@@ -21,10 +21,6 @@ if(isset($_POST["adminEmail"]))
 								<td>'.$row["adminFirstName"].' '.$row["adminMiddleName"].' '.$row["adminLastName"].'</td>
 							</tr>
 							<tr>
-								<th scope="row">Access Level</th>
-								<td>'.$row["adminAccessLevel"].'</td>
-							</tr>
-							<tr>
 								<th scope="row">Gender</th>
 								<td>'.$row["adminGender"].'</td>
 							</tr>
@@ -43,6 +39,10 @@ if(isset($_POST["adminEmail"]))
 							<tr>
 								<th scope="row">Email</th>
 								<td>'.$row["adminEmail"].'</td>
+							</tr>
+							<tr>
+								<th scope="row">Brief Introduction</th>
+								<td>'.$row["adminDescription"].'</td>
 							</tr>';
 						}
 						$output .= '

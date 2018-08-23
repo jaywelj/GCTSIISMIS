@@ -1,7 +1,7 @@
 <?php
 include("connectionString.php");
 
-// include("errorReport.php");
+include("errorReport.php");
 if(isset($_POST['btnAddAccount'])) 
 {
 	//including the database connection file
