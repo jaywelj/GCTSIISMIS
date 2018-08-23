@@ -498,16 +498,16 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<label>Student Number</label>
-								<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" />
+								<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" required="required" />
 								<br />
 								<label>First Name</label>
-								<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
+								<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" required="required" pattern="[a-zA-Z0-9\s]+"/>
 								<br />
 								<label>Middle Name</label>
 								<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
 								<br />
 								<label>Last Name</label>
-								<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
+								<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" required="required" pattern="[a-zA-Z0-9\s]+"/>
 								<br />
 								<?php
 
@@ -530,16 +530,16 @@ require 'header.php';
 								</select>
 								<br />
 								<label>Year</label>
-								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" />
+								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" required min="1" max="6" />
 								<br />
 								<label>Section</label>
-								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" />
+								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" required="" />
 								<br />
 								<label>Password</label>
-								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
+								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" required="" />
 								<br />
 								<label>Confirm Password</label>
-								<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" />
+								<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" required="" />
 								<div id="divCheckPasswordMatch">
 								</div>
 								<br />

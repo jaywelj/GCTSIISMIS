@@ -190,10 +190,9 @@ require 'header.php';
 									<div class="row">
 										<div class="col-md-12 col-sm-12 col-xs-12">
 											<div class="dashboard_graph">
-
 												<div class="row x_title">
 													<div class="col-md-6">
-														<h3>GCTS Activities <small> Testing/Guidance</small></h3>
+														<h3>OCPS <small> Account Creation Chart</small></h3>
 													</div>
 													<?php 
 													$queryStudentAccountLatestDate = "SELECT * FROM tbl_studentaccount ORDER BY studentDateAccountCreated DESC LIMIT 1";
@@ -256,30 +255,6 @@ require 'header.php';
 															</div>';
 														}
 														?>
-<!-- 														<div>
-															<p>Born-Again Christian</p>
-															<div class="">
-																<div class="progress progress_sm" style="width: 76%;">
-																	<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="60"></div>
-																</div>
-															</div>
-														</div>
-														<div>
-															<p>Muslim</p>
-															<div class="">
-																<div class="progress progress_sm" style="width: 76%;">
-																	<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="40"></div>
-																</div>
-															</div>
-														</div>
-														<div>
-															<p>Others</p>
-															<div class="">
-																<div class="progress progress_sm" style="width: 76%;">
-																	<div class="progress-bar bg-green" role="progressbar" data-transitiongoal="50"></div>
-																</div>
-															</div>
-														</div> -->
 													</div>
 
 												</div>
@@ -292,8 +267,6 @@ require 'header.php';
 									<br />
 
 									<div class="row">
-
-
 										<div class="col-md-4 col-sm-4 col-xs-12">
 											<div class="x_panel tile fixed_height_320">
 												<div class="x_title">
@@ -301,7 +274,52 @@ require 'header.php';
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 														</li>
-														<!-- <li class="dropdown">
+														<li><a class="close-link"><i class="fa fa-close"></i></a>
+														</li>
+													</ul>
+													<div class="clearfix"></div>
+												</div>
+												<div class="x_content">
+													<h4>No of Records</h4>
+													<?php 
+													$queryStudentColleges = "SELECT collegeCode, count(*) as numberofoccurancescollege, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 LIMIT 5";
+													$resultStudentColleges = mysqli_query($connect, $queryStudentColleges);
+													while ($row = mysqli_fetch_array($resultStudentColleges)) 
+													{
+														$college = $row['collegeCode'];
+														$NumberOfOccurancesCollege = $row['numberofoccurancescollege'];
+														$PercentageOfOccurancesCollege = $row['percentage'];	
+
+														echo'		<div class="widget_summary">
+														<div class="w_left w_25">
+														<span>'.$college.'</span>
+														</div>
+														<div class="w_center w_55">
+														<div class="progress">
+														<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '.$PercentageOfOccurancesCollege.'%;">
+														<span class="sr-only">'.$PercentageOfOccurancesCollege.' Complete</span>
+														</div>
+														</div>
+														</div>
+														<div class="w_right w_20">
+														<span>'.$NumberOfOccurancesCollege.'</span>
+														</div>
+														<div class="clearfix"></div>
+														</div>';
+													}
+													?>	
+												</div>
+											</div>
+										</div>
+
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<div class="x_panel tile fixed_height_320 overflow_hidden">
+												<div class="x_title">
+													<h2>Sexuality</h2>
+													<ul class="nav navbar-right panel_toolbox">
+														<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+														</li>
+														<li class="dropdown">
 															<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
 															<ul class="dropdown-menu" role="menu">
 																<li><a href="#">Settings 1</a>
@@ -310,178 +328,55 @@ require 'header.php';
 																</li>
 															</ul>
 														</li>
-													-->														
-													<li><a class="close-link"><i class="fa fa-close"></i></a>
-													</li>
-												</ul>
-												<div class="clearfix"></div>
-											</div>
-											<div class="x_content">
-												<h4>No of Records</h4>
-												<?php 
-												$queryStudentColleges = "SELECT collegeCode, count(*) as numberofoccurancescollege, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 LIMIT 5";
-												$resultStudentColleges = mysqli_query($connect, $queryStudentColleges);
-												while ($row = mysqli_fetch_array($resultStudentColleges)) 
-												{
-													$college = $row['collegeCode'];
-													$NumberOfOccurancesCollege = $row['numberofoccurancescollege'];
-													$PercentageOfOccurancesCollege = $row['percentage'];	
-
-													echo'		<div class="widget_summary">
-													<div class="w_left w_25">
-													<span>'.$college.'</span>
-													</div>
-													<div class="w_center w_55">
-													<div class="progress">
-													<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: '.$PercentageOfOccurancesCollege.'%;">
-													<span class="sr-only">'.$PercentageOfOccurancesCollege.' Complete</span>
-													</div>
-													</div>
-													</div>
-													<div class="w_right w_20">
-													<span>'.$NumberOfOccurancesCollege.'</span>
-													</div>
-													<div class="clearfix"></div>
-													</div>';
-												}
-												?>
-<!-- 
-												 <div class="widget_summary">
-													<div class="w_left w_25">
-														<span>2nd Year</span>
-													</div>
-													<div class="w_center w_55">
-														<div class="progress">
-															<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 45%;">
-																<span class="sr-only">60% Complete</span>
-															</div>
-														</div>
-													</div>
-													<div class="w_right w_20">
-														<span>1926</span>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-
-												<div class="widget_summary">
-													<div class="w_left w_25">
-														<span>3rd Year</span>
-													</div>
-													<div class="w_center w_55">
-														<div class="progress">
-															<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 25%;">
-																<span class="sr-only">60% Complete</span>
-															</div>
-														</div>
-													</div>
-													<div class="w_right w_20">
-														<span>802</span>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-												<div class="widget_summary">
-													<div class="w_left w_25">
-														<span>4th Year</span>
-													</div>
-													<div class="w_center w_55">
-														<div class="progress">
-															<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 5%;">
-																<span class="sr-only">60% Complete</span>
-															</div>
-														</div>
-													</div>
-													<div class="w_right w_20">
-														<span>509</span>
-													</div>
-													<div class="clearfix"></div>
-												</div>
-												<div class="widget_summary">
-													<div class="w_left w_25">
-														<span>5th Year</span>
-													</div>
-													<div class="w_center w_55">
-														<div class="progress">
-															<div class="progress-bar bg-green" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 2%;">
-																<span class="sr-only">60% Complete</span>
-															</div>
-														</div>
-													</div>
-													<div class="w_right w_20">
-														<span>304</span>
-													</div>
-													<div class="clearfix"></div>
-												</div> 
-
-											-->											
-										</div>
-									</div>
-								</div>
-
-								<div class="col-md-4 col-sm-4 col-xs-12">
-									<div class="x_panel tile fixed_height_320 overflow_hidden">
-										<div class="x_title">
-											<h2>Sexuality</h2>
-											<ul class="nav navbar-right panel_toolbox">
-												<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-												</li>
-												<li class="dropdown">
-													<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-													<ul class="dropdown-menu" role="menu">
-														<li><a href="#">Settings 1</a>
-														</li>
-														<li><a href="#">Settings 2</a>
+														<li><a class="close-link"><i class="fa fa-close"></i></a>
 														</li>
 													</ul>
-												</li>
-												<li><a class="close-link"><i class="fa fa-close"></i></a>
-												</li>
-											</ul>
-											<div class="clearfix"></div>
-										</div>
-										<div class="x_content">
-											<table class="" style="width:100%">
-												<tr>
-													<th style="width:37%;">
-														<p>Top 5</p>
-													</th>
-													<th>
-														<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-															<p class="">Sexuality</p>
-														</div>
-														<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-															<p class="">Percentage</p>
-														</div>
-													</th>
-												</tr>
-												<tr>
-													<td>
-														<canvas class="sexualityDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-													</td>
-													<td>
-														<table class="tile_info">
-															<?php 
-															$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
-															$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
+													<div class="clearfix"></div>
+												</div>
+												<div class="x_content">
+													<table class="" style="width:100%">
+														<tr>
+															<th style="width:37%;">
+																<p>Top 5</p>
+															</th>
+															<th>
+																<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+																	<p class="">Sexuality</p>
+																</div>
+																<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+																	<p class="">Percentage</p>
+																</div>
+															</th>
+														</tr>
+														<tr>
+															<td>
+																<canvas class="sexualityDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+															</td>
+															<td>
+																<table class="tile_info">
+																	<?php 
+																	$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
+																	$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
 															// $color=array("blue","green","purple","aero","red");
-															$color=array("aero","purple","red","green","blue");
-															$arraycounter = 0;
-															while ($row = mysqli_fetch_array($resultStudentSexuality)) {
+																	$color=array("aero","purple","red","green","blue");
+																	$arraycounter = 0;
+																	while ($row = mysqli_fetch_array($resultStudentSexuality)) {
 
-																$sexuality = $row['sexuality'];
-																$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-																$PercentageOfOccurancesSexuality = $row['percentage'];		
-																?>
-																<?php 
-																echo '
-																<tr>
-																<td>
-																<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$sexuality.'</p>
-																</td>
-																<td>'.$PercentageOfOccurancesSexuality.'</td>
-																</tr>';
-																$arraycounter++;
-															}
-															?>
+																		$sexuality = $row['sexuality'];
+																		$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
+																		$PercentageOfOccurancesSexuality = $row['percentage'];		
+																		?>
+																		<?php 
+																		echo '
+																		<tr>
+																		<td>
+																		<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$sexuality.'</p>
+																		</td>
+																		<td>'.$PercentageOfOccurancesSexuality.'</td>
+																		</tr>';
+																		$arraycounter++;
+																	}
+																	?>
 																<!-- <tr>
 																	<td>
 																		<p><i class="fa fa-square green"></i>Homosexual</p>
@@ -516,9 +411,9 @@ require 'header.php';
 
 
 									<div class="col-md-4 col-sm-4 col-xs-12">
-										<div class="x_panel tile fixed_height_320">
+										<div class="x_panel tile fixed_height_320 overflow_hidden">
 											<div class="x_title">
-												<h2>Quick Settings</h2>
+												<h2>Civil Status</h2>
 												<ul class="nav navbar-right panel_toolbox">
 													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 													</li>
@@ -537,234 +432,249 @@ require 'header.php';
 												<div class="clearfix"></div>
 											</div>
 											<div class="x_content">
-												<div class="dashboard-widget-content">
-													<ul class="quick-list">
-														<li><i class="fa fa-calendar-o"></i><a href="#">Settings</a>
-														</li>
-														<li><i class="fa fa-bars"></i><a href="#">Subscription</a>
-														</li>
-														<li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-														<li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-														</li>
-														<li><i class="fa fa-bar-chart"></i><a href="#">Auto Renewal</a> </li>
-														<li><i class="fa fa-line-chart"></i><a href="#">Achievements</a>
-														</li>
-														<li><i class="fa fa-area-chart"></i><a href="#">Logout</a>
-														</li>
-													</ul>
-
-													<div class="sidebar-widget">
-														<h4>Profile Completion</h4>
-														<canvas width="150" height="80" id="chart_gauge_01" class="" style="width: 160px; height: 100px;"></canvas>
-														<div class="goal-wrapper">
-															<span id="gauge-text" class="gauge-value pull-left">0</span>
-															<span class="gauge-value pull-left">%</span>
-															<span id="goal-text" class="goal-value pull-right">100%</span>
-														</div>
-													</div>
-												</div>
-											</div>
-										</div>
-									</div>
-								</div>
-
-
-								<div class="row">
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<div class="x_panel">
-											<div class="x_title">
-												<h2>Recent Activities <small>Sessions</small></h2>
-												<ul class="nav navbar-right panel_toolbox">
-													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-													</li>
-													<li class="dropdown">
-														<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Settings 1</a>
-															</li>
-															<li><a href="#">Settings 2</a>
-															</li>
-														</ul>
-													</li>
-													<li><a class="close-link"><i class="fa fa-close"></i></a>
-													</li>
-												</ul>
-												<div class="clearfix"></div>
-											</div>
-
-											<div class="x_content">
-												<div class="dashboard-widget-content">
-													<ul class="list-unstyled timeline widget">
-														<li>
-															<div class="block">
-																<div class="block_content">
-																	<h2 class="title">
-																		<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-																	</h2>
-																	<div class="byline">
-																		<span>13 hours ago</span> by <a>Jane Smith</a>
-																	</div>
-																	<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-																	</p>
-																</div>
+												<table class="" style="width:100%">
+													<tr>
+														<th style="width:37%;">
+															<p>Top 5</p>
+														</th>
+														<th>
+															<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+																<p class="">Civil Status</p>
 															</div>
-														</li>
-														<li>
-															<div class="block">
-																<div class="block_content">
-																	<h2 class="title">
-																		<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-																	</h2>
-																	<div class="byline">
-																		<span>13 hours ago</span> by <a>Jane Smith</a>
-																	</div>
-																	<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-																	</p>
-																</div>
+															<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+																<p class="">Percentage</p>
 															</div>
-														</li>
-														<li>
-															<div class="block">
-																<div class="block_content">
-																	<h2 class="title">
-																		<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-																	</h2>
-																	<div class="byline">
-																		<span>13 hours ago</span> by <a>Jane Smith</a>
-																	</div>
-																	<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-																	</p>
-																</div>
-															</div>
-														</li>
-														<li>
-															<div class="block">
-																<div class="block_content">
-																	<h2 class="title">
-																		<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
-																	</h2>
-																	<div class="byline">
-																		<span>13 hours ago</span> by <a>Jane Smith</a>
-																	</div>
-																	<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
-																	</p>
-																</div>
-															</div>
-														</li>
-													</ul>
-												</div>
+														</th>
+													</tr>
+													<tr>
+														<td>
+															<canvas class="civilstatusDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+														</td>
+														<td>
+															<table class="tile_info">
+																<?php 
+																$queryStudentCivilStatus = "SELECT civilStatus, count(*) as numberofoccurancescivilstatus, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancescivilstatus DESC LIMIT 5";
+																$resultStudentCivilStatus = mysqli_query($connect, $queryStudentCivilStatus);
+															// $color=array("blue","green","purple","aero","red");
+																$color=array("aero","purple","red","green","blue");
+																$arraycounter = 0;
+																while ($row = mysqli_fetch_array($resultStudentCivilStatus)) {
+
+																	$civilStatus = $row['civilStatus'];
+																	$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
+																	$PercentageOfOccurancesCivilStatus = $row['percentage'];		
+																	?>
+																	<?php 
+																	echo '
+																	<tr>
+																	<td>
+																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$civilStatus.'</p>
+																	</td>
+																	<td>'.$PercentageOfOccurancesCivilStatus.'</td>
+																	</tr>';
+																	$arraycounter++;
+																}
+																?>
+															</table>
+														</td>
+													</tr>
+												</table>
 											</div>
 										</div>
 									</div>
 
 
-									<div class="col-md-8 col-sm-8 col-xs-12">
-										<div class="row">
+									<div class="row">
+										<div class="col-md-4 col-sm-4 col-xs-12">
+											<div class="x_panel">
+												<div class="x_title">
+													<h2>Recent Activities <small>Sessions</small></h2>
+													<ul class="nav navbar-right panel_toolbox">
+														<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+														</li>
+														<li class="dropdown">
+															<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+															<ul class="dropdown-menu" role="menu">
+																<li><a href="#">Settings 1</a>
+																</li>
+																<li><a href="#">Settings 2</a>
+																</li>
+															</ul>
+														</li>
+														<li><a class="close-link"><i class="fa fa-close"></i></a>
+														</li>
+													</ul>
+													<div class="clearfix"></div>
+												</div>
 
-											<div class="col-md-12 col-sm-12 col-xs-12">
-												<div class="x_panel">
-													<div class="x_title">
-														<h2>Visitors location <small>geo-presentation</small></h2>
-														<ul class="nav navbar-right panel_toolbox">
-															<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+												<div class="x_content">
+													<div class="dashboard-widget-content">
+														<ul class="list-unstyled timeline widget">
+															<li>
+																<div class="block">
+																	<div class="block_content">
+																		<h2 class="title">
+																			<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+																		</h2>
+																		<div class="byline">
+																			<span>13 hours ago</span> by <a>Jane Smith</a>
+																		</div>
+																		<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+																		</p>
+																	</div>
+																</div>
 															</li>
-															<li class="dropdown">
-																<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-																<ul class="dropdown-menu" role="menu">
-																	<li><a href="#">Settings 1</a>
-																	</li>
-																	<li><a href="#">Settings 2</a>
-																	</li>
-																</ul>
+															<li>
+																<div class="block">
+																	<div class="block_content">
+																		<h2 class="title">
+																			<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+																		</h2>
+																		<div class="byline">
+																			<span>13 hours ago</span> by <a>Jane Smith</a>
+																		</div>
+																		<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+																		</p>
+																	</div>
+																</div>
 															</li>
-															<li><a class="close-link"><i class="fa fa-close"></i></a>
+															<li>
+																<div class="block">
+																	<div class="block_content">
+																		<h2 class="title">
+																			<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+																		</h2>
+																		<div class="byline">
+																			<span>13 hours ago</span> by <a>Jane Smith</a>
+																		</div>
+																		<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+																		</p>
+																	</div>
+																</div>
+															</li>
+															<li>
+																<div class="block">
+																	<div class="block_content">
+																		<h2 class="title">
+																			<a>Who Needs Sundance When You’ve Got&nbsp;Crowdfunding?</a>
+																		</h2>
+																		<div class="byline">
+																			<span>13 hours ago</span> by <a>Jane Smith</a>
+																		</div>
+																		<p class="excerpt">Film festivals used to be do-or-die moments for movie makers. They were where you met the producers that could fund your project, and if the buyers liked your flick, they’d pay to Fast-forward and… <a>Read&nbsp;More</a>
+																		</p>
+																	</div>
+																</div>
 															</li>
 														</ul>
-														<div class="clearfix"></div>
-													</div>
-													<div class="x_content">
-														<div class="dashboard-widget-content">
-															<div class="col-md-4 hidden-small">
-																<h2 class="line_30">125.7k Views from 60 countries</h2>
-																<table class="countries_list">
-																	<tbody>
-																		<tr>
-																			<td>United States</td>
-																			<td class="fs15 fw700 text-right">33%</td>
-																		</tr>
-																		<tr>
-																			<td>France</td>
-																			<td class="fs15 fw700 text-right">27%</td>
-																		</tr>
-																		<tr>
-																			<td>Germany</td>
-																			<td class="fs15 fw700 text-right">16%</td>
-																		</tr>
-																		<tr>
-																			<td>Spain</td>
-																			<td class="fs15 fw700 text-right">11%</td>
-																		</tr>
-																		<tr>
-																			<td>Britain</td>
-																			<td class="fs15 fw700 text-right">10%</td>
-																		</tr>
-																	</tbody>
-																</table>
-															</div>
-															<div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
-														</div>
 													</div>
 												</div>
 											</div>
 										</div>
-										<div class="row">
 
 
-											<!-- Start to do list -->
-											<div class="col-md-6 col-sm-6 col-xs-12">
-												<div class="x_panel">
-													<div class="x_title">
-														<h2>To Do List <small>Sample tasks</small></h2>
-														<ul class="nav navbar-right panel_toolbox">
-															<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-															</li>
-															<li class="dropdown">
-																<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-																<ul class="dropdown-menu" role="menu">
-																	<li><a href="#">Settings 1</a>
-																	</li>
-																	<li><a href="#">Settings 2</a>
-																	</li>
-																</ul>
-															</li>
-															<li><a class="close-link"><i class="fa fa-close"></i></a>
-															</li>
-														</ul>
-														<div class="clearfix"></div>
+										<div class="col-md-8 col-sm-8 col-xs-12">
+											<div class="row">
+												<div class="col-md-12 col-sm-12 col-xs-12">
+													<div class="x_panel">
+														<div class="x_title">
+															<h2>Visitors location <small>geo-presentation</small></h2>
+															<ul class="nav navbar-right panel_toolbox">
+																<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+																</li>
+																<li class="dropdown">
+																	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+																	<ul class="dropdown-menu" role="menu">
+																		<li><a href="#">Settings 1</a>
+																		</li>
+																		<li><a href="#">Settings 2</a>
+																		</li>
+																	</ul>
+																</li>
+																<li><a class="close-link"><i class="fa fa-close"></i></a>
+																</li>
+															</ul>
+															<div class="clearfix"></div>
+														</div>
+														<div class="x_content">
+															<div class="dashboard-widget-content">
+																<div class="col-md-4 hidden-small">
+																	<h2 class="line_30">125.7k Views from 60 countries</h2>
+																	<table class="countries_list">
+																		<tbody>
+																			<tr>
+																				<td>United States</td>
+																				<td class="fs15 fw700 text-right">33%</td>
+																			</tr>
+																			<tr>
+																				<td>France</td>
+																				<td class="fs15 fw700 text-right">27%</td>
+																			</tr>
+																			<tr>
+																				<td>Germany</td>
+																				<td class="fs15 fw700 text-right">16%</td>
+																			</tr>
+																			<tr>
+																				<td>Spain</td>
+																				<td class="fs15 fw700 text-right">11%</td>
+																			</tr>
+																			<tr>
+																				<td>Britain</td>
+																				<td class="fs15 fw700 text-right">10%</td>
+																			</tr>
+																		</tbody>
+																	</table>
+																</div>
+																<div id="world-map-gdp" class="col-md-8 col-sm-12 col-xs-12" style="height:230px;"></div>
+															</div>
+														</div>
 													</div>
-													<div class="x_content">
+												</div>
+											</div>
+											<div class="row">
 
-														<div class="">
-															<ul class="to_do">
-																<li>
-																	<p>
-																		<input type="checkbox" class="flat"> Schedule meeting with new client </p>
-																	</li>
+
+												<!-- Start to do list -->
+												<div class="col-md-6 col-sm-6 col-xs-12">
+													<div class="x_panel">
+														<div class="x_title">
+															<h2>To Do List <small>Sample tasks</small></h2>
+															<ul class="nav navbar-right panel_toolbox">
+																<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+																</li>
+																<li class="dropdown">
+																	<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+																	<ul class="dropdown-menu" role="menu">
+																		<li><a href="#">Settings 1</a>
+																		</li>
+																		<li><a href="#">Settings 2</a>
+																		</li>
+																	</ul>
+																</li>
+																<li><a class="close-link"><i class="fa fa-close"></i></a>
+																</li>
+															</ul>
+															<div class="clearfix"></div>
+														</div>
+														<div class="x_content">
+
+															<div class="">
+																<ul class="to_do">
 																	<li>
 																		<p>
-																			<input type="checkbox" class="flat"> Create email address for new intern</p>
+																			<input type="checkbox" class="flat"> Schedule meeting with new client </p>
 																		</li>
 																		<li>
 																			<p>
-																				<input type="checkbox" class="flat"> Have IT fix the network printer</p>
+																				<input type="checkbox" class="flat"> Create email address for new intern</p>
 																			</li>
 																			<li>
 																				<p>
-																					<input type="checkbox" class="flat"> Copy backups to offsite location</p>
+																					<input type="checkbox" class="flat"> Have IT fix the network printer</p>
 																				</li>
 																				<li>
 																					<p>
-																						<input type="checkbox" class="flat"> Food truck fixie locavors mcsweeney</p>
+																						<input type="checkbox" class="flat"> Copy backups to offsite location</p>
 																					</li>
 																					<li>
 																						<p>
@@ -772,295 +682,379 @@ require 'header.php';
 																						</li>
 																						<li>
 																							<p>
-																								<input type="checkbox" class="flat"> Create email address for new intern</p>
+																								<input type="checkbox" class="flat"> Food truck fixie locavors mcsweeney</p>
 																							</li>
 																							<li>
 																								<p>
-																									<input type="checkbox" class="flat"> Have IT fix the network printer</p>
+																									<input type="checkbox" class="flat"> Create email address for new intern</p>
 																								</li>
 																								<li>
 																									<p>
-																										<input type="checkbox" class="flat"> Copy backups to offsite location</p>
+																										<input type="checkbox" class="flat"> Have IT fix the network printer</p>
 																									</li>
-																								</ul>
-																							</div>
-																						</div>
-																					</div>
-																				</div>
-																				<!-- End to do list -->
-
-																				<!-- start of weather widget -->
-																				<div class="col-md-6 col-sm-6 col-xs-12">
-																					<div class="x_panel">
-																						<div class="x_title">
-																							<h2>Daily active users <small>Sessions</small></h2>
-																							<ul class="nav navbar-right panel_toolbox">
-																								<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-																								</li>
-																								<li class="dropdown">
-																									<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-																									<ul class="dropdown-menu" role="menu">
-																										<li><a href="#">Settings 1</a>
-																										</li>
-																										<li><a href="#">Settings 2</a>
+																									<li>
+																										<p>
+																											<input type="checkbox" class="flat"> Copy backups to offsite location</p>
 																										</li>
 																									</ul>
-																								</li>
-																								<li><a class="close-link"><i class="fa fa-close"></i></a>
-																								</li>
-																							</ul>
-																							<div class="clearfix"></div>
-																						</div>
-																						<div class="x_content">
-																							<div class="row">
-																								<div class="col-sm-12">
-																									<div class="temperature"><b>Monday</b>, 07:30 AM
-																										<span>F</span>
-																										<span><b>C</b></span>
-																									</div>
 																								</div>
-																							</div>
-																							<div class="row">
-																								<div class="col-sm-4">
-																									<div class="weather-icon">
-																										<canvas height="84" width="84" id="partly-cloudy-day"></canvas>
-																									</div>
-																								</div>
-																								<div class="col-sm-8">
-																									<div class="weather-text">
-																										<h2>Texas <br><i>Partly Cloudy Day</i></h2>
-																									</div>
-																								</div>
-																							</div>
-																							<div class="col-sm-12">
-																								<div class="weather-text pull-right">
-																									<h3 class="degrees">23</h3>
-																								</div>
-																							</div>
-
-																							<div class="clearfix"></div>
-
-																							<div class="row weather-days">
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Mon</h2>
-																										<h3 class="degrees">25</h3>
-																										<canvas id="clear-day" width="32" height="32"></canvas>
-																										<h5>15 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Tue</h2>
-																										<h3 class="degrees">25</h3>
-																										<canvas height="32" width="32" id="rain"></canvas>
-																										<h5>12 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Wed</h2>
-																										<h3 class="degrees">27</h3>
-																										<canvas height="32" width="32" id="snow"></canvas>
-																										<h5>14 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Thu</h2>
-																										<h3 class="degrees">28</h3>
-																										<canvas height="32" width="32" id="sleet"></canvas>
-																										<h5>15 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Fri</h2>
-																										<h3 class="degrees">28</h3>
-																										<canvas height="32" width="32" id="wind"></canvas>
-																										<h5>11 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="col-sm-2">
-																									<div class="daily-weather">
-																										<h2 class="day">Sat</h2>
-																										<h3 class="degrees">26</h3>
-																										<canvas height="32" width="32" id="cloudy"></canvas>
-																										<h5>10 <i>km/h</i></h5>
-																									</div>
-																								</div>
-																								<div class="clearfix"></div>
 																							</div>
 																						</div>
 																					</div>
+																					<!-- End to do list -->
 
+																					<!-- start of weather widget -->
+																					<div class="col-md-6 col-sm-6 col-xs-12">
+																						<div class="x_panel">
+																							<div class="x_title">
+																								<h2>Daily active users <small>Sessions</small></h2>
+																								<ul class="nav navbar-right panel_toolbox">
+																									<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+																									</li>
+																									<li class="dropdown">
+																										<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+																										<ul class="dropdown-menu" role="menu">
+																											<li><a href="#">Settings 1</a>
+																											</li>
+																											<li><a href="#">Settings 2</a>
+																											</li>
+																										</ul>
+																									</li>
+																									<li><a class="close-link"><i class="fa fa-close"></i></a>
+																									</li>
+																								</ul>
+																								<div class="clearfix"></div>
+																							</div>
+																							<div class="x_content">
+																								<div class="row">
+																									<div class="col-sm-12">
+																										<div class="temperature"><b>Monday</b>, 07:30 AM
+																											<span>F</span>
+																											<span><b>C</b></span>
+																										</div>
+																									</div>
+																								</div>
+																								<div class="row">
+																									<div class="col-sm-4">
+																										<div class="weather-icon">
+																											<canvas height="84" width="84" id="partly-cloudy-day"></canvas>
+																										</div>
+																									</div>
+																									<div class="col-sm-8">
+																										<div class="weather-text">
+																											<h2>Texas <br><i>Partly Cloudy Day</i></h2>
+																										</div>
+																									</div>
+																								</div>
+																								<div class="col-sm-12">
+																									<div class="weather-text pull-right">
+																										<h3 class="degrees">23</h3>
+																									</div>
+																								</div>
+
+																								<div class="clearfix"></div>
+
+																								<div class="row weather-days">
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Mon</h2>
+																											<h3 class="degrees">25</h3>
+																											<canvas id="clear-day" width="32" height="32"></canvas>
+																											<h5>15 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Tue</h2>
+																											<h3 class="degrees">25</h3>
+																											<canvas height="32" width="32" id="rain"></canvas>
+																											<h5>12 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Wed</h2>
+																											<h3 class="degrees">27</h3>
+																											<canvas height="32" width="32" id="snow"></canvas>
+																											<h5>14 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Thu</h2>
+																											<h3 class="degrees">28</h3>
+																											<canvas height="32" width="32" id="sleet"></canvas>
+																											<h5>15 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Fri</h2>
+																											<h3 class="degrees">28</h3>
+																											<canvas height="32" width="32" id="wind"></canvas>
+																											<h5>11 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="col-sm-2">
+																										<div class="daily-weather">
+																											<h2 class="day">Sat</h2>
+																											<h3 class="degrees">26</h3>
+																											<canvas height="32" width="32" id="cloudy"></canvas>
+																											<h5>10 <i>km/h</i></h5>
+																										</div>
+																									</div>
+																									<div class="clearfix"></div>
+																								</div>
+																							</div>
+																						</div>
+
+																					</div>
+																					<!-- end of weather widget -->
 																				</div>
-																				<!-- end of weather widget -->
 																			</div>
 																		</div>
 																	</div>
+																	<!-- /page content -->
+																	<!-- footer content -->
+																	<footer>
+																		<div class="pull-right">
+																			Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+																		</div>
+																		<div class="clearfix"></div>
+																	</footer>
+																	<!-- /footer content -->
 																</div>
-																<!-- /page content -->
-																<!-- footer content -->
-																<footer>
-																	<div class="pull-right">
-																		Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-																	</div>
-																	<div class="clearfix"></div>
-																</footer>
-																<!-- /footer content -->
 															</div>
-														</div>
 
-														<!-- jQuery -->
-														<script src="../vendors/jquery/dist/jquery.min.js"></script>
-														<!-- Bootstrap -->
-														<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-														<!-- FastClick -->
-														<script src="../vendors/fastclick/lib/fastclick.js"></script>
-														<!-- NProgress -->
-														<script src="../vendors/nprogress/nprogress.js"></script>
-														<!-- Chart.js -->
-														<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-														<!-- gauge.js -->
-														<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-														<!-- bootstrap-progressbar -->
-														<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-														<!-- iCheck -->
-														<script src="../vendors/iCheck/icheck.min.js"></script>
-														<!-- Skycons -->
-														<script src="../vendors/skycons/skycons.js"></script>
-														<!-- Flot -->
-														<script src="../vendors/Flot/jquery.flot.js"></script>
-														<script src="../vendors/Flot/jquery.flot.pie.js"></script>
-														<script src="../vendors/Flot/jquery.flot.time.js"></script>
-														<script src="../vendors/Flot/jquery.flot.stack.js"></script>
-														<script src="../vendors/Flot/jquery.flot.resize.js"></script>
-														<!-- Flot plugins -->
-														<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-														<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-														<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-														<!-- DateJS -->
-														<script src="../vendors/DateJS/build/date.js"></script>
-														<!-- JQVMap -->
-														<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-														<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-														<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-														<!-- bootstrap-daterangepicker -->
-														<script src="../vendors/moment/min/moment.min.js"></script>
-														<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+															<!-- jQuery -->
+															<script src="../vendors/jquery/dist/jquery.min.js"></script>
+															<!-- Bootstrap -->
+															<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+															<!-- FastClick -->
+															<script src="../vendors/fastclick/lib/fastclick.js"></script>
+															<!-- NProgress -->
+															<script src="../vendors/nprogress/nprogress.js"></script>
+															<!-- Chart.js -->
+															<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+															<!-- gauge.js -->
+															<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+															<!-- bootstrap-progressbar -->
+															<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+															<!-- iCheck -->
+															<script src="../vendors/iCheck/icheck.min.js"></script>
+															<!-- Skycons -->
+															<script src="../vendors/skycons/skycons.js"></script>
+															<!-- Flot -->
+															<script src="../vendors/Flot/jquery.flot.js"></script>
+															<script src="../vendors/Flot/jquery.flot.pie.js"></script>
+															<script src="../vendors/Flot/jquery.flot.time.js"></script>
+															<script src="../vendors/Flot/jquery.flot.stack.js"></script>
+															<script src="../vendors/Flot/jquery.flot.resize.js"></script>
+															<!-- Flot plugins -->
+															<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+															<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+															<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+															<!-- DateJS -->
+															<script src="../vendors/DateJS/build/date.js"></script>
+															<!-- JQVMap -->
+															<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+															<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+															<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+															<!-- bootstrap-daterangepicker -->
+															<script src="../vendors/moment/min/moment.min.js"></script>
+															<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
 
-														<!-- Custom Theme Scripts -->
-														<script src="../build/js/custom.min.js"></script>
+															<!-- Custom Theme Scripts -->
+															<script src="../build/js/custom2.js"></script>
 
-														<?php 
-														$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
-														$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
-														$color=array("blue","green","purple","aero","red");
-														$arraycounter = 0;
-														while ($row = mysqli_fetch_array($resultStudentSexuality)) {
+															<?php 
+															$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
+															$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
+															$color=array("blue","green","purple","aero","red");
+															$arraycounter = 0;
+															while ($row = mysqli_fetch_array($resultStudentSexuality)) {
 
-															$sexualityArray[] = $row['sexuality'];
-															$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-															$PercentageOfOccurancesSexualityArray[] = $row['percentage'];		
-															
-														}
-														$sexualityString = "";
-														foreach($sexualityArray as $sexualityValue) 
-														{
-															$sexualityString .= '"'.$sexualityValue.'",' ;
-														}
-														$PercentageOfOccurancesSexualityString="";
-														foreach ($PercentageOfOccurancesSexualityArray as $PercentageOfOccurancesSexualityValue) 
-														{
-															$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
-														}
-														foreach ($color as $colorValue) {
-															$colorString .= ''.$colorValue.',';
-														}
-														?>
-
-														
-														<script>
-															function init_chart_doughnut(){
-
-																if( typeof (Chart) === 'undefined'){ return; }
-
-																console.log('init_chart_doughnut');
-
-																if ($('.sexualityDoughnut').length){
-
-																	var chart_doughnut_settings = {
-																		type: 'doughnut',
-																		tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-																		data: {
-																			labels: [
-																			<?php
-																			echo $sexualityString;
-																			?>
-																			],
-																			datasets: [{
-																				data: [<?php echo $PercentageOfOccurancesSexualityString; ?>],
-																				backgroundColor: [
-																				"#BDC3C7",
-																				"#9B59B6",
-																				"#E74C3C",
-																				"#26B99A",
-																				"#3498DB"
-																				],
-																				hoverBackgroundColor: [
-																				"#CFD4D8",
-																				"#B370CF",
-																				"#E95E4F",
-																				"#36CAAB",
-																				"#49A9EA"
-																				]
-																			}]
-																		},
-																		options: { 
-																			legend: false, 
-																			responsive: false 
-																		}
-																	}
-
-																	$('.sexualityDoughnut').each(function(){
-
-																		var chart_element = $(this);
-																		var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
-
-																	});			
-
-																}  
+																$sexualityArray[] = $row['sexuality'];
+																$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
+																$PercentageOfOccurancesSexualityArray[] = $row['percentage'];		
 
 															}
+															$sexualityString = "";
+															foreach($sexualityArray as $sexualityValue) 
+															{
+																$sexualityString .= '"'.$sexualityValue.'",' ;
+															}
+															$PercentageOfOccurancesSexualityString="";
+															foreach ($PercentageOfOccurancesSexualityArray as $PercentageOfOccurancesSexualityValue) 
+															{
+																$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
+															}
+															foreach ($color as $colorValue) {
+																$colorString .= ''.$colorValue.',';
+															}
+															?>
 
-														</script>
-														<?php
 
-														$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 MONTH) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
-														$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
+															<script>
+																function init_chart_doughnut(){
 
-														
-														?>
-														<script>
-															
-															function init_flot_chart(){
+																	if( typeof (Chart) === 'undefined'){ return; }
 
-																if( typeof ($.plot) === 'undefined'){ return; }
+																	console.log('init_chart_doughnut');
 
-																console.log('init_flot_chart');
+																	if ($('.sexualityDoughnut').length){
 
-																var arr_data1 = [
-																<?php
-																while ($row = mysqli_fetch_array($resultPlotChart1)) {
-																	$row['Month'];
-																	$row['Day'];
-																	$row['Year'];
+																		var chart_doughnut_settings = {
+																			type: 'doughnut',
+																			tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+																			data: {
+																				labels: [
+																				<?php
+																				echo $sexualityString;
+																				?>
+																				],
+																				datasets: [{
+																					data: [<?php echo $PercentageOfOccurancesSexualityString; ?>],
+																					backgroundColor: [
+																					"#BDC3C7",
+																					"#9B59B6",
+																					"#E74C3C",
+																					"#26B99A",
+																					"#3498DB"
+																					],
+																					hoverBackgroundColor: [
+																					"#CFD4D8",
+																					"#B370CF",
+																					"#E95E4F",
+																					"#36CAAB",
+																					"#49A9EA"
+																					]
+																				}]
+																			},
+																			options: { 
+																				legend: false, 
+																				responsive: false 
+																			}
+																		}
 
-																	?>
-																	[gd(<?php echo $row['Year'];  ?>, <?php echo $row['Month']; ?>, <?php echo $row['Day']; ?>), <?php echo $row['NumberOfAccountsCreated'];  ?>],
-																	<?php
+																		$('.sexualityDoughnut').each(function(){
+
+																			var chart_element = $(this);
+																			var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+
+																		});			
+
+																	}  
+
 																}
+
+															</script>
+															<?php 
+															$queryStudentCivilStatus = "SELECT civilStatus, count(*) as numberofoccurancescivilstatus, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancescivilstatus DESC LIMIT 5";
+															$resultStudentCivilStatus = mysqli_query($connect, $queryStudentCivilStatus);
+															$color=array("blue","green","purple","aero","red");
+															$arraycounter = 0;
+															while ($row = mysqli_fetch_array($resultStudentCivilStatus)) {
+
+																$civilstatusArray[] = $row['civilStatus'];
+																$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
+																$PercentageOfOccurancesCivilStatusArray[] = $row['percentage'];		
+
+															}
+															$civilstatusString = "";
+															foreach($civilstatusArray as $civilstatusValue) 
+															{
+																$civilstatusString .= '"'.$civilstatusValue.'",' ;
+															}
+															$PercentageOfOccurancesCivilStatusString="";
+															foreach ($PercentageOfOccurancesCivilStatusArray as $PercentageOfOccurancesCivilStatusValue) 
+															{
+																$PercentageOfOccurancesCivilStatusString .= ''.$PercentageOfOccurancesCivilStatusValue.',';	
+															}
+															foreach ($color as $colorValue) {
+																$colorString .= ''.$colorValue.',';
+															}
+															?>
+															<script>
+																function init_chart_doughnut2(){
+
+																	if( typeof (Chart) === 'undefined'){ return; }
+
+																	console.log('init_chart_doughnut2');
+
+																	if ($('.civilstatusDoughnut').length){
+
+																		var chart_doughnut_settings2 = {
+																			type: 'doughnut',
+																			tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+																			data: {
+																				labels: [
+																				<?php
+																				echo $civilstatusString;
+																				?>
+																				],
+																				datasets: [{
+																					data: [<?php echo $PercentageOfOccurancesCivilStatusString; ?>],
+																					backgroundColor: [
+																					"#BDC3C7",
+																					"#9B59B6",
+																					"#E74C3C",
+																					"#26B99A",
+																					"#3498DB"
+																					],
+																					hoverBackgroundColor: [
+																					"#CFD4D8",
+																					"#B370CF",
+																					"#E95E4F",
+																					"#36CAAB",
+																					"#49A9EA"
+																					]
+																				}]
+																			},
+																			options: { 
+																				legend: false, 
+																				responsive: false 
+																			}
+																		}
+
+																		$('.civilstatusDoughnut').each(function(){
+
+																			var chart_element2 = $(this);
+																			var chart_doughnut2 = new Chart( chart_element2, chart_doughnut_settings2);
+
+																		});			
+
+																	}  
+
+																}
+
+															</script>
+															<?php
+
+															$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 MONTH) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
+															$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
+
+
+															?>
+															<script>
+
+																function init_flot_chart(){
+
+																	if( typeof ($.plot) === 'undefined'){ return; }
+
+																	console.log('init_flot_chart');
+
+																	var arr_data1 = [
+																	<?php
+																	while ($row = mysqli_fetch_array($resultPlotChart1)) {
+																		$row['Month'];
+																		$row['Day'];
+																		$row['Year'];
+
+																		?>
+																		[gd(<?php echo $row['Year'];  ?>, <?php echo $row['Month']; ?>, <?php echo $row['Day']; ?>), <?php echo $row['NumberOfAccountsCreated'];  ?>],
+																		<?php
+																	}
 																	?>
 
 																	];
