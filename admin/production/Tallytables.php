@@ -4265,7 +4265,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentWeeklyAllowanceBelow100 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceBelow100 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 101";
+													$queryCountingStudentWeeklyAllowanceBelow100 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceBelow100 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 101";
 													$resultCountingStudentWeeklyAllowanceBelow100 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceBelow100);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceBelow100)) {
 														echo "<td>".$row['NumberOfWeeklyAllowanceBelow100']."</td>";
@@ -4316,7 +4316,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentWeeklyAllowanceAbove1000 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceAbove1000 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 1000";
+													$queryCountingStudentWeeklyAllowanceAbove1000 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceAbove1000 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 1000";
 													$resultCountingStudentWeeklyAllowanceAbove1000 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceAbove1000);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceAbove1000)) {
 														echo "<td>".$row['NumberOfWeeklyAllowanceAbove1000']."</td>";
@@ -4333,7 +4333,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentWeeklyAllowanceNotIndicated = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 1000 AND weeklyAllowance < 0";
+													$queryCountingStudentWeeklyAllowanceNotIndicated = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 0";
 													$resultCountingStudentWeeklyAllowanceNotIndicated = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceNotIndicated)) {
 														echo "<td>".$row['NumberOfWeeklyAllowanceNotIndicated']."</td>";
@@ -4744,7 +4744,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem = 'Yes' ";
+													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem != '' ";
 
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
@@ -4762,7 +4762,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem = 'Yes' ";
+													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem != '' ";
 
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
@@ -4780,7 +4780,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = 'Yes' ";
+													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = '' ";
 
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
@@ -4798,7 +4798,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = 'Yes' ";
+													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = '' ";
 
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
@@ -4834,7 +4834,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem = 'No' ";
+													$queryHealthBackgroundPhysicalVision = "SELECT visionProblem ,count(visionProblem) AS TotalVisionProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND visionProblem = '' ";
 
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
@@ -4852,7 +4852,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem = 'No' ";
+													$queryHealthBackgroundPhysicalHearing = "SELECT hearingProblem ,count(hearingProblem) AS TotalHearingProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND hearingProblem = '' ";
 
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
@@ -4870,7 +4870,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = 'No' ";
+													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = '' ";
 
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
@@ -4888,7 +4888,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = 'No' ";
+													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = '' ";
 
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
@@ -4960,7 +4960,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPsychologicalPsychiatrist = "SELECT psychiatristConsult,count(psychiatristConsult) AS TotalPsychiatristConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult = 'No' ";
+													$queryHealthBackgroundPsychologicalPsychiatrist = "SELECT psychiatristConsult,count(psychiatristConsult) AS TotalPsychiatristConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult = 'Never' ";
 
 													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
@@ -4979,7 +4979,7 @@ require 'header.php';
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
 
-													$queryCountingHealthBackgroundPsychologicalPsychiatristNA = "SELECT psychiatristConsult, count(psychiatristConsult) AS NumberOfHealthBackgroundPsychologicalPsychiatristNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult != 'Yes' AND psychiatristConsult != 'No' ";
+													$queryCountingHealthBackgroundPsychologicalPsychiatristNA = "SELECT psychiatristConsult, count(psychiatristConsult) AS NumberOfHealthBackgroundPsychologicalPsychiatristNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychiatristConsult != 'Yes' AND psychiatristConsult != 'Never' ";
 
 													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
@@ -5054,7 +5054,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPsychologicalPsychologist = "SELECT psychologistConsult,count(psychologistConsult) AS TotalPsychologistConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult = 'No' ";
+													$queryHealthBackgroundPsychologicalPsychologist = "SELECT psychologistConsult,count(psychologistConsult) AS TotalPsychologistConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult = 'Never' ";
 
 													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
@@ -5073,7 +5073,7 @@ require 'header.php';
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
 
-													$queryCountingHealthBackgroundPsychologicalPsychologistNA = "SELECT psychologistConsult, count(psychologistConsult) AS NumberOfHealthBackgroundPsychologicalPsychologistNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult != 'Yes' AND psychologistConsult != 'No' ";
+													$queryCountingHealthBackgroundPsychologicalPsychologistNA = "SELECT psychologistConsult, count(psychologistConsult) AS NumberOfHealthBackgroundPsychologicalPsychologistNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND psychologistConsult != 'Yes' AND psychologistConsult != 'Never' ";
 
 													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
@@ -5148,7 +5148,7 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPsychologicalCounselor = "SELECT counselorConsult,count(counselorConsult) AS TotalCounselorConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult = 'No' ";
+													$queryHealthBackgroundPsychologicalCounselor = "SELECT counselorConsult,count(counselorConsult) AS TotalCounselorConsult FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult = 'Never' ";
 
 													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
@@ -5167,7 +5167,7 @@ require 'header.php';
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
 
-													$queryCountingHealthBackgroundPsychologicalCounselorNA = "SELECT counselorConsult, count(counselorConsult) AS NumberOfHealthBackgroundPsychologicalCounselorNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult != 'Yes' AND counselorConsult != 'No' ";
+													$queryCountingHealthBackgroundPsychologicalCounselorNA = "SELECT counselorConsult, count(counselorConsult) AS NumberOfHealthBackgroundPsychologicalCounselorNA FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND counselorConsult != 'Yes' AND counselorConsult != 'Never' ";
 
 													$resultHealthBackgroundPsychologicalCounselorNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalCounselorNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselorNA)) {

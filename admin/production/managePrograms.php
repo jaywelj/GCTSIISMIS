@@ -409,8 +409,15 @@ require 'header.php';
 			{
 				$SubCategoryName = $row['subCategoryName'];
 			}
-			$message = "The most hottest topic recorded in significant notes is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
-			echo "<script>var notyMessage = '$message';</script>";
+			if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes) == 0) {
+				$message = "There are no significant notes in the recent 6 months for the program recommender to use";
+				echo "<script>var notyMessage = '$message';</script>";
+			}
+			else
+			{
+				$message = "The most hottest topic recorded in significant notes is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
+				echo "<script>var notyMessage = '$message';</script>";
+			}
 //PROBLEM
 			//START
 			$queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage = "SELECT *,tbl_message.subCategoryID,COUNT(*) as count FROM tbl_message where messageDateSent > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY subCategoryID ORDER BY count DESC";
@@ -430,10 +437,17 @@ require 'header.php';
 			{
 				$SubCategoryName2 = $row['subCategoryName'];
 			}
-			$message2 = "The most hottest topic recorded in messages is ".$SubCategoryName2." with a total of ".$CountedValueFirstElement2." records this past 6 months ";
-
+			if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage) == 0) {
+				$message2 = "There are no message in the recent 6 months for the program recommender to use ";
+				echo "<script>var notyMessage2 = '$message2';</script>";
+			}
+			else
+			{
+				$message2 = "The most hottest topic recorded in messages is ".$SubCategoryName2." with a total of ".$CountedValueFirstElement2." records this past 6 months ";
+				echo "<script>var notyMessage2 = '$message2';</script>";
+			}
 			// echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<script>var notyMessage2 = '$message2';</script>";
+			
 			//End 2 
 			$queryGettingSuggestionsBasedOnSurvey = "SELECT *,SUM(answerProblem) AS talliedAnswers, (SUM(answerProblem) / (SELECT COUNT(*) FROM tbl_answerproblem )) * 100 AS 'averageRating', COUNT(tbl_surveyofproblems.problemID) AS countedBiggestProblem FROM tbl_answerproblem INNER JOIN tbl_surveyofproblems ON tbl_answerproblem.problemID = tbl_surveyofproblems.problemID where answerDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY tbl_answerproblem.problemID ORDER BY talliedAnswers DESC LIMIT 5";
 			$resultGettingSuggestionsBasedOnSurvey = mysqli_query($connect, $queryGettingSuggestionsBasedOnSurvey);
@@ -457,12 +471,17 @@ require 'header.php';
 				$SubCategoryName3 = $row['subCategoryName'];
 			}
 
-			
-			
-			$message3 = "The most severe problem in the survey is ".$ProblemNameFirstElement3." with a percentage severity of ".$AverageRatingFirstElement3."% that corresponds to the Topic ".$SubCategoryName3." this past 6 months ";
-
+			if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey) == 0) {
+				$message3 = "There are no survey result for the program recommender to use";
+				echo "<script>var notyMessage3 = '$message3';</script>";
+			}
+			else
+			{
+				$message3 = "The most severe problem in the survey is ".$ProblemNameFirstElement3." with a percentage severity of ".$AverageRatingFirstElement3."% more severe than other problems that corresponds to the Topic ".$SubCategoryName3." this past 6 months ";
+				echo "<script>var notyMessage3 = '$message3';</script>";
+			}
 			// echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<script>var notyMessage3 = '$message3';</script>";
+			
 
 			$queryGettingSuggestionsBasedOnSurvey2 = "SELECT *,SUM(answerProblem) AS talliedAnswers, (SUM(answerProblem) / (SELECT COUNT(*) FROM tbl_answerproblem )) * 100 AS 'AverageRating', COUNT(tbl_surveyofproblems.problemID) AS countedBiggestProblem FROM tbl_answerproblem INNER JOIN tbl_surveyofproblems ON tbl_answerproblem.problemID = tbl_surveyofproblems.problemID where answerDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY tbl_answerproblem.problemID ORDER BY countedBiggestProblem DESC,talliedAnswers DESC LIMIT 5";
 			$resultGettingSuggestionsBasedOnSurvey2 = mysqli_query($connect, $queryGettingSuggestionsBasedOnSurvey2);
@@ -484,11 +503,17 @@ require 'header.php';
 				$SubCategoryName4 = $row['subCategoryName'];
 			}
 
-			$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
 
 			// echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<script>var notyMessage4 = '$message4';</script>";
+			if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
 
+			}
+			else
+			{
+
+				$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
+				echo "<script>var notyMessage4 = '$message4';</script>";
+			}
 			if ($SubCategoryName == $SubCategoryName2 && $SubCategoryName3 == $SubCategoryName4 && $SubCategoryName2 == $SubCategoryName3)
 			{
 
@@ -496,6 +521,10 @@ require 'header.php';
 
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 				echo "<script>var notyMessage5 = '$message5';</script>";
+			}
+			else
+			{
+
 			}
 
 
@@ -582,25 +611,83 @@ require 'header.php';
 									</div>';
 								}
 								?>
-								<div class="alert alert-info fade in">
-									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Notice!</strong> The most hottest topic recorded in significant notes is <strong> <?php echo $SubCategoryName; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement; ?> </strong> records this past 6 months 
-								</div>
+								<?php
 
-								<div class="alert alert-info fade in">
-									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Notice!</strong> The most hottest topic recorded in messages is <strong> <?php echo $SubCategoryName2; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement2; ?> </strong> records this past 6 months
-								</div>
+								if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes) == 0 ) 
+								{
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> There is no significant notes this past 6 months for the program recommender to use
+									</div>
+									<?php
+								}
+								else
+								{
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> The most hottest topic recorded in significant notes is <strong> <?php echo $SubCategoryName; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement; ?> </strong> records this past 6 months 
+									</div>
+									<?php 
+								}
+								?>
 
-								<div class="alert alert-info fade in">
-									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Notice!</strong> The most severe problem in the survey is <strong> <?php echo $ProblemNameFirstElement3; ?> </strong> with a percentage of of <strong> <?php echo $AverageRatingFirstElement3; ?>% </strong> that corresponds with the topic <strong><?php echo $SubCategoryName3; ?></strong> this past 6 months
-								</div>
+								<?php
 
-								<div class="alert alert-info fade in">
-									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-									<strong>Notice!</strong> The most selected problem in the survey is <strong> <?php echo $CountedProblemNameFirstElement4; ?> </strong> with it being picked <strong> <?php echo $CountedBiggestProblemFirstElement4; ?> times </strong> that corresponds with the topic <strong><?php echo $SubCategoryName4; ?></strong> this past 6 months
-								</div>
+								if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage) == 0 ) {
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> There is no messages this past 6 months for the program recommender to use
+									</div>
+									<?php
+								}
+								else{
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> The most hottest topic recorded in messages is <strong> <?php echo $SubCategoryName2; ?> </strong> with a total of <strong> <?php echo $CountedValueFirstElement2; ?> </strong> records this past 6 months
+									</div>
+									<?php
+								}
+								?>
+								<?php
+
+								if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey) == 0 ) {
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> There is no survey result for the program recommender to use
+									</div>
+									<?php
+								}
+								else{
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> The most severe problem in the survey is <strong> <?php echo $ProblemNameFirstElement3; ?> </strong> with a percentage of of <strong> <?php echo $AverageRatingFirstElement3; ?>% </strong> that corresponds with the topic <strong><?php echo $SubCategoryName3; ?></strong> this past 6 months
+									</div>
+									<?php
+								}
+								?>
+								<?php
+
+								if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
+									?>
+
+									<?php
+								}
+								else{
+									?>
+									<div class="alert alert-info fade in">
+										<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+										<strong>Notice!</strong> The most selected problem in the survey is <strong> <?php echo $CountedProblemNameFirstElement4; ?> </strong> with it being picked <strong> <?php echo $CountedBiggestProblemFirstElement4; ?> times </strong> that corresponds with the topic <strong><?php echo $SubCategoryName4; ?></strong> this past 6 months
+									</div>
+									<?php 
+								}
+								?>
+
 								<label>Program Name</label>
 								<input type="text" id="txtbxProgramName" name="txtbxProgramName" class="form-control">
 								<br />
@@ -637,7 +724,7 @@ require 'header.php';
 		</div>
 	</div>
 
-	
+
 	<!-- jQuery -->
 	<script src="../vendors/jquery/dist/jquery.min.js"></script>
 	<!-- Bootstrap -->

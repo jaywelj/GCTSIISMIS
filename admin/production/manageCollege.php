@@ -216,7 +216,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCollege = "SELECT * FROM tbl_college";
+											$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
 											$resultCollege = mysqli_query($connect, $queryCollege); 
 											while($row = mysqli_fetch_array($resultCollege))  
 											{  
