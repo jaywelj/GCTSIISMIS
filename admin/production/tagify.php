@@ -1,1 +1,0 @@
-<input name='tags' class='some_class_name' placeholder='write some tags' value='css, html, javascript, css' autofocus>

@@ -107,7 +107,6 @@ if(isset($_SESSION['sessionStudentAccountNumber']))
 			$varcharStudentPreSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentPreSchoolAwards = $res2point5['prepAwards'];
-		$varcharStudentPreSchoolImage = $res2point5['prepImage'];
 		$varcharStudentElementarySchoolName = $res2point5['elemSchoolName'];
 		$varcharStudentElementarySchoolAddress = $res2point5['elemSchoolAddress'];
 		$varcharStudentElementarySchoolType = $res2point5['elemType'];
@@ -124,7 +123,6 @@ if(isset($_SESSION['sessionStudentAccountNumber']))
 			$varcharStudentElementarySchoolYearAttended2 = NULL;
 		}
 		$varcharStudentElementarySchoolAwards = $res2point5['elemAwards'];
-		$varcharStudentELemntarySchoolImage = $res2point5['elemImage'];
 		$varcharStudentHSSchoolName = $res2point5['hsSchoolName'];
 		$varcharStudentHSSchoolAddress = $res2point5['hsSchoolAddress'];
 		$varcharStudentHSSchoolType = $res2point5['hsType'];
@@ -143,7 +141,6 @@ if(isset($_SESSION['sessionStudentAccountNumber']))
 			$varcharStudentHSSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentHSSchoolAwards = $res2point5['hsAwards'];
-		$varcharStudentHSSchoolImage = $res2point5['hsImage'];
 		$varcharStudentVocationalSchoolName = $res2point5['vocSchoolName'];
 		$varcharStudentVocationalSchoolAddress = $res2point5['vocSchoolAddress'];
 		$varcharStudentVocationalSchoolType = $res2point5['vocType'];
@@ -161,7 +158,6 @@ if(isset($_SESSION['sessionStudentAccountNumber']))
 			$varcharStudentVocationalSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentVocationalAwards = $res2point5['vocAwards'];
-		$varcharStudentVocationalImage = $res2point5['vocImage'];
 		$varcharStudentCollegeSchoolName = $res2point5['collegeSchoolName'];
 		$varcharStudentCollegeSchoolAddress = $res2point5['collegeSchoolAddress'];
 		$varcharStudentCollegeSchoolType = $res2point5['collegeType'];
@@ -178,7 +174,6 @@ if(isset($_SESSION['sessionStudentAccountNumber']))
 			$varcharStudentCollegeSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards'];
-		$varcharStudentCollegeSchoolImage = $res2point5['collegeImage'];
 		$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
 		$varcharStudentInterruptedWhy = $res2point5['interruptedWhy'];
 
@@ -1622,8 +1617,8 @@ else
 															</label>
 														</div>
 													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
-													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
+													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  ></label>
+													<div style="margin-left:-10px;" class="col-md-4 col-sm-4"> 
 														<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychiatrist" id="datePsychiatrist" value="<?php echo $varcharStudentPsychiatristWhen; ?>" required="required">
 													</div>
 												</div>
@@ -1647,7 +1642,7 @@ else
 															</label>
 														</div>
 													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
+													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  ></label>
 													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 														<input type="date" class="form-control col-md-7 col-xs-12" name="datePsychologist" id="datePsychologist" value="<?php echo $varcharStudentPsychologistWhen; ?>" required="required">
 													</div>
@@ -1672,7 +1667,7 @@ else
 															</label>
 														</div>
 													</div>
-													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  >When <span class="">*</span></label>
+													<label class="control-label col-md-1 col-sm-1" style="margin-left: -90px;"  ></label>
 													<div style="margin-left:-10px;" class="col-md-4 col-sm-4">
 														<input type="date" class="form-control col-md-7 col-xs-12" name="dateCounselor" id="dateCounselor" value="<?php echo $varcharStudentCounselorWhen; ?>" required="required">
 													</div>
