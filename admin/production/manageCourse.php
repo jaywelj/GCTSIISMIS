@@ -15,7 +15,7 @@ if(isset($_POST['btnAdd']))
 
 										//first name validation if input is a space 
 										// checking empty fields
-	if(empty($VarcharCourseCode) || empty($VarcharCourseName)) 
+	if(empty($VarcharCourseCode) || empty($VarcharCourseName) || empty($VarcharCourseCollege)) 
 	{
 
 		if(empty($VarcharCourseCode))
@@ -24,8 +24,13 @@ if(isset($_POST['btnAdd']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		if(empty($VarcharCourseName)) 
-		{
+		{ 
 			$message = "Enter a Course Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharCourseCollege))
+		{
+			$message = "Select A Legit College";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 	} 
@@ -289,7 +294,7 @@ require 'header.php';
 
 								?>
 								<label>College</label>
-								<select name="selectCourseCollege" id="selectCourseCollege" class="form-control">
+								<select name="selectCourseCollege" id="selectCourseCollege" class="form-control" required="required">
 									<option value="NULL" selected>select a college </option>
 									<?php while($row = mysqli_fetch_array($resultFromCollege)):;?>
 										<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>

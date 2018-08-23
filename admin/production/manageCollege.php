@@ -279,7 +279,7 @@ require 'header.php';
 								<input type="text" name="txtbxCollegeCode" id="txtbxCollegeCode" class="form-control" />
 								<br />
 								<label>College Name</label>
-								<input type="text" name="txtbxCollegeName" id="txtbxCollegeName" class="form-control" />
+								<input type="text" name="txtbxCollegeName" id="txtbxCollegeName" class="form-control" required="required" />
 								<br />
 								
 							</div>

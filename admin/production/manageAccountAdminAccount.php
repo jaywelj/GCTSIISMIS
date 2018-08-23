@@ -14,7 +14,7 @@ if(isset($_POST['btnAddAccount']))
 
 	$VarcharAdminAccountMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountMiddleName']);
 
-	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountPassword']);
+	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountAddPassword']);
 
 	$VarcharAdminAccountBirthdate = mysqli_real_escape_string($connect, $_POST['dateAdminAccountBirthdate']);
 
@@ -30,9 +30,8 @@ if(isset($_POST['btnAddAccount']))
 
 	//first name validation if input is a space 
 	// checking empty fields
-	if(empty($VarcharAdminAccountFirstName) || empty($VarcharAdminAccountEmail)) 
+	if(empty($VarcharAdminAccountFirstName) || empty($VarcharAdminAccountEmail) || empty($VarcharAdminAccountLastName)) 
 	{
-
 		if(empty($VarcharAdminAccountFirstName))
 		{
 			$message = "Enter a First Name";
@@ -41,6 +40,16 @@ if(isset($_POST['btnAddAccount']))
 		if(empty($VarcharAdminAccountEmail)) 
 		{
 			$message = "Enter a valid Email";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharAdminAccountLastName)) 
+		{
+			$message = "Enter a valid Last Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharAdminAccountGender)) 
+		{
+			$message = "Select A Valid Gender";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 	} 
@@ -380,23 +389,23 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<label>First Name</label>
-								<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" required="required" />
 								<br />
 								<label>Last Name</label>
-								<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" required="required" />
 								<br />
 								<label>Middle Name</label>
-								<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control"/>
 								<br />
 								<label>Select Gender</label>
-								<select name="optionAdminAccountGender" id="optionAdminAccountGender" class="form-control">
+								<select name="optionAdminAccountGender" id="optionAdminAccountGender" class="form-control" required="">
 									<option value="NA" disabled>NA</option>  
 									<option value="M">Male</option>  
 									<option value="F">Female</option>
 								</select>
 								<br />
 								<label>Email</label>
-								<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control" />
+								<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control"  />
 								<br />
 								<label>Address</label>
 								<input type="text" name="txtbxAdminAccountAddress" id="txtbxAdminAccountAddress" class="form-control" />
@@ -408,10 +417,12 @@ require 'header.php';
 								<input type="date" name="dateAdminAccountBirthdate" id="dateAdminAccountBirthdate" class="form-control" />
 								<br />
 								<label>Password</label>
-								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
+								<input type="password" name="txtbxAdminAccountAddPassword" id="txtbxAdminAccountAddPassword" class="form-control" required="required" />
 								<br />
 								<label>Confirm Password</label>
-								<input type="password" name="txtbxAdminAccountConfirmPassword" id="txtbxAdminAccountConfirmPassword" class="form-control" />
+								<input type="password" name="txtbxAdminAccountCPassword" id="txtbxAdminAccountCPassword" class="form-control" required="required" />
+								<div id="divCheckPasswordMatch">
+								</div>
 								<br />
 								<label>Image</label>
 								<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" />
@@ -441,9 +452,6 @@ require 'header.php';
 								<h4 class="modal-title text-center">CHANGE PASSWORD</h4>
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-								<label>Password</label>
-								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
-								<br />
 								<label>Password</label>
 								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
 								<br />
@@ -525,7 +533,38 @@ require 'header.php';
 		});
 	</script>
 
-
+	<script type="text/javascript">
+		document.getElementById("txtbxAdminAccountCPassword").onkeyup = function(){
+			checkPassword();
+		};
+		document.getElementById("txtbxAdminAccountAddPassword").onkeyup = function(){
+			checkPassword();
+		};
+		function checkPassword(){
+			var password = document.getElementById("txtbxAdminAccountAddPassword").value;
+			var cpassword = document.getElementById("txtbxAdminAccountCPassword").value;
+			if(cpassword != "")
+			{
+				if(password == "")
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
+				}
+				else if( password != cpassword)
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+				}
+				else
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+				}
+			}
+			else if(cpassword == "" && password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			}
+			
+		}
+	</script>
 	<script>
 		$(document).ready(function(){
 			$(document).on('click','.btn-view',function(){
