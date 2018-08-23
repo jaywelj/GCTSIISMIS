@@ -237,7 +237,7 @@ require 'header.php';
 													</div>
 													<div class="col-md-12 col-sm-12 col-xs-6">
 														<?php 
-														$queryStudentReligion = "SELECT religion, count(*) as numberofoccurancesreligion, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 LIMIT 5";
+														$queryStudentReligion = "SELECT religion, count(*) as numberofoccurancesreligion, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancesreligion DESC LIMIT 5";
 														$resultStudentReligion = mysqli_query($connect, $queryStudentReligion);
 														while ($row = mysqli_fetch_array($resultStudentReligion)) 
 														{
@@ -310,7 +310,8 @@ require 'header.php';
 																</li>
 															</ul>
 														</li>
-													-->														<li><a class="close-link"><i class="fa fa-close"></i></a>
+													-->														
+													<li><a class="close-link"><i class="fa fa-close"></i></a>
 													</li>
 												</ul>
 												<div class="clearfix"></div>
@@ -411,74 +412,76 @@ require 'header.php';
 													<div class="clearfix"></div>
 												</div> 
 
-											-->											</div>
+											-->											
 										</div>
 									</div>
+								</div>
 
-									<div class="col-md-4 col-sm-4 col-xs-12">
-										<div class="x_panel tile fixed_height_320 overflow_hidden">
-											<div class="x_title">
-												<h2>Sexuality</h2>
-												<ul class="nav navbar-right panel_toolbox">
-													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
-													</li>
-													<li class="dropdown">
-														<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
-														<ul class="dropdown-menu" role="menu">
-															<li><a href="#">Settings 1</a>
-															</li>
-															<li><a href="#">Settings 2</a>
-															</li>
-														</ul>
-													</li>
-													<li><a class="close-link"><i class="fa fa-close"></i></a>
-													</li>
-												</ul>
-												<div class="clearfix"></div>
-											</div>
-											<div class="x_content">
-												<table class="" style="width:100%">
-													<tr>
-														<th style="width:37%;">
-															<p>Top 5</p>
-														</th>
-														<th>
-															<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
-																<p class="">Sexuality</p>
-															</div>
-															<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
-																<p class="">Percentage</p>
-															</div>
-														</th>
-													</tr>
-													<tr>
-														<td>
-															<canvas class="sexualityDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
-														</td>
-														<td>
-															<table class="tile_info">
-																<?php 
-																$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
-																$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
-																$color=array("blue","green","purple","aero","red");
-																$arraycounter = 0;
-																while ($row = mysqli_fetch_array($resultStudentSexuality)) {
+								<div class="col-md-4 col-sm-4 col-xs-12">
+									<div class="x_panel tile fixed_height_320 overflow_hidden">
+										<div class="x_title">
+											<h2>Sexuality</h2>
+											<ul class="nav navbar-right panel_toolbox">
+												<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+												</li>
+												<li class="dropdown">
+													<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false"><i class="fa fa-wrench"></i></a>
+													<ul class="dropdown-menu" role="menu">
+														<li><a href="#">Settings 1</a>
+														</li>
+														<li><a href="#">Settings 2</a>
+														</li>
+													</ul>
+												</li>
+												<li><a class="close-link"><i class="fa fa-close"></i></a>
+												</li>
+											</ul>
+											<div class="clearfix"></div>
+										</div>
+										<div class="x_content">
+											<table class="" style="width:100%">
+												<tr>
+													<th style="width:37%;">
+														<p>Top 5</p>
+													</th>
+													<th>
+														<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+															<p class="">Sexuality</p>
+														</div>
+														<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+															<p class="">Percentage</p>
+														</div>
+													</th>
+												</tr>
+												<tr>
+													<td>
+														<canvas class="sexualityDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+													</td>
+													<td>
+														<table class="tile_info">
+															<?php 
+															$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
+															$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
+															// $color=array("blue","green","purple","aero","red");
+															$color=array("aero","purple","red","green","blue");
+															$arraycounter = 0;
+															while ($row = mysqli_fetch_array($resultStudentSexuality)) {
 
-																	$sexuality = $row['sexuality'];
-																	$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-																	$PercentageOfOccurancesSexuality = $row['percentage'];		
-																	?>
-																	<?php 
-																	echo '
-																	<tr>
-																	<td>
-																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$sexuality.'</p>
-																	</td>
-																	<td>'.$PercentageOfOccurancesSexuality.'</td>
-																	</tr>';
-																	$arraycounter++;
-																}
+																$sexuality = $row['sexuality'];
+																$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
+																$PercentageOfOccurancesSexuality = $row['percentage'];		
 																?>
+																<?php 
+																echo '
+																<tr>
+																<td>
+																<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$sexuality.'</p>
+																</td>
+																<td>'.$PercentageOfOccurancesSexuality.'</td>
+																</tr>';
+																$arraycounter++;
+															}
+															?>
 																<!-- <tr>
 																	<td>
 																		<p><i class="fa fa-square green"></i>Homosexual</p>
@@ -563,7 +566,6 @@ require 'header.php';
 											</div>
 										</div>
 									</div>
-
 								</div>
 
 
@@ -589,9 +591,9 @@ require 'header.php';
 												</ul>
 												<div class="clearfix"></div>
 											</div>
+
 											<div class="x_content">
 												<div class="dashboard-widget-content">
-
 													<ul class="list-unstyled timeline widget">
 														<li>
 															<div class="block">
@@ -657,9 +659,6 @@ require 'header.php';
 
 
 									<div class="col-md-8 col-sm-8 col-xs-12">
-
-
-
 										<div class="row">
 
 											<div class="col-md-12 col-sm-12 col-xs-12">
@@ -687,7 +686,6 @@ require 'header.php';
 														<div class="dashboard-widget-content">
 															<div class="col-md-4 hidden-small">
 																<h2 class="line_30">125.7k Views from 60 countries</h2>
-
 																<table class="countries_list">
 																	<tbody>
 																		<tr>
@@ -718,7 +716,6 @@ require 'header.php';
 													</div>
 												</div>
 											</div>
-
 										</div>
 										<div class="row">
 
@@ -957,7 +954,7 @@ require 'header.php';
 														<script src="../build/js/custom.min.js"></script>
 
 														<?php 
-														$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1";
+														$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
 														$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
 														$color=array("blue","green","purple","aero","red");
 														$arraycounter = 0;
@@ -977,6 +974,9 @@ require 'header.php';
 														foreach ($PercentageOfOccurancesSexualityArray as $PercentageOfOccurancesSexualityValue) 
 														{
 															$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
+														}
+														foreach ($color as $colorValue) {
+															$colorString .= ''.$colorValue.',';
 														}
 														?>
 
@@ -1035,6 +1035,13 @@ require 'header.php';
 															}
 
 														</script>
+														<?php
+
+														$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 MONTH) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
+														$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
+
+														
+														?>
 														<script>
 															
 															function init_flot_chart(){
@@ -1043,27 +1050,37 @@ require 'header.php';
 
 																console.log('init_flot_chart');
 
-
-
 																var arr_data1 = [
-																[gd(2012, 1, 1), 17],
-																[gd(2012, 1, 2), 74],
-																[gd(2012, 1, 3), 6],
-																[gd(2012, 1, 4), 39],
-																[gd(2012, 1, 5), 20],
-																[gd(2012, 1, 6), 85],
-																[gd(2012, 1, 7), 7]
-																];
+																<?php
+																while ($row = mysqli_fetch_array($resultPlotChart1)) {
+																	$row['Month'];
+																	$row['Day'];
+																	$row['Year'];
 
-																var arr_data2 = [
-																[gd(2012, 1, 1), 82],
-																[gd(2012, 1, 2), 23],
-																[gd(2012, 1, 3), 66],
-																[gd(2012, 1, 4), 9],
-																[gd(2012, 1, 5), 119],
-																[gd(2012, 1, 6), 6],
-																[gd(2012, 1, 7), 9]
-																];
+																	?>
+																	[gd(<?php echo $row['Year'];  ?>, <?php echo $row['Month']; ?>, <?php echo $row['Day']; ?>), <?php echo $row['NumberOfAccountsCreated'];  ?>],
+																	<?php
+																}
+																	?>
+
+																	];
+
+																// [gd(2018, 8, 15), 400]
+
+																// [gd(2018, 8, 3), 60],
+																// [gd(2018, 8, 5), 100],
+																// [gd(2018, 8, 7), 150],
+																// [gd(2018, 8, 11), 200],
+
+																// var arr_data2 = [
+																// [gd(2012, 1, 1), 82],
+																// [gd(2012, 1, 2), 23],
+																// [gd(2012, 1, 3), 66],
+																// [gd(2012, 1, 4), 9],
+																// [gd(2012, 1, 5), 119],
+																// [gd(2012, 1, 6), 6],
+																// [gd(2012, 1, 7), 9]
+																// ];
 
 																var arr_data3 = [
 																[0, 1],
@@ -1088,22 +1105,22 @@ require 'header.php';
 																var chart_plot_02_data = [];
 
 																var chart_plot_03_data = [
-																[0, 1],
-																[1, 9],
-																[2, 6],
-																[3, 10],
-																[4, 5],
-																[5, 17],
-																[6, 6],
-																[7, 10],
-																[8, 7],
-																[9, 11],
-																[10, 35],
-																[11, 9],
-																[12, 12],
-																[13, 5],
-																[14, 3],
-																[15, 4],
+																[1, 10],
+																[2, 1],
+																[3, 2],
+																[4, 9],
+																// [4, 5],
+																// [5, 17],
+																// [6, 6],
+																// [7, 10],
+																// [8, 7],
+																// [9, 11],
+																// [10, 35],
+																// [11, 9],
+																// [12, 12],
+																// [13, 5],
+																// [14, 3],
+																// [15, 4],
 																[16, 9]
 																];
 
@@ -1112,6 +1129,7 @@ require 'header.php';
 																	chart_plot_02_data.push([new Date(Date.today().add(i).days()).getTime(), randNum() + i + i + 10]);
 																}
 
+																// chart_plot_02_data.push([]);
 
 																var chart_plot_01_settings = {
 																	series: {
@@ -1248,7 +1266,7 @@ require 'header.php';
 																if ($("#chart_plot_01").length){
 																	console.log('Plot1');
 
-																	$.plot( $("#chart_plot_01"), [ arr_data1, arr_data2 ],  chart_plot_01_settings );
+																	$.plot( $("#chart_plot_01"), [ arr_data1 ],  chart_plot_01_settings );
 																}
 
 
@@ -1257,7 +1275,7 @@ require 'header.php';
 
 																	$.plot( $("#chart_plot_02"), 
 																		[{ 
-																			label: "Email Sent", 
+																			label: "Accounts Signed Up", 
 																			data: chart_plot_02_data, 
 																			lines: { 
 																				fillColor: "rgba(150, 202, 89, 0.12)" 
