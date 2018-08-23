@@ -217,7 +217,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_course";
+											$queryCourse = "SELECT * FROM tbl_course ORDER BY collegeCode ASC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
