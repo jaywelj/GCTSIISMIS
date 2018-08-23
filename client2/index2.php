@@ -333,6 +333,7 @@ if(isset($_POST['btnEmailSend']))
 						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
 						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
 						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
+						<p class="pm-staff-profile-bio">'.$adminDescription.'</p>
 						</div>
 						</div>
 						</div>';
@@ -350,6 +351,7 @@ if(isset($_POST['btnEmailSend']))
 						<p class="pm-staff-profile-name">'.$adminFirstName.' '.$adminMiddleName.' '.$adminLastName.'</p>
 						<p class="pm-staff-profile-title">'.$adminEmail.'</p>
 						<p class="pm-staff-profile-bio">'.$adminGender.' '.$adminContactNo.' '.$adminAddress.'</p>
+						<p class="pm-staff-profile-bio">'.$adminDescription.'</p>
 						</div>
 						</div>
 						</div>';
@@ -403,7 +405,7 @@ if(isset($_POST['btnEmailSend']))
 							<h3>'.$programName.'</h3>
 							<p>'.$programDescription.'</p>
 							</figcaption>
-							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 							</figure>
 							</div>';
 						}
@@ -417,7 +419,7 @@ if(isset($_POST['btnEmailSend']))
 							<h3>'.$programName.'</h3>
 							<p>'.$programDescription.'</p>
 							</figcaption>
-							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 							</figure>
 							</div>';
 						}
@@ -454,7 +456,7 @@ if(isset($_POST['btnEmailSend']))
 								<h3>'.$programName.'</h3>
 								<p>'.$programDescription.'</p>
 								</figcaption>
-								<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+								<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 								</figure>
 								</div>';
 							}
@@ -468,7 +470,7 @@ if(isset($_POST['btnEmailSend']))
 								<h3>'.$programName.'</h3>
 								<p>'.$programDescription.'</p>
 								</figcaption>
-								<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+								<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 								</figure>
 								</div>';
 							}
