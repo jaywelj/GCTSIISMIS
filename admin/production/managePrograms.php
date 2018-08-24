@@ -574,7 +574,7 @@ require 'header.php';
 						<div class="modal-content">
 							<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
 								<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-								<h4 class="modal-title text-center">EDIT STUDENT ACCOUNT DETAILS</h4>
+								<h4 class="modal-title text-center">EDIT PROGRAM DETAILS</h4>
 							</div>
 							<div class="modal-body" id="editPrograms"    style=" padding: 25px 50px 5px 50px;">
 

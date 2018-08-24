@@ -99,6 +99,7 @@ require 'header.php';
 									<!-- <p class="text-muted font-13 m-b-30">
 										<b>Student Individual Inventory Tally of Records</b>
 									</p>-->
+									
 									<table id="datatable-buttons" class="table table-striped table-bordered">
 										<?php  
 										include("connectionString.php");
@@ -5251,7 +5252,7 @@ require 'header.php';
 	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
 	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
+	<script src="../build/js/custom2.js"></script>
 
 	<script>
 		$(document).ready(function(){
