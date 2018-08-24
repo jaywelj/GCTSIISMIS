@@ -1,5 +1,5 @@
 <?php
-include("errorReport.php");
+// include("errorReport.php");
 session_start();
 include ("connectionString.php");
 $sessionEmail = $_SESSION['sessionAdminEmail'];
@@ -104,13 +104,13 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharEditProgramSubCategory = $_POST['txtareaEditProgramSubCategory'];
 
-	if($_FILES["fileProgramImage"]==NULL)
+	if($_FILES["fileEditProgramImage"]==NULL)
 	{
 		
 	}
 	else
 	{
-		$varcharEditProgramImage =  addslashes(file_get_contents($_FILES["fileEditProgramImage"]["tmp_name"]));
+		$varcharEditProgramImage = addslashes(file_get_contents($_FILES["fileEditProgramImage"]["tmp_name"]));
 	}
 
 	
@@ -138,7 +138,7 @@ if(isset($_POST['btnUpdate']))
 	}
 	else 
 	{ 
-		if (!empty($varcharProgramImage))
+		if (!empty($varcharEditProgramImage))
 		{
 			$queryInsertingProgram = "UPDATE `tbl_recommendedprogram` SET `programName` = '$varcharEditProgramName', `programDescription` = '$varcharEditProgramDescription', `programImage` = '$varcharEditProgramImage' WHERE `tbl_recommendedprogram`.`programID` = '$varcharEditProgramID'";
 		}
@@ -153,27 +153,37 @@ if(isset($_POST['btnUpdate']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 
 			$queryDeleting ="DELETE FROM `tbl_programcategory` WHERE `tbl_programcategory`.`programName` = '$varcharEditProgramName'";
-			if(mysqli_query($connect, $queryInsertingProgram))
+			if(mysqli_query($connect, $queryDeleting))
 			{
-				
+				$message = "Program Sub Category Success Part 1";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 
-				if (mysqli_query($connect, $queryEditInsertingProgramSubCategory)) {
-					$message = "Successfully Added In Program Sub Category";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-
-					echo "<script type='text/javascript'>location.href = 'managePrograms.php';</script>";                           
-				}
-				else
+				foreach($varcharEditProgramSubCategoryArray as $InsertingEditProgramSubCategory) 
 				{
-					$message = "Query Error Adding Program Sub Category";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-					echo $InsertingEditProgramSubCategory;
 
-					echo "<script type='text/javascript'>alert('$InsertingProgramSubCategory');</script>";
+					$queryEditInsertingProgramSubCategory = "INSERT INTO `tbl_programcategory` (`programCategoryId`, `programName`, `subCategoryName`) VALUES (NULL, '$varcharEditProgramName', '$InsertingEditProgramSubCategory')";
+
+					if (mysqli_query($connect, $queryEditInsertingProgramSubCategory)) {
+						$message = "Successfully Added In Program Sub Category";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+
+						echo "<script type='text/javascript'>location.href = 'managePrograms.php';</script>";                           
+					}
+					else
+					{
+						$message = "Query Error Adding Program Sub Category";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+
+						echo "<script type='text/javascript'>alert('$InsertingEditProgramSubCategory');</script>";
 													//redirectig to the display page. In our case, it is index.php
-				}
-				
+					}
+				}				
 
+			}
+			else
+			{
+				$message = "Program Update Part 1 Fail";
+				echo "<script type='text/javascript'>alert('$message');</script>";
 			}
 		}
 		else
