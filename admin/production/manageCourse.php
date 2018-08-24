@@ -209,7 +209,7 @@ require 'header.php';
 									<table id="datatable-buttons" class="table table-striped table-bordered">
 
 										<thead>
-											<tr>
+											<tr style="width:100px;">
 												<th></th>
 												<th>Course Code</th>
 												<th>Course Name</th>
@@ -225,7 +225,7 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td width="9%" >
+													<td>
 														<center>
 															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['courseCode'];?>> <i class="fa fa-edit"></i></button>
 															<a title="Delete" class="btn btn-default btn-danger" href="manageCourseDelete.php?id=<?php echo $row['courseCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>	

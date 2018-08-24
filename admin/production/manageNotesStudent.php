@@ -280,9 +280,7 @@ require 'header.php';
 												<th></th>
 												<th>Note ID</th>
 												<th>Student Number</th>
-												<th>First Name</th>
-												<th>Middle Name</th>
-												<th>Last Name</th>
+												<th>Full Name</th>
 												<th>Date</th>
 												<th>Type Of Visitation</th>
 												<th>Added by</th>
@@ -316,13 +314,7 @@ require 'header.php';
 														<?php echo $row['studentNumber'];?>
 													</td>
 													<td>
-														<?php echo $row['firstName']; ?>
-													</td>
-													<td>
-														<?php echo $row['middleName']; ?>
-													</td>
-													<td>
-														<?php echo $row['lastName']; ?>
+														<?php echo $row['firstName'].' '.$row['middleName'].' '.$row['lastName'] ?>
 													</td>
 													<td> 
 														<?php echo $row['noteDate'];?> 
@@ -361,9 +353,7 @@ require 'header.php';
 													<th></th>
 													<th>Note ID</th>
 													<th>Student Number</th>
-													<th>First Name</th>
-													<th>Middle Name</th>
-													<th>Last Name</th>
+													<th>Full Name</th>
 													<th>Date</th>
 													<th>Type Of Visitation</th>
 													<th>Added by</th>

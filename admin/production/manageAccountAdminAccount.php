@@ -263,9 +263,7 @@ require 'header.php';
 											<tr>
 												<th></th>
 												<th>Admin ID</th>
-												<th>First Name</th>
-												<th>Middle Name</th>
-												<th>Last Name</th>
+												<th>Full Name</th>
 												<th>Image</th>
 											</tr>
 										</thead>
@@ -290,9 +288,7 @@ require 'header.php';
 														</center>
 													</td>
 													<td> <?php echo $row['adminId'];?> </td>
-													<td> <?php echo $row['adminFirstName'];?> </td>
-													<td> <?php echo $row['adminMiddleName'];?> </td>
-													<td> <?php echo $row['adminLastName'];?> </td>
+													<td> <?php echo $row['adminFirstName'].' '.$row['adminMiddleName'].' '.$row['adminLastName'];?> </td>
 													<td> 
 														<center>
 															<?php
@@ -322,9 +318,7 @@ require 'header.php';
 											<tr>
 												<th></th>
 												<th>Admin ID</th>
-												<th>First Name</th>
-												<th>Middle Name</th>
-												<th>Last Name</th>
+												<th>Full Name</th>
 												<th>Image</th>
 											</tr>
 										</tfoot>
