@@ -301,6 +301,7 @@ if(isset($_POST['btnEmailSend']))
 					$adminLastName = $row['adminLastName'];
 					$adminEmail = $row['adminEmail'];
 					$adminGender = $row['adminGender'];
+					$adminDescription = $row['adminDescription'];
 
 					if($adminGender == "M")
 					{

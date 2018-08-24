@@ -16,6 +16,8 @@ if(isset($_POST['btnAddAccount']))
 
 	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountAddPassword']);
 
+	$VarcharAdminAccountConfirmPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountCPassword'])
+
 	$VarcharAdminAccountBirthdate = mysqli_real_escape_string($connect, $_POST['dateAdminAccountBirthdate']);
 
 	$VarcharAdminAccountImage = addslashes(file_get_contents($_FILES["fileAdminAccountImage"]["tmp_name"]));
@@ -53,18 +55,23 @@ if(isset($_POST['btnAddAccount']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 	} 
+	else if($VarcharAdminAccountConfirmPassword<>$VarcharAdminAccountPassword)
+		{
+			$message = "Password does not match";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
 	else 
 	{ 
 		// if all the fields are filled (not empty) 
 		//insert data to database   
 		if (!empty($VarcharAdminAccountImage)) {
-			$message = "May Laman Na Image";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "May Laman Na Image";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminId`, `adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminGender`, `adminContactNo`, `adminAddress`, `adminDescription`) VALUES (NULL, '$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', '$VarcharAdminAccountImage', '$VarcharAdminAccountGender', '$VarcharAdminAccountContactNo', '$VarcharAdminAccountAddress', '$VarcharAdminAccountDescription')";
 		}
 		else{
-			$message = "Walang Laman Na Image";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "Walang Laman Na Image";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminId`, `adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminGender`, `adminContactNo`, `adminAddress`, `adminDescription`) VALUES (NULL, '$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', NULL, '$VarcharAdminAccountGender', '$VarcharAdminAccountContactNo', '$VarcharAdminAccountAddress', '$VarcharAdminAccountDescription')";
 		}
 
@@ -92,9 +99,9 @@ if(isset($_POST['btnAddAccount']))
 			else
 			{
 
-				$message = "Admin Account query error";
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				echo("Error description: " . mysqli_error($connect));
+				// $message = "Admin Account query error";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
+				// echo("Error description: " . mysqli_error($connect));
 			// //redirectig to the display page. In our case, it is index.php
 			// 	echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
 			}
@@ -150,20 +157,20 @@ if(isset($_POST['btnUpdate']))
 		if (!empty($varcharAdminAccountImage)) 
 		{
 			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress',`adminDescription` = '$varcharAdminAccountDescription' WHERE `adminEmail` = '$varcharAdminAccountEmail' ";
-			$message = "0";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "0";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
 			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress',`adminDescription` = '$varcharAdminAccountDescription' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharAdminAccountEmail'";
-			$message = "1";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "1";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		if(!mysqli_query($connect, $queryEdit))
 		{
-			$message = "Query Error" ;
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo("Error description: " . mysqli_error($connect));
+			// $message = "Query Error" ;
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			// echo("Error description: " . mysqli_error($connect));
 		}
 		else
 		{

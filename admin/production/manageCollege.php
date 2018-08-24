@@ -44,8 +44,8 @@ if(isset($_POST['btnAdd']))
 		}
 		else
 		{ 
-			$message = "Query Error";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "Query Error";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 
 			$query = "SELECT * FROM tbl_college WHERE collegeCode='$varcharCollegeCode' ";
 			$result = mysqli_query($connect, $query);
@@ -59,8 +59,8 @@ if(isset($_POST['btnAdd']))
 
 
 
-				$message = "Query Error";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+				// $message = "Query Error";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
 				echo "<script type='text/javascript'>location.href = 'manageCollege.php';</script>";
 			}
@@ -97,14 +97,14 @@ if(isset($_POST['btnUpdate']))
 	else 
 	{ 
 		$queryEdit = "UPDATE tbl_college SET collegeCode = '$varcharCollegeCode', collegeName = '$varcharCollegeName'  WHERE collegeCode = '$varcharCollegeCode2'";
-		$message = "0";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "0";
+		// echo "<script type='text/javascript'>alert('$message');</script>";
 		
 		if(!mysqli_query($connect, $queryEdit))
 		{
-			$message = "Query Error" ;
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo ("Error description: " . mysqli_error($connect));
+			// $message = "Query Error" ;
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			// echo ("Error description: " . mysqli_error($connect));
 		}
 		else
 		{

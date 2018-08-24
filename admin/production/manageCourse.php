@@ -62,11 +62,11 @@ if(isset($_POST['btnAdd']))
 
 
 
-				$message = "Query Error";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+				// $message = "Query Error";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
 				echo "<script type='text/javascript'>location.href = 'manageAccountCourse.php';</script>";
-				echo ("Error description: " . mysqli_error($connect));
+				// echo ("Error description: " . mysqli_error($connect));
 
 			}
 		}
@@ -95,7 +95,7 @@ if(isset($_POST['btnUpdate']))
 		echo "<script type='text/javascript'>alert('$message');</script>";
 		
 		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		// echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
 	else if(empty($varcharCourseName))
 	{
@@ -106,22 +106,22 @@ if(isset($_POST['btnUpdate']))
 	else 
 	{ 
 		$queryEdit = "UPDATE `tbl_course` SET `courseCode` = '$varcharCourseCode', `courseName` = '$varcharCourseName', `collegeCode` = '$varcharCourseCollege' WHERE courseCode = '$varcharCourseCode2' ";
-		$message = "0";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "0";
+		// echo "<script type='text/javascript'>alert('$message');</script>";
 		
 		if(!mysqli_query($connect, $queryEdit))
 		{
-			$message = "Query Error" ;
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo ("Error description: " . mysqli_error($connect));
+			// $message = "Query Error" ;
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			// echo ("Error description: " . mysqli_error($connect));
 		}
 		else
 		{
-			echo ("Error description: " . mysqli_error($connect));
+			// echo ("Error description: " . mysqli_error($connect));
 			$message = "Course Updated Successfully!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			echo "<script type='text/javascript'>location.href = 'manageCourse.php';</script>";	
-			echo ("Error description: " . mysqli_error($connect));
+			// echo ("Error description: " . mysqli_error($connect));
 
 		}
 	}

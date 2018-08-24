@@ -5,7 +5,7 @@ $VarcharStudentNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudent
 if(isset($VarcharStudentNumber))
 {
 	$message = $VarcharStudentNumber;
-	echo "<script type='text/javascript'>alert('$message');</script>";
+	// echo "<script type='text/javascript'>alert('$message');</script>";
 
 	$VarcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxFirstName']);
 
@@ -21,7 +21,7 @@ if(isset($VarcharStudentNumber))
 	while ($row = mysqli_fetch_array($queryGetCollegeArray))
 	{
 		$VarcharStudentCollege = $row['collegeCode'];
-		echo "<script type='text/javascript'>alert('$VarcharStudentCollege');</script>";
+		// echo "<script type='text/javascript'>alert('$VarcharStudentCollege');</script>";
 	}
 
 	$VarcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxYear']);
@@ -471,8 +471,6 @@ if(isset($VarcharStudentNumber))
 		$VarcharStudentCounselorWhen = NULL;
 		$VarcharStudentCounselorWhat = NULL;
 	}
-
-
 					//End of Part 4 of the form wizard
 
 					//Start of part 5 of the form wizard 
@@ -496,7 +494,7 @@ if(isset($VarcharStudentNumber))
 			}
 		} 
 		else {
-			echo "<script>alert('2');</script>";
+			// echo "<script>alert('2');</script>";
 			if (isset($_POST['checkClubInterestOthers'])) {
 				$varcharClubInterestOthers = mysqli_real_escape_string($connect,$_POST['txtbxOthersClubInterest']);
 				$varcharClubInterest = $varcharClubInterestOthers;
@@ -555,9 +553,6 @@ if(isset($VarcharStudentNumber))
 		$VarcharStudentTestDescriptionNew = $_POST['txtareaTestResultDescriptionNew'];
 	}
 
-
-
-
 	$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `year` = '$VarcharStudentYear', `section` = '$VarcharStudentSection', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityName` = '$VarcharStudentCityAddress', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
 
 	$queryAddEducationalBackground = "UPDATE `tbl_educationalbackground` SET `prepSchoolName` = '$VarcharStudentPreSchoolName', `prepSchoolAddress` = '$VarcharStudentPreSchoolAddress', `prepType` = '$VarcharStudentPreSchoolType', `prepYearAttended` = '$VarcharStudentPreSchoolYearAttended', `prepAwards` = '$VarcharStudentPreSchoolHonors', `elemSchoolName` = '$VarcharStudentElementarySchoolName', `elemSchoolAddress` = '$VarcharStudentElementarySchoolAddress', `elemType` = '$VarcharStudentElementaryType', `elemYearAttended` = '$VarcharStudentElementaryYearAttended', `elemAwards` = '$VarcharStudentElementaryHonors', `hsSchoolName` = '$VarcharStudentHSSchoolName', `hsSchoolAddress` = '$VarcharStudentHSSchoolAddress', `hsType` = '$VarcharStudentHSSchoolType', `hsYearAttended` = '$VarcharStudentHSSchoolYearAttended', `hsAwards` = '$VarcharStudentHSSchoolHonors', `vocSchoolName` = '$VarcharStudentVocationalName', `vocSchoolAddress` = '$VarcharStudentVocationalAddress', `vocType` = '$VarcharStudentVocationalType', `vocYearAttended` = '$VarcharStudentVocationalYearAttended', `vocAwards` = '$VarcharStudentVocationalHonors', `collegeSchoolName` = '$VarcharStudentCollegeName', `collegeSchoolAddress` = '$VarcharStudentCollegeAddress', `collegeType` = '$VarcharStudentCollegeType', `collegeYearAttended` = '$VarcharStudentCollegeYearAttended', `collegeAwards` = '$VarcharStudentCollegeHonors', `natureOfSchooling` = '$VarcharStudentNatureOfSchooling', `interruptedWhy` = '$VarcharStudentInterruptedWhy' WHERE `tbl_educationalbackground`.`studentNumber` = '$VarcharStudentNumber'";
@@ -571,92 +566,101 @@ if(isset($VarcharStudentNumber))
 	foreach ($VarcharStudentTestIdInitial as $key => $value) {
 
 		$query = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial[$key]', `testName` = '$VarcharStudentTestNameInitial[$key]', `testRawScore` = '$VarcharStudentTestRSInitial[$key]', `testPercentile` = '$VarcharStudentTestPRInitial[$key]', `testDescription` = '$VarcharStudentTestDescriptionInitial[$key]' WHERE `tbl_testrecord`.`testID` = '$value'";
-		if(mysqli_query($connect,$query))
-		{
-			echo "<script>alert('Successfully updated note #'+'$value');</script>";
-		}
-		else
-		{
-			echo "error:". mysqli_error($connect);
-		}
+		// if(mysqli_query($connect,$query))
+		// {
+		// 	echo "<script>alert('Successfully updated note #'+'$value');</script>";
+		// }
+		// else
+		// {
+		// 	echo "error:". mysqli_error($connect);
+		// }
 	}
 	if(isset($_POST['txtbxTestResultNameNew']))
 	{
 		foreach ($VarcharStudentTestNameNew as $key => $value) {
 
 			$query = "INSERT INTO tbl_testrecord (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL,'$VarcharStudentTestDateNew[$key]','$VarcharStudentTestNameNew[$key]','$VarcharStudentTestRSNew[$key]','VarcharStudentTestPRNew[$key]','$VarcharStudentTestDescriptionNew[$key]', '$VarcharStudentNumber') ";
-			if(mysqli_query($connect,$query))
-			{
-				echo "<script>alert('Successfully updated note #'+'$value');</script>";
-			}
-			else
-			{
-				echo "error:". mysqli_error($connect);
-			}
+			// if(mysqli_query($connect,$query))
+			// {
+			// 	echo "<script>alert('Successfully updated note #'+'$value');</script>";
+			// }
+			// else
+			// {
+			// 	echo "error:". mysqli_error($connect);
+			// }
 		}
 	}
 	if (mysqli_query($connect, $queryAddPersonalInfo)) {
-		$message = "Successfully Added In Personal Info";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "Successfully Added In Personal Info";
+		// echo "<script type='text/javascript'>alert('$message');</script>";
+
+		if (mysqli_query($connect, $queryAddEducationalBackground)) {
+			// $message = "Successfully Added In Educational Background";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+
+
+			if (mysqli_query($connect, $queryAddFamilyBackground)) {
+				// $message = "Successfully Added In Family Background";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
+
+				if (mysqli_query($connect, $queryAddHealth)) {
+					// $message = "Successfully Added In Health";
+					// echo "<script type='text/javascript'>alert('$message');</script>";
+
+					if (mysqli_query($connect, $queryAddInterests)) {
+						$message = "Successfully Updated Individual Inventory Of ".$VarcharStudentNumber."";
+						echo "<script type='text/javascript'>alert('$message');</script>";
+
+						echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
+
+					}
+					else
+					{
+						// $message = "Query Error #6";
+						// echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+						echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
+					}
+
+				}
+				else
+				{
+					// $message = "Query Error #5";
+					// echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+					echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
+				}
+
+
+			}
+			else
+			{
+				// $message = "Query Error #4";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
+                           						 //redirectig to the display page. In our case, it is index.php
+				echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
+			}
+
+		}
+		else
+		{
+			// $message = "Query Error #3";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+                            						//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
+		}
 	}
 	else
 	{
-		$message = "Query Error #2" . mysqli_error($connect);
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "Query Error #2" . mysqli_error($connect);
+		// echo "<script type='text/javascript'>alert('$message');</script>";
         //redirectig to the display page. In our case, it is index.php
 		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
 	}
 
-	if (mysqli_query($connect, $queryAddEducationalBackground)) {
-		$message = "Successfully Added In Educational Background";
-		echo "<script type='text/javascript'>alert('$message');</script>";
 
-	}
-	else
-	{
-		$message = "Query Error #3";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-	}
 
-	if (mysqli_query($connect, $queryAddFamilyBackground)) {
-		$message = "Successfully Added In Family Background";
-		echo "<script type='text/javascript'>alert('$message');</script>";
 
-	}
-	else
-	{
-		$message = "Query Error #4";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-                           						 //redirectig to the display page. In our case, it is index.php
-		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-	}
 
-	if (mysqli_query($connect, $queryAddHealth)) {
-		$message = "Successfully Added In Health";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-
-	}
-	else
-	{
-		$message = "Query Error #5";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-	}
-
-	if (mysqli_query($connect, $queryAddInterests)) {
-		$message = "Successfully Added In Interest And Hobbies";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-
-	}
-	else
-	{
-		$message = "Query Error #6";
-		echo "<script type='text/javascript'>alert('$message');</script>";
-                            						//redirectig to the display page. In our case, it is index.php
-		echo "<script type='text/javascript'>location.href = 'IndividualInventoryRecordFormEdit.php?id=$VarcharStudentNumber';</script>";
-	}
 }
 ?>

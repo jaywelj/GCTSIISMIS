@@ -18,8 +18,8 @@
  		echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
  	}
  	else{
- 		$message = "Error Deleting";
- 		echo "<script type='text/javascript'>alert('$message');</script>";
+ 		// $message = "Error Deleting";
+ 		// echo "<script type='text/javascript'>alert('$message');</script>";
  		echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccountArchived.php';</script>";	
  	}
  }
