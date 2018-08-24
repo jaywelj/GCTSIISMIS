@@ -495,7 +495,7 @@ if(isset($_POST['btnEmailSend']))
 							<h3>'.$programName.'</h3>
 							<p>'.$programDescription.'</p>
 							</figcaption>
-							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 							</figure>
 							</div>';
 						}
@@ -509,7 +509,7 @@ if(isset($_POST['btnEmailSend']))
 							<h3>'.$programName.'</h3>
 							<p>'.$programDescription.'</p>
 							</figcaption>
-							<a target="_blank" href="http://www.google.com/search?q=Google+tutorial+create+link"></a>
+							<a target="_blank" href="http://www.google.com/search?q='.$programDescription.'"></a>
 							</figure>
 							</div>';
 						}

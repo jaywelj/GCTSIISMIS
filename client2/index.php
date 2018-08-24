@@ -658,7 +658,6 @@ if(isset($_POST['btnEmailSend']))
 						?>
 						<?php
 						if (empty($programImage)) {
-							
 							echo '
 							<div class="col-md-4 col-sm-6 padleft-right" style="overflow: hidden;height: 267px;">
 							<figure class="imghvr-fold-up">

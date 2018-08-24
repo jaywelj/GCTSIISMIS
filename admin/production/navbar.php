@@ -65,8 +65,7 @@ include("connectionString.php");
 
 				$resultMessageUnread = mysqli_query($connect, $queryMessageUnread);
 				while ($row = mysqli_fetch_array($resultMessageUnread)) {
-					$CurrentNumberOfStudentMale = $row['NumberOfMessageUnread'];
-
+					$CurrentNumberOfStudentMessage = $row['NumberOfMessageUnread'];
 				}
 
 				?>
@@ -74,7 +73,7 @@ include("connectionString.php");
 				<li role="presentation" class="dropdown">
 					<a href="javascript:;" class="dropdown-toggle info-number" data-toggle="dropdown" aria-expanded="false">
 						<i class="fa fa-envelope"></i>
-						<span class="badge bg-green"><?php echo $CurrentNumberOfStudentMale; ?></span>
+						<span class="badge bg-green"><?php echo $CurrentNumberOfStudentMessage; ?></span>
 					</a>
 					<ul id="menu1" class="dropdown-menu list-unstyled msg_list" role="menu">
 						<?php 

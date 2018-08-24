@@ -1031,7 +1031,7 @@ require 'header.php';
 															</script>
 															<?php
 
-															$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 MONTH) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
+															$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 WEEK) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
 															$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
 
 
@@ -1047,12 +1047,13 @@ require 'header.php';
 																	var arr_data1 = [
 																	<?php
 																	while ($row = mysqli_fetch_array($resultPlotChart1)) {
-																		$row['Month'];
-																		$row['Day'];
-																		$row['Year'];
+																		$Month = $row['Month'];
+																		$Day = $row['Day'];
+																		$Year = $row['Year'];
+																		$NumberOfAccountsCreated = $row['NumberOfAccountsCreated'];
 
 																		?>
-																		[gd(<?php echo $row['Year'];  ?>, <?php echo $row['Month']; ?>, <?php echo $row['Day']; ?>), <?php echo $row['NumberOfAccountsCreated'];  ?>],
+																		[gd(<?php echo $Year;  ?>, <?php echo $Month; ?>, <?php echo $Day; ?>), <?php echo $NumberOfAccountsCreated;  ?>],
 																		<?php
 																	}
 																	?>
