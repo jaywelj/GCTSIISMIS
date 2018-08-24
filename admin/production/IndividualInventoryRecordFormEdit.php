@@ -2094,37 +2094,7 @@ require 'header.php';
 						document.getElementById("txtbxTestResultPercentileRatingInitial").placeholder = "Invalid Score";
 					}
 				})
-				//Dynamic
-				$('#txtbxTestResultRawScoreNew').blur(function() {
-					var txtbxTestResultRawScoreNew = $(this).val();
-					if( txtbxTestResultRawScoreNew < 0 || txtbxTestResultRawScoreNew > 9999)
-					{
-						document.getElementById("txtbxTestResultRawScoreNew").value = "";
-						document.getElementById("txtbxTestResultRawScoreNew").placeholder = "Invalid Rating";
-					}
-				})
-				$('#txtbxTestResultPercentileRatingNew').blur(function() {
-					var txtbxTestResultPercentileRatingNew = $(this).val();
-					if( txtbxTestResultPercentileRatingNew < 1 || (txtbxTestResultPercentileRatingNew > 5 && txtbxTestResultPercentileRatingNew < 50) || txtbxTestResultPercentileRatingNew > 100)
-					{
-						document.getElementById("txtbxTestResultPercentileRatingNew").value = "";
-						document.getElementById("txtbxTestResultPercentileRatingNew").placeholder = "Invalid Score";
-					}
-				})
-				$('#dateTestResultDateNew').blur(function() {
-					var dateString = $(this).val();
-					var myDate = new Date(dateString);
-					var today = new Date();
-					var test = today.getFullYear() - myDate.getFullYear();
-					var m = today.getMonth() - myDate.getMonth();
-					if (m < 0 || (m === 0 && today.getDate() < myDate.getDate())) {
-						test--;
-					}
-					if (test > 115 || myDate > today )
-					{
-						document.getElementById("dateTestResultDateNew").value = "";
-					}
-				})
+				
 				
 				$('#datePsychiatrist').blur(function() {
 					var dateString = $(this).val();

@@ -134,8 +134,8 @@ while($res = mysqli_fetch_array($result))
 					</li>
 					<li><a><i class="fa fa-list"></i> Survey <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
-							<li><a href="surveySurveyForms.php">Survey Forms</a></li>
-							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li>
+							<!-- <li><a href="surveySurveyForms.php">Survey Forms</a></li>
+							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li> -->
 							<li><a href="surveyProblemSurveyForm.php">Problem Survey Form</a></li>
 							<li><a href="surveyProblemSurveyAnswer.php">List of Student Who Answered</a></li>
 							<li><a href="surveyProblemSurveyTally.php">Survey Tally</a></li>
@@ -153,12 +153,12 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="manageCollege.php">College</a></li>
 						</ul>
 					</li>
-					<li><a href="managePrograms.php"><i class="fa fa-clipboard"></i> Programs</a>
+					<li><a href="managePrograms.php"><i class="fa fa-calendar"></i> Programs</a>
 					</li>
 					<li><a href="manageMessage.php"><i class="fa fa-envelope"></i> Messages</a>
 					</li>
 					
-					<li><a href="queryBuilder.php"><i class="fa fa-envelope"></i> Queries </a>
+					<li><a href="queryBuilder.php"><i class="fa fa-question"></i> Queries </a>
 					</li>
 					<li><a><i class="fa fa-trash"></i> Archive <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">

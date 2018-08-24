@@ -17,7 +17,7 @@ if(isset($_POST['dropdownCivilStatus']))
 	}
 	if(isset($_POST['checkFullName']))
 	{
-		array_push($selections, "CONCAT(firstName,' ',lastName) AS fullName");
+		array_push($selections, "CONCAT(firstName,' ',COALESCE(middleName,''),' ',lastName) AS fullName");
 		array_push($columns, "Full Name");
 	}
 	if($_POST['dropdownGender']<>"None")
@@ -535,7 +535,11 @@ if(isset($_POST['dropdownCivilStatus']))
 	if(!empty($groupByValues))
 	{
 		$groupByClause = "GROUP BY ".implode(", ", $groupByValues);
-		$concatClause = "CONCAT(".implode(",' ',", $groupByValues)."),";	
+		foreach($groupByValues AS $i => $value)
+		{
+			$groupByValues[$i] = "COALESCE(".$value.",'')";
+		}	
+		$concatClause = "CONCAT(".implode(",' ',", $groupByValues)."),";
 	}
 	echo $groupByClause;
 	$whereValues = implode(" AND ", $whereValues);
@@ -578,7 +582,7 @@ else
 			INNER JOIN tbl_familybackground on tbl_studentaccount.studentNumber = tbl_familybackground.studentNumber
 			INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
 			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber
-			INNER JOIN tbl_testrecord on tbl_studentaccount.studentNumber = tbl_testrecord.studentNumber $whereClause
+			$whereClause
 			";
 			$query2 = "
 			SELECT $concatClause $selections, COUNT(*) AS counts FROM tbl_studentaccount
@@ -587,8 +591,8 @@ else
 			INNER JOIN tbl_familybackground on tbl_studentaccount.studentNumber = tbl_familybackground.studentNumber
 			INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
 			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber
-			INNER JOIN tbl_testrecord on tbl_studentaccount.studentNumber = tbl_testrecord.studentNumber $whereClause $groupByClause";
-			
+			$whereClause $groupByClause";
+			echo $query;
 			if(!($queryResult = mysqli_query($connect, $query)))
 			{
 				echo mysqli_error($connect);
@@ -604,7 +608,7 @@ else
 						{
 							$value = 'studentNumber';
 						}
-						else if($value == "CONCAT(firstName,' ',lastName) AS fullName")
+						else if($value == "CONCAT(firstName,' ',COALESCE(middleName,''),' ',lastName) AS fullName")
 						{
 							$value = 'fullName';
 						}

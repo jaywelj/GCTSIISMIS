@@ -202,7 +202,7 @@ require 'header.php';
 
 										<thead>
 											<tr>
-												<th></th>
+												<th style="width:100px"></th>
 												<th>College Code</th>
 												<th>College Name</th>
 											</tr>
@@ -218,7 +218,7 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td width="9%" >
+													<td>
 														<center>
 
 															<button class="btn btn-default btn-warning btn-edit" type="button"  title="Edit" id=<?php echo $row['collegeCode'];?>> <i class="fa fa-edit"></i></button>
