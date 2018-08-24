@@ -22,12 +22,12 @@ if(isset($_POST['btnAdd']))
 
 	if(!empty(["fileStudentImage"]))
 	{
-		echo "<script type='text/javascript'>alert('meron');</script>";
+		// echo "<script type='text/javascript'>alert('meron');</script>";
 		$varcharStudentImage =  addslashes(file_get_contents($_FILES["fileStudentImage"]["tmp_name"]));
 	}
 	else
 	{
-		echo "<script type='text/javascript'>alert('wala');</script>";
+		// echo "<script type='text/javascript'>alert('wala');</script>";
 		$varcharStudentImage = NULL;
 	}
 
@@ -68,7 +68,7 @@ if(isset($_POST['btnAdd']))
 			$message = "Existing Account";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		// echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
 	else
 	{
@@ -130,46 +130,48 @@ if(isset($_POST['btnAdd']))
 									}
 									else
 									{
-										$message = "7";
-										echo "<script type='text/javascript'>alert('$message');</script>";
-										echo("Error description7: " . mysqli_error($connect));
+										// $message = "7";
+										// echo "<script type='text/javascript'>alert('$message');</script>";
+										// echo("Error description7: " . mysqli_error($connect));
+										echo "<script type='text/javascript'>location.href = 
+										'manageAccountStudentAccount.php';</script>";
 									}
 								}
 								else
 								{
-									$message = "6";
-									echo "<script type='text/javascript'>alert('$message');</script>";
-									echo("Error description6: " . mysqli_error($connect));
+									// $message = "6";
+									// echo "<script type='text/javascript'>alert('$message');</script>";
+									// echo("Error description6: " . mysqli_error($connect));
 								}
 							}
 							else
 							{
-								$message = "5";
-								echo "<script type='text/javascript'>alert('$message');</script>";
-								echo("Error description5: " . mysqli_error($connect));
+								// $message = "5";
+								// echo "<script type='text/javascript'>alert('$message');</script>";
+								// echo("Error description5: " . mysqli_error($connect));
 							}
 
 						}
 						else
 						{
-							$message = "3";
-							echo "<script type='text/javascript'>alert('$message');</script>";
-							echo("Error description4: " . mysqli_error($connect));
+							// $message = "3";
+							// echo "<script type='text/javascript'>alert('$message');</script>";
+							// echo("Error description4: " . mysqli_error($connect));
 						}
 					}
 					else
 					{
-						$message = "2";
-						echo "<script type='text/javascript'>alert('$message');</script>";
-						echo("Error description3: " . mysqli_error($connect));
+						// $message = "2";
+						// echo "<script type='text/javascript'>alert('$message');</script>";
+						// echo("Error description3: " . mysqli_error($connect));
 					}
 
 				}
 				else
 				{
-					$message = "1";
-					echo "<script type='text/javascript'>alert('$message');</script>";
-					echo("Error description2: " . mysqli_error($connect));
+					// $message = "1";
+					// echo "<script type='text/javascript'>alert('$message');</script>";
+					// echo("Error description2: " . mysqli_error($connect));
 				}
 			}
 			else
@@ -180,17 +182,17 @@ if(isset($_POST['btnAdd']))
 				if (mysqli_num_rows($result) == 1) {
 					$message = "Student Number Already Registered";
 					echo "<script type='text/javascript'>alert('$message');</script>";
-					$message = "Query Error";
+					// $message = "Query Error";
 
-					echo "<script type='text/javascript'>alert('$message');</script>";
+					// echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
 					echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 				}
 				else
 				{
-					$message = "Query Error";
+					// $message = "Query Error";
 
-					echo "<script type='text/javascript'>alert('$message');</script>";
+					// echo "<script type='text/javascript'>alert('$message');</script>";
 														//redirectig to the display page. In our case, it is index.php
 					echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccount.php';</script>";
 				}
@@ -243,7 +245,7 @@ if(isset($_POST['btnUpdate']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		// echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
 	else 
 	{ 
@@ -257,8 +259,8 @@ if(isset($_POST['btnUpdate']))
 			ON A.studentNumber = B.studentNumber 
 			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage' 
 			WHERE A.studentNumber = '$varcharStudentNumber'";
-			$message = "0";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "0";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
@@ -268,14 +270,14 @@ if(isset($_POST['btnUpdate']))
 			ON A.studentNumber = B.studentNumber 
 			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection'
 			WHERE A.studentNumber = '$varcharStudentNumber'";
-			$message = "1";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "1";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		if(!mysqli_query($connect, $queryEdit))
 		{
-			$message = "Query Error" ;
-			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo("Error description: " . mysqli_error($connect));
+			// $message = "Query Error" ;
+			// echo "<script type='text/javascript'>alert('$message');</script>";
+			// echo("Error description: " . mysqli_error($connect));
 		}
 		else
 		{
