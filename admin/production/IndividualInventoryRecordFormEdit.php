@@ -28,7 +28,6 @@ if(isset($_GET["id"]))
 	$varcharStudentAccountNumber = $_GET['id'];
 	$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
 																		//$res = mysqli_fetch_assoc($result);
-																		//$varcharAccountImage = $res['admin_image'];
 	while($res = mysqli_fetch_array($result))
 	{
 
@@ -102,7 +101,6 @@ if(isset($_GET["id"]))
 			$varcharStudentPreSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentPreSchoolAwards = $res2point5['prepAwards'];
-		$varcharStudentPreSchoolImage = $res2point5['prepImage'];
 		$varcharStudentElementarySchoolName = $res2point5['elemSchoolName'];
 		$varcharStudentElementarySchoolAddress = $res2point5['elemSchoolAddress'];
 		$varcharStudentElementarySchoolType = $res2point5['elemType'];
@@ -119,7 +117,6 @@ if(isset($_GET["id"]))
 			$varcharStudentElementarySchoolYearAttended2 = NULL;
 		}
 		$varcharStudentElementarySchoolAwards = $res2point5['elemAwards'];
-		$varcharStudentELemntarySchoolImage = $res2point5['elemImage'];
 		$varcharStudentHSSchoolName = $res2point5['hsSchoolName'];
 		$varcharStudentHSSchoolAddress = $res2point5['hsSchoolAddress'];
 		$varcharStudentHSSchoolType = $res2point5['hsType'];
@@ -133,12 +130,10 @@ if(isset($_GET["id"]))
 		}
 		else
 		{
-
 			$varcharStudentHSSchoolYearAttended1 = NULL;
 			$varcharStudentHSSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentHSSchoolAwards = $res2point5['hsAwards'];
-		$varcharStudentHSSchoolImage = $res2point5['hsImage'];
 		$varcharStudentVocationalSchoolName = $res2point5['vocSchoolName'];
 		$varcharStudentVocationalSchoolAddress = $res2point5['vocSchoolAddress'];
 		$varcharStudentVocationalSchoolType = $res2point5['vocType'];
@@ -156,7 +151,6 @@ if(isset($_GET["id"]))
 			$varcharStudentVocationalSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentVocationalAwards = $res2point5['vocAwards'];
-		$varcharStudentVocationalImage = $res2point5['vocImage'];
 		$varcharStudentCollegeSchoolName = $res2point5['collegeSchoolName'];
 		$varcharStudentCollegeSchoolAddress = $res2point5['collegeSchoolAddress'];
 		$varcharStudentCollegeSchoolType = $res2point5['collegeType'];
@@ -173,7 +167,6 @@ if(isset($_GET["id"]))
 			$varcharStudentCollegeSchoolYearAttended2 = NULL;
 		}
 		$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards'];
-		$varcharStudentCollegeSchoolImage = $res2point5['collegeImage'];
 		$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
 		$varcharStudentInterruptedWhy = $res2point5['interruptedWhy'];
 
@@ -240,8 +233,6 @@ if(isset($_GET["id"]))
 		$varcharStudentCounselorConsult = $res4['counselorConsult'];
 		$varcharStudentCounselorWhen = $res4['counselorWhen'];
 		$varcharStudentCounselorReason = $res4['counselorReason'];
-
-
 	}
 	$result5 = mysqli_query($connect, "SELECT * FROM `tbl_interesthobbies` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `interestID` DESC LIMIT 1");
 	while($res5 = mysqli_fetch_array($result5)){
@@ -1003,7 +994,7 @@ require 'header.php';
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">From Year</label>
 														<div class="col-md-6 col-sm-6">
-															<input class="form-control col-md-7 col-xs-12 " type="number" id="txtbxVocationalYearAttended1" name="txtbxVocationalYearAttended1" value="<?php echo $varcharStudentVocationalSchoolYearAttended1;  ?>" data-validate-minmax="1971,2050">
+															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxVocationalYearAttended1" name="txtbxVocationalYearAttended1" value="<?php echo $varcharStudentVocationalSchoolYearAttended1;  ?>" data-validate-minmax="1971,2050">
 														</div>
 													</div>
 													<div class="item form-group">
@@ -1125,7 +1116,7 @@ require 'header.php';
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
 																<option >College Undergraduate</option>
-																<option >College Ggraduate</option>
+																<option >College Graduate</option>
 																<option >Vocational Graduate</option>
 																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
@@ -1198,7 +1189,7 @@ require 'header.php';
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
 																<option >College Undergraduate</option>
-																<option >College Ggraduate</option>
+																<option >College Graduate</option>
 																<option >Vocational Graduate</option>
 																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
@@ -1282,7 +1273,7 @@ require 'header.php';
 																<option >High School Undergraduate</option>
 																<option >High School Graduate</option>
 																<option >College Undergraduate</option>
-																<option >College Ggraduate</option>
+																<option >College Graduate</option>
 																<option >Vocational Graduate</option>
 																<option >Vocational Ungraduate</option>
 																<option >Masteral Unit</option>
@@ -3197,5 +3188,6 @@ document.querySelectorAll('input[data-max-words]').forEach(input => {
 			  })
 			})
 		</script>
+		
 	</body>
 	</html>

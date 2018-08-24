@@ -177,10 +177,7 @@ require 'header.php';
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									
 								</div>
 							</div>
 						</div>
@@ -197,7 +194,6 @@ require 'header.php';
 									<ul class="nav navbar-right">
 										<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD COLLEGE</button>
 									</ul>
-									
 									<div class="clearfix"></div>
 								</div>
 								<div class="x_content">
@@ -216,7 +212,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCollege = "SELECT * FROM tbl_college";
+											$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
 											$resultCollege = mysqli_query($connect, $queryCollege); 
 											while($row = mysqli_fetch_array($resultCollege))  
 											{  
@@ -283,7 +279,7 @@ require 'header.php';
 								<input type="text" name="txtbxCollegeCode" id="txtbxCollegeCode" class="form-control" />
 								<br />
 								<label>College Name</label>
-								<input type="text" name="txtbxCollegeName" id="txtbxCollegeName" class="form-control" />
+								<input type="text" name="txtbxCollegeName" id="txtbxCollegeName" class="form-control" required="required" />
 								<br />
 								
 							</div>

@@ -1,9 +1,10 @@
 <?php
+include("connectionString.php");
+
 include("errorReport.php");
-if(isset($_POST['btnAdd'])) 
+if(isset($_POST['btnAddAccount'])) 
 {
 	//including the database connection file
-	include_once("connectionString.php");
 
 	$VarcharAdminAccountEmail = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountEmail']);
 
@@ -13,19 +14,24 @@ if(isset($_POST['btnAdd']))
 
 	$VarcharAdminAccountMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountMiddleName']);
 
-	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountPassword']);
+	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountAddPassword']);
 
 	$VarcharAdminAccountBirthdate = mysqli_real_escape_string($connect, $_POST['dateAdminAccountBirthdate']);
 
 	$VarcharAdminAccountImage = addslashes(file_get_contents($_FILES["fileAdminAccountImage"]["tmp_name"]));
 
+	$VarcharAdminAccountGender = mysqli_real_escape_string($connect, $_POST['optionAdminAccountGender']);
 
+	$VarcharAdminAccountAddress = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountAddress']);
+
+	$VarcharAdminAccountContactNo = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountContactNumber']);
+
+	$VarcharAdminAccountDescription = mysqli_real_escape_string($connect, $_POST['txtareaAdminDescription']);
 
 	//first name validation if input is a space 
 	// checking empty fields
-	if(empty($VarcharAdminAccountFirstName) || empty($VarcharAdminAccountEmail)) 
+	if(empty($VarcharAdminAccountFirstName) || empty($VarcharAdminAccountEmail) || empty($VarcharAdminAccountLastName)) 
 	{
-
 		if(empty($VarcharAdminAccountFirstName))
 		{
 			$message = "Enter a First Name";
@@ -36,40 +42,65 @@ if(isset($_POST['btnAdd']))
 			$message = "Enter a valid Email";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
+		if(empty($VarcharAdminAccountLastName)) 
+		{
+			$message = "Enter a valid Last Name";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		if(empty($VarcharAdminAccountGender)) 
+		{
+			$message = "Select A Valid Gender";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
 	} 
 	else 
 	{ 
 		// if all the fields are filled (not empty) 
 		//insert data to database   
 		if (!empty($VarcharAdminAccountImage)) {
-			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminAccessLevel`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', '$VarcharAdminAccountImage', 'Admin')";
+			$message = "May Laman Na Image";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminId`, `adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminGender`, `adminContactNo`, `adminAddress`, `adminDescription`) VALUES (NULL, '$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', '$VarcharAdminAccountImage', '$VarcharAdminAccountGender', '$VarcharAdminAccountContactNo', '$VarcharAdminAccountAddress', '$VarcharAdminAccountDescription')";
 		}
 		else{
-			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminAccessLevel`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', NULL, 'Admin')";
-		}
-		if(mysqli_query($connect, $queryAdd))
-		{
-			$message = "Admin Account added successfully!";
+			$message = "Walang Laman Na Image";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
+			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminId`, `adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminGender`, `adminContactNo`, `adminAddress`, `adminDescription`) VALUES (NULL, '$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', NULL, '$VarcharAdminAccountGender', '$VarcharAdminAccountContactNo', '$VarcharAdminAccountAddress', '$VarcharAdminAccountDescription')";
+		}
 
+		$query = "SELECT * FROM tbl_adminaccount WHERE adminEmail='$VarcharAdminAccountEmail' ";
+		$result = mysqli_query($connect, $query);
+
+		if (mysqli_num_rows($result) == 1) {
+
+			$message = "Student Number Already Registered";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+			$message = "Query Error " . mysqli_connect_error();
+			echo "<script type='text/javascript'>alert('$message');</script>";
+				//redirectig to the display page. In our case, it is index.php
+			echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
 		}
 		else
 		{
-			$query = "SELECT * FROM tbl_adminaccount WHERE adminEmail='$VarcharAdminAccountEmail' ";
-			$result = mysqli_query($connect, $query);
-
-			if (mysqli_num_rows($result) == 1) {
-
-				$message = "Student Number Already Registered";
+			if(mysqli_query($connect, $queryAdd))
+			{
+				$message = "Admin Account added successfully!";
 				echo "<script type='text/javascript'>alert('$message');</script>";
-				$message = "Query Error " . mysqli_connect_error();
-				echo "<script type='text/javascript'>alert('$message');</script>";
-				//redirectig to the display page. In our case, it is index.php
+			//redirectig to the display page. In our case, it is index.php
 				echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
 			}
+			else
+			{
+
+				$message = "Admin Account query error";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				echo("Error description: " . mysqli_error($connect));
+			// //redirectig to the display page. In our case, it is index.php
+			// 	echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
+			}
+
 		}
+		
 	}
 }
 if(isset($_POST['btnUpdate']))
@@ -92,6 +123,7 @@ if(isset($_POST['btnUpdate']))
 
 	$varcharAdminAccountBirthdate = mysqli_real_escape_string($connect, $_POST['dateEditAdminAccountBirthdate']);
 
+	$varcharAdminAccountDescription = mysqli_real_escape_string($connect, $_POST['txtareaEditAdminDescription']);
 	
 	if(!empty($_FILES['fileEditAdminAccountImage']['tmp_name']) && file_exists($_FILES['fileEditAdminAccountImage']['tmp_name'])) 
 	{
@@ -117,13 +149,13 @@ if(isset($_POST['btnUpdate']))
 		//insert data to database   
 		if (!empty($varcharAdminAccountImage)) 
 		{
-			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress' WHERE `adminEmail` = '$varcharAdminAccountEmail' ";
+			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress',`adminDescription` = '$varcharAdminAccountDescription' WHERE `adminEmail` = '$varcharAdminAccountEmail' ";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
-			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharAdminAccountEmail'";
+			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress',`adminDescription` = '$varcharAdminAccountDescription' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharAdminAccountEmail'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
@@ -205,10 +237,7 @@ require 'header.php';
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									
 								</div>
 							</div>
 						</div>
@@ -245,7 +274,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount WHERE adminAccessLevel = 'Admin' ORDER BY adminId DESC";
+											$queryCourse = "SELECT * FROM tbl_adminaccount ORDER BY adminId ASC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
@@ -360,33 +389,52 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<label>First Name</label>
-								<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountFirstName" id="txtbxAdminAccountFirstName" class="form-control" required="required" />
 								<br />
 								<label>Last Name</label>
-								<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountLastName" id="txtbxAdminAccountLastName" class="form-control" required="required" />
 								<br />
 								<label>Middle Name</label>
-								<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control" />
+								<input type="text" name="txtbxAdminAccountMiddleName" id="txtbxAdminAccountMiddleName" class="form-control"/>
+								<br />
+								<label>Select Gender</label>
+								<select name="optionAdminAccountGender" id="optionAdminAccountGender" class="form-control" required="">
+									<option value="NA" disabled>NA</option>  
+									<option value="M">Male</option>  
+									<option value="F">Female</option>
+								</select>
 								<br />
 								<label>Email</label>
-								<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control" />
+								<input type="email" name="txtbxAdminAccountEmail" id="txtbxAdminAccountEmail" class="form-control"  />
+								<br />
+								<label>Address</label>
+								<input type="text" name="txtbxAdminAccountAddress" id="txtbxAdminAccountAddress" class="form-control" />
+								<br />
+								<label>Contact Number</label>
+								<input type="number" name="txtbxAdminAccountContactNumber" id="txtbxAdminAccountContactNumber" class="form-control" />
 								<br />
 								<label>Birthdate</label>
 								<input type="date" name="dateAdminAccountBirthdate" id="dateAdminAccountBirthdate" class="form-control" />
 								<br />
 								<label>Password</label>
-								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
+								<input type="password" name="txtbxAdminAccountAddPassword" id="txtbxAdminAccountAddPassword" class="form-control" required="required" />
 								<br />
 								<label>Confirm Password</label>
-								<input type="password" name="txtbxAdminAccountConfirmPassword" id="txtbxAdminAccountConfirmPassword" class="form-control" />
+								<input type="password" name="txtbxAdminAccountCPassword" id="txtbxAdminAccountCPassword" class="form-control" required="required" />
+								<div id="divCheckPasswordMatch">
+								</div>
 								<br />
 								<label>Image</label>
 								<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" />
 								<br />
+								<label>Brief Introduction</label>
+								<br />
+								<textarea name="txtareaAdminDescription" id="txtareaAdminDescription" ></textarea>
+								<br />
 
 							</div>
 							<div class="modal-footer">
-								<input type="submit" name="btnAdd" id="btnAdd" value="Add Account" class="btn btn-success " />
+								<input type="submit" name="btnAddAccount" id="btnAddAccount" value="Add Account" class="btn btn-success " />
 								<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 							</div>
 						</div>
@@ -404,9 +452,6 @@ require 'header.php';
 								<h4 class="modal-title text-center">CHANGE PASSWORD</h4>
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-								<label>Password</label>
-								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
-								<br />
 								<label>Password</label>
 								<input type="password" name="txtbxAdminAccountPassword" id="txtbxAdminAccountPassword" class="form-control" />
 								<br />
@@ -488,7 +533,38 @@ require 'header.php';
 		});
 	</script>
 
-
+	<script type="text/javascript">
+		document.getElementById("txtbxAdminAccountCPassword").onkeyup = function(){
+			checkPassword();
+		};
+		document.getElementById("txtbxAdminAccountAddPassword").onkeyup = function(){
+			checkPassword();
+		};
+		function checkPassword(){
+			var password = document.getElementById("txtbxAdminAccountAddPassword").value;
+			var cpassword = document.getElementById("txtbxAdminAccountCPassword").value;
+			if(cpassword != "")
+			{
+				if(password == "")
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
+				}
+				else if( password != cpassword)
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+				}
+				else
+				{
+					document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+				}
+			}
+			else if(cpassword == "" && password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			}
+			
+		}
+	</script>
 	<script>
 		$(document).ready(function(){
 			$(document).on('click','.btn-view',function(){

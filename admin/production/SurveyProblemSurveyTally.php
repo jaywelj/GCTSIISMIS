@@ -84,10 +84,7 @@ require 'header.php';
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									
 								</div>
 							</div>
 						</div>
@@ -163,6 +160,10 @@ require 'header.php';
 					</div>
 				</div>
 			</div>
+
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 			<!-- /page content -->
 			<!--Modal Edit-->
 
@@ -211,6 +212,26 @@ require 'header.php';
 
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
+
+
 
 </body>
 </html>

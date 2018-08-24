@@ -1,6 +1,0 @@
-<form-template>
-	<fields>
-		<field type="header" subtype="h1" label="Header"></field>
-		<field type="date" label="Date Field" class="form-control" name="date-1532006512567"></field>
-	</fields>
-</form-template>

@@ -347,10 +347,7 @@ require 'header.php';
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									
 								</div>
 							</div>
 						</div>
@@ -387,7 +384,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber ORDER BY tbl_studentaccount.studentNumber DESC";
+											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber ORDER BY tbl_studentaccount.studentNumber ASC";
 											$resultStudent = mysqli_query($connect, $queryStudent); 
 											while($row = mysqli_fetch_array($resultStudent))  
 											{  
@@ -501,16 +498,16 @@ require 'header.php';
 							</div>
 							<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 								<label>Student Number</label>
-								<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" />
+								<input type="text" name="txtbxStudentNumber" id="txtbxStudentNumber" class="form-control" required="required" />
 								<br />
 								<label>First Name</label>
-								<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" />
+								<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" required="required" pattern="[a-zA-Z0-9\s]+"/>
 								<br />
 								<label>Middle Name</label>
 								<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" />
 								<br />
 								<label>Last Name</label>
-								<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" />
+								<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" required="required" pattern="[a-zA-Z0-9\s]+"/>
 								<br />
 								<?php
 
@@ -533,16 +530,16 @@ require 'header.php';
 								</select>
 								<br />
 								<label>Year</label>
-								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" />
+								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" required min="1" max="6" />
 								<br />
 								<label>Section</label>
-								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" />
+								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" required="" />
 								<br />
 								<label>Password</label>
-								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" />
+								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" required="" />
 								<br />
 								<label>Confirm Password</label>
-								<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" />
+								<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" required="" />
 								<div id="divCheckPasswordMatch">
 								</div>
 								<br />

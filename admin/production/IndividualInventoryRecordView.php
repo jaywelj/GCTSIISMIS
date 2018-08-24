@@ -74,31 +74,26 @@ while($res2point5 = mysqli_fetch_array($result2point5)){
 	$varcharStudentPreSchoolType = $res2point5['prepType'];
 	$varcharStudentPreSchoolYearAttended = $res2point5['prepYearAttended'];
 	$varcharStudentPreSchoolAwards = $res2point5['prepAwards'];
-	$varcharStudentPreSchoolImage = $res2point5['prepImage'];
 	$varcharStudentElementarySchoolName = $res2point5['elemSchoolName'];
 	$varcharStudentElementarySchoolAddress = $res2point5['elemSchoolAddress'];
 	$varcharStudentElementarySchoolType = $res2point5['elemType'];
 	$varcharStudentElementarySchoolYearAttended = $res2point5['elemYearAttended'];
 	$varcharStudentElementarySchoolAwards = $res2point5['elemAwards'];
-	$varcharStudentELemntarySchoolImage = $res2point5['elemImage'];
 	$varcharStudentHSSchoolName = $res2point5['hsSchoolName'];
 	$varcharStudentHSSchoolAddress = $res2point5['hsSchoolAddress'];
 	$varcharStudentHSSchoolType = $res2point5['hsType'];
 	$varcharStudentHSSchoolYearAttended = $res2point5['hsYearAttended'];
 	$varcharStudentHSSchoolAwards = $res2point5['hsAwards'];
-	$varcharStudentHSSchoolImage = $res2point5['hsImage'];
 	$varcharStudentVocationalSchoolName = $res2point5['vocSchoolName'];
 	$varcharStudentVocationalSchoolAddress = $res2point5['vocSchoolAddress'];
 	$varcharStudentVocationalSchoolType = $res2point5['vocType'];
 	$varcharStudentVocationalSchoolYearAttended = $res2point5['vocYearAttended'];
 	$varcharStudentVocationalAwards = $res2point5['vocAwards'];
-	$varcharStudentVocationalImage = $res2point5['vocImage'];
 	$varcharStudentCollegeSchoolName = $res2point5['collegeSchoolName'];
 	$varcharStudentCollegeSchoolAddress = $res2point5['collegeSchoolAddress'];
 	$varcharStudentCollegeSchoolType = $res2point5['collegeType'];
 	$varcharStudentCollegeSchoolYearAttended = $res2point5['collegeYearAttended'];
-	$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards'];
-	$varcharStudentCollegeSchoolImage = $res2point5['collegeImage'];
+	$varcharStudentCollegeSchoolAwards = $res2point5['collegeAwards']; 	
 	$varcharStudentNatureOfSchooling = $res2point5['natureOfSchooling'];
 	$varcharStudentInterruptedWhy = $res2point5['interruptedWhy'];
 
@@ -768,19 +763,23 @@ require 'header.php';
 																	</tr>
 																	<tr>
 																		<th scope="row">Vision</th>
-																		<td><?php echo $varcharStudentVisionProblem; ?></td>
+																		<td><?php echo $varcharStudentVisionProblem; 
+																		echo ($varcharStudentVisionProblem =='')?'None':''; ?> </td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Hearing</th>
-																		<td><?php echo $varcharStudentHearingProblem; ?></td>
+																		<td><?php echo $varcharStudentHearingProblem;
+																		echo ($varcharStudentHearingProblem =='')?'None':''; ?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Speach</th>
-																		<td><?php echo $varcharStudentSpeechProblem; ?></td>
+																		<td><?php echo $varcharStudentSpeechProblem;
+																		echo ($varcharStudentSpeechProblem =='')?'None':''; ?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Your general health</th>
-																		<td><?php echo $varcharStudentGeneralHealth; ?></td>
+																		<td><?php echo $varcharStudentGeneralHealth;
+																		echo ($varcharStudentGeneralHealth =='')?'None':''; ?></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -788,12 +787,13 @@ require 'header.php';
 															<table class="table">
 																<tbody>
 																	<tr>
-																		<th scope="row" style="width: 400px;">Consulted any of the ff</th>
+																		<th scope="row" style="width: 400px;">Consulted any of the ff:s</th>
 																		<td></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Psychiatrist</th>
-																		<td><?php echo $varcharStudentPsychiatristConsult; ?></td>
+																		<td><?php echo $varcharStudentPsychiatristConsult; 
+																		echo ($varcharStudentPsychiatristConsult =='')?'None':'';?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">When</th>
@@ -801,15 +801,13 @@ require 'header.php';
 																	</tr>
 																	<tr>
 																		<th scope="row">For What</th>
-																		<td><?php echo $varcharStudentPsychiatristReason; ?></td>
-																	</tr>
-																	<tr>
-																		<th scope="row" style="width: 400px;">Consulted any of the ff</th>
-																		<td></td>
+																		<td><?php echo $varcharStudentPsychiatristReason; 
+																		echo ($varcharStudentPsychiatristReason =='')?'None':'';?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Psychologist</th>
-																		<td><?php echo $varcharStudentPsychologistConsult; ?></td>
+																		<td><?php echo $varcharStudentPsychologistConsult; 
+																		echo ($varcharStudentPsychologistConsult =='')?'None':'';?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">When</th>
@@ -817,15 +815,13 @@ require 'header.php';
 																	</tr>
 																	<tr>
 																		<th scope="row">For What</th>
-																		<td><?php echo $varcharStudentPsychologistReason; ?></td>
-																	</tr>
-																	<tr>
-																		<th scope="row" style="width: 400px;">Consulted any of the ff</th>
-																		<td></td>
+																		<td><?php echo $varcharStudentPsychologistReason; 
+																		echo ($varcharStudentPsychologistReason =='')?'None':'';?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">Counselor</th>
-																		<td><?php echo $varcharStudentCounselorConsult; ?></td>
+																		<td><?php echo $varcharStudentCounselorConsult; 
+																		echo ($varcharStudentCounselorConsult =='')?'None':'';?></td>
 																	</tr>
 																	<tr>
 																		<th scope="row">When</th>
@@ -833,7 +829,8 @@ require 'header.php';
 																	</tr>
 																	<tr>
 																		<th scope="row">For What</th>
-																		<td><?php echo $varcharStudentCounselorReason; ?></td>
+																		<td><?php echo $varcharStudentCounselorReason; 
+																		echo ($varcharStudentCounselorReason =='')?'None':'';?></td>
 																	</tr>
 																</tbody>
 															</table>
@@ -885,7 +882,7 @@ require 'header.php';
 																		<td><?php echo $varcharStudentHobby3; ?></td>
 																	</tr>
 																	<tr>
-																		<th scope="row" style="width: 400px;"></th>
+																		<th scope="row" style="width: 400px;">4.</th>
 																		<td><?php echo $varcharStudentHobby4; ?></td>
 																	</tr>
 																	<tr>

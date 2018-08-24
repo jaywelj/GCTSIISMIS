@@ -1810,7 +1810,7 @@ function init_JQVmap(){
 
     			// validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
     			$('form')
-    			.on('blur', 'input[required], input[data-validate-minmax] , input.optional, select.required, input[type = "date"]', validator.checkField)
+    			.on('blur', 'input[required], input.optional, select.required, input[type = "date"]', validator.checkField)
     			.on('change', 'select.required', validator.checkField)
     			.on('keypress', 'input[required][pattern]', validator.keypress);
 
@@ -5155,6 +5155,7 @@ $(document).ready(function() {
 	init_select2();
 	init_DataTables();
 	init_chart_doughnut();
+	init_chart_doughnut2();
 	init_gauge();
 	init_validator();
 	init_PNotify();

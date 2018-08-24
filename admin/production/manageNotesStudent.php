@@ -95,7 +95,6 @@ if(isset($_POST['btnAdd']))
 		{
 
 		}
-
 		$queryInsertingNote = "INSERT INTO `tbl_significantnotes` (`noteID`, `noteDate`, `categoryID`, `subCategoryID`, `noteRemarks`, `studentNumber`, `adminId`) VALUES (NULL, '$dateNoteDate', '$varcharNoteCategory', '$varcharNoteSubCategory', '$varcharNoteRemarks', '$varcharNoteStudentNumber', '$varcharNoteAdminID')";
 		if(mysqli_query($connect, $queryInsertingNote))
 		{
@@ -230,10 +229,7 @@ require 'header.php';
 						<div class="title_right">
 							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
 								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
+									
 								</div>
 							</div>
 						</div>
@@ -257,7 +253,7 @@ require 'header.php';
 									<h2><?php echo"$collegeName"; ?><small><?php echo"$college"; ?></small></h2>
 									<div class="form-group col-md-5 col-sm-5 col-xs-5 pull-right">
 										<form method="post">
-											<button type="button" data-toggle="modal" class="form-control btn btn-success pull-right" data-target="#add_data_Modal">Add Notes</button>
+											<!-- <button type="button" data-toggle="modal" class="form-control btn btn-success pull-right" data-target="#add_data_Modal">Add Notes</button> -->
 											<select class="form-control" id="selectCourse" name="selectCourse" onchange="course()">
 												<option value="all">------------- All Course ----------------</option>
 												<?php 
@@ -271,7 +267,7 @@ require 'header.php';
 											</select>
 										</form>
 										<ul class="nav navbar-right">
-											<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD STUDENT ACCOUNT</button>
+											<button class="btn btn-default btn-info" data-toggle="modal" data-target="#add_data_Modal" type="button">ADD NOTES</button>
 										</ul>
 									</div>
 									<div class="clearfix"></div>
@@ -283,7 +279,10 @@ require 'header.php';
 											<tr>
 												<th></th>
 												<th>Note ID</th>
-												<th>Student</th>
+												<th>Student Number</th>
+												<th>First Name</th>
+												<th>Middle Name</th>
+												<th>Last Name</th>
 												<th>Date</th>
 												<th>Type Of Visitation</th>
 												<th>Added by</th>
@@ -314,8 +313,16 @@ require 'header.php';
 														<?php echo $row['noteID'];?> 
 													</td>
 													<td> 
-														<?php echo $row['studentNumber'];?> &nbsp; &nbsp; <?php echo $row['firstName']; ?> <?php echo $row['lastName']; ?>
-
+														<?php echo $row['studentNumber'];?>
+													</td>
+													<td>
+														<?php echo $row['firstName']; ?>
+													</td>
+													<td>
+														<?php echo $row['middleName']; ?>
+													</td>
+													<td>
+														<?php echo $row['lastName']; ?>
 													</td>
 													<td> 
 														<?php echo $row['noteDate'];?> 
@@ -353,7 +360,10 @@ require 'header.php';
 												<tr>
 													<th></th>
 													<th>Note ID</th>
-													<th>Student</th>
+													<th>Student Number</th>
+													<th>First Name</th>
+													<th>Middle Name</th>
+													<th>Last Name</th>
 													<th>Date</th>
 													<th>Type Of Visitation</th>
 													<th>Added by</th>

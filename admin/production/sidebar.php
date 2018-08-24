@@ -26,18 +26,18 @@ while($res = mysqli_fetch_array($result))
 				<div class="profile_pic">
 					<?php
 
-						$result = mysqli_query($connect,"SELECT * FROM `tbl_adminaccount` WHERE `adminEmail` = '$varcharAdminEmail'");
+					$result = mysqli_query($connect,"SELECT * FROM `tbl_adminaccount` WHERE `adminEmail` = '$varcharAdminEmail'");
 
-						while($res = mysqli_fetch_array($result))
-						{
-							$varcharAdminEmail = $res['adminEmail'];
-							$varcharAdminFirstName = $res['adminFirstName'];
-							$varcharAdminMiddleName = $res['adminMiddleName'];
-							$varcharAdminLastName = $res['adminLastName'];
-							$varcharAdminBirthDate = $res['adminBirthDate'];
-							$varcharAdminPassword = $res['adminPassword'];
-							$varcharAdminAccessLevel = $res['adminAccessLevel'];
-							$varcharAdminImage = $res['adminImage'];
+					while($res = mysqli_fetch_array($result))
+					{
+						$varcharAdminEmail = $res['adminEmail'];
+						$varcharAdminFirstName = $res['adminFirstName'];
+						$varcharAdminMiddleName = $res['adminMiddleName'];
+						$varcharAdminLastName = $res['adminLastName'];
+						$varcharAdminBirthDate = $res['adminBirthDate'];
+						$varcharAdminPassword = $res['adminPassword'];
+						$varcharAdminAccessLevel = $res['adminAccessLevel'];
+						$varcharAdminImage = $res['adminImage'];
 						if(empty($varcharAdminImage))
 						{
 							echo '
@@ -50,7 +50,7 @@ while($res = mysqli_fetch_array($result))
 							';
 						}
 					}
-						?>
+					?>
 					
 				</div>
 				<div class="profile_info"  style="width:100%;">
@@ -153,15 +153,12 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="manageCollege.php">College</a></li>
 						</ul>
 					</li>
-					<li><a><i class="fa fa-clipboard"></i> Programs <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="managePrograms.php">Programs</a></li>
-						</ul>
+					<li><a href="managePrograms.php"><i class="fa fa-clipboard"></i> Programs</a>
 					</li>
-					<li><a><i class="fa fa-envelope"></i> Messages <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="manageMessage.php">Messages</a></li>
-						</ul>
+					<li><a href="manageMessage.php"><i class="fa fa-envelope"></i> Messages</a>
+					</li>
+					
+					<li><a href="queryBuilder.php"><i class="fa fa-envelope"></i> Queries </a>
 					</li>
 					<li><a><i class="fa fa-trash"></i> Archive <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
@@ -173,11 +170,8 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="surveyProblemSurveyAnswerArchive.php">Answers</a> </li>
 							<li><a href="manageMessageArchived.php">Messages</a> </li>
 							<li><a href="manageAccountAdminAccountArchived.php">Account - Admin</a></li>
-							<li><a href="manageAccountStaffAccountArchived.php">Account - Staff</a></li>
 							<li><a href="manageAccountStudentAccountArchived.php">Account - Student</a></li>
 						</ul>
-					</li>
-					<li><a href="queryBuilder.php"><i class="fa fa-envelope"></i> Queries </a>
 					</li>
 				</ul>
 			</div>
