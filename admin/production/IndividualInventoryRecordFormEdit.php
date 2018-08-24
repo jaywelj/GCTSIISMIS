@@ -461,12 +461,13 @@ require 'header.php';
 													</div>
 													<div class="item form-group">
 														<label class="control-label col-md-3 col-sm-3">Date Of Birth <span class="" style="color:red">*</span></label>
-														<div class="col-md-2 col-sm-2">
+														<div class="col-md-6 col-sm-6">
 															<input class="date-picker form-control col-md-7 col-xs-12" type="date" id="dateDateOfBirth" name="dateDateOfBirth" value="<?php echo $varcharStudentBirthdate; ?>" required="required">
 														</div>
-
-														<label class="control-label col-md-1 col-sm-1">Age</label>
-														<div class="col-md-3 col-sm-3">
+													</div>
+													<div class="item form-group">
+														<label class="control-label col-md-3 col-sm-3">Age</label>
+														<div class="col-md-6 col-sm-6">
 															<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxAge" name="txtbxAge" value="<?php echo $varcharStudentAge; ?>" readonly="readonly" required="required" placeholder="Invalid Date of Birth" data-validate-minmax="13,115">
 														</div>  
 													</div>
@@ -1770,8 +1771,8 @@ require 'header.php';
 											<div class="tab-pane" role="tabpanel" id="complete">
 												<h3 class="text-center">Step 6</h3>
 												<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Test Results</h1></span>
-												<?php
+													<span class="section"> <h1 class="text-center">Test Results</h1></span>
+													<?php
 													$i = 0;
 													$resultTest = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC");
 													$noOfTestResults = mysqli_num_rows($resultTest);
@@ -2094,7 +2095,37 @@ require 'header.php';
 						document.getElementById("txtbxTestResultPercentileRatingInitial").placeholder = "Invalid Score";
 					}
 				})
-				
+				//Dynamic
+				// $('#txtbxTestResultRawScoreNew').blur(function() {
+				// 	var txtbxTestResultRawScoreNew = $(this).val();
+				// 	if( txtbxTestResultRawScoreNew < 0 || txtbxTestResultRawScoreNew > 9999)
+				// 	{
+				// 		document.getElementById("txtbxTestResultRawScoreNew").value = "";
+				// 		document.getElementById("txtbxTestResultRawScoreNew").placeholder = "Invalid Rating";
+				// 	}
+				// })
+				// $('#txtbxTestResultPercentileRatingNew').blur(function() {
+				// 	var txtbxTestResultPercentileRatingNew = $(this).val();
+				// 	if( txtbxTestResultPercentileRatingNew < 1 || (txtbxTestResultPercentileRatingNew > 5 && txtbxTestResultPercentileRatingNew < 50) || txtbxTestResultPercentileRatingNew > 100)
+				// 	{
+				// 		document.getElementById("txtbxTestResultPercentileRatingNew").value = "";
+				// 		document.getElementById("txtbxTestResultPercentileRatingNew").placeholder = "Invalid Score";
+				// 	}
+				// })
+				// $('#dateTestResultDateNew').blur(function() {
+				// 	var dateString = $(this).val();
+				// 	var myDate = new Date(dateString);
+				// 	var today = new Date();
+				// 	var test = today.getFullYear() - myDate.getFullYear();
+				// 	var m = today.getMonth() - myDate.getMonth();
+				// 	if (m < 0 || (m === 0 && today.getDate() < myDate.getDate())) {
+				// 		test--;
+				// 	}
+				// 	if (test > 115 || myDate > today )
+				// 	{
+				// 		document.getElementById("dateTestResultDateNew").value = "";
+				// 	}
+				// })
 				
 				$('#datePsychiatrist').blur(function() {
 					var dateString = $(this).val();
@@ -2354,28 +2385,28 @@ require 'header.php';
 					}
 				})
 				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
-					{
-						document.getElementById("txtbxMotherOccupation").disabled = true;
-						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
-						document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
-						document.getElementById("txtbxMotherOccupation").value = "";
-						document.getElementById("txtbxMotherNameOfEmployer").value = "";
-						document.getElementById("txtbxMotherAddressOfEmployer").value = "";
-					}
-					else if($(this).val() == 'Self-Employed')
-					{
-						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
-						document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
-						document.getElementById("txtbxMotherNameOfEmployer").value = "";
-						document.getElementById("txtbxMotherAddressOfEmployer").value = "";
-						document.getElementById("txtbxMotherOccupation").disabled = false;
-					}
-					else
-					{
-						document.getElementById("txtbxMotherOccupation").disabled = false;
-						document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
-						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
-					}
+				{
+					document.getElementById("txtbxMotherOccupation").disabled = true;
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherOccupation").value = "";
+					document.getElementById("txtbxMotherNameOfEmployer").value = "";
+					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+				}
+				else if($(this).val() == 'Self-Employed')
+				{
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherNameOfEmployer").value = "";
+					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+					document.getElementById("txtbxMotherOccupation").disabled = false;
+				}
+				else
+				{
+					document.getElementById("txtbxMotherOccupation").disabled = false;
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = false;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
+				}
 				$('#dropdownFatherOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2402,28 +2433,28 @@ require 'header.php';
 					}
 				})
 				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
-					{
-						document.getElementById("txtbxFatherOccupation").disabled = true;
-						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
-						document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
-						document.getElementById("txtbxFatherOccupation").value = "";
-						document.getElementById("txtbxFatherNameOfEmployer").value = "";
-						document.getElementById("txtbxFatherAddressOfEmployer").value = "";
-					}
-					else if($(this).val() == 'Self-Employed')
-					{
-						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
-						document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
-						document.getElementById("txtbxFatherNameOfEmployer").value = "";
-						document.getElementById("txtbxFatherAddressOfEmployer").value = "";
-						document.getElementById("txtbxFatherOccupation").disabled = false;
-					}
-					else
-					{
-						document.getElementById("txtbxFatherOccupation").disabled = false;
-						document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
-						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
-					}
+				{
+					document.getElementById("txtbxFatherOccupation").disabled = true;
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherOccupation").value = "";
+					document.getElementById("txtbxFatherNameOfEmployer").value = "";
+					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+				}
+				else if($(this).val() == 'Self-Employed')
+				{
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherNameOfEmployer").value = "";
+					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
+					document.getElementById("txtbxFatherOccupation").disabled = false;
+				}
+				else
+				{
+					document.getElementById("txtbxFatherOccupation").disabled = false;
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = false;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
+				}
 				$('#dropdownGuardianOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2559,7 +2590,6 @@ require 'header.php';
 					}
 					else if( txtbxNoOfChildrenInTheFamily <= 0)
 					{
-						alert("Invalid No. of Children");
 						document.getElementById("txtbxNoOfChildrenInTheFamily").value = "";
 						document.getElementById("txtbxNoOfBrothers").disabled = true;
 						document.getElementById("txtbxNoOfSisters").disabled = true;
@@ -3139,8 +3169,8 @@ require 'header.php';
 			});
 
 document.querySelectorAll('input[data-max-words]').forEach(input => {
-			  // Remember the word limit for the current input
-			  let maxWords = parseInt(input.getAttribute('data-max-words') || 0)
+				// Remember the word limit for the current input
+				let maxWords = parseInt(input.getAttribute('data-max-words') || 0)
 			  // Add an eventlistener to test for key inputs
 			  input.addEventListener('keydown', e => {
 			  	let target = e.currentTarget

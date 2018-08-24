@@ -6,17 +6,30 @@ if(isset($_POST['btnLogin']))
 	$varcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['loginpw']);
 
 	$queryAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentAccountNumber' AND studentPassword='$varcharStudentAccountPassword' ";
-	echo "<script type='text/javascript'>alert('$queryAccount');</script>";
-	echo "<script type='text/javascript'>alert('$varcharStudentAccountNumber');</script>";
+
+	$queryAccount2 = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$varcharStudentAccountNumber'";
 
 	$queryArray = mysqli_query($connect, $queryAccount);
+	$queryArray2 = mysqli_query($connect, $queryAccount2);
 	if (mysqli_num_rows($queryArray)>0) 
 	{
 		session_start();
 		$_SESSION['sessionStudentAccountNumber'] = $varcharStudentAccountNumber;
 		$_SESSION['sessionStudentAccountPassword'] = $varcharStudentAccountPassword;
-		$message = "You will now be redirected to your account";
-		echo "<script type='text/javascript'>alert('$message');window.location.replace('index2.php');</script>";
+		while($row=mysqli_fetch_array($queryArray2))
+		{
+			if($row['sex']==''||$row['sex']==NULL)
+			{
+				$message = "Please fill up your Individual Inventory Form";
+				echo "<script type='text/javascript'>alert('$message');window.location.replace('individualInventory.php');</script>";
+			}
+			else
+			{
+				$message = "Successfully logged in! You will now redirect to Homepage";
+				echo "<script type='text/javascript'>alert('$message');window.location.replace('index2.php');</script>";
+			}
+		}
+		
 	}
 	else 
 	{
