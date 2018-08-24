@@ -1810,7 +1810,7 @@ function init_JQVmap(){
 
     			// validate a field on "blur" event, a 'select' on 'change' event & a '.reuired' classed multifield on 'keyup':
     			$('form')
-    			.on('blur', 'input[required], input[data-validate-minmax] , input.optional, select.required, input[type = "date"]', validator.checkField)
+    			.on('blur', 'input[required], input[data-validate-minmax] , input.optional,select, select.required, input[type = "date"]', validator.checkField)
     			.on('change', 'select.required', validator.checkField)
     			.on('keypress', 'input[required][pattern]', validator.keypress);
 
@@ -1917,7 +1917,7 @@ function init_JQVmap(){
         					var myform = document.getElementById("formWizard");
         					var fd = new FormData(myform );
         					$.ajax({
-        						url: "IIRFormData.php",
+        						url: "iirdata.php",
         						data: fd,
         						cache: false,
         						processData: false,
@@ -1925,7 +1925,8 @@ function init_JQVmap(){
         						type: 'POST',
         						success: function (dataofconfirm) {
             						$('#insertphp').html(dataofconfirm);
-            						location.reload();
+            						alert('Done! Redirecting to Profile');
+            						location.href = "profile.php";
             					}
             				});
         				}
