@@ -15,7 +15,6 @@ if (isset($_POST['btnLogin']))
 	if (mysqli_num_rows($resultAccount) == 1) 
 	{
 		$_SESSION['sessionAdminEmail'] = $varcharEmail;
-		$_SESSION['sessionAdminAccessLevel'] = $varcharAccessLevel;
 		header('location: index.php');
 	}
 	else 
