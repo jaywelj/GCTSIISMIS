@@ -287,8 +287,8 @@ if(isset($_POST['btnEmailSend']))
 		<div class="container">
 			<div class="row">
 				<div class="header-section text-center">
-					<h2>Meet Our Faculty Member</h2>
-					<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Exercitationem nesciunt vitae,<br> maiores, magni dolorum aliquam.</p>
+					<h2>Meet Our Counselors</h2>
+					<p>Here Is The Administrators Of OCPS</p>
 					<hr class="bottom-line">
 				</div>
 				<?php
