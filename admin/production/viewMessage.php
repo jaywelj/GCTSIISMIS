@@ -66,5 +66,5 @@ if(isset($_POST["messageID"]))
 	echo $output;
 }
 else
-	echo '<script> altert("emplty string");</script>';
+	echo '<script> altert("empty string");</script>';
 ?>	

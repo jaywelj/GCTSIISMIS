@@ -5251,9 +5251,6 @@ require 'header.php';
 	<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
 	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom2.js"></script>
-
 	<script>
 		$(document).ready(function(){
 			$(document).on('click','.message-view',function(){
@@ -5271,6 +5268,10 @@ require 'header.php';
 
 		});
 	</script>
+	<!-- Custom Theme Scripts -->
+	<script src="../build/js/custom.min.js"></script>
+
+
 
 	<script type="text/javascript">
 		function course(){
