@@ -921,6 +921,10 @@ require 'header.php';
 					</div>
 				</div>
 			</div>
+
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 			<!-- /page content -->
 			<!--Modal Edit-->
 
@@ -973,6 +977,25 @@ require 'header.php';
 	<!-- morris.js -->
 	<script src="../vendors/raphael/raphael.min.js"></script>
 	<script src="../vendors/morris.js/morris.min.js"></script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
+
 	<script type="text/javascript">
 		function init_DataTables() {
 			const monthNames = ["January", "February", "March", "April", "May", "June",
