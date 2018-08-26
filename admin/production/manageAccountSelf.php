@@ -3,8 +3,6 @@ include("errorReport.php");
 session_start();
 
 $varcharAdminEmail = $_SESSION['sessionAdminEmail'];
-$varcharAdminAccessLevel = $_SESSION['sessionAdminAccessLevel'];
-
 include("connectionString.php");  
 
 
@@ -55,7 +53,7 @@ if(isset($_POST['btnAdd']))
 		$message = "New password does not match";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 	}
-	else if($txtbxAdminAccountC2Password <> $varcharProfileAdminPassword)
+	else if($VarcharAdminAccountC2Password <> $VarcharAdminAccountCPassword)
 	{
 		$message = "Wrong password";
 		echo "<script type='text/javascript'>alert('$message');</script>";
@@ -95,6 +93,7 @@ if(isset($_POST['btnAdd']))
 		}
 	}
 }
+
 if(isset($_POST['btnEdit']))
 {
 	include_once("connectionString.php");
@@ -145,7 +144,7 @@ if(isset($_POST['btnEdit']))
 		$message = "New password does not match";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 	}
-	else if($txtbxAdminAccountC2Password <> $varcharProfileAdminPassword)
+	else if($VarcharAdminAccountC2Password <> $VarcharAdminAccountPassword)
 	{
 		$message = "Wrong password";
 		echo "<script type='text/javascript'>alert('$message');</script>";
@@ -156,13 +155,13 @@ if(isset($_POST['btnEdit']))
 		//insert data to database   
 		if (!empty($varcharAdminAccountImage)) 
 		{
-			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress' WHERE `adminEmail` = '$varcharProfileAdminEmail' ";
+			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminImage` = '$varcharAdminAccountImage', `adminAddress` = '$varcharAdminAccountAddress' WHERE `adminEmail` = '$varcharAdminAccountEmail' ";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
-			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharProfileAdminEmail'";
+			$queryEdit = "UPDATE `tbl_adminaccount` SET `adminFirstName` = '$varcharAdminAccountFirstName', `adminMiddleName` = '$varcharAdminAccountMiddleName', `adminLastName` = '$varcharAdminAccountLastName', `adminBirthDate` = '$varcharAdminAccountBirthdate', `adminGender` = '$varcharAdminAccountGender', `adminContactNo` = '$varcharAdminAccountContactNo', `adminAddress` = '$varcharAdminAccountAddress' WHERE `tbl_adminaccount`.`adminEmail` = '$varcharAdminAccountEmail'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
@@ -242,7 +241,6 @@ require 'header.php';
 				$varcharProfileAdminLastName = $row['adminLastName'];
 				$varcharProfileAdminBirthDate = $row['adminBirthDate'];
 				$varcharProfileAdminPassword = $row['adminPassword'];
-				$varcharProfileAdminAccessLevel = $row['adminAccessLevel'];
 				$varcharProfileAdminImage = $row['adminImage'];
 				$varcharProfileAdminGender = $row['adminGender'];
 				$varcharProfileAdminContactNo = $row['adminContactNo'];			
@@ -368,10 +366,8 @@ require 'header.php';
 																<th scope="row">Name</th>
 																<td>'.$varcharProfileAdminFirstName.' '.$varcharProfileAdminMiddleName.' '.$varcharProfileAdminLastName.'</td>
 																</tr>
-																<tr>
-																<th scope="row">Access Level</th>
-																<td>'.$varcharProfileAdminAccessLevel.'</td>
-																</tr>
+																
+												
 																<tr>
 																<th scope="row">Gender</th>
 																<td>'.$varcharProfileAdminGender.'</td>
@@ -439,7 +435,7 @@ require 'header.php';
 									<div class="col-md-12 col-sm-12 col-xs-12">
 										<div class="x_panel">
 											<div class="x_title">
-												<h2>Admin ID : <?php echo $varcharProfileAdminID ; ?> <small> Access Level : <?php echo $varcharProfileAdminAccessLevel ; ?></small></h2>
+												<h2>Admin ID : <?php echo $varcharProfileAdminID ; ?> <small> </small></h2>
 												<ul class="nav navbar-right">
 													<button class="btn btn-default btn-info" data-toggle="modal" data-target="#edit_self_data_Modal" type="button">Edit Your Account</button>
 												</ul>
@@ -461,9 +457,7 @@ require 'header.php';
 												<td>'.$varcharProfileAdminFirstName.' '.$varcharProfileAdminMiddleName.' '.$varcharProfileAdminLastName.'</td>
 												</tr>
 												<tr>
-												<th scope="row">Access Level</th>
-												<td>'.$varcharProfileAdminAccessLevel.'</td>
-												</tr>
+												
 												<tr>
 												<th scope="row">Gender</th>
 												<td>'.$varcharProfileAdminGender.'</td>
@@ -505,7 +499,7 @@ require 'header.php';
 							<div class="modal-content">
 								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
 									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">Edit your account, <?php echo $varcharProfileAdminFirstName ; ?></h4>
+									<h4 class="modal-title text-center">Edit Profile - <?php echo $varcharProfileAdminFirstName ; ?></h4>
 								</div>
 								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 
@@ -581,7 +575,7 @@ require 'header.php';
 
 								</div>
 								<div class="modal-footer">
-									<input type="submit" name="btnEdit" id="btnEdit" value="Edit Your Account" class="btn btn-success " />
+									<input type="submit" name="btnEdit" id="btnEdit" value="Save Changes" class="btn btn-success " />
 									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 								</div>
 							</div>
