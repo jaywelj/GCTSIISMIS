@@ -252,7 +252,7 @@ require 'header.php';
 				<div class="">
 					<div class="page-title">
 						<div class="title_left">
-							<h3>User Profile</h3>
+							<h3>Counselor Profile</h3>
 						</div>
 
 						<div class="title_right">
