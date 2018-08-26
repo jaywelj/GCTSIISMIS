@@ -344,6 +344,9 @@ else
 	body{
 		font-size: 	12px;
 	}
+	.btn {
+		padding: 7px 9px;
+	}
 </style>
 </head>
 
@@ -864,12 +867,12 @@ else
 													<div class="col-md-6 col-sm-6">
 														<div class="btn-group" data-toggle="buttons">
 															<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioPreElemTypeOfSchool" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
+																<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPub" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
 															</label>
 															<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																<input type="radio" name="radioPreElemTypeOfSchool" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
 															</label>
-															<input type="radio" name="radioPreElemTypeOfSchool" value=NULL style="display: none;">
+															<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPri" value=NULL style="display: none;">
 														</div>
 													</div>
 												</div>
@@ -1118,9 +1121,12 @@ else
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Age</label>
 													<div class="col-md-3 col-sm-3">
-														<input type="number" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge" value="<?php echo $varcharStudentMotherAge;  ?>" data-validate-minmax="18,123">
+														<input type="number" class="form-control col-md-7 col-xs-12" name="txtbxMotherAge" id="txtbxMotherAge"  value="<?php echo ($varcharStudentMotherAge == '0')?'':$varcharStudentMotherAge?>" data-validate-minmax="18,123">
 													</div>
-													<div class="btn-group" data-toggle="buttons">
+												</div>
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Status</label>
+													<div class="btn-group col-md-3 col-sm-3" data-toggle="buttons">
 														<label class="btn btn-default <?php echo ($varcharStudentMotherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 															<input checked="checked" type="radio" name="radioMotherState" id="radioMotherStateL" value="Living" <?php echo ($varcharStudentMotherStatus =='Living')?'checked':'' ?>> Living 
 														</label>
@@ -1191,9 +1197,12 @@ else
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Age</label>
 													<div class="col-md-3 col-sm-3">
-														<input type="number" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge" value="<?php echo $varcharStudentFatherAge;  ?>" data-validate-minmax="18,123">
+														<input type="number" class="form-control col-md-7 col-xs-12" name="txtbxFatherAge" id="txtbxFatherAge" value="<?php echo ($varcharStudentFatherAge == '0')?'':$varcharStudentFatherAge?>"" data-validate-minmax="18,123">
 													</div>
-													<div class="btn-group" data-toggle="buttons">
+												</div>
+												<div class="item form-group">
+													<label class="control-label col-md-3 col-sm-3"  >Status</label>
+													<div class="btn-group col-md-3 col-sm-3" data-toggle="buttons">
 														<label class="btn btn-default <?php echo ($varcharStudentFatherStatus =='Living')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 															<input checked="checked" type="radio" name="radioFatherState" id="radioFatherStateL" value="Living" <?php echo ($varcharStudentFatherStatus =='Living')?'checked':'' ?>> Living 
 														</label>
