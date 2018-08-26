@@ -130,7 +130,7 @@ include("connectionString.php");
 									<span>
 									<span class="message"><i class="'.$messageStatus.'"></i></span>
 									<span>'.$senderName.'</span>
-									<span class="time">'.$messageDatePassed->format("%d d %h h %i m %s s ago").'</span>
+									<span class="time">'.$messageDatePassed->format("%d d %h h ago").'</span>
 									</span>
 									<span class="message">
 									'.$subCategoryName.'
@@ -153,7 +153,7 @@ include("connectionString.php");
 										<span>
 										<span class="message"><i class="'.$messageStatus.'"></i></span>
 										<span>'.$senderName.'</span>
-										<span class="time">'.$messageDatePassed->format("%d d %h h %i m %s s ago").'</span>
+										<span class="time">'.$messageDatePassed->format("%d d %h h ago").'</span>
 										</span>
 										<span class="message">
 										'.$subCategoryName.'
@@ -169,7 +169,7 @@ include("connectionString.php");
 										<span>
 										<span class="message"><i class="'.$messageStatus.'"></i></span>
 										<span>'.$senderName.'</span>
-										<span class="time">'.$messageDatePassed->format("%d d %h h %i m %s s ago").'</span>
+										<span class="time">'.$messageDatePassed->format("%d d %h h ago").'</span>
 										</span>
 										<span class="message">
 										'.$subCategoryName.'

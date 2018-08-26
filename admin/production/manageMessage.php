@@ -116,7 +116,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryMessage = "SELECT * FROM tbl_message ORDER BY messageDateSent";
+											$queryMessage = "SELECT * FROM tbl_message ORDER BY messageDateSent DESC";
 											$resultMessage = mysqli_query($connect, $queryMessage); 
 											while($row = mysqli_fetch_array($resultMessage))  
 											{  

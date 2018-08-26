@@ -303,9 +303,9 @@ require 'header.php';
 								<div class="col-md-9 col-sm-9 col-xs-12">
 									<div class="" role="tabpanel" data-example-id="togglable-tabs">
 										<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-											<li role="presentation" class="active"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
+											<li role="presentation" class="active"><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
 											</li>
-											<li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Profile</a>
+											<li role="presentation" class=""><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Recent Activity</a>
 											</li>
 										</ul>
 										<div id="myTabContent" class="tab-content">
@@ -589,15 +589,15 @@ require 'header.php';
 					</div>
 				</form>
 				<!--/Modal Edit Self-->
-<<<<<<< HEAD
+				<<<<<<< HEAD
 				
 				<!-- MODAL FOR MESSAGE -->
 				<?php 
 				require 'viewMessageModal.php';
 				?>
 				<!-- /MODAL FOR MESSAGE -->
-=======
->>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
+				=======
+				>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 
 
 				<!-- footer content -->
@@ -610,7 +610,7 @@ require 'header.php';
 				<!-- /footer content -->
 			</div>
 		</div>
-<<<<<<< HEAD
+		<<<<<<< HEAD
 
 		<!-- jQuery -->
 		<script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -693,7 +693,7 @@ require 'header.php';
 				});
 			});
 		</script>
-=======
+		=======
 
 		<!-- jQuery -->
 		<script src="../vendors/jquery/dist/jquery.min.js"></script>
@@ -757,7 +757,7 @@ require 'header.php';
 				});
 			});
 		</script>
->>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
+		>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
 		<script type="text/javascript">
 			document.getElementById("txtbxEditAdminAccountPassword").onkeyup = function(){
 				checkPassword();
