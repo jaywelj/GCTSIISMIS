@@ -46,6 +46,9 @@ if(isset($_POST["studentNumber"]))
 							<label>Section</label>
 							<input type="number" name="txtbxEditStudentSection" id="txtbxEditStudentSection" value="'.$row["section"].'" class="form-control" />
 							<br />
+							<label>Password</label>
+							<input type="text" name="txtbxEditStudentPassword" id="txtbxEditStudentPassword" value="'.$row["studentPassword"].'" class="form-control" />
+							<br />
 							';
 							// mysql select query
 							$queryCourse2 = "SELECT * FROM tbl_course";
