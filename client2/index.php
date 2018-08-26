@@ -721,7 +721,7 @@ if(isset($_POST['btnEmailSend']))
 					<form method="post">
 						<div class="col-md-6 col-sm-6 col-xs-12 left">
 							<div class="form-group">
-								<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" data-msg="Please enter at least 4 chars" />
+								<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" maxlength="20" data-msg="Please enter at least 4 chars" />
 								<div class="validation"></div>
 							</div>
 							<div class="form-group">
