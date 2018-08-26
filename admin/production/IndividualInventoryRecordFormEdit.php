@@ -1430,7 +1430,7 @@ require 'header.php';
 														<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study? <span class="" style="color:red">*</span></label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
-																<label class="btn btn-default<?php echo ($varcharStudentStudyPlace =='Yes')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
+																<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='Yes')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
 																	<input checked="checked" type="radio" name="radioQuietPlaceToSTudy" value="Yes" <?php echo ($varcharStudentStudyPlace =='Yes')?'checked':'' ?>> Yes
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='No')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
