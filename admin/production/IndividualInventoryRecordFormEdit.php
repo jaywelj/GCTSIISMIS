@@ -843,12 +843,12 @@ require 'header.php';
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Public')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioPreElemTypeOfSchool" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
+																	<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPub" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioPreElemTypeOfSchool" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
+																	<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPub" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
-																<input type="radio" name="radioPreElemTypeOfSchool" value=NULL style="display: none;">
+																<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPri" value=NULL style="display: none;">
 															</div>
 														</div>
 													</div>

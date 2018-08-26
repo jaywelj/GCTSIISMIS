@@ -180,10 +180,10 @@ while($res5 = mysqli_fetch_array($result5)){
 
 
 
-if($varcharStudentSex = "F"){
+if($varcharStudentSex == "F"){
 	$varcharStudentSex = "Female";
 }
-else if($varcharStudentSex = "M"){
+else if($varcharStudentSex == "M"){
 	$varcharStudentSex = "Male";
 }
 
@@ -412,11 +412,11 @@ require 'header.php';
 																	<tbody>
 																		<tr>
 																			<th scope="row" style="width: 400px;">City Address</th>
-																			<td><?php echo $varcharStudentCityHouseNumber. $varcharStudentCityCity.$varcharStudentCityBarangay; ?></td>
+																			<td><?php echo $varcharStudentCityHouseNumber.' '.$varcharStudentCityBarangay .' '. $varcharStudentCityCity; ?></td>
 																		</tr>
 																		<tr>
 																			<th scope="row">Provincial Address</th>
-																			<td><?php echo $varcharStudentProvinceHouseNumber.$varcharStudentProvinceProvince.$varcharStudentProvinceCity.$varcharStudentProvinceBarangay; ?></td>
+																			<td><?php echo $varcharStudentProvinceHouseNumber.' '.$varcharStudentProvinceBarangay.' '.$varcharStudentProvinceCity.', '. $varcharStudentProvinceProvince; ?></td>
 																		</tr>
 																		<tr>
 																			<th scope="row">Email</th>
