@@ -1,5 +1,6 @@
 <?php
 include("session.php");
+include("iircheck.php"); 
 include("connectionString.php");
 $id= $_SESSION['sessionStudentAccountNumber'];
 $query = "SELECT * FROM tbl_personalinfo WHERE studentNumber = '$id'";
