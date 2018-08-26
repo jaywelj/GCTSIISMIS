@@ -160,10 +160,6 @@ require 'header.php';
 			
 			<!--/Modal Edit-->
 
-			<?php 
-			require 'viewMessageModal.php';
-			?>
-
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
