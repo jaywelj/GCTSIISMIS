@@ -70,18 +70,14 @@ while($res = mysqli_fetch_array($result))
 			<div class="menu_section">
 				<h3>General</h3>
 				<ul class="nav side-menu">
-					<li><a><i class="fa fa-home"></i> Home <span class="fa fa-chevron-down"></span></a>
-						<ul class="nav child_menu">
-							<li><a href="index.php">Dashboard</a></li>
-							<li><a href="index2.php">Dashboard2</a></li>
-							<li><a href="index3.php">Dashboard3</a></li>
-						</ul>
+					<li><a href="index.php"><i class="fa fa-home"></i> Home</a>
+						
 					</li>
 					<li><a><i class="fa fa-table"></i> Individual Inventory <span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<?php
 							include("connectionString.php");  
-							$queryCollege = "SELECT * FROM tbl_college";
+							$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
 							$resultCollege = mysqli_query($connect, $queryCollege); 
 							while($row = mysqli_fetch_array($resultCollege))  
 							{  
@@ -100,7 +96,7 @@ while($res = mysqli_fetch_array($result))
 						<ul class="nav child_menu">
 							<?php
 							include("connectionString.php");  
-							$queryCollege = "SELECT * FROM tbl_college";
+							$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
 							$resultCollege = mysqli_query($connect, $queryCollege); 
 							while($row = mysqli_fetch_array($resultCollege))  
 							{  
@@ -118,7 +114,7 @@ while($res = mysqli_fetch_array($result))
 						<ul class="nav child_menu">
 							<?php
 							include("connectionString.php");  
-							$queryCollege = "SELECT * FROM tbl_college";
+							$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
 							$resultCollege = mysqli_query($connect, $queryCollege); 
 							while($row = mysqli_fetch_array($resultCollege))  
 							{  

@@ -370,7 +370,9 @@ require 'header.php';
 				</div>
 			</div>
 			<!--/Modal Add-->
-
+			<?php 
+			require 'viewMessageModal.php';
+			?>
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -412,105 +414,124 @@ require 'header.php';
 	<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 	<!-- Custom Theme Scripts -->
 	<script src="../build/js/custom.js"></script>
-	<script type="text/javascript">
-			const monthNames = ["January", "February", "March", "April", "May", "June",
-			"July", "August", "September", "October", "November", "December"
-			];
 
-			const d = new Date();
-			var monthName = monthNames[d.getMonth()];
-			var year = d.getFullYear();
-			console.log('run_datatables');
-
-			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
-			console.log('init_DataTables');
-
-			var handleDataTableButtons = function() {
-				if ($("#datatable-buttons").length) {
-					$("#datatable-buttons").DataTable({
-						dom: "Blfrtip",
-						buttons: [
-						{
-							extend: "copy",
-							className: "btn-sm"
-						},
-						{
-							extend: "csv",
-							className: "btn-sm"
-						},
-						{
-							extend: "excel",
-							className: "btn-sm"
-						},
-						{
-							extend: "pdfHtml5",
-							className: "btn-sm"
-						},
-						{
-							extend: "print",
-							customize: function ( win ) {
-								$(win.document.body)
-								.css( 'font-size', '10pt', 'margin-left', '-500px' )
-								.prepend(
-									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >Office of Counseling and Psychological Services</h4><h3 class="text-center" >Query Report</h3><h5 class="text-center" style="margin-bottom:40px;">'+monthName+', '+year+'</h5><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
-									);
-
-								$(win.document.body).find( 'table' )
-								.addClass( 'compact' )
-								.css( 'font-size', 'inherit');
-							},
-							className: "btn-lg"
-						},
-						],
-						responsive: true
-					});
-				}
-			};
-
-			TableManageButtons = function() {
-				"use strict";
-				return {
-					init: function() {
-						handleDataTableButtons();
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.message-view',function(){
+				var messageID = $(this).attr("id");
+				$.ajax({
+					url:"viewMessage.php",
+					method:"post",
+					data:{messageID:messageID},
+					success:function(data){
+						$('#messageDetails').html(data);
+						$('#view_message_Modal').modal('show');
 					}
-				};
-			}();
-
-			$('#datatable').dataTable();
-
-			$('#datatable-keytable').DataTable({
-				keys: true
-			});
-
-			$('#datatable-responsive').DataTable();
-
-			$('#datatable-scroller').DataTable({
-				ajax: "js/datatables/json/scroller-demo.json",
-				deferRender: true,
-				scrollY: 380,
-				scrollCollapse: true,
-				scroller: true
-			});
-
-			$('#datatable-fixed-header').DataTable({
-				fixedHeader: true
-			});
-
-			var $datatable = $('#datatable-checkbox');
-
-			$datatable.dataTable({
-				'order': [[ 1, 'asc' ]],
-				'columnDefs': [
-				{ orderable: false, targets: [0] }
-				]
-			});
-			$datatable.on('draw.dt', function() {
-				$('checkbox input').iCheck({
-					checkboxClass: 'icheckbox_flat-green'
 				});
 			});
 
-			TableManageButtons.init();
+		});
+	</script>
+
+	<script type="text/javascript">
+		const monthNames = ["January", "February", "March", "April", "May", "June",
+		"July", "August", "September", "October", "November", "December"
+		];
+
+		const d = new Date();
+		var monthName = monthNames[d.getMonth()];
+		var year = d.getFullYear();
+		console.log('run_datatables');
+
+		if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+		console.log('init_DataTables');
+
+		var handleDataTableButtons = function() {
+			if ($("#datatable-buttons").length) {
+				$("#datatable-buttons").DataTable({
+					dom: "Blfrtip",
+					buttons: [
+					{
+						extend: "copy",
+						className: "btn-sm"
+					},
+					{
+						extend: "csv",
+						className: "btn-sm"
+					},
+					{
+						extend: "excel",
+						className: "btn-sm"
+					},
+					{
+						extend: "pdfHtml5",
+						className: "btn-sm"
+					},
+					{
+						extend: "print",
+						customize: function ( win ) {
+							$(win.document.body)
+							.css( 'font-size', '10pt', 'margin-left', '-500px' )
+							.prepend(
+								'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >Office of Counseling and Psychological Services</h4><h3 class="text-center" >Query Report</h3><h5 class="text-center" style="margin-bottom:40px;">'+monthName+', '+year+'</h5><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
+								);
+
+							$(win.document.body).find( 'table' )
+							.addClass( 'compact' )
+							.css( 'font-size', 'inherit');
+						},
+						className: "btn-lg"
+					},
+					],
+					responsive: true
+				});
+			}
+		};
+
+		TableManageButtons = function() {
+			"use strict";
+			return {
+				init: function() {
+					handleDataTableButtons();
+				}
+			};
+		}();
+
+		$('#datatable').dataTable();
+
+		$('#datatable-keytable').DataTable({
+			keys: true
+		});
+
+		$('#datatable-responsive').DataTable();
+
+		$('#datatable-scroller').DataTable({
+			ajax: "js/datatables/json/scroller-demo.json",
+			deferRender: true,
+			scrollY: 380,
+			scrollCollapse: true,
+			scroller: true
+		});
+
+		$('#datatable-fixed-header').DataTable({
+			fixedHeader: true
+		});
+
+		var $datatable = $('#datatable-checkbox');
+
+		$datatable.dataTable({
+			'order': [[ 1, 'asc' ]],
+			'columnDefs': [
+			{ orderable: false, targets: [0] }
+			]
+		});
+		$datatable.on('draw.dt', function() {
+			$('checkbox input').iCheck({
+				checkboxClass: 'icheckbox_flat-green'
+			});
+		});
+
+		TableManageButtons.init();
 	</script>
 	<script type="text/javascript">
 		function course(){
