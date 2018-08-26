@@ -11,7 +11,6 @@
 			<div class="modal-body padtrbl">
 
 				<div class="login-box-body">
-					<p class="login-box-msg">Sign in to start your session</p>
 					<div class="form-group">
 						<form name="" id="loginForm" method="post">
 							<div class="form-group has-feedback">
@@ -38,7 +37,7 @@
 									<div class="checkbox icheck">
 										<div class="checkbox text-center ">
 											<input id="loginrem" type="checkbox" value="">
-											<h5 style="display:inline;">Remember</h5>
+											<h5 style="display:inline;">Remember Password</h5>
 										</div>
 									</div>
 								</div>
@@ -49,6 +48,9 @@
 						</form>
 					</div>
 				</div>
+			</div>
+			<div class="modal-header">
+				<h5 class="modal-title text-center form-title">Don't have an account? <a href="#" data-target="#signup" data-toggle="modal">Sign Up.</a></h5>
 			</div>
 		</div>
 	</div>
@@ -67,7 +69,7 @@
 			<div class="modal-body padtrbl">
 
 				<div class="login-box-body">
-					<p class="login-box-msg">Create an account</p>
+					<p class="login-box-msg">Start to create the most out of your college journey.</p>
 					<div class="form-group">
 						<form name="" id="signUpForm" method="post">
 							<div class="row">
@@ -185,7 +187,7 @@
 							</div>
 							<div class="row">
 								<div class="col-xs-12">
-									<input type="submit" class="btn btn-green btn-block btn-flat" name="btnAdd" value="Sign Me Up"/>
+									<input type="submit" class="btn btn-green btn-block btn-flat" name="btnAdd" value="Sign Up"/>
 								</div>
 							</div>
 						</form>
