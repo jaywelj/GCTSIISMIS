@@ -314,7 +314,7 @@ if(isset($_POST['btnEmailSend']))
 			</div>
 		</div>
 	</nav>
-	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:5px; padding:7px; margin-top: 70px;" >
+	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:0px; padding:7px; margin-top: 70px; border-bottom: solid 1px #f2dede;" >
 		<image class="navbar-left" src="img/PUPLogo88x88.png"></image>
 		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">
 			<h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
