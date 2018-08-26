@@ -96,7 +96,7 @@ while($res = mysqli_fetch_array($result))
 							?>
 						</ul>
 					</li>
-					<li><a><i class="fa fa-bar-chart-o"></i>Tally<span class="fa fa-chevron-down"></span></a>
+					<li><a><i class="fa fa-bar-chart-o"></i>IIR Tally<span class="fa fa-chevron-down"></span></a>
 						<ul class="nav child_menu">
 							<?php
 							include("connectionString.php");  
