@@ -31,6 +31,10 @@ if(isset($_POST["studentNumber"]))
 							<tr>
 								<th scope="row">Year and Section</th>
 								<td>'.$row["year"]." - ".$row["section"].'</td>
+							</tr>
+							<tr>
+								<th scope="row">Password</th>
+								<td>'.$row["studentPassword"].'</td>
 							</tr>';
 						}
 						$output .= '

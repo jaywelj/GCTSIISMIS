@@ -388,7 +388,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber ORDER BY tbl_studentaccount.studentNumber ASC";
+											$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber ORDER BY tbl_studentaccount.studentDateAccountCreated DESC";
 											$resultStudent = mysqli_query($connect, $queryStudent); 
 											while($row = mysqli_fetch_array($resultStudent))  
 											{  
