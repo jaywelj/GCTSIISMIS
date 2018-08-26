@@ -16,7 +16,7 @@ if(isset($_POST['btnAddAccount']))
 
 	$VarcharAdminAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountAddPassword']);
 
-	$VarcharAdminAccountConfirmPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountCPassword'])
+	$VarcharAdminAccountConfirmPassword = mysqli_real_escape_string($connect, $_POST['txtbxAdminAccountCPassword']);
 
 	$VarcharAdminAccountBirthdate = mysqli_real_escape_string($connect, $_POST['dateAdminAccountBirthdate']);
 
