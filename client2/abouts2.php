@@ -1,4 +1,7 @@
-
+<?php
+include("session.php"); 
+include("iircheck.php"); 
+?>
 <!DOCTYPE html>
 <html lang="en">
 

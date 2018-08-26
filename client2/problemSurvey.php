@@ -1,6 +1,7 @@
 <?php
 include("errorReport.php");
 include("session.php");
+include("iircheck.php"); 
 include("connectionString.php");
 $studentNumber = $_SESSION['sessionStudentAccountNumber'];
 $query="SELECT DISTINCT studentNumber FROM tbl_answerproblem WHERE studentNumber = '$studentNumber'";
