@@ -373,7 +373,7 @@ if(isset($_POST['btnUpdate']))
 						<div class="intro-para text-center quote">
 							<p class="big-text"><?php echo $varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName ?> </p>
 							<p class="small-text"><?php echo $varcharStudentAbout ?></p>
-							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_data_Modal" id="btn-edit" name="btn-edit">Edit Info</button>
+							<button type="button" class="btn btn-info" data-toggle="modal" data-target="#edit_data_Modal" id="btn-edit" name="btn-edit" style="margin-top: -30px"	>Edit Info</button>
 						</div>
 					</div>
 				</div>

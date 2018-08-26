@@ -575,7 +575,7 @@ if(isset($_POST['btnEmailSend']))
 					<div class="col-xs-12">
 						<!-- Button --><!-- 
 						<button type="submit" id="btnEmailSend" name="btnEmailSend" class="form contact-form-button light-form-button oswald light">SEND EMAIL</button> -->
-						<input type="submit" name="btnEmailSend" id="btnEmailSend" class="light-form-button oswald light">
+						<input type="submit" name="btnEmailSend" id="btnEmailSend" class="light-form-button oswald light pull-right	">
 					</div>
 				</form>
 
