@@ -15,14 +15,14 @@
 						<form name="" id="loginForm" method="post">
 							<div class="form-group has-feedback">
 								<!----- username -------------->
-								<input class="form-control" placeholder="Student Number" id="loginid" name="loginid" type="text" autocomplete="off" />
+								<input class="form-control" placeholder="Student Number" id="loginid" name="loginid" type="text" autocomplete="off" pattern="[0-9]{4}-[0-9]{5}-[A-Za-z]{2}-[0-1]{1}" required="" maxlength="15" title="####-#####-MN-#" style="text-transform: uppercase;" />
 								<span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
 								<!---Alredy exists  ! -->
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
 							</div>
 							<div class="form-group has-feedback">
 								<!----- password -------------->
-								<input class="form-control" placeholder="Password" id="loginpw" name="loginpw" type="password" autocomplete="off" />
+								<input class="form-control" placeholder="PASSWORD" id="loginpw" name="loginpw" type="password" autocomplete="off" pattern=".{0}|.{8,}" required="" />
 								<span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
 								<!---Alredy exists  ! -->
 								<span class="glyphicon glyphicon-lock form-control-feedback"></span>

@@ -1843,6 +1843,17 @@ function init_JQVmap(){
         				n.show();
         				$('html,body').scrollTop(465);
         			}
+        			if(!(document.getElementById("radioPreElemTypeOfSchoolPub").checked)&&!(document.getElementById("radioPreElemTypeOfSchoolPri").checked)&&count==1)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Required to select a type of Pre-Elementary School',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
         			if(!(document.getElementById("radioElementaryTypeOfSchoolPub").checked)&&!(document.getElementById("radioElementaryTypeOfSchoolPri").checked)&&count==1)
         			{
         				submit = false;

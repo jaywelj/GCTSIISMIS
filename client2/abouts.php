@@ -252,7 +252,7 @@ if(isset($_POST['btnAdd']))
 					<span class="icon-bar"></span>
 				</button>
 				<a class="navbar-brand" href="index.html">
-					GCT<span>S</span>
+					<span>O</span>CP<span>S</span>
 				</a>
 			</div>
 			<div class="collapse navbar-collapse" id="myNavbar">
