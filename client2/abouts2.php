@@ -30,7 +30,7 @@ include("iircheck.php");
 		color: #800;
 		margin-top: 7px;
 	</style>
-}
+
 </head>
 
 <body>

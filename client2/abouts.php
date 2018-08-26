@@ -270,12 +270,12 @@ if(isset($_POST['btnAdd']))
 			</div>
 		</div>
 	</nav>
-	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:0px; padding:7px; margin-top: 70px; border-bottom: solid 1px #f2dede;" >
-		<image class="navbar-left" src="img/PUPLogo88x88.png"></image>
-		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">
-			<h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
+	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:0px; padding:7px; margin-top: 60px; border-bottom: solid 1px #f2dede;" >
+		<image class="navbar-left" src="img/GCTS LOGO1.png"></image>
+		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;margin-top: 15px;">
+			<h4 style="margin-bottom:0px;"><a href="index2.php" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
 			<p style="margin-bottom: 0; font-size: 14px;">THE COUNTRY'S 1ST POLYTECHNICU</p>
-			<h4 style="margin-top: 0; font-weight: bold;">GUIDANCE COUNSELLING AND TESTING SERVICES</h4>
+			<h4 style="margin-top: 0; font-weight: bold;">OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4>
 		</div>
 	</div>
 	<!--/ Navigation bar-->

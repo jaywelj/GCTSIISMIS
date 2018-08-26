@@ -11,7 +11,7 @@
 		</ul>
 		<!-- End newsletter-form -->
 		<ul class="social-links" style="padding:0;margin-top:25px;">
-			<li id="footerHome"><a href="home.php" style="font-size: 15px ">Home</a></li>
+			<li id="footerHome"><a href="index2.php" style="font-size: 15px ">Home</a></li>
 			<li id="footerProfile"><a href="profile.php" style="font-size: 15px ">Profile</a></li>
 			<li id="footerAbouts"><a href="abouts2.php" style="font-size: 15px ">About Us</a></li>
 		</ul>

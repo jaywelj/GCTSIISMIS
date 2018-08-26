@@ -316,12 +316,12 @@ if(isset($_POST['btnEmailSend']))
 			</div>
 		</div>
 	</nav>
-	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:0px; padding:7px; margin-top: 70px; border-bottom: solid 1px #f2dede;" >
-		<image class="navbar-left" src="img/PUPLogo88x88.png"></image>
-		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;">
-			<h4 style="margin-bottom:0px;"><a href="#" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
+	<div class="jumbotron" style="background-color:#ffffff; height:100px; margin-bottom:0px; padding:7px; margin-top: 60px; border-bottom: solid 1px #f2dede;" >
+		<image class="navbar-left" src="img/GCTS LOGO1.png"></image>
+		<div style="font-family:'Cinzel'; font-weight:bold; margin-left:100px; color:#b22222;margin-top: 15px;">
+			<h4 style="margin-bottom:0px;"><a href="index2.php" style="font-weight:bold; color:#880000;">POLYTECHNIC UNIVERSITY OF THE PHILIPPINES</a></h4>
 			<p style="margin-bottom: 0; font-size: 14px;">THE COUNTRY'S 1ST POLYTECHNICU</p>
-			<h4 style="margin-top: 0; font-weight: bold;">GUIDANCE COUNSELLING AND TESTING SERVICES</h4>
+			<h4 style="margin-top: 0; font-weight: bold;">OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4>
 		</div>
 	</div>
 	<!--/ Navigation bar-->
@@ -344,12 +344,12 @@ if(isset($_POST['btnEmailSend']))
 					<div class="row">
 						<div class="banner-text text-center">
 							<div class="text-border">
-								<h2 class="text-dec">GCTS</h2>
+								<h2 class="text-dec">OCPS</h2>
 							</div>
 							<div class="intro-para text-center quote">
 								<p class="big-text">Our Vision</p>
 								<p class="small-text">This dynamic Office with a staff of professionally trained and competent counselors boasts <br> of a program designed to maximize the students’ potentials to become self-directive and productive citizens of society.</p>
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<a href="abouts.php" class="btn get-quote">About Us</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>
@@ -365,12 +365,12 @@ if(isset($_POST['btnEmailSend']))
 					<div class="row">
 						<div class="banner-text text-center">
 							<div class="text-border">
-								<h2 class="text-dec">IIR</h2>
+								<h2 class="text-dec">Problem Survey</h2>
 							</div>
 							<div class="intro-para text-center quote">
-								<p class="big-text">Fill-up your individual inventory record now!</p>
+								<p class="big-text">Participate to our Problem Survey</p>
 								<!-- <p class="small-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium enim repellat sapiente quos architecto<br>Laudantium enim repellat sapiente quos architecto</p> -->
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<a href="#" data-target="#login" data-toggle="modal" class="btn get-quote">Participate</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>
@@ -389,9 +389,9 @@ if(isset($_POST['btnEmailSend']))
 								<h2 class="text-dec">Need Help and Guidance?</h2>
 							</div>
 							<div class="intro-para text-center quote">
-								<p class="big-text">Learning Today . . . Leading Tomorrow.</p>
-								<p class="small-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium enim repellat sapiente quos architecto<br>Laudantium enim repellat sapiente quos architecto</p>
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<p class="big-text">Ask For Help</p>
+								<p class="small-text"></p>
+								<a href="#contact" class="btn get-quote">Message Us!</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>

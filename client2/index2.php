@@ -102,13 +102,13 @@ if(isset($_POST['btnEmailSend']))
 				<div class="carousel-caption">
 					<div class="row">
 						<div class="banner-text text-center">
-							<div class="text-border" style="border-color: white">
-								<h2 class="text-dec">Welcome <?php echo $name ?>!</h2>
+							<div class="text-border">
+								<h2 class="text-dec">OCPS</h2>
 							</div>
 							<div class="intro-para text-center quote">
 								<p class="big-text">Our Vision</p>
 								<p class="small-text">This dynamic Office with a staff of professionally trained and competent counselors boasts <br> of a program designed to maximize the students’ potentials to become self-directive and productive citizens of society.</p>
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<a href="abouts2.php" class="btn get-quote">About Us</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>
@@ -123,13 +123,13 @@ if(isset($_POST['btnEmailSend']))
 				<div class="carousel-caption">
 					<div class="row">
 						<div class="banner-text text-center">
-							<div class="text-border" style="border-color: white">
-								<h2 class="text-dec">IIR</h2>
+							<div class="text-border">
+								<h2 class="text-dec">Problem Survey</h2>
 							</div>
 							<div class="intro-para text-center quote">
-								<p class="big-text">Fill-up your individual inventory record now!</p>
+								<p class="big-text">Participate to our Problem Survey</p>
 								<!-- <p class="small-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium enim repellat sapiente quos architecto<br>Laudantium enim repellat sapiente quos architecto</p> -->
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<a href="problemSurvey.php" class="btn get-quote">Participate</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>
@@ -144,13 +144,13 @@ if(isset($_POST['btnEmailSend']))
 				<div class="carousel-caption">
 					<div class="row">
 						<div class="banner-text text-center">
-							<div class="text-border" style="border-color: white"> 
+							<div class="text-border">
 								<h2 class="text-dec">Need Help and Guidance?</h2>
 							</div>
 							<div class="intro-para text-center quote">
-								<p class="big-text">Learning Today . . . Leading Tomorrow.</p>
-								<p class="small-text">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Laudantium enim repellat sapiente quos architecto<br>Laudantium enim repellat sapiente quos architecto</p>
-								<a href="#footer" class="btn get-quote">GET A QUOTE</a>
+								<p class="big-text">Ask For Help</p>
+								<p class="small-text"></p>
+								<a href="#contact" class="btn get-quote">Message Us!</a>
 							</div><br><br><br><br><br>
 							<a href="#feature" class="mouse-hover">
 								<div class="mouse"></div>
