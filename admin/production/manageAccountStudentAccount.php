@@ -540,7 +540,7 @@ require 'header.php';
 								<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" required min="1" max="6" />
 								<br />
 								<label>Section</label>
-								<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" required="" />
+								<input type="text" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" required="" />
 								<br />
 								<label>Password</label>
 								<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" required="" />
