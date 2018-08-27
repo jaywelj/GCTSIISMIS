@@ -19,18 +19,20 @@
  	{
  		if ($resultdeleting = mysqli_query($connect, $querydeleting))
  		{
+ 			$message = "Successfully Restored Note";
+ 			echo "<script type='text/javascript'>alert('$message');</script>";
  			echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";
  		}
  		else{
- 			$message = "Error Deleting";
- 			echo "<script type='text/javascript'>alert('$message');</script>";
+ 			//$message = "Error Deleting";
+ 			//echo "<script type='text/javascript'>alert('$message');</script>";
  			echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";
  		}
 
  	}
  	else{
- 		$message = "Error Moving";
- 		echo "<script type='text/javascript'>alert('$message');</script>";
+ 		//$message = "Error Moving";
+ 		//echo "<script type='text/javascript'>alert('$message');</script>";
  		echo "<script type='text/javascript'>location.href = 'manageNotesStudentArchived.php';</script>";}
  	}
  	else

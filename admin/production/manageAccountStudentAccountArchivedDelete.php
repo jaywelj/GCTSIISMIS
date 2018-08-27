@@ -24,90 +24,90 @@ $querydeletingtestrecord = "DELETE FROM `tbl_testrecordarchive` WHERE `studentNu
 
 if ($resultdeletingpersonalinfo = mysqli_query($connect, $querydeletingpersonalinfo))
 {
-    $message = "Successful deleting personal info";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+ //   $message = "Successful deleting personal info";
+  //  echo "<script type='text/javascript'>alert('$message');</script>";
 
 }
 else
 {
-    $message = "Error deleting personal info";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+//    $message = "Error deleting personal info";
+//    echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
 }
 if ($resultdeletingeducationalbackground = mysqli_query($connect, $querydeletingeducationalbackground))
 {
-    $message = "Successful deleting educational background";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+ //   $message = "Successful deleting educational background";
+ //   echo "<script type='text/javascript'>alert('$message');</script>";
     
 }
 else
 {
-    $message = "Error deleting educational background";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+  //  $message = "Error deleting educational background";
+  //  echo "<script type='text/javascript'>alert('$message');</script>";
 }
 if ($resultdeletingfamilybackground = mysqli_query($connect, $querydeletingfamilybackground))
 {
-    $message = "Successful deleting family background";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Successful deleting family background";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
 
 }
 else
 {
-    $message = "Error deleting family background";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Error deleting family background";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
 }
 
 if ($resultdeletinghealthinfo = mysqli_query($connect, $querydeletinghealthinfo))
 {
-    $message = "Successful deleting health to archive";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Successful deleting health to archive";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
 
 }
 else
 {
-    $message = "Error deleting health";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+  //  $message = "Error deleting health";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
 }
 
 if ($resultdeletingtestrecord = mysqli_query($connect, $querydeletingtestrecord))
 {
-    $message = "Successful deleting test record";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Successful deleting test record";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
 
 }
 else
 {
-    $message = "Query Error moving test record";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Query Error moving test record";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
 }
 
 if ($resultdeletingsignificantnotes = mysqli_query($connect, $querydeletingsignificantnotes))
 {
-    $message = "Query Successful deleting significant notes";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Query Successful deleting significant notes";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
 
 }
 else
 {
-    $message = "Query Error deleting significant notes";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Query Error deleting significant notes";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
 }
 
 if ($resultdeletingstudentaccount = mysqli_query($connect, $querydeletingstudentaccount))
 {
 
-    $message = "Successful Deleting Student Account";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   $message = "Successful Deleting Student Account";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
     
 }
 else{
-    $message = "Error Deleting Student Account";
-    echo "<script type='text/javascript'>alert('$message');</script>";
+   // $message = "Error Deleting Student Account";
+   // echo "<script type='text/javascript'>alert('$message');</script>";
     echo "<script type='text/javascript'>location.href = 'manageAccountStudentAccountArchived.php';</script>";
     
 }

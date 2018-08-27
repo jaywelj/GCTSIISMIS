@@ -107,7 +107,7 @@ require 'header.php';
 													<td width="14%" >
 														<center>
 
-															<a title="Revive" class="btn btn-info" href="manageAccountStaffAccountReturn.php?id=<?php echo$row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to restore?')"><span class="fa fa-share-square"></span></a>
+															<a title="Revive" class="btn btn-info" href="manageAccountAdminAccountReturn.php?id=<?php echo$row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to restore?')"><span class="fa fa-share-square"></span></a>
 
 															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountAdminAccountArchivedDelete.php?id=<?php echo $row['adminEmail']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>	
 															
