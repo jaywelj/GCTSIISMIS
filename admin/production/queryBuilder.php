@@ -872,6 +872,84 @@ require 'header.php';
 													</select>
 												</div>
 											</div>
+											<div class="item form-group text-center ">
+												<h3><label class="control-label col-md-12 col-sm-12 col-xs-12" style="text-align: center">Significant Notes</label></h3>
+											</div>
+											<br>
+											<div class="item form-group">
+												<label class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-1 col-xs-12">Significant Notes Type</label>
+												<div class="col-md-3 col-sm-3 col-xs-12">
+													<select required="required" class="select2_single form-control" name="dropdownSignificantNotesType" id="dropdownSignificantNotesType"tabindex="-1" >
+														<option >None</option>
+														<option >All</option>
+														<?php
+														$query = "SELECT * FROM tbl_significantnotes INNER JOIN tbl_incidentcategory GROUP BY tbl_incidentcategory.CategoryID ORDER BY CategoryName ";
+														$queryResult = mysqli_query($connect,$query);
+														while($row = mysqli_fetch_array($queryResult))
+														{
+															echo "<option value=".$row['categoryID'].">".$row['categoryName']."</option>";
+														}
+														?>
+													</select>
+												</div>
+												<label class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-1 col-xs-12">Significant Notes Category</label>
+												<div class="col-md-3 col-sm-3 col-xs-12">
+													<select required="required" class="select2_single form-control" tabindex="-1" name="dropdownSignificantNotes" id="dropdownSignificantNotes">
+														<option >None</option>
+														<option >All</option>
+														<?php
+														$query = "SELECT * FROM tbl_significantnotes INNER JOIN tbl_incidentsubcategory GROUP BY tbl_incidentsubcategory.subCategoryID ORDER BY subCategoryName";
+														$queryResult = mysqli_query($connect,$query);
+														while($row = mysqli_fetch_array($queryResult))
+														{
+															echo "<option value=".$row['subCategoryID'].">".$row['subCategoryName']."</option>";
+														}
+														?>
+													</select>
+												</div>
+											</div>
+											<div class="item form-group text-center ">
+												<h3><label class="control-label col-md-12 col-sm-12 col-xs-12" style="text-align: center">Messages</label></h3>
+											</div>
+											<br>
+											<div class="item form-group">
+												<label class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-1 col-xs-12">Message Category</label>
+												<div class="col-md-3 col-sm-3 col-xs-12">
+													<select required="required" class="select2_single form-control" tabindex="-1" name="dropdownMessageCategory" id="dropdownMessageCategory">
+														<option >None</option>
+														<option >All</option>
+														<?php
+														$query = "SELECT * FROM tbl_message INNER JOIN tbl_incidentsubcategory GROUP BY tbl_incidentsubcategory.subCategoryID ORDER BY subCategoryName";
+														$queryResult = mysqli_query($connect,$query);
+														while($row = mysqli_fetch_array($queryResult))
+														{
+															echo "<option value=".$row['subCategoryID'].">".$row['subCategoryName']."</option>";
+														}
+														?>
+													</select>
+												</div>
+											</div>
+											<div class="item form-group text-center ">
+												<h3><label class="control-label col-md-12 col-sm-12 col-xs-12" style="text-align: center">Survey</label></h3>
+											</div>
+											<br>
+											<div class="item form-group">
+												<label class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-1 col-xs-12">Survey Question Category</label>
+												<div class="col-md-3 col-sm-3 col-xs-12">
+													<select required="required" class="select2_single form-control" tabindex="-1" name="dropdownSurveyQuestionCategory" id="dropdownSurveyQuestionCategory">
+														<option >None</option>
+														<option >All</option>
+														<?php
+														$query = "SELECT * FROM tbl_message INNER JOIN tbl_incidentsubcategory GROUP BY tbl_incidentsubcategory.subCategoryID ORDER BY subCategoryName";
+														$queryResult = mysqli_query($connect,$query);
+														while($row = mysqli_fetch_array($queryResult))
+														{
+															echo "<option value=".$row['subCategoryID'].">".$row['subCategoryName']."</option>";
+														}
+														?>
+													</select>
+												</div>
+											</div>
 											<h3><label class="control-label col-md-12 col-sm-12 col-xs-12" style="text-align: center;     margin-left: -28px;">View Data</label></h3>
 											<div class="item form-group">
 												<label  class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-3 col-xs-12">
@@ -885,6 +963,7 @@ require 'header.php';
 												</label>
 												<br>
 											</div>
+
 											<div class="item form-group">
 												<label  class="control-label col-md-2 col-sm-2 col-md-offset-3 col-sm-offset-3 col-xs-12">
 													<input type="checkbox" name="checkEmail" id="check" value=""> <span class="label-text">Email Address</span>

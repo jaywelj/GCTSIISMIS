@@ -6,7 +6,12 @@ $whereValues = array();
 $whereClause = "";
 $groupByValues = array();
 $groupByClause ="";
+$joinValues = array();
+$joinClause = "";
 $concatClause="";
+$checker=0;
+$distinct = "";
+$sgroup = "";
 
 if(isset($_POST['dropdownCivilStatus']))
 {
@@ -504,6 +509,77 @@ if(isset($_POST['dropdownCivilStatus']))
 			array_push($whereValues, "interestOrganization != 'No Interest'");
 		}
 	}
+	$value = $_POST['dropdownSignificantNotes'];
+	if($value <> "None")
+	{
+		array_push($selections, "subcategoryName");
+		array_push($columns, "Category");
+		array_push($groupByValues, "tbl_studentaccount.studentNumber");
+		if($checker != 1)
+		{
+			$distinct = 'DISTINCT';
+			$sgroup = "studentNumber";
+			$checker = 1;
+			array_push($joinValues, "INNER JOIN tbl_significantnotes on tbl_studentaccount.studentNumber =tbl_significantnotes.studentNumber");
+		}
+
+		array_push($joinValues, " INNER JOIN tbl_incidentsubcategory on tbl_significantnotes.subCategoryID = tbl_incidentsubcategory.subCategoryID");
+
+		if($value <> "All")
+			array_push($whereValues, "tbl_significantnotes.subCategoryID = '".$value."'");
+	}
+	$value = $_POST['dropdownSignificantNotesType'];
+	if($value <> "None")
+	{
+		array_push($selections, "categoryName");
+		array_push($columns, "Type");
+		array_push($groupByValues, "tbl_studentaccount.studentNumber");
+		if($checker != 1)
+		{
+			$distinct = 'DISTINCT';
+			$sgroup = "studentNumber";
+			$checker = 1;
+			array_push($joinValues, "INNER JOIN tbl_significantnotes on tbl_studentaccount.studentNumber =tbl_significantnotes.studentNumber");
+		}
+		array_push($joinValues, "INNER JOIN tbl_incidentcategory on tbl_significantnotes.CategoryID = tbl_incidentcategory.CategoryID");
+
+		if($value <> "All")
+			array_push($whereValues, "tbl_significantnotes.CategoryID = '".$value."'");
+	}
+	$value = $_POST['dropdownMessageCategory'];
+	if($value <> "None")
+	{
+		array_push($selections, "subcategoryName");
+		array_push($columns, "Message Category");
+		array_push($groupByValues, "tbl_studentaccount.studentNumber");
+		if($checker != 1)
+		{
+			$distinct = 'DISTINCT';
+			$sgroup = "studentNumber";
+			$checker = 1;
+		}
+		array_push($joinValues, "INNER JOIN tbl_message on tbl_studentaccount.studentNumber =tbl_message.studentNumber INNER JOIN tbl_incidentsubcategory on tbl_message.subCategoryID = tbl_incidentsubcategory.subCategoryID");
+
+		if($value <> "All")
+			array_push($whereValues, "tbl_message.subCategoryID = '".$value."'");
+	}
+	$value = $_POST['dropdownSurveyQuestionCategory'];
+	if($value <> "None")
+	{
+		array_push($selections, "subcategoryName");
+		array_push($columns, "Survey Question Category");
+		array_push($groupByValues, "tbl_studentaccount.studentNumber");
+		if($checker != 1)
+		{
+			$distinct = 'DISTINCT';
+			$sgroup = "studentNumber";
+			$checker = 1;
+		}
+		array_push($joinValues, "INNER JOIN tbl_answerproblem on tbl_studentaccount.studentNumber = tbl_answerproblem.studentNumber INNER JOIN tbl_surveyofproblems on tbl_surveyofproblems.problemID = tbl_answerproblem.problemID INNER JOIN tbl_incidentsubcategory on tbl_surveyofproblems.subCategoryID = tbl_incidentsubcategory.subCategoryID");
+
+		if($value <> "All")
+			array_push($whereValues, "tbl_surveyofproblems.subCategoryID = '".$value."'");
+	}
 	if(isset($_POST['checkEmail']))
 	{
 		array_push($selections, "email");
@@ -520,15 +596,6 @@ if(isset($_POST['dropdownCivilStatus']))
 		array_push($columns, "Telephone Number");
 	}
 
-
-
-
-
-
-
-
-
-
 	//creation of query
 	$selectionArray = $selections;
 	$selections = implode(", ", $selections);
@@ -541,6 +608,10 @@ if(isset($_POST['dropdownCivilStatus']))
 		}	
 		$concatClause = "CONCAT(".implode(",' ',", $groupByValues)."),";
 	}
+	if(!empty($joinValues))
+	{
+		$joinClause = implode(" ",$joinValues);
+	}
 	echo $groupByClause;
 	$whereValues = implode(" AND ", $whereValues);
 	if(!empty($whereValues))
@@ -548,6 +619,10 @@ if(isset($_POST['dropdownCivilStatus']))
 		$whereClause = "WHERE ".$whereValues;
 		// $whereClause2 = mysqli_escape_string($connect,$whereClause);
 		// echo "<script>alert('$whereClause2');</script>";
+	}
+	if(!empty($sgroup))
+	{
+		$sgroup = " GROUP BY ".$sgroup;
 	}
 	
 }
@@ -576,23 +651,24 @@ else
 		if(!empty($selections))
 		{
 			$query = "
-			SELECT $selections FROM tbl_studentaccount
+			SELECT $distinct $selections FROM tbl_studentaccount
 			INNER JOIN tbl_personalinfo on tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber
 			INNER JOIN tbl_educationalbackground on tbl_studentaccount.studentNumber = tbl_educationalbackground.studentNumber
 			INNER JOIN tbl_familybackground on tbl_studentaccount.studentNumber = tbl_familybackground.studentNumber
 			INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
-			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber
-			$whereClause
+			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber $joinClause
+			$whereClause  $sgroup
 			";
 			$query2 = "
-			SELECT $concatClause $selections, COUNT(*) AS counts FROM tbl_studentaccount
+			SELECT $distinct $concatClause $selections, COUNT(*) AS counts FROM tbl_studentaccount
 			INNER JOIN tbl_personalinfo on tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber
 			INNER JOIN tbl_educationalbackground on tbl_studentaccount.studentNumber = tbl_educationalbackground.studentNumber
 			INNER JOIN tbl_familybackground on tbl_studentaccount.studentNumber = tbl_familybackground.studentNumber
 			INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
-			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber
-			$whereClause $groupByClause";
+			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber $joinClause
+			$whereClause $groupByClause ";
 			echo $query;
+			echo $query2;
 			if(!($queryResult = mysqli_query($connect, $query)))
 			{
 				echo mysqli_error($connect);
@@ -636,7 +712,7 @@ else
 	</tfoot>
 </table>
 <?php
-if(count($groupByValues) !=0)
+if(count($groupByValues) !=0 && mysqli_num_rows(mysqli_query($connect, $query2))!=0)
 { 
 	echo '<!-- pie chart -->
 	<div class="col-md-6 col-sm-6 col-xs-12">
@@ -683,10 +759,13 @@ else
 				{
 					echo mysqli_error($connect);
 				}
-				while($row = mysqli_fetch_array($queryResult2))
+				else if(mysqli_num_rows($queryResult2)!=0)
 				{
-					echo "{label: '".$row[0]."', value: ".$row['counts']."},";
-					$total = $row['counts'];
+					while($row = mysqli_fetch_array($queryResult2))
+					{
+						echo "{label: '".$row[0]."', value: ".$row['counts']."},";
+						$total = $row['counts'];
+					}
 				}
 				?>
 				],
@@ -696,6 +775,7 @@ else
 				{
 					echo mysqli_error($connect);
 				}
+
 				while($row = mysqli_fetch_array($queryResult2))
 				{
 					$total += $row['counts'];
