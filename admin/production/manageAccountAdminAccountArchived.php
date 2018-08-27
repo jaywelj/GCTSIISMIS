@@ -98,7 +98,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccountarchive WHERE adminAccessLevel = 'Admin' ORDER BY adminId DESC";
+											$queryCourse = "SELECT * FROM tbl_adminaccountarchive ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  

@@ -29,7 +29,6 @@ include("connectionString.php");
 							$varcharAdminLastName = $res['adminLastName'];
 							$varcharAdminBirthDate = $res['adminBirthDate'];
 							$varcharAdminPassword = $res['adminPassword'];
-							$varcharAdminAccessLevel = $res['adminAccessLevel'];
 							$varcharAdminImage = $res['adminImage'];
 							if(empty($varcharAdminImage))
 							{

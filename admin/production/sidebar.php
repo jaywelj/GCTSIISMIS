@@ -12,7 +12,6 @@ while($res = mysqli_fetch_array($result))
 	$varcharAdminLastName = $res['adminLastName'];
 	$varcharAdminBirthDate = $res['adminBirthDate'];
 	$varcharAdminPassword = $res['adminPassword'];
-	$varcharAdminAccessLevel = $res['adminAccessLevel'];
 	$varcharAdminImage = $res['adminImage'];
 
 }
@@ -36,7 +35,6 @@ while($res = mysqli_fetch_array($result))
 						$varcharAdminLastName = $res['adminLastName'];
 						$varcharAdminBirthDate = $res['adminBirthDate'];
 						$varcharAdminPassword = $res['adminPassword'];
-						$varcharAdminAccessLevel = $res['adminAccessLevel'];
 						$varcharAdminImage = $res['adminImage'];
 						if(empty($varcharAdminImage))
 						{

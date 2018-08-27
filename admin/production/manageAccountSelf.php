@@ -63,10 +63,10 @@ if(isset($_POST['btnAdd']))
 		// if all the fields are filled (not empty) 
 		//insert data to database   
 		if (!empty($VarcharAdminAccountImage)) {
-			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminAccessLevel`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', '$VarcharAdminAccountImage', 'Admin')";
+			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', '$VarcharAdminAccountImage')";
 		}
 		else{
-			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`, `adminAccessLevel`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', NULL, 'Admin')";
+			$queryAdd = "INSERT INTO `tbl_adminaccount` (`adminEmail`, `adminFirstName`, `adminMiddleName`, `adminLastName`, `adminBirthDate`, `adminPassword`, `adminImage`) VALUES ('$VarcharAdminAccountEmail', '$VarcharAdminAccountFirstName', '$VarcharAdminAccountMiddleName', '$VarcharAdminAccountLastName', '$VarcharAdminAccountBirthdate', '$VarcharAdminAccountPassword', NULL)";
 		}
 		if(mysqli_query($connect, $queryAdd))
 		{
@@ -270,7 +270,7 @@ require 'header.php';
 						<div class="col-md-12 col-sm-12 col-xs-12">
 							<div class="x_panel">
 								<div class="x_title">
-									<h2>User Report <small>Activity report</small></h2>
+									<h2>Profile <small>Activity report</small></h2>
 									
 									<div class="clearfix"></div>
 								</div>
@@ -367,7 +367,7 @@ require 'header.php';
 																<td>'.$varcharProfileAdminFirstName.' '.$varcharProfileAdminMiddleName.' '.$varcharProfileAdminLastName.'</td>
 																</tr>
 																
-												
+
 																<tr>
 																<th scope="row">Gender</th>
 																<td>'.$varcharProfileAdminGender.'</td>
@@ -407,384 +407,211 @@ require 'header.php';
 			</div>
 		</div>
 	</div>
-	<!-- /page content -->
-	<!-- page content -->
-	<div class="right_col" role="main">
-		<div class="">
-			<div class="page-title">
-				<div class="title_left">
-					<h3>Manage Your Profile, <?php echo $varcharProfileAdminFirstName ; ?> <small></small></h3>
-				</div>
+	<!--Modal Edit Self-->
+	<form method="post" enctype="multipart/form-data">
+		<div id="edit_self_data_Modal" class="modal fade">
+			<div class="modal-dialog">
+				<div class="modal-content">
+					<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
+						<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
+						<h4 class="modal-title text-center">Edit Profile - <?php echo $varcharProfileAdminFirstName ; ?></h4>
+					</div>
+					<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
 
-				<div class="title_right">
-					<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-						<div class="input-group">
-							<!-- <input type="text" class="form-control" placeholder="Search for..."> -->
-													<!-- 	<span class="input-group-btn">
-													<button class="btn btn-default" type="button">Go!</button>
-												</span> -->
-											</div>
-										</div>
-									</div>
-								</div>
+						<?php
+						$queryEdit = "SELECT * FROM tbl_adminaccount WHERE adminEmail = '$varcharAdminEmail' LIMIT 1";
+						$resultEdit = mysqli_query($connect, $queryEdit); 
+						while($row = mysqli_fetch_array($resultEdit))
+						{
 
-								<div class="clearfix"></div>
+							?>
+							<?php 
+							echo '
+							<label for="fileEditAdminAccountImage" class="btn btn-default" style="border-radius:50%; margin-left:25%;" title="CHANGE PROFILE PICTURE">
+							<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage']).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%">
+							</label>
+							<br>
+							<input type="text" name="txtbxEditAdminAccountEmail" id="txtbxEditAdminAccountEmail"  value="'.$row["adminEmail"].'" class="form-control" style="display:none;" />
 
-								<div class="row">
+							<i class="fa fa-pencil" style="margin-left:46%;"></i>
+							<input type="file" id="fileEditAdminAccountImage" name="fileEditAdminAccountImage" accept="image/*" style="display:none" value="">
+							<br />
+							<label>First Name</label>
+							<input type="text" name="txtbxEditAdminAccountFirstName" id="txtbxEditAdminAccountFirstName"  value="'.$row["adminFirstName"].'" class="form-control" />
+							<br />
+							<label>Middle Name</label>
+							<input type="text" name="txtbxEditAdminAccountMiddleName" id="txtbxEditAdminAccountMiddleName" value="'.$row["adminMiddleName"].'" class="form-control" />
+							<br />
+							<label>Last Name</label>
+							<input type="text" name="txtbxEditAdminAccountLastName" id="txtbxEditAdminAccountLastName"  value="'.$row["adminLastName"].'" class="form-control" />
+							<br />
+							<label>Address</label>
+							<textarea name="txtbxEditAdminAccountAddress" id="txtbxEditAdminAccountAddress" class="form-control">'.$row["adminAddress"].'</textarea>
+							<br />';
+							?>
+							<script>
+								var gender = '<?php echo $row["adminGender"];?>';
+								$("#optionEditAdminAccountGender").val(gender).change();
+							</script>
+							<?php 
+							echo '
+							<label>Select Gender</label>
+							<select name="optionEditAdminAccountGender" id="optionEditAdminAccountGender" class="form-control">
+							<option value="NA" disabled>NA</option>  
+							<option value="M">Male</option>  
+							<option value="F">Female</option>
+							</select>
+							<br />
+							<label>Date of Birth</label>
+							<input type="date" name="dateEditAdminAccountBirthdate" id="dateEditAdminAccountBirthdate" value="'.$row["adminBirthDate"].'" class="form-control" />
+							<br />  
+							<label>Contact No</label>
+							<input type="number" name="txtbxEditAdminAccountContactNo" value="'.$row["adminContactNo"]. '" id="txtbxEditAdminAccountContactNo" class="form-control" />
+							<br />
+							<label>Password</label>
+							<input type="password" name="txtbxEditAdminAccountPassword" value="'.$row["adminPassword"]. '" id="txtbxEditAdminAccountPassword" class="form-control" />
+							<br />
+							<label>Password Confirm New</label>
+							<input type="password" name="txtbxEditAdminAccountCPassword" value="'.$row["adminPassword"]. '" id="txtbxEditAdminAccountCPassword" class="form-control" />
 
-									<div class="col-md-12 col-sm-12 col-xs-12">
-										<div class="x_panel">
-											<div class="x_title">
-												<h2>Admin ID : <?php echo $varcharProfileAdminID ; ?> <small> </small></h2>
-												<ul class="nav navbar-right">
-													<button class="btn btn-default btn-info" data-toggle="modal" data-target="#edit_self_data_Modal" type="button">Edit Your Account</button>
-												</ul>
-												<div class="clearfix"></div>
-											</div>
-
-											<table id="datatable-buttons" class="table table-striped table-bordered">
-												<?php 
-												echo '
-
-												<tbody>
-
-
-												<tr>
-												<img src="data:image/jpeg;base64,'.base64_encode($varcharProfileAdminImage).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover; display: block; margin-left: auto; margin-right: auto;">
-												</tr>
-												<tr>
-												<th scope="row">Name</th>
-												<td>'.$varcharProfileAdminFirstName.' '.$varcharProfileAdminMiddleName.' '.$varcharProfileAdminLastName.'</td>
-												</tr>
-												<tr>
-												
-												<tr>
-												<th scope="row">Gender</th>
-												<td>'.$varcharProfileAdminGender.'</td>
-												</tr>
-												<tr>
-												<th scope="row">Birth Date</th>
-												<td>'.$varcharProfileAdminBirthDate.'</td>
-												</tr>	
-												<tr>
-												<th scope="row">Address</th>
-												<td>'.$varcharProfileAdminAddress.'</td>
-												</tr>
-												<tr>
-												<th scope="row">Contact No.</th>
-												<td>'.$varcharProfileAdminContactNo.'</td>
-												</tr>
-												<tr>
-												<th scope="row">Email</th>
-												<td>'.$varcharProfileAdminEmail.'</td>
-												</tr>';
-												?>
-
-
-											</tbody>
-
-										</table>
-									</div>
-								</div>
+							<div id="divCheckPasswordMatch">
 							</div>
-							<!--Other Tables othertables/-->
-						</div>
+							<br />
+							<label>Enter Current Password</label>
+							<input type="password" name="txtbxEditAdminAccountC2Password" id="txtbxEditAdminAccountC2Password" class="form-control" required/>
+							<br />';';
+							';
+
+							?>
+							<?php 
+						}
+
+						?>
+
+					</div>
+					<div class="modal-footer">
+						<input type="submit" name="btnEdit" id="btnEdit" value="Save Changes" class="btn btn-success " />
+						<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
 					</div>
 				</div>
-				<!-- /page content -->
-				<!--Modal Edit Self-->
-				<form method="post" enctype="multipart/form-data">
-					<div id="edit_self_data_Modal" class="modal fade">
-						<div class="modal-dialog">
-							<div class="modal-content">
-								<div class="modal-header" style="background: #800; color:#fff; margin-right: -1px;">
-									<button type="button" class="close" data-dismiss="modal" style="color: #fff" >&times;</button>
-									<h4 class="modal-title text-center">Edit Profile - <?php echo $varcharProfileAdminFirstName ; ?></h4>
-								</div>
-								<div class="modal-body" style=" padding: 25px 50px 5px 50px;">
-
-									<?php
-									$queryEdit = "SELECT * FROM tbl_adminaccount WHERE adminEmail = '$varcharAdminEmail' LIMIT 1";
-									$resultEdit = mysqli_query($connect, $queryEdit); 
-									while($row = mysqli_fetch_array($resultEdit))
-									{
-
-										?>
-										<?php 
-										echo '
-										<label for="fileEditAdminAccountImage" class="btn btn-default" style="border-radius:50%; margin-left:25%;" title="CHANGE PROFILE PICTURE">
-										<img src="data:image/jpeg;base64,'.base64_encode($row['adminImage']).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover;  border-radius:50%">
-										</label>
-										<br>
-										<input type="text" name="txtbxEditAdminAccountEmail" id="txtbxEditAdminAccountEmail"  value="'.$row["adminEmail"].'" class="form-control" style="display:none;" />
-
-										<i class="fa fa-pencil" style="margin-left:46%;"></i>
-										<input type="file" id="fileEditAdminAccountImage" name="fileEditAdminAccountImage" accept="image/*" style="display:none" value="">
-										<br />
-										<label>First Name</label>
-										<input type="text" name="txtbxEditAdminAccountFirstName" id="txtbxEditAdminAccountFirstName"  value="'.$row["adminFirstName"].'" class="form-control" />
-										<br />
-										<label>Middle Name</label>
-										<input type="text" name="txtbxEditAdminAccountMiddleName" id="txtbxEditAdminAccountMiddleName" value="'.$row["adminMiddleName"].'" class="form-control" />
-										<br />
-										<label>Last Name</label>
-										<input type="text" name="txtbxEditAdminAccountLastName" id="txtbxEditAdminAccountLastName"  value="'.$row["adminLastName"].'" class="form-control" />
-										<br />
-										<label>Address</label>
-										<textarea name="txtbxEditAdminAccountAddress" id="txtbxEditAdminAccountAddress" class="form-control">'.$row["adminAddress"].'</textarea>
-										<br />';
-										?>
-										<script>
-											var gender = '<?php echo $row["adminGender"];?>';
-											$("#optionEditAdminAccountGender").val(gender).change();
-										</script>
-										<?php 
-										echo '
-										<label>Select Gender</label>
-										<select name="optionEditAdminAccountGender" id="optionEditAdminAccountGender" class="form-control">
-										<option value="NA" disabled>NA</option>  
-										<option value="M">Male</option>  
-										<option value="F">Female</option>
-										</select>
-										<br />
-										<label>Date of Birth</label>
-										<input type="date" name="dateEditAdminAccountBirthdate" id="dateEditAdminAccountBirthdate" value="'.$row["adminBirthDate"].'" class="form-control" />
-										<br />  
-										<label>Contact No</label>
-										<input type="number" name="txtbxEditAdminAccountContactNo" value="'.$row["adminContactNo"]. '" id="txtbxEditAdminAccountContactNo" class="form-control" />
-										<br />
-										<label>Password</label>
-										<input type="password" name="txtbxEditAdminAccountPassword" value="'.$row["adminPassword"]. '" id="txtbxEditAdminAccountPassword" class="form-control" />
-										<br />
-										<label>Password Confirm New</label>
-										<input type="password" name="txtbxEditAdminAccountCPassword" value="'.$row["adminPassword"]. '" id="txtbxEditAdminAccountCPassword" class="form-control" />
-
-										<div id="divCheckPasswordMatch">
-										</div>
-										<br />
-										<label>Enter Current Password</label>
-										<input type="password" name="txtbxEditAdminAccountC2Password" id="txtbxEditAdminAccountC2Password" class="form-control" required/>
-										<br />';';
-										';
-
-										?>
-										<?php 
-									}
-
-									?>
-
-								</div>
-								<div class="modal-footer">
-									<input type="submit" name="btnEdit" id="btnEdit" value="Save Changes" class="btn btn-success " />
-									<button type="button" class="btn btn-danger  pull-right" data-dismiss="modal">Close</button> 
-								</div>
-							</div>
-						</div>
-					</div>
-				</form>
-				<!--/Modal Edit Self-->
-				<<<<<<< HEAD
-				
-				<!-- MODAL FOR MESSAGE -->
-				<?php 
-				require 'viewMessageModal.php';
-				?>
-				<!-- /MODAL FOR MESSAGE -->
-				=======
-				>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
-
-
-				<!-- footer content -->
-				<footer>
-					<div class="pull-right">
-						Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
-					</div>
-					<div class="clearfix"></div>
-				</footer>
-				<!-- /footer content -->
 			</div>
 		</div>
-		<<<<<<< HEAD
+	</form>
+	<!--/Modal Edit Self-->
 
-		<!-- jQuery -->
-		<script src="../vendors/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="../vendors/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->	
-		<script src="../vendors/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="../vendors/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="../vendors/jszip/dist/jszip.min.js"></script>
-		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
-
-		<!-- Custom Theme Scripts -->
-		<script src="../build/js/custom.min.js"></script>
+	<!-- MODAL FOR MESSAGE -->
+	<?php 
+	require 'viewMessageModal.php';
+	?>
+	<!-- /MODAL FOR MESSAGE -->
 
 
-		<script>
-			$(document).ready(function(){
-				$(document).on('click','.message-view',function(){
-					var messageID = $(this).attr("id");
-					$.ajax({
-						url:"viewMessage.php",
-						method:"post",
-						data:{messageID:messageID},
-						success:function(data){
-							$('#messageDetails').html(data);
-							$('#view_message_Modal').modal('show');
-						}
-					});
-				});
+	<!-- footer content -->
+	<footer>
+		<div class="pull-right">
+			Gentelella - Bootstrap Admin Template by <a href="https://colorlib.com">Colorlib</a>
+		</div>
+		<div class="clearfix"></div>
+	</footer>
+	<!-- /footer content -->
+</div>
+</div>
 
-			});
-		</script>
-		
-		<script>
-			$(document).ready(function(){
-				$(document).on('click','.btn-view',function(){
-					var adminEmail = $(this).attr("id");
-					$.ajax({
-						url:"viewAccountDetails.php",
-						method:"post",
-						data:{adminEmail:adminEmail},
-						success:function(data){
-							$('#accountDetails').html(data);
-							$('#view_data_Modal').modal('show');
-						}
-					});
-				});
-				$(document).on('click','.btn-edit',function(){
-					var adminEmail = $(this).attr("id");
-					$.ajax({
-						url:"editAccountDetails.php",
-						method:"post",
-						data:{adminEmail:adminEmail},
-						success:function(data){
-							$('#editAccountDetails').html(data);
-							$('#edit_data_Modal').modal('show');
-						}
-					});
-				});
-				$(document).on('click','.btn-change-password',function(){
-					var adminEmail = $(this).attr("id");
-					$('#change_password_Modal').modal('show');
-				});
-			});
-		</script>
-		=======
+<!-- jQuery -->
+<script src="../vendors/jquery/dist/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- FastClick -->
+<script src="../vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->	
+<script src="../vendors/nprogress/nprogress.js"></script>
+<!-- iCheck -->
+<script src="../vendors/iCheck/icheck.min.js"></script>
+<!-- Datatables -->
+<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
+<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
+<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
+<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
+<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
+<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
+<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
+<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
+<script src="../vendors/jszip/dist/jszip.min.js"></script>
+<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
+<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
 
-		<!-- jQuery -->
-		<script src="../vendors/jquery/dist/jquery.min.js"></script>
-		<!-- Bootstrap -->
-		<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-		<!-- FastClick -->
-		<script src="../vendors/fastclick/lib/fastclick.js"></script>
-		<!-- NProgress -->	
-		<script src="../vendors/nprogress/nprogress.js"></script>
-		<!-- iCheck -->
-		<script src="../vendors/iCheck/icheck.min.js"></script>
-		<!-- Datatables -->
-		<script src="../vendors/datatables.net/js/jquery.dataTables.min.js"></script>
-		<script src="../vendors/datatables.net-bs/js/dataTables.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/dataTables.buttons.min.js"></script>
-		<script src="../vendors/datatables.net-buttons-bs/js/buttons.bootstrap.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.flash.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.html5.min.js"></script>
-		<script src="../vendors/datatables.net-buttons/js/buttons.print.min.js"></script>
-		<script src="../vendors/datatables.net-fixedheader/js/dataTables.fixedHeader.min.js"></script>
-		<script src="../vendors/datatables.net-keytable/js/dataTables.keyTable.min.js"></script>
-		<script src="../vendors/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
-		<script src="../vendors/datatables.net-responsive-bs/js/responsive.bootstrap.js"></script>
-		<script src="../vendors/datatables.net-scroller/js/dataTables.scroller.min.js"></script>
-		<script src="../vendors/jszip/dist/jszip.min.js"></script>
-		<script src="../vendors/pdfmake/build/pdfmake.min.js"></script>
-		<script src="../vendors/pdfmake/build/vfs_fonts.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="../build/js/custom.min.js"></script>
 
-		<!-- Custom Theme Scripts -->
-		<script src="../build/js/custom.min.js"></script>
-
-		<script>
-			$(document).ready(function(){
-				$(document).on('click','.btn-view',function(){
-					var adminEmail = $(this).attr("id");
-					$.ajax({
-						url:"viewAccountDetails.php",
-						method:"post",
-						data:{adminEmail:adminEmail},
-						success:function(data){
-							$('#accountDetails').html(data);
-							$('#view_data_Modal').modal('show');
-						}
-					});
-				});
-				$(document).on('click','.btn-edit',function(){
-					var adminEmail = $(this).attr("id");
-					$.ajax({
-						url:"editAccountDetails.php",
-						method:"post",
-						data:{adminEmail:adminEmail},
-						success:function(data){
-							$('#editAccountDetails').html(data);
-							$('#edit_data_Modal').modal('show');
-						}
-					});
-				});
-				$(document).on('click','.btn-change-password',function(){
-					var adminEmail = $(this).attr("id");
-					$('#change_password_Modal').modal('show');
-				});
-			});
-		</script>
-		>>>>>>> cc1ba8941d3bb9ebd9b314cc71642e8c98a2752e
-		<script type="text/javascript">
-			document.getElementById("txtbxEditAdminAccountPassword").onkeyup = function(){
-				checkPassword();
-			};
-			document.getElementById("txtbxEditAdminAccountCPassword").onkeyup = function(){
-				checkPassword();
-			};
-			function checkPassword(){
-				var password = document.getElementById("txtbxEditAdminAccountPassword").value;
-				var cpassword = document.getElementById("txtbxEditAdminAccountCPassword").value;
-				if(cpassword != "")
-				{
-					if(password == "")
-					{
-						document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
-					}
-					else if( password != cpassword)
-					{
-						document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
-					}
-					else
-					{
-						document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
-					}
+<script>
+	$(document).ready(function(){
+		$(document).on('click','.btn-view',function(){
+			var adminEmail = $(this).attr("id");
+			$.ajax({
+				url:"viewAccountDetails.php",
+				method:"post",
+				data:{adminEmail:adminEmail},
+				success:function(data){
+					$('#accountDetails').html(data);
+					$('#view_data_Modal').modal('show');
 				}
-				else if(cpassword == "" && password == "")
-				{
-					document.getElementById("divCheckPasswordMatch").innerHTML = "";
+			});
+		});
+		$(document).on('click','.btn-edit',function(){
+			var adminEmail = $(this).attr("id");
+			$.ajax({
+				url:"editAccountDetails.php",
+				method:"post",
+				data:{adminEmail:adminEmail},
+				success:function(data){
+					$('#editAccountDetails').html(data);
+					$('#edit_data_Modal').modal('show');
 				}
-
+			});
+		});
+		$(document).on('click','.btn-change-password',function(){
+			var adminEmail = $(this).attr("id");
+			$('#change_password_Modal').modal('show');
+		});
+	});
+</script>
+<script type="text/javascript">
+	document.getElementById("txtbxEditAdminAccountPassword").onkeyup = function(){
+		checkPassword();
+	};
+	document.getElementById("txtbxEditAdminAccountCPassword").onkeyup = function(){
+		checkPassword();
+	};
+	function checkPassword(){
+		var password = document.getElementById("txtbxEditAdminAccountPassword").value;
+		var cpassword = document.getElementById("txtbxEditAdminAccountCPassword").value;
+		if(cpassword != "")
+		{
+			if(password == "")
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "Please input password";
 			}
-		</script>
+			else if( password != cpassword)
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "Password does not match";
+			}
+			else
+			{
+				document.getElementById("divCheckPasswordMatch").innerHTML = "Password matched";
+			}
+		}
+		else if(cpassword == "" && password == "")
+		{
+			document.getElementById("divCheckPasswordMatch").innerHTML = "";
+		}
+
+	}
+</script>
 
 
-	</body>
-	</html>
+</body>
+</html>

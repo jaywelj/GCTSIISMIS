@@ -371,7 +371,7 @@ if(isset($VarcharStudentNumber))
 
 	$VarcharStudentRoomSharing = mysqli_real_escape_string($connect, $_POST['radioShareRoom']);
 
-	echo "<script>alert('$VarcharStudentRoomSharing');</script>";
+	//echo "<script>alert('$VarcharStudentRoomSharing');</script>";
 	if ($VarcharStudentRoomSharing == "Yes") 
 	{
 		$VarcharStudentRoomSharingYes = mysqli_real_escape_string($connect, $_POST['txtbxWithWhom']);
@@ -390,9 +390,9 @@ if(isset($VarcharStudentNumber))
 
 	$VarcharStudentVision = mysqli_real_escape_string($connect, $_POST['radioVision']);
 
-	echo "<script>alert('$VarcharStudentVision');</script>";
+	//echo "<script>alert('$VarcharStudentVision');</script>";
 	if ($VarcharStudentVision == "Yes") {
-		echo "<script>alert('$VarcharStudentVision');</script>";
+		//echo "<script>alert('$VarcharStudentVision');</script>";
 		$VarcharStudentVisionSpecify = mysqli_real_escape_string($connect, $_POST['txtbxVision']);
 		$VarcharStudentVision = $VarcharStudentVisionSpecify;
 	}
@@ -546,11 +546,16 @@ if(isset($VarcharStudentNumber))
 
 	if(isset($_POST['txtbxTestResultNameNew']))
 	{
+		echo "<script>alert('TRUE');</script>";
 		$VarcharStudentTestDateNew = $_POST['dateTestResultDateNew'];
 		$VarcharStudentTestNameNew = $_POST['txtbxTestResultNameNew'];
 		$VarcharStudentTestRSNew = $_POST['txtbxTestResultRawScoreNew'];
 		$VarcharStudentTestPRNew = $_POST['txtbxTestResultPercentileRatingNew'];
 		$VarcharStudentTestDescriptionNew = $_POST['txtareaTestResultDescriptionNew'];
+	}
+	else
+	{
+		echo "<script>alert('FALSE');</script>";
 	}
 
 	$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `year` = '$VarcharStudentYear', `section` = '$VarcharStudentSection', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityName` = '$VarcharStudentCityAddress', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
@@ -580,14 +585,10 @@ if(isset($VarcharStudentNumber))
 		foreach ($VarcharStudentTestNameNew as $key => $value) {
 
 			$query = "INSERT INTO tbl_testrecord (`testID`, `testDate`, `testName`, `testRawScore`, `testPercentile`, `testDescription`, `studentNumber`) VALUES (NULL,'$VarcharStudentTestDateNew[$key]','$VarcharStudentTestNameNew[$key]','$VarcharStudentTestRSNew[$key]','VarcharStudentTestPRNew[$key]','$VarcharStudentTestDescriptionNew[$key]', '$VarcharStudentNumber') ";
-			// if(mysqli_query($connect,$query))
-			// {
-			// 	echo "<script>alert('Successfully updated note #'+'$value');</script>";
-			// }
-			// else
-			// {
-			// 	echo "error:". mysqli_error($connect);
-			// }
+			if(!(mysqli_query($connect,$query)))
+			{
+			echo "error:". mysqli_error($connect);
+			}
 		}
 	}
 	if (mysqli_query($connect, $queryAddPersonalInfo)) {
