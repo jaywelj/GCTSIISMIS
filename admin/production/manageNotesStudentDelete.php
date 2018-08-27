@@ -21,25 +21,26 @@ if ($resultmovingtoarchive = mysqli_query($connect, $querymovingtoarchive))
 {
   if ($resultdeleting = mysqli_query($connect, $querydeleting))
   {
-    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=".$college."&course=all';</script>";
+
   }
   else
   {
     $message = "Error Deleting";
     echo "<script type='text/javascript'>alert('$message');</script>";
-    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
+    echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=".$college."&course=all';</script>";
   }
 }
 else
 {
   $message = "Error Moving";
   echo "<script type='text/javascript'>alert('$message');</script>";
-  echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
+  echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=".$college."&course=all';</script>";
 }
 }
 else
 {
-	echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id".$college."';</script>";
+	echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=".$college."&course=all';</script>";
 }
 
 //redirecting to the display page (index.php in our case)

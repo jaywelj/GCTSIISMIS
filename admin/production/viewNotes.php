@@ -87,7 +87,7 @@ if(isset($_POST["noteID"]))
 					<td>'.$res2["subCategoryName"].'</td>
 					</tr>
 					<th scope="row">Note Remarks</th>
-					<td>'.$res2["noteRemarks"].'</td>
+					<td>'.$row["noteRemarks"].'</td>
 					</tr>
 					';
 				}
