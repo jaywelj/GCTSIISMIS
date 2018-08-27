@@ -546,7 +546,7 @@ if(isset($VarcharStudentNumber))
 
 	if(isset($_POST['txtbxTestResultNameNew']))
 	{
-		echo "<script>alert('TRUE');</script>";
+		//echo "<script>alert('TRUE');</script>";
 		$VarcharStudentTestDateNew = $_POST['dateTestResultDateNew'];
 		$VarcharStudentTestNameNew = $_POST['txtbxTestResultNameNew'];
 		$VarcharStudentTestRSNew = $_POST['txtbxTestResultRawScoreNew'];
@@ -555,7 +555,7 @@ if(isset($VarcharStudentNumber))
 	}
 	else
 	{
-		echo "<script>alert('FALSE');</script>";
+		//echo "<script>alert('FALSE');</script>";
 	}
 
 	$queryAddPersonalInfo = "UPDATE `tbl_personalinfo` SET `lastName` = '$VarcharStudentLastName', `firstName` = '$VarcharStudentFirstName', `middleName` = '$VarcharStudentMiddleName', `sex` = '$VarcharStudentGender', `sexuality` = '$VarcharStudentSexuality', `age` = '$VarcharStudentAge', `year` = '$VarcharStudentYear', `section` = '$VarcharStudentSection', `civilStatus` = '$VarcharStudentCivilStatus', `birthDate` = '$VarcharStudentBirthdate', `height` = '$VarcharStudentHeight', `weight` = '$VarcharStudentWeight', `complexion` = '$VarcharStudentComplexion', `birthPlace` = '$VarcharStudentBirthplace', `cityHouseNumber` = '$VarcharStudentCityHouseNumber', `cityName` = '$VarcharStudentCityAddress', `cityBarangay` = '$VarcharStudentCityBarangay', `provinceHouseNumber` = '$VarcharStudentProvinceHouseNumber', `provinceProvincial` = '$VarcharStudentProvinceProvince', `provinceName` = '$VarcharStudentProvinceCity', `provinceBarangay` = '$VarcharStudentProvinceBarangay', `telNumber` = '$VarcharStudentTelNum', `mobileNumber` = '$VarcharStudentMobileNum', `email` = '$VarcharStudentEmail', `hsGWA` = '$VarcharStudentHSGWA', `religion` = '$VarcharStudentReligion', `employerName` = '$VarcharStudentNameOfEmployer', `employerAddress` = '$VarcharStudentEmployerAddress', `contactPersonName` = '$VarcharStudentContactPersonName', `cpAddress` = '$VarcharStudentContactPersonAddress', `cpRelationship` = '$VarcharStudentContactPersonRelationship', `cpContactNumber` = '$VarcharStudentContactPersonContactNumber', `collegeCode` = '$VarcharStudentCollege', `courseCode` = '$VarcharStudentCourse' WHERE `tbl_personalinfo`.`studentNumber` = '$VarcharStudentNumber'";
