@@ -1059,7 +1059,7 @@ if(isset($_POST['btnUpdate']))
 
 						<i class="fa fa-pencil" style="margin-left:46%;"></i>
 						<br>
-						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" style="display:none" onchange="readURL(this);" accept="image/x-png,image/gif,image/jpeg">
+						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" style="display:none" onchange="readURL(this);" accept="image/*">
 						<label>First Name</label>
 						<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" value="<?php echo $varcharStudentFirstName; ?>"/>
 						<br />

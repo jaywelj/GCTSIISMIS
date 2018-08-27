@@ -358,15 +358,15 @@ else
 	?>
 	<!--/ Navigation bar-->
 	<div class="container">
-		<div class="container-shadow">
-			<div class="jumbotron jumbotron-survey">
+		<div class="container-shadow" >
+			<div class="jumbotron jumbotron-survey" style="background: #fff">
 				<div class="clearfix"></div>
 
 				<div class="row">
 					<div class="col-md-12 col-sm-12 col-xs-12">
 						<div class="x_panel">
-							<div class="x_title">
-								<h2>Individual Inventory Record Form<small></small></h2>
+							<div class="x_title" style="border-bottom: solid 2px #ccc">
+								<h2 class="text-center" style="font-size: 50px;">Individual Inventory Record Form<small></small></h2>
 							</div>
 							<div class="wizard">
 								<div class="wizard-inner">
@@ -425,9 +425,9 @@ else
 											<h3 class="text-center">Step 1</h3>
 											<div class="form-horizontal form-label-left">
 												<span class="section"> 
-													<h1 class="text-center">Personal Information</h1>
+													<h1 class="text-center" style="font-size: 45px;">Personal Information</h1>
 												</span>
-												<span class="section" style="margin-left:90px;">I. Basic Information</span>
+												<h4 class="section" style="margin-left:90px;">I. Basic Information</h4>
 
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3">First Name <span class="" style="color:red">*</span>
@@ -574,7 +574,7 @@ else
 														<input type="text" id="txtbxOthersComplexion" name="txtbxOthersComplexion" class="form-control col-md-7 col-xs-12" value="<?php echo $varcharStudentComplexion; ?>" style="text-transform:capitalize;" pattern="^[A-Za-z()-:',.\s]+$"  required="required">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">II. Student Information</span>
+												<h4 class="section" style="margin-left:90px;">II. Student Information</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3">Student Number</label>
 													<div class="col-md-6 col-sm-6">
@@ -621,7 +621,7 @@ else
 														<input class="form-control col-md-7 col-xs-12" type="number" id="txtbxHSGWA" name="txtbxHSGWA" value="<?php echo $varcharStudentHSGWA;  ?>" data-validate-minmax="1,100" step=".25">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">III. Contact Informaltion</span>
+												<h4 class="section" style="margin-left:90px;">III. Contact Informaltion</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">City Address</label>
 													<div class="col-md-6 col-sm-6 col-xs-6">
@@ -632,7 +632,7 @@ else
 															<option>Metro Manila~Makati</option>
 															<option>Metro Manila~Malabon</option>
 															<option>Metro Manila~Mandaluyong</option>
-															<option selected="selected">Metro Manila~Manila</option>
+															<option>Metro Manila~Manila</option>
 															<option>Metro Manila~Marikina</option>
 															<option>Metro Manila~Muntinlupa</option>
 															<option>Metro Manila~Navotas</option>
@@ -821,7 +821,7 @@ else
 													</div>
 												</div>
 
-												<span class="section" style="margin-left:90px;">IV. If You Are Working</span>
+												<h4 class="section" style="margin-left:90px;">IV. If You Are Working</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3">Name Of Employer</label>
 													<div class="col-md-6 col-sm-6">
@@ -846,8 +846,8 @@ else
 											<h3 class="text-center">Step 2</h3>
 
 											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Educational Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Pre-elementary</span>
+												<span class="section"> <h1 class="text-center"  style="font-size: 45px;">Educational Background</h1></span>
+												<h4 class="section" style="margin-left:90px;">I. Pre-elementary</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >School Graduated <span class="" style="color:red">*</span>
 													</label>
@@ -894,7 +894,7 @@ else
 														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxPreElemHonors" id="txtbxPreElemHonors" value="<?php echo $varcharStudentPreSchoolAwards;  ?>">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">II. Elementary</span>
+												<h4 class="section" style="margin-left:90px;">II. Elementary</h4>
 
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3">School Graduated <span class="" style="color:red">*</span>
@@ -941,7 +941,7 @@ else
 														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxElementaryHonors" id="txtbxElementaryHonors" value="<?php echo $varcharStudentElementarySchoolAwards;  ?>">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">III. High School</span>
+												<h4 class="section" style="margin-left:90px;">III. High School</h4>
 
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3" >School Graduated <span class="" style="color:red">*</span>
@@ -988,7 +988,7 @@ else
 														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxHighschoolHonors" id="txtbxHighschoolHonors" value="<?php echo $varcharStudentHSSchoolAwards;  ?>">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">IV. Vocational</span>
+												<h4 class="section" style="margin-left:90px;">IV. Vocational</h4>
 
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3" >School Graduated
@@ -1034,7 +1034,7 @@ else
 														<input class="form-control col-md-7 col-xs-12" type="text" name="txtbxVocationalHonors" id="txtbxVocationalHonors" value="<?php echo $varcharStudentVocationalAwards ;  ?>">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">V. College</span>
+												<h4 class="section" style="margin-left:90px;">V. College</h4>
 
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3">School Graduated</label>
@@ -1109,8 +1109,8 @@ else
 										<div class="tab-pane" role="tabpanel" id="step3">
 											<h3 class="text-center">Step 3</h3>
 											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Home and Family Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Mother</span>
+												<span class="section"> <h1 class="text-center"  style="font-size: 45px;">Home and Family Background</h1></span>
+												<h4 class="section" style="margin-left:90px;">I. Mother</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Name <span class="" style="color:red">*</span></label>
 													<div class="col-md-6 col-sm-6">
@@ -1187,7 +1187,7 @@ else
 														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxMotherAddressOfEmployer" id="txtbxMotherAddressOfEmployer" value="<?php echo $varcharStudentMotherEmployerAddress;  ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">II. Father</span>
+												<h4 class="section" style="margin-left:90px;">II. Father</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Name <span class="" style="color:red">*</span></label>
 													<div class="col-md-6 col-sm-6">
@@ -1262,7 +1262,7 @@ else
 														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxFatherAddressOfEmployer" id="txtbxFatherAddressOfEmployer" value="<?php echo $varcharStudentFatherEmployerAddress; ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">III. Guardian</span>
+												<h4 class="section" style="margin-left:90px;">III. Guardian</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Name <span class="" style="color:red">*</span></label>
 													<div class="col-md-6 col-sm-6">
@@ -1346,7 +1346,7 @@ else
 														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGuardianAddressOfEmployer" id="txtbxGuardianAddressOfEmployer" value="<?php echo $varcharStudentFatherEmployerAddress; ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z0-9#()-:',.\s]+$">
 													</div>
 												</div>
-												<br>
+												<h4 class="section" style="margin-left:90px;">IV. Other Info</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Parent's Marital Relationship <span class="" style="color:red">*</span></label>
 													<div class="col-md-2 col-sm-2 col-xs-2">
@@ -1457,14 +1457,14 @@ else
 													</div>
 												</div>
 												<div class="item form-group">
-													<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study? <span class="" style="color:red">*</span></label>
+													<label class="control-label col-md-3 col-sm-3"  >Do you have a quiet place to study? <span class="" style="color:red">*</span></label>
 													<div class="col-md-6 col-sm-6">
 														<div class="btn-group" data-toggle="buttons">
 															<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='Yes')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input checked="checked" type="radio" name="radioQuietPlaceToSTudy" value="Yes" <?php echo ($varcharStudentStudyPlace =='Yes')?'checked':'' ?>> Yes
+																<input checked="checked" type="radio" name="radioQuietPlaceToSTudy" id="radioQuietPlaceToStudyYes" value="Yes" <?php echo ($varcharStudentStudyPlace =='Yes')?'checked':'' ?>> Yes
 															</label>
 															<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='No')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																<input type="radio" name="radioQuietPlaceToSTudy" value="No" <?php echo ($varcharStudentStudyPlace =='No')?'checked':'' ?>> No
+																<input type="radio" name="radioQuietPlaceToSTudy" id="radioQuietPlaceToStudyNo" value="No" <?php echo ($varcharStudentStudyPlace =='No')?'checked':'' ?>> No
 															</label>
 														</div>
 													</div>
@@ -1517,8 +1517,8 @@ else
 										<div class="tab-pane" role="tabpanel" id="step4">
 											<h3 class="text-center">Step 4</h3>
 											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Health Background</h1></span>
-												<span class="section" style="margin-left:90px;">I. Physical</span>
+												<span class="section"> <h1 class="text-center"  style="font-size: 45px;">Health Background</h1></span>
+												<h4 class="section" style="margin-left:90px;">I. Physical</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Do you have problems with:
 													</label>
@@ -1591,7 +1591,7 @@ else
 														<input type="text" class="form-control col-md-7 col-xs-12" name="txtbxGeneralHealth" id="txtbxGeneralHealth" value="<?php echo $varcharStudentGeneralHealth; ?>" required="required">
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">II. Psychological</span>
+												<h4 class="section" style="margin-left:90px;">II. Psychological</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Psychiatrist <span class="" style="color:red">*</span></label>
 													<div class="col-md-2 col-sm-2">
@@ -1670,8 +1670,8 @@ else
 										<div class="tab-pane" role="tabpanel" id="step5">
 											<h3 class="text-center">Step 5</h3>
 											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Interest and Hobbies</h1></span>
-												<span class="section" style="margin-left:90px;">I. Academic</span>
+												<span class="section"> <h1 class="text-center"  style="font-size: 45px;">Interest and Hobbies</h1></span>
+												<h4 class="section" style="margin-left:90px;">I. Academic</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3 col-xs-12">Club Interests</label>
 													<div class="col-md-2 col-sm-2 col-xs-2" style="padding-top :8px; ">
@@ -1727,7 +1727,7 @@ else
 														<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.,\s]+$"><?php echo $varcharStudentLeastFavSubject; ?></textarea>
 													</div>
 												</div>
-												<span class="section" style="margin-left:90px;">II. Extra-Culicular</span>
+												<h4 class="section" style="margin-left:90px;">II. Extra-Culicular</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Hobbies (according to preference)</label>
 												</div>
@@ -1801,7 +1801,7 @@ else
 										<div class="tab-pane" role="tabpanel" id="complete">
 											<h3 class="text-center">Step 6</h3>
 											<div class="form-horizontal form-label-left">
-												<span class="section"> <h1 class="text-center">Test Results</h1></span>
+												<span class="section"> <h1 class="text-center"  style="font-size: 45px;">Test Results</h1></span>
 												<?php
 												$i = 0;
 												$resultTest = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC");
@@ -1813,7 +1813,7 @@ else
 
 													echo '
 													<div class="x_panel">
-													<span class="section" style="margin-left:90px;">Test Result '.$i.'</span>
+													<h4 class="section" style="margin-left:90px;">Test Result '.$i.'</h4>
 													<div class="form-group ">
 													<label class="control-label col-md-3 col-sm-3">Date Of Test</label>
 													<div class="col-md-6 col-sm-6">
@@ -2292,12 +2292,8 @@ else
 					var dropdownCityAddress = $(this).val();
 					if(dropdownCityAddress == 'None')
 					{
-						document.getElementById("dropdownProvincialAddress").value = "Abra";
 						document.getElementById("txtbxCityHouseNumber").disabled = true;
 						document.getElementById("txtbxCityBarangay").disabled = true;
-						document.getElementById("txtbxProvinceHouseNumber").disabled = false;
-						document.getElementById("txtbxProvinceBarangay").disabled = false;
-						document.getElementById("txtbxProvinceCity").disabled = false;
 					}
 					else
 					{
@@ -2307,17 +2303,7 @@ else
 				})
 				$('#dropdownProvincialAddress').change(function() {
 					var dropdownProvincialAddress = $(this).val();
-					var dropdownCityAddress = $('#dropdownCityAddress').val();
-					if(dropdownProvincialAddress == 'None' && dropdownCityAddress == 'None')
-					{
-						document.getElementById("dropdownCityAddress").value = "Metro Manila~Manila";
-						document.getElementById("txtbxCityHouseNumber").disabled = false;
-						document.getElementById("txtbxCityBarangay").disabled = false;
-						document.getElementById("txtbxProvinceHouseNumber").disabled = true;
-						document.getElementById("txtbxProvinceBarangay").disabled = true;
-						document.getElementById("txtbxProvinceCity").disabled = true;
-					}
-					else if(dropdownProvincialAddress == 'None')
+					if(dropdownProvincialAddress == 'None')
 					{
 						document.getElementById("txtbxProvinceHouseNumber").disabled = true;
 						document.getElementById("txtbxProvinceBarangay").disabled = true;
@@ -2412,7 +2398,7 @@ else
 					document.getElementById("txtbxMotherNameOfEmployer").value = "";
 					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
 				}
-				else if($(this).val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
@@ -2460,7 +2446,7 @@ else
 					document.getElementById("txtbxFatherNameOfEmployer").value = "";
 					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
 				}
-				else if($(this).val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
@@ -2508,7 +2494,7 @@ else
 					document.getElementById("txtbxGuardianNameOfEmployer").value = "";
 					document.getElementById("txtbxGuardianAddressOfEmployer").value = "";
 				}
-				else if($("#dropdownGuardianOccupationType").val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
 					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
@@ -2656,7 +2642,7 @@ else
 						document.getElementById("txtbxOthersWhoFinancesYourSchooling").value = "";
 					}
 				})
-				$('input[name="radioShareRoom"]').change(function() {
+				$('input[name="radioShareRoom"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxWithWhom").disabled = false;
@@ -2667,7 +2653,7 @@ else
 						document.getElementById("txtbxWithWhom").value = "";
 					}
 				})
-				$('input[name="radioVision"]').change(function() {
+				$('input[name="radioVision"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxVision").disabled = false;
@@ -2680,7 +2666,7 @@ else
 						document.getElementById("txtbxVision").value = "";
 					}
 				})
-				$('input[name="radioHearing"]').change(function() {
+				$('input[name="radioHearing"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxHearing").disabled = false;
@@ -2692,7 +2678,7 @@ else
 						document.getElementById("txtbxHearing").value = "";
 					}
 				})
-				$('input[name="radioSpeach"]').change(function() {
+				$('input[name="radioSpeach"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxSpeach").disabled = false;
@@ -2704,7 +2690,7 @@ else
 						document.getElementById("txtbxSpeach").value = "";
 					}
 				})
-				$('input[name="radioGeneralHealth"]').change(function() {
+				$('input[name="radioGeneralHealth"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxGeneralHealth").disabled = false;
@@ -2716,7 +2702,7 @@ else
 						document.getElementById("txtbxGeneralHealth").value = "";
 					}
 				})
-				$('input[name="radioPsychiatrist"]').change(function() {
+				$('input[name="radioPsychiatrist"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("datePsychiatrist").disabled = false;
@@ -2730,7 +2716,7 @@ else
 						document.getElementById("txtareaForWhatPsychiatrist").value = "";
 					}
 				})
-				$('input[name="radioPsychologist"]').change(function() {
+				$('input[name="radioPsychologist"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("datePsychologist").disabled = false;
@@ -2744,7 +2730,7 @@ else
 						document.getElementById("txtareaForWhatPsychologist").value = "";
 					}
 				})
-				$('input[name="radioCounselor"]').change(function() {
+				$('input[name="radioCounselor"]').focus(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("dateCounselor").disabled = false;
@@ -2865,8 +2851,8 @@ else
 				//$("#dropdownReligion").val(temp);
 				// var temp="<?php echo $varcharStudentComplexion;?>"; 
 				// $("#dropdownComplexion").val(temp);
-				// var temp="<?php echo $varcharStudentCityCity;?>"; 
-				// $("#dropdownCityAddress").val(temp);
+				var temp="<?php echo $varcharStudentCityCity;?>"; 
+				$("#dropdownCityAddress").val(temp);
 				var temp="<?php echo $varcharStudentProvinceProvince;?>"; 
 				$("#dropdownProvincialAddress").val(temp);
 				// var temp="<?php echo $varcharStudentContactPersonRelationship;?>"; 

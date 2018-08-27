@@ -426,7 +426,7 @@ require 'header.php';
 								</div>
 								<br />
 								<label>Image</label>
-								<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" />
+								<input type="file" name="fileAdminAccountImage" id="fileAdminAccountImage" class="form-control" accept="image/*" />
 								<br />
 								<label>Brief Introduction</label>
 								<br />

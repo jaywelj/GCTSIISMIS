@@ -551,7 +551,7 @@ require 'header.php';
 								</div>
 								<br />
 								<label>Image</label>
-								<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" />
+								<input type="file" name="fileStudentImage" id="fileStudentImage" class="form-control" accept="image/*" />
 								<br />
 								
 							</div>

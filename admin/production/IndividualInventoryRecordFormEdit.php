@@ -602,7 +602,7 @@ require 'header.php';
 																<option>Metro Manila~Makati</option>
 																<option>Metro Manila~Malabon</option>
 																<option>Metro Manila~Mandaluyong</option>
-																<option selected="selected">Metro Manila~Manila</option>
+																<option>Metro Manila~Manila</option>
 																<option>Metro Manila~Marikina</option>
 																<option>Metro Manila~Muntinlupa</option>
 																<option>Metro Manila~Navotas</option>
@@ -1420,14 +1420,14 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Do you have a quite place to study? <span class="" style="color:red">*</span></label>
+														<label class="control-label col-md-3 col-sm-3"  >Do you have a quiet place to study? <span class="" style="color:red">*</span></label>
 														<div class="col-md-6 col-sm-6">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='Yes')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input checked="checked" type="radio" name="radioQuietPlaceToSTudy" value="Yes" <?php echo ($varcharStudentStudyPlace =='Yes')?'checked':'' ?>> Yes
+																	<input checked="checked" type="radio" name="radioQuietPlaceToSTudy" id="radioQuietPlaceToStudyYes" value="Yes" <?php echo ($varcharStudentStudyPlace =='Yes')?'checked':'' ?>> Yes
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentStudyPlace =='No')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioQuietPlaceToSTudy" value="No" <?php echo ($varcharStudentStudyPlace =='No')?'checked':'' ?>> No
+																	<input type="radio" name="radioQuietPlaceToSTudy" id="radioQuietPlaceToStudyNo" value="No" <?php echo ($varcharStudentStudyPlace =='No')?'checked':'' ?>> No
 																</label>
 															</div>
 														</div>
@@ -2283,12 +2283,8 @@ require 'header.php';
 					var dropdownCityAddress = $(this).val();
 					if(dropdownCityAddress == 'None')
 					{
-						document.getElementById("dropdownProvincialAddress").value = "Abra";
 						document.getElementById("txtbxCityHouseNumber").disabled = true;
 						document.getElementById("txtbxCityBarangay").disabled = true;
-						document.getElementById("txtbxProvinceHouseNumber").disabled = false;
-						document.getElementById("txtbxProvinceBarangay").disabled = false;
-						document.getElementById("txtbxProvinceCity").disabled = false;
 					}
 					else
 					{
@@ -2298,17 +2294,7 @@ require 'header.php';
 				})
 				$('#dropdownProvincialAddress').change(function() {
 					var dropdownProvincialAddress = $(this).val();
-					var dropdownCityAddress = $('#dropdownCityAddress').val();
-					if(dropdownProvincialAddress == 'None' && dropdownCityAddress == 'None')
-					{
-						document.getElementById("dropdownCityAddress").value = "Metro Manila~Manila";
-						document.getElementById("txtbxCityHouseNumber").disabled = false;
-						document.getElementById("txtbxCityBarangay").disabled = false;
-						document.getElementById("txtbxProvinceHouseNumber").disabled = true;
-						document.getElementById("txtbxProvinceBarangay").disabled = true;
-						document.getElementById("txtbxProvinceCity").disabled = true;
-					}
-					else if(dropdownProvincialAddress == 'None')
+					if(dropdownProvincialAddress == 'None')
 					{
 						document.getElementById("txtbxProvinceHouseNumber").disabled = true;
 						document.getElementById("txtbxProvinceBarangay").disabled = true;
@@ -2406,7 +2392,7 @@ require 'header.php';
 					document.getElementById("txtbxMotherNameOfEmployer").value = "";
 					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
 				}
-				else if($(this).val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
@@ -2454,7 +2440,7 @@ require 'header.php';
 					document.getElementById("txtbxFatherNameOfEmployer").value = "";
 					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
 				}
-				else if($(this).val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
@@ -2502,7 +2488,7 @@ require 'header.php';
 					document.getElementById("txtbxGuardianNameOfEmployer").value = "";
 					document.getElementById("txtbxGuardianAddressOfEmployer").value = "";
 				}
-				else if($("#dropdownGuardianOccupationType").val() == 'Self-Employed')
+				else if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
 					document.getElementById("txtbxGuardianAddressOfEmployer").disabled = true;
@@ -2661,7 +2647,8 @@ require 'header.php';
 						document.getElementById("txtbxWithWhom").value = "";
 					}
 				})
-				$('input[name="radioVision"]').change(function() {
+				$('input[name="radioVision"]').change(function() 
+				{
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxVision").disabled = false;
@@ -2859,8 +2846,8 @@ require 'header.php';
 				//$("#dropdownReligion").val(temp);
 				// var temp="<?php echo $varcharStudentComplexion;?>"; 
 				// $("#dropdownComplexion").val(temp);
-				// var temp="<?php echo $varcharStudentCityCity;?>"; 
-				// $("#dropdownCityAddress").val(temp);
+				var temp="<?php echo $varcharStudentCityCity;?>"; 
+				$("#dropdownCityAddress").val(temp);
 				var temp="<?php echo $varcharStudentProvinceProvince;?>"; 
 				$("#dropdownProvincialAddress").val(temp);
 				// var temp="<?php echo $varcharStudentContactPersonRelationship;?>"; 
@@ -3043,7 +3030,6 @@ require 'header.php';
 				$("#dropdownSupportedByYourSibling").val('Others');
 				$('#dropdownSupportedByYourSibling option').each(function(){
 					if (this.value == "<?php echo $varcharStudentSiblingSupporter;?>") {
-						alert('true');
 						document.getElementById('txtbxOthersSupportedByYourSibling').disabled="true";
 						document.getElementById('txtbxOthersSupportedByYourSibling').value="";
 						$("#dropdownSupportedByYourSibling").val(this.value);

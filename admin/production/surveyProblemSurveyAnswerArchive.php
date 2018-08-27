@@ -115,13 +115,13 @@ require 'header.php';
 										<tbody>
 											<?php  
 											
-											$query = "SELECT DISTINCT tbl_answerproblemarchive.studentNumber,firstName,lastName,middleName,answerDate FROM tbl_answerproblemarchive INNER JOIN tbl_personalinfo on tbl_answerproblemarchive.studentNumber = tbl_personalinfo.studentNumber";
+											$query = "SELECT tbl_answerproblemarchive.studentNumber,firstName,lastName,middleName,answerDate FROM tbl_answerproblemarchive INNER JOIN tbl_personalinfo on tbl_answerproblemarchive.studentNumber = tbl_personalinfo.studentNumber GROUP BY tbl_answerproblemarchive.studentNumber";
 											$result = mysqli_query($connect, $query); 
 											while($row = mysqli_fetch_array($result))  
 											{  
 												?>  
 												<tr>
-													<td width="9%" >
+													<td width="100px" >
 														<center>
 															<a title="Restore" class="btn btn-info" href="surveyProblemSurveyAnswerReturn.php?id=<?php echo$row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to restore this student's answers?')"><span class="fa fa-share-square"></span></a>	
 

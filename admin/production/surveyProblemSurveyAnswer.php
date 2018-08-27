@@ -119,7 +119,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											
-											$query = "SELECT DISTINCT tbl_answerproblem.studentNumber,firstName,lastName,middleName,answerDate FROM tbl_answerproblem INNER JOIN tbl_personalinfo on tbl_answerproblem.studentNumber = tbl_personalinfo.studentNumber";
+											$query = "SELECT tbl_answerproblem.studentNumber,firstName,lastName,middleName,answerDate FROM tbl_answerproblem INNER JOIN tbl_personalinfo on tbl_answerproblem.studentNumber = tbl_personalinfo.studentNumber GROUP BY tbl_answerproblem.studentNumber";
 											$result = mysqli_query($connect, $query); 
 											while($row = mysqli_fetch_array($result))  
 											{  

@@ -22,12 +22,12 @@ if(isset($_POST['btnFinish']))
 			$query = "INSERT INTO `tbl_answerproblem` (`answerID`, `problemID`, `answerProblem`, `studentNumber`, `answerDate`) VALUES (NULL, '$value', '$selectedRating[$value]', '$studentNumber', CURRENT_TIMESTAMP)";
 			if(mysqli_query($connect,$query))
 			{
-				echo "<script type='text/javascript'>alert('success!');</script>";
+				//echo "<script type='text/javascript'>alert('success!');</script>";
 			}
 			else
 			{
-				echo "<script type='text/javascript'>alert('error');</script>";
-					}
+				//echo "<script type='text/javascript'>alert('error');</script>";
+			}
 		}
 		echo"<script type='text/javascript'>alert('Thankyou for participating the survey!');</script>";
 		echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
@@ -181,7 +181,7 @@ if(isset($_POST['btnFinish']))
 												</label>
 												</td>
 												<td>
-												<select name="selectProblem['.$resu['problemID'].']" id="s'.$i.'" disabled="true" style="background:#ccc" required>
+												<select name="selectProblem['.$resu['problemID'].']" id="s'.$i.'" disabled="true" style="background:#ccc" required >
 												<option value="0">1 - Never</option>
 												<option value="1">2 - Seldom</option>
 												<option value="2">3 - Sometimes</option>
@@ -195,12 +195,13 @@ if(isset($_POST['btnFinish']))
 												</tr>';
 												$i ++ ;
 											}
+											echo "<script>var i = ".$i."</script>";
 											?>
 										</tbord>
 									</table>
 									<hr style="border-top: solid 1px #b9b5ce">
 									<input type="submit" name="btnFinish" id="btnFinish" class="btn btn-primary" >
-									<input type="button" name="btnFinish" class="btn btn-warning" value="Clear">
+									<input type="reset" name="btnClear" id=" btnClear" onclick="disable();"  class="btn btn-warning" value="Clear">
 								</center>
 							</div>
 						</div>
@@ -231,7 +232,7 @@ if(isset($_POST['btnFinish']))
 			{
 				document.getElementById(selectId).disabled=false;
 				document.getElementById(selectId).style.background="#fff";
-				document.getElementById(selectId).options[0].disabled = true;
+				
 				$("#"+selectId).val(1);
 			}
 			else
@@ -252,6 +253,16 @@ if(isset($_POST['btnFinish']))
 					okay=true;
 					break;
 				}
+			}
+		}
+		function disable(){
+
+			for(ctr=0;ctr<i;ctr++)
+			{
+				document.getElementById('s'+ctr).options[0].disabled = false;
+				document.getElementById('s'+ctr).selectedIndex = '0'
+				document.getElementById('s'+ctr).disabled=true;
+				document.getElementById('s'+ctr).style.background="#ccc";
 			}
 		}
 	</script>

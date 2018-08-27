@@ -1909,6 +1909,17 @@ function init_JQVmap(){
         				n.show();
         				$('html,body').scrollTop(465);
         			}
+        			if(!(document.getElementById("radioQuietPlaceToStudyYes").checked)&&!(document.getElementById("radioQuietPlaceToStudyNo").checked)&&count==2)
+        			{
+        				submit = false;
+        				var n = new Noty({
+        					text: 'Please answer "Do you have a quiet place to study? "',
+        					type: 'error',
+        					timeout: '5000'
+        				});
+        				n.show();
+        				$('html,body').scrollTop(465);
+        			}
         			if (submit)
         			{
         				count++;
