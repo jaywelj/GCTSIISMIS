@@ -81,7 +81,7 @@ if (isset($_POST['btnLogin']))
 									<input type="text" name="txtbxEmail" id="txtbxEmail" class="form-control" placeholder="Enter Email" required=""/>
 								</div>
 								<div>
-									<input type="submit" class="btn btn-default" value="Log in" name="btnSend" id="btnSend" style="float: none; margin:0px"/>
+									<input type="submit" class="btn btn-default" value="Send Email Details" name="btnSend" id="btnSend" style="float: none; margin:0px"/>
 								</div>
 								<div class="clearfix">
 								</div>
