@@ -2651,7 +2651,8 @@ function init_JQVmap(){
 								className: "btn-sm"
 							},
 							],
-							responsive: true
+							responsive: true,
+							"lengthMenu": [ [-1,50, 100, 150, 200, 250 ], [  "All",50, 100, 150, 200, 250] ]
 						});
 					}
 				};
@@ -5141,9 +5142,6 @@ function init_JQVmap(){
 
 
 $(document).ready(function() {
-	$('#datatable').dataTable( {
-		"lengthMenu": [ [50, 100, 150, 200, 250, -1], [50, 100, 150, 200, 250, "All"] ]
-	} );
 
 	init_sparklines();
 	init_flot_chart();

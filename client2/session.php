@@ -7,12 +7,4 @@ if(empty($_SESSION['sessionStudentAccountNumber'])||empty($_SESSION['sessionStud
 }
 $varcharStudentAccountNumber = $_SESSION['sessionStudentAccountNumber'];
 $varcharStudentAccountPassword = $_SESSION['sessionStudentAccountPassword'];
-
-
-
-if(isset($_POST['btnLogout'])){
-	session_unset($_SESSION['sessionStudentAccountNumber']);
-	session_unset($_SESSION['sessionStudentAccountPassword']);
-	echo "<script> alert('You are now logging out');</script>";
-}
 ?>

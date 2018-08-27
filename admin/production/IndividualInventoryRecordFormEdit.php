@@ -53,7 +53,8 @@ if(isset($_GET["id"]))
 		$varcharStudentSection = $res2['section'];
 		$varcharStudentCivilStatus = $res2['civilStatus'];
 		$varcharStudentBirthdate = $res2['birthDate'];
-		$varcharStudentHeight = $res2['height'];
+		if($varcharStudentBirthdate == "0")
+			$varcharStudentHeight = $res2['height'];
 		$varcharStudentWeight = $res2['weight'];
 		$varcharStudentComplexion = $res2['complexion'];
 		$varcharStudentBirthplace = $res2['birthPlace'];
@@ -325,14 +326,7 @@ require 'header.php';
 						</div>
 
 						<div class="title_right">
-							<div class="col-md-5 col-sm-5 col-xs-12 form-group pull-right top_search">
-								<div class="input-group">
-									<input type="text" class="form-control" placeholder="Search for...">
-									<span class="input-group-btn">
-										<button class="btn btn-default" type="button">Go!</button>
-									</span>
-								</div>
-							</div>
+							
 						</div>
 					</div>
 					<div class="clearfix"></div>
@@ -846,9 +840,8 @@ require 'header.php';
 																	<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPub" value="Public" <?php echo ($varcharStudentPreSchoolType =='Public')?'checked':'' ?>> Public
 																</label>
 																<label class="btn btn-default <?php echo ($varcharStudentPreSchoolType =='Private')?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
-																	<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPub" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
+																	<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPri" value="Private" <?php echo ($varcharStudentPreSchoolType =='Private')?'checked':'' ?>> Private
 																</label>
-																<input type="radio" name="radioPreElemTypeOfSchool" id="radioPreElemTypeOfSchoolPri" value=NULL style="display: none;">
 															</div>
 														</div>
 													</div>
@@ -2358,6 +2351,8 @@ require 'header.php';
 						document.getElementById("dropdownMotherOccupationType").disabled = false;
 					}
 				})
+				
+
 				$('input[name="radioFatherState"]').change(function() {
 					var radioFatherState = $(this).val();
 					if( radioFatherState == 'Deceased')
@@ -2376,6 +2371,7 @@ require 'header.php';
 						document.getElementById("dropdownFatherOccupationType").disabled = false;
 					}
 				})
+				
 				$('#dropdownMotherOccupationType').change(function() {
 					if($(this).val() == 'Unemployed')
 					{
@@ -2948,6 +2944,29 @@ require 'header.php';
 					document.getElementById('txtbxGuardianAddressOfEmployer').disabled = "true";
 					document.getElementById('txtbxGuardianNameOfEmployer').value="";
 					document.getElementById('txtbxGuardianAddressOfEmployer').value="";
+				}
+				if( '<?php echo $varcharStudentMotherStatus; ?>' == 'Deceased')
+				{
+					<?php //echo"alert('".$varcharStudentMotherStatus."');"; ?>
+					document.getElementById("dropdownMotherOccupationType").disabled = true;
+					document.getElementById("txtbxMotherOccupation").disabled = true;
+					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
+					document.getElementById("dropdownMotherOccupationType").value = "Unemployed";
+					document.getElementById("txtbxMotherOccupation").value = "";
+					document.getElementById("txtbxMotherNameOfEmployer").value = "";
+					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
+				}
+				if( '<?php echo $varcharStudentFatherStatus; ?>' == 'Deceased')
+				{
+					document.getElementById("dropdownFatherOccupationType").disabled = true;
+					document.getElementById("txtbxFatherOccupation").disabled = true;
+					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
+					document.getElementById("txtbxFatherAddressOfEmployer").disabled = true;
+					document.getElementById("dropdownFatherOccupationType").value = "Unemployed";
+					document.getElementById("txtbxFatherOccupation").value = "";
+					document.getElementById("txtbxFatherNameOfEmployer").value = "";
+					document.getElementById("txtbxFatherAddressOfEmployer").value = "";
 				}
 				// if ( <?php echo $varcharStudentNumOfChildren; ?> < 2) {
 				// 	document.getElementById("txtbxNoOfBrothers").disabled = true;
