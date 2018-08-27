@@ -17,21 +17,21 @@ $deletingquery2 = "DELETE FROM `tbl_programcategory` WHERE `tbl_programcategory`
 
 if (mysqli_query($connect, $archivingquery))
 {
-	$message = "Success Moving Program";
-	echo "<script type='text/javascript'>alert('$message');</script>";	
+	// $message = "Success Moving Program";
+	// echo "<script type='text/javascript'>alert('$message');</script>";	
 	
 	if (mysqli_query($connect, $deletingquery)) 
 	{
-		$message = "Success Deleting";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "Success Deleting";
+		// echo "<script type='text/javascript'>alert('$message');</script>";
 
 		if (mysqli_query($connect, $archivingquery2))
 		{
-			$message = "Success Moving Program Category";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "Success Moving Program Category";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 			if (mysqli_query($connect, $deletingquery2))
 			{
-				$message = "Success Deleting Program Category";
+				$message = "Successfully Archived Programs";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				echo "<script type='text/javascript'>location.href = 'managePrograms.php';</script>";
 			}

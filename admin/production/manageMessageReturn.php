@@ -14,25 +14,25 @@ $deletingquery = "DELETE FROM `tbl_messagearchive` WHERE `tbl_messagearchive`.`m
 
 if (mysqli_query($connect, $archivingquery))
 {
-	$message = "Success Moving";
-	echo "<script type='text/javascript'>alert('$message');</script>";
+	// $message = "Success Moving";
+	// echo "<script type='text/javascript'>alert('$message');</script>";
 	if (mysqli_query($connect, $deletingquery)) 
 	{
-	$message = "Success Deleting";
+	$message = "Success Restoring Message";
 	echo "<script type='text/javascript'>alert('$message');</script>";
 	echo "<script type='text/javascript'>location.href = 'manageMessageArchived.php';</script>";
 	}
 	else
 	{
-	$message = "Query Error Deleting";
-	echo "<script type='text/javascript'>alert('$message');</script>";
+	// $message = "Query Error Deleting";
+	// echo "<script type='text/javascript'>alert('$message');</script>";
 	echo "<script type='text/javascript'>location.href = 'manageMessageArchived.php';</script>";
 	}
 }
 else
 {
-	$message = "Query Error Moving";
-	echo "<script type='text/javascript'>alert('$message');</script>";
+	// $message = "Query Error Moving";
+	// echo "<script type='text/javascript'>alert('$message');</script>";
 	echo "<script type='text/javascript'>location.href = 'manageMessageArchived.php';</script>";
 }
 }

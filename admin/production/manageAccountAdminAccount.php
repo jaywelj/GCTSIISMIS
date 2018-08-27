@@ -279,7 +279,7 @@ require 'header.php';
 										<tbody>
 											<?php  
 											include("connectionString.php");  
-											$queryCourse = "SELECT * FROM tbl_adminaccount ORDER BY adminId ASC";
+											$queryCourse = "SELECT * FROM tbl_adminaccount ORDER BY adminId DESC";
 											$resultCourse = mysqli_query($connect, $queryCourse); 
 											while($row = mysqli_fetch_array($resultCourse))  
 											{  
