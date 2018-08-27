@@ -204,84 +204,77 @@ if(isset($_POST['btnUpdate']))
 {
 	include_once("connectionString.php");
 
-	$varcharStudentNumber	= $varcharStudentNumber;
+	$varcharUpdateStudentNumber = $varcharStudentNumber;
 
-	$varcharStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFirstName']);
+	$varcharUpdateStudentFirstName = mysqli_real_escape_string($connect, $_POST['txtbxStudentFirstName']);
 
-	$varcharStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMiddleName']);
+	$varcharUpdateStudentMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentMiddleName']);
 
-	$varcharStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentLastName']);
+	$varcharUpdateStudentLastName = mysqli_real_escape_string($connect, $_POST['txtbxStudentLastName']);
 
-	$varcharStudentAbout = mysqli_real_escape_string($connect, $_POST['txtbxStudentAbout']);
+	$varcharUpdateStudentAbout = mysqli_real_escape_string($connect, $_POST['txtbxStudentAbout']);
 
-	$varcharStudentCourse = mysqli_real_escape_string($connect, $_POST['selectStudentCourse']);
+	$varcharUpdateStudentCourse = mysqli_real_escape_string($connect, $_POST['selectStudentCourse']);
 
-	$varcharStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentYear']);
+	$varcharUpdateStudentYear = mysqli_real_escape_string($connect, $_POST['txtbxStudentYear']);
 
-	$varcharStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
+	$varcharUpdateStudentSection = mysqli_real_escape_string($connect, $_POST['txtbxStudentSection']);
 
-	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharStudentCourse' ;";
+	$queryGetCollege = "SELECT tbl_college.collegeCode FROM tbl_course INNER JOIN tbl_college ON tbl_course.collegeCode = tbl_college.collegeCode WHERE courseCode = '$varcharUpdateStudentCourse' ;";
 	$queryGetCollegeArray = mysqli_query($connect, $queryGetCollege);
 	while ($row = mysqli_fetch_array($queryGetCollegeArray))
 	{
-		$varcharStudentCollege = $row['collegeCode'];
+		$varcharUpdateStudentCollege = $row['collegeCode'];
 	}
 	if(!empty($_FILES['fileEditStudentImage']['tmp_name']) && file_exists($_FILES['fileEditStudentImage']['tmp_name'])) 
 	{
-		$varcharStudentImage = addslashes(file_get_contents($_FILES["fileEditStudentImage"]["tmp_name"]));
+		$varcharUpdateStudentImage = addslashes(file_get_contents($_FILES["fileEditStudentImage"]["tmp_name"]));
 	}
 	else
 	{
-		$varcharStudentImage = NULL;
+		$varcharUpdateStudentImage = NULL;
 	}
-	$varcharStudentPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentPassword']);
-	$varcharStudentCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCPassword']);
-	$varcharStudentCurPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCurPassword']);
+	$varcharUpdateStudentPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentPassword']);
+	$varcharUpdateStudentCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCPassword']);
+	$varcharUpdateStudentCurPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentCurPassword']);
 	// checking empty fields
-	if(empty($varcharStudentFirstName)) 
+	if(empty($varcharUpdateStudentFirstName)) 
 	{
 
-		if(empty($varcharStudentFirstName))
+		if(empty($varcharUpdateStudentFirstName))
 		{
 			$message = "Enter a First Name";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	} 
-	else if($varcharStudentCPassword<>$varcharStudentPassword)
+	else if($varcharUpdateStudentCPassword<>$varcharUpdateStudentPassword)
 	{
 		$message = "Password does not match";
 		echo "<script type='text/javascript'>alert('$message');</script>";
+		echo "<script type='text/javascript'>location.href = 'profile.php';</script>";
 	}
-	else if($varcharStudentCurPassword <> $varcharStudentAccountPassword)
+	else if($varcharUpdateStudentCurPassword <> $varcharStudentAccountPassword)
 	{
 		$message = "Wrong password";
 		echo "<script type='text/javascript'>alert('$message');</script>";
+		echo "<script type='text/javascript'>location.href = 'profile.php';</script>";
 	}
 	else 
 	{ 
 		// if all the fields are filled (not empty) 
 		//insert data to database   
-		if (!empty($varcharStudentImage)) 
+		if (!empty($varcharUpdateStudentImage)) 
 		{
-			$queryEdit = "
-			UPDATE `tbl_studentaccount` AS A
-			INNER JOIN tbl_personalinfo AS B 
-			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', 'aboutStudent' = '$varcharStudentAbout', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection',`studentDisplayPic` = '$varcharStudentImage', studentPassword = '$varcharStudentPassword' 
-			WHERE A.studentNumber = '$varcharStudentNumber'";
+			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse', `studentDisplayPic` = '$varcharUpdateStudentImage' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{
-			$queryEdit = "
-			UPDATE `tbl_studentaccount` AS A
-			INNER JOIN tbl_personalinfo AS B 
-			ON A.studentNumber = B.studentNumber 
-			SET `firstName` = '$varcharStudentFirstName', `middleName` = '$varcharStudentMiddleName', `lastName` = '$varcharStudentLastName', aboutStudent = '$varcharStudentAbout', courseCode = '$varcharStudentCourse', collegeCode = '$varcharStudentCollege', year = '$varcharStudentYear', section = '$varcharStudentSection', studentPassword = '$varcharStudentPassword'
-			WHERE A.studentNumber = '$varcharStudentNumber'";
+			// $queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentCourse', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
+
+			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
@@ -289,15 +282,15 @@ if(isset($_POST['btnUpdate']))
 		{
 			$message = "Query Error" ;
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo("Error description: " . mysqli_error($connect));
+			echo("Error description: " . mysqli_error($connect));	
 		}
 		else
 		{
-			$_SESSION['sessionStudentAccountPassword'] = $varcharStudentPassword;
+			$_SESSION['sessionStudentAccountPassword'] = $varcharUpdateStudentPassword;
 			$message = "Student Account Updated Successfully!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 			//redirectig to the display page. In our case, it is index.php
-			echo "<script type='text/javascript'>location.href = 'profile.php';</script>";	
+			echo "<script type='text/javascript'>location.href = 'profile.php';</script>";
 		}
 	}
 }
@@ -1098,7 +1091,7 @@ if(isset($_POST['btnUpdate']))
 							<div id="divCheckPasswordMatch">
 							</div>
 						</small>
-
+						<br />
 						<label>Enter Current Password</label>
 						<input type="password" name="txtbxStudentCurPassword" id="txtbxStudentCurPassword" class="form-control" required="" />
 						<small>	
