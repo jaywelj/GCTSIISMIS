@@ -19,6 +19,8 @@
  	{
  		if ($resultdeleting = mysqli_query($connect, $querydeleting))
  		{
+ 			$message = "Succesfully Archived Admin Account";
+ 			echo "<script type='text/javascript'>alert('$message');</script>";
  			echo "<script type='text/javascript'>location.href = 'manageAccountAdminAccount.php';</script>";
  		}
  		else{

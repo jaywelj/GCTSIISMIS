@@ -17,27 +17,27 @@ $deletingquery2 = "DELETE FROM `tbl_programcategoryarchive` WHERE `tbl_programca
 
 if (mysqli_query($connect, $archivingquery))
 {
-	$message = "Success Moving Program";
-	echo "<script type='text/javascript'>alert('$message');</script>";	
+	// $message = "Success Moving Program";
+	// echo "<script type='text/javascript'>alert('$message');</script>";	
 	
 	if (mysqli_query($connect, $deletingquery)) 
 	{
-		$message = "Success Deleting";
-		echo "<script type='text/javascript'>alert('$message');</script>";
+		// $message = "Success Deleting";
+		// echo "<script type='text/javascript'>alert('$message');</script>";
 
 		if (mysqli_query($connect, $archivingquery2))
 		{
-			$message = "Success Moving Program Category";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "Success Moving Program Category";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 			if (mysqli_query($connect, $deletingquery2))
 			{
-				$message = "Success Deleting Program Category";
+				$message = "Successfully Restored Program";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				echo "<script type='text/javascript'>location.href = 'manageProgramsArchived.php';</script>";
 			}
 			else
 			{
-				$message = "Error Deleting Program Category";
+				$message = "Successfully Restored Program";
 				echo "<script type='text/javascript'>alert('$message');</script>";
 				echo "<script type='text/javascript'>location.href = 'manageProgramsArchived.php';</script>";
 			}

@@ -28,11 +28,6 @@ else
 {
 	echo "<script type='text/javascript'>location.href = 'manageCourseArchived.php';</script>";
 }
-}
-else
-{
-	echo "<script type='text/javascript'>location.href = 'manageCourseArchived.php';</script>";
-}
 
 //Clearing Tour Package dependencies 
 
