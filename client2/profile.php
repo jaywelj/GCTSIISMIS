@@ -977,27 +977,43 @@ if(isset($_POST['btnUpdate']))
 									<div class="message_wrapper">
 										<h4 class="heading">Test Result</h4>
 										<table class="table">
-											<tbody>
-												<tr>
-													<th scope="row" style="width: 400px;">Date</th>
-													<td><?php echo $varcharStudentTestDate; ?></td>
-												</tr>
-												<tr>
-													<th scope="row">Name of Test</th>
-													<td><?php echo $varcharStudentTestName; ?></td>
-												</tr>
-												<tr>
-													<th scope="row">Raw Score</th>
-													<td><?php echo $varcharStudentTestRawScore; ?></td>
-												</tr>
-												<tr>
-													<th scope="row">Percentage Rating</th>
-													<td><?php echo $varcharStudentTestPercentile; ?></td>
-												</tr>
-												<tr>
-													<th scope="row">Description</th>
-													<td><?php echo $varcharStudentTestDescription; ?></td>
-												</tr>
+											<?php
+											$result6 = mysqli_query($connect, "SELECT * FROM `tbl_testrecord` WHERE studentNumber = '$varcharStudentAccountNumber' ORDER BY `testID` DESC");
+											$i = 0;
+											while($res6 = mysqli_fetch_array($result6)){
+
+												$varcharStudentTestID = $res6['testID'];
+												$varcharStudentTestDate = $res6['testDate'];
+												$varcharStudentTestName = $res6['testName'];
+												$varcharStudentTestRawScore = $res6['testRawScore']; 
+												$varcharStudentTestPercentile = $res6['testPercentile'];
+												$varcharStudentTestDescription = $res6['testDescription'];
+												$i = $i + 1 ;
+												?>
+												<tbody>
+													<tr>
+														<th scope="row" style="width: 400px;">Date</th>
+														<td><?php echo $varcharStudentTestDate; ?></td>
+													</tr>
+													<tr>
+														<th scope="row">Name of Test</th>
+														<td><?php echo $varcharStudentTestName; ?></td>
+													</tr>
+													<tr>
+														<th scope="row">Raw Score</th>
+														<td><?php echo $varcharStudentTestRawScore; ?></td>
+													</tr>
+													<tr>
+														<th scope="row">Percentage Rating</th>
+														<td><?php echo $varcharStudentTestPercentile; ?></td>
+													</tr>
+													<tr>
+														<th scope="row">Description</th>
+														<td><?php echo $varcharStudentTestDescription; ?></td>
+													</tr>
+													<?php
+												}
+												?>
 											</tbody>
 										</table>
 										<br/>
@@ -1043,7 +1059,7 @@ if(isset($_POST['btnUpdate']))
 
 						<i class="fa fa-pencil" style="margin-left:46%;"></i>
 						<br>
-						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" accept="image/*" style="display:none" onchange="readURL(this);" accept="image/*">
+						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" style="display:none" onchange="readURL(this);" accept="image/x-png,image/gif,image/jpeg">
 						<label>First Name</label>
 						<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" value="<?php echo $varcharStudentFirstName; ?>"/>
 						<br />
@@ -1110,8 +1126,8 @@ if(isset($_POST['btnUpdate']))
 	</form>
 	<!--/Modal Edit-->
 
-	
-	
+
+
 
 	<script src="js/jquery.min.js"></script>
 	<script src="js/jquery.easing.min.js"></script>
@@ -1147,7 +1163,7 @@ if(isset($_POST['btnUpdate']))
 			{
 				document.getElementById("divCheckPasswordMatch").innerHTML = "";
 			}
-			
+
 		}
 		function readURL(input) {
 			if (input.files && input.files[0]) {
