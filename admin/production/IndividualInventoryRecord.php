@@ -99,7 +99,7 @@ require 'header.php';
 										<!--<p class="text-muted font-13 m-b-30">
 											The Buttons extension for DataTables provides a common set of options, API methods and styling to display buttons on a page that will interact with a DataTable. The core library provides the based framework upon which plug-ins can built.
 										</p>-->
-										<table id="datatable-buttons" class="table table-striped table-bordered" style="width: 100%">
+										<table id="datatable" class="table table-striped table-bordered" style="width: 100%">
 											<thead>
 												<tr>
 													<th></th>
@@ -117,10 +117,10 @@ require 'header.php';
 												<?php  
 												include("connectionString.php");
 												if($course == "all"){
-													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college'";
+													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college' ORDER BY tbl_studentaccount.studentDateAccountCreated DESC";
 												}
 												else{
-													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college' AND courseCode = '$course'";
+													$queryStudent = "SELECT * FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE collegeCode = '$college' AND courseCode = '$course' ORDER BY tbl_studentaccount.studentDateAccountCreated DESC";
 												}
 												$resultStudent = mysqli_query($connect, $queryStudent); 
 
@@ -142,7 +142,7 @@ require 'header.php';
 															// else
 															// {	
 																echo "<div class='btn-group  btn-group-sm' >
-																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm '><i class='fa fa-edit'></i></a>
+																<a href='IndividualInventoryRecordFormEdit.php?id=".$row['studentNumber']."'class='btn btn-primary btn-sm' title='Edit'><i class='fa fa-edit'></i></a>
 																</div>";
 															// }
 																?>
@@ -154,7 +154,7 @@ require 'header.php';
 
 
 															<div class="btn-group  btn-group-sm" >
-																<a href="individualInventoryRecordView.php?id=<?php echo $row['studentNumber'];?>" class="btn btn-info btn-sm "><i class="fa fa-list"></i></a>
+																<a href="individualInventoryRecordView.php?id=<?php echo $row['studentNumber'];?>" class="btn btn-info btn-sm " title='View'><i class="fa fa-list"></i></a>
 															</div>
 														</center>
 

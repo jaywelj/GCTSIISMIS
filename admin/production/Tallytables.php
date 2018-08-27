@@ -100,7 +100,7 @@ require 'header.php';
 										<b>Student Individual Inventory Tally of Records</b>
 									</p>-->
 									
-									<table id="datatable-buttons" class="table table-striped table-bordered">
+									<table id="datatable-buttons" class="table table-striped table-bordered datatable-tally">
 										<?php  
 										include("connectionString.php");
 										if($course == "all"){
@@ -2316,6 +2316,8 @@ require 'header.php';
 												}
 												?>
 											</tr>
+										</tbody>
+										<thead>
 											<tr>
 												<th>II. Educational Background</th>
 												<?php 
@@ -2334,6 +2336,8 @@ require 'header.php';
 												}
 												?>
 											</tr>
+										</thead>
+										<tbody>
 											<tr>
 												<th>Elementary</th>
 												<?php 
@@ -5269,10 +5273,7 @@ require 'header.php';
 		});
 	</script>
 	<!-- Custom Theme Scripts -->
-	<script src="../build/js/custom.min.js"></script>
-
-
-
+	<script src="../build/js/custom3.js"></script>
 	<script type="text/javascript">
 		function course(){
 			var url = window.location.href;
