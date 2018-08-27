@@ -34,7 +34,7 @@ if (isset($_POST['btnLogin']))
 		<meta name="viewport" content="width=device-width, initial-scale=1">
 
 		<link rel="shortcut icon" href="assets/img/GCTS LOGO1.png">
-		<title>Login | OCPS</title>
+		<title>Lost Password | OCPS</title>
 
 		<!-- Bootstrap -->
 		<link href="../vendors/bootstrap/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -67,7 +67,7 @@ if (isset($_POST['btnLogin']))
 	</div> 
 	<body class="login">
 		<div>
-					<a class="hiddenanchor" id="signin"></a>
+			<a class="hiddenanchor" id="signin"></a>
 
 			<div class="login_wrapper">
 
@@ -75,25 +75,18 @@ if (isset($_POST['btnLogin']))
 
 					<section class="login_content">
 						<div class="jumbotron" style="width:400px; height:400px; background-color: #ffffff; padding:45px; margin: 10px; border-radius: 10px">
-							<form method='post'>
-								<h1>Login</h1>
+							<form method='post' action="lostPasswordMail.php">
+								<h1>Lost Password?</h1>
 								<div>
-									<input type="text" name="txtbxEmail" id="txtbxEmail" class="form-control" placeholder="Username" required=""/>
+									<input type="text" name="txtbxEmail" id="txtbxEmail" class="form-control" placeholder="Enter Email" required=""/>
 								</div>
 								<div>
-									<input type="password" name="txtbxPassword" id="txtbxPassword" class="form-control" placeholder="Password" required=""/>
-								</div>
-								<div class="checkbox text-center ">
-									<input name="showcheck" id="showcheck" type="checkbox" value="" onclick="showCheck()">
-									<h5 style="display:inline;">Show Password</h5>
-								</div>
-								<div>
-									<input type="submit" class="btn btn-default" value="Log in" name="btnLogin" id="btnLogin" style="float: none; margin:0px"/>
+									<input type="submit" class="btn btn-default" value="Log in" name="btnSend" id="btnSend" style="float: none; margin:0px"/>
 								</div>
 								<div class="clearfix">
 								</div>
 								<div>
-									<a class="reset_pass" style="margin-right: 0px; text-align:center;" href="lostPassword.php">Lost your password?</a>
+									<a class="reset_pass" style="margin-right: 0px; text-align:center;" href="login.php">Log in instead?</a>
 								</div>
 								<div class="separator">
 									<div class="clearfix">
