@@ -266,7 +266,7 @@ if(isset($_POST['btnUpdate']))
 		//insert data to database   
 		if (!empty($varcharUpdateStudentImage)) 
 		{
-			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse', `studentDisplayPic` = '$varcharUpdateStudentImage' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
+			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', aboutStudent = '$varcharUpdateStudentAbout', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse', `studentDisplayPic` = '$varcharUpdateStudentImage' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
 			$message = "0";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
@@ -274,7 +274,7 @@ if(isset($_POST['btnUpdate']))
 		{
 			// $queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentCourse', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
 
-			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
+			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', aboutStudent = '$varcharUpdateStudentAbout', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
 			$message = "1";
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}

@@ -571,14 +571,10 @@ if(isset($VarcharStudentNumber))
 	foreach ($VarcharStudentTestIdInitial as $key => $value) {
 
 		$query = "UPDATE `tbl_testrecord` SET `testDate` = '$VarcharStudentTestDateInitial[$key]', `testName` = '$VarcharStudentTestNameInitial[$key]', `testRawScore` = '$VarcharStudentTestRSInitial[$key]', `testPercentile` = '$VarcharStudentTestPRInitial[$key]', `testDescription` = '$VarcharStudentTestDescriptionInitial[$key]' WHERE `tbl_testrecord`.`testID` = '$value'";
-		// if(mysqli_query($connect,$query))
-		// {
-		// 	echo "<script>alert('Successfully updated note #'+'$value');</script>";
-		// }
-		// else
-		// {
-		// 	echo "error:". mysqli_error($connect);
-		// }
+		if(!(mysqli_query($connect,$query)))
+		{
+		echo "error:". mysqli_error($connect);
+		}
 	}
 	if(isset($_POST['txtbxTestResultNameNew']))
 	{
