@@ -47,7 +47,7 @@ if(isset($_POST['btnEmailSend']))
 
 	if(mysqli_query($connect, $queryInsertingMessage))
 	{   
-		$message = "Successfully Added Message";
+		$message = "Message Sent!";
 		echo "<script type='text/javascript'>alert('$message');</script>";
 	}
 	else

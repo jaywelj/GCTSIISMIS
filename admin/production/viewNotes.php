@@ -86,11 +86,15 @@ if(isset($_POST["noteID"]))
 					<th scope="row">Reason for visitation</th>
 					<td>'.$res2["subCategoryName"].'</td>
 					</tr>
+					<th scope="row">Note Remarks</th>
+					<td>'.$res2["noteRemarks"].'</td>
+					</tr>
 					';
 				}
 			}
 		}
 	}
+
 	$output .= '
 	</tbody>
 	</table>

@@ -71,7 +71,7 @@ if(isset($_POST["noteID"]))
 					<?php
 					$output .= '<label>Reason For Visitation</label>
 					<select name="optionEditNoteSubCategory" id="optionEditNoteSubCategory" class="form-control">
-					<option value="NULL" selected>Select A Course</option>';?>
+					<option value="NULL" selected>Reason For Visitation</option>';?>
 					<?php 
 					while($row1 = mysqli_fetch_array($resultSubCategory)):;?>
 						<?php
