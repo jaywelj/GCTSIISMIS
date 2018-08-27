@@ -1919,7 +1919,6 @@ require 'header.php';
 						document.getElementById("txtbxOthersSexuality").disabled = true;
 						document.getElementById("txtbxOthersSexuality").value = "";
 					}
-
 				})
 				$('#dateDateOfBirth').blur(function() {
 					var dateDateOfBirthday = $(this).val();
