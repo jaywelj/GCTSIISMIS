@@ -34,12 +34,12 @@
 										<input name="showcheck" id="showcheck" type="checkbox" value="" onclick="showCheck()">
 										<h5 style="display:inline;">Show Password</h5>
 									</div>
-									<div class="checkbox icheck">
+									<!-- <div class="checkbox icheck">
 										<div class="checkbox text-center ">
 											<input id="loginrem" type="checkbox" value="">
 											<h5 style="display:inline;">Remember Password</h5>
 										</div>
-									</div>
+									</div> -->
 								</div>
 								<div class="col-xs-12">
 									<input type="submit" class="btn btn-green btn-block btn-flat" name="btnLogin" value="Sign In"/>

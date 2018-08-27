@@ -93,7 +93,7 @@ if (isset($_POST['btnLogin']))
 								<div class="clearfix">
 								</div>
 								<div>
-									<a class="reset_pass" style="margin-right: 0px; text-align:center;" href="#">Lost your password?</a>
+									<a class="reset_pass" style="margin-right: 0px; text-align:center;" href="lostPassword.php">Lost your password?</a>
 								</div>
 								<div class="separator">
 									<div class="clearfix">
