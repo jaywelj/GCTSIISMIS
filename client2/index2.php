@@ -541,11 +541,11 @@ if(isset($_POST['btnEmailSend']))
 				<form method="post">
 					<div class="col-md-6 col-sm-6 col-xs-12 left">
 						<div class="form-group">
-							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" maxlength="20" data-msg="Please enter at least 4 chars" value="<?php echo $name ?> <?php echo $lastName ?>" />
+							<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" value="<?php echo $name ?> <?php echo $lastName ?>" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" required="required" readonly />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group">
-							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" value="<?php echo $email ?>" />
+							<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" value="<?php echo $email ?>" required="required" />
 							<div class="validation"></div>
 						</div>
 						<div class="form-group"><!-- 
@@ -554,9 +554,8 @@ if(isset($_POST['btnEmailSend']))
 							include("connectionString.php");
 							$queryIncidentSubCategory = "SELECT * FROM tbl_incidentsubcategory";
 							$resultIncidentSubCategory = mysqli_query($connect, $queryIncidentSubCategory);
-							?> 
-							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control">
-								<option value="NULL" selected disabled="">Subject</option>
+							?>
+							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control" placeholder="Subject" required=" required">
 								<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
 									<option value="<?php echo $row['subCategoryID'];?>"><?php echo $row['subCategoryName'];?></option>
 								<?php endwhile;?>
@@ -567,7 +566,7 @@ if(isset($_POST['btnEmailSend']))
 
 					<div class="col-md-6 col-sm-6 col-xs-12 right">
 						<div class="form-group">
-							<textarea class="form-control" name="txtbxSenderMessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+							<textarea class="form-control" name="txtbxSenderMessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" required="required"></textarea>
 							<div class="validation"></div>
 						</div>
 					</div>

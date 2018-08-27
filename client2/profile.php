@@ -1045,13 +1045,13 @@ if(isset($_POST['btnUpdate']))
 						<br>
 						<input type="file" id="fileEditStudentImage" name="fileEditStudentImage" accept="image/*" style="display:none" onchange="readURL(this);" accept="image/*">
 						<label>First Name</label>
-						<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" value="<?php echo $varcharStudentFirstName; ?>"/>
+						<input type="text" name="txtbxStudentFirstName" id="txtbxStudentFirstName" class="form-control" value="<?php echo $varcharStudentFirstName; ?>"  style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" required="required" />
 						<br />
 						<label>Middle Name</label>
-						<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" value="<?php echo $varcharStudentMiddleName; ?>" />
+						<input type="text" name="txtbxStudentMiddleName" id="txtbxStudentMiddleName" class="form-control" value="<?php echo $varcharStudentMiddleName; ?>" data-max-words="2" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" />
 						<br />
 						<label>Last Name</label>
-						<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" value="<?php echo $varcharStudentLastName; ?>" />
+						<input type="text" name="txtbxStudentLastName" id="txtbxStudentLastName" class="form-control" value="<?php echo $varcharStudentLastName; ?>" data-max-words="2" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" required="required" />
 						<br />
 						<label>Student Description</label>
 						<input type="text" name="txtbxStudentAbout" id="txtbxStudentAbout" class="form-control" value="<?php echo $varcharStudentAbout; ?>" />
@@ -1069,31 +1069,31 @@ if(isset($_POST['btnUpdate']))
 
 						?>
 						<label>Course</label>
-						<select name="selectStudentCourse" id="selectStudentCourse" class="form-control">
-							<option value="NULL" selected>Select A Course</option>
+						<select required="required" name="selectStudentCourse" id="selectStudentCourse" class="form-control">
 							<?php while($row = mysqli_fetch_array($resultCourse2)):;?>
 								<option value="<?php echo $row[0];?>"><?php echo $row[0];?> - <?php echo $row[1];?></option>
 							<?php endwhile;?>
 						</select>
 						<br />
 						<label>Year</label>
-						<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" value="<?php echo $varcharStudentYear; ?>"/>
+						<input type="number" name="txtbxStudentYear" id="txtbxStudentYear" class="form-control" value="<?php echo $varcharStudentYear; ?>" required="required" min="1" max="5" />
 						<br />
 						<label>Section</label>
-						<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" value="<?php echo $varcharStudentSection; ?>" />
+						<input type="number" name="txtbxStudentSection" id="txtbxStudentSection" class="form-control" value="<?php echo $varcharStudentSection; ?>" style="text-transform:uppercase;" pattern="^[\u00F1A-Za-z0-9]+$" required="required" />
 						<br />
 						<label>Password</label>
-						<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" />
+						<input type="password" name="txtbxStudentPassword" id="txtbxStudentPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" pattern=".{8,60}" required="required" />
 						<br />
 						<label>Confirm Password</label>
-						<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" />
+						<input type="password" name="txtbxStudentCPassword" id="txtbxStudentCPassword" class="form-control" value="<?php echo $varcharStudentAccountPassword; ?>" pattern=".{8,60}" required="required" />
 						<small>	
 							<div id="divCheckPasswordMatch">
 							</div>
 						</small>
 						<br />
 						<label>Enter Current Password</label>
-						<input type="password" name="txtbxStudentCurPassword" id="txtbxStudentCurPassword" class="form-control" required="" />
+						<input type="password" name="txtbxStudentCurPassword" id="txtbxStudentCurPassword" class="form-control" pattern=".{8,60}" required="required" />
+						<br />
 						<small>	
 							<div id="divCheckPasswordMatch">
 							</div>
@@ -1125,6 +1125,10 @@ if(isset($_POST['btnUpdate']))
 		document.getElementById("txtbxStudentPassword").onkeyup = function(){
 			checkPassword();
 		};
+		//gaga
+		document.getElementById("txtbxStudentYear").onblur = function(){
+			checkYear();
+		};		
 		function checkPassword(){
 			var password = document.getElementById("txtbxStudentPassword").value;
 			var cpassword = document.getElementById("txtbxStudentCPassword").value;
@@ -1148,6 +1152,15 @@ if(isset($_POST['btnUpdate']))
 				document.getElementById("divCheckPasswordMatch").innerHTML = "";
 			}
 			
+		}
+		//gaga
+		function checkYear(){
+			var txtbxYear = document.getElementById("txtbxStudentYear").value;
+			if( txtbxYear < 1 || txtbxYear > 5)
+			{
+				document.getElementById("txtbxStudentYear").value = "";
+				document.getElementById("txtbxStudentYear").placeholder = "Invalid Year";
+			}
 		}
 		function readURL(input) {
 			if (input.files && input.files[0]) {

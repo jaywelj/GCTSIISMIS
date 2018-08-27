@@ -86,8 +86,6 @@ if(isset($_POST['btnAdd']))
 
 		echo "<script type='text/javascript'>location.href = 'index.php';</script>";
 	}
-
-
 	if(empty($VarcharStudentAccountFirstName) || empty($VarcharStudentAccountNumber)) 
 	{
 
@@ -102,7 +100,7 @@ if(isset($_POST['btnAdd']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
                         //link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+		//echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
 	}
 	else if($VarcharStudentAccountPassword<>$VarcharStudentAccountCPassword)
 	{
@@ -721,11 +719,11 @@ if(isset($_POST['btnEmailSend']))
 					<form method="post">
 						<div class="col-md-6 col-sm-6 col-xs-12 left">
 							<div class="form-group">
-								<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" maxlength="20" data-msg="Please enter at least 4 chars" />
+								<input type="text" name="txtbxSenderName" class="form-control form" id="name" placeholder="Your Name" data-rule="minlen:4" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.\s]+$" required="required" />
 								<div class="validation"></div>
 							</div>
 							<div class="form-group">
-								<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" />
+								<input type="email" class="form-control" name="txtbxSenderEmail" id="email" placeholder="Your Email" data-rule="email" data-msg="Please enter a valid email" required="required" />
 								<div class="validation"></div>
 							</div>
 						<div class="form-group"><!-- 
@@ -734,9 +732,8 @@ if(isset($_POST['btnEmailSend']))
 							include("connectionString.php");
 							$queryIncidentSubCategory = "SELECT * FROM tbl_incidentsubcategory";
 							$resultIncidentSubCategory = mysqli_query($connect, $queryIncidentSubCategory);
-							?> 
-							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control">
-								<option value="NULL" selected disabled="">Subject</option>
+							?>
+							<select name="dropdownSenderSubject" id="dropdownSenderSubject" class="form-control" placeholder="Subject" required="required">
 								<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
 									<option value="<?php echo $row['subCategoryID'];?>"><?php echo $row['subCategoryName'];?></option>
 								<?php endwhile;?>
@@ -747,7 +744,7 @@ if(isset($_POST['btnEmailSend']))
 
 					<div class="col-md-6 col-sm-6 col-xs-12 right">
 						<div class="form-group">
-							<textarea class="form-control" name="txtbxSenderMessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message"></textarea>
+							<textarea class="form-control" name="txtbxSenderMessage" rows="5" data-rule="required" data-msg="Please write something for us" placeholder="Message" required="required"></textarea>
 							<div class="validation"></div>
 						</div>
 					</div>
@@ -781,7 +778,7 @@ if(isset($_POST['btnEmailSend']))
 				<!-- <li id="footerSurvey"><a href="surveys.php" style="font-size: 15px ">Surveys</a></li> -->
 				<li id="footerAbouts"><a href="abouts.php" style="font-size: 15px ">About Us</a></li>
 			</ul>
-			©2018 GCTS All rights reserved
+			©2018 OCPS All rights reserved
 		</div>
 	</footer>
 	<!--/ Footer-->
@@ -797,6 +794,13 @@ if(isset($_POST['btnEmailSend']))
 		};
 		document.getElementById("txtbxStudentAccountPassword").onkeyup = function(){
 			checkPassword();
+		};
+		//gaga
+		document.getElementById("dateStudentAccountBirthDate").onblur = function(){
+			checkBirthdate();
+		};
+		document.getElementById("txtbxStudentAccountYear").onblur = function(){
+			checkYear();
 		};
 		function checkPassword(){
 			var password = document.getElementById("txtbxStudentAccountPassword").value;
@@ -821,6 +825,30 @@ if(isset($_POST['btnEmailSend']))
 				document.getElementById("divCheckPasswordMatch").innerHTML = "";
 			}
 			
+		}
+		//gaga
+		function checkYear(){
+			var txtbxYear = document.getElementById("txtbxStudentAccountYear").value;
+			if( txtbxYear < 1 || txtbxYear > 5)
+			{
+				document.getElementById("txtbxStudentAccountYear").value = "";
+				document.getElementById("txtbxStudentAccountYear").placeholder = "Invalid Year";
+			}
+		}
+		function checkBirthdate(){
+			var dateBirthdate = document.getElementById("dateStudentAccountBirthDate").value;
+							var today = new Date();
+							var birthDate = new Date(dateBirthdate);
+							var age = today.getFullYear() - birthDate.getFullYear();
+							var m = today.getMonth() - birthDate.getMonth();
+							if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+								age--;
+							}
+							if (age < 13 || age > 115)
+							{
+								alert('Invalid Birthdate');
+								document.getElementById("dateStudentAccountBirthDate").value = "";
+							}
 		}
 	</script>
 
