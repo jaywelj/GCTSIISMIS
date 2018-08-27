@@ -55,8 +55,14 @@ if(isset($_POST["noteID"]))
 						?>
 					<?php endwhile;?>
 					<?php
-					$output .='</select>
-					<br />';
+					$output .='
+					<option>Others</option>
+					</select>
+					<br />
+					<label>If Others</label>
+					<input type="text" id="txtbxEditOthersCategory" name="txtbxEditOthersCategory" class="form-control" disabled="true">
+					<br />
+					';
 
 					$querySubCategory = "SELECT * FROM tbl_incidentsubcategory";
 
@@ -79,7 +85,12 @@ if(isset($_POST["noteID"]))
 						?>
 					<?php endwhile;?>
 					<?php
-					$output .='</select>
+					$output .='
+					<option>Others</option>
+					</select>
+					<br />
+					<label>If Others</label>
+					<input type="text" id="txtbxEditOthersSubCategory" name="txtbxEditOthersSubCategory" class="form-control" disabled="true">
 					<br />';
 
 					?>
@@ -106,4 +117,36 @@ if(isset($_POST["noteID"]))
 }
 else
 	echo '<script> altert("emplty string");</script>';
-?>	
+
+?>
+<script>
+			$(function(){
+				$('#optionEditNoteCategory').change(function() {
+					var optionEditNoteCategoryChoice = $(this).val();
+					if( optionEditNoteCategoryChoice == 'Others')
+					{
+						document.getElementById("txtbxEditOthersCategory").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxEditOthersCategory").disabled = true;
+					}
+
+				})
+			})
+			$(function(){
+				$('#optionEditNoteSubCategory').change(function() {
+					var optionEditNoteSubCategoryChoice = $(this).val();
+					if( optionEditNoteSubCategoryChoice == 'Others')
+					{
+						document.getElementById("txtbxEditOthersSubCategory").disabled = false;
+					}
+					else
+					{
+						document.getElementById("txtbxEditOthersSubCategory").disabled = true;
+					}
+
+				})
+			})
+		</script>
+		
