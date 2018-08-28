@@ -387,7 +387,7 @@ if(isset($_POST['btnEmailSend']))
 				$resultCheckingIfStudentNumberHasSignificantNotes = mysqli_query($connect, $queryCheckingIfStudentNumberHasSignificantNotes);
 
 				if(mysqli_num_rows($resultCheckingIfStudentNumberHasSignificantNotes) == 0) {
-					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY programImage DESC LIMIT 9";
+					$queryGettingProgram = "SELECT * FROM tbl_recommendedprogram ORDER BY programImage DESC LIMIT 6";
 					$resultGettingProgram = mysqli_query($connect, $queryGettingProgram); 
 					while($row = mysqli_fetch_array($resultGettingProgram))  
 					{  

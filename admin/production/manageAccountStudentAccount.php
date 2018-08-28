@@ -564,11 +564,7 @@ require 'header.php';
 				</div>
 			</form>
 			<!--/Modal Edit-->
-			<!-- MODAL FOR MESSAGE -->
-			<?php 
-			require 'viewMessageModal.php';
-			?>
-			<!-- /MODAL FOR MESSAGE -->
+			
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -577,6 +573,11 @@ require 'header.php';
 				<div class="clearfix"></div>
 			</footer>
 			<!-- /footer content -->
+			<!-- MODAL FOR MESSAGE -->
+			<?php 
+			require 'viewMessageModal.php';
+			?>
+			<!-- /MODAL FOR MESSAGE -->
 		</div>
 	</div>
 

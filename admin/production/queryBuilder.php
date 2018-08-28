@@ -1186,7 +1186,7 @@ require 'header.php';
 				success: function (dataofconfirm) {	
 					$('#query-table').html(dataofconfirm);
 					init_DataTables();
-					window.scrollTo(0, 1800);
+					window.scrollTo(0, 2100);
 					init_morris_charts();
 				}
 			});

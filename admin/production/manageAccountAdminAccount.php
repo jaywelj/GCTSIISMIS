@@ -430,7 +430,7 @@ require 'header.php';
 								<br />
 								<label>Brief Introduction</label>
 								<br />
-								<textarea name="txtareaAdminDescription" id="txtareaAdminDescription" ></textarea>
+								<textarea name="txtareaAdminDescription" id="txtareaAdminDescription" class="form-control" ></textarea>
 								<br />
 
 							</div>

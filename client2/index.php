@@ -113,7 +113,7 @@ if(isset($_POST['btnAdd']))
 
 		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', 'Not Interested', NULL)";
 
-		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', '', '', '0', '', '', '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
+		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', '', '', '0', '$VarcharStudentAccountYear', '$VarcharStudentAccountSection', '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
 
 		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$VarcharStudentAccountNumber')";
 
@@ -133,26 +133,26 @@ if(isset($_POST['btnAdd']))
 			if (mysqli_query($connect, $queryAddPersonalInfo)) 
 			{
 				$message = "Successfully Added In Personal Info";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+				//echo "<script type='text/javascript'>alert('$message');</script>";
 				if (mysqli_query($connect, $queryAddEducationalBackground)) {
 					$message = "Successfully Added In Educational Background";
-					echo "<script type='text/javascript'>alert('$message');</script>";
+					//echo "<script type='text/javascript'>alert('$message');</script>";
 					if (mysqli_query($connect, $queryAddFamilyBackground)) {
 						$message = "Successfully Added In Family Background";
-						echo "<script type='text/javascript'>alert('$message');</script>";
+						//echo "<script type='text/javascript'>alert('$message');</script>";
 						if (mysqli_query($connect, $queryAddHealth)) {
 							$message = "Successfully Added In Health";
-							echo "<script type='text/javascript'>alert('$message');</script>";
+							//echo "<script type='text/javascript'>alert('$message');</script>";
 							if (mysqli_query($connect, $queryAddInterests)) {
 								$message = "Successfully Added In Interest And Hobbies";
-								echo "<script type='text/javascript'>alert('$message');</script>";
+								//echo "<script type='text/javascript'>alert('$message');</script>";
 								if (mysqli_query($connect, $queryAddTestResults)) {
 									$message = "Successfully Added In Test Results";
-									echo "<script type='text/javascript'>alert('$message');</script>";
+									//echo "<script type='text/javascript'>alert('$message');</script>";
 									session_start();
 									$_SESSION['sessionStudentAccountNumber'] = $VarcharStudentAccountNumber;
 									$_SESSION['sessionStudentAccountPassword'] = $VarcharStudentAccountPassword;
-									$message = "You will now be redirected to your account";
+									$message = "SUCCESS: You will now be redirected to your account";
 									echo "<script type='text/javascript'>alert('$message');</script>";
 									echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
 

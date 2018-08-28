@@ -127,7 +127,7 @@ require 'header.php';
 
 													?>
 
-													<th><?php echo $row['courseCode']; ?> <?php echo $row['year']; ?>-<?php echo $row['section']; ?></th>;
+													<th><?php echo $row['courseCode']; ?> <?php echo $row['year']; ?>-<?php echo $row['section']; ?></th>
 													<?php
 												}
 												?>												

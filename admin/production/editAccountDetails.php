@@ -56,7 +56,7 @@ if(isset($_POST["adminEmail"]))
 		<br />
 		<label>Brief Introduction</label>
 		<br />
-		<textarea name="txtareaEditAdminDescription" id="txtareaEditAdminDescription" >'.$row["adminDescription"].'</textarea>
+		<textarea name="txtareaEditAdminDescription" id="txtareaEditAdminDescription" class="form-control">'.$row["adminDescription"].'</textarea>
 		<br />
 		<center>
 		';

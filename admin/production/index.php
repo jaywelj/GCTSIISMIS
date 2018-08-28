@@ -319,7 +319,7 @@ require 'header.php';
 													<ul class="nav navbar-right panel_toolbox">
 														<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 														</li>
-											
+														
 														<li><a class="close-link"><i class="fa fa-close"></i></a>
 														</li>
 													</ul>
@@ -409,7 +409,7 @@ require 'header.php';
 												<ul class="nav navbar-right panel_toolbox">
 													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
 													</li>
-												
+													
 													<li><a class="close-link"><i class="fa fa-close"></i></a>
 													</li>
 												</ul>
@@ -466,264 +466,266 @@ require 'header.php';
 											</div>
 										</div>
 									</div>
+									<?php 
+									require 'viewMessageModal.php';
+									?>
+
+									
+									
+									
+									
 
 
-					
-														
-														
-															
+									<!-- jQuery -->
+									<script src="../vendors/jquery/dist/jquery.min.js"></script>
+									<!-- Bootstrap -->
+									<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
+									<!-- FastClick -->
+									<script src="../vendors/fastclick/lib/fastclick.js"></script>
+									<!-- NProgress -->
+									<script src="../vendors/nprogress/nprogress.js"></script>
+									<!-- Chart.js -->
+									<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
+									<!-- gauge.js -->
+									<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
+									<!-- bootstrap-progressbar -->
+									<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+									<!-- iCheck -->
+									<script src="../vendors/iCheck/icheck.min.js"></script>
+									<!-- Skycons -->
+									<script src="../vendors/skycons/skycons.js"></script>
+									<!-- Flot -->
+									<script src="../vendors/Flot/jquery.flot.js"></script>
+									<script src="../vendors/Flot/jquery.flot.pie.js"></script>
+									<script src="../vendors/Flot/jquery.flot.time.js"></script>
+									<script src="../vendors/Flot/jquery.flot.stack.js"></script>
+									<script src="../vendors/Flot/jquery.flot.resize.js"></script>
+									<!-- Flot plugins -->
+									<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
+									<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
+									<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
+									<!-- DateJS -->
+									<script src="../vendors/DateJS/build/date.js"></script>
+									<!-- JQVMap -->
+									<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
+									<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
+									<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
+									<!-- bootstrap-daterangepicker -->
+									<script src="../vendors/moment/min/moment.min.js"></script>
+									<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+
+									<!-- Custom Theme Scripts -->
+									<script src="../build/js/custom2.js"></script>
+									<script>
+										$(document).ready(function(){
+											$(document).on('click','.message-view',function(){
+												var messageID = $(this).attr("id");
+												$.ajax({
+													url:"viewMessage.php",
+													method:"post",
+													data:{messageID:messageID},
+													success:function(data){
+														$('#messageDetails').html(data);
+														$('#view_message_Modal').modal('show');
+													}
+												});
+											});
+
+										});
+									</script>
+									<?php 
+									$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
+									$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
+									$colorString = "";
+									$color=array("blue","green","purple","aero","red");
+									$arraycounter = 0;
+									while ($row = mysqli_fetch_array($resultStudentSexuality)) {
+
+										$sexualityArray[] = $row['sexuality'];
+										$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
+										$PercentageOfOccurancesSexualityArray[] = $row['percentage'];		
+
+									}
+									$sexualityString = "";
+									foreach($sexualityArray as $sexualityValue) 
+									{
+										$sexualityString .= '"'.$sexualityValue.'",' ;
+									}
+									$PercentageOfOccurancesSexualityString="";
+									foreach ($PercentageOfOccurancesSexualityArray as $PercentageOfOccurancesSexualityValue) 
+									{
+										$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
+									}
+									foreach ($color as $colorValue) {
+										$colorString .= ''.$colorValue.',';
+									}
+									?>
 
 
-															<!-- jQuery -->
-															<script src="../vendors/jquery/dist/jquery.min.js"></script>
-															<!-- Bootstrap -->
-															<script src="../vendors/bootstrap/dist/js/bootstrap.min.js"></script>
-															<!-- FastClick -->
-															<script src="../vendors/fastclick/lib/fastclick.js"></script>
-															<!-- NProgress -->
-															<script src="../vendors/nprogress/nprogress.js"></script>
-															<!-- Chart.js -->
-															<script src="../vendors/Chart.js/dist/Chart.min.js"></script>
-															<!-- gauge.js -->
-															<script src="../vendors/gauge.js/dist/gauge.min.js"></script>
-															<!-- bootstrap-progressbar -->
-															<script src="../vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
-															<!-- iCheck -->
-															<script src="../vendors/iCheck/icheck.min.js"></script>
-															<!-- Skycons -->
-															<script src="../vendors/skycons/skycons.js"></script>
-															<!-- Flot -->
-															<script src="../vendors/Flot/jquery.flot.js"></script>
-															<script src="../vendors/Flot/jquery.flot.pie.js"></script>
-															<script src="../vendors/Flot/jquery.flot.time.js"></script>
-															<script src="../vendors/Flot/jquery.flot.stack.js"></script>
-															<script src="../vendors/Flot/jquery.flot.resize.js"></script>
-															<!-- Flot plugins -->
-															<script src="../vendors/flot.orderbars/js/jquery.flot.orderBars.js"></script>
-															<script src="../vendors/flot-spline/js/jquery.flot.spline.min.js"></script>
-															<script src="../vendors/flot.curvedlines/curvedLines.js"></script>
-															<!-- DateJS -->
-															<script src="../vendors/DateJS/build/date.js"></script>
-															<!-- JQVMap -->
-															<script src="../vendors/jqvmap/dist/jquery.vmap.js"></script>
-															<script src="../vendors/jqvmap/dist/maps/jquery.vmap.world.js"></script>
-															<script src="../vendors/jqvmap/examples/js/jquery.vmap.sampledata.js"></script>
-															<!-- bootstrap-daterangepicker -->
-															<script src="../vendors/moment/min/moment.min.js"></script>
-															<script src="../vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+									<script>
+										function init_chart_doughnut(){
 
-															<!-- Custom Theme Scripts -->
-															<script src="../build/js/custom2.js"></script>
-															<script>
-																$(document).ready(function(){
-																	$(document).on('click','.message-view',function(){
-																		var messageID = $(this).attr("id");
-																		$.ajax({
-																			url:"viewMessage.php",
-																			method:"post",
-																			data:{messageID:messageID},
-																			success:function(data){
-																				$('#messageDetails').html(data);
-																				$('#view_message_Modal').modal('show');
-																			}
-																		});
-																	});
+											if( typeof (Chart) === 'undefined'){ return; }
 
-																});
-															</script>
-															<?php 
-															$queryStudentSexuality = "SELECT sexuality, count(*) as numberofoccurancessexuality, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancessexuality DESC LIMIT 5";
-															$resultStudentSexuality = mysqli_query($connect, $queryStudentSexuality);
-															$colorString = "";
-															$color=array("blue","green","purple","aero","red");
-															$arraycounter = 0;
-															while ($row = mysqli_fetch_array($resultStudentSexuality)) {
+											console.log('init_chart_doughnut');
 
-																$sexualityArray[] = $row['sexuality'];
-																$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-																$PercentageOfOccurancesSexualityArray[] = $row['percentage'];		
+											if ($('.sexualityDoughnut').length){
 
-															}
-															$sexualityString = "";
-															foreach($sexualityArray as $sexualityValue) 
-															{
-																$sexualityString .= '"'.$sexualityValue.'",' ;
-															}
-															$PercentageOfOccurancesSexualityString="";
-															foreach ($PercentageOfOccurancesSexualityArray as $PercentageOfOccurancesSexualityValue) 
-															{
-																$PercentageOfOccurancesSexualityString .= ''.$PercentageOfOccurancesSexualityValue.',';	
-															}
-															foreach ($color as $colorValue) {
-																$colorString .= ''.$colorValue.',';
-															}
-															?>
+												var chart_doughnut_settings = {
+													type: 'doughnut',
+													tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+													data: {
+														labels: [
+														<?php
+														echo $sexualityString;
+														?>
+														],
+														datasets: [{
+															data: [<?php echo $PercentageOfOccurancesSexualityString; ?>],
+															backgroundColor: [
+															"#BDC3C7",
+															"#9B59B6",
+															"#E74C3C",
+															"#26B99A",
+															"#3498DB"
+															],
+															hoverBackgroundColor: [
+															"#CFD4D8",
+															"#B370CF",
+															"#E95E4F",
+															"#36CAAB",
+															"#49A9EA"
+															]
+														}]
+													},
+													options: { 
+														legend: false, 
+														responsive: false 
+													}
+												}
 
+												$('.sexualityDoughnut').each(function(){
 
-															<script>
-																function init_chart_doughnut(){
+													var chart_element = $(this);
+													var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
 
-																	if( typeof (Chart) === 'undefined'){ return; }
+												});			
 
-																	console.log('init_chart_doughnut');
+											}  
 
-																	if ($('.sexualityDoughnut').length){
+										}
 
-																		var chart_doughnut_settings = {
-																			type: 'doughnut',
-																			tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-																			data: {
-																				labels: [
-																				<?php
-																				echo $sexualityString;
-																				?>
-																				],
-																				datasets: [{
-																					data: [<?php echo $PercentageOfOccurancesSexualityString; ?>],
-																					backgroundColor: [
-																					"#BDC3C7",
-																					"#9B59B6",
-																					"#E74C3C",
-																					"#26B99A",
-																					"#3498DB"
-																					],
-																					hoverBackgroundColor: [
-																					"#CFD4D8",
-																					"#B370CF",
-																					"#E95E4F",
-																					"#36CAAB",
-																					"#49A9EA"
-																					]
-																				}]
-																			},
-																			options: { 
-																				legend: false, 
-																				responsive: false 
-																			}
-																		}
+									</script>
+									<?php 
+									$queryStudentCivilStatus = "SELECT civilStatus, count(*) as numberofoccurancescivilstatus, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancescivilstatus DESC LIMIT 5";
+									$resultStudentCivilStatus = mysqli_query($connect, $queryStudentCivilStatus);
+									$color=array("blue","green","purple","aero","red");
+									$arraycounter = 0;
+									while ($row = mysqli_fetch_array($resultStudentCivilStatus)) {
 
-																		$('.sexualityDoughnut').each(function(){
+										$civilstatusArray[] = $row['civilStatus'];
+										$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
+										$PercentageOfOccurancesCivilStatusArray[] = $row['percentage'];		
 
-																			var chart_element = $(this);
-																			var chart_doughnut = new Chart( chart_element, chart_doughnut_settings);
+									}
+									$civilstatusString = "";
+									foreach($civilstatusArray as $civilstatusValue) 
+									{
+										$civilstatusString .= '"'.$civilstatusValue.'",' ;
+									}
+									$PercentageOfOccurancesCivilStatusString="";
+									foreach ($PercentageOfOccurancesCivilStatusArray as $PercentageOfOccurancesCivilStatusValue) 
+									{
+										$PercentageOfOccurancesCivilStatusString .= ''.$PercentageOfOccurancesCivilStatusValue.',';	
+									}
+									foreach ($color as $colorValue) {
+										$colorString .= ''.$colorValue.',';
+									}
+									?>
+									<script>
+										function init_chart_doughnut2(){
 
-																		});			
+											if( typeof (Chart) === 'undefined'){ return; }
 
-																	}  
+											console.log('init_chart_doughnut2');
 
-																}
+											if ($('.civilstatusDoughnut').length){
 
-															</script>
-															<?php 
-															$queryStudentCivilStatus = "SELECT civilStatus, count(*) as numberofoccurancescivilstatus, sum(100) / percent as percentage from tbl_personalinfo cross join (select count(*) as percent from tbl_personalinfo) x group by 1 ORDER BY numberofoccurancescivilstatus DESC LIMIT 5";
-															$resultStudentCivilStatus = mysqli_query($connect, $queryStudentCivilStatus);
-															$color=array("blue","green","purple","aero","red");
-															$arraycounter = 0;
-															while ($row = mysqli_fetch_array($resultStudentCivilStatus)) {
+												var chart_doughnut_settings2 = {
+													type: 'doughnut',
+													tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+													data: {
+														labels: [
+														<?php
+														echo $civilstatusString;
+														?>
+														],
+														datasets: [{
+															data: [<?php echo $PercentageOfOccurancesCivilStatusString; ?>],
+															backgroundColor: [
+															"#BDC3C7",
+															"#9B59B6",
+															"#E74C3C",
+															"#26B99A",
+															"#3498DB"
+															],
+															hoverBackgroundColor: [
+															"#CFD4D8",
+															"#B370CF",
+															"#E95E4F",
+															"#36CAAB",
+															"#49A9EA"
+															]
+														}]
+													},
+													options: { 
+														legend: false, 
+														responsive: false 
+													}
+												}
 
-																$civilstatusArray[] = $row['civilStatus'];
-																$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
-																$PercentageOfOccurancesCivilStatusArray[] = $row['percentage'];		
+												$('.civilstatusDoughnut').each(function(){
 
-															}
-															$civilstatusString = "";
-															foreach($civilstatusArray as $civilstatusValue) 
-															{
-																$civilstatusString .= '"'.$civilstatusValue.'",' ;
-															}
-															$PercentageOfOccurancesCivilStatusString="";
-															foreach ($PercentageOfOccurancesCivilStatusArray as $PercentageOfOccurancesCivilStatusValue) 
-															{
-																$PercentageOfOccurancesCivilStatusString .= ''.$PercentageOfOccurancesCivilStatusValue.',';	
-															}
-															foreach ($color as $colorValue) {
-																$colorString .= ''.$colorValue.',';
-															}
-															?>
-															<script>
-																function init_chart_doughnut2(){
+													var chart_element2 = $(this);
+													var chart_doughnut2 = new Chart( chart_element2, chart_doughnut_settings2);
 
-																	if( typeof (Chart) === 'undefined'){ return; }
+												});			
 
-																	console.log('init_chart_doughnut2');
+											}  
 
-																	if ($('.civilstatusDoughnut').length){
+										}
 
-																		var chart_doughnut_settings2 = {
-																			type: 'doughnut',
-																			tooltipFillColor: "rgba(51, 51, 51, 0.55)",
-																			data: {
-																				labels: [
-																				<?php
-																				echo $civilstatusString;
-																				?>
-																				],
-																				datasets: [{
-																					data: [<?php echo $PercentageOfOccurancesCivilStatusString; ?>],
-																					backgroundColor: [
-																					"#BDC3C7",
-																					"#9B59B6",
-																					"#E74C3C",
-																					"#26B99A",
-																					"#3498DB"
-																					],
-																					hoverBackgroundColor: [
-																					"#CFD4D8",
-																					"#B370CF",
-																					"#E95E4F",
-																					"#36CAAB",
-																					"#49A9EA"
-																					]
-																				}]
-																			},
-																			options: { 
-																				legend: false, 
-																				responsive: false 
-																			}
-																		}
+									</script>
+									<?php
 
-																		$('.civilstatusDoughnut').each(function(){
-
-																			var chart_element2 = $(this);
-																			var chart_doughnut2 = new Chart( chart_element2, chart_doughnut_settings2);
-
-																		});			
-
-																	}  
-
-																}
-
-															</script>
-															<?php
-
-															$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 WEEK) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
-															$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
+									$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 WEEK) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
+									$resultPlotChart1 = mysqli_query($connect, $queryPlotChart1);
 
 
-															?>
-															<script>
+									?>
+									<script>
 
-																function init_flot_chart(){
+										function init_flot_chart(){
 
-																	if( typeof ($.plot) === 'undefined'){ return; }
+											if( typeof ($.plot) === 'undefined'){ return; }
 
-																	console.log('init_flot_chart');
+											console.log('init_flot_chart');
 
-																	var arr_data1 = [
-																	<?php
-																	while ($row = mysqli_fetch_array($resultPlotChart1)) {
-																		$Month = $row['Month'];
-																		$Day = $row['Day'];
-																		$Year = $row['Year'];
-																		$NumberOfAccountsCreated = $row['NumberOfAccountsCreated'];
+											var arr_data1 = [
+											<?php
+											while ($row = mysqli_fetch_array($resultPlotChart1)) {
+												$Month = $row['Month'];
+												$Day = $row['Day'];
+												$Year = $row['Year'];
+												$NumberOfAccountsCreated = $row['NumberOfAccountsCreated'];
 
-																		?>
-																		[gd(<?php echo $Year;  ?>, <?php echo $Month; ?>, <?php echo $Day; ?>), <?php echo $NumberOfAccountsCreated;  ?>],
-																		<?php
-																	}
-																	?>
+												?>
+												[gd(<?php echo $Year;  ?>, <?php echo $Month; ?>, <?php echo $Day; ?>), <?php echo $NumberOfAccountsCreated;  ?>],
+												<?php
+											}
+											?>
 
-																	];
+											];
 
 																// [gd(2018, 8, 15), 400]
 
