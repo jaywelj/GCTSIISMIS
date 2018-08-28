@@ -612,7 +612,7 @@ if(isset($_POST['dropdownCivilStatus']))
 	{
 		$joinClause = implode(" ",$joinValues);
 	}
-	echo $groupByClause;
+	//echo $groupByClause;
 	$whereValues = implode(" AND ", $whereValues);
 	if(!empty($whereValues))
 	{
@@ -667,8 +667,8 @@ else
 			INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
 			INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber $joinClause
 			$whereClause $groupByClause ";
-			echo $query;
-			echo $query2;
+			//echo $query;
+			//echo $query2;
 			if(!($queryResult = mysqli_query($connect, $query)))
 			{
 				echo mysqli_error($connect);

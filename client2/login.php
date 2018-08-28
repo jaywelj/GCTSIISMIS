@@ -15,7 +15,7 @@
 						<form name="" id="loginForm" method="post">
 							<div class="form-group has-feedback">
 								<!----- username -------------->
-								<input class="form-control" placeholder="Student Number" id="loginid" name="loginid" type="text" autocomplete="off" pattern="[0-9]{4}-[0-9]{5}-[A-Za-z]{2}-[0-1]{1}" required="" maxlength="15" title="####-#####-MN-#" style="text-transform: uppercase;" />
+								<input class="form-control" placeholder="Student Number" id="loginid" name="loginid" type="text" autocomplete="off" pattern="[0-9]{4}-[0-9]{5}-[A-Za-z]{2}-[0-1]{1}" required=""  style="text-transform: uppercase;" />
 								<span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
 								<!---Alredy exists  ! -->
 								<span class="glyphicon glyphicon-user form-control-feedback"></span>
@@ -76,7 +76,7 @@
 								<div class="col-lg-6">
 									<div class="form-group has-feedback">
 										<!----- Student Number -------------->
-										<input class="form-control" placeholder="Student Number" name="txtbxStudentAccountNumber" id="txtbxStudentAccountNumber" type="text" pattern="[0-9]{4}-[0-9]{5}-[A-Za-z]{2}-[0-1]{1}" style="text-transform: uppercase;" required="required" autocomplete="off" />
+										<input class="form-control" placeholder="Student Number" name="txtbxStudentAccountNumber" id="txtbxStudentAccountNumber" type="text" pattern="[0-9]{4}-[0-9]{5}-[A-Za-z]{2}-[0-1]{1}" style="text-transform: uppercase;" required="required" autocomplete="off" maxlength="15" title="####-#####-MN-#" />
 										<span style="display:none;font-weight:bold; position:absolute;color: red;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginid"></span>
 										<!---Alredy exists  ! -->
 										<span class="glyphicon glyphicon-user form-control-feedback"></span>
