@@ -392,10 +392,12 @@ require 'header.php';
 			if(mysqli_num_rows($resultGettingSuggestions) == 0) {
 				$message = "All Topics Has A Program!";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
+				// echo "<script>var notyMessageProto = '$message';</script>";
 			}
 			else{
 				$message = "There is no program assigned to ".$ProgramWithoutTopicValue."";
 				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='false';</script>";  
+				// echo "<script>var notyMessageProto2 = '$message';</script>";
 			}
 
 			$queryGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes = "SELECT *,tbl_significantnotes.subCategoryID,COUNT(*) as count FROM tbl_significantnotes where noteDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY subCategoryID ORDER BY count DESC";
@@ -513,25 +515,13 @@ require 'header.php';
 
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
-
-			}
-			else
-			{
-
-				$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
+				$message4 = "There are no survey result for the program recommender to use";
 				echo "<script>var notyMessage4 = '$message4';</script>";
 			}
-			if ($SubCategoryName == $SubCategoryName2 && $SubCategoryName3 == $SubCategoryName4 && $SubCategoryName2 == $SubCategoryName3)
-			{
-
-				$message5 = "".$SubCategoryName." is the hottest topic all across the boards";
-
-			// echo "<script type='text/javascript'>alert('$message');</script>";
-				echo "<script>var notyMessage5 = '$message5';</script>";
-			}
 			else
 			{
-
+				$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
+				echo "<script>var notyMessage4 = '$message4';</script>";
 			}
 
 
@@ -951,25 +941,6 @@ require 'header.php';
 		var n = new Noty({
 			text: notyMessage4,
 			type: 'info',
-			timeout: '10000'
-		});
-		n.show();
-
-		var n = new Noty({
-			text: notyMessage5,
-			type: 'info',
-			timeout: '10000'
-		});
-
-		var n = new Noty({
-			text: notyMessageProto,
-			type: 'success',
-			timeout: '10000'
-		});
-
-		var n = new Noty({
-			text: notyMessageProto2,
-			type: 'error',
 			timeout: '10000'
 		});
 		n.show();
