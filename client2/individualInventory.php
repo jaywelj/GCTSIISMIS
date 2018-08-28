@@ -2642,7 +2642,7 @@ else
 						document.getElementById("txtbxOthersWhoFinancesYourSchooling").value = "";
 					}
 				})
-				$('input[name="radioShareRoom"]').focus(function() {
+				$('input[name="radioShareRoom"]').change(function() {
 					if( $(this).val() == 'Yes')
 					{
 						document.getElementById("txtbxWithWhom").disabled = false;

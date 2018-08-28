@@ -1521,7 +1521,7 @@ require 'header.php';
 														</div>
 													</div>
 													<div class="item form-group">
-														<label class="control-label col-md-3 col-sm-3"  >Your Speach <span class="" style="color:red">*</span></label>
+														<label class="control-label col-md-3 col-sm-3"  >Your Speech <span class="" style="color:red">*</span></label>
 														<div class="col-md-2 col-sm-2">
 															<div class="btn-group" data-toggle="buttons">
 																<label class="btn btn-default <?php echo ($varcharStudentSpeechProblem <> "")?'active':'' ?>" data-toggle-class="btn-primary" data-toggle-passive-class="btn-default">
