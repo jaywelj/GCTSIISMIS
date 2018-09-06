@@ -137,8 +137,8 @@ require 'header.php';
 
 															<?php
 
-															echo '<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to delete?")"><span class="glyphicon glyphicon-trash"></span></a>
-															';
+															// echo '<a title="Delete" class="btn btn-danger" title="Delete" href="manageNotesStudentDelete.php?id='.$row["noteID"].'" onClick="return confirm("Are you sure you want to delete?")"><span class="glyphicon glyphicon-trash"></span></a>
+															// ';
 
 
 															?>

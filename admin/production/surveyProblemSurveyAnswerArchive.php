@@ -125,8 +125,8 @@ require 'header.php';
 														<center>
 															<a title="Restore" class="btn btn-info" href="surveyProblemSurveyAnswerReturn.php?id=<?php echo$row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to restore this student's answers?')"><span class="fa fa-share-square"></span></a>	
 
-															<a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyAnswerDelete.php?id=<?php echo $row['studentNumber'];?>" onClick="return confirm('Delete all survey answers associated with this student?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
-														</center>
+															<!-- <a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyAnswerDelete.php?id=<?php echo $row['studentNumber'];?>" onClick="return confirm('Delete all survey answers associated with this student?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
+ -->														</center>
 														
 													</td>
 													<td> <?php echo $row['studentNumber'];?> </td>
