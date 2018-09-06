@@ -391,7 +391,8 @@ require 'header.php';
 			$ProgramWithoutTopicValue = ltrim($ProgramWithoutTopicValue, ",");
 			if(mysqli_num_rows($resultGettingSuggestions) == 0) {
 				$message = "All Topics Has A Program!";
-				echo "<script type='text/javascript'>var notyMessageTopicStatus = '$message'; var topicFlag='true';</script>";     
+				echo "<script type='text/javascript'>var notyMessage1
+				TopicStatus = '$message'; var topicFlag='true';</script>";     
 				// echo "<script>var notyMessageProto = '$message';</script>";
 			}
 			else{

@@ -127,7 +127,7 @@ require 'header.php';
 
 															<!-- <button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['messageID'];?>> <i class="fa fa-edit"></i></button> -->
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageMessageArchivedDelete.php?id=<?php echo $row['messageID']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+<!-- 															<a title="Delete" class="btn btn-danger" title="Delete" href="manageMessageArchivedDelete.php?id=<?php echo $row['messageID']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a> -->
 														</center>
 													</td>
 													<td> <?php echo $row['messageID'];?> </td>

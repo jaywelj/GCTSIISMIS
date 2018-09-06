@@ -103,7 +103,7 @@ require 'header.php';
 
 															<a title="Revive" class="btn btn-info" href="manageCourseReturn.php?id=<?php echo$row['courseCode']; ?>" onClick="return confirm('Are you sure you want to restore?')"><span class="fa fa-share-square"></span></a>	
 
-															<a title="Delete" class="btn btn-default btn-danger" href="manageCourseArchivedDelete.php?id=<?php echo$row['courseCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>	
+															<!-- <a title="Delete" class="btn btn-default btn-danger" href="manageCourseArchivedDelete.php?id=<?php echo$row['courseCode']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="fa fa-trash"></span></a>	 -->
 
 														</center>
 														

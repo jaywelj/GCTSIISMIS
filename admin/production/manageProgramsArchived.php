@@ -339,7 +339,7 @@ require 'header.php';
 
 															<!-- <a title="Revive" class="btn btn-info" href="manageProgramsReturna.php?id=<?php echo$row['courseCode']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to restore?')"><span class="fa fa-share-square"></span></a>	 -->
 
-															<a title="Delete" class="btn btn-danger" title="Delete" href="manageProgramsArchivedDelete.php?id=<?php echo $row['programID']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
+															<!-- <a title="Delete" class="btn btn-danger" title="Delete" href="manageProgramsArchivedDelete.php?id=<?php echo $row['programID']; ?>&id2=<?php echo $row['programName']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a> -->
 
 														</center>
 													</td>

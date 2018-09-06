@@ -57,7 +57,6 @@ require 'header.php';
 						</div>
 
 						<div class="title_right">
-							
 						</div>
 					</div>
 
@@ -98,7 +97,7 @@ require 'header.php';
 														<center>
 															<a title="Restore" class="btn btn-info" href="surveyProblemSurveyFormReturn.php?id=<?php echo$row['problemID']; ?>" onClick="return confirm('Are you sure you want to restore this problem question? Answers associated with the question will also be restored.')"><span class="fa fa-share-square"></span></a>	
 
-															<a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyFormArchiveDelete.php?id=<?php echo $row['problemID'];?>" onClick="return confirm('Permanently delete this problem question. Answers associated with the question will also be permanently deleted. Do you still wish to proceed?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a>
+															<!-- 															<a class="btn btn-danger" type="button" title="Delete" href="surveyProblemSurveyFormArchiveDelete.php?id=<?php echo $row['problemID'];?>" onClick="return confirm('Permanently delete this problem question. Answers associated with the question will also be permanently deleted. Do you still wish to proceed?')"> <span class="glyphicon glyphicon-minus" aria-hidden="true"></span> </a> -->
 														</center>
 														
 													</td>
