@@ -24,7 +24,27 @@ if(isset($_POST["messageID"]))
 		$resultSubCategoryID = mysqli_query($connect, $querySubCategoryID);
 		while ($res = mysqli_fetch_array($resultSubCategoryID)) 
 		{
+			if(!empty($row['studentNumber']))
+			{
+				$studentNumber = $row['studentNumber'];
+				$queryGettingCollege = "SELECT * FROM tbl_personalinfo WHERE `studentNumber` = '$studentNumber'";
+				$resultGettingCollege = mysqli_query($connect, $queryGettingCollege);
+				while ($res = mysqli_fetch_array($resultGettingCollege)) {
+					$collegeCode = $res['collegeCode'];
+				}
 
+				$queryGettingCollegeName = "SELECT * FROM tbl_college WHERE `collegeCode` = '$collegeCode'";
+				$resultGettingCollegeName = mysqli_query($connect, $queryGettingCollegeName);
+				while ($res2 = mysqli_fetch_array($resultGettingCollegeName)) {
+					$collegeName = $res2['collegeName'];
+				}
+			}
+			else
+			{
+				$studentNumber = "No Student Number Associated With";
+				$collegeCode = "No College Available";
+				$collegeName = "No College Available";
+			}
 
 			?>
 
@@ -55,7 +75,13 @@ if(isset($_POST["messageID"]))
 			<th scope="row">Date and time sent</th>
 			<td>'.$row["messageDateSent"].'</td>
 			</tr>
-			<tr>	
+			<tr>
+			<th scope="row">Student Number Associated With</th>
+			<td>'.$studentNumber.'</td>
+			</tr>	
+			<th scope="row">College Student Associated With</th>
+			<td>'.$collegeCode.' - '.$collegeName.'</td>
+			</tr>
 			';
 		}
 	}

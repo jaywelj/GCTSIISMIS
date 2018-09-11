@@ -1022,7 +1022,7 @@ require 'header.php';
 																				?>
 																				<tr>
 																					<th scope="row">Added by</th>
-																					<td><?php echo $varcharStudentFirstName; ?> <?php echo $varcharStudentLastName; ?> </td>
+																					<td><?php echo $varcharStudentAdminFirstName; ?> <?php echo $varcharStudentAdminLastName; ?> </td>
 																				</tr>
 																				<?php 
 																			}

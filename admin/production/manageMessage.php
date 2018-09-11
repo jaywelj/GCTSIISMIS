@@ -1,5 +1,5 @@
 <?php
-include("errorReport.php");
+// include("errorReport.php");
 session_start();
 include ("connectionString.php");
 $sessionEmail = $_SESSION['sessionAdminEmail'];
@@ -16,6 +16,98 @@ while($row = mysqli_fetch_array($resultGettingAdmin))
 	$LoggedInAdminMiddleName = $row['adminMiddleName'];
 	$LoggedInAdminLastName = $row['adminLastName'];
 }
+
+if(isset($_POST['btnAdd']))
+{
+	$dateNoteDate = mysqli_real_escape_string($connect, $_POST['hiddenNoteDate']);
+	$varcharNoteStudentNumber = mysqli_real_escape_string($connect, $_POST['optionNoteStudentNumber']);
+	$varcharNoteCategory = mysqli_real_escape_string($connect, $_POST['optionEditNoteCategory']);
+	$varcharNoteSubCategory = mysqli_real_escape_string($connect, $_POST['optionEditNoteSubCategory']);
+	
+	$varcharNoteAdminID = $LoggedInAdminID;
+	$varcharNoteRemarks = mysqli_real_escape_string($connect, $_POST['txtareaEditNoteRemarks']);
+
+	if(empty($varcharNoteStudentNumber)) 
+	{
+
+		if(empty($varcharNoteStudentNumber))
+		{
+			$message = "No Student Number Detected";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+		//link to the previous page
+
+	}
+
+	else
+	{
+
+
+		if ($varcharNoteCategory == "Others") 
+		{
+			$varcharNoteCategoryOthers = mysqli_real_escape_string($connect, $_POST['txtbxEditOthersCategory']);
+			$queryOtherCategory = "INSERT INTO `tbl_incidentcategory` (`categoryID`, `categoryName`) VALUES (NULL, '$varcharNoteCategoryOthers')";
+			if(mysqli_query($connect, $queryOtherCategory))
+			{
+				$message = "Incident Category added successfully!";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				$queryOtherCategoryID = "SELECT * FROm tbl_incidentcategory WHERE `categoryName` =  '$varcharNoteCategoryOthers' ";
+				$resultOtherCategoryID = mysqli_query($connect, $queryOtherCategoryID);
+				while ($row = mysqli_fetch_array($resultOtherCategoryID)) {
+					$varcharNoteCategory = $row['categoryID']; 
+				}
+			}
+			else
+			{
+				$message = "Incident Category Error";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+		}
+		else
+		{
+
+		}
+		if ($varcharNoteSubCategory == "Others") 
+		{
+			$varcharNoteSubCategoryOthers = mysqli_real_escape_string($connect, $_POST['txtbxEditOthersSubCategory']);
+			$queryOtherSubCategory = "INSERT INTO `tbl_incidentsubcategory` (`subCategoryID`, `subCategoryName`) VALUES (NULL, '$varcharNoteSubCategoryOthers')";
+			if(mysqli_query($connect, $queryOtherSubCategory))
+			{
+				$message = "Incident Sub Category added successfully!";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+				$queryOtherSubCategoryID = "SELECT * FROM tbl_incidentsubcategory WHERE `subCategoryName` = '$varcharNoteSubCategoryOthers'";
+				$resultOtherSubCategoryID = mysqli_query($connect, $queryOtherSubCategoryID);
+				while ($row = mysqli_fetch_array($resultOtherSubCategoryID)) {
+					$varcharNoteSubCategory = $row['subCategoryID']; 
+				}
+			}
+			else
+			{
+				$message = "Incident Sub Category Error";
+				echo "<script type='text/javascript'>alert('$message');</script>";
+			}
+		}
+		else
+		{
+
+		}
+		$queryInsertingNote = "INSERT INTO `tbl_significantnotes` (`noteID`, `noteDate`, `categoryID`, `subCategoryID`, `noteRemarks`, `studentNumber`, `adminId`) VALUES (NULL, '$dateNoteDate', '$varcharNoteCategory', '$varcharNoteSubCategory', '$varcharNoteRemarks', '$varcharNoteStudentNumber', '$varcharNoteAdminID')";
+		if(mysqli_query($connect, $queryInsertingNote))
+		{
+			$message = "Significant Notes added successfully!";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+
+		}
+		else
+		{
+			$message = "Significant Notes Error";
+			echo "<script type='text/javascript'>alert('$message');</script>";
+		}
+
+
+	}
+}
+
 
 ?>
 
@@ -124,8 +216,25 @@ require 'header.php';
 												<tr>
 													<td width="14%" >
 														<center>
-															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['messageID'];?>><i class="fa fa-list"></i></button>
+															<?php
 
+															if (!empty($row['studentNumber']))
+															{
+																?>
+																<button class="btn btn-default btn-success btn-edit" type="button" title="Add Note" id=<?php echo $row['studentNumber'];?>><i class="fa fa-plus"></i></button>
+																<?php
+
+															}
+															else
+															{
+															?>
+
+															<?php
+															}
+															?>
+
+															<button class="btn btn-default btn-info btn-view" type="button" title="View" id=<?php echo $row['messageID'];?>><i class="fa fa-list"></i></button>
+															
 															<!-- <button class="btn btn-default btn-warning btn-edit" type="button" title="Edit" id=<?php echo $row['messageID'];?>> <i class="fa fa-edit"></i></button> -->
 
 															<a title="Delete" class="btn btn-danger" title="Delete" href="manageMessageDelete.php?id=<?php echo $row['messageID']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
@@ -189,6 +298,11 @@ require 'header.php';
 			require 'viewMessageModal.php';
 			?>
 			<!-- /Modal Message -->
+			<!-- 			Modal Note -->
+			<?php 
+			require 'shortcutAddNoteModal.php';
+			?>
+			<!-- Modal Note -->
 			<!-- footer content -->
 			<footer>
 				<div class="pull-right">
@@ -248,6 +362,23 @@ require 'header.php';
 		});
 	</script>
 
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.btn-edit',function(){
+				var studentNumber = $(this).attr("id");
+				$.ajax({
+					url:"shortcutAddNote.php",
+					method:"post",
+					data:{studentNumber:studentNumber},
+					success:function(data){
+						$('#noteDetails').html(data);
+						$('#shortcut_note_Modal').modal('show');
+					}
+				});
+			});
+
+		});
+	</script>
 
 	<script>
 		$(document).ready(function(){
@@ -263,7 +394,7 @@ require 'header.php';
 					}
 				});
 			});
-			$(document).on('click','.btn-edit',function(){
+			$(document).on('click','.btn-edito',function(){
 				var noteID = $(this).attr("id");
 				$.ajax({
 					url:"editNotes.php",
