@@ -39,7 +39,7 @@ if(isset($_POST['btnAdd']))
 			echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		//link to the previous page
-		echo "<br/><a href='javascript:self.history.back();'>Go Back</a>";
+
 	}
 
 	else
@@ -100,12 +100,14 @@ if(isset($_POST['btnAdd']))
 		{
 			$message = "Significant Notes added successfully!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php';</script>";
 
 		}
 		else
 		{
 			$message = "Significant Notes Error";
 			echo "<script type='text/javascript'>alert('$message');</script>";
+			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php';</script>";
 		}
 
 
@@ -547,7 +549,7 @@ require 'header.php';
 
 
 									?>
-									<label>Category</label>
+									<label>Visitation Type</label>
 									<select name="dropdownCategory" id="dropdownCategory" class="form-control" required="">
 										<option value="NULL" selected disabled="">Visitation Category</option>
 										<?php while($row = mysqli_fetch_array($resultIncidentCategory)):;?>
@@ -567,7 +569,7 @@ require 'header.php';
 
 
 									?>
-									<label>Sub Category</label>
+									<label>Reason For Visitation</label>
 									<select name="dropdownSubCategory" id="dropdownSubCategory" class="form-control" required="">
 										<option value="NULL" selected disabled="">Reason for visitation?</option>
 										<?php while($row = mysqli_fetch_array($resultIncidentSubCategory)):;?>
