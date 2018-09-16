@@ -82,6 +82,7 @@ if(isset($_POST["messageID"]))
 			<th scope="row">College Student Associated With</th>
 			<td>'.$collegeCode.' - '.$collegeName.'</td>
 			</tr>
+			<a href="individualInventoryRecordView.php?id='.$studentNumber.'" class="btn btn-info btn-sm " title="View">View Individual Inventory</a>
 			';
 		}
 	}
