@@ -81,9 +81,18 @@ if(isset($_POST["messageID"]))
 			</tr>	
 			<th scope="row">College Student Associated With</th>
 			<td>'.$collegeCode.' - '.$collegeName.'</td>
-			</tr>
-			<a href="individualInventoryRecordView.php?id='.$studentNumber.'" class="btn btn-info btn-sm " title="View">View Individual Inventory</a>
-			';
+			</tr>';
+			if ($studentNumber == "No Student Number Associated With")
+			{
+
+			}
+			else
+			{
+
+				$output .='
+				<a href="individualInventoryRecordView.php?id='.$studentNumber.'" class="btn btn-info btn-sm " title="View">View Individual Inventory</a>
+				';
+			}
 		}
 	}
 	$output .= '
