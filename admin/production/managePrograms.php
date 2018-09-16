@@ -470,26 +470,33 @@ require 'header.php';
 				// $message = $row['averageRating'];
 				// echo "<script type='text/javascript'>alert('$message');</script>";
 			}
-			$AverageRatingFirstElement3 = array_shift( $AverageRatingArray3 );
-			$CountedSubCategoryIDFirstElement3 = array_shift( $SubCategoryIDArray3 );
-			$ProblemNameFirstElement3 = array_shift($ProblemNameArray3);
-
-			$queryGettingSubCategoryName3 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement3'";
-			$resultGettingSubCategoryName3 = mysqli_query($connect,$queryGettingSubCategoryName3);
-			while ($row = mysqli_fetch_array($resultGettingSubCategoryName3))
+			if (!empty($AverageRatingArray3))
 			{
-				$SubCategoryName3 = $row['subCategoryName'];
-			}
+				$AverageRatingFirstElement3 = array_shift( $AverageRatingArray3 );
+				$CountedSubCategoryIDFirstElement3 = array_shift( $SubCategoryIDArray3 );
+				$ProblemNameFirstElement3 = array_shift($ProblemNameArray3);
+				$queryGettingSubCategoryName3 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement3'";
+				$resultGettingSubCategoryName3 = mysqli_query($connect,$queryGettingSubCategoryName3);
+				while ($row = mysqli_fetch_array($resultGettingSubCategoryName3))
+				{
+					$SubCategoryName3 = $row['subCategoryName'];
+				}
 
-			if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey) == 0) {
+				if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey) == 0) {
+					$message3 = "There are no survey result for the program recommender to use";
+					echo "<script>var notyMessage3 = '$message3';</script>";
+				}
+				else
+				{
+					$message3 = "The most severe problem in the survey is ".$ProblemNameFirstElement3." with a percentage severity of ".$AverageRatingFirstElement3."% more severe than other problems that corresponds to the Topic ".$SubCategoryName3." this past 6 months ";
+					echo "<script>var notyMessage3 = '$message3';</script>";
+				}
+			}
+			else{
 				$message3 = "There are no survey result for the program recommender to use";
 				echo "<script>var notyMessage3 = '$message3';</script>";
 			}
-			else
-			{
-				$message3 = "The most severe problem in the survey is ".$ProblemNameFirstElement3." with a percentage severity of ".$AverageRatingFirstElement3."% more severe than other problems that corresponds to the Topic ".$SubCategoryName3." this past 6 months ";
-				echo "<script>var notyMessage3 = '$message3';</script>";
-			}
+			
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			
 
@@ -502,30 +509,36 @@ require 'header.php';
 				$CountedBiggestProblemArray4[] = $row['countedBiggestProblem'];
 				$SubCategoryIDArray4[] = $row['subCategoryID'];
 			}
-			$CountedBiggestProblemFirstElement4 = array_shift( $CountedBiggestProblemArray4 );
-			$CountedSubCategoryIDFirstElement4 = array_shift( $SubCategoryIDArray4 );
-			$CountedProblemNameFirstElement4 = array_shift( $CountedProblemNameArray4 );
-
-			$queryGettingSubCategoryName4 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement4'";
-			$resultGettingSubCategoryName4 = mysqli_query($connect,$queryGettingSubCategoryName4);
-			while ($row = mysqli_fetch_array($resultGettingSubCategoryName4))
+			if (!empty($CountedProblemNameArray4))
 			{
-				$SubCategoryName4 = $row['subCategoryName'];
-			}
+				$CountedBiggestProblemFirstElement4 = array_shift( $CountedBiggestProblemArray4 );
+				$CountedSubCategoryIDFirstElement4 = array_shift( $SubCategoryIDArray4 );
+				$CountedProblemNameFirstElement4 = array_shift( $CountedProblemNameArray4 );
+
+				$queryGettingSubCategoryName4 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement4'";
+				$resultGettingSubCategoryName4 = mysqli_query($connect,$queryGettingSubCategoryName4);
+				while ($row = mysqli_fetch_array($resultGettingSubCategoryName4))
+				{
+					$SubCategoryName4 = $row['subCategoryName'];
+				}
 
 
 			// echo "<script type='text/javascript'>alert('$message');</script>";
-			if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
-				$message4 = "There are no survey result for the program recommender to use";
-				echo "<script>var notyMessage4 = '$message4';</script>";
+				if (mysqli_num_rows($resultGettingSuggestionsBasedOnSurvey2) == 0 ) {
+					$message4 = "There are no survey result for the program recommender to use";
+					echo "<script>var notyMessage4 = '$message4';</script>";
+				}
+				else
+				{
+					$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
+					echo "<script>var notyMessage4 = '$message4';</script>";
+				}
 			}
 			else
 			{
-				$message4 = "The most selected problem in the survey is ".$CountedProblemNameFirstElement4." with it being picked ".$CountedBiggestProblemFirstElement4."times that corresponds to the Topic ".$SubCategoryName4." this past 6 months ";
-				echo "<script>var notyMessage4 = '$message4';</script>";
+				$message4 = "There are no survey result for the program recommender to use";
+					echo "<script>var notyMessage4 = '$message4';</script>";	
 			}
-
-
 
 			while($row = mysqli_fetch_array($resultGettingAdmin))  
 			{
@@ -603,7 +616,7 @@ require 'header.php';
 								{
 									$message = "There is no program assigned to ".$ProgramWithoutTopicValue."";
 									echo '
-									<div class="alert alert-warning fade in">
+									<div class="alert alert-danger fade in">
 									<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
 									<strong>Warning!</strong> There is no program assigned to <strong>'.$ProgramWithoutTopicValue.' </strong> 
 									</div>';
