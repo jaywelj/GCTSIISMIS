@@ -96,18 +96,23 @@ if(isset($_POST['btnAdd']))
 
 		}
 		$queryInsertingNote = "INSERT INTO `tbl_significantnotes` (`noteID`, `noteDate`, `categoryID`, `subCategoryID`, `noteRemarks`, `studentNumber`, `adminId`) VALUES (NULL, '$dateNoteDate', '$varcharNoteCategory', '$varcharNoteSubCategory', '$varcharNoteRemarks', '$varcharNoteStudentNumber', '$varcharNoteAdminID')";
+		$queryGettingCollege = "SELECT * FROM tbl_personalinfo WHERE `studentNumber` = '$varcharNoteStudentNumber'";
+		$resultGettingCollege = mysqli_query($connect, $queryGettingCollege);
+		while ($row = mysqli_fetch_array($resultGettingCollege)) {
+			$collegeCode = $row['collegeCode'];
+		}
 		if(mysqli_query($connect, $queryInsertingNote))
 		{
 			$message = "Significant Notes added successfully!";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php';</script>";
+			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=$collegeCode&course=all';</script>";
 
 		}
 		else
 		{
 			$message = "Significant Notes Error";
 			echo "<script type='text/javascript'>alert('$message');</script>";
-			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php';</script>";
+			echo "<script type='text/javascript'>location.href = 'manageNotesStudent.php?id=$collegeCode&course=all';</script>";
 		}
 
 
