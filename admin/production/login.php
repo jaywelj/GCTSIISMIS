@@ -10,11 +10,14 @@ if (isset($_POST['btnLogin']))
 
 	while($res = mysqli_fetch_array($resultAccount)) 
 	{
-		$varcharAccessLevel = $res['admin_accessLevel'];
+		$varcharAccessLevel = $res['accessLevel'];
+		$varcharAdminID = $res['adminId'];
 	}
 	if (mysqli_num_rows($resultAccount) == 1) 
 	{
 		$_SESSION['sessionAdminEmail'] = $varcharEmail;
+		$_SESSION['sessionAdminAccessLevel'] = $varcharAccessLevel;
+		$_SESSION['sessionAdminID'] = $varcharAdminID;
 		header('location: index.php');
 	}
 	else 
@@ -24,7 +27,7 @@ if (isset($_POST['btnLogin']))
 	}
 }
 ?>
-<!DOCTYPE html>
+ n<!DOCTYPE html>
 <html lang="en">
 	<head>
 		<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">

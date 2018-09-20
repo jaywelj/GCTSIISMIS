@@ -2,7 +2,7 @@
 session_start();
 //$varcharStudentAccountNumber = $_SESSION['sessionStudentAccountNumber'];
 //$varcharStudentAccountPassword = $_SESSION['sessionStudentAccountPassword'];
-
+$varcharAdminAccessLevel = $_SESSION['sessionAdminAccessLevel'];
 
 $varcharStudentAccountNumber = $_GET['id'];
 ?>
@@ -294,23 +294,51 @@ require 'header.php';
 									<div class="col-md-10 col-sm-10 col-xs-12" >
 										<div class="" role="tabpanel" data-example-id="togglable-tabs">
 											<ul id="myTab" class="nav nav-tabs bar_tabs" role="tablist">
-												<li role="presentation" class="active in"><a href="#tab_content1" id="home-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
-												</li>
-												<li role="presentation" class=""><a href="#tab_content2" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Educational</a>
-												</li>
-												<li role="presentation" class=""><a href="#tab_content3" role="tab" id="profile-tab" data-toggle="tab" aria-expanded="false">Home and Family</a>
-												</li>
-												<li role="presentation" class=""  ><a href="#tab_content4" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Health</a>
-												</li>
-												<li role="presentation" class=""  ><a href="#tab_content5" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Hobbies and Interests</a>
-												</li>
-												<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Test Results</a>
-												</li>
-												<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Significant Notes</a>
-												</li>
+												<?php
+												if ($varcharAdminAccessLevel == "Head Admin") {
+
+													?>
+													<li role="presentation" class="active in"><a href="#tab_content1" id="personal-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
+													</li>
+													<li role="presentation" class=""><a href="#tab_content2" role="tab" id="educational-tab" data-toggle="tab" aria-expanded="false">Educational</a>
+													</li>
+													<li role="presentation" class=""><a href="#tab_content3" role="tab" id="home-tab" data-toggle="tab" aria-expanded="false">Home and Family</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content4" role="tab" id="health-tab" data-toggle="tab" aria-expanded="false">Health</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content5" role="tab" id="hobbies-tab" data-toggle="tab" aria-expanded="false">Hobbies and Interests</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="test-tab" data-toggle="tab" aria-expanded="false">Test Results</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content8" role="tab" id="viewprinting-tab" data-toggle="tab" aria-expanded="false">List Of Prints</a>
+													</li>
+													<?php
+												}
+												else
+												{
+													?>
+													<li role="presentation" class="active in"><a href="#tab_content1" id="personal-tab" role="tab" data-toggle="tab" aria-expanded="true">Personal</a>
+													</li>
+													<li role="presentation" class=""><a href="#tab_content2" role="tab" id="educational-tab" data-toggle="tab" aria-expanded="false">Educational</a>
+													</li>
+													<li role="presentation" class=""><a href="#tab_content3" role="tab" id="home-tab" data-toggle="tab" aria-expanded="false">Home and Family</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content4" role="tab" id="health-tab" data-toggle="tab" aria-expanded="false">Health</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content5" role="tab" id="hobbies-tab" data-toggle="tab" aria-expanded="false">Hobbies and Interests</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="test-tab" data-toggle="tab" aria-expanded="false">Test Results</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
+													</li>
+													<?php
+												}
+												?>
 											</ul>
 											<div id="myTabContent" class="tab-content">
-												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1"aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade active in" id="tab_content1"aria-labelledby="personal-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -418,7 +446,7 @@ require 'header.php';
 													<!-- end recent activity -->
 
 												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content2" aria-labelledby="educational-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -728,7 +756,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content4" aria-labelledby="health-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -819,7 +847,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content5" aria-labelledby="test-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -880,7 +908,7 @@ require 'header.php';
 													</ul>
 													<!-- end recent activity -->
 												</div>
-												<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="home-tab">
+												<div role="tabpanel" class="tab-pane fade" id="tab_content6" aria-labelledby="test-tab">
 													<!-- start recent activity -->
 													<ul class="messages">
 														<li>
@@ -950,6 +978,7 @@ require 'header.php';
 
 																<h4 class="heading">Significant Notes</h4>
 																<table class="table">
+																	<a href="printSignificantNotes.php?id=<?php echo $varcharStudentNumber;?>" class="btn btn-info btn-sm " title="Print">Print Significant Notes</a>
 																	<?php
 																	$result7 = mysqli_query($connect, "SELECT * FROM tbl_significantnotes INNER JOIN tbl_personalinfo ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
 																	$i = 0;
@@ -1022,6 +1051,68 @@ require 'header.php';
 																				?>
 																				<tr>
 																					<th scope="row">Added by</th>
+																					<td><?php echo $varcharStudentAdminFirstName; ?> <?php echo $varcharStudentAdminLastName; ?> </td>
+																				</tr>
+																				<?php 
+																			}
+																			?>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<?php
+
+																		}
+																		?>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade" id="tab_content8" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+
+																<h4 class="heading">List Of Those Who Printed Significant Notes Of This Student</h4>
+																<table class="table">
+																	
+																	<?php
+																	$result8 = mysqli_query($connect, "SELECT * FROM tbl_printedsignificantnotes INNER JOIN tbl_personalinfo ON tbl_printedsignificantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
+																	$i = 0;
+																	while($res8 = mysqli_fetch_array($result8)){
+
+																		$varcharprintid = $res8['print_ID'];
+																		$varcharadminid = $res8['adminID'];
+																		$varchardateprinted = $res8['datePrinted'];
+
+
+																		$i = $i + 1 ;
+																		?>
+																		<tbody>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Print ID <?php echo $varcharprintid; ?></th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Date And Time Printed</th>
+																				<td><?php echo $varchardateprinted; ?></td>
+																			</tr>
+																			<?php
+																			$queryGettingAdminID2 = "SELECT * FROM tbl_adminaccount WHERE `adminId` = '$varcharadminid' ";
+																			$resultGettingAdminID2 = mysqli_query($connect, $queryGettingAdminID2); 
+																			while($res3 = mysqli_fetch_array($resultGettingAdminID2))  
+																			{ 
+																				$varcharStudentAdminFirstName2 = $res3['adminFirstName']; 
+																				$varcharStudentAdminLastName2 = $res3['adminLastName'];
+																				?>
+																				<tr>
+																					<th scope="row">Printed by</th>
 																					<td><?php echo $varcharStudentAdminFirstName; ?> <?php echo $varcharStudentAdminLastName; ?> </td>
 																				</tr>
 																				<?php 
