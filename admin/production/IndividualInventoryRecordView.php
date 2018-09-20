@@ -306,7 +306,7 @@ require 'header.php';
 												</li>
 												<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Test Results</a>
 												</li>
-												<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="profile-tab2" data-toggle="tab" aria-expanded="false">Significant Notes</a>
+												<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="tabSignificant" data-toggle="tab" aria-expanded="false">Significant Notes</a>
 												</li>
 											</ul>
 											<div id="myTabContent" class="tab-content">

@@ -125,7 +125,7 @@ require 'header.php';
 											{  
 												?>  
 												<tr>
-													<td> <?php echo $row['studentNumber'];?> </td>
+													<td> <a href = "individualInventoryRecordView.php?id=<?php echo $row['studentNumber'];?>"><?php echo $row['studentNumber'];?></a> </td>
 													<td> <?php echo $row['firstName']." ".$row['middleName']." ".$row['lastName'];?> </td>
 													<td> <?php echo $row['answerDate'];?> </td>
 												</tr>  

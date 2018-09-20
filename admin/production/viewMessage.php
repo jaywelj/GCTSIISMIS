@@ -76,23 +76,28 @@ if(isset($_POST["messageID"]))
 			<td>'.$row["messageDateSent"].'</td>
 			</tr>
 			<tr>
-			<th scope="row">Student Number Associated With</th>
-			<td>'.$studentNumber.'</td>
-			</tr>	
-			<th scope="row">College Student Associated With</th>
-			<td>'.$collegeCode.' - '.$collegeName.'</td>
-			</tr>';
-			if ($studentNumber == "No Student Number Associated With")
+			<th scope="row">Student Number Associated With</th>';
+			if($studentNumber == "No Student Number Associated With")
 			{
-
+				$output .= '
+				<td>
+				'.$studentNumber.'
+				</td>';
 			}
 			else
 			{
 
-				$output .='
-				<a href="individualInventoryRecordView.php?id='.$studentNumber.'" class="btn btn-info btn-sm " title="View">View Individual Inventory</a>
-				';
+				$output .= '
+				<td>
+				<a href = "individualInventoryRecordView.php?id='.$studentNumber.'">'.$studentNumber.'</a>
+				</td>';
 			}
+			$output .= '
+			</tr>	
+			<th scope="row">College Student Associated With</th>
+			<td>'.$collegeCode.' - '.$collegeName.'</td>
+			</tr>';
+			
 		}
 	}
 	$output .= '

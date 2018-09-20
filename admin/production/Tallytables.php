@@ -114,7 +114,7 @@ require 'header.php';
 										?> 
 										<thead>
 											<tr>
-												<th>I. Personal Info</th>
+												<th ></th>
 												<?php
 												$resultStudent = mysqli_query($connect, $queryStudent); 
 
@@ -134,6 +134,24 @@ require 'header.php';
 											</tr>
 										</thead>
 										<tbody>
+											<tr>
+												<th>I. Personal Info</th>
+												<?php 
+												$resultStudentSpaceForProvincialAddress = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForProvincialAddress))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForProvincialAddress = "SELECT provinceProvincial,count(*) AS NumberOfAllProvincialAddress FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForProvincialAddress = mysqli_query($connect,$queryCountingSpacesForProvincialAddress);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForProvincialAddress)) {
+														echo "<th></th>";
+													}
+												}
+												?>
+											</tr>
 											<tr>
 												<td>Male</td>
 												<?php
@@ -185,6 +203,7 @@ require 'header.php';
 													$resultCountingAll = mysqli_query($connect,$queryCountingAll);
 													while ($row = mysqli_fetch_array($resultCountingAll)) {
 														echo "<td>".$row['NumberOfAll']."</td>";
+														$ttotal = $row['NumberOfAll'];
 													}
 												}
 												?>
@@ -2316,8 +2335,6 @@ require 'header.php';
 												}
 												?>
 											</tr>
-										</tbody>
-										<thead>
 											<tr>
 												<th>II. Educational Background</th>
 												<?php 
@@ -2336,8 +2353,6 @@ require 'header.php';
 												}
 												?>
 											</tr>
-										</thead>
-										<tbody>
 											<tr>
 												<th>Elementary</th>
 												<?php 
@@ -5200,9 +5215,6 @@ require 'header.php';
 												}
 												?>
 											</tr>
-
-
-
 										</tbody>
 										<?php
 
@@ -5284,6 +5296,111 @@ require 'header.php';
 		}
 		var temp="<?php echo $course;?>"; 
 		$("#selectCourse").val(temp);
+	</script>
+	<script type="text/javascript">
+		var collegeCode = '<?php echo $collegeName; ?>';
+		var respondents = '<?php echo $ttotal; ?>';
+		function init_DataTables() {
+			const monthNames = ["January", "February", "March", "April", "May", "June",
+			"July", "August", "September", "October", "November", "December"
+			];
+
+			const d = new Date();
+			var monthName = monthNames[d.getMonth()];
+			var year = d.getFullYear();
+			console.log('run_datatables');
+
+			if( typeof ($.fn.DataTable) === 'undefined'){ return; }
+			console.log('init_DataTables');
+
+			var handleDataTableButtons = function() {
+				if ($("#datatable-buttons").length) {
+					$("#datatable-buttons").DataTable({
+						dom: "Blfrtip",
+						buttons: [
+						{
+							extend: "copy",
+							className: "btn-sm"
+						},
+						{
+							extend: "csv",
+							className: "btn-sm"
+						},
+						{
+							extend: "excel",
+							className: "btn-sm"
+						},
+						{
+							extend: "pdfHtml5",
+							className: "btn-sm"
+						},
+						{
+							extend: "print",
+							customize: function ( win ) {
+								$(win.document.body)
+								.css( 'font-size', '10pt', 'margin-left', '-500px' )
+								.prepend(
+									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4><h4 class="text-center">'+collegeCode+'</h4><h3 class="text-center" ><hr>Tally Report</h3><h4 class="text-center" >No of Respondents = '+respondents+'</h4><h5 class="text-center" >'+monthName+', '+year+'</h5 style="margin-bottom:40px;"><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
+									);
+
+								$(win.document.body).find( 'table' )
+								.addClass( 'compact' )
+								.css( 'font-size', 'inherit');
+							},
+							className: "btn-sm"
+						},
+						],
+						"lengthMenu": [ [-1,50, 100, 150, 200, 250 ], [  "All",50, 100, 150, 200, 250] ]
+					});
+				}
+			};
+
+			TableManageButtons = function() {
+				"use strict";
+				return {
+					init: function() {
+						handleDataTableButtons();
+					}
+				};
+			}();
+
+			$('#datatable').dataTable();
+
+			$('#datatable-keytable').DataTable({
+				keys: true
+			});
+
+			$('#datatable-responsive').DataTable();
+
+			$('#datatable-scroller').DataTable({
+				ajax: "js/datatables/json/scroller-demo.json",
+				deferRender: true,
+				scrollY: 380,
+				scrollCollapse: true,
+				scroller: true
+			});
+
+			$('#datatable-fixed-header').DataTable({
+				fixedHeader: true
+			});
+
+			var $datatable = $('#datatable-checkbox');
+
+			$datatable.dataTable({
+				'order': [[ 1, 'asc' ]],
+				'columnDefs': [
+				{ orderable: false, targets: [0] }
+				]
+			});
+			$datatable.on('draw.dt', function() {
+				$('checkbox input').iCheck({
+					checkboxClass: 'icheckbox_flat-green'
+				});
+			});
+
+			TableManageButtons.init();
+
+		};
 	</script>
 
 </body>

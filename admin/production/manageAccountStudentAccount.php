@@ -406,7 +406,7 @@ require 'header.php';
 															<a title="Delete" class="btn btn-danger" title="Delete" href="manageAccountStudentAccountDelete.php?id=<?php echo $row['studentNumber']; ?>" onClick="return confirm('Are you sure you want to delete?')"><span class="glyphicon glyphicon-trash"></span></a>
 														</center>
 													</td>
-													<td> <?php echo $row['studentNumber'];?> </td>
+													<td><a href = "individualInventoryRecordView.php?id=<?php echo $row['studentNumber'];?>"><?php echo $row['studentNumber'];?></a></td>
 													<td> <?php echo $row['firstName'];?> </td>
 													<td> <?php echo $row['middleName'];?> </td>
 													<td> <?php echo $row['lastName'];?> </td>

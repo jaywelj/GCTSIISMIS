@@ -39,8 +39,9 @@ if(isset($_POST["noteID"]))
 					<img src="data:image/jpeg;base64,'.base64_encode($row['studentDisplayPic']).'"  alt="" height="200" width="200" style="margin: 10px 0 10px 0; object-fit:cover; display: block; margin-left: auto; margin-right: auto; border-radius:50%">
 					</tr>
 					<tr>
-					<th scope="row">studentNumber</th>
-					<td>'.$row["studentNumber"].'</td>
+					<th scope="row">Student Number</th>
+					<td><a href = "individualInventoryRecordView.php?id='.$row['studentNumber'].'">'.$row['studentNumber'].'</a></td>
+
 					</tr>
 					<tr>
 					<th scope="row">Name</th>
