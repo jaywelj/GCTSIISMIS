@@ -525,6 +525,305 @@ require 'header.php';
 												}
 												?>
 											</tr>
+
+											<tr>
+												<th>Religion</th>
+												<?php 
+												$resultStudentSpaceForReligion = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentSpaceForReligion))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+													$queryCountingSpacesForReligion = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingSpacesForReligion = mysqli_query($connect,$queryCountingSpacesForReligion);
+													while ($row = mysqli_fetch_array($resultCountingSpacesForReligion)) {
+														echo "<th></th>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Aglipayan</td>
+												<?php 
+												$resultStudentReligionAglipayan = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionAglipayan))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionAglipayan = "SELECT religion, count(*) AS NumberOfReligionAglipayan FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Aglipayan'";
+
+													$resultCountingReligionAglipayan = mysqli_query($connect,$queryCountingReligionAglipayan);
+													while ($row = mysqli_fetch_array($resultCountingReligionAglipayan)) {
+														$NumberOfReligionAglipayan = $row['NumberOfReligionAglipayan'];
+														echo "<td>".$row['NumberOfReligionAglipayan']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Buddhism</td>
+												<?php 
+												$resultStudentReligionBuddhism = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionBuddhism))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionBuddhism = "SELECT religion, count(*) AS NumberOfReligionBuddhism FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Buddhism'";
+
+													$resultCountingReligionBuddhism = mysqli_query($connect,$queryCountingReligionBuddhism);
+													while ($row = mysqli_fetch_array($resultCountingReligionBuddhism)) {
+														$NumberOfReligionBuddhism = $row['NumberOfReligionBuddhism'];
+														echo "<td>".$row['NumberOfReligionBuddhism']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Born Again Christian</td>
+												<?php 
+												$resultStudentReligionBornAgain = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionBornAgain))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionBornAgain = "SELECT religion, count(*) AS NumberOfReligionBornAgain FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Born Again Christian'";
+
+													$resultCountingReligionBornAgain = mysqli_query($connect,$queryCountingReligionBornAgain);
+													while ($row = mysqli_fetch_array($resultCountingReligionBornAgain)) {
+														$NumberOfReligionBornAgain = $row['NumberOfReligionBornAgain'];
+														echo "<td>".$row['NumberOfReligionBornAgain']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Baptist</td>
+												<?php 
+												$resultStudentReligionBaptist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionBaptist))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionBaptist = "SELECT religion, count(*) AS NumberOfReligionBaptist FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Baptist'";
+
+													$resultCountingReligionBaptist = mysqli_query($connect,$queryCountingReligionBaptist);
+													while ($row = mysqli_fetch_array($resultCountingReligionBaptist)) {
+														$NumberOfReligionBaptist = $row['NumberOfReligionBaptist'];
+														echo "<td>".$row['NumberOfReligionBaptist']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Catholic</td>
+												<?php 
+												$resultStudentReligionCatholic = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionCatholic))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionCatholic = "SELECT religion, count(*) AS NumberOfReligionCatholic FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Catholic'";
+
+													$resultCountingReligionCatholic = mysqli_query($connect,$queryCountingReligionCatholic);
+													while ($row = mysqli_fetch_array($resultCountingReligionCatholic)) {
+														$NumberOfReligionCatholic = $row['NumberOfReligionCatholic'];
+														echo "<td>".$row['NumberOfReligionCatholic']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Jehovas Witnesses</td>
+												<?php 
+												$resultStudentReligionJehovasWitnesses = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionJehovasWitnesses))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionJehovasWitnesses = "SELECT religion, count(*) AS NumberOfReligionJehovasWitnesses FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Jehovas Witnesses'";
+
+													$resultCountingReligionJehovasWitnesses = mysqli_query($connect,$queryCountingReligionJehovasWitnesses);
+													while ($row = mysqli_fetch_array($resultCountingReligionJehovasWitnesses)) {
+														$NumberOfReligionJehovasWitnesses = $row['NumberOfReligionJehovasWitnesses'];
+														echo "<td>".$row['NumberOfReligionJehovasWitnesses']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Iglesia ni Cristo</td>
+												<?php 
+												$resultStudentReligionINC = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionINC))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionINC = "SELECT religion, count(*) AS NumberOfReligionINC FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Iglesia ni Cristo'";
+
+													$resultCountingReligionINC = mysqli_query($connect,$queryCountingReligionINC);
+													while ($row = mysqli_fetch_array($resultCountingReligionINC)) {
+														$NumberOfReligionINC = $row['NumberOfReligionINC'];
+														echo "<td>".$row['NumberOfReligionINC']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Islam</td>
+												<?php 
+												$resultStudentReligionIslam = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionIslam))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionIslam = "SELECT religion, count(*) AS NumberOfReligionIslam FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Islam'";
+
+													$resultCountingReligionIslam = mysqli_query($connect,$queryCountingReligionIslam);
+													while ($row = mysqli_fetch_array($resultCountingReligionIslam)) {
+														$NumberOfReligionIslam = $row['NumberOfReligionIslam'];
+														echo "<td>".$row['NumberOfReligionIslam']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Protestant</td>
+												<?php 
+												$resultStudentReligionProtestant = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionProtestant))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionProtestant = "SELECT religion, count(*) AS NumberOfReligionProtestant FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Protestant'";
+
+													$resultCountingReligionProtestant = mysqli_query($connect,$queryCountingReligionProtestant);
+													while ($row = mysqli_fetch_array($resultCountingReligionProtestant)) {
+														$NumberOfReligionProtestant = $row['NumberOfReligionProtestant'];
+														echo "<td>".$row['NumberOfReligionProtestant']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Seventh Day Adventist</td>
+												<?php 
+												$resultStudentReligionSeventhDayAdventist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionSeventhDayAdventist))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionSeventhDayAdventist = "SELECT religion, count(*) AS NumberOfReligionSeventhDayAdventist FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Seventh Day Adventist'";
+
+													$resultCountingReligionSeventhDayAdventist = mysqli_query($connect,$queryCountingReligionSeventhDayAdventist);
+													while ($row = mysqli_fetch_array($resultCountingReligionSeventhDayAdventist)) {
+														$NumberOfReligionSeventhDayAdventist = $row['NumberOfReligionSeventhDayAdventist'];
+														echo "<td>".$row['NumberOfReligionSeventhDayAdventist']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Mormons (Latter Day Saints)</td>
+												<?php 
+												$resultStudentReligionMormons = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionMormons))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionMormons = "SELECT religion, count(*) AS NumberOfReligionMormons FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Mormons (Latter Day Saints)'";
+
+													$resultCountingReligionMormons = mysqli_query($connect,$queryCountingReligionMormons);
+													while ($row = mysqli_fetch_array($resultCountingReligionMormons)) {
+														$NumberOfReligionMormons = $row['NumberOfReligionMormons'];
+														echo "<td>".$row['NumberOfReligionMormons']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Methodist</td>
+												<?php 
+												$resultStudentReligionMethodist = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionMethodist))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionMethodist = "SELECT religion, count(*) AS NumberOfReligionMethodist FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion = 'Methodist'";
+
+													$resultCountingReligionMethodist = mysqli_query($connect,$queryCountingReligionMethodist);
+													while ($row = mysqli_fetch_array($resultCountingReligionMethodist)) {
+														$NumberOfReligionMethodist = $row['NumberOfReligionMethodist'];
+														echo "<td>".$row['NumberOfReligionMethodist']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<td>Not Indicated</td>
+												<?php 
+												$resultStudentReligionNA = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionNA))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionNA = "SELECT religion, count(*) AS NumberOfReligionNA FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND religion != 'Aglipayan' AND religion != 'Buddhism' AND religion != 'Born Again Christian' AND religion != 'Baptist' AND religion != 'Catholic' AND religion != 'Jehovas Witnesses' AND religion != 'Iglesia ni Cristo' AND religion != 'Protestant' AND religion != 'Islam' AND religion != 'Seventh Day Adventist' AND religion != 'Methodist' AND religion != 'Mormons (Latter Day Saints)'";
+
+													$resultCountingReligionNA = mysqli_query($connect,$queryCountingReligionNA);
+													while ($row = mysqli_fetch_array($resultCountingReligionNA)) {
+														$NumberOfReligionNA = $row['NumberOfReligionNA'];
+														echo "<td>".$row['NumberOfReligionNA']."</td>";
+													}
+												}
+												?>
+											</tr>
+											<tr>
+												<th>TOTAL</th>
+												<?php 
+												$resultStudentReligionTotal = mysqli_query($connect, $queryStudent); 
+												while($row = mysqli_fetch_array($resultStudentReligionTotal))  
+												{  
+													$currentCourse = $row['courseCode'];
+													$currentYear = $row['year'];
+													$currentSection = $row['section'];
+
+													$queryCountingReligionTotal = "SELECT religion, count(*) AS NumberOfReligionTotal FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+													$resultCountingReligionTotal = mysqli_query($connect,$queryCountingReligionTotal);
+													while ($row = mysqli_fetch_array($resultCountingReligionTotal)) {
+														$NumberOfReligionTotal = $row['NumberOfReligionTotal'];
+														echo "<td>".$row['NumberOfReligionTotal']."</td>";
+													}
+												}
+												?>
+											</tr>
 											<tr>
 												<th>City Address</th>
 												<?php 
