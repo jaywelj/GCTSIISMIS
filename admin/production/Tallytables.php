@@ -5598,6 +5598,7 @@ require 'header.php';
 	</script>
 	<script type="text/javascript">
 		var collegeCode = '<?php echo $collegeName; ?>';
+		var courseCode	= '<?php echo $course; ?>'; 
 		var respondents = '<?php echo $ttotal; ?>';
 		function init_DataTables() {
 			const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -5639,7 +5640,7 @@ require 'header.php';
 								$(win.document.body)
 								.css( 'font-size', '10pt', 'margin-left', '-500px' )
 								.prepend(
-									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4><h4 class="text-center">'+collegeCode+'</h4><h3 class="text-center" ><hr>Tally Report</h3><h4 class="text-center" >No of Respondents = '+respondents+'</h4><h5 class="text-center" >'+monthName+', '+year+'</h5 style="margin-bottom:40px;"><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
+									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4><h4 class="text-center">'+collegeCode+'</h4><h3 class="text-center" ><hr>Tally Report</h3><h4 class="text-center" >No of Respondents = '+respondents+'</h4><h4 class="text-center" >COURSE: '+courseCode+'</h4><h5 class="text-center" >'+monthName+', '+year+'</h5 style="margin-bottom:40px;"><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
 									);
 
 								$(win.document.body).find( 'table' )

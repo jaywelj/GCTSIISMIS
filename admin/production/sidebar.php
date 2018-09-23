@@ -132,7 +132,25 @@ while($res = mysqli_fetch_array($result))
 							<li><a href="surveyManageSurveyForm.php">Manage Survey Form</a></li> -->
 							<li><a href="surveyProblemSurveyForm.php">Problem Survey Form</a></li>
 							<li><a href="surveyProblemSurveyAnswer.php">List of Student Who Answered</a></li>
-							<li><a href="surveyProblemSurveyTally.php">Survey Tally</a></li>
+							<li><a href="surveyProblemSurveyTally.php">General Survey Tally</a></li>
+						</ul>
+					</li>
+					<li><a><i class="fa fa-bar-chart-o"></i>Survey Tally<span class="fa fa-chevron-down"></span></a>
+						<ul class="nav child_menu">
+							<?php
+							include("connectionString.php");  
+							$queryCollege = "SELECT * FROM tbl_college ORDER BY collegeName ASC";
+							$resultCollege = mysqli_query($connect, $queryCollege); 
+							while($row = mysqli_fetch_array($resultCollege))  
+							{  
+								$collegeCode = $row['collegeCode'];
+								$collegeName = $row['collegeName'];
+								?>
+								<li><a href="surveyProblemSurveyTally2.php?id=<?php echo $collegeCode; ?>&course=all"><?php echo $collegeName; ?> (<?php echo $collegeCode; ?>)</a></li>
+								<?php  
+							}
+
+							?>
 						</ul>
 					</li>
 					<li><a><i class="fa fa-desktop"></i> Accounts <span class="fa fa-chevron-down"></span></a>

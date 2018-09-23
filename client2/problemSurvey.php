@@ -18,8 +18,30 @@ if(isset($_POST['btnFinish']))
 		$studentNumber = $_SESSION['sessionStudentAccountNumber'];
 		$checkedProblems = $_POST['checkboxProblem'];
 		$selectedRating = $_POST['selectProblem'];
-		foreach($checkedProblems as $i => $value){
-			$query = "INSERT INTO `tbl_answerproblem` (`answerID`, `problemID`, `answerProblem`, `studentNumber`, `answerDate`) VALUES (NULL, '$value', '$selectedRating[$value]', '$studentNumber', CURRENT_TIMESTAMP)";
+		$hiddenProblem = $_POST['hiddenProblem'];
+		$checkFlag = 0;
+		// foreach($hiddenProblem as $value)
+		// {
+		// 	echo"<script type='text/javascript'>alert('$value');</script>";
+		// }
+		// foreach($checkedProblems as $value)
+		// {
+		// 	echo"<script type='text/javascript'>alert('$value');</script>";
+		// 	echo"<script type='text/javascript'>alert('$selectedRating[$value]');</script>";
+		// }
+		foreach($hiddenProblem as $i => $value){
+			foreach($checkedProblems as $j => $value2){
+				if($value == $value2)
+				{
+					$query = "INSERT INTO `tbl_answerproblem` (`answerID`, `problemID`, `answerProblem`, `studentNumber`, `answerDate`) VALUES (NULL, '$value', '$selectedRating[$value]', '$studentNumber', CURRENT_TIMESTAMP)";
+					$checkFlag = 1;
+				}
+			}
+			if($checkFlag == 0)
+			{
+				$query = "INSERT INTO `tbl_answerproblem` (`answerID`, `problemID`, `answerProblem`, `studentNumber`, `answerDate`) VALUES (NULL, '$value', '1', '$studentNumber', CURRENT_TIMESTAMP)";
+			}
+			$checkFlag = 0;
 			if(mysqli_query($connect,$query))
 			{
 				//echo "<script type='text/javascript'>alert('success!');</script>";
@@ -28,7 +50,7 @@ if(isset($_POST['btnFinish']))
 			{
 				//echo "<script type='text/javascript'>alert('error');</script>";
 			}
-		}
+		}	
 		echo"<script type='text/javascript'>alert('Thankyou for participating the survey!');</script>";
 		echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
 	}
@@ -176,17 +198,18 @@ if(isset($_POST['btnFinish']))
 												<tr>
 												<td>
 												<label class="checkContainer">
+												<input type="hidden" name="hiddenProblem[]" value="'.$resu['problemID'].'">
 												<input type="checkbox" name="checkboxProblem[]" id="'.$i.'" onclick="check(this)" value="'.$resu['problemID'].'">
 												<span class="checkmark"></span>
 												</label>
 												</td>
 												<td>
 												<select name="selectProblem['.$resu['problemID'].']" id="s'.$i.'" disabled="true" style="background:#ccc" required >
-												<option value="0">1 - Never</option>
-												<option value="1">2 - Seldom</option>
-												<option value="2">3 - Sometimes</option>
-												<option value="3">4 - Often</option>
-												<option value="4">5 - Always</option>
+												<option value="1">1 - Never</option>
+												<option value="2">2 - Seldom</option>
+												<option value="3">3 - Sometimes</option>
+												<option value="4">4 - Often</option>
+												<option value="5">5 - Always</option>
 												</select>
 												</td>
 												<td>
