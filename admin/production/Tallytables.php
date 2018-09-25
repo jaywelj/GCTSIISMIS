@@ -247,7 +247,6 @@ require 'header.php';
 													$resultCountingAll = mysqli_query($connect,$queryCountingAll);
 													while ($row = mysqli_fetch_array($resultCountingAll)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfAll']."</td>";
-														$ttotal = $row['NumberOfAll'];
 														$total = $row['NumberOfAll']+ $total;
 													}
 												}
@@ -255,6 +254,7 @@ require 'header.php';
 												echo "<td style='text-align:center;'>".$total."</td>";
 												$totalp = $total/$ttotal*100;
 												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 
 											</tr>
@@ -292,8 +292,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge15)) {
 														$NumberOf15YearsOld = $row['NumberOf15YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf15YearsOld']."</td>";
+													$total = $row['NumberOf15YearsOld']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -312,8 +317,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge16)) {
 														$NumberOf16YearsOld = $row['NumberOf16YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf16YearsOld']."</td>";
+													$total = $row['NumberOf16YearsOld']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -332,8 +342,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge17)) {
 														$NumberOf17YearsOld = $row['NumberOf17YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf17YearsOld']."</td>";
+													$total = $row['NumberOf17YearsOld']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -352,9 +367,14 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge18)) {
 														$NumberOf18YearsOld = $row['NumberOf18YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf18YearsOld']."</td>";
+													$total = $row['NumberOf18YearsOld']+ $total;
 													}
 												}
-												?>												
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>											
 											</tr>
 											<tr>
 												<td>19</td>
@@ -372,8 +392,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge19)) {
 														$NumberOf19YearsOld = $row['NumberOf19YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf19YearsOld']."</td>";
+													$total = $row['NumberOf19YearsOld']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -392,8 +417,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAge20)) {
 														$NumberOf20YearsOld = $row['NumberOf20YearsOld'];
 														echo "<td style='text-align:center;'>".$row['NumberOf20YearsOld']."</td>";
+													$total = $row['NumberOf20YearsOld']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -412,8 +442,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAgeNATotal)) {
 														$NumberOfAgeNotIndicated = $row['NumberOfAgeNotIndicated'];
 														echo "<td style='text-align:center;'>".$row['NumberOfAgeNotIndicated']."</td>";
+													$total = $row['NumberOfAgeNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -432,8 +467,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingAgeTotal)) {
 														$NumberOfAgeTotal = $row['NumberOfAgeTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfAgeTotal']."</td>";
+													$total = $row['NumberOfAgeTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -470,8 +510,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusSingle)) {
 														$NumberOfCivilStatusSingle = $row['NumberOfCivilStatusSingle'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusSingle']."</td>";
+													$total = $row['NumberOfCivilStatusSingle']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -490,8 +535,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusMarried)) {
 														$NumberOfCivilStatusMarried = $row['NumberOfCivilStatusMarried'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusMarried']."</td>";
+													$total = $row['NumberOfCivilStatusMarried']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -510,8 +560,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusWidowed)) {
 														$NumberOfCivilStatusWidowed = $row['NumberOfCivilStatusWidowed'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusWidowed']."</td>";
+													$total = $row['NumberOfCivilStatusWidowed']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -530,8 +585,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusDivorced)) {
 														$NumberOfCivilStatusDivorced = $row['NumberOfCivilStatusDivorced'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusDivorced']."</td>";
+													$total = $row['NumberOfCivilStatusDivorced']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -550,8 +610,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusNA)) {
 														$NumberOfCivilStatusNA = $row['NumberOfCivilStatusNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusNA']."</td>";
+													$total = $row['NumberOfCivilStatusNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -570,8 +635,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusTotal)) {
 														$NumberOfCivilStatusTotal = $row['NumberOfCivilStatusTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusTotal']."</td>";
+													$total = $row['NumberOfCivilStatusTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 
@@ -609,8 +679,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionAglipayan)) {
 														$NumberOfReligionAglipayan = $row['NumberOfReligionAglipayan'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionAglipayan']."</td>";
+													$total = $row['NumberOfReligionAglipayan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -629,8 +704,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionBuddhism)) {
 														$NumberOfReligionBuddhism = $row['NumberOfReligionBuddhism'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionBuddhism']."</td>";
+													$total = $row['NumberOfReligionBuddhism']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -649,8 +729,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionBornAgain)) {
 														$NumberOfReligionBornAgain = $row['NumberOfReligionBornAgain'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionBornAgain']."</td>";
+													$total = $row['NumberOfReligionBornAgain']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -669,8 +754,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionBaptist)) {
 														$NumberOfReligionBaptist = $row['NumberOfReligionBaptist'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionBaptist']."</td>";
+													$total = $row['NumberOfReligionBaptist']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -689,8 +779,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionCatholic)) {
 														$NumberOfReligionCatholic = $row['NumberOfReligionCatholic'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionCatholic']."</td>";
+													$total = $row['NumberOfReligionCatholic']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -709,8 +804,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionJehovasWitnesses)) {
 														$NumberOfReligionJehovasWitnesses = $row['NumberOfReligionJehovasWitnesses'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionJehovasWitnesses']."</td>";
+													$total = $row['NumberOfReligionJehovasWitnesses']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -729,8 +829,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionINC)) {
 														$NumberOfReligionINC = $row['NumberOfReligionINC'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionINC']."</td>";
+													$total = $row['NumberOfReligionINC']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -749,8 +854,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionIslam)) {
 														$NumberOfReligionIslam = $row['NumberOfReligionIslam'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionIslam']."</td>";
+													$total = $row['NumberOfReligionIslam']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -769,8 +879,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionProtestant)) {
 														$NumberOfReligionProtestant = $row['NumberOfReligionProtestant'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionProtestant']."</td>";
+													$total = $row['NumberOfReligionProtestant']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -789,8 +904,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionSeventhDayAdventist)) {
 														$NumberOfReligionSeventhDayAdventist = $row['NumberOfReligionSeventhDayAdventist'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionSeventhDayAdventist']."</td>";
+													$total = $row['NumberOfReligionSeventhDayAdventist']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -809,8 +929,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionMormons)) {
 														$NumberOfReligionMormons = $row['NumberOfReligionMormons'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionMormons']."</td>";
+													$total = $row['NumberOfReligionMormons']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -829,8 +954,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionMethodist)) {
 														$NumberOfReligionMethodist = $row['NumberOfReligionMethodist'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionMethodist']."</td>";
+													$total = $row['NumberOfReligionMethodist']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -849,8 +979,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionNA)) {
 														$NumberOfReligionNA = $row['NumberOfReligionNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionNA']."</td>";
+													$total = $row['NumberOfReligionNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -869,8 +1004,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingReligionTotal)) {
 														$NumberOfReligionTotal = $row['NumberOfReligionTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfReligionTotal']."</td>";
+													$total = $row['NumberOfReligionTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
