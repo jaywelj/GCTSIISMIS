@@ -93,9 +93,37 @@ require 'header.php';
 											</select>
 										</form>
 									</div>
+
 									<div class="clearfix"></div>
 								</div>								
 								<div class="x_content">
+									<?php
+									include("connectionString.php");
+									if($course == "all"){
+
+										$queryStudent = "SELECT DISTINCT courseCode, year, section FROM tbl_personalinfo WHERE collegeCode = '$college' GROUP BY courseCode,year,section ASC";
+									}
+									else{
+										$queryStudent = "SELECT DISTINCT courseCode, year, section FROM tbl_personalinfo WHERE collegeCode = '$college' AND courseCode = '$course' GROUP BY courseCode,year,section ASC";
+									}
+									$resultStudentSexTotal = mysqli_query($connect, $queryStudent); 
+									$ttotal = 0;
+									while($row = mysqli_fetch_array($resultStudentSexTotal))  
+									{  
+										$currentCourse = $row['courseCode'];
+										$currentYear = $row['year'];
+										$currentSection = $row['section'];
+										$queryCountingAll = "SELECT count(*) AS NumberOfAll FROM tbl_personalinfo WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
+
+										$resultCountingAll = mysqli_query($connect,$queryCountingAll);
+										while ($row = mysqli_fetch_array($resultCountingAll)) {
+
+											$ttotal = $row['NumberOfAll'] + $ttotal;
+										}
+									}
+									$total = 0;
+									?>
+									<h2>Total Number of Respondents = <?php echo $ttotal; ?> </h2>
 									<!-- <p class="text-muted font-13 m-b-30">
 										<b>Student Individual Inventory Tally of Records</b>
 									</p>-->
@@ -127,10 +155,13 @@ require 'header.php';
 
 													?>
 
-													<th><?php echo $row['courseCode']; ?> <?php echo $row['year']; ?>-<?php echo $row['section']; ?></th>
+													<th style="text-align: center;"><?php echo $row['courseCode']; ?> <?php echo $row['year']; ?>-<?php echo $row['section']; ?></th>
 													<?php
 												}
-												?>												
+
+												?>
+												<th style="text-align:center;">Total</th>
+												<th style="text-align:center;">Percentage</th>													
 											</tr>
 										</thead>
 										<tbody>
@@ -149,8 +180,11 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingSpacesForProvincialAddress)) {
 														echo "<th></th>";
 													}
+
 												}
 												?>
+												<th></th>
+												<th></th>
 											</tr>
 											<tr>
 												<td>Male</td>
@@ -166,9 +200,14 @@ require 'header.php';
 
 													$resultCountingMale = mysqli_query($connect,$queryCountingMale);
 													while ($row = mysqli_fetch_array($resultCountingMale)) {
-														echo "<td>".$row['NumberOfMales']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfMales']."</td>";
+														$total = $row['NumberOfMales'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -184,9 +223,14 @@ require 'header.php';
 
 													$resultCountingFemale = mysqli_query($connect,$queryCountingFemale);
 													while ($row = mysqli_fetch_array($resultCountingFemale)) {
-														echo "<td>".$row['NumberOfemales']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfemales']."</td>";
+														$total = $row['NumberOfemales']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -202,10 +246,15 @@ require 'header.php';
 
 													$resultCountingAll = mysqli_query($connect,$queryCountingAll);
 													while ($row = mysqli_fetch_array($resultCountingAll)) {
-														echo "<td>".$row['NumberOfAll']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfAll']."</td>";
 														$ttotal = $row['NumberOfAll'];
+														$total = $row['NumberOfAll']+ $total;
 													}
 												}
+
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
 												?>
 
 											</tr>
@@ -242,7 +291,7 @@ require 'header.php';
 													$resultCountingAge15 = mysqli_query($connect,$queryCountingAge15);
 													while ($row = mysqli_fetch_array($resultCountingAge15)) {
 														$NumberOf15YearsOld = $row['NumberOf15YearsOld'];
-														echo "<td>".$row['NumberOf15YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf15YearsOld']."</td>";
 													}
 												}
 												?>
@@ -262,7 +311,7 @@ require 'header.php';
 													$resultCountingAge16 = mysqli_query($connect,$queryCountingAge16);
 													while ($row = mysqli_fetch_array($resultCountingAge16)) {
 														$NumberOf16YearsOld = $row['NumberOf16YearsOld'];
-														echo "<td>".$row['NumberOf16YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf16YearsOld']."</td>";
 													}
 												}
 												?>
@@ -282,7 +331,7 @@ require 'header.php';
 													$resultCountingAge17 = mysqli_query($connect,$queryCountingAge17);
 													while ($row = mysqli_fetch_array($resultCountingAge17)) {
 														$NumberOf17YearsOld = $row['NumberOf17YearsOld'];
-														echo "<td>".$row['NumberOf17YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf17YearsOld']."</td>";
 													}
 												}
 												?>
@@ -302,7 +351,7 @@ require 'header.php';
 													$resultCountingAge18 = mysqli_query($connect,$queryCountingAge18);
 													while ($row = mysqli_fetch_array($resultCountingAge18)) {
 														$NumberOf18YearsOld = $row['NumberOf18YearsOld'];
-														echo "<td>".$row['NumberOf18YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf18YearsOld']."</td>";
 													}
 												}
 												?>												
@@ -322,7 +371,7 @@ require 'header.php';
 													$resultCountingAge19 = mysqli_query($connect,$queryCountingAge19);
 													while ($row = mysqli_fetch_array($resultCountingAge19)) {
 														$NumberOf19YearsOld = $row['NumberOf19YearsOld'];
-														echo "<td>".$row['NumberOf19YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf19YearsOld']."</td>";
 													}
 												}
 												?>
@@ -342,7 +391,7 @@ require 'header.php';
 													$resultCountingAge20 = mysqli_query($connect,$queryCountingAge20);
 													while ($row = mysqli_fetch_array($resultCountingAge20)) {
 														$NumberOf20YearsOld = $row['NumberOf20YearsOld'];
-														echo "<td>".$row['NumberOf20YearsOld']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOf20YearsOld']."</td>";
 													}
 												}
 												?>
@@ -362,7 +411,7 @@ require 'header.php';
 													$resultCountingAgeNATotal = mysqli_query($connect,$queryCountingAgeNATotal);
 													while ($row = mysqli_fetch_array($resultCountingAgeNATotal)) {
 														$NumberOfAgeNotIndicated = $row['NumberOfAgeNotIndicated'];
-														echo "<td>".$row['NumberOfAgeNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfAgeNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -382,7 +431,7 @@ require 'header.php';
 													$resultCountingAgeTotal = mysqli_query($connect,$queryCountingAgeTotal);
 													while ($row = mysqli_fetch_array($resultCountingAgeTotal)) {
 														$NumberOfAgeTotal = $row['NumberOfAgeTotal'];
-														echo "<td>".$row['NumberOfAgeTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfAgeTotal']."</td>";
 													}
 												}
 												?>
@@ -420,7 +469,7 @@ require 'header.php';
 													$resultCountingCivilStatusSingle = mysqli_query($connect,$queryCountingCivilStatusSingle);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusSingle)) {
 														$NumberOfCivilStatusSingle = $row['NumberOfCivilStatusSingle'];
-														echo "<td>".$row['NumberOfCivilStatusSingle']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusSingle']."</td>";
 													}
 												}
 												?>
@@ -440,7 +489,7 @@ require 'header.php';
 													$resultCountingCivilStatusMarried = mysqli_query($connect,$queryCountingCivilStatusMarried);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusMarried)) {
 														$NumberOfCivilStatusMarried = $row['NumberOfCivilStatusMarried'];
-														echo "<td>".$row['NumberOfCivilStatusMarried']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusMarried']."</td>";
 													}
 												}
 												?>
@@ -460,7 +509,7 @@ require 'header.php';
 													$resultCountingCivilStatusWidowed = mysqli_query($connect,$queryCountingCivilStatusWidowed);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusWidowed)) {
 														$NumberOfCivilStatusWidowed = $row['NumberOfCivilStatusWidowed'];
-														echo "<td>".$row['NumberOfCivilStatusWidowed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusWidowed']."</td>";
 													}
 												}
 												?>
@@ -480,7 +529,7 @@ require 'header.php';
 													$resultCountingCivilStatusDivorced = mysqli_query($connect,$queryCountingCivilStatusDivorced);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusDivorced)) {
 														$NumberOfCivilStatusDivorced = $row['NumberOfCivilStatusDivorced'];
-														echo "<td>".$row['NumberOfCivilStatusDivorced']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusDivorced']."</td>";
 													}
 												}
 												?>
@@ -500,7 +549,7 @@ require 'header.php';
 													$resultCountingCivilStatusNA = mysqli_query($connect,$queryCountingCivilStatusNA);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusNA)) {
 														$NumberOfCivilStatusNA = $row['NumberOfCivilStatusNA'];
-														echo "<td>".$row['NumberOfCivilStatusNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusNA']."</td>";
 													}
 												}
 												?>
@@ -520,7 +569,7 @@ require 'header.php';
 													$resultCountingCivilStatusTotal = mysqli_query($connect,$queryCountingCivilStatusTotal);
 													while ($row = mysqli_fetch_array($resultCountingCivilStatusTotal)) {
 														$NumberOfCivilStatusTotal = $row['NumberOfCivilStatusTotal'];
-														echo "<td>".$row['NumberOfCivilStatusTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCivilStatusTotal']."</td>";
 													}
 												}
 												?>
@@ -559,7 +608,7 @@ require 'header.php';
 													$resultCountingReligionAglipayan = mysqli_query($connect,$queryCountingReligionAglipayan);
 													while ($row = mysqli_fetch_array($resultCountingReligionAglipayan)) {
 														$NumberOfReligionAglipayan = $row['NumberOfReligionAglipayan'];
-														echo "<td>".$row['NumberOfReligionAglipayan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionAglipayan']."</td>";
 													}
 												}
 												?>
@@ -579,7 +628,7 @@ require 'header.php';
 													$resultCountingReligionBuddhism = mysqli_query($connect,$queryCountingReligionBuddhism);
 													while ($row = mysqli_fetch_array($resultCountingReligionBuddhism)) {
 														$NumberOfReligionBuddhism = $row['NumberOfReligionBuddhism'];
-														echo "<td>".$row['NumberOfReligionBuddhism']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionBuddhism']."</td>";
 													}
 												}
 												?>
@@ -599,7 +648,7 @@ require 'header.php';
 													$resultCountingReligionBornAgain = mysqli_query($connect,$queryCountingReligionBornAgain);
 													while ($row = mysqli_fetch_array($resultCountingReligionBornAgain)) {
 														$NumberOfReligionBornAgain = $row['NumberOfReligionBornAgain'];
-														echo "<td>".$row['NumberOfReligionBornAgain']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionBornAgain']."</td>";
 													}
 												}
 												?>
@@ -619,7 +668,7 @@ require 'header.php';
 													$resultCountingReligionBaptist = mysqli_query($connect,$queryCountingReligionBaptist);
 													while ($row = mysqli_fetch_array($resultCountingReligionBaptist)) {
 														$NumberOfReligionBaptist = $row['NumberOfReligionBaptist'];
-														echo "<td>".$row['NumberOfReligionBaptist']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionBaptist']."</td>";
 													}
 												}
 												?>
@@ -639,7 +688,7 @@ require 'header.php';
 													$resultCountingReligionCatholic = mysqli_query($connect,$queryCountingReligionCatholic);
 													while ($row = mysqli_fetch_array($resultCountingReligionCatholic)) {
 														$NumberOfReligionCatholic = $row['NumberOfReligionCatholic'];
-														echo "<td>".$row['NumberOfReligionCatholic']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionCatholic']."</td>";
 													}
 												}
 												?>
@@ -659,7 +708,7 @@ require 'header.php';
 													$resultCountingReligionJehovasWitnesses = mysqli_query($connect,$queryCountingReligionJehovasWitnesses);
 													while ($row = mysqli_fetch_array($resultCountingReligionJehovasWitnesses)) {
 														$NumberOfReligionJehovasWitnesses = $row['NumberOfReligionJehovasWitnesses'];
-														echo "<td>".$row['NumberOfReligionJehovasWitnesses']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionJehovasWitnesses']."</td>";
 													}
 												}
 												?>
@@ -679,7 +728,7 @@ require 'header.php';
 													$resultCountingReligionINC = mysqli_query($connect,$queryCountingReligionINC);
 													while ($row = mysqli_fetch_array($resultCountingReligionINC)) {
 														$NumberOfReligionINC = $row['NumberOfReligionINC'];
-														echo "<td>".$row['NumberOfReligionINC']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionINC']."</td>";
 													}
 												}
 												?>
@@ -699,7 +748,7 @@ require 'header.php';
 													$resultCountingReligionIslam = mysqli_query($connect,$queryCountingReligionIslam);
 													while ($row = mysqli_fetch_array($resultCountingReligionIslam)) {
 														$NumberOfReligionIslam = $row['NumberOfReligionIslam'];
-														echo "<td>".$row['NumberOfReligionIslam']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionIslam']."</td>";
 													}
 												}
 												?>
@@ -719,7 +768,7 @@ require 'header.php';
 													$resultCountingReligionProtestant = mysqli_query($connect,$queryCountingReligionProtestant);
 													while ($row = mysqli_fetch_array($resultCountingReligionProtestant)) {
 														$NumberOfReligionProtestant = $row['NumberOfReligionProtestant'];
-														echo "<td>".$row['NumberOfReligionProtestant']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionProtestant']."</td>";
 													}
 												}
 												?>
@@ -739,7 +788,7 @@ require 'header.php';
 													$resultCountingReligionSeventhDayAdventist = mysqli_query($connect,$queryCountingReligionSeventhDayAdventist);
 													while ($row = mysqli_fetch_array($resultCountingReligionSeventhDayAdventist)) {
 														$NumberOfReligionSeventhDayAdventist = $row['NumberOfReligionSeventhDayAdventist'];
-														echo "<td>".$row['NumberOfReligionSeventhDayAdventist']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionSeventhDayAdventist']."</td>";
 													}
 												}
 												?>
@@ -759,7 +808,7 @@ require 'header.php';
 													$resultCountingReligionMormons = mysqli_query($connect,$queryCountingReligionMormons);
 													while ($row = mysqli_fetch_array($resultCountingReligionMormons)) {
 														$NumberOfReligionMormons = $row['NumberOfReligionMormons'];
-														echo "<td>".$row['NumberOfReligionMormons']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionMormons']."</td>";
 													}
 												}
 												?>
@@ -779,7 +828,7 @@ require 'header.php';
 													$resultCountingReligionMethodist = mysqli_query($connect,$queryCountingReligionMethodist);
 													while ($row = mysqli_fetch_array($resultCountingReligionMethodist)) {
 														$NumberOfReligionMethodist = $row['NumberOfReligionMethodist'];
-														echo "<td>".$row['NumberOfReligionMethodist']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionMethodist']."</td>";
 													}
 												}
 												?>
@@ -799,7 +848,7 @@ require 'header.php';
 													$resultCountingReligionNA = mysqli_query($connect,$queryCountingReligionNA);
 													while ($row = mysqli_fetch_array($resultCountingReligionNA)) {
 														$NumberOfReligionNA = $row['NumberOfReligionNA'];
-														echo "<td>".$row['NumberOfReligionNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionNA']."</td>";
 													}
 												}
 												?>
@@ -819,7 +868,7 @@ require 'header.php';
 													$resultCountingReligionTotal = mysqli_query($connect,$queryCountingReligionTotal);
 													while ($row = mysqli_fetch_array($resultCountingReligionTotal)) {
 														$NumberOfReligionTotal = $row['NumberOfReligionTotal'];
-														echo "<td>".$row['NumberOfReligionTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfReligionTotal']."</td>";
 													}
 												}
 												?>
@@ -857,7 +906,7 @@ require 'header.php';
 													$resultCountingCityAddressCaloocan = mysqli_query($connect,$queryCountingCityAddressCaloocan);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressCaloocan)) {
 														$NumberOfCityAddressCaloocan = $row['NumberOfCityAddressCaloocan'];
-														echo "<td>".$row['NumberOfCityAddressCaloocan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressCaloocan']."</td>";
 													}
 												}
 												?>
@@ -877,7 +926,7 @@ require 'header.php';
 													$resultCountingCityAddressLasPinas = mysqli_query($connect,$queryCountingCityAddressLasPinas);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressLasPinas)) {
 														$NumberOfCityAddressLasPinas = $row['NumberOfCityAddressLasPinas'];
-														echo "<td>".$row['NumberOfCityAddressLasPinas']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressLasPinas']."</td>";
 													}
 												}
 												?>
@@ -897,7 +946,7 @@ require 'header.php';
 													$resultCountingCityAddressMandaluyong = mysqli_query($connect,$queryCountingCityAddressMandaluyong);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMandaluyong)) {
 														$NumberOfCityAddressMandaluyong = $row['NumberOfCityAddressMandaluyong'];
-														echo "<td>".$row['NumberOfCityAddressMandaluyong']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMandaluyong']."</td>";
 													}
 												}
 												?>
@@ -917,7 +966,7 @@ require 'header.php';
 													$resultCountingCityAddressMakati = mysqli_query($connect,$queryCountingCityAddressMakati);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMakati)) {
 														$NumberOfCityAddressMakati = $row['NumberOfCityAddressMakati'];
-														echo "<td>".$row['NumberOfCityAddressMakati']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMakati']."</td>";
 													}
 												}
 												?>
@@ -937,7 +986,7 @@ require 'header.php';
 													$resultCountingCityAddressMalabon = mysqli_query($connect,$queryCountingCityAddressMalabon);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMalabon)) {
 														$NumberOfCityAddressMalabon = $row['NumberOfCityAddressMalabon'];
-														echo "<td>".$row['NumberOfCityAddressMalabon']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMalabon']."</td>";
 													}
 												}
 												?>
@@ -957,7 +1006,7 @@ require 'header.php';
 													$resultCountingCityAddressMarikina = mysqli_query($connect,$queryCountingCityAddressMarikina);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMarikina)) {
 														$NumberOfCityAddressMarikina = $row['NumberOfCityAddressMarikina'];
-														echo "<td>".$row['NumberOfCityAddressMarikina']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMarikina']."</td>";
 													}
 												}
 												?>
@@ -977,7 +1026,7 @@ require 'header.php';
 													$resultCountingCityAddressManila = mysqli_query($connect,$queryCountingCityAddressManila);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressManila)) {
 														$NumberOfCityAddressManila = $row['NumberOfCityAddressManila'];
-														echo "<td>".$row['NumberOfCityAddressManila']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressManila']."</td>";
 													}
 												}
 												?>
@@ -997,7 +1046,7 @@ require 'header.php';
 													$resultCountingCityAddressMuntinlupa = mysqli_query($connect,$queryCountingCityAddressMuntinlupa);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMuntinlupa)) {
 														$NumberOfCityAddressMuntinlupa = $row['NumberOfCityAddressMuntinlupa'];
-														echo "<td>".$row['NumberOfCityAddressMuntinlupa']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMuntinlupa']."</td>";
 													}
 												}
 												?>
@@ -1017,7 +1066,7 @@ require 'header.php';
 													$resultCountingCityAddressNavotas = mysqli_query($connect,$queryCountingCityAddressNavotas);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNavotas)) {
 														$NumberOfCityAddressNavotas = $row['NumberOfCityAddressNavotas'];
-														echo "<td>".$row['NumberOfCityAddressNavotas']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressNavotas']."</td>";
 													}
 												}
 												?>
@@ -1037,7 +1086,7 @@ require 'header.php';
 													$resultCountingCityAddressParanaque = mysqli_query($connect,$queryCountingCityAddressParanaque);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressParanaque)) {
 														$NumberOfCityAddressParanaque = $row['NumberOfCityAddressParanaque'];
-														echo "<td>".$row['NumberOfCityAddressParanaque']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressParanaque']."</td>";
 													}
 												}
 												?>
@@ -1057,7 +1106,7 @@ require 'header.php';
 													$resultCountingCityAddressPasay = mysqli_query($connect,$queryCountingCityAddressPasay);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPasay)) {
 														$NumberOfCityAddressPasay = $row['NumberOfCityAddressPasay'];
-														echo "<td>".$row['NumberOfCityAddressPasay']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPasay']."</td>";
 													}
 												}
 												?>
@@ -1077,7 +1126,7 @@ require 'header.php';
 													$resultCountingCityAddressPasig = mysqli_query($connect,$queryCountingCityAddressPasig);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPasig)) {
 														$NumberOfCityAddressPasig = $row['NumberOfCityAddressPasig'];
-														echo "<td>".$row['NumberOfCityAddressPasig']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPasig']."</td>";
 													}
 												}
 												?>
@@ -1097,7 +1146,7 @@ require 'header.php';
 													$resultCountingCityAddressPateros = mysqli_query($connect,$queryCountingCityAddressPateros);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPateros)) {
 														$NumberOfCityAddressPateros = $row['NumberOfCityAddressPateros'];
-														echo "<td>".$row['NumberOfCityAddressPateros']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPateros']."</td>";
 													}
 												}
 												?>
@@ -1117,7 +1166,7 @@ require 'header.php';
 													$resultCountingCityAddressQuezonCity = mysqli_query($connect,$queryCountingCityAddressQuezonCity);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressQuezonCity)) {
 														$NumberOfCityAddressQuezonCity = $row['NumberOfCityAddressQuezonCity'];
-														echo "<td>".$row['NumberOfCityAddressQuezonCity']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressQuezonCity']."</td>";
 													}
 												}
 												?>
@@ -1137,7 +1186,7 @@ require 'header.php';
 													$resultCountingCityAddressSanJuan = mysqli_query($connect,$queryCountingCityAddressSanJuan);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressSanJuan)) {
 														$NumberOfCityAddressSanJuan = $row['NumberOfCityAddressSanJuan'];
-														echo "<td>".$row['NumberOfCityAddressSanJuan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressSanJuan']."</td>";
 													}
 												}
 												?>
@@ -1157,7 +1206,7 @@ require 'header.php';
 													$resultCountingCityAddressTaguig = mysqli_query($connect,$queryCountingCityAddressTaguig);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressTaguig)) {
 														$NumberOfCityAddressTaguig = $row['NumberOfCityAddressTaguig'];
-														echo "<td>".$row['NumberOfCityAddressTaguig']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressTaguig']."</td>";
 													}
 												}
 												?>
@@ -1177,7 +1226,7 @@ require 'header.php';
 													$resultCountingCityAddressValenzuela = mysqli_query($connect,$queryCountingCityAddressValenzuela);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressValenzuela)) {
 														$NumberOfCityAddressValenzuela = $row['NumberOfCityAddressValenzuela'];
-														echo "<td>".$row['NumberOfCityAddressValenzuela']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressValenzuela']."</td>";
 													}
 												}
 												?>
@@ -1197,7 +1246,7 @@ require 'header.php';
 													$resultCountingCityAddressNA = mysqli_query($connect,$queryCountingCityAddressNA);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
 														$NumberOfCityAddressNA = $row['NumberOfCityAddressNA'];
-														echo "<td>".$row['NumberOfCityAddressNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressNA']."</td>";
 													}
 												}
 												?>
@@ -1217,7 +1266,7 @@ require 'header.php';
 													$resultCountingCityAddressTotal = mysqli_query($connect,$queryCountingCityAddressTotal);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressTotal)) {
 														$NumberOfCityAddressTotal = $row['NumberOfCityAddressTotal'];
-														echo "<td>".$row['NumberOfCityAddressTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressTotal']."</td>";
 													}
 												}
 												?>
@@ -1271,7 +1320,7 @@ require 'header.php';
 
 													$resultProvincialAddressIlocosNorte = mysqli_query($connect,$queryProvincialAddressIlocosNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIlocosNorte)) {
-														echo "<td>".$row['NumberOfProvincialAddressIlocosNorte']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIlocosNorte']."</td>";
 													}
 												}
 												?>
@@ -1289,7 +1338,7 @@ require 'header.php';
 
 													$resultProvincialAddressIlocosSur = mysqli_query($connect,$queryProvincialAddressIlocosSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIlocosSur)) {
-														echo "<td>".$row['NumberOfProvincialAddressIlocosSur']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIlocosSur']."</td>";
 													}
 												}
 												?>
@@ -1307,7 +1356,7 @@ require 'header.php';
 
 													$resultProvincialAddressLaUnion = mysqli_query($connect,$queryProvincialAddressLaUnion);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLaUnion)) {
-														echo "<td>".$row['NumberOfProvincialAddressLaUnion']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLaUnion']."</td>";
 													}
 												}
 												?>
@@ -1325,7 +1374,7 @@ require 'header.php';
 
 													$resultProvincialAddressPangasinan = mysqli_query($connect,$queryProvincialAddressPangasinan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPangasinan)) {
-														echo "<td>".$row['NumberOfProvincialAddressPangasinan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPangasinan']."</td>";
 													}
 												}
 												?>
@@ -1361,7 +1410,7 @@ require 'header.php';
 
 													$resultProvincialAddressQuirino = mysqli_query($connect,$queryProvincialAddressQuirino);
 													while ($row = mysqli_fetch_array($resultProvincialAddressQuirino)) {
-														echo "<td>".$row['NumberOfProvincialAddressQuirino']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressQuirino']."</td>";
 													}
 												}
 												?>
@@ -1379,7 +1428,7 @@ require 'header.php';
 
 													$resultProvincialAddressCagayan = mysqli_query($connect,$queryProvincialAddressCagayan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCagayan)) {
-														echo "<td>".$row['NumberOfProvincialAddressCagayan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCagayan']."</td>";
 													}
 												}
 												?>
@@ -1397,7 +1446,7 @@ require 'header.php';
 
 													$resultProvincialAddressIsabela = mysqli_query($connect,$queryProvincialAddressIsabela);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIsabela)) {
-														echo "<td>".$row['NumberOfProvincialAddressIsabela']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIsabela']."</td>";
 													}
 												}
 												?>
@@ -1433,7 +1482,7 @@ require 'header.php';
 
 													$resultProvincialAddressBataan = mysqli_query($connect,$queryProvincialAddressBataan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBataan)) {
-														echo "<td>".$row['NumberOfProvincialAddressBataan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBataan']."</td>";
 													}
 												}
 												?>
@@ -1451,7 +1500,7 @@ require 'header.php';
 
 													$resultProvincialAddressBulacan = mysqli_query($connect,$queryProvincialAddressBulacan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBulacan)) {
-														echo "<td>".$row['NumberOfProvincialAddressBulacan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBulacan']."</td>";
 													}
 												}
 												?>
@@ -1470,7 +1519,7 @@ require 'header.php';
 
 													$resultProvincialAddressNuevaEcija = mysqli_query($connect,$queryProvincialAddressNuevaEcija);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNuevaEcija)) {
-														echo "<td>".$row['NumberOfProvincialAddressNuevaEcija']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNuevaEcija']."</td>";
 													}
 												}
 												?>
@@ -1489,7 +1538,7 @@ require 'header.php';
 
 													$resultProvincialAddressPampanga = mysqli_query($connect,$queryProvincialAddressPampanga);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPampanga)) {
-														echo "<td>".$row['NumberOfProvincialAddressPampanga']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPampanga']."</td>";
 													}
 												}
 												?>
@@ -1507,7 +1556,7 @@ require 'header.php';
 
 													$resultProvincialAddressTarlac = mysqli_query($connect,$queryProvincialAddressTarlac);
 													while ($row = mysqli_fetch_array($resultProvincialAddressTarlac)) {
-														echo "<td>".$row['NumberOfProvincialAddressTarlac']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTarlac']."</td>";
 													}
 												}
 												?>
@@ -1525,7 +1574,7 @@ require 'header.php';
 
 													$resultProvincialAddressZambales = mysqli_query($connect,$queryProvincialAddressZambales);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZambales)) {
-														echo "<td>".$row['NumberOfProvincialAddressZambales']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZambales']."</td>";
 													}
 												}
 												?>
@@ -1543,7 +1592,7 @@ require 'header.php';
 
 													$resultProvincialAddressAurora = mysqli_query($connect,$queryProvincialAddressAurora);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAurora)) {
-														echo "<td>".$row['NumberOfProvincialAddressAurora']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAurora']."</td>";
 													}
 												}
 												?>
@@ -1579,7 +1628,7 @@ require 'header.php';
 
 													$resultProvincialAddressBatangas = mysqli_query($connect,$queryProvincialAddressBatangas);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBatangas)) {
-														echo "<td>".$row['NumberOfProvincialAddressBatangas']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBatangas']."</td>";
 													}
 												}
 												?>
@@ -1597,7 +1646,7 @@ require 'header.php';
 
 													$resultProvincialAddressCavite = mysqli_query($connect,$queryProvincialAddressCavite);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCavite)) {
-														echo "<td>".$row['NumberOfProvincialAddressCavite']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCavite']."</td>";
 													}
 												}
 												?>
@@ -1615,7 +1664,7 @@ require 'header.php';
 
 													$resultProvincialAddressLaguna = mysqli_query($connect,$queryProvincialAddressLaguna);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLaguna)) {
-														echo "<td>".$row['NumberOfProvincialAddressLaguna']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLaguna']."</td>";
 													}
 												}
 												?>
@@ -1633,7 +1682,7 @@ require 'header.php';
 
 													$resultProvincialAddressQuezon = mysqli_query($connect,$queryProvincialAddressQuezon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressQuezon)) {
-														echo "<td>".$row['NumberOfProvincialAddressQuezon']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressQuezon']."</td>";
 													}
 												}
 												?>
@@ -1651,7 +1700,7 @@ require 'header.php';
 
 													$resultProvincialAddressRizal = mysqli_query($connect,$queryProvincialAddressRizal);
 													while ($row = mysqli_fetch_array($resultProvincialAddressRizal)) {
-														echo "<td>".$row['NumberOfProvincialAddressRizal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressRizal']."</td>";
 													}
 												}
 												?>
@@ -1687,7 +1736,7 @@ require 'header.php';
 
 													$resultProvincialAddressMindoroOccidental = mysqli_query($connect,$queryProvincialAddressMindoroOccidental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMindoroOccidental)) {
-														echo "<td>".$row['NumberOfProvincialAddressMindoroOccidental']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMindoroOccidental']."</td>";
 													}
 												}
 												?>
@@ -1705,7 +1754,7 @@ require 'header.php';
 
 													$resultProvincialAddressMindoroOriental = mysqli_query($connect,$queryProvincialAddressMindoroOriental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMindoroOriental)) {
-														echo "<td>".$row['NumberOfProvincialAddressMindoroOriental']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMindoroOriental']."</td>";
 													}
 												}
 												?>
@@ -1723,7 +1772,7 @@ require 'header.php';
 
 													$resultProvincialAddressMarinduque = mysqli_query($connect,$queryProvincialAddressMarinduque);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMarinduque)) {
-														echo "<td>".$row['NumberOfProvincialAddressMarinduque']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMarinduque']."</td>";
 													}
 												}
 												?>
@@ -1741,7 +1790,7 @@ require 'header.php';
 
 													$resultProvincialAddressRomblon = mysqli_query($connect,$queryProvincialAddressRomblon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressRomblon)) {
-														echo "<td>".$row['NumberOfProvincialAddressRomblon']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressRomblon']."</td>";
 													}
 												}
 												?>
@@ -1759,7 +1808,7 @@ require 'header.php';
 
 													$resultProvincialAddressPalawan = mysqli_query($connect,$queryProvincialAddressPalawan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPalawan)) {
-														echo "<td>".$row['NumberOfProvincialAddressPalawan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPalawan']."</td>";
 													}
 												}
 												?>
@@ -1795,7 +1844,7 @@ require 'header.php';
 
 													$resultProvincialAddressAlbay = mysqli_query($connect,$queryProvincialAddressAlbay);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAlbay)) {
-														echo "<td>".$row['NumberOfProvincialAddressAlbay']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAlbay']."</td>";
 													}
 												}
 												?>
@@ -1813,7 +1862,7 @@ require 'header.php';
 
 													$resultProvincialAddressCamarinesNorte = mysqli_query($connect,$queryProvincialAddressCamarinesNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCamarinesNorte)) {
-														echo "<td>".$row['NumberOfProvincialAddressCamarinesNorte']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCamarinesNorte']."</td>";
 													}
 												}
 												?>
@@ -1831,7 +1880,7 @@ require 'header.php';
 
 													$resultProvincialAddressCamarinesSur = mysqli_query($connect,$queryProvincialAddressCamarinesSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCamarinesSur)) {
-														echo "<td>".$row['NumberOfProvincialAddressCamarinesSur']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCamarinesSur']."</td>";
 													}
 												}
 												?>
@@ -1849,7 +1898,7 @@ require 'header.php';
 
 													$resultProvincialAddressCatanduanes = mysqli_query($connect,$queryProvincialAddressCatanduanes);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCatanduanes)) {
-														echo "<td>".$row['NumberOfProvincialAddressCatanduanes']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCatanduanes']."</td>";
 													}
 												}
 												?>
@@ -1867,7 +1916,7 @@ require 'header.php';
 
 													$resultProvincialAddressMasbate = mysqli_query($connect,$queryProvincialAddressMasbate);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMasbate)) {
-														echo "<td>".$row['NumberOfProvincialAddressMasbate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMasbate']."</td>";
 													}
 												}
 												?>
@@ -1885,7 +1934,7 @@ require 'header.php';
 
 													$resultProvincialAddressSorsogon = mysqli_query($connect,$queryProvincialAddressSorsogon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSorsogon)) {
-														echo "<td>".$row['NumberOfProvincialAddressSorsogon']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSorsogon']."</td>";
 													}
 												}
 												?>
@@ -1921,7 +1970,7 @@ require 'header.php';
 
 													$resultProvincialAddressAklan = mysqli_query($connect,$queryProvincialAddressAklan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAklan)) {
-														echo "<td>".$row['NumberOfProvincialAddressAklan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAklan']."</td>";
 													}
 												}
 												?>
@@ -1939,7 +1988,7 @@ require 'header.php';
 
 													$resultProvincialAddressAntique = mysqli_query($connect,$queryProvincialAddressAntique);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAntique)) {
-														echo "<td>".$row['NumberOfProvincialAddressAntique']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAntique']."</td>";
 													}
 												}
 												?>
@@ -1957,7 +2006,7 @@ require 'header.php';
 
 													$resultProvincialAddressCapiz = mysqli_query($connect,$queryProvincialAddressCapiz);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCapiz)) {
-														echo "<td>".$row['NumberOfProvincialAddressCapiz']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCapiz']."</td>";
 													}
 												}
 												?>
@@ -1975,7 +2024,7 @@ require 'header.php';
 
 													$resultProvincialAddressIloilo = mysqli_query($connect,$queryProvincialAddressIloilo);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIloilo)) {
-														echo "<td>".$row['NumberOfProvincialAddressIloilo']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIloilo']."</td>";
 													}
 												}
 												?>
@@ -1993,7 +2042,7 @@ require 'header.php';
 
 													$resultProvincialAddressNegrosOccidental = mysqli_query($connect,$queryProvincialAddressNegrosOccidental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNegrosOccidental)) {
-														echo "<td>".$row['NumberOfProvincialAddressNegrosOccidental']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNegrosOccidental']."</td>";
 													}
 												}
 												?>
@@ -2011,7 +2060,7 @@ require 'header.php';
 
 													$resultProvincialAddressNegrosOriental = mysqli_query($connect,$queryProvincialAddressNegrosOriental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNegrosOriental)) {
-														echo "<td>".$row['NumberOfProvincialAddressNegrosOriental']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNegrosOriental']."</td>";
 													}
 												}
 												?>
@@ -2047,7 +2096,7 @@ require 'header.php';
 
 													$resultProvincialAddressBohol = mysqli_query($connect,$queryProvincialAddressBohol);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBohol)) {
-														echo "<td>".$row['NumberOfProvincialAddressBohol']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBohol']."</td>";
 													}
 												}
 												?>
@@ -2065,7 +2114,7 @@ require 'header.php';
 
 													$resultProvincialAddressCebu = mysqli_query($connect,$queryProvincialAddressCebu);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCebu)) {
-														echo "<td>".$row['NumberOfProvincialAddressCebu']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCebu']."</td>";
 													}
 												}
 												?>
@@ -2083,7 +2132,7 @@ require 'header.php';
 
 													$resultProvincialAddressSiquijor = mysqli_query($connect,$queryProvincialAddressSiquijor);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSiquijor)) {
-														echo "<td>".$row['NumberOfProvincialAddressSiquijor']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSiquijor']."</td>";
 													}
 												}
 												?>
@@ -2119,7 +2168,7 @@ require 'header.php';
 
 													$resultProvincialAddressEasternSamar = mysqli_query($connect,$queryProvincialAddressEasternSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressEasternSamar)) {
-														echo "<td>".$row['NumberOfProvincialAddressEasternSamar']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressEasternSamar']."</td>";
 													}
 												}
 												?>
@@ -2137,7 +2186,7 @@ require 'header.php';
 
 													$resultProvincialAddressNorthernSamar = mysqli_query($connect,$queryProvincialAddressNorthernSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNorthernSamar)) {
-														echo "<td>".$row['NumberOfProvincialAddressNorthernSamar']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNorthernSamar']."</td>";
 													}
 												}
 												?>
@@ -2155,7 +2204,7 @@ require 'header.php';
 
 													$resultProvincialAddressSamar = mysqli_query($connect,$queryProvincialAddressSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSamar)) {
-														echo "<td>".$row['NumberOfProvincialAddressSamar']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSamar']."</td>";
 													}
 												}
 												?>
@@ -2173,7 +2222,7 @@ require 'header.php';
 
 													$resultProvincialAddressBiliran = mysqli_query($connect,$queryProvincialAddressBiliran);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBiliran)) {
-														echo "<td>".$row['NumberOfProvincialAddressBiliran']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBiliran']."</td>";
 													}
 												}
 												?>
@@ -2191,7 +2240,7 @@ require 'header.php';
 
 													$resultProvincialAddressLeyte = mysqli_query($connect,$queryProvincialAddressLeyte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLeyte)) {
-														echo "<td>".$row['NumberOfProvincialAddressLeyte']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLeyte']."</td>";
 													}
 												}
 												?>
@@ -2227,7 +2276,7 @@ require 'header.php';
 
 													$resultProvincialAddressBasilan = mysqli_query($connect,$queryProvincialAddressBasilan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBasilan)) {
-														echo "<td>".$row['NumberOfProvincialAddressBasilan']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBasilan']."</td>";
 													}
 												}
 												?>
@@ -2245,7 +2294,7 @@ require 'header.php';
 
 													$resultProvincialAddressZamboangaDelNorte = mysqli_query($connect,$queryProvincialAddressZamboangaDelNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaDelNorte)) {
-														echo "<td>".$row['NumberOfProvincialAddressZamboangaDelNorte']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaDelNorte']."</td>";
 													}
 												}
 												?>
@@ -2263,7 +2312,7 @@ require 'header.php';
 
 													$resultProvincialAddressZamboangaDelSur = mysqli_query($connect,$queryProvincialAddressZamboangaDelSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaDelSur)) {
-														echo "<td>".$row['NumberOfProvincialAddressZamboangaDelSur']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaDelSur']."</td>";
 													}
 												}
 												?>
@@ -2281,7 +2330,7 @@ require 'header.php';
 
 													$resultProvincialAddressZamboangaSibugay = mysqli_query($connect,$queryProvincialAddressZamboangaSibugay);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaSibugay)) {
-														echo "<td>".$row['NumberOfProvincialAddressZamboangaSibugay']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaSibugay']."</td>";
 													}
 												}
 												?>
@@ -2318,7 +2367,7 @@ require 'header.php';
 
 													$resultProvincialAddressBukidnon = mysqli_query($connect,$queryProvincialAddressBukidnon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBukidnon)) {
-														echo "<td>".$row['NumberOfProvincialAddressBukidnon']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBukidnon']."</td>";
 													}
 												}
 												?>
@@ -2355,7 +2404,7 @@ require 'header.php';
 
 													$resultProvincialAddressMaguindanao = mysqli_query($connect,$queryProvincialAddressMaguindanao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMaguindanao)) {
-														echo "<td>".$row['NumberOfProvincialAddressMaguindanao']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMaguindanao']."</td>";
 													}
 												}
 												?>
@@ -2373,7 +2422,7 @@ require 'header.php';
 
 													$resultProvincialAddressSulu = mysqli_query($connect,$queryProvincialAddressSulu);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSulu)) {
-														echo "<td>".$row['NumberOfProvincialAddressSulu']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSulu']."</td>";
 													}
 												}
 												?>
@@ -2391,7 +2440,7 @@ require 'header.php';
 
 													$resultProvincialAddressTawitawi = mysqli_query($connect,$queryProvincialAddressTawitawi);
 													while ($row = mysqli_fetch_array($resultProvincialAddressTawitawi)) {
-														echo "<td>".$row['NumberOfProvincialAddressTawitawi']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTawitawi']."</td>";
 													}
 												}
 												?>
@@ -2427,7 +2476,7 @@ require 'header.php';
 
 													$resultProvincialAddressBenguet = mysqli_query($connect,$queryProvincialAddressBenguet);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBenguet)) {
-														echo "<td>".$row['NumberOfProvincialAddressBenguet']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBenguet']."</td>";
 													}
 												}
 												?>
@@ -2445,7 +2494,7 @@ require 'header.php';
 
 													$resultProvincialAddressMtProvince = mysqli_query($connect,$queryProvincialAddressMtProvince);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMtProvince)) {
-														echo "<td>".$row['NumberOfProvincialAddressMtProvince']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMtProvince']."</td>";
 													}
 												}
 												?>
@@ -2463,7 +2512,7 @@ require 'header.php';
 
 													$resultProvincialAddressAbra = mysqli_query($connect,$queryProvincialAddressAbra);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAbra)) {
-														echo "<td>".$row['NumberOfProvincialAddressAbra']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAbra']."</td>";
 													}
 												}
 												?>
@@ -2481,7 +2530,7 @@ require 'header.php';
 
 													$resultProvincialAddressApayao = mysqli_query($connect,$queryProvincialAddressApayao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressApayao)) {
-														echo "<td>".$row['NumberOfProvincialAddressApayao']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressApayao']."</td>";
 													}
 												}
 												?>
@@ -2499,7 +2548,7 @@ require 'header.php';
 
 													$resultProvincialAddressKalinga = mysqli_query($connect,$queryProvincialAddressKalinga);
 													while ($row = mysqli_fetch_array($resultProvincialAddressKalinga)) {
-														echo "<td>".$row['NumberOfProvincialAddressKalinga']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressKalinga']."</td>";
 													}
 												}
 												?>
@@ -2517,7 +2566,7 @@ require 'header.php';
 
 													$resultProvincialAddressIfugao = mysqli_query($connect,$queryProvincialAddressIfugao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIfugao)) {
-														echo "<td>".$row['NumberOfProvincialAddressIfugao']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIfugao']."</td>";
 													}
 												}
 												?>
@@ -2553,7 +2602,7 @@ require 'header.php';
 
 													$resultProvincialAddressDavao = mysqli_query($connect,$queryProvincialAddressDavao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressDavao)) {
-														echo "<td>".$row['NumberOfProvincialAddressDavao']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressDavao']."</td>";
 													}
 												}
 												?>
@@ -2571,7 +2620,7 @@ require 'header.php';
 
 													$resultProvincialAddressSurigaoDelSur = mysqli_query($connect,$queryProvincialAddressSurigaoDelSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSurigaoDelSur)) {
-														echo "<td>".$row['NumberOfProvincialAddressSurigaoDelSur']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSurigaoDelSur']."</td>";
 													}
 												}
 												?>
@@ -2589,7 +2638,7 @@ require 'header.php';
 
 													$resultProvincialAddressSurigaoDelNorte = mysqli_query($connect,$queryProvincialAddressSurigaoDelNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSurigaoDelNorte)) {
-														echo "<td>".$row['NumberOfProvincialAddressSurigaoDelNorte']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSurigaoDelNorte']."</td>";
 													}
 												}
 												?>
@@ -2609,7 +2658,7 @@ require 'header.php';
 													$resultCountingCityAddressNA = mysqli_query($connect,$queryCountingCityAddressNA);
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
 														$NumberCountingCityAddressNA = $row['NumberOfProvincialAddressNA'];
-														echo "<td>".$row['NumberOfProvincialAddressNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNA']."</td>";
 													}
 												}
 												?>
@@ -2629,7 +2678,7 @@ require 'header.php';
 													$resultCountingProvincialAddressTotal = mysqli_query($connect,$queryProvincialAddressTotal);
 													while ($row = mysqli_fetch_array($resultCountingProvincialAddressTotal)) {
 														$NumberOfProvincialAddressTotal = $row['NumberOfProvincialAddressTotal'];
-														echo "<td>".$row['NumberOfProvincialAddressTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTotal']."</td>";
 													}
 												}
 												?>
@@ -2683,7 +2732,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundElementaryPublic = mysqli_query($connect,$queryEducationalBackgroundElementaryPublic);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPublic)) {
-														echo "<td>".$row['TotalPublicElementarySchool']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPublicElementarySchool']."</td>";
 													}
 												}
 												?>
@@ -2701,7 +2750,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundElementaryPrivate = mysqli_query($connect,$queryEducationalBackgroundElementaryPrivate);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPrivate)) {
-														echo "<td>".$row['TotalPrivateElementarySchool']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPrivateElementarySchool']."</td>";
 													}
 												}
 												?>
@@ -2721,7 +2770,7 @@ require 'header.php';
 													$resultEducationalBackgroundElementaryNA = mysqli_query($connect,$queryCountingEducationalBackgroundElementaryNA);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryNA)) {
 														$NumberOfEducationalBackgroundElementaryNA = $row['NumberOfEducationalBackgroundElementaryNA'];
-														echo "<td>".$row['NumberOfEducationalBackgroundElementaryNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundElementaryNA']."</td>";
 													}
 												}
 												?>
@@ -2741,7 +2790,7 @@ require 'header.php';
 													$resultCountingEducationalBackgroundElementaryTotal = mysqli_query($connect,$queryEducationalBackgroundElementaryTotal);
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundElementaryTotal)) {
 														$NumberOfEducationalBackgroundElementaryTotal = $row['NumberOfEducationalBackgroundElementaryTotal'];
-														echo "<td>".$row['NumberOfEducationalBackgroundElementaryTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundElementaryTotal']."</td>";
 													}
 												}
 												?>
@@ -2777,7 +2826,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundHighSchoolPublic = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPublic);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPublic)) {
-														echo "<td>".$row['TotalPublicHighSchool']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPublicHighSchool']."</td>";
 													}
 												}
 												?>
@@ -2795,7 +2844,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundHighSchoolPrivate = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPrivate);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPrivate)) {
-														echo "<td>".$row['TotalPrivateHighSchool']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPrivateHighSchool']."</td>";
 													}
 												}
 												?>
@@ -2815,7 +2864,7 @@ require 'header.php';
 													$resultEducationalBackgroundHighSchoolNA = mysqli_query($connect,$queryCountingEducationalBackgroundHighSchoolNA);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolNA)) {
 														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundHighSchoolNA'];
-														echo "<td>".$row['NumberOfEducationalBackgroundHighSchoolNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundHighSchoolNA']."</td>";
 													}
 												}
 												?>
@@ -2835,7 +2884,7 @@ require 'header.php';
 													$resultCountingEducationalBackgroundHighSchoolTotal = mysqli_query($connect,$queryEducationalBackgroundHighSchoolTotal);
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundHighSchoolTotal)) {
 														$NumberOfEducationalBackgroundHighSchoolTotal = $row['NumberOfEducationalBackgroundHighSchoolTotal'];
-														echo "<td>".$row['NumberOfEducationalBackgroundHighSchoolTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundHighSchoolTotal']."</td>";
 													}
 												}
 												?>
@@ -2853,7 +2902,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundContinuous = mysqli_query($connect,$queryEducationalBackgroundContinuous);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundContinuous)) {
-														echo "<td>".$row['TotalContinuousSchooling']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalContinuousSchooling']."</td>";
 													}
 												}
 												?>
@@ -2871,7 +2920,7 @@ require 'header.php';
 
 													$resultEducationalBackgroundInterrupted = mysqli_query($connect,$queryEducationalBackgroundInterrupted);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundInterrupted)) {
-														echo "<td>".$row['TotalInterruptedSchooling']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalInterruptedSchooling']."</td>";
 													}
 												}
 												?>
@@ -2891,7 +2940,7 @@ require 'header.php';
 													$resultEducationalBackgroundNatureOfSchoolingNA = mysqli_query($connect,$queryCountingEducationalBackgroundNatureOfSchoolingNA);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundNatureOfSchoolingNA)) {
 														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundNatureOfSchoolingNA'];
-														echo "<td>".$row['NumberOfEducationalBackgroundNatureOfSchoolingNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundNatureOfSchoolingNA']."</td>";
 													}
 												}
 												?>
@@ -2911,7 +2960,7 @@ require 'header.php';
 													$resultCountingEducationalBackgroundNatureOfSchoolingTotal = mysqli_query($connect,$queryEducationalBackgroundNatureOfSchoolingTotal);
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundNatureOfSchoolingTotal)) {
 														$NumberOfEducationalBackgroundNatureOfSchoolingTotal = $row['NumberOfEducationalBackgroundNatureOfSchoolingTotal'];
-														echo "<td>".$row['NumberOfEducationalBackgroundNatureOfSchoolingTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundNatureOfSchoolingTotal']."</td>";
 													}
 												}
 												?>
@@ -2965,7 +3014,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherStatusLiving = mysqli_query($connect,$queryCountingStudentFatherStatusLiving);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusLiving)) {
-														echo "<td>".$row['NumberOfFatherStatusLiving']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusLiving']."</td>";
 													}
 												}
 												?>
@@ -2983,7 +3032,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherStatusDeceased = mysqli_query($connect,$queryCountingStudentFatherStatusDeceased);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusDeceased)) {
-														echo "<td>".$row['NumberOfFatherStatusDeceased']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusDeceased']."</td>";
 													}
 												}
 												?>
@@ -3002,7 +3051,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherStatusNotIndicated = mysqli_query($connect,$queryCountingStudentFatherStatusNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusNotIndicated)) {
-														echo "<td>".$row['NumberOfFatherStatusNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3020,7 +3069,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherStatusTotal = mysqli_query($connect,$queryCountingStudentFatherStatusTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusTotal)) {
-														echo "<td>".$row['NumberOfFatherStatusTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusTotal']."</td>";
 													}
 												}
 												?>
@@ -3056,7 +3105,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationDoctoralDegree = mysqli_query($connect,$queryCountingStudentFatherEducationDoctoralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationDoctoralDegree)) {
-														echo "<td>".$row['NumberOfFatherEducationDoctoralDegree']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationDoctoralDegree']."</td>";
 													}
 												}
 												?>
@@ -3074,7 +3123,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationMasteralDegree = mysqli_query($connect,$queryCountingStudentFatherEducationMasteralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationMasteralDegree)) {
-														echo "<td>".$row['NumberOfFatherEducationMasteralDegree']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationMasteralDegree']."</td>";
 													}
 												}
 												?>
@@ -3092,7 +3141,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationMasteralUnit = mysqli_query($connect,$queryCountingStudentFatherEducationMasteralUnit);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationMasteralUnit)) {
-														echo "<td>".$row['NumberOfFatherEducationMasteralUnit']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationMasteralUnit']."</td>";
 													}
 												}
 												?>
@@ -3110,7 +3159,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationVocationalGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationVocationalGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationVocationalGraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationVocationalGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationVocationalGraduate']."</td>";
 													}
 												}
 												?>	
@@ -3128,7 +3177,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationCollegeGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationCollegeGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationCollegeGraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationCollegeGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationCollegeGraduate']."</td>";
 													}
 												}
 												?>	
@@ -3146,7 +3195,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationCollegeUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationCollegeUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationCollegeUndergraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationCollegeUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationCollegeUndergraduate']."</td>";
 													}
 												}
 												?>	
@@ -3164,7 +3213,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationHighschoolGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationHighschoolGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationHighschoolGraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationHighschoolGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationHighschoolGraduate']."</td>";
 													}
 												}
 												?>	
@@ -3182,7 +3231,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationHighschoolUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationHighschoolUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationHighschoolUndergraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationHighschoolUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationHighschoolUndergraduate']."</td>";
 													}
 												}
 												?>
@@ -3200,7 +3249,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationElementaryGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationElementaryGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationElementaryGraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationElementaryGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationElementaryGraduate']."</td>";
 													}
 												}
 												?>
@@ -3218,7 +3267,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationElementaryUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationElementaryUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationElementaryUndergraduate)) {
-														echo "<td>".$row['NumberOfFatherEducationElementaryUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationElementaryUndergraduate']."</td>";
 													}
 												}
 												?>
@@ -3236,7 +3285,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationNotIndicated = mysqli_query($connect,$queryCountingStudentFatherEducationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationNotIndicated)) {
-														echo "<td>".$row['NumberOfFatherEducationNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3254,7 +3303,7 @@ require 'header.php';
 
 													$resultCountingStudentFatherEducationTotal = mysqli_query($connect,$queryCountingStudentFatherEducationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationTotal)) {
-														echo "<td>".$row['NumberOfFatherEducationTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationTotal']."</td>";
 													}
 												}
 												?>
@@ -3288,7 +3337,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationLocal = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationLocal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Government' AND fatherOccupationType = 'Private' ";
 													$resultCountingStudentFatherOccupationLocal = mysqli_query($connect,$queryCountingStudentFatherOccupationLocal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationLocal)) {
-														echo "<td>".$row['NumberOfFatherOccupationLocal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationLocal']."</td>";
 													}
 												}
 												?>
@@ -3305,7 +3354,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationGovernment = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationGovernment FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Government' ";
 													$resultCountingStudentFatherOccupationGovernment = mysqli_query($connect,$queryCountingStudentFatherOccupationGovernment);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationGovernment)) {
-														echo "<td>".$row['NumberOfFatherOccupationGovernment']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationGovernment']."</td>";
 													}
 												}
 												?>
@@ -3322,7 +3371,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationPrivate = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationPrivate FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Private' ";
 													$resultCountingStudentFatherOccupationPrivate = mysqli_query($connect,$queryCountingStudentFatherOccupationPrivate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationPrivate)) {
-														echo "<td>".$row['NumberOfFatherOccupationPrivate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationPrivate']."</td>";
 													}
 												}
 												?>
@@ -3339,7 +3388,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationAbroad = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationAbroad FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Abroad' ";
 													$resultCountingStudentFatherOccupationAbroad = mysqli_query($connect,$queryCountingStudentFatherOccupationAbroad);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationAbroad)) {
-														echo "<td>".$row['NumberOfFatherOccupationAbroad']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationAbroad']."</td>";
 													}
 												}
 												?>
@@ -3356,7 +3405,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationUnemployed = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Unemployed' ";
 													$resultCountingStudentFatherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentFatherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationUnemployed)) {
-														echo "<td>".$row['NumberOfFatherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationUnemployed']."</td>";
 													}
 												}
 												?>
@@ -3373,7 +3422,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationUnemployed = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Unemployed' ";
 													$resultCountingStudentFatherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentFatherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationUnemployed)) {
-														echo "<td>".$row['NumberOfFatherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationUnemployed']."</td>";
 													}
 												}
 												?>
@@ -3390,7 +3439,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationNotIndicated = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType != 'Unemployed'AND fatherOccupationType != 'Self-employed' AND fatherOccupationType != 'Abroad' AND fatherOccupationType != 'Government' ";
 													$resultCountingStudentFatherOccupationNotIndicated = mysqli_query($connect,$queryCountingStudentFatherOccupationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationNotIndicated)) {
-														echo "<td>".$row['NumberOfFatherOccupationNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3407,7 +3456,7 @@ require 'header.php';
 													$queryCountingStudentFatherOccupationTotal = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentFatherOccupationTotal = mysqli_query($connect,$queryCountingStudentFatherOccupationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationTotal)) {
-														echo "<td>".$row['NumberOfFatherOccupationTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationTotal']."</td>";
 													}
 												}
 												?>
@@ -3443,7 +3492,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherStatusLiving = mysqli_query($connect,$queryCountingStudentmotherStatusLiving);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusLiving)) {
-														echo "<td>".$row['NumberOfmotherStatusLiving']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusLiving']."</td>";
 													}
 												}
 												?>
@@ -3461,7 +3510,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherStatusDeceased = mysqli_query($connect,$queryCountingStudentmotherStatusDeceased);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusDeceased)) {
-														echo "<td>".$row['NumberOfmotherStatusDeceased']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusDeceased']."</td>";
 													}
 												}
 												?>
@@ -3480,7 +3529,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherStatusNotIndicated = mysqli_query($connect,$queryCountingStudentmotherStatusNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusNotIndicated)) {
-														echo "<td>".$row['NumberOfmotherStatusNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3498,7 +3547,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherStatusTotal = mysqli_query($connect,$queryCountingStudentmotherStatusTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusTotal)) {
-														echo "<td>".$row['NumberOfmotherStatusTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusTotal']."</td>";
 													}
 												}
 												?>
@@ -3534,7 +3583,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationDoctoralDegree = mysqli_query($connect,$queryCountingStudentmotherEducationDoctoralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationDoctoralDegree)) {
-														echo "<td>".$row['NumberOfmotherEducationDoctoralDegree']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationDoctoralDegree']."</td>";
 													}
 												}
 												?>
@@ -3552,7 +3601,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationMasteralDegree = mysqli_query($connect,$queryCountingStudentmotherEducationMasteralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationMasteralDegree)) {
-														echo "<td>".$row['NumberOfmotherEducationMasteralDegree']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationMasteralDegree']."</td>";
 													}
 												}
 												?>
@@ -3570,7 +3619,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationMasteralUnit = mysqli_query($connect,$queryCountingStudentmotherEducationMasteralUnit);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationMasteralUnit)) {
-														echo "<td>".$row['NumberOfmotherEducationMasteralUnit']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationMasteralUnit']."</td>";
 													}
 												}
 												?>
@@ -3588,7 +3637,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationVocationalGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationVocationalGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationVocationalGraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationVocationalGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationVocationalGraduate']."</td>";
 													}
 												}
 												?>											
@@ -3606,7 +3655,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationCollegeGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationCollegeGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationCollegeGraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationCollegeGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationCollegeGraduate']."</td>";
 													}
 												}
 												?>	
@@ -3624,7 +3673,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationCollegeUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationCollegeUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationCollegeUndergraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationCollegeUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationCollegeUndergraduate']."</td>";
 													}
 												}
 												?>	
@@ -3642,7 +3691,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationHighschoolGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationHighschoolGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationHighschoolGraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationHighschoolGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationHighschoolGraduate']."</td>";
 													}
 												}
 												?>	
@@ -3660,7 +3709,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationHighschoolUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationHighschoolUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationHighschoolUndergraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationHighschoolUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationHighschoolUndergraduate']."</td>";
 													}
 												}
 												?>
@@ -3678,7 +3727,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationElementaryGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationElementaryGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationElementaryGraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationElementaryGraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationElementaryGraduate']."</td>";
 													}
 												}
 												?>
@@ -3696,7 +3745,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationElementaryUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationElementaryUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationElementaryUndergraduate)) {
-														echo "<td>".$row['NumberOfmotherEducationElementaryUndergraduate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationElementaryUndergraduate']."</td>";
 													}
 												}
 												?>
@@ -3714,7 +3763,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationNotIndicated = mysqli_query($connect,$queryCountingStudentmotherEducationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationNotIndicated)) {
-														echo "<td>".$row['NumberOfmotherEducationNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3732,7 +3781,7 @@ require 'header.php';
 
 													$resultCountingStudentmotherEducationTotal = mysqli_query($connect,$queryCountingStudentmotherEducationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationTotal)) {
-														echo "<td>".$row['NumberOfmotherEducationTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationTotal']."</td>";
 													}
 												}
 												?>
@@ -3766,7 +3815,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationLocal = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationLocal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Government' AND motherOccupationType = 'Private' ";
 													$resultCountingStudentmotherOccupationLocal = mysqli_query($connect,$queryCountingStudentmotherOccupationLocal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationLocal)) {
-														echo "<td>".$row['NumberOfmotherOccupationLocal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationLocal']."</td>";
 													}
 												}
 												?>
@@ -3783,7 +3832,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationGovernment = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationGovernment FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Government' ";
 													$resultCountingStudentmotherOccupationGovernment = mysqli_query($connect,$queryCountingStudentmotherOccupationGovernment);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationGovernment)) {
-														echo "<td>".$row['NumberOfmotherOccupationGovernment']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationGovernment']."</td>";
 													}
 												}
 												?>
@@ -3800,7 +3849,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationPrivate = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationPrivate FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Private' ";
 													$resultCountingStudentmotherOccupationPrivate = mysqli_query($connect,$queryCountingStudentmotherOccupationPrivate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationPrivate)) {
-														echo "<td>".$row['NumberOfmotherOccupationPrivate']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationPrivate']."</td>";
 													}
 												}
 												?>
@@ -3817,7 +3866,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationAbroad = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationAbroad FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Abroad' ";
 													$resultCountingStudentmotherOccupationAbroad = mysqli_query($connect,$queryCountingStudentmotherOccupationAbroad);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationAbroad)) {
-														echo "<td>".$row['NumberOfmotherOccupationAbroad']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationAbroad']."</td>";
 													}
 												}
 												?>
@@ -3834,7 +3883,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationUnemployed = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Unemployed' ";
 													$resultCountingStudentmotherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentmotherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationUnemployed)) {
-														echo "<td>".$row['NumberOfmotherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationUnemployed']."</td>";
 													}
 												}
 												?>
@@ -3851,7 +3900,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationUnemployed = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Unemployed' ";
 													$resultCountingStudentmotherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentmotherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationUnemployed)) {
-														echo "<td>".$row['NumberOfmotherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationUnemployed']."</td>";
 													}
 												}
 												?>
@@ -3868,7 +3917,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationNotIndicated = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType != 'Unemployed'AND motherOccupationType != 'Self-employed' AND motherOccupationType != 'Abroad' AND motherOccupationType != 'Government' ";
 													$resultCountingStudentmotherOccupationNotIndicated = mysqli_query($connect,$queryCountingStudentmotherOccupationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationNotIndicated)) {
-														echo "<td>".$row['NumberOfmotherOccupationNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -3885,7 +3934,7 @@ require 'header.php';
 													$queryCountingStudentmotherOccupationTotal = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentmotherOccupationTotal = mysqli_query($connect,$queryCountingStudentmotherOccupationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationTotal)) {
-														echo "<td>".$row['NumberOfmotherOccupationTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationTotal']."</td>";
 													}
 												}
 												?>
@@ -3919,7 +3968,7 @@ require 'header.php';
 													$queryCountingStudentTotalMonthlyIncomeBelowAverage = "SELECT totalMonthlyIncome,count(*) AS NumberOfTotalMonthlyIncomeBelowAverage FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND totalMonthlyIncome = 'Below Average' ";
 													$resultCountingStudentTotalMonthlyIncomeBelowAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeBelowAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeBelowAverage)) {
-														echo "<td>".$row['NumberOfTotalMonthlyIncomeBelowAverage']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeBelowAverage']."</td>";
 													}
 												}
 												?>
@@ -3936,7 +3985,7 @@ require 'header.php';
 													$queryCountingStudentTotalMonthlyIncomeAverage = "SELECT totalMonthlyIncome,count(*) AS NumberOfTotalMonthlyIncomeAverage FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND totalMonthlyIncome = 'Average' ";
 													$resultCountingStudentTotalMonthlyIncomeAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeAverage)) {
-														echo "<td>".$row['NumberOfTotalMonthlyIncomeAverage']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeAverage']."</td>";
 													}
 												}
 												?>
@@ -3953,7 +4002,7 @@ require 'header.php';
 													$queryCountingStudentTotalMonthlyIncomeAboveAverage = "SELECT totalMonthlyIncome,count(*) AS NumberOfTotalMonthlyIncomeAboveAverage FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND totalMonthlyIncome = 'Above Average' ";
 													$resultCountingStudentTotalMonthlyIncomeAboveAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeAboveAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeAboveAverage)) {
-														echo "<td>".$row['NumberOfTotalMonthlyIncomeAboveAverage']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeAboveAverage']."</td>";
 													}
 												}
 												?>
@@ -3988,7 +4037,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren1 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren1 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 1 ";
 													$resultCountingStudentTotalNumberOfChildren1 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren1);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren1)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren1']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren1']."</td>";
 													}
 												}
 												?>
@@ -4005,7 +4054,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren2 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren2 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 2 ";
 													$resultCountingStudentTotalNumberOfChildren2 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren2);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren2)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren2']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren2']."</td>";
 													}
 												}
 												?>
@@ -4022,7 +4071,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren3 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren3 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 3 ";
 													$resultCountingStudentTotalNumberOfChildren3 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren3);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren3)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren3']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren3']."</td>";
 													}
 												}
 												?>
@@ -4039,7 +4088,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren4 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren4 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 4 ";
 													$resultCountingStudentTotalNumberOfChildren4 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren4);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren4)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren4']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren4']."</td>";
 													}
 												}
 												?>
@@ -4056,7 +4105,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren5 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren5 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 5 ";
 													$resultCountingStudentTotalNumberOfChildren5 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren5);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren5)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren5']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren5']."</td>";
 													}
 												}
 												?>
@@ -4073,7 +4122,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren6 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren6 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 6 ";
 													$resultCountingStudentTotalNumberOfChildren6 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren6);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren6)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren6']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren6']."</td>";
 													}
 												}
 												?>
@@ -4090,7 +4139,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren7 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren7 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 7 ";
 													$resultCountingStudentTotalNumberOfChildren7 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren7);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren7)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren7']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren7']."</td>";
 													}
 												}
 												?>
@@ -4107,7 +4156,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren8 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren8 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 8 ";
 													$resultCountingStudentTotalNumberOfChildren8 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren8);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren8)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren8']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren8']."</td>";
 													}
 												}
 												?>
@@ -4124,7 +4173,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren9 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren9 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 9 ";
 													$resultCountingStudentTotalNumberOfChildren9 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren9);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren9)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren9']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren9']."</td>";
 													}
 												}
 												?>
@@ -4141,7 +4190,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildren10 = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildren10 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren = 10 ";
 													$resultCountingStudentTotalNumberOfChildren10 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren10);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren10)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildren10']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren10']."</td>";
 													}
 												}
 												?>
@@ -4158,7 +4207,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildrenNotIndicated = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildrenNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND noOfChildren != 10 AND noOfChildren != 1 AND noOfChildren != 2 AND noOfChildren != 3 AND noOfChildren != 4 AND noOfChildren != 5 AND noOfChildren != 6 AND noOfChildren != 7 AND noOfChildren != 8 AND noOfChildren != 9 AND noOfChildren != 10  ";
 													$resultCountingStudentTotalNumberOfChildrenNotIndicated = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildrenNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildrenNotIndicated)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildrenNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildrenNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4175,7 +4224,7 @@ require 'header.php';
 													$queryCountingStudentTotalNumberOfChildrenTotal = "SELECT noOfChildren,count(*) AS NumberOfTotalNumberOfChildrenTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingStudentTotalNumberOfChildrenTotal = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildrenTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildrenTotal)) {
-														echo "<td>".$row['NumberOfTotalNumberOfChildrenTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildrenTotal']."</td>";
 													}
 												}
 												?>
@@ -4209,7 +4258,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployed0 = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployed0 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed = 0 ";
 													$resultCountingStudentBroSisEmployed0 = mysqli_query($connect,$queryCountingStudentBroSisEmployed0);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed0)) {
-														echo "<td>".$row['NumberOfBroSisEmployed0']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed0']."</td>";
 													}
 												}
 												?>
@@ -4226,7 +4275,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployed1 = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployed1 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed = 1 ";
 													$resultCountingStudentBroSisEmployed1 = mysqli_query($connect,$queryCountingStudentBroSisEmployed1);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed1)) {
-														echo "<td>".$row['NumberOfBroSisEmployed1']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed1']."</td>";
 													}
 												}
 												?>
@@ -4243,7 +4292,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployed2 = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployed2 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed = 2 ";
 													$resultCountingStudentBroSisEmployed2 = mysqli_query($connect,$queryCountingStudentBroSisEmployed2);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed2)) {
-														echo "<td>".$row['NumberOfBroSisEmployed2']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed2']."</td>";
 													}
 												}
 												?>
@@ -4261,7 +4310,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployed3 = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployed3 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed = 3 ";
 													$resultCountingStudentBroSisEmployed3 = mysqli_query($connect,$queryCountingStudentBroSisEmployed3);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed3)) {
-														echo "<td>".$row['NumberOfBroSisEmployed3']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed3']."</td>";
 													}
 												}
 												?>
@@ -4278,7 +4327,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployed4 = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployed4 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed > 3 ";
 													$resultCountingStudentBroSisEmployed4 = mysqli_query($connect,$queryCountingStudentBroSisEmployed4);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed4)) {
-														echo "<td>".$row['NumberOfBroSisEmployed4']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed4']."</td>";
 													}
 												}
 												?>
@@ -4295,7 +4344,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployedNotIndicated = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployedNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND broSisEmployed != 3 AND broSisEmployed != 3 AND broSisEmployed != 2 AND broSisEmployed != 1 AND broSisEmployed != 0";
 													$resultCountingStudentBroSisEmployedNotIndicated = mysqli_query($connect,$queryCountingStudentBroSisEmployedNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployedNotIndicated)) {
-														echo "<td>".$row['NumberOfBroSisEmployedNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployedNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4312,7 +4361,7 @@ require 'header.php';
 													$queryCountingStudentBroSisEmployedTotal = "SELECT noOfChildren,count(*) AS NumberOfBroSisEmployedTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingStudentBroSisEmployedTotal = mysqli_query($connect,$queryCountingStudentBroSisEmployedTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployedTotal)) {
-														echo "<td>".$row['NumberOfBroSisEmployedTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployedTotal']."</td>";
 													}
 												}
 												?>
@@ -4346,7 +4395,7 @@ require 'header.php';
 													$queryCountingStudentSupportedByYourSiblingFamily = "SELECT supportedByYourSibling,count(*) AS NumberOfSupportedByYourSiblingFamily FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND supportedByYourSibling = 'Your Family' ";
 													$resultCountingStudentSupportedByYourSiblingFamily = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingFamily)) {
-														echo "<td>".$row['NumberOfSupportedByYourSiblingFamily']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingFamily']."</td>";
 													}
 												}
 												?>
@@ -4363,7 +4412,7 @@ require 'header.php';
 													$queryCountingStudentSupportedByYourSiblingStudies = "SELECT supportedByYourSibling,count(*) AS NumberOfSupportedByYourSiblingStudies FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND supportedByYourSibling = 'Your Studies' ";
 													$resultCountingStudentSupportedByYourSiblingStudies = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingStudies);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingStudies)) {
-														echo "<td>".$row['NumberOfSupportedByYourSiblingStudies']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingStudies']."</td>";
 													}
 												}
 												?>
@@ -4380,7 +4429,7 @@ require 'header.php';
 													$queryCountingStudentSupportedByYourSiblingOwnFamily = "SELECT supportedByYourSibling,count(*) AS NumberOfSupportedByYourSiblingOwnFamily FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND supportedByYourSibling = 'His/Her Family' ";
 													$resultCountingStudentSupportedByYourSiblingOwnFamily = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingOwnFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingOwnFamily)) {
-														echo "<td>".$row['NumberOfSupportedByYourSiblingOwnFamily']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingOwnFamily']."</td>";
 													}
 												}
 												?>
@@ -4397,7 +4446,7 @@ require 'header.php';
 													$queryCountingStudentSupportedByYourSiblingNotIndicated = "SELECT supportedByYourSibling,count(*) AS NumberOfSupportedByYourSiblingNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND supportedByYourSibling != 'His/Her Family' AND supportedByYourSibling != 'Your Family' AND supportedByYourSibling != 'Your Studies' ";
 													$resultCountingStudentSupportedByYourSiblingNotIndicated = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingNotIndicated)) {
-														echo "<td>".$row['NumberOfSupportedByYourSiblingNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4414,7 +4463,7 @@ require 'header.php';
 													$queryCountingStudentSupportedByYourSiblingTotal = "SELECT supportedByYourSibling,count(*) AS NumberOfSupportedByYourSiblingTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingStudentSupportedByYourSiblingTotal = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingTotal)) {
-														echo "<td>".$row['NumberOfSupportedByYourSiblingTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingTotal']."</td>";
 													}
 												}
 												?>
@@ -4448,7 +4497,7 @@ require 'header.php';
 													$queryCountingschoolFinancerParents = "SELECT schoolFinancer,count(*) AS NumberOfFinancerParents FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Parents' ";
 													$resultCountingschoolFinancerParents = mysqli_query($connect,$queryCountingschoolFinancerParents);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerParents)) {
-														echo "<td>".$row['NumberOfFinancerParents']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerParents']."</td>";
 													}
 												}
 												?>
@@ -4465,7 +4514,7 @@ require 'header.php';
 													$queryCountingschoolFinancerSibling = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSibling FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Brother/Sister' ";
 													$resultCountingschoolFinancerSibling = mysqli_query($connect,$queryCountingschoolFinancerSibling);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSibling)) {
-														echo "<td>".$row['NumberOfFinancerSibling']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSibling']."</td>";
 													}
 												}
 												?>
@@ -4482,7 +4531,7 @@ require 'header.php';
 													$queryCountingschoolFinancerSpouse = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSpouse FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Spouse' ";
 													$resultCountingschoolFinancerSpouse = mysqli_query($connect,$queryCountingschoolFinancerSpouse);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSpouse)) {
-														echo "<td>".$row['NumberOfFinancerSpouse']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSpouse']."</td>";
 													}
 												}
 												?>
@@ -4499,7 +4548,7 @@ require 'header.php';
 													$queryCountingschoolFinancerScholarship = "SELECT schoolFinancer,count(*) AS NumberOfFinancerScholarship FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Scholarship' ";
 													$resultCountingschoolFinancerScholarship = mysqli_query($connect,$queryCountingschoolFinancerScholarship);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerScholarship)) {
-														echo "<td>".$row['NumberOfFinancerScholarship']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerScholarship']."</td>";
 													}
 												}
 												?>
@@ -4516,7 +4565,7 @@ require 'header.php';
 													$queryCountingschoolFinancerSelfSupporting = "SELECT schoolFinancer,count(*) AS NumberOfFinancerSelfSupporting FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer = 'Self-supporting/Working student' ";
 													$resultCountingschoolFinancerSelfSupporting = mysqli_query($connect,$queryCountingschoolFinancerSelfSupporting);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSelfSupporting)) {
-														echo "<td>".$row['NumberOfFinancerSelfSupporting']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSelfSupporting']."</td>";
 													}
 												}
 												?>
@@ -4533,7 +4582,7 @@ require 'header.php';
 													$queryCountingschoolFinancerNotIndicated = "SELECT schoolFinancer,count(*) AS NumberOfFinancerNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND schoolFinancer != 'Self-supporting/Working student' AND schoolFinancer != 'Self-supporting/Working student' AND schoolFinancer != 'Scholarship' AND schoolFinancer != 'Spouse' AND schoolFinancer != 'Brother/Sister' AND schoolFinancer != 'Parents' ";
 													$resultCountingschoolFinancerNotIndicated = mysqli_query($connect,$queryCountingschoolFinancerNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerNotIndicated)) {
-														echo "<td>".$row['NumberOfFinancerNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4550,7 +4599,7 @@ require 'header.php';
 													$queryCountingschoolFinancerTotal = "SELECT schoolFinancer,count(*) AS NumberOfFinancerTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingschoolFinancerTotal = mysqli_query($connect,$queryCountingschoolFinancerTotal);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerTotal)) {
-														echo "<td>".$row['NumberOfFinancerTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFinancerTotal']."</td>";
 													}
 												}
 												?>
@@ -4584,7 +4633,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowanceBelow100 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceBelow100 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 101";
 													$resultCountingStudentWeeklyAllowanceBelow100 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceBelow100);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceBelow100)) {
-														echo "<td>".$row['NumberOfWeeklyAllowanceBelow100']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceBelow100']."</td>";
 													}
 												}
 												?>
@@ -4601,7 +4650,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowance101to500 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowance101to500 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 100 and weeklyAllowance > 501";
 													$resultCountingStudentWeeklyAllowance101to500 = mysqli_query($connect,$queryCountingStudentWeeklyAllowance101to500);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowance101to500)) {
-														echo "<td>".$row['NumberOfWeeklyAllowance101to500']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowance101to500']."</td>";
 													}
 												}
 												?>
@@ -4618,7 +4667,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowance501to1000 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowance501to1000 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 500 and weeklyAllowance > 1001";
 													$resultCountingStudentWeeklyAllowance501to1000 = mysqli_query($connect,$queryCountingStudentWeeklyAllowance501to1000);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowance501to1000)) {
-														echo "<td>".$row['NumberOfWeeklyAllowance501to1000']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowance501to1000']."</td>";
 													}
 												}
 												?>
@@ -4635,7 +4684,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowanceAbove1000 = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceAbove1000 FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance > 1000";
 													$resultCountingStudentWeeklyAllowanceAbove1000 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceAbove1000);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceAbove1000)) {
-														echo "<td>".$row['NumberOfWeeklyAllowanceAbove1000']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceAbove1000']."</td>";
 													}
 												}
 												?>
@@ -4652,7 +4701,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowanceNotIndicated = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND weeklyAllowance < 0";
 													$resultCountingStudentWeeklyAllowanceNotIndicated = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceNotIndicated)) {
-														echo "<td>".$row['NumberOfWeeklyAllowanceNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4669,7 +4718,7 @@ require 'header.php';
 													$queryCountingStudentWeeklyAllowanceTotal = "SELECT weeklyAllowance,count(*) AS NumberOfWeeklyAllowanceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentWeeklyAllowanceTotal = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceTotal)) {
-														echo "<td>".$row['NumberOfWeeklyAllowanceTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceTotal']."</td>";
 													}
 												}
 												?>
@@ -4703,7 +4752,7 @@ require 'header.php';
 													$queryCountingStudentQuietPlaceToStudyYes = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceToStudyYes FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studyPlace = 'Yes' ";
 													$resultCountingStudentQuietPlaceToStudyYes = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyYes);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyYes)) {
-														echo "<td>".$row['NumberOfQuietPlaceToStudyYes']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceToStudyYes']."</td>";
 													}
 												}
 												?>
@@ -4720,7 +4769,7 @@ require 'header.php';
 													$queryCountingStudentQuietPlaceToStudyNo = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceToStudyNo FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND studyPlace = 'No' ";
 													$resultCountingStudentQuietPlaceToStudyNo = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyNo);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyNo)) {
-														echo "<td>".$row['NumberOfQuietPlaceToStudyNo']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceToStudyNo']."</td>";
 													}
 												}
 												?>
@@ -4737,7 +4786,7 @@ require 'header.php';
 													$queryCountingStudentQuietPlaceTotal = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
-														echo "<td>".$row['NumberOfQuietPlaceTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceTotal']."</td>";
 													}
 												}
 												?>
@@ -4754,7 +4803,7 @@ require 'header.php';
 													$queryCountingStudentQuietPlaceTotal = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
-														echo "<td>".$row['NumberOfQuietPlaceTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceTotal']."</td>";
 													}
 												}
 												?>
@@ -4788,7 +4837,7 @@ require 'header.php';
 													$queryCountingStudentRoomSharingYes = "SELECT roomSharing,count(*) AS NumberOfRoomSharingYes FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND roomSharing != 'No' ";
 													$resultCountingStudentRoomSharingYes = mysqli_query($connect,$queryCountingStudentRoomSharingYes);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingYes)) {
-														echo "<td>".$row['NumberOfRoomSharingYes']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingYes']."</td>";
 													}
 												}
 												?>
@@ -4805,7 +4854,7 @@ require 'header.php';
 													$queryCountingStudentRoomSharingNo = "SELECT roomSharing,count(*) AS NumberOfRoomSharingNo FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND roomSharing = 'No' ";
 													$resultCountingStudentRoomSharingNo = mysqli_query($connect,$queryCountingStudentRoomSharingNo);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingNo)) {
-														echo "<td>".$row['NumberOfRoomSharingNo']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingNo']."</td>";
 													}
 												}
 												?>
@@ -4822,7 +4871,7 @@ require 'header.php';
 													$queryCountingStudentRoomSharingTotal = "SELECT roomSharing,count(*) AS NumberOfRoomSharingTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
 													$resultCountingStudentRoomSharingTotal = mysqli_query($connect,$queryCountingStudentRoomSharingTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingTotal)) {
-														echo "<td>".$row['NumberOfRoomSharingTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingTotal']."</td>";
 													}
 												}
 												?>
@@ -4856,7 +4905,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceFamily = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceFamily FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Family home' ";
 													$resultCountingStudentNatureOfResidenceFamily = mysqli_query($connect,$queryCountingStudentNatureOfResidenceFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceFamily)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceFamily']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceFamily']."</td>";
 													}
 												}
 												?>
@@ -4873,7 +4922,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceRelative = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceRelative FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Relative`s house' ";
 													$resultCountingStudentNatureOfResidenceRelative = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRelative);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRelative)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceRelative']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceRelative']."</td>";
 													}
 												}
 												?>
@@ -4890,7 +4939,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceApartmentFriends = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceApartmentFriends FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Shares apartment with friends' ";
 													$resultCountingStudentNatureOfResidenceApartmentFriends = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentFriends);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentFriends)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceApartmentFriends']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceApartmentFriends']."</td>";
 													}
 												}
 												?>
@@ -4907,7 +4956,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceApartmentRelatives = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceApartmentRelatives FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Shares apartment with relatives' ";
 													$resultCountingStudentNatureOfResidenceApartmentRelatives = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentRelatives);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentRelatives)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceApartmentRelatives']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceApartmentRelatives']."</td>";
 													}
 												}
 												?>
@@ -4924,7 +4973,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceBedSpacer = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceBedSpacer FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Bed spacer' ";
 													$resultCountingStudentNatureOfResidenceBedSpacer = mysqli_query($connect,$queryCountingStudentNatureOfResidenceBedSpacer);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceBedSpacer)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceBedSpacer']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceBedSpacer']."</td>";
 													}
 												}
 												?>
@@ -4941,7 +4990,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceRentedApartment = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceRentedApartment FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Rented apartment' ";
 													$resultCountingStudentNatureOfResidenceRentedApartment = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRentedApartment);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRentedApartment)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceRentedApartment']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceRentedApartment']."</td>";
 													}
 												}
 												?>
@@ -4958,7 +5007,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceDorm = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceDorm FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence = 'Dorm' ";
 													$resultCountingStudentNatureOfResidenceDorm = mysqli_query($connect,$queryCountingStudentNatureOfResidenceDorm);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceDorm)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceDorm']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceDorm']."</td>";
 													}
 												}
 												?>
@@ -4975,7 +5024,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceNotIndicated = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceNotIndicated FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND natureOfResidence != 'Dorm' AND natureOfResidence != 'Rented apartment' AND natureOfResidence != 'Bed spacer' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Shares apartment with friends' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Shares apartment with relatives' AND natureOfResidence != 'Relative`s house' AND natureOfResidence != 'Family home' ";
 													$resultCountingStudentNatureOfResidenceNotIndicated = mysqli_query($connect,$queryCountingStudentNatureOfResidenceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceNotIndicated)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceNotIndicated']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceNotIndicated']."</td>";
 													}
 												}
 												?>
@@ -4992,7 +5041,7 @@ require 'header.php';
 													$queryCountingStudentNatureOfResidenceTotal = "SELECT natureOfResidence,count(*) AS NumberOfNatureOfResidenceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' ";
 													$resultCountingStudentNatureOfResidenceTotal = mysqli_query($connect,$queryCountingStudentNatureOfResidenceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceTotal)) {
-														echo "<td>".$row['NumberOfNatureOfResidenceTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceTotal']."</td>";
 													}
 												}
 												?>
@@ -5064,7 +5113,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
-														echo "<td>".$row['TotalVisionProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalVisionProblem']."</td>";
 													}
 												}
 												?>
@@ -5082,7 +5131,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
-														echo "<td>".$row['TotalHearingProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalHearingProblem']."</td>";
 													}
 												}
 												?>
@@ -5100,7 +5149,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
-														echo "<td>".$row['TotalSpeechProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalSpeechProblem']."</td>";
 													}
 												}
 												?>
@@ -5118,7 +5167,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
-														echo "<td>".$row['TotalGenHealthProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalGenHealthProblem']."</td>";
 													}
 												}
 												?>
@@ -5154,7 +5203,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
-														echo "<td>".$row['TotalVisionProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalVisionProblem']."</td>";
 													}
 												}
 												?>
@@ -5172,7 +5221,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
-														echo "<td>".$row['TotalHearingProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalHearingProblem']."</td>";
 													}
 												}
 												?>
@@ -5190,7 +5239,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
-														echo "<td>".$row['TotalSpeechProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalSpeechProblem']."</td>";
 													}
 												}
 												?>
@@ -5208,7 +5257,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
-														echo "<td>".$row['TotalGenHealthProblem']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalGenHealthProblem']."</td>";
 													}
 												}
 												?>
@@ -5262,7 +5311,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
-														echo "<td>".$row['TotalPsychiatristConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPsychiatristConsult']."</td>";
 													}
 												}
 												?>
@@ -5280,7 +5329,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
-														echo "<td>".$row['TotalPsychiatristConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPsychiatristConsult']."</td>";
 													}
 												}
 												?>
@@ -5300,7 +5349,7 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
 													}
 												}
 												?>
@@ -5320,7 +5369,7 @@ require 'header.php';
 													$resultCountingHealthBackgroundPsychologicalPsychiatristTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatristTotal);
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychiatristTotal)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristTotal = $row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal']."</td>";
 													}
 												}
 												?>
@@ -5356,7 +5405,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
-														echo "<td>".$row['TotalPsychologistConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPsychologistConsult']."</td>";
 													}
 												}
 												?>
@@ -5374,7 +5423,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
-														echo "<td>".$row['TotalPsychologistConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalPsychologistConsult']."</td>";
 													}
 												}
 												?>
@@ -5394,7 +5443,7 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychiatristNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalPsychiatristNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
 													}
 												}
 												?>
@@ -5414,7 +5463,7 @@ require 'header.php';
 													$resultCountingHealthBackgroundPsychologicalPsychologistTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologistTotal);
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychologistTotal)) {
 														$NumberOfHealthBackgroundPsychologicalPsychologistTotal = $row['NumberOfHealthBackgroundPsychologicalPsychologistTotal'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalPsychologistTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychologistTotal']."</td>";
 													}
 												}
 												?>
@@ -5450,7 +5499,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
-														echo "<td>".$row['TotalCounselorConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalCounselorConsult']."</td>";
 													}
 												}
 												?>
@@ -5468,7 +5517,7 @@ require 'header.php';
 
 													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
-														echo "<td>".$row['TotalCounselorConsult']."</td>";
+														echo "<td style='text-align:center;'>".$row['TotalCounselorConsult']."</td>";
 													}
 												}
 												?>
@@ -5488,7 +5537,7 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalCounselorNA = mysqli_query($connect,$queryCountingHealthBackgroundPsychologicalCounselorNA);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselorNA)) {
 														$NumberOfHealthBackgroundPsychologicalCounselorNA = $row['NumberOfHealthBackgroundPsychologicalCounselorNA'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalCounselorNA']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalCounselorNA']."</td>";
 													}
 												}
 												?>
@@ -5509,7 +5558,7 @@ require 'header.php';
 													$resultCountingHealthBackgroundPsychologicalCounselorTotal = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselorTotal);
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalCounselorTotal)) {
 														$NumberOfHealthBackgroundPsychologicalCounselorTotal = $row['NumberOfHealthBackgroundPsychologicalCounselorTotal'];
-														echo "<td>".$row['NumberOfHealthBackgroundPsychologicalCounselorTotal']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalCounselorTotal']."</td>";
 													}
 												}
 												?>
