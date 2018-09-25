@@ -123,7 +123,7 @@ require 'header.php';
 									}
 									$total = 0;
 									?>
-									<h2>Total Number of Respondents = <?php echo $ttotal; ?> </h2>
+									<h2 class="pull-right">Total Number of Respondents = <?php echo $ttotal; ?> </h2>
 									<!-- <p class="text-muted font-13 m-b-30">
 										<b>Student Individual Inventory Tally of Records</b>
 									</p>-->
@@ -183,8 +183,7 @@ require 'header.php';
 
 												}
 												?>
-												<th></th>
-												<th></th>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Male</td>
@@ -275,6 +274,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>15</td>
@@ -493,6 +493,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Single</td>
@@ -662,6 +663,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Aglipayan</td>
@@ -1030,6 +1032,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Caloocan</td>
@@ -1047,8 +1050,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressCaloocan)) {
 														$NumberOfCityAddressCaloocan = $row['NumberOfCityAddressCaloocan'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressCaloocan']."</td>";
+													$total = $row['NumberOfCityAddressCaloocan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1067,8 +1075,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressLasPinas)) {
 														$NumberOfCityAddressLasPinas = $row['NumberOfCityAddressLasPinas'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressLasPinas']."</td>";
+													$total = $row['NumberOfCityAddressLasPinas']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1087,8 +1100,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMandaluyong)) {
 														$NumberOfCityAddressMandaluyong = $row['NumberOfCityAddressMandaluyong'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMandaluyong']."</td>";
+													$total = $row['NumberOfCityAddressMandaluyong']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1107,8 +1125,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMakati)) {
 														$NumberOfCityAddressMakati = $row['NumberOfCityAddressMakati'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMakati']."</td>";
+													$total = $row['NumberOfCityAddressMakati']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1127,8 +1150,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMalabon)) {
 														$NumberOfCityAddressMalabon = $row['NumberOfCityAddressMalabon'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMalabon']."</td>";
+													$total = $row['NumberOfCityAddressMalabon']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1147,8 +1175,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMarikina)) {
 														$NumberOfCityAddressMarikina = $row['NumberOfCityAddressMarikina'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMarikina']."</td>";
+													$total = $row['NumberOfCityAddressMarikina']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1167,8 +1200,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressManila)) {
 														$NumberOfCityAddressManila = $row['NumberOfCityAddressManila'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressManila']."</td>";
+													$total = $row['NumberOfCityAddressManila']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1187,8 +1225,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressMuntinlupa)) {
 														$NumberOfCityAddressMuntinlupa = $row['NumberOfCityAddressMuntinlupa'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressMuntinlupa']."</td>";
+													$total = $row['NumberOfCityAddressMuntinlupa']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1207,8 +1250,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNavotas)) {
 														$NumberOfCityAddressNavotas = $row['NumberOfCityAddressNavotas'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressNavotas']."</td>";
+													$total = $row['NumberOfCityAddressNavotas']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1227,8 +1275,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressParanaque)) {
 														$NumberOfCityAddressParanaque = $row['NumberOfCityAddressParanaque'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressParanaque']."</td>";
+													$total = $row['NumberOfCityAddressParanaque']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1247,8 +1300,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPasay)) {
 														$NumberOfCityAddressPasay = $row['NumberOfCityAddressPasay'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPasay']."</td>";
+													$total = $row['NumberOfCityAddressPasay']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1267,8 +1325,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPasig)) {
 														$NumberOfCityAddressPasig = $row['NumberOfCityAddressPasig'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPasig']."</td>";
+													$total = $row['NumberOfCityAddressPasig']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1287,8 +1350,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressPateros)) {
 														$NumberOfCityAddressPateros = $row['NumberOfCityAddressPateros'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressPateros']."</td>";
+													$total = $row['NumberOfCityAddressPateros']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1307,8 +1375,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressQuezonCity)) {
 														$NumberOfCityAddressQuezonCity = $row['NumberOfCityAddressQuezonCity'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressQuezonCity']."</td>";
+													$total = $row['NumberOfCityAddressQuezonCity']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1327,8 +1400,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressSanJuan)) {
 														$NumberOfCityAddressSanJuan = $row['NumberOfCityAddressSanJuan'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressSanJuan']."</td>";
+													$total = $row['NumberOfCityAddressSanJuan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1347,8 +1425,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressTaguig)) {
 														$NumberOfCityAddressTaguig = $row['NumberOfCityAddressTaguig'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressTaguig']."</td>";
+													$total = $row['NumberOfCityAddressTaguig']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1367,8 +1450,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressValenzuela)) {
 														$NumberOfCityAddressValenzuela = $row['NumberOfCityAddressValenzuela'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressValenzuela']."</td>";
+													$total = $row['NumberOfCityAddressValenzuela']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1387,8 +1475,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
 														$NumberOfCityAddressNA = $row['NumberOfCityAddressNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressNA']."</td>";
+													$total = $row['NumberOfCityAddressNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1407,8 +1500,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressTotal)) {
 														$NumberOfCityAddressTotal = $row['NumberOfCityAddressTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfCityAddressTotal']."</td>";
+													$total = $row['NumberOfCityAddressTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1428,6 +1526,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>Region I. Ilocos Region</th>
@@ -1446,6 +1545,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Ilocos Norte</td>
@@ -1461,8 +1561,13 @@ require 'header.php';
 													$resultProvincialAddressIlocosNorte = mysqli_query($connect,$queryProvincialAddressIlocosNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIlocosNorte)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIlocosNorte']."</td>";
+													$total = $row['NumberOfProvincialAddressIlocosNorte']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1479,8 +1584,13 @@ require 'header.php';
 													$resultProvincialAddressIlocosSur = mysqli_query($connect,$queryProvincialAddressIlocosSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIlocosSur)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIlocosSur']."</td>";
+													$total = $row['NumberOfProvincialAddressIlocosSur']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1497,8 +1607,13 @@ require 'header.php';
 													$resultProvincialAddressLaUnion = mysqli_query($connect,$queryProvincialAddressLaUnion);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLaUnion)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLaUnion']."</td>";
+													$total = $row['NumberOfProvincialAddressLaUnion']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1515,8 +1630,13 @@ require 'header.php';
 													$resultProvincialAddressPangasinan = mysqli_query($connect,$queryProvincialAddressPangasinan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPangasinan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPangasinan']."</td>";
+													$total = $row['NumberOfProvincialAddressPangasinan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1536,6 +1656,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Quirino</td>
@@ -1551,8 +1672,13 @@ require 'header.php';
 													$resultProvincialAddressQuirino = mysqli_query($connect,$queryProvincialAddressQuirino);
 													while ($row = mysqli_fetch_array($resultProvincialAddressQuirino)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressQuirino']."</td>";
+													$total = $row['NumberOfProvincialAddressQuirino']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1569,8 +1695,13 @@ require 'header.php';
 													$resultProvincialAddressCagayan = mysqli_query($connect,$queryProvincialAddressCagayan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCagayan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCagayan']."</td>";
+													$total = $row['NumberOfProvincialAddressCagayan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1587,8 +1718,13 @@ require 'header.php';
 													$resultProvincialAddressIsabela = mysqli_query($connect,$queryProvincialAddressIsabela);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIsabela)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIsabela']."</td>";
+													$total = $row['NumberOfProvincialAddressIsabela']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1605,8 +1741,13 @@ require 'header.php';
 													$resultProvincialAddressCagayan2 = mysqli_query($connect,$queryProvincialAddressCagayan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCagayan2)) {
 														echo "<td></td>";
+													$total = $row['NumberOfProvincialAddressCagayan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1623,8 +1764,13 @@ require 'header.php';
 													$resultProvincialAddressBataan = mysqli_query($connect,$queryProvincialAddressBataan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBataan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBataan']."</td>";
+													$total = $row['NumberOfProvincialAddressBataan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1641,8 +1787,13 @@ require 'header.php';
 													$resultProvincialAddressBulacan = mysqli_query($connect,$queryProvincialAddressBulacan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBulacan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBulacan']."</td>";
+													$total = $row['NumberOfProvincialAddressBulacan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 
 											</tr>
@@ -1660,8 +1811,13 @@ require 'header.php';
 													$resultProvincialAddressNuevaEcija = mysqli_query($connect,$queryProvincialAddressNuevaEcija);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNuevaEcija)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNuevaEcija']."</td>";
+													$total = $row['NumberOfProvincialAddressNuevaEcija']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 
 											</tr>
@@ -1679,8 +1835,13 @@ require 'header.php';
 													$resultProvincialAddressPampanga = mysqli_query($connect,$queryProvincialAddressPampanga);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPampanga)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPampanga']."</td>";
+													$total = $row['NumberOfProvincialAddressPampanga']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1697,8 +1858,13 @@ require 'header.php';
 													$resultProvincialAddressTarlac = mysqli_query($connect,$queryProvincialAddressTarlac);
 													while ($row = mysqli_fetch_array($resultProvincialAddressTarlac)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTarlac']."</td>";
+													$total = $row['NumberOfProvincialAddressTarlac']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1715,8 +1881,13 @@ require 'header.php';
 													$resultProvincialAddressZambales = mysqli_query($connect,$queryProvincialAddressZambales);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZambales)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZambales']."</td>";
+													$total = $row['NumberOfProvincialAddressZambales']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1733,8 +1904,13 @@ require 'header.php';
 													$resultProvincialAddressAurora = mysqli_query($connect,$queryProvincialAddressAurora);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAurora)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAurora']."</td>";
+													$total = $row['NumberOfProvincialAddressAurora']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1754,6 +1930,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Batangas</td>
@@ -1769,8 +1946,13 @@ require 'header.php';
 													$resultProvincialAddressBatangas = mysqli_query($connect,$queryProvincialAddressBatangas);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBatangas)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBatangas']."</td>";
+													$total = $row['NumberOfProvincialAddressBatangas']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1787,8 +1969,13 @@ require 'header.php';
 													$resultProvincialAddressCavite = mysqli_query($connect,$queryProvincialAddressCavite);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCavite)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCavite']."</td>";
+													$total = $row['NumberOfProvincialAddressCavite']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1805,8 +1992,13 @@ require 'header.php';
 													$resultProvincialAddressLaguna = mysqli_query($connect,$queryProvincialAddressLaguna);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLaguna)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLaguna']."</td>";
+													$total = $row['NumberOfProvincialAddressLaguna']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1823,8 +2015,13 @@ require 'header.php';
 													$resultProvincialAddressQuezon = mysqli_query($connect,$queryProvincialAddressQuezon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressQuezon)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressQuezon']."</td>";
+													$total = $row['NumberOfProvincialAddressQuezon']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1841,8 +2038,13 @@ require 'header.php';
 													$resultProvincialAddressRizal = mysqli_query($connect,$queryProvincialAddressRizal);
 													while ($row = mysqli_fetch_array($resultProvincialAddressRizal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressRizal']."</td>";
+													$total = $row['NumberOfProvincialAddressRizal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1862,6 +2064,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Mindoro Occidental</td>
@@ -1877,8 +2080,13 @@ require 'header.php';
 													$resultProvincialAddressMindoroOccidental = mysqli_query($connect,$queryProvincialAddressMindoroOccidental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMindoroOccidental)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMindoroOccidental']."</td>";
+													$total = $row['NumberOfProvincialAddressMindoroOccidental']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1895,8 +2103,13 @@ require 'header.php';
 													$resultProvincialAddressMindoroOriental = mysqli_query($connect,$queryProvincialAddressMindoroOriental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMindoroOriental)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMindoroOriental']."</td>";
+													$total = $row['NumberOfProvincialAddressMindoroOriental']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1913,8 +2126,13 @@ require 'header.php';
 													$resultProvincialAddressMarinduque = mysqli_query($connect,$queryProvincialAddressMarinduque);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMarinduque)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMarinduque']."</td>";
+													$total = $row['NumberOfProvincialAddressMarinduque']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1931,8 +2149,13 @@ require 'header.php';
 													$resultProvincialAddressRomblon = mysqli_query($connect,$queryProvincialAddressRomblon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressRomblon)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressRomblon']."</td>";
+													$total = $row['NumberOfProvincialAddressRomblon']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1949,8 +2172,13 @@ require 'header.php';
 													$resultProvincialAddressPalawan = mysqli_query($connect,$queryProvincialAddressPalawan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressPalawan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressPalawan']."</td>";
+													$total = $row['NumberOfProvincialAddressPalawan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -1970,6 +2198,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Albay</td>
@@ -1985,8 +2214,13 @@ require 'header.php';
 													$resultProvincialAddressAlbay = mysqli_query($connect,$queryProvincialAddressAlbay);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAlbay)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAlbay']."</td>";
+													$total = $row['NumberOfProvincialAddressAlbay']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2003,8 +2237,13 @@ require 'header.php';
 													$resultProvincialAddressCamarinesNorte = mysqli_query($connect,$queryProvincialAddressCamarinesNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCamarinesNorte)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCamarinesNorte']."</td>";
+													$total = $row['NumberOfProvincialAddressCamarinesNorte']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2021,8 +2260,13 @@ require 'header.php';
 													$resultProvincialAddressCamarinesSur = mysqli_query($connect,$queryProvincialAddressCamarinesSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCamarinesSur)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCamarinesSur']."</td>";
+													$total = $row['NumberOfProvincialAddressCamarinesSur']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2039,8 +2283,13 @@ require 'header.php';
 													$resultProvincialAddressCatanduanes = mysqli_query($connect,$queryProvincialAddressCatanduanes);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCatanduanes)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCatanduanes']."</td>";
+													$total = $row['NumberOfProvincialAddressCatanduanes']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2057,8 +2306,13 @@ require 'header.php';
 													$resultProvincialAddressMasbate = mysqli_query($connect,$queryProvincialAddressMasbate);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMasbate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMasbate']."</td>";
+													$total = $row['NumberOfProvincialAddressMasbate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2075,8 +2329,13 @@ require 'header.php';
 													$resultProvincialAddressSorsogon = mysqli_query($connect,$queryProvincialAddressSorsogon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSorsogon)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSorsogon']."</td>";
+													$total = $row['NumberOfProvincialAddressSorsogon']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2096,6 +2355,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Aklan</td>
@@ -2111,8 +2371,13 @@ require 'header.php';
 													$resultProvincialAddressAklan = mysqli_query($connect,$queryProvincialAddressAklan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAklan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAklan']."</td>";
+													$total = $row['NumberOfProvincialAddressAklan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2129,8 +2394,13 @@ require 'header.php';
 													$resultProvincialAddressAntique = mysqli_query($connect,$queryProvincialAddressAntique);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAntique)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAntique']."</td>";
+													$total = $row['NumberOfProvincialAddressAntique']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2147,8 +2417,13 @@ require 'header.php';
 													$resultProvincialAddressCapiz = mysqli_query($connect,$queryProvincialAddressCapiz);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCapiz)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCapiz']."</td>";
+													$total = $row['NumberOfProvincialAddressCapiz']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2165,8 +2440,13 @@ require 'header.php';
 													$resultProvincialAddressIloilo = mysqli_query($connect,$queryProvincialAddressIloilo);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIloilo)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIloilo']."</td>";
+													$total = $row['NumberOfProvincialAddressIloilo']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2183,8 +2463,13 @@ require 'header.php';
 													$resultProvincialAddressNegrosOccidental = mysqli_query($connect,$queryProvincialAddressNegrosOccidental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNegrosOccidental)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNegrosOccidental']."</td>";
+													$total = $row['NumberOfProvincialAddressNegrosOccidental']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2201,8 +2486,13 @@ require 'header.php';
 													$resultProvincialAddressNegrosOriental = mysqli_query($connect,$queryProvincialAddressNegrosOriental);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNegrosOriental)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNegrosOriental']."</td>";
+													$total = $row['NumberOfProvincialAddressNegrosOriental']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2222,6 +2512,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Bohol</td>
@@ -2237,8 +2528,13 @@ require 'header.php';
 													$resultProvincialAddressBohol = mysqli_query($connect,$queryProvincialAddressBohol);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBohol)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBohol']."</td>";
+													$total = $row['NumberOfProvincialAddressBohol']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2255,8 +2551,13 @@ require 'header.php';
 													$resultProvincialAddressCebu = mysqli_query($connect,$queryProvincialAddressCebu);
 													while ($row = mysqli_fetch_array($resultProvincialAddressCebu)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressCebu']."</td>";
+													$total = $row['NumberOfProvincialAddressCebu']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2273,8 +2574,13 @@ require 'header.php';
 													$resultProvincialAddressSiquijor = mysqli_query($connect,$queryProvincialAddressSiquijor);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSiquijor)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSiquijor']."</td>";
+													$total = $row['NumberOfProvincialAddressSiquijor']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2294,6 +2600,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Eastern Samar</td>
@@ -2309,8 +2616,13 @@ require 'header.php';
 													$resultProvincialAddressEasternSamar = mysqli_query($connect,$queryProvincialAddressEasternSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressEasternSamar)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressEasternSamar']."</td>";
+													$total = $row['NumberOfProvincialAddressEasternSamar']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2327,8 +2639,13 @@ require 'header.php';
 													$resultProvincialAddressNorthernSamar = mysqli_query($connect,$queryProvincialAddressNorthernSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressNorthernSamar)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNorthernSamar']."</td>";
+													$total = $row['NumberOfProvincialAddressNorthernSamar']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2345,8 +2662,13 @@ require 'header.php';
 													$resultProvincialAddressSamar = mysqli_query($connect,$queryProvincialAddressSamar);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSamar)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSamar']."</td>";
+													$total = $row['NumberOfProvincialAddressSamar']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2363,8 +2685,13 @@ require 'header.php';
 													$resultProvincialAddressBiliran = mysqli_query($connect,$queryProvincialAddressBiliran);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBiliran)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBiliran']."</td>";
+													$total = $row['NumberOfProvincialAddressBiliran']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2381,8 +2708,13 @@ require 'header.php';
 													$resultProvincialAddressLeyte = mysqli_query($connect,$queryProvincialAddressLeyte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressLeyte)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressLeyte']."</td>";
+													$total = $row['NumberOfProvincialAddressLeyte']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2402,6 +2734,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Basilan</td>
@@ -2417,8 +2750,13 @@ require 'header.php';
 													$resultProvincialAddressBasilan = mysqli_query($connect,$queryProvincialAddressBasilan);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBasilan)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBasilan']."</td>";
+													$total = $row['NumberOfProvincialAddressBasilan']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2435,8 +2773,13 @@ require 'header.php';
 													$resultProvincialAddressZamboangaDelNorte = mysqli_query($connect,$queryProvincialAddressZamboangaDelNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaDelNorte)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaDelNorte']."</td>";
+													$total = $row['NumberOfProvincialAddressZamboangaDelNorte']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2453,8 +2796,13 @@ require 'header.php';
 													$resultProvincialAddressZamboangaDelSur = mysqli_query($connect,$queryProvincialAddressZamboangaDelSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaDelSur)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaDelSur']."</td>";
+													$total = $row['NumberOfProvincialAddressZamboangaDelSur']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2471,8 +2819,13 @@ require 'header.php';
 													$resultProvincialAddressZamboangaSibugay = mysqli_query($connect,$queryProvincialAddressZamboangaSibugay);
 													while ($row = mysqli_fetch_array($resultProvincialAddressZamboangaSibugay)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressZamboangaSibugay']."</td>";
+													$total = $row['NumberOfProvincialAddressZamboangaSibugay']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2493,6 +2846,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Bukidnon</td>
@@ -2508,8 +2862,13 @@ require 'header.php';
 													$resultProvincialAddressBukidnon = mysqli_query($connect,$queryProvincialAddressBukidnon);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBukidnon)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBukidnon']."</td>";
+													$total = $row['NumberOfProvincialAddressBukidnon']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2529,6 +2888,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 
 											</tr>
 											<tr>
@@ -2545,8 +2905,13 @@ require 'header.php';
 													$resultProvincialAddressMaguindanao = mysqli_query($connect,$queryProvincialAddressMaguindanao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMaguindanao)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMaguindanao']."</td>";
+													$total = $row['NumberOfProvincialAddressMaguindanao']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2563,8 +2928,13 @@ require 'header.php';
 													$resultProvincialAddressSulu = mysqli_query($connect,$queryProvincialAddressSulu);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSulu)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSulu']."</td>";
+													$total = $row['NumberOfProvincialAddressSulu']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2581,8 +2951,13 @@ require 'header.php';
 													$resultProvincialAddressTawitawi = mysqli_query($connect,$queryProvincialAddressTawitawi);
 													while ($row = mysqli_fetch_array($resultProvincialAddressTawitawi)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTawitawi']."</td>";
+													$total = $row['NumberOfProvincialAddressTawitawi']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2602,6 +2977,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Benguet</td>
@@ -2617,8 +2993,13 @@ require 'header.php';
 													$resultProvincialAddressBenguet = mysqli_query($connect,$queryProvincialAddressBenguet);
 													while ($row = mysqli_fetch_array($resultProvincialAddressBenguet)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressBenguet']."</td>";
+													$total = $row['NumberOfProvincialAddressBenguet']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2635,8 +3016,13 @@ require 'header.php';
 													$resultProvincialAddressMtProvince = mysqli_query($connect,$queryProvincialAddressMtProvince);
 													while ($row = mysqli_fetch_array($resultProvincialAddressMtProvince)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressMtProvince']."</td>";
+													$total = $row['NumberOfProvincialAddressMtProvince']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2653,8 +3039,13 @@ require 'header.php';
 													$resultProvincialAddressAbra = mysqli_query($connect,$queryProvincialAddressAbra);
 													while ($row = mysqli_fetch_array($resultProvincialAddressAbra)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressAbra']."</td>";
+													$total = $row['NumberOfProvincialAddressAbra']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2671,8 +3062,13 @@ require 'header.php';
 													$resultProvincialAddressApayao = mysqli_query($connect,$queryProvincialAddressApayao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressApayao)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressApayao']."</td>";
+													$total = $row['NumberOfProvincialAddressApayao']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2689,8 +3085,13 @@ require 'header.php';
 													$resultProvincialAddressKalinga = mysqli_query($connect,$queryProvincialAddressKalinga);
 													while ($row = mysqli_fetch_array($resultProvincialAddressKalinga)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressKalinga']."</td>";
+													$total = $row['NumberOfProvincialAddressKalinga']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2707,8 +3108,13 @@ require 'header.php';
 													$resultProvincialAddressIfugao = mysqli_query($connect,$queryProvincialAddressIfugao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressIfugao)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressIfugao']."</td>";
+													$total = $row['NumberOfProvincialAddressIfugao']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2728,6 +3134,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Davao</td>
@@ -2743,8 +3150,13 @@ require 'header.php';
 													$resultProvincialAddressDavao = mysqli_query($connect,$queryProvincialAddressDavao);
 													while ($row = mysqli_fetch_array($resultProvincialAddressDavao)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressDavao']."</td>";
+													$total = $row['NumberOfProvincialAddressDavao']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2761,8 +3173,13 @@ require 'header.php';
 													$resultProvincialAddressSurigaoDelSur = mysqli_query($connect,$queryProvincialAddressSurigaoDelSur);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSurigaoDelSur)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSurigaoDelSur']."</td>";
+													$total = $row['NumberOfProvincialAddressSurigaoDelSur']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2779,8 +3196,13 @@ require 'header.php';
 													$resultProvincialAddressSurigaoDelNorte = mysqli_query($connect,$queryProvincialAddressSurigaoDelNorte);
 													while ($row = mysqli_fetch_array($resultProvincialAddressSurigaoDelNorte)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressSurigaoDelNorte']."</td>";
+													$total = $row['NumberOfProvincialAddressSurigaoDelNorte']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2799,8 +3221,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingCityAddressNA)) {
 														$NumberCountingCityAddressNA = $row['NumberOfProvincialAddressNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressNA']."</td>";
+													$total = $row['NumberOfProvincialAddressNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2819,8 +3246,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingProvincialAddressTotal)) {
 														$NumberOfProvincialAddressTotal = $row['NumberOfProvincialAddressTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfProvincialAddressTotal']."</td>";
+													$total = $row['NumberOfProvincialAddressTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2840,6 +3272,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>Elementary</th>
@@ -2858,6 +3291,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Public</td>
@@ -2873,8 +3307,13 @@ require 'header.php';
 													$resultEducationalBackgroundElementaryPublic = mysqli_query($connect,$queryEducationalBackgroundElementaryPublic);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPublic)) {
 														echo "<td style='text-align:center;'>".$row['TotalPublicElementarySchool']."</td>";
+													$total = $row['TotalPublicElementarySchool']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2891,8 +3330,13 @@ require 'header.php';
 													$resultEducationalBackgroundElementaryPrivate = mysqli_query($connect,$queryEducationalBackgroundElementaryPrivate);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryPrivate)) {
 														echo "<td style='text-align:center;'>".$row['TotalPrivateElementarySchool']."</td>";
+													$total = $row['TotalPrivateElementarySchool']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2911,8 +3355,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundElementaryNA)) {
 														$NumberOfEducationalBackgroundElementaryNA = $row['NumberOfEducationalBackgroundElementaryNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundElementaryNA']."</td>";
+													$total = $row['NumberOfEducationalBackgroundElementaryNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2931,8 +3380,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundElementaryTotal)) {
 														$NumberOfEducationalBackgroundElementaryTotal = $row['NumberOfEducationalBackgroundElementaryTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundElementaryTotal']."</td>";
+													$total = $row['NumberOfEducationalBackgroundElementaryTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2952,6 +3406,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Public</td>
@@ -2967,8 +3422,13 @@ require 'header.php';
 													$resultEducationalBackgroundHighSchoolPublic = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPublic);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPublic)) {
 														echo "<td style='text-align:center;'>".$row['TotalPublicHighSchool']."</td>";
+													$total = $row['TotalPublicHighSchool']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -2985,8 +3445,13 @@ require 'header.php';
 													$resultEducationalBackgroundHighSchoolPrivate = mysqli_query($connect,$queryEducationalBackgroundHighSchoolPrivate);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolPrivate)) {
 														echo "<td style='text-align:center;'>".$row['TotalPrivateHighSchool']."</td>";
+													$total = $row['TotalPrivateHighSchool']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3005,8 +3470,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundHighSchoolNA)) {
 														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundHighSchoolNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundHighSchoolNA']."</td>";
+													$total = $row['NumberOfEducationalBackgroundHighSchoolNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3025,8 +3495,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundHighSchoolTotal)) {
 														$NumberOfEducationalBackgroundHighSchoolTotal = $row['NumberOfEducationalBackgroundHighSchoolTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundHighSchoolTotal']."</td>";
+													$total = $row['NumberOfEducationalBackgroundHighSchoolTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3043,8 +3518,13 @@ require 'header.php';
 													$resultEducationalBackgroundContinuous = mysqli_query($connect,$queryEducationalBackgroundContinuous);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundContinuous)) {
 														echo "<td style='text-align:center;'>".$row['TotalContinuousSchooling']."</td>";
+													$total = $row['TotalContinuousSchooling']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3061,8 +3541,13 @@ require 'header.php';
 													$resultEducationalBackgroundInterrupted = mysqli_query($connect,$queryEducationalBackgroundInterrupted);
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundInterrupted)) {
 														echo "<td style='text-align:center;'>".$row['TotalInterruptedSchooling']."</td>";
+													$total = $row['TotalInterruptedSchooling']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3081,8 +3566,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultEducationalBackgroundNatureOfSchoolingNA)) {
 														$NumberOfEducationalBackgroundHighSchoolNA = $row['NumberOfEducationalBackgroundNatureOfSchoolingNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundNatureOfSchoolingNA']."</td>";
+													$total = $row['NumberOfEducationalBackgroundNatureOfSchoolingNA']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3101,8 +3591,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingEducationalBackgroundNatureOfSchoolingTotal)) {
 														$NumberOfEducationalBackgroundNatureOfSchoolingTotal = $row['NumberOfEducationalBackgroundNatureOfSchoolingTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfEducationalBackgroundNatureOfSchoolingTotal']."</td>";
+													$total = $row['NumberOfEducationalBackgroundNatureOfSchoolingTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3122,6 +3617,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>Father</th>
@@ -3140,6 +3636,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Living</td>
@@ -3155,8 +3652,13 @@ require 'header.php';
 													$resultCountingStudentFatherStatusLiving = mysqli_query($connect,$queryCountingStudentFatherStatusLiving);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusLiving)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusLiving']."</td>";
+													$total = $row['NumberOfFatherStatusLiving']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3173,8 +3675,13 @@ require 'header.php';
 													$resultCountingStudentFatherStatusDeceased = mysqli_query($connect,$queryCountingStudentFatherStatusDeceased);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusDeceased)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusDeceased']."</td>";
+													$total = $row['NumberOfFatherStatusDeceased']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3192,8 +3699,13 @@ require 'header.php';
 													$resultCountingStudentFatherStatusNotIndicated = mysqli_query($connect,$queryCountingStudentFatherStatusNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusNotIndicated']."</td>";
+													$total = $row['NumberOfFatherStatusNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3210,8 +3722,13 @@ require 'header.php';
 													$resultCountingStudentFatherStatusTotal = mysqli_query($connect,$queryCountingStudentFatherStatusTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherStatusTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherStatusTotal']."</td>";
+													$total = $row['NumberOfFatherStatusTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3231,6 +3748,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Doctoral Degree</td>
@@ -3246,8 +3764,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationDoctoralDegree = mysqli_query($connect,$queryCountingStudentFatherEducationDoctoralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationDoctoralDegree)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationDoctoralDegree']."</td>";
+													$total = $row['NumberOfFatherEducationDoctoralDegree']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3264,8 +3787,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationMasteralDegree = mysqli_query($connect,$queryCountingStudentFatherEducationMasteralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationMasteralDegree)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationMasteralDegree']."</td>";
+													$total = $row['NumberOfFatherEducationMasteralDegree']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3282,8 +3810,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationMasteralUnit = mysqli_query($connect,$queryCountingStudentFatherEducationMasteralUnit);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationMasteralUnit)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationMasteralUnit']."</td>";
+													$total = $row['NumberOfFatherEducationMasteralUnit']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3300,9 +3833,14 @@ require 'header.php';
 													$resultCountingStudentFatherEducationVocationalGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationVocationalGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationVocationalGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationVocationalGraduate']."</td>";
+													$total = $row['NumberOfFatherEducationVocationalGraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>College Graduate</td>
@@ -3318,9 +3856,14 @@ require 'header.php';
 													$resultCountingStudentFatherEducationCollegeGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationCollegeGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationCollegeGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationCollegeGraduate']."</td>";
+													$total = $row['NumberOfFatherEducationCollegeGraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>College Undergraduate</td>
@@ -3336,9 +3879,14 @@ require 'header.php';
 													$resultCountingStudentFatherEducationCollegeUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationCollegeUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationCollegeUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationCollegeUndergraduate']."</td>";
+													$total = $row['NumberOfFatherEducationCollegeUndergraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>Highschool Graduate</td>
@@ -3354,9 +3902,14 @@ require 'header.php';
 													$resultCountingStudentFatherEducationHighschoolGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationHighschoolGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationHighschoolGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationHighschoolGraduate']."</td>";
+													$total = $row['NumberOfFatherEducationHighschoolGraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>Highschool Undergraduate</td>
@@ -3372,8 +3925,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationHighschoolUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationHighschoolUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationHighschoolUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationHighschoolUndergraduate']."</td>";
+													$total = $row['NumberOfFatherEducationHighschoolUndergraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3390,8 +3948,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationElementaryGraduate = mysqli_query($connect,$queryCountingStudentFatherEducationElementaryGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationElementaryGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationElementaryGraduate']."</td>";
+													$total = $row['NumberOfFatherEducationElementaryGraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3408,8 +3971,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationElementaryUndergraduate = mysqli_query($connect,$queryCountingStudentFatherEducationElementaryUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationElementaryUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationElementaryUndergraduate']."</td>";
+													$total = $row['NumberOfFatherEducationElementaryUndergraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3426,8 +3994,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationNotIndicated = mysqli_query($connect,$queryCountingStudentFatherEducationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationNotIndicated']."</td>";
+													$total = $row['NumberOfFatherEducationNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3444,8 +4017,13 @@ require 'header.php';
 													$resultCountingStudentFatherEducationTotal = mysqli_query($connect,$queryCountingStudentFatherEducationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherEducationTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherEducationTotal']."</td>";
+													$total = $row['NumberOfFatherEducationTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3464,6 +4042,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Local</td>
@@ -3478,8 +4057,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationLocal = mysqli_query($connect,$queryCountingStudentFatherOccupationLocal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationLocal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationLocal']."</td>";
+													$total = $row['NumberOfFatherOccupationLocal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3495,8 +4079,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationGovernment = mysqli_query($connect,$queryCountingStudentFatherOccupationGovernment);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationGovernment)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationGovernment']."</td>";
+													$total = $row['NumberOfFatherOccupationGovernment']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3512,8 +4101,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationPrivate = mysqli_query($connect,$queryCountingStudentFatherOccupationPrivate);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationPrivate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationPrivate']."</td>";
+													$total = $row['NumberOfFatherOccupationPrivate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3529,8 +4123,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationAbroad = mysqli_query($connect,$queryCountingStudentFatherOccupationAbroad);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationAbroad)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationAbroad']."</td>";
+													$total = $row['NumberOfFatherOccupationAbroad']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3546,8 +4145,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentFatherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationUnemployed)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationUnemployed']."</td>";
+													$total = $row['NumberOfFatherOccupationUnemployed']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3559,12 +4163,17 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentFatherOccupationUnemployed = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Unemployed' ";
+													$queryCountingStudentFatherOccupationUnemployed = "SELECT fatherOccupationType,count(*) AS NumberOfFatherOccupationSelfEmployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND fatherOccupationType = 'Self-employed' ";
 													$resultCountingStudentFatherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentFatherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationUnemployed)) {
-														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationSelfEmployed']."</td>";
+													$total = $row['NumberOfFatherOccupationSelfEmployed']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3580,8 +4189,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationNotIndicated = mysqli_query($connect,$queryCountingStudentFatherOccupationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationNotIndicated']."</td>";
+													$total = $row['NumberOfFatherOccupationNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3597,8 +4211,13 @@ require 'header.php';
 													$resultCountingStudentFatherOccupationTotal = mysqli_query($connect,$queryCountingStudentFatherOccupationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentFatherOccupationTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFatherOccupationTotal']."</td>";
+													$total = $row['NumberOfFatherOccupationTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3618,6 +4237,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Living</td>
@@ -3633,8 +4253,13 @@ require 'header.php';
 													$resultCountingStudentmotherStatusLiving = mysqli_query($connect,$queryCountingStudentmotherStatusLiving);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusLiving)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusLiving']."</td>";
+													$total = $row['NumberOfmotherStatusLiving']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3651,8 +4276,13 @@ require 'header.php';
 													$resultCountingStudentmotherStatusDeceased = mysqli_query($connect,$queryCountingStudentmotherStatusDeceased);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusDeceased)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusDeceased']."</td>";
+													$total = $row['NumberOfmotherStatusDeceased']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3670,8 +4300,13 @@ require 'header.php';
 													$resultCountingStudentmotherStatusNotIndicated = mysqli_query($connect,$queryCountingStudentmotherStatusNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusNotIndicated']."</td>";
+													$total = $row['NumberOfmotherStatusNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3688,8 +4323,13 @@ require 'header.php';
 													$resultCountingStudentmotherStatusTotal = mysqli_query($connect,$queryCountingStudentmotherStatusTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherStatusTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherStatusTotal']."</td>";
+													$total = $row['NumberOfmotherStatusTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3709,6 +4349,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Doctoral Degree</td>
@@ -3724,8 +4365,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationDoctoralDegree = mysqli_query($connect,$queryCountingStudentmotherEducationDoctoralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationDoctoralDegree)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationDoctoralDegree']."</td>";
+													$total = $row['NumberOfmotherEducationDoctoralDegree']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3742,8 +4388,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationMasteralDegree = mysqli_query($connect,$queryCountingStudentmotherEducationMasteralDegree);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationMasteralDegree)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationMasteralDegree']."</td>";
+													$total = $row['NumberOfmotherEducationMasteralDegree']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3760,8 +4411,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationMasteralUnit = mysqli_query($connect,$queryCountingStudentmotherEducationMasteralUnit);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationMasteralUnit)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationMasteralUnit']."</td>";
+													$total = $row['NumberOfmotherEducationMasteralUnit']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3778,9 +4434,14 @@ require 'header.php';
 													$resultCountingStudentmotherEducationVocationalGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationVocationalGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationVocationalGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationVocationalGraduate']."</td>";
+													$total = $row['NumberOfmotherEducationVocationalGraduate']+ $total;
 													}
 												}
-												?>											
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>										
 											</tr>
 											<tr>
 												<td>College Graduate</td>
@@ -3796,9 +4457,14 @@ require 'header.php';
 													$resultCountingStudentmotherEducationCollegeGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationCollegeGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationCollegeGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationCollegeGraduate']."</td>";
+													$total = $row['NumberOfmotherEducationCollegeGraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>College Undergraduate</td>
@@ -3814,8 +4480,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationCollegeUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationCollegeUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationCollegeUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationCollegeUndergraduate']."</td>";
+													$total = $row['NumberOfmotherEducationCollegeUndergraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>	
 											</tr>
 											<tr>
@@ -3832,9 +4503,14 @@ require 'header.php';
 													$resultCountingStudentmotherEducationHighschoolGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationHighschoolGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationHighschoolGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationHighschoolGraduate']."</td>";
+													$total = $row['NumberOfmotherEducationHighschoolGraduate']+ $total;
 													}
 												}
-												?>	
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
+												?>
 											</tr>
 											<tr>
 												<td>Highschool Undergraduate</td>
@@ -3850,8 +4526,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationHighschoolUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationHighschoolUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationHighschoolUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationHighschoolUndergraduate']."</td>";
+													$total = $row['NumberOfmotherEducationHighschoolUndergraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3868,8 +4549,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationElementaryGraduate = mysqli_query($connect,$queryCountingStudentmotherEducationElementaryGraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationElementaryGraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationElementaryGraduate']."</td>";
+													$total = $row['NumberOfmotherEducationElementaryGraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3886,8 +4572,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationElementaryUndergraduate = mysqli_query($connect,$queryCountingStudentmotherEducationElementaryUndergraduate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationElementaryUndergraduate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationElementaryUndergraduate']."</td>";
+													$total = $row['NumberOfmotherEducationElementaryUndergraduate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3904,8 +4595,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationNotIndicated = mysqli_query($connect,$queryCountingStudentmotherEducationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationNotIndicated']."</td>";
+													$total = $row['NumberOfmotherEducationNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3922,8 +4618,13 @@ require 'header.php';
 													$resultCountingStudentmotherEducationTotal = mysqli_query($connect,$queryCountingStudentmotherEducationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherEducationTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherEducationTotal']."</td>";
+													$total = $row['NumberOfmotherEducationTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3942,6 +4643,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Local</td>
@@ -3956,8 +4658,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationLocal = mysqli_query($connect,$queryCountingStudentmotherOccupationLocal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationLocal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationLocal']."</td>";
+													$total = $row['NumberOfmotherOccupationLocal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3973,8 +4680,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationGovernment = mysqli_query($connect,$queryCountingStudentmotherOccupationGovernment);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationGovernment)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationGovernment']."</td>";
+													$total = $row['NumberOfmotherOccupationGovernment']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -3990,8 +4702,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationPrivate = mysqli_query($connect,$queryCountingStudentmotherOccupationPrivate);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationPrivate)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationPrivate']."</td>";
+													$total = $row['NumberOfmotherOccupationPrivate']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4007,8 +4724,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationAbroad = mysqli_query($connect,$queryCountingStudentmotherOccupationAbroad);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationAbroad)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationAbroad']."</td>";
+													$total = $row['NumberOfmotherOccupationAbroad']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4024,8 +4746,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentmotherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationUnemployed)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationUnemployed']."</td>";
+													$total = $row['NumberOfmotherOccupationUnemployed']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4037,12 +4764,17 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryCountingStudentmotherOccupationUnemployed = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationUnemployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Unemployed' ";
+													$queryCountingStudentmotherOccupationUnemployed = "SELECT motherOccupationType,count(*) AS NumberOfmotherOccupationSelfEmployed FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND motherOccupationType = 'Self-employed' ";
 													$resultCountingStudentmotherOccupationUnemployed = mysqli_query($connect,$queryCountingStudentmotherOccupationUnemployed);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationUnemployed)) {
-														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationUnemployed']."</td>";
+														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationSelfEmployed']."</td>";
+													$total = $row['NumberOfmotherOccupationSelfEmployed']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4058,8 +4790,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationNotIndicated = mysqli_query($connect,$queryCountingStudentmotherOccupationNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationNotIndicated']."</td>";
+													$total = $row['NumberOfmotherOccupationNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4075,8 +4812,13 @@ require 'header.php';
 													$resultCountingStudentmotherOccupationTotal = mysqli_query($connect,$queryCountingStudentmotherOccupationTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentmotherOccupationTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfmotherOccupationTotal']."</td>";
+													$total = $row['NumberOfmotherOccupationTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4095,6 +4837,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Below Average</td>
@@ -4109,8 +4852,13 @@ require 'header.php';
 													$resultCountingStudentTotalMonthlyIncomeBelowAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeBelowAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeBelowAverage)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeBelowAverage']."</td>";
+													$total = $row['NumberOfTotalMonthlyIncomeBelowAverage']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4126,8 +4874,13 @@ require 'header.php';
 													$resultCountingStudentTotalMonthlyIncomeAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeAverage)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeAverage']."</td>";
+													$total = $row['NumberOfTotalMonthlyIncomeAverage']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4143,8 +4896,13 @@ require 'header.php';
 													$resultCountingStudentTotalMonthlyIncomeAboveAverage = mysqli_query($connect,$queryCountingStudentTotalMonthlyIncomeAboveAverage);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalMonthlyIncomeAboveAverage)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalMonthlyIncomeAboveAverage']."</td>";
+													$total = $row['NumberOfTotalMonthlyIncomeAboveAverage']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4164,6 +4922,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>1</td>
@@ -4178,8 +4937,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren1 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren1);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren1)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren1']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren1']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4195,8 +4959,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren2 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren2);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren2)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren2']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren2']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4212,8 +4981,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren3 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren3);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren3)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren3']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren3']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4229,8 +5003,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren4 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren4);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren4)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren4']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren4']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4246,8 +5025,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren5 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren5);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren5)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren5']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren5']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4263,8 +5047,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren6 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren6);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren6)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren6']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren6']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4280,8 +5069,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren7 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren7);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren7)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren7']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren7']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4297,8 +5091,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren8 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren8);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren8)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren8']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren8']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4314,8 +5113,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren9 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren9);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren9)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren9']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren9']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4331,8 +5135,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildren10 = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildren10);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildren10)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildren10']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildren10']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4348,8 +5157,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildrenNotIndicated = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildrenNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildrenNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildrenNotIndicated']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildrenNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4365,8 +5179,13 @@ require 'header.php';
 													$resultCountingStudentTotalNumberOfChildrenTotal = mysqli_query($connect,$queryCountingStudentTotalNumberOfChildrenTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentTotalNumberOfChildrenTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfTotalNumberOfChildrenTotal']."</td>";
+													$total = $row['NumberOfTotalNumberOfChildrenTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4385,6 +5204,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>0</td>
@@ -4399,8 +5219,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployed0 = mysqli_query($connect,$queryCountingStudentBroSisEmployed0);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed0)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed0']."</td>";
+													$total = $row['NumberOfBroSisEmployed0']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4416,8 +5241,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployed1 = mysqli_query($connect,$queryCountingStudentBroSisEmployed1);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed1)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed1']."</td>";
+													$total = $row['NumberOfBroSisEmployed1']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4433,8 +5263,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployed2 = mysqli_query($connect,$queryCountingStudentBroSisEmployed2);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed2)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed2']."</td>";
+													$total = $row['NumberOfBroSisEmployed2']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 
 											</tr>
@@ -4451,8 +5286,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployed3 = mysqli_query($connect,$queryCountingStudentBroSisEmployed3);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed3)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed3']."</td>";
+													$total = $row['NumberOfBroSisEmployed3']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4468,8 +5308,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployed4 = mysqli_query($connect,$queryCountingStudentBroSisEmployed4);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployed4)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployed4']."</td>";
+													$total = $row['NumberOfBroSisEmployed4']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4485,8 +5330,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployedNotIndicated = mysqli_query($connect,$queryCountingStudentBroSisEmployedNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployedNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployedNotIndicated']."</td>";
+													$total = $row['NumberOfBroSisEmployedNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4502,8 +5352,13 @@ require 'header.php';
 													$resultCountingStudentBroSisEmployedTotal = mysqli_query($connect,$queryCountingStudentBroSisEmployedTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentBroSisEmployedTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfBroSisEmployedTotal']."</td>";
+													$total = $row['NumberOfBroSisEmployedTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4522,6 +5377,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Family</td>
@@ -4536,8 +5392,13 @@ require 'header.php';
 													$resultCountingStudentSupportedByYourSiblingFamily = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingFamily)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingFamily']."</td>";
+													$total = $row['NumberOfSupportedByYourSiblingFamily']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4553,8 +5414,13 @@ require 'header.php';
 													$resultCountingStudentSupportedByYourSiblingStudies = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingStudies);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingStudies)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingStudies']."</td>";
+													$total = $row['NumberOfSupportedByYourSiblingStudies']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4570,8 +5436,13 @@ require 'header.php';
 													$resultCountingStudentSupportedByYourSiblingOwnFamily = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingOwnFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingOwnFamily)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingOwnFamily']."</td>";
+													$total = $row['NumberOfSupportedByYourSiblingOwnFamily']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4587,8 +5458,13 @@ require 'header.php';
 													$resultCountingStudentSupportedByYourSiblingNotIndicated = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingNotIndicated']."</td>";
+													$total = $row['NumberOfSupportedByYourSiblingNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4604,8 +5480,13 @@ require 'header.php';
 													$resultCountingStudentSupportedByYourSiblingTotal = mysqli_query($connect,$queryCountingStudentSupportedByYourSiblingTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentSupportedByYourSiblingTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfSupportedByYourSiblingTotal']."</td>";
+													$total = $row['NumberOfSupportedByYourSiblingTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4624,6 +5505,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Parents</td>
@@ -4638,8 +5520,13 @@ require 'header.php';
 													$resultCountingschoolFinancerParents = mysqli_query($connect,$queryCountingschoolFinancerParents);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerParents)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerParents']."</td>";
+													$total = $row['NumberOfFinancerParents']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4655,8 +5542,13 @@ require 'header.php';
 													$resultCountingschoolFinancerSibling = mysqli_query($connect,$queryCountingschoolFinancerSibling);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSibling)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSibling']."</td>";
+													$total = $row['NumberOfFinancerSibling']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4672,8 +5564,13 @@ require 'header.php';
 													$resultCountingschoolFinancerSpouse = mysqli_query($connect,$queryCountingschoolFinancerSpouse);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSpouse)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSpouse']."</td>";
+													$total = $row['NumberOfFinancerSpouse']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4689,8 +5586,13 @@ require 'header.php';
 													$resultCountingschoolFinancerScholarship = mysqli_query($connect,$queryCountingschoolFinancerScholarship);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerScholarship)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerScholarship']."</td>";
+													$total = $row['NumberOfFinancerScholarship']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4706,8 +5608,13 @@ require 'header.php';
 													$resultCountingschoolFinancerSelfSupporting = mysqli_query($connect,$queryCountingschoolFinancerSelfSupporting);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerSelfSupporting)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerSelfSupporting']."</td>";
+													$total = $row['NumberOfFinancerSelfSupporting']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4723,8 +5630,13 @@ require 'header.php';
 													$resultCountingschoolFinancerNotIndicated = mysqli_query($connect,$queryCountingschoolFinancerNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerNotIndicated']."</td>";
+													$total = $row['NumberOfFinancerNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4740,8 +5652,13 @@ require 'header.php';
 													$resultCountingschoolFinancerTotal = mysqli_query($connect,$queryCountingschoolFinancerTotal);
 													while ($row = mysqli_fetch_array($resultCountingschoolFinancerTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfFinancerTotal']."</td>";
+													$total = $row['NumberOfFinancerTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4760,6 +5677,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Below and equal to 100</td>
@@ -4774,8 +5692,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowanceBelow100 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceBelow100);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceBelow100)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceBelow100']."</td>";
+													$total = $row['NumberOfWeeklyAllowanceBelow100']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4791,8 +5714,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowance101to500 = mysqli_query($connect,$queryCountingStudentWeeklyAllowance101to500);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowance101to500)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowance101to500']."</td>";
+													$total = $row['NumberOfWeeklyAllowance101to500']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4808,8 +5736,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowance501to1000 = mysqli_query($connect,$queryCountingStudentWeeklyAllowance501to1000);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowance501to1000)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowance501to1000']."</td>";
+													$total = $row['NumberOfWeeklyAllowance501to1000']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4825,8 +5758,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowanceAbove1000 = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceAbove1000);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceAbove1000)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceAbove1000']."</td>";
+													$total = $row['NumberOfWeeklyAllowanceAbove1000']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4842,8 +5780,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowanceNotIndicated = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceNotIndicated']."</td>";
+													$total = $row['NumberOfWeeklyAllowanceNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4859,8 +5802,13 @@ require 'header.php';
 													$resultCountingStudentWeeklyAllowanceTotal = mysqli_query($connect,$queryCountingStudentWeeklyAllowanceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentWeeklyAllowanceTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfWeeklyAllowanceTotal']."</td>";
+													$total = $row['NumberOfWeeklyAllowanceTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4879,6 +5827,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Yes</td>
@@ -4893,8 +5842,13 @@ require 'header.php';
 													$resultCountingStudentQuietPlaceToStudyYes = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyYes);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyYes)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceToStudyYes']."</td>";
+													$total = $row['NumberOfQuietPlaceToStudyYes']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4910,8 +5864,13 @@ require 'header.php';
 													$resultCountingStudentQuietPlaceToStudyNo = mysqli_query($connect,$queryCountingStudentQuietPlaceToStudyNo);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceToStudyNo)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceToStudyNo']."</td>";
+													$total = $row['NumberOfQuietPlaceToStudyNo']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4927,27 +5886,16 @@ require 'header.php';
 													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceTotal']."</td>";
+													$total = $row['NumberOfQuietPlaceTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
-											<tr>
-												<th>TOTAL</th>
-												<?php
-												$resultStudentQuietPlaceTotal  = mysqli_query($connect, $queryStudent); 
-												while($row = mysqli_fetch_array($resultStudentQuietPlaceTotal))
-												{
-													$currentCourse = $row['courseCode'];
-													$currentYear = $row['year'];
-													$currentSection = $row['section'];
-													$queryCountingStudentQuietPlaceTotal = "SELECT studyPlace,count(*) AS NumberOfQuietPlaceTotal FROM tbl_familybackground INNER JOIN tbl_personalinfo ON tbl_familybackground.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection'";
-													$resultCountingStudentQuietPlaceTotal = mysqli_query($connect,$queryCountingStudentQuietPlaceTotal);
-													while ($row = mysqli_fetch_array($resultCountingStudentQuietPlaceTotal)) {
-														echo "<td style='text-align:center;'>".$row['NumberOfQuietPlaceTotal']."</td>";
-													}
-												}
-												?>
-											</tr>
+											
 											<tr>
 												<th>Do you share your room with anyone?</th>
 												<?php
@@ -4964,6 +5912,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Yes</td>
@@ -4978,8 +5927,13 @@ require 'header.php';
 													$resultCountingStudentRoomSharingYes = mysqli_query($connect,$queryCountingStudentRoomSharingYes);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingYes)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingYes']."</td>";
+													$total = $row['NumberOfRoomSharingYes']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -4995,8 +5949,13 @@ require 'header.php';
 													$resultCountingStudentRoomSharingNo = mysqli_query($connect,$queryCountingStudentRoomSharingNo);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingNo)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingNo']."</td>";
+													$total = $row['NumberOfRoomSharingNo']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5012,8 +5971,13 @@ require 'header.php';
 													$resultCountingStudentRoomSharingTotal = mysqli_query($connect,$queryCountingStudentRoomSharingTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentRoomSharingTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfRoomSharingTotal']."</td>";
+													$total = $row['NumberOfRoomSharingTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5032,6 +5996,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Family</td>
@@ -5046,8 +6011,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceFamily = mysqli_query($connect,$queryCountingStudentNatureOfResidenceFamily);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceFamily)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceFamily']."</td>";
+													$total = $row['NumberOfNatureOfResidenceFamily']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5063,8 +6033,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceRelative = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRelative);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRelative)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceRelative']."</td>";
+													$total = $row['NumberOfNatureOfResidenceRelative']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5080,8 +6055,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceApartmentFriends = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentFriends);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentFriends)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceApartmentFriends']."</td>";
+													$total = $row['NumberOfNatureOfResidenceApartmentFriends']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5097,8 +6077,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceApartmentRelatives = mysqli_query($connect,$queryCountingStudentNatureOfResidenceApartmentRelatives);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceApartmentRelatives)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceApartmentRelatives']."</td>";
+													$total = $row['NumberOfNatureOfResidenceApartmentRelatives']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5114,8 +6099,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceBedSpacer = mysqli_query($connect,$queryCountingStudentNatureOfResidenceBedSpacer);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceBedSpacer)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceBedSpacer']."</td>";
+													$total = $row['NumberOfNatureOfResidenceBedSpacer']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5131,8 +6121,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceRentedApartment = mysqli_query($connect,$queryCountingStudentNatureOfResidenceRentedApartment);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceRentedApartment)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceRentedApartment']."</td>";
+													$total = $row['NumberOfNatureOfResidenceRentedApartment']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5148,8 +6143,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceDorm = mysqli_query($connect,$queryCountingStudentNatureOfResidenceDorm);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceDorm)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceDorm']."</td>";
+													$total = $row['NumberOfNatureOfResidenceDorm']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5165,8 +6165,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceNotIndicated = mysqli_query($connect,$queryCountingStudentNatureOfResidenceNotIndicated);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceNotIndicated)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceNotIndicated']."</td>";
+													$total = $row['NumberOfNatureOfResidenceNotIndicated']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5182,8 +6187,13 @@ require 'header.php';
 													$resultCountingStudentNatureOfResidenceTotal = mysqli_query($connect,$queryCountingStudentNatureOfResidenceTotal);
 													while ($row = mysqli_fetch_array($resultCountingStudentNatureOfResidenceTotal)) {
 														echo "<td style='text-align:center;'>".$row['NumberOfNatureOfResidenceTotal']."</td>";
+													$total = $row['NumberOfNatureOfResidenceTotal']+ $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5203,6 +6213,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>A. Physical</th>
@@ -5221,6 +6232,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>Yes</th>
@@ -5239,6 +6251,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Vision</td>
@@ -5254,8 +6267,13 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
 														echo "<td style='text-align:center;'>".$row['TotalVisionProblem']."</td>";
+														$total = $row['TotalVisionProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5272,8 +6290,13 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
 														echo "<td style='text-align:center;'>".$row['TotalHearingProblem']."</td>";
+														$total = $row['TotalHearingProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5285,13 +6308,18 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem = '' ";
+													$queryHealthBackgroundPhysicalSpeech = "SELECT speechProblem ,count(speechProblem) AS TotalSpeechProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND speechProblem != '' ";
 
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
 														echo "<td style='text-align:center;'>".$row['TotalSpeechProblem']."</td>";
+														$total = $row['TotalSpeechProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5303,13 +6331,18 @@ require 'header.php';
 													$currentCourse = $row['courseCode'];
 													$currentYear = $row['year'];
 													$currentSection = $row['section'];
-													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth = '' ";
+													$queryHealthBackgroundPhysicalGenHealth = "SELECT generalHealth ,count(generalHealth) AS TotalGenHealthProblem FROM tbl_healthinfo inner join tbl_personalinfo on tbl_healthinfo.studentNumber = tbl_personalinfo.studentNumber WHERE courseCode = '$currentCourse' AND year = '$currentYear' AND section = '$currentSection' AND generalHealth != '' ";
 
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
 														echo "<td style='text-align:center;'>".$row['TotalGenHealthProblem']."</td>";
+														$total = $row['TotalGenHealthProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5329,6 +6362,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Vision</td>
@@ -5344,8 +6378,13 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalVision = mysqli_query($connect,$queryHealthBackgroundPhysicalVision);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalVision)) {
 														echo "<td style='text-align:center;'>".$row['TotalVisionProblem']."</td>";
+														$total = $row['TotalVisionProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5362,8 +6401,13 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalHearing = mysqli_query($connect,$queryHealthBackgroundPhysicalHearing);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalHearing)) {
 														echo "<td style='text-align:center;'>".$row['TotalHearingProblem']."</td>";
+														$total = $row['TotalHearingProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5380,8 +6424,13 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalSpeech = mysqli_query($connect,$queryHealthBackgroundPhysicalSpeech);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalSpeech)) {
 														echo "<td style='text-align:center;'>".$row['TotalSpeechProblem']."</td>";
+														$total = $row['TotalSpeechProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5398,12 +6447,17 @@ require 'header.php';
 													$resultHealthBackgroundPhysicalGenHealth = mysqli_query($connect,$queryHealthBackgroundPhysicalGenHealth);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPhysicalGenHealth)) {
 														echo "<td style='text-align:center;'>".$row['TotalGenHealthProblem']."</td>";
+														$total = $row['TotalGenHealthProblem'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
-												<th>Psychological</th>
+												<th>B. Psychological</th>
 												<?php 
 												$resultStudentSpaceForHealthBackgroundPsychological = mysqli_query($connect, $queryStudent); 
 												while($row = mysqli_fetch_array($resultStudentSpaceForHealthBackgroundPsychological))  
@@ -5419,6 +6473,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<th>Psychiatrist</th>
@@ -5437,6 +6492,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Yes</td>
@@ -5452,8 +6508,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
 														echo "<td style='text-align:center;'>".$row['TotalPsychiatristConsult']."</td>";
+														$total = $row['TotalPsychiatristConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5470,8 +6531,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychiatrist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychiatrist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatrist)) {
 														echo "<td style='text-align:center;'>".$row['TotalPsychiatristConsult']."</td>";
+														$total = $row['TotalPsychiatristConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5490,8 +6556,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5510,8 +6581,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychiatristTotal)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristTotal = $row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalPsychiatristTotal'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5531,6 +6607,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Yes</td>
@@ -5546,8 +6623,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
 														echo "<td style='text-align:center;'>".$row['TotalPsychologistConsult']."</td>";
+														$total = $row['TotalPsychologistConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5564,8 +6646,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalPsychologist = mysqli_query($connect,$queryHealthBackgroundPsychologicalPsychologist);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychologist)) {
 														echo "<td style='text-align:center;'>".$row['TotalPsychologistConsult']."</td>";
+														$total = $row['TotalPsychologistConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5584,8 +6671,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalPsychiatristNA)) {
 														$NumberOfHealthBackgroundPsychologicalPsychiatristNA = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychiatristNA']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalPsychiatristNA'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5604,8 +6696,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalPsychologistTotal)) {
 														$NumberOfHealthBackgroundPsychologicalPsychologistTotal = $row['NumberOfHealthBackgroundPsychologicalPsychologistTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalPsychologistTotal']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalPsychologistTotal'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5625,6 +6722,7 @@ require 'header.php';
 													}
 												}
 												?>
+												<th></th><th></th>
 											</tr>
 											<tr>
 												<td>Yes</td>
@@ -5640,8 +6738,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
 														echo "<td style='text-align:center;'>".$row['TotalCounselorConsult']."</td>";
+														$total = $row['TotalCounselorConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5658,8 +6761,13 @@ require 'header.php';
 													$resultHealthBackgroundPsychologicalCounselor = mysqli_query($connect,$queryHealthBackgroundPsychologicalCounselor);
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselor)) {
 														echo "<td style='text-align:center;'>".$row['TotalCounselorConsult']."</td>";
+														$total = $row['TotalCounselorConsult'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5678,8 +6786,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultHealthBackgroundPsychologicalCounselorNA)) {
 														$NumberOfHealthBackgroundPsychologicalCounselorNA = $row['NumberOfHealthBackgroundPsychologicalCounselorNA'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalCounselorNA']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalCounselorNA'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 											<tr>
@@ -5699,8 +6812,13 @@ require 'header.php';
 													while ($row = mysqli_fetch_array($resultCountingHealthBackgroundPsychologicalCounselorTotal)) {
 														$NumberOfHealthBackgroundPsychologicalCounselorTotal = $row['NumberOfHealthBackgroundPsychologicalCounselorTotal'];
 														echo "<td style='text-align:center;'>".$row['NumberOfHealthBackgroundPsychologicalCounselorTotal']."</td>";
+														$total = $row['NumberOfHealthBackgroundPsychologicalCounselorTotal'] + $total;
 													}
 												}
+												echo "<td style='text-align:center;'>".$total."</td>";
+												$totalp = $total/$ttotal*100;
+												echo "<td style='text-align:center;'>".round($totalp,2)." %</td>";
+												$total = 0;
 												?>
 											</tr>
 										</tbody>
