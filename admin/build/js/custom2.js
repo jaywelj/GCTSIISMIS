@@ -5156,6 +5156,9 @@ $(document).ready(function() {
 	init_DataTables();
 	init_chart_doughnut();
 	init_chart_doughnut2();
+	init_chart_doughnut3();
+	init_chart_doughnut4();
+	init_chart_doughnut5();
 	init_gauge();
 	init_validator();
 	init_PNotify();

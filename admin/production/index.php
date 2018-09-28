@@ -77,7 +77,7 @@ require 'header.php';
 						<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 							<span class="count_top"><i class="fa fa-user"></i>Total Student Accounts</span>
 							<div class="count"><?php echo $row['NumberOfStudentAccounts'] ; } ?></div> 
-							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><?php echo $PercentageOfIncreaseOfStudentAccounts; ?> </i> From 6 months ago</span>
+							<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><?php echo $PercentageOfIncreaseOfStudentAccounts; ?>% </i> From 6 months ago</span>
 						</div>
 						<!-- <div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 							<span class="count_top"><i class="fa fa-clock-o"></i> Average Time</span>
@@ -110,7 +110,7 @@ require 'header.php';
 							<div class="col-md-2 col-sm-4 col-xs-6 tile_stats_count">
 								<span class="count_top"><i class="fa fa-user"></i> Total Males</span>
 								<div class="count"><?php  echo $row['NumberOfStudentMale']; } ?></div>
-								<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><?php echo $PercentageOfIncreaseOfStudentMale; ?> </i> From 6 months ago</span>
+								<span class="count_bottom"><i class="green"><i class="fa fa-sort-asc"></i><?php echo $PercentageOfIncreaseOfStudentMale; ?>% </i> From 6 months ago</span>
 							</div>
 							<?php
 							$queryStudentAccountFemale = "SELECT COUNT(*) AS NumberOfStudentFemale FROM tbl_studentaccount INNER JOIN tbl_personalinfo ON tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber WHERE sex = 'F'";
@@ -356,7 +356,8 @@ require 'header.php';
 
 																		$sexuality = $row['sexuality'];
 																		$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-																		$PercentageOfOccurancesSexuality = $row['percentage'];		
+																		$PercentageOfOccurancesSexuality = round($row['percentage'],2);
+
 																		?>
 																		<?php 
 																		echo '
@@ -446,7 +447,7 @@ require 'header.php';
 
 																	$civilStatus = $row['civilStatus'];
 																	$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
-																	$PercentageOfOccurancesCivilStatus = $row['percentage'];		
+																	$PercentageOfOccurancesCivilStatus = round($row['percentage'],2);		
 																	?>
 																	<?php 
 																	echo '
@@ -466,6 +467,204 @@ require 'header.php';
 											</div>
 										</div>
 									</div>
+
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="x_panel tile fixed_height_320 overflow_hidden">
+											<div class="x_title">
+												<h2>Room Sharing</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+													</li>
+													
+													<li><a class="close-link"><i class="fa fa-close"></i></a>
+													</li>
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											<div class="x_content">
+												<table class="" style="width:100%">
+													<tr>
+														<th style="width:37%;">
+															<p>Top 5</p>
+														</th>
+														<th>
+															<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+																<p class="">Room Sharing</p>
+															</div>
+															<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+																<p class="">Percentage</p>
+															</div>
+														</th>
+													</tr>
+													<tr>
+														<td>
+															<canvas class="roomsharingDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+														</td>
+														<td>
+															<table class="tile_info">
+																<?php 
+																$queryStudentRoomSharing = "SELECT roomSharing, count(*) as numberofoccurancesroomsharing, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancesroomsharing DESC LIMIT 5";
+																$resultStudentRoomSharing = mysqli_query($connect, $queryStudentRoomSharing);
+															// $color=array("blue","green","purple","aero","red");
+																$color=array("aero","purple","red","green","blue");
+																$arraycounter = 0;
+																while ($row = mysqli_fetch_array($resultStudentRoomSharing)) {
+
+																	$roomSharing = $row['roomSharing'];
+																	$numberofoccurancesroomsharing = $row['numberofoccurancesroomsharing'];
+																	$PercentageOfOccurancesRoomSharing = round($row['percentage'],2);		
+																	?>
+																	<?php 
+																	echo '
+																	<tr>
+																	<td>
+																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$roomSharing.'</p>
+																	</td>
+																	<td>'.$PercentageOfOccurancesRoomSharing.'</td>
+																	</tr>';
+																	$arraycounter++;
+																}
+																?>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="x_panel tile fixed_height_320 overflow_hidden">
+											<div class="x_title">
+												<h2>Ordinal Position</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+													</li>
+													
+													<li><a class="close-link"><i class="fa fa-close"></i></a>
+													</li>
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											<div class="x_content">
+												<table class="" style="width:100%">
+													<tr>
+														<th style="width:37%;">
+															<p>Top 5</p>
+														</th>
+														<th>
+															<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+																<p class="">Ordinal Position</p>
+															</div>
+															<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+																<p class="">Percentage</p>
+															</div>
+														</th>
+													</tr>
+													<tr>
+														<td>
+															<canvas class="ordinalpositionDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+														</td>
+														<td>
+															<table class="tile_info">
+																<?php 
+																$queryStudentordinalposition = "SELECT ordinalPosition, count(*) as numberofoccurancesordinalposition, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancesordinalposition DESC LIMIT 5";
+																$resultStudentordinalposition = mysqli_query($connect, $queryStudentordinalposition);
+															// $color=array("blue","green","purple","aero","red");
+																$color=array("aero","purple","red","green","blue");
+																$arraycounter = 0;
+																while ($row = mysqli_fetch_array($resultStudentordinalposition)) {
+
+																	$ordinalposition = $row['ordinalPosition'];
+																	$numberofoccurancesordinalposition = $row['numberofoccurancesordinalposition'];
+																	$PercentageOfOccurancesordinalposition = round($row['percentage'],2);		
+																	?>
+																	<?php 
+																	echo '
+																	<tr>
+																	<td>
+																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$ordinalposition.'</p>
+																	</td>
+																	<td>'.$PercentageOfOccurancesordinalposition.'</td>
+																	</tr>';
+																	$arraycounter++;
+																}
+																?>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+
+									<div class="col-md-4 col-sm-4 col-xs-12">
+										<div class="x_panel tile fixed_height_320 overflow_hidden">
+											<div class="x_title">
+												<h2>Total Monthly Income</h2>
+												<ul class="nav navbar-right panel_toolbox">
+													<li><a class="collapse-link"><i class="fa fa-chevron-up"></i></a>
+													</li>
+													
+													<li><a class="close-link"><i class="fa fa-close"></i></a>
+													</li>
+												</ul>
+												<div class="clearfix"></div>
+											</div>
+											<div class="x_content">
+												<table class="" style="width:100%">
+													<tr>
+														<th style="width:37%;">
+															<p>Top 5</p>
+														</th>
+														<th>
+															<div class="col-lg-7 col-md-7 col-sm-7 col-xs-7">
+																<p class="">Total Monthly Income</p>
+															</div>
+															<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
+																<p class="">Percentage</p>
+															</div>
+														</th>
+													</tr>
+													<tr>
+														<td>
+															<canvas class="totalmonthlyincomeDoughnut" height="140" width="140" style="margin: 15px 10px 10px 0"></canvas>
+														</td>
+														<td>
+															<table class="tile_info">
+																<?php 
+																$queryStudenttotalmonthlyincome = "SELECT totalMonthlyIncome, count(*) as numberofoccurancestotalmonthlyincome, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancestotalmonthlyincome DESC LIMIT 5";
+																$resultStudenttotalmonthlyincome = mysqli_query($connect, $queryStudenttotalmonthlyincome);
+															// $color=array("blue","green","purple","aero","red");
+																$color=array("aero","purple","red","green","blue");
+																$arraycounter = 0;
+																while ($row = mysqli_fetch_array($resultStudenttotalmonthlyincome)) {
+
+																	$totalmonthlyincome = $row['totalMonthlyIncome'];
+																	$numberofoccurancestotalmonthlyincome = $row['numberofoccurancestotalmonthlyincome'];
+																	$PercentageOfOccurancestotalmonthlyincome = round($row['percentage'],2);		
+																	?>
+																	<?php 
+																	echo '
+																	<tr>
+																	<td>
+																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$totalmonthlyincome.'</p>
+																	</td>
+																	<td>'.$PercentageOfOccurancestotalmonthlyincome.'</td>
+																	</tr>';
+																	$arraycounter++;
+																}
+																?>
+															</table>
+														</td>
+													</tr>
+												</table>
+											</div>
+										</div>
+									</div>
+
+
+
 									<?php 
 									require 'viewMessageModal.php';
 									?>
@@ -543,7 +742,7 @@ require 'header.php';
 
 										$sexualityArray[] = $row['sexuality'];
 										$numberofoccurancessexuality = $row['numberofoccurancessexuality'];
-										$PercentageOfOccurancesSexualityArray[] = $row['percentage'];		
+										$PercentageOfOccurancesSexualityArray[] = round($row['percentage'],2);		
 
 									}
 									$sexualityString = "";
@@ -625,7 +824,7 @@ require 'header.php';
 
 										$civilstatusArray[] = $row['civilStatus'];
 										$numberofoccurancescivilstatus = $row['numberofoccurancescivilstatus'];
-										$PercentageOfOccurancesCivilStatusArray[] = $row['percentage'];		
+										$PercentageOfOccurancesCivilStatusArray[] = round($row['percentage'],2);		
 
 									}
 									$civilstatusString = "";
@@ -696,6 +895,252 @@ require 'header.php';
 										}
 
 									</script>
+
+
+									<?php 
+									$queryStudentRoomSharing = "SELECT roomSharing, count(*) as numberofoccurancesroomsharing, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancesroomsharing DESC LIMIT 5";
+									$resultStudentRoomSharing = mysqli_query($connect, $queryStudentRoomSharing);
+									$color=array("blue","green","purple","aero","red");
+									$arraycounter = 0;
+									while ($row = mysqli_fetch_array($resultStudentRoomSharing)) {
+
+										$roomsharingArray[] = $row['roomSharing'];
+										$numberofoccurancescivilstatus = $row['numberofoccurancesroomsharing'];
+										$PercentageOfOccurancesRoomSharingArray[] = round($row['percentage'],2);		
+
+									}
+									$roomsharingString = "";
+									foreach($roomsharingArray as $roomsharingValue) 
+									{
+										$roomsharingString .= '"'.$roomsharingValue.'",' ;
+									}
+									$PercentageOfOccurancesRoomSharingString="";
+									foreach ($PercentageOfOccurancesRoomSharingArray as $PercentageOfOccurancesRoomSharingValue) 
+									{
+										$PercentageOfOccurancesRoomSharingString .= ''.$PercentageOfOccurancesRoomSharingValue.',';	
+									}
+									foreach ($color as $colorValue) {
+										$colorString .= ''.$colorValue.',';
+									}
+									?>
+									<script>
+										function init_chart_doughnut3(){
+
+											if( typeof (Chart) === 'undefined'){ return; }
+
+											console.log('init_chart_doughnut3');
+
+											if ($('.roomsharingDoughnut').length){
+
+												var chart_doughnut_settings3 = {
+													type: 'doughnut',
+													tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+													data: {
+														labels: [
+														<?php
+														echo $roomsharingString;
+														?>
+														],
+														datasets: [{
+															data: [<?php echo $PercentageOfOccurancesRoomSharingString; ?>],
+															backgroundColor: [
+															"#BDC3C7",
+															"#9B59B6",
+															"#E74C3C",
+															"#26B99A",
+															"#3498DB"
+															],
+															hoverBackgroundColor: [
+															"#CFD4D8",
+															"#B370CF",
+															"#E95E4F",
+															"#36CAAB",
+															"#49A9EA"
+															]
+														}]
+													},
+													options: { 
+														legend: false, 
+														responsive: false 
+													}
+												}
+
+												$('.roomsharingDoughnut').each(function(){
+
+													var chart_element3 = $(this);
+													var chart_doughnut3 = new Chart( chart_element3, chart_doughnut_settings3);
+
+												});			
+
+											}  
+
+										}
+
+									</script>
+
+									<?php 
+									$queryStudentordinalposition = "SELECT ordinalPosition, count(*) as numberofoccurancesordinalposition, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancesordinalposition DESC LIMIT 5";
+									$resultStudentordinalposition = mysqli_query($connect, $queryStudentordinalposition);
+									$color=array("blue","green","purple","aero","red");
+									$arraycounter = 0;
+									while ($row = mysqli_fetch_array($resultStudentordinalposition)) {
+
+										$ordinalpositionArray[] = $row['ordinalPosition'];
+										$numberofoccurancescivilstatus = $row['numberofoccurancesordinalposition'];
+										$PercentageOfOccurancesordinalpositionArray[] = round($row['percentage'],2);		
+
+									}
+									$ordinalpositionString = "";
+									foreach($ordinalpositionArray as $ordinalpositionValue) 
+									{
+										$ordinalpositionString .= '"'.$ordinalpositionValue.'",' ;
+									}
+									$PercentageOfOccurancesordinalpositionString="";
+									foreach ($PercentageOfOccurancesordinalpositionArray as $PercentageOfOccurancesordinalpositionValue) 
+									{
+										$PercentageOfOccurancesordinalpositionString .= ''.$PercentageOfOccurancesordinalpositionValue.',';	
+									}
+									foreach ($color as $colorValue) {
+										$colorString .= ''.$colorValue.',';
+									}
+									?>
+									<script>
+										function init_chart_doughnut4(){
+
+											if( typeof (Chart) === 'undefined'){ return; }
+
+											console.log('init_chart_doughnut4');
+
+											if ($('.ordinalpositionDoughnut').length){
+
+												var chart_doughnut_settings4 = {
+													type: 'doughnut',
+													tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+													data: {
+														labels: [
+														<?php
+														echo $ordinalpositionString;
+														?>
+														],
+														datasets: [{
+															data: [<?php echo $PercentageOfOccurancesordinalpositionString; ?>],
+															backgroundColor: [
+															"#BDC3C7",
+															"#9B59B6",
+															"#E74C3C",
+															"#26B99A",
+															"#3498DB"
+															],
+															hoverBackgroundColor: [
+															"#CFD4D8",
+															"#B370CF",
+															"#E95E4F",
+															"#36CAAB",
+															"#49A9EA"
+															]
+														}]
+													},
+													options: { 
+														legend: false, 
+														responsive: false 
+													}
+												}
+
+												$('.ordinalpositionDoughnut').each(function(){
+
+													var chart_element4 = $(this);
+													var chart_doughnut4 = new Chart( chart_element4, chart_doughnut_settings4);
+
+												});			
+
+											}  
+
+										}
+
+									</script>
+
+									<?php 
+									$queryStudenttotalmonthlyincome = "SELECT totalMonthlyIncome, count(*) as numberofoccurancestotalmonthlyincome, sum(100) / percent as percentage from tbl_familybackground cross join (select count(*) as percent from tbl_familybackground) x group by 1 ORDER BY numberofoccurancestotalmonthlyincome DESC LIMIT 5";
+									$resultStudenttotalmonthlyincome = mysqli_query($connect, $queryStudenttotalmonthlyincome);
+									$color=array("blue","green","purple","aero","red");
+									$arraycounter = 0;
+									while ($row = mysqli_fetch_array($resultStudenttotalmonthlyincome)) {
+
+										$totalmonthlyincomeArray[] = $row['totalMonthlyIncome'];
+										$numberofoccurancescivilstatus = $row['numberofoccurancestotalmonthlyincome'];
+										$PercentageOfOccurancestotalmonthlyincomeArray[] = round($row['percentage'],2);		
+
+									}
+									$totalmonthlyincomeString = "";
+									foreach($totalmonthlyincomeArray as $totalmonthlyincomeValue) 
+									{
+										$totalmonthlyincomeString .= '"'.$totalmonthlyincomeValue.'",' ;
+									}
+									$PercentageOfOccurancestotalmonthlyincomeString="";
+									foreach ($PercentageOfOccurancestotalmonthlyincomeArray as $PercentageOfOccurancestotalmonthlyincomeValue) 
+									{
+										$PercentageOfOccurancestotalmonthlyincomeString .= ''.$PercentageOfOccurancestotalmonthlyincomeValue.',';	
+									}
+									foreach ($color as $colorValue) {
+										$colorString .= ''.$colorValue.',';
+									}
+									?>
+									<script>
+										function init_chart_doughnut5(){
+
+											if( typeof (Chart) === 'undefined'){ return; }
+
+											console.log('init_chart_doughnut5');
+
+											if ($('.totalmonthlyincomeDoughnut').length){
+
+												var chart_doughnut_settings5 = {
+													type: 'doughnut',
+													tooltipFillColor: "rgba(51, 51, 51, 0.55)",
+													data: {
+														labels: [
+														<?php
+														echo $totalmonthlyincomeString;
+														?>
+														],
+														datasets: [{
+															data: [<?php echo $PercentageOfOccurancestotalmonthlyincomeString; ?>],
+															backgroundColor: [
+															"#BDC3C7",
+															"#9B59B6",
+															"#E74C3C",
+															"#26B99A",
+															"#3498DB"
+															],
+															hoverBackgroundColor: [
+															"#CFD4D8",
+															"#B370CF",
+															"#E95E4F",
+															"#36CAAB",
+															"#49A9EA"
+															]
+														}]
+													},
+													options: { 
+														legend: false, 
+														responsive: false 
+													}
+												}
+
+												$('.totalmonthlyincomeDoughnut').each(function(){
+
+													var chart_element5 = $(this);
+													var chart_doughnut5 = new Chart( chart_element5, chart_doughnut_settings5);
+
+												});			
+
+											}  
+
+										}
+
+									</script>
+
+
 									<?php
 
 									$queryPlotChart1 = "SELECT MONTH(`studentDateAccountCreated`) AS Month , DAY(`studentDateAccountCreated`) AS Day , YEAR(`studentDateAccountCreated`) AS Year , COUNT(DISTINCT studentNumber) as NumberOfAccountsCreated FROM `tbl_studentaccount` WHERE studentDateAccountCreated > DATE_SUB(now(), INTERVAL 1 WEEK) GROUP BY MONTH(`studentDateAccountCreated`), DAY(`studentDateAccountCreated`), YEAR(`studentDateAccountCreated`) ORDER BY studentDateAccountCreated ASC";
