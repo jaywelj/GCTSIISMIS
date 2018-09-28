@@ -634,6 +634,29 @@ else
 <br>
 <hr>
 <center><h1>Query Result</h1></center>
+<?php
+if(!empty($selections))
+{
+	$query = "
+	SELECT $distinct $selections FROM tbl_studentaccount
+	INNER JOIN tbl_personalinfo on tbl_studentaccount.studentNumber = tbl_personalinfo.studentNumber
+	INNER JOIN tbl_educationalbackground on tbl_studentaccount.studentNumber = tbl_educationalbackground.studentNumber
+	INNER JOIN tbl_familybackground on tbl_studentaccount.studentNumber = tbl_familybackground.studentNumber
+	INNER JOIN tbl_healthinfo on tbl_studentaccount.studentNumber = tbl_healthinfo.studentNumber
+	INNER JOIN tbl_interesthobbies on tbl_studentaccount.studentNumber = tbl_interesthobbies.studentNumber $joinClause
+	$whereClause  $sgroup
+	";
+	if(!($queryResult = mysqli_query($connect, $query)))
+	{
+		echo mysqli_error($connect);
+	}
+	else 
+	{
+		$num = mysqli_num_rows($queryResult);
+	}
+}
+?>
+<center><h2>No Of Respondents = <?php echo $num; ?></h2></center>
 <hr>
 <table id="datatable-buttons" class="table table-striped table-bordered">
 	<thead>
@@ -714,38 +737,136 @@ else
 <?php
 if(count($groupByValues) !=0 && mysqli_num_rows(mysqli_query($connect, $query2))!=0)
 { 
-	echo '<!-- pie chart -->
-	<div class="col-md-6 col-sm-6 col-xs-12">
+	// echo '<!-- pie chart -->
+	// <div class="col-md-6 col-sm-6 col-xs-12">
+	// <div class="x_panel" style="margin-top: 40px;">
+	// <div class="x_title">
+	// <h2>Result Summary<small>Pie Chart</small></h2>
+	// <div class="clearfix"></div>
+	// </div>
+	// <div class="x_content2">
+	// <div id="summary_donut" style="width:100%; height:300px;"></div>
+	// </div>
+	// </div>
+	// </div>
+	// <!-- /Pie chart -->';
+	// echo '<!-- pie chart -->
+	// <div class="col-md-6 col-sm-6 col-xs-12">
+	// <div class="x_panel" style="margin-top: 24px;">
+	// <div class="x_title">
+	// <h2>Overall Comparison<small>Pie Chart</small></h2>
+	// <div class="clearfix"></div>
+	// </div>
+	// <div class="x_content2">
+	// <div id="overall_donut" style="width:100%; height:300px;"></div>
+	// </div>
+	// </div>
+	// </div>
+	// <!-- /Pie chart -->';
+	echo'<div class="col-md-12 col-sm-12 col-xs-12">
 	<div class="x_panel" style="margin-top: 40px;">
 	<div class="x_title">
-	<h2>Result Summary<small>Pie Chart</small></h2>
+	<h5 style="font-weight:600">Detailed Chart (Comparing Search Results)</h5>
+
 	<div class="clearfix"></div>
 	</div>
-	<div class="x_content2">
-	<div id="summary_donut" style="width:100%; height:300px;"></div>
+	<div class="x_content">
+
+	<div id="echarts_pie1" style="width: auto; height:400px;"></div>
+
 	</div>
 	</div>
-	</div>
-	<!-- /Pie chart -->';
-	echo '<!-- pie chart -->
-	<div class="col-md-6 col-sm-6 col-xs-12">
-	<div class="x_panel" style="margin-top: 24px;">
+	</div>';
+	echo "
+	<script type='text/javascript'> var myChart1 = echarts.init(document.getElementById('echarts_pie1')); option = {title : {text: 'Pie Chart', subtext: 'Graphical Representation', x:'center'}, tooltip : {trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)'}, legend: {orient: 'vertical', left: 'left', data: [";
+	if(!($queryResult2 = mysqli_query($connect, $query2)))
+	{
+		echo mysqli_error($connect);
+	}
+	else if(mysqli_num_rows($queryResult2)!=0)
+	{
+		while($row = mysqli_fetch_array($queryResult2))
+		{
+			echo "'".$row[0]."',"; 
+		}
+	}
+	echo"] }, toolbox: {show: true, feature: {restore: {show: true, title: 'Restore'}, saveAsImage: {show: true, title: 'Save Image'} }, x:'right'}, series : [{name: 'Details', type: 'pie', radius : '70%', center: ['50%', '60%'],";
+	echo " data:[";
+	if(!($queryResult2 = mysqli_query($connect, $query2)))
+	{
+		echo mysqli_error($connect);
+	}
+	else if(mysqli_num_rows($queryResult2)!=0)
+	{
+		while($row = mysqli_fetch_array($queryResult2))
+		{
+			$total = $row['counts'];
+			echo "{value:".$row['counts'].", name:'".$row[0]."'},"; 
+		}
+	}
+	
+	echo"], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart1.setOption(option); </script>"; 
+
+	echo'<div class="col-md-12 col-sm-12 col-xs-12">
+	<div class="x_panel" style="margin-top: 40px;">
 	<div class="x_title">
-	<h2>Overall Comparison<small>Pie Chart</small></h2>
+	<h5 style="font-weight:600">Summary Chart (Comparing to Overall)</h5>
+
 	<div class="clearfix"></div>
 	</div>
-	<div class="x_content2">
-	<div id="overall_donut" style="width:100%; height:300px;"></div>
+	<div class="x_content">
+
+	<div id="echarts_pie2" style="width: auto; height:400px;"></div>
+
 	</div>
 	</div>
-	</div>
-	<!-- /Pie chart -->';
+	</div>';
+	echo "
+	<script type='text/javascript'> var myChart2 = echarts.init(document.getElementById('echarts_pie2')); option = {title : {text: 'Pie Chart', subtext: 'Graphical Representation', x:'center'}, tooltip : {trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)'}, legend: {orient: 'vertical', left: 'left', data: [";
+	if(!($queryResult2 = mysqli_query($connect, $query2)))
+	{
+		echo mysqli_error($connect);
+	}
+	else if(mysqli_num_rows($queryResult2)!=0)
+	{
+
+		$num = mysqli_num_rows($queryResult);
+		$queryResult3 = mysqli_query($connect, "SELECT studentNumber FROM tbl_studentaccount");
+		$otherHalf = mysqli_num_rows($queryResult3) - $num;
+		echo "'Result Total',";
+		if($otherHalf != 0)
+		echo "'Other Students'";
+	}
+	echo"] }, toolbox: {show: true, feature: {restore: {show: true, title: 'Restore'}, saveAsImage: {show: true, title: 'Save Image'} }, x:'right'}, series : [{name: 'Details', type: 'pie', radius : '70%', center: ['50%', '60%'],";
+	echo " data:[";
+
+	if(!($queryResult = mysqli_query($connect, $query)))
+	{
+		echo mysqli_error($connect);
+	}
+	else
+	{
+
+		$total = mysqli_num_rows($queryResult3);
+		echo "{value:".$num.", name:'Result Total'},"; 
+		if($otherHalf != 0)
+			echo "{value:".$otherHalf.", name:'Other Students'},"; 
+	}
+	
+	echo"], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart2.setOption(option); </script>";
 }
 else
 {
 }
+
+
 ?>
 <script type="text/javascript">
+	var noOfRespondents = '<?php echo $num?>';
+
+</script>
+
+<!-- <script type="text/javascript">
 	
 	function init_morris_charts() {
 		if ($('#summary_donut').length ){
@@ -829,6 +950,6 @@ else
 		}
 	}
 	
-</script>
+</script> -->
 
 

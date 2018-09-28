@@ -31,6 +31,9 @@
 	<!--Checkbox-->
 	<link href="css/checkbox/checkbox.css" rel="stylesheet">
 
+	<!-- ECharts -->
+	<script src="../vendors/echarts/dist/echarts.min.js"></script>
+
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
 	<style type="text/css">
@@ -1067,7 +1070,39 @@ require 'header.php';
 
 		});
 	</script>
+	<script type="text/javascript">
 
+		function submitForm(){
+			var myform = document.getElementById("queryForm");
+			var fd = new FormData(myform);
+			$.ajax({
+				url: "queryTable.php",
+				data: fd,
+				cache: false,
+				processData: false,
+				contentType: false,
+				type: 'POST',
+				success: function (dataofconfirm) {	
+					$('#query-table').html(dataofconfirm);
+					init_DataTables();
+					window.scrollTo(0, 2100);
+					init_morris_charts();
+				}
+			});
+		}
+		function funcCheckAge(checker){
+			if(checker==true)
+			{
+				document.getElementById('dropdownMinAge').disabled=false;
+				document.getElementById('dropdownMaxAge').disabled=false;
+			}
+			else
+			{
+				document.getElementById('dropdownMinAge').disabled=true;
+				document.getElementById('dropdownMaxAge').disabled=true;
+			}
+		}
+	</script>
 	<script type="text/javascript">
 		function init_DataTables() {
 			const monthNames = ["January", "February", "March", "April", "May", "June",
@@ -1109,7 +1144,8 @@ require 'header.php';
 								$(win.document.body)
 								.css( 'font-size', '10pt', 'margin-left', '-500px' )
 								.prepend(
-									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >Office of Counseling and Psychological Services</h4><h3 class="text-center" >Query Report</h3><h5 class="text-center" style="margin-bottom:40px;">'+monthName+', '+year+'</h5><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" />'
+									'<img src="https://image.ibb.co/fwB5qz/GCTS_LOGO1.png" style="position:absolute; top:0px; left:0;" /><h4 class="text-center">Polytechnic University of the Philippines</h4><h4 class="text-center" >OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h4><h3 class="text-center" >Query Report</h3><h5 class="text-center" >'+monthName+', '+year+'</h5><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" /><h4 class="text-center" style="margin-bottom:40px;">Respondents = '+noOfRespondents+'</h4>'
+
 									);
 
 								$(win.document.body).find( 'table' )
@@ -1171,39 +1207,7 @@ require 'header.php';
 
 		};
 	</script>
-	<script type="text/javascript">
-
-		function submitForm(){
-			var myform = document.getElementById("queryForm");
-			var fd = new FormData(myform);
-			$.ajax({
-				url: "queryTable.php",
-				data: fd,
-				cache: false,
-				processData: false,
-				contentType: false,
-				type: 'POST',
-				success: function (dataofconfirm) {	
-					$('#query-table').html(dataofconfirm);
-					init_DataTables();
-					window.scrollTo(0, 2100);
-					init_morris_charts();
-				}
-			});
-		}
-		function funcCheckAge(checker){
-			if(checker==true)
-			{
-				document.getElementById('dropdownMinAge').disabled=false;
-				document.getElementById('dropdownMaxAge').disabled=false;
-			}
-			else
-			{
-				document.getElementById('dropdownMinAge').disabled=true;
-				document.getElementById('dropdownMaxAge').disabled=true;
-			}
-		}
-	</script>
+	
 	
 </body>
 </html>
