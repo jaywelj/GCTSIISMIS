@@ -55,8 +55,6 @@ if(isset($_POST['btnSubmit']))
 
 	<!-- Custom Theme Style -->
 	<link href="../build/css/custom.min.css" rel="stylesheet">
-
-
 	<!-- ECharts -->
 	<script src="../vendors/echarts/dist/echarts.min.js"></script>
 </head>
@@ -208,7 +206,7 @@ require 'header.php';
 														array_push($values, $row2['COUNT(answerID)']);
 													}
 												}
-												echo " data:[{value:".$values[0].", name:'Never', itemStyle: {color: '#0066cc'}}, {value:".$values[1].", name:'Seldom', itemStyle: {color: '#009933'}}, {value:".$values[2].", name:'Sometimes', itemStyle: {color: '#ffcc00'}}, {value:".$values[3].", name:'Often', itemStyle: {color: '#ff6600'}}, {value:".$values[4].", name:'Always', itemStyle: {color: '#cc0000'}} ], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart".$total.".setOption(option); </script>"; 
+												echo " data:[{value:".$values[0].", name:'Never', itemStyle: {color: '#0066cc'}}, {value:".$values[1].", name:'Seldom', itemStyle: {color: '#009933'}}, {value:".$values[2].", name:'Sometimes', itemStyle: {color: '#ffcc00'}}, {value:".$values[3].", name:'Often', itemStyle: {color: '#ff6600'}}, {value:".$values[4].", name:'Always', itemStyle: {color: '#cc0000'}}, ], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart".$total.".setOption(option); </script>"; 
 
 												$total++;
 											}
