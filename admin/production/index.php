@@ -365,7 +365,7 @@ require 'header.php';
 																		<td>
 																		<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$sexuality.'</p>
 																		</td>
-																		<td>'.$PercentageOfOccurancesSexuality.'</td>
+																		<td>'.$PercentageOfOccurancesSexuality.'%</td>
 																		</tr>';
 																		$arraycounter++;
 																	}
@@ -455,7 +455,7 @@ require 'header.php';
 																	<td>
 																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$civilStatus.'</p>
 																	</td>
-																	<td>'.$PercentageOfOccurancesCivilStatus.'</td>
+																	<td>'.$PercentageOfOccurancesCivilStatus.'%</td>
 																	</tr>';
 																	$arraycounter++;
 																}
@@ -520,7 +520,7 @@ require 'header.php';
 																	<td>
 																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$roomSharing.'</p>
 																	</td>
-																	<td>'.$PercentageOfOccurancesRoomSharing.'</td>
+																	<td>'.$PercentageOfOccurancesRoomSharing.'%</td>
 																	</tr>';
 																	$arraycounter++;
 																}
@@ -585,7 +585,7 @@ require 'header.php';
 																	<td>
 																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$ordinalposition.'</p>
 																	</td>
-																	<td>'.$PercentageOfOccurancesordinalposition.'</td>
+																	<td>'.$PercentageOfOccurancesordinalposition.'%</td>
 																	</tr>';
 																	$arraycounter++;
 																}
@@ -650,7 +650,7 @@ require 'header.php';
 																	<td>
 																	<p><i class="fa fa-square '.$color[$arraycounter].'"></i>'.$totalmonthlyincome.'</p>
 																	</td>
-																	<td>'.$PercentageOfOccurancestotalmonthlyincome.'</td>
+																	<td>'.$PercentageOfOccurancestotalmonthlyincome.'%</td>
 																	</tr>';
 																	$arraycounter++;
 																}
