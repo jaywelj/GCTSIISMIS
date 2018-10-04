@@ -45,7 +45,7 @@ while($row = mysqli_fetch_array($resultGettingAdmin))
 
 
 $queryInsertingPrintedSignificantNotes = "";
-$resulto = mysqli_query($connect,"INSERT INTO `tbl_printedsignificantnotes` (`print_ID`, `studentNumber`, `adminID`, `datePrinted`) VALUES (NULL, '$varcharStudentAccountNumber', '$LoggedInAdminID', CURRENT_TIMESTAMP)");
+$resulto = mysqli_query($connect,"INSERT INTO `tbl_printedsignificantnotes` (`print_ID`, `studentNumber`, `adminID`, `datePrinted`,`printClassification`) VALUES (NULL, '$varcharStudentAccountNumber', '$LoggedInAdminID', CURRENT_TIMESTAMP, 'Print')");
 
 $result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
                                                                         //$res = mysqli_fetch_assoc($result);

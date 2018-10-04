@@ -5,9 +5,27 @@ session_start();
 $varcharAdminAccessLevel = $_SESSION['sessionAdminAccessLevel'];
 
 $varcharStudentAccountNumber = $_GET['id'];
+
 ?>
 <?php
 include("connectionString.php");
+
+$sessionEmail = $_SESSION['sessionAdminEmail'];
+$queryGettingAdmin = "SELECT * FROM tbl_adminaccount WHERE `adminEmail` = '$sessionEmail' LIMIT 1";
+$resultGettingAdmin = mysqli_query($connect, $queryGettingAdmin); 
+
+
+
+while($row = mysqli_fetch_array($resultGettingAdmin))  
+{
+
+	$LoggedInAdminEmail = $row['adminEmail'];
+	$LoggedInAdminID = $row['adminId'];
+	$LoggedInAdminFirstName = $row['adminFirstName'];
+	$LoggedInAdminMiddleName = $row['adminMiddleName'];
+	$LoggedInAdminLastName = $row['adminLastName'];
+
+}
 
 $result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
 																		//$res = mysqli_fetch_assoc($result);
@@ -310,9 +328,11 @@ require 'header.php';
 													</li>
 													<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="test-tab" data-toggle="tab" aria-expanded="false">Test Results</a>
 													</li>
-													<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
+													<li role="presentation" class="significantnotes"  ><a href="#tab_content7" class="significantnotes" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
 													</li>
 													<li role="presentation" class=""  ><a href="#tab_content8" role="tab" id="viewprinting-tab" data-toggle="tab" aria-expanded="false">List Of Prints</a>
+													</li>
+													<li role="presentation" class=""  ><a href="#tab_content9" role="tab" id="viewviewing-tab" data-toggle="tab" aria-expanded="false">List Of Ciews</a>
 													</li>
 													<?php
 												}
@@ -331,7 +351,7 @@ require 'header.php';
 													</li>
 													<li role="presentation" class=""  ><a href="#tab_content6" role="tab" id="test-tab" data-toggle="tab" aria-expanded="false">Test Results</a>
 													</li>
-													<li role="presentation" class=""  ><a href="#tab_content7" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
+													<li role="presentation"   ><a href="#tab_content7" class="significantnotes" role="tab" id="notes-tab" data-toggle="tab" aria-expanded="false">Significant Notes</a>
 													</li>
 													<?php
 												}
@@ -980,6 +1000,12 @@ require 'header.php';
 																<table class="table">
 																	<a href="printSignificantNotes.php?id=<?php echo $varcharStudentNumber;?>" class="btn btn-info btn-sm " title="Print">Print Significant Notes</a>
 																	<?php
+
+																	$resulto = mysqli_query($connect,"INSERT INTO `tbl_printedsignificantnotes` (`print_ID`, `studentNumber`, `adminID`, `datePrinted`,`printClassification`) VALUES (NULL, '$varcharStudentAccountNumber', '$LoggedInAdminID', CURRENT_TIMESTAMP, 'View')");
+
+																	$result = mysqli_query($connect,"SELECT * FROM `tbl_studentaccount`WHERE studentNumber = '$varcharStudentAccountNumber'");
+
+
 																	$result7 = mysqli_query($connect, "SELECT * FROM tbl_significantnotes INNER JOIN tbl_personalinfo ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
 																	$i = 0;
 																	while($res7 = mysqli_fetch_array($result7)){
@@ -1081,12 +1107,12 @@ require 'header.php';
 																<table class="table">
 																	
 																	<?php
-																	$result8 = mysqli_query($connect, "SELECT * FROM tbl_printedsignificantnotes INNER JOIN tbl_personalinfo ON tbl_printedsignificantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
+																	$result8 = mysqli_query($connect, "SELECT * FROM tbl_printedsignificantnotes INNER JOIN tbl_personalinfo ON tbl_printedsignificantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber' AND tbl_printedsignificantnotes.printClassification = 'Print' ORDER BY datePrinted DESC");
 																	$i = 0;
 																	while($res8 = mysqli_fetch_array($result8)){
 
 																		$varcharprintid = $res8['print_ID'];
-																		$varcharadminid = $res8['adminID'];
+																		$varcharadminid = $res8['adminId'];
 																		$varchardateprinted = $res8['datePrinted'];
 
 
@@ -1104,7 +1130,7 @@ require 'header.php';
 																				<td><?php echo $varchardateprinted; ?></td>
 																			</tr>
 																			<?php
-																			$queryGettingAdminID2 = "SELECT * FROM tbl_adminaccount WHERE `adminId` = '$varcharadminid' ";
+																			$queryGettingAdminID2 = "SELECT * FROM tbl_adminaccount WHERE `adminId` = '".$res8['adminId']."' ";
 																			$resultGettingAdminID2 = mysqli_query($connect, $queryGettingAdminID2); 
 																			while($res3 = mysqli_fetch_array($resultGettingAdminID2))  
 																			{ 
@@ -1113,7 +1139,69 @@ require 'header.php';
 																				?>
 																				<tr>
 																					<th scope="row">Printed by</th>
-																					<td><?php echo $varcharStudentAdminFirstName; ?> <?php echo $varcharStudentAdminLastName; ?> </td>
+																					<td><?php echo $varcharStudentAdminFirstName2; ?> <?php echo $varcharStudentAdminLastName2; ?> </td>
+																				</tr>
+																				<?php 
+																			}
+																			?>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<?php
+
+																		}
+																		?>
+																	</tbody>
+																</table>
+																<br/>
+															</div>
+														</li>
+													</ul>
+													<!-- end recent activity -->
+												</div>
+												<div role="tabpanel" class="tab-pane fade" id="tab_content9" aria-labelledby="home-tab">
+													<!-- start recent activity -->
+													<ul class="messages">
+														<li>
+															<div class="message_wrapper">
+
+																<h4 class="heading">List Of Those Who Viewed IIR/Significant Notes Of This Student</h4>
+																<table class="table">
+																	
+																	<?php
+																	$result9 = mysqli_query($connect, "SELECT * FROM tbl_printedsignificantnotes INNER JOIN tbl_personalinfo ON tbl_printedsignificantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber' AND tbl_printedsignificantnotes.printClassification = 'View' ORDER BY datePrinted DESC");
+																	$i = 0;
+																	while($res9 = mysqli_fetch_array($result9)){
+
+																		$varcharprintid = $res9['print_ID'];
+																		$varcharadminid = $res9['adminId'];
+																		$varchardateprinted = $res9['datePrinted'];
+
+
+																		$i = $i + 1 ;
+																		?>
+																		<tbody>
+																			<tr>
+																				<th scope="row" style="width: 400px;">View ID <?php echo $varcharprintid; ?></th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">  </th>
+																			</tr>
+																			<tr>
+																				<th scope="row" style="width: 400px;">Date And Time Viewed</th>
+																				<td><?php echo $varchardateprinted; ?></td>
+																			</tr>
+																			<?php
+																			$queryGettingAdminID3 = "SELECT * FROM tbl_adminaccount WHERE `adminId` = '$varcharadminid' ";
+																			$resultGettingAdminID3 = mysqli_query($connect, $queryGettingAdminID3); 
+																			while($res3 = mysqli_fetch_array($resultGettingAdminID3))  
+																			{ 
+																				$varcharStudentAdminFirstName3 = $res3['adminFirstName']; 
+																				$varcharStudentAdminLastName3 = $res3['adminLastName'];
+																				?>
+																				<tr>
+																					<th scope="row">Viewed by</th>
+																					<td><?php echo $varcharStudentAdminFirstName3; ?> <?php echo $varcharStudentAdminLastName3; ?> </td>
 																				</tr>
 																				<?php 
 																			}
@@ -1192,6 +1280,35 @@ require 'header.php';
 				});
 			});
 
+		});
+	</script>
+
+	<script>
+		$(document).ready(function(){
+			$(document).on('click','.significantnotes',function(){
+				var studentNumber = $(this).attr("id");
+				$.ajax({
+					url:"viewStudentAccountDetails.php",
+					method:"post",
+					data:{studentNumber:studentNumber},
+					success:function(data){
+						$('#studentAccountDetails').html(data);
+						$('#view_data_Modal').modal('show');
+					}
+				});
+			});
+			$(document).on('click','.btn-edit',function(){
+				var studentNumber = $(this).attr("id");
+				$.ajax({
+					url:"editStudentAccountDetails.php",
+					method:"post",
+					data:{studentNumber:studentNumber},
+					success:function(data){
+						$('#editStudentAccountDetails').html(data);
+						$('#edit_data_Modal').modal('show');
+					}
+				});
+			});
 		});
 	</script>
 
