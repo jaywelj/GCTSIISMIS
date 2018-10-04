@@ -4,7 +4,7 @@ if (isset($_POST['btnSend']))
   include("connectionString.php");
   $mailto = $_POST['txtbxEmail'];
   $mailSub = "Pasword Reset";
-  $mailMsg = "Resetting Password Link, <a href='localhost/GCTSIISMIS/admin/production/lostPasswordReset.php?id=".$mailto."'>Click This if you want to reset your password</a>.(Password will be changed to admin123) ignore if this wasn't you";
+  $mailMsg = "Resetting Password Link, <a href='https://pupocps.000webhostapp.com/admin/production/lostPasswordReset.php?id=".$mailto."'>Click This if you want to reset your password</a>.(Password will be changed to admin123) ignore if this wasn't you";
   require 'PHPMailer-master/PHPMailerAutoload.php';
   $mail = new PHPMailer();
   $mail ->IsSmtp();
