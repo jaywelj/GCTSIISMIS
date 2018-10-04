@@ -257,27 +257,16 @@ while($res = mysqli_fetch_array($result))
     }
 }
 
-
-// set default header data
-$pdf->SetHeaderData('user.png', PDF_HEADER_LOGO_WIDTH, 'Significant Notes', 'Printable Form');
-
-// set header and footer fonts
-$pdf->setHeaderFont(Array(PDF_FONT_NAME_MAIN, '', PDF_FONT_SIZE_MAIN));
-$pdf->setFooterFont(Array(PDF_FONT_NAME_DATA, '', PDF_FONT_SIZE_DATA));
-
-// set default monospaced font
-$pdf->SetDefaultMonospacedFont(PDF_FONT_MONOSPACED);
-
 // set margins
-$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_TOP, PDF_MARGIN_RIGHT);
-$pdf->SetHeaderMargin(PDF_MARGIN_HEADER);
+$pdf->SetMargins(PDF_MARGIN_LEFT, PDF_MARGIN_RIGHT);
 $pdf->SetFooterMargin(PDF_MARGIN_FOOTER);
 
-// set auto page breaks
-$pdf->SetAutoPageBreak(TRUE, PDF_MARGIN_BOTTOM);
-
+$pdf->SetPrintHeader(false);
 // set image scale factor
 $pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);
+//set image scale factor 
+$pdf->setImageScale(PDF_IMAGE_SCALE_RATIO);  
+
 
 // set some language-dependent strings (optional)
 if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
@@ -289,18 +278,19 @@ if (@file_exists(dirname(__FILE__).'/lang/eng.php')) {
 
 // set font
 $pdf->SetFont('dejavusans', '', 10);
-
+$pdf->Image('images/GCTS_LOGO1.png', 70, 5, 73, 20, '', '', '', true, 100);
 // add a page
 $pdf->AddPage();
 
+// $pdf->Image('', 0, 0, 50, 50, 'PNG', 'https://image.ibb.co/fwB5qz/GCTS_LOGO1.png', '', true, 150, '', false, false, 1, false, false, false);
 
 // writeHTML($html, $ln=true, $fill=false, $reseth=false, $cell=false, $align='')
 // writeHTMLCell($w, $h, $x, $y, $html='', $border=0, $ln=0, $fill=0, $reseth=true, $align='', $autopadding=true)
 
 // create some HTML content
 
-$html = '<h1>'.$varcharStudentNumber.' - Significant Notes</h1>
-<h2>'.$varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName.'</h2>
+$html = '<h3 style="text-align:center">Polytechnic University of the Philippines</h3><h3 style="text-align:center" >OFFICE OF COUNSELING AND PSYCHOLOGICAL SERVICES</h3><h2 style="text-align:center" >Significant Notes</h2><img src="https://image.ibb.co/iNkFqz/PUPLogo88x88.png" style="position:absolute; top:0px; right:0;" /><br><h3>Student Number: '.$varcharStudentNumber.'</h3>
+<h3>Name: '.$varcharStudentFirstName.' '.$varcharStudentMiddleName.' '.$varcharStudentLastName.'</h3>
 ';
 
 $result7 = mysqli_query($connect, "SELECT * FROM tbl_significantnotes INNER JOIN tbl_personalinfo ON tbl_significantnotes.studentNumber = tbl_personalinfo.studentNumber WHERE tbl_personalinfo.studentNumber = '$varcharStudentAccountNumber'");
@@ -319,7 +309,9 @@ while($res7 = mysqli_fetch_array($result7)){
     $i = $i + 1 ;
 
     $html .='
+
     Significant Note #'.$i.'
+
     <table>
     <tr>
     <th></th>
@@ -385,11 +377,7 @@ $pdf->writeHTML($html, true, false, true, false, '');
 
 // test some inline CSS
 $html = '';
-
 $pdf->writeHTML($html, true, false, true, false, '');
-
-// reset pointer to the last page
-$pdf->lastPage();
 
 // - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 // Print a table
