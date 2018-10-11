@@ -267,8 +267,8 @@ if(isset($_POST['btnUpdate']))
 		if (!empty($varcharUpdateStudentImage)) 
 		{
 			$queryEdit = "UPDATE `tbl_studentaccount` AS A INNER JOIN tbl_personalinfo AS B ON A.studentNumber = B.studentNumber SET `firstName` = '$varcharUpdateStudentFirstName', `middleName` = '$varcharUpdateStudentMiddleName',`lastName` = '$varcharUpdateStudentLastName', aboutStudent = '$varcharUpdateStudentAbout', collegeCode = '$varcharUpdateStudentCollege', year = '$varcharUpdateStudentYear', section = '$varcharUpdateStudentSection',`studentPassword` = '$varcharUpdateStudentPassword', `courseCode` = '$varcharUpdateStudentCourse', `studentDisplayPic` = '$varcharUpdateStudentImage' WHERE A.studentNumber = '$varcharUpdateStudentNumber'";
-			$message = "0";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "0";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 		}
 		else
 		{

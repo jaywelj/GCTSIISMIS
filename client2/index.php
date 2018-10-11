@@ -49,6 +49,7 @@ if(isset($_POST['btnAdd']))
 	$VarcharStudentAccountMiddleName = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountMiddleName']);
 
 	$VarcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountNumber']);
+	$VarcharStudentAccountNumber = strtoupper($VarcharStudentAccountNumber);
 
 	$VarcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountPassword']);
 	$VarcharStudentAccountCPassword = mysqli_real_escape_string($connect, $_POST['txtbxStudentAccountCPassword']);
@@ -113,7 +114,7 @@ if(isset($_POST['btnAdd']))
 
 		$queryAddStudentAccount = "INSERT INTO `tbl_studentaccount` (`studentNumber`, `studentPassword`, `aboutStudent`, `studentDisplayPic`) VALUES ('$VarcharStudentAccountNumber', '$VarcharStudentAccountPassword', 'Not Interested', NULL)";
 
-		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', '', '', '0', '$VarcharStudentAccountYear', '$VarcharStudentAccountSection', '', NULL, NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
+		$queryAddPersonalInfo = "INSERT INTO `tbl_personalinfo` (`infoID`, `lastName`, `firstName`, `middleName`, `sex`, `sexuality`, `age`, `year`, `section`, `civilStatus`, `birthDate`, `height`, `weight`, `complexion`, `birthPlace`, `cityHouseNumber`, `cityName`, `cityBarangay`, `provinceHouseNumber`, `provinceProvincial`, `provinceName`, `provinceBarangay`, `telNumber`, `mobileNumber`, `email`, `hsGWA`, `religion`, `employerName`, `employerAddress`, `contactPersonName`, `cpAddress`, `cpRelationship`, `cpContactNumber`, `collegeCode`, `courseCode`, `studentNumber`) VALUES (NULL, '$VarcharStudentAccountLastName', '$VarcharStudentAccountFirstName', '$VarcharStudentAccountMiddleName', '', '', '0', '$VarcharStudentAccountYear', '$VarcharStudentAccountSection', '','$dateStudentAccountDate', NULL, NULL, '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', '', NULL, '', NULL, NULL, '', NULL, '', '', '$VarcharStudentAccountCollege', '$VarcharStudentAccountCourse', '$VarcharStudentAccountNumber')";
 
 		$queryAddEducationalBackground = "INSERT INTO `tbl_educationalbackground` (`educationID`, `prepSchoolName`, `prepSchoolAddress`, `prepType`, `prepYearAttended`, `prepAwards`, `elemSchoolName`, `elemSchoolAddress`, `elemType`, `elemYearAttended`, `elemAwards`, `hsSchoolName`, `hsSchoolAddress`, `hsType`, `hsYearAttended`, `hsAwards`, `vocSchoolName`, `vocSchoolAddress`, `vocType`, `vocYearAttended`, `vocAwards`, `collegeSchoolName`, `collegeSchoolAddress`, `collegeType`, `collegeYearAttended`, `collegeAwards`, `natureOfSchooling`, `interruptedWhy`, `studentNumber`) VALUES (NULL, NULL, NULL, NULL, NULL, NULL, '', '', '', '', NULL, '', '', '', '', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '', NULL, '$VarcharStudentAccountNumber')";
 
@@ -128,8 +129,8 @@ if(isset($_POST['btnAdd']))
 
 		if(mysqli_query($connect, $queryAddStudentAccount))
 		{   
-			$message = "Successfully Added Student Account";
-			echo "<script type='text/javascript'>alert('$message');</script>";
+			// $message = "Successfully Added Student Account";
+			// echo "<script type='text/javascript'>alert('$message');</script>";
 			if (mysqli_query($connect, $queryAddPersonalInfo)) 
 			{
 				$message = "Successfully Added In Personal Info";
@@ -152,8 +153,8 @@ if(isset($_POST['btnAdd']))
 									session_start();
 									$_SESSION['sessionStudentAccountNumber'] = $VarcharStudentAccountNumber;
 									$_SESSION['sessionStudentAccountPassword'] = $VarcharStudentAccountPassword;
-									$message = "SUCCESS: You will now be redirected to your account";
-									echo "<script type='text/javascript'>alert('$message');</script>";
+									// $message = "SUCCESS: You will now be redirected to your account";
+									// echo "<script type='text/javascript'>alert('$message');</script>";
 									echo "<script type='text/javascript'>location.href = 'index2.php';</script>";
 
 								}

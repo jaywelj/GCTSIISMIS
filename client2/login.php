@@ -94,7 +94,7 @@
 								<div class="col-lg-6">
 									<div class="form-group has-feedback">
 										<!----- password -------------->
-										<input class="form-control" placeholder="Password" name="txtbxStudentAccountPassword" id="txtbxStudentAccountPassword" type="password" required="required" autocomplete="off" />
+										<input class="form-control" placeholder="Password" name="txtbxStudentAccountPassword" id="txtbxStudentAccountPassword" type="password" required="required" autocomplete="off" minlength="8" />
 										<span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
 										<!---Alredy exists  ! -->
 										<span class="glyphicon glyphicon-lock form-control-feedback"></span>
@@ -103,7 +103,7 @@
 								<div class="col-lg-6">
 									<div class="form-group has-feedback">
 										<!-----confirm password -------------->
-										<input class="form-control" placeholder="Confirm Password" name="txtbxStudentAccountCPassword" id="txtbxStudentAccountCPassword" type="password" required="required" autocomplete="off" />
+										<input class="form-control" placeholder="Confirm Password" name="txtbxStudentAccountCPassword" id="txtbxStudentAccountCPassword" type="password" required="required" autocomplete="off" minlength="8" />
 										<span style="display:none;font-weight:bold; position:absolute;color: grey;position: absolute;padding:4px;font-size: 11px;background-color:rgba(128, 128, 128, 0.26);z-index: 17;  right: 27px; top: 5px;" id="span_loginpsw"></span>
 										<!---Alredy exists  ! -->
 										<span class="glyphicon glyphicon-lock form-control-feedback"></span>

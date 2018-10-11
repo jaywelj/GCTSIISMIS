@@ -563,6 +563,7 @@ require 'header.php';
 															<option value="Self-Employed">Self-Employed</option>
 														</optgroup>
 														<option value="Unemployed">Unemployed</option>
+														<option>Unemployed</option>
 													</select>
 												</div>
 												<div class="item form-group">
@@ -661,6 +662,7 @@ require 'header.php';
 															<option value="Self-Employed">Self-Employed</option>
 														</optgroup>
 														<option value="Unemployed">Unemployed</option>
+														<option>Unemployed</option>
 													</select>
 												</div>
 												<div class="item form-group">
@@ -751,6 +753,7 @@ require 'header.php';
 															<option value="Self-Employed">Self-Employed</option>
 														</optgroup>
 														<option value="Unemployed">Unemployed</option>
+														<option>Unemployed</option>
 													</select>
 												</div>
 											</div>
