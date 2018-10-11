@@ -254,11 +254,16 @@ require 'header.php';
 														$respondesntstotal += $row2['COUNT(answerID)'];
 													}
 												}
-												echo "
-												<script type='text/javascript'> var myChart".$total." = echarts.init(document.getElementById('echarts_pie".$total."')); option = {title : {text: 'Pie Chart', subtext: 'Graphical Representation', x:'center'}, tooltip : {trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)'}, legend: {orient: 'vertical', left: 'left', data: ['".round($values[0]/$respondesntstotal * 100,2) ."% Never','".round($values[1]/$respondesntstotal * 100,2) ."% Seldom','".round($values[2]/$respondesntstotal * 100,2) ."% Sometimes','".round($values[3]/$respondesntstotal * 100,2) ."% Often','".round($values[4]/$respondesntstotal * 100,2) ."% Always'] }, toolbox: {show: true, feature: {restore: {show: true, title: 'Restore'}, saveAsImage: {show: true, title: 'Save Image'} }, x:'right'}, series : [{name: 'Details', type: 'pie', radius : '70%', center: ['50%', '60%'],";
-												echo " data:[{value:".$values[0].", name:'".round($values[0]/$respondesntstotal * 100,2) ."% Never', itemStyle: {color: '#0066cc'}}, {value:".$values[1].", name:'".round($values[1]/$respondesntstotal * 100,2) ."% Seldom', itemStyle: {color: '#009933'}}, {value:".$values[2].", name:'".round($values[2]/$respondesntstotal * 100,2) ."% Sometimes', itemStyle: {color: '#ffcc00'}}, {value:".$values[3].", name:'".round($values[3]/$respondesntstotal * 100,2) ."% Often', itemStyle: {color: '#ff6600'}}, {value:".$values[4].", name:'".round($values[4]/$respondesntstotal * 100,2) ."% Always', itemStyle: {color: '#cc0000'}} ], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart".$total.".setOption(option); </script>"; 
+												if($respondesntstotal != 0)
+												{
+													echo "
+													<script type='text/javascript'> var myChart".$total." = echarts.init(document.getElementById('echarts_pie".$total."')); option = {title : {text: 'Pie Chart', subtext: 'Graphical Representation', x:'center'}, tooltip : {trigger: 'item', formatter: '{a} <br/>{b} : {c} ({d}%)'}, legend: {orient: 'vertical', left: 'left', data: ['".round($values[0]/$respondesntstotal * 100,2) ."% Never','".round($values[1]/$respondesntstotal * 100,2) ."% Seldom','".round($values[2]/$respondesntstotal * 100,2) ."% Sometimes','".round($values[3]/$respondesntstotal * 100,2) ."% Often','".round($values[4]/$respondesntstotal * 100,2) ."% Always'] }, toolbox: {show: true, feature: {restore: {show: true, title: 'Restore'}, saveAsImage: {show: true, title: 'Save Image'} }, x:'right'}, series : [{name: 'Details', type: 'pie', radius : '70%', center: ['50%', '60%'],";
+													echo " data:[{value:".$values[0].", name:'".round($values[0]/$respondesntstotal * 100,2) ."% Never', itemStyle: {color: '#0066cc'}}, {value:".$values[1].", name:'".round($values[1]/$respondesntstotal * 100,2) ."% Seldom', itemStyle: {color: '#009933'}}, {value:".$values[2].", name:'".round($values[2]/$respondesntstotal * 100,2) ."% Sometimes', itemStyle: {color: '#ffcc00'}}, {value:".$values[3].", name:'".round($values[3]/$respondesntstotal * 100,2) ."% Often', itemStyle: {color: '#ff6600'}}, {value:".$values[4].", name:'".round($values[4]/$respondesntstotal * 100,2) ."% Always', itemStyle: {color: '#cc0000'}} ], itemStyle: {emphasis: {shadowBlur: 20, shadowOffsetX: 6, shadowColor: 'rgba(0, 0, 0, 0.5)'} } }, ] }; myChart".$total.".setOption(option); </script>"; 
+														$total++;
+												}
+												
 
-												$total++;
+												
 											}
 											?>
 

@@ -1131,6 +1131,7 @@ require 'header.php';
 																	<option value="Self-Employed">Self-Employed</option>
 																</optgroup>
 																<option value="Unemployed" selected="selected">Unemployed</option>
+																<option>Unknown</option>
 															</select>
 														</div>
 													</div>
@@ -1204,6 +1205,7 @@ require 'header.php';
 																	<option value="Self-Employed">Self-Employed</option>
 																</optgroup>
 																<option value="Unemployed" selected="selected">Unemployed</option>
+																<option>Unknown</option>
 															</select>
 														</div>
 													</div>
@@ -1288,6 +1290,7 @@ require 'header.php';
 																	<option value="Self-Employed">Self-Employed</option>
 																</optgroup>
 																<option value="Unemployed" selected="selected">Unemployed</option>
+																<option>Unknown</option>
 															</select>
 														</div>
 													</div>
@@ -2359,7 +2362,7 @@ require 'header.php';
 				})
 				
 				$('#dropdownMotherOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxMotherOccupation").disabled = true;
 						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
@@ -2383,7 +2386,7 @@ require 'header.php';
 						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+				if('<?php echo $varcharStudentMotherOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentMotherOccupationType; ?>' == 'Unknown' )
 				{
 					document.getElementById("txtbxMotherOccupation").disabled = true;
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
@@ -2392,7 +2395,7 @@ require 'header.php';
 					document.getElementById("txtbxMotherNameOfEmployer").value = "";
 					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
 				}
-				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
+				else if('<?php echo $varcharStudentMotherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
@@ -2407,7 +2410,7 @@ require 'header.php';
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 				}
 				$('#dropdownFatherOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxFatherOccupation").disabled = true;
 						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
@@ -2431,7 +2434,7 @@ require 'header.php';
 						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unknown')
 				{
 					document.getElementById("txtbxFatherOccupation").disabled = true;
 					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
@@ -2455,7 +2458,7 @@ require 'header.php';
 					document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 				}
 				$('#dropdownGuardianOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxGuardianOccupation").disabled = true;
 						document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
@@ -2479,7 +2482,7 @@ require 'header.php';
 						document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unemployed')
+				if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unknown')
 				{
 					document.getElementById("txtbxGuardianOccupation").disabled = true;
 					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;

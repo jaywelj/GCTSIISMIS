@@ -2081,7 +2081,7 @@ require 'header.php';
 															<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" ></textarea>
 														</div>
 													</div>
-													<span class="section" style="margin-left:90px;">Ii. Extra-Culicular</span>
+													<span class="section" style="margin-left:90px;">II. Extraculicular</span>
 													<div class="form-group">
 														<label class="control-label col-md-4 col-sm-4"  >Hobbies (according to preference) <span class="required">*</span>
 														</label>

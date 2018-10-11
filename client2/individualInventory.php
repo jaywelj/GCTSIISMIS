@@ -1165,6 +1165,7 @@ else
 																<option value="Self-Employed">Self-Employed</option>
 															</optgroup>
 															<option value="Unemployed" selected="selected">Unemployed</option>
+															<option value="Unknown" >Unknown</option>
 														</select>
 													</div>
 												</div>
@@ -1241,6 +1242,7 @@ else
 																<option value="Self-Employed">Self-Employed</option>
 															</optgroup>
 															<option value="Unemployed" selected="selected">Unemployed</option>
+															<option value="Unknown" >Unknown</option>
 														</select>
 													</div>
 												</div>
@@ -1325,6 +1327,7 @@ else
 																<option value="Self-Employed">Self-Employed</option>
 															</optgroup>
 															<option value="Unemployed" selected="selected">Unemployed</option>
+															<option>Unknown</option>
 														</select>
 													</div>
 												</div>
@@ -1727,7 +1730,7 @@ else
 														<textarea class="form-control" name="txtareaLeastFavoriteSubject" id="txtareaLeastFavoriteSubject" style="text-transform:capitalize;" pattern="^[\u00F1A-Za-z-'.,\s]+$"><?php echo $varcharStudentLeastFavSubject; ?></textarea>
 													</div>
 												</div>
-												<h4 class="section" style="margin-left:90px;">II. Extra-Culicular</h4>
+												<h4 class="section" style="margin-left:90px;">II. Extraculicular</h4>
 												<div class="item form-group">
 													<label class="control-label col-md-3 col-sm-3"  >Hobbies (according to preference)</label>
 												</div>
@@ -1938,6 +1941,19 @@ else
 				var calculatedAge = age;
 				document.getElementById("txtbxAge").value = calculatedAge;
 			})
+			var dateDateOfBirthday = '<?php echo $varcharStudentBirthdate; ?>';
+			var today = new Date();
+			var birthDate = new Date(dateDateOfBirthday);
+			var age = today.getFullYear() - birthDate.getFullYear();
+			var m = today.getMonth() - birthDate.getMonth();
+			if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+				age--;
+			}
+			if (age < 13 || age > 115)
+			{
+				age = "";
+			}
+			var calculatedAge = age;
 			$('#txtbxHeight').blur(function() {
 				var txtbxHeight = $(this).val();
 				if( txtbxHeight < 50 || txtbxHeight > 300)
@@ -2365,7 +2381,7 @@ else
 					}
 				})
 				$('#dropdownMotherOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxMotherOccupation").disabled = true;
 						document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
@@ -2389,7 +2405,9 @@ else
 						document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+				
+				document.getElementById("txtbxAge").value = calculatedAge;
+				if('<?php echo $varcharStudentMotherOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentMotherOccupationType; ?>' == 'Unknown' )
 				{
 					document.getElementById("txtbxMotherOccupation").disabled = true;
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
@@ -2398,7 +2416,7 @@ else
 					document.getElementById("txtbxMotherNameOfEmployer").value = "";
 					document.getElementById("txtbxMotherAddressOfEmployer").value = "";
 				}
-				else if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Self-Employed')
+				else if('<?php echo $varcharStudentMotherOccupationType; ?>' == 'Self-Employed')
 				{
 					document.getElementById("txtbxMotherNameOfEmployer").disabled = true;
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = true;
@@ -2413,7 +2431,7 @@ else
 					document.getElementById("txtbxMotherAddressOfEmployer").disabled = false;
 				}
 				$('#dropdownFatherOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxFatherOccupation").disabled = true;
 						document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
@@ -2437,7 +2455,7 @@ else
 						document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed')
+				if('<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentFatherOccupationType; ?>' == 'Unknown')
 				{
 					document.getElementById("txtbxFatherOccupation").disabled = true;
 					document.getElementById("txtbxFatherNameOfEmployer").disabled = true;
@@ -2461,7 +2479,7 @@ else
 					document.getElementById("txtbxFatherAddressOfEmployer").disabled = false;
 				}
 				$('#dropdownGuardianOccupationType').change(function() {
-					if($(this).val() == 'Unemployed')
+					if($(this).val() == 'Unemployed' || $(this).val() == 'Unknown')
 					{
 						document.getElementById("txtbxGuardianOccupation").disabled = true;
 						document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
@@ -2485,7 +2503,7 @@ else
 						document.getElementById("txtbxGuardianAddressOfEmployer").disabled = false;
 					}
 				})
-				if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unemployed')
+				if('<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unemployed' || '<?php echo $varcharStudentGuardianOccupationType; ?>' == 'Unknown')
 				{
 					document.getElementById("txtbxGuardianOccupation").disabled = true;
 					document.getElementById("txtbxGuardianNameOfEmployer").disabled = true;
