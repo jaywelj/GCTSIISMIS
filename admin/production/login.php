@@ -5,7 +5,7 @@ if (isset($_POST['btnLogin']))
 {
 	$varcharEmail = mysqli_real_escape_string($connect, $_POST['txtbxEmail']);
 	$varcharPassword = mysqli_real_escape_string($connect, $_POST['txtbxPassword']);
-	$queryAccount = "SELECT * FROM tbl_adminaccount WHERE adminEmail='$varcharEmail' AND adminPassword='$varcharPassword' ";
+	$queryAccount = "SELECT * FROM tbl_adminaccount WHERE adminEmail LIKE '$varcharEmail' AND adminPassword LIKE '$varcharPassword' ";
 	$resultAccount = mysqli_query($connect, $queryAccount);
 
 	while($res = mysqli_fetch_array($resultAccount)) 

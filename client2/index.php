@@ -5,9 +5,9 @@ if(isset($_POST['btnLogin']))
 	$varcharStudentAccountNumber = mysqli_real_escape_string($connect, $_POST['loginid']);
 	$varcharStudentAccountPassword = mysqli_real_escape_string($connect, $_POST['loginpw']);
 
-	$queryAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber='$varcharStudentAccountNumber' AND studentPassword='$varcharStudentAccountPassword' ";
+	$queryAccount = "SELECT * FROM tbl_studentaccount WHERE studentNumber LIKE '$varcharStudentAccountNumber' AND studentPassword LIKE '$varcharStudentAccountPassword' ";
 
-	$queryAccount2 = "SELECT * FROM tbl_personalinfo WHERE studentNumber='$varcharStudentAccountNumber'";
+	$queryAccount2 = "SELECT * FROM tbl_personalinfo WHERE studentNumber LIKE '$varcharStudentAccountNumber'";
 
 	$queryArray = mysqli_query($connect, $queryAccount);
 	$queryArray2 = mysqli_query($connect, $queryAccount2);
@@ -276,8 +276,8 @@ if(isset($_POST['btnEmailSend']))
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
 	<title>Home | OCPS</title>
-	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta name="description" content="Office of Counselling and Psychological Services">
+	<meta name="keywords" content="PUP, Guidance, Psychology, Polytechnic University of the Phillipines">
 
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" href="css/bootstrap.min.css">
@@ -296,7 +296,7 @@ if(isset($_POST['btnEmailSend']))
 					<span class="icon-bar"></span>
 					<span class="icon-bar"></span>
 				</button>
-				<a class="navbar-brand" href="index.html">
+				<a class="navbar-brand" href="index.php">
 					<span>O</span>CP<span>S</span>
 				</a>
 			</div>
@@ -774,7 +774,7 @@ if(isset($_POST['btnEmailSend']))
 
 			<!-- End newsletter-form -->
 			<ul class="social-links" style="padding:0;margin-top:0;">
-				<li id="footerHome"><a href="home.php" style="font-size: 15px ">Home</a></li>
+				<li id="footerHome"><a href="index.php" style="font-size: 15px ">Home</a></li>
 				<!-- <li id="footerProfile"><a href="profile.php" style="font-size: 15px ">Profile</a></li> -->
 				<!-- <li id="footerSurvey"><a href="surveys.php" style="font-size: 15px ">Surveys</a></li> -->
 				<li id="footerAbouts"><a href="abouts.php" style="font-size: 15px ">About Us</a></li>

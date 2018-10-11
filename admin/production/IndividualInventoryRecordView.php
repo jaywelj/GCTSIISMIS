@@ -998,7 +998,7 @@ require 'header.php';
 
 																<h4 class="heading">Significant Notes</h4>
 																<table class="table">
-																	<a href="printSignificantNotes.php?id=<?php echo $varcharStudentNumber;?>" class="btn btn-info btn-sm " title="Print">Print Significant Notes</a>
+																	<a href="printSignificantNotes.php?id=<?php echo $varcharStudentNumber;?> " target="_blank" class="btn btn-info btn-sm " title="Print">Print Significant Notes</a>
 																	<?php
 
 																	$resulto = mysqli_query($connect,"INSERT INTO `tbl_printedsignificantnotes` (`print_ID`, `studentNumber`, `adminID`, `datePrinted`,`printClassification`) VALUES (NULL, '$varcharStudentAccountNumber', '$LoggedInAdminID', CURRENT_TIMESTAMP, 'View')");

@@ -303,8 +303,8 @@ if(isset($_POST['btnUpdate']))
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="shortcut icon" href="img/GCTS LOGO1.png">
 	<title>Profile | OCPS</title>
-	<meta name="description" content="Free Bootstrap Theme by BootstrapMade.com">
-	<meta name="keywords" content="free website templates, free bootstrap themes, free template, free bootstrap, free website template">
+	<meta name="description" content="Office of Counselling and Psychological Services">
+	<meta name="keywords" content="PUP, Guidance, Psychology, Polytechnic University of the Phillipines">
 	<link rel="stylesheet" type="text/css" href="css/font-awesome.min.css">
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/imagehover.min.css">
