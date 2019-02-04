@@ -2233,10 +2233,6 @@ else
 					}
 					var NoOfSiblings = Number(txtbxNoOfBrothers) + (Number(txtbxNoOfSisters) + 1);
 					var txtbxNoOfChildrenInTheFamily = $('#txtbxNoOfChildrenInTheFamily').val();
-					//if(NoOfSiblings != txtbxNoOfChildrenInTheFamily)
-					//{
-					//	alert("Invalid No. of Brother/s or Sister/s");
-					//}
 				})
 				$('#txtbxNoOfBrothersSistersGainfullyEmployed').blur(function() {
 					var txtbxNoOfBrothers = $('#txtbxNoOfBrothers').val();
@@ -3030,7 +3026,6 @@ else
 				$("#dropdownSupportedByYourSibling").val('Others');
 				$('#dropdownSupportedByYourSibling option').each(function(){
 					if (this.value == "<?php echo $varcharStudentSiblingSupporter;?>") {
-						alert('true');
 						document.getElementById('txtbxOthersSupportedByYourSibling').disabled="true";
 						document.getElementById('txtbxOthersSupportedByYourSibling').value="";
 						$("#dropdownSupportedByYourSibling").val(this.value);

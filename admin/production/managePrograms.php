@@ -14,7 +14,7 @@ if(isset($_POST['btnAdd']))
 	$varcharProgramSubCategory = $_POST['txtareaProgramSubCategory'];
 	if($_FILES["fileProgramImage"]==NULL)
 	{
-		
+		echo "<script type='text/javascript'>alert('There Is No Image Uploaded And Will Continue Uploading Like This?');</script>";
 	}
 	else
 	{
