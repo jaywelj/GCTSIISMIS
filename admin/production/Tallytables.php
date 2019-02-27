@@ -107,7 +107,7 @@ require 'header.php';
 										$queryStudent = "SELECT DISTINCT courseCode, year, section FROM tbl_personalinfo WHERE collegeCode = '$college' AND courseCode = '$course' GROUP BY courseCode,year,section ASC";
 									}
 									$resultStudentSexTotal = mysqli_query($connect, $queryStudent); 
-									$ttotal = 0;
+									$ttotal = 1;
 									while($row = mysqli_fetch_array($resultStudentSexTotal))  
 									{  
 										$currentCourse = $row['courseCode'];
@@ -122,8 +122,9 @@ require 'header.php';
 										}
 									}
 									$total = 0;
+									$ttotald = $ttotal - 1;
 									?>
-									<h2 class="pull-right">Total Number of Respondents = <?php echo $ttotal; ?> </h2>
+									<h2 class="pull-right">Total Number of Respondents = <?php echo $ttotald; ?> </h2>
 									<!-- <p class="text-muted font-13 m-b-30">
 										<b>Student Individual Inventory Tally of Records</b>
 									</p>-->

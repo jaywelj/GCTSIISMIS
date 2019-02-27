@@ -49,8 +49,8 @@ if(isset($_POST['btnAdd']))
 			$queryOtherCategory = "INSERT INTO `tbl_incidentcategory` (`categoryID`, `categoryName`) VALUES (NULL, '$varcharNoteCategoryOthers')";
 			if(mysqli_query($connect, $queryOtherCategory))
 			{
-				$message = "Incident Category added successfully!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+				// $message = "Incident Category added successfully!";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
 				$queryOtherCategoryID = "SELECT * FROm tbl_incidentcategory WHERE `categoryName` =  '$varcharNoteCategoryOthers' ";
 				$resultOtherCategoryID = mysqli_query($connect, $queryOtherCategoryID);
 				while ($row = mysqli_fetch_array($resultOtherCategoryID)) {
@@ -73,8 +73,8 @@ if(isset($_POST['btnAdd']))
 			$queryOtherSubCategory = "INSERT INTO `tbl_incidentsubcategory` (`subCategoryID`, `subCategoryName`) VALUES (NULL, '$varcharNoteSubCategoryOthers')";
 			if(mysqli_query($connect, $queryOtherSubCategory))
 			{
-				$message = "Incident Sub Category added successfully!";
-				echo "<script type='text/javascript'>alert('$message');</script>";
+				// $message = "Incident Sub Category added successfully!";
+				// echo "<script type='text/javascript'>alert('$message');</script>";
 				$queryOtherSubCategoryID = "SELECT * FROM tbl_incidentsubcategory WHERE `subCategoryName` = '$varcharNoteSubCategoryOthers'";
 				$resultOtherSubCategoryID = mysqli_query($connect, $queryOtherSubCategoryID);
 				while ($row = mysqli_fetch_array($resultOtherSubCategoryID)) {

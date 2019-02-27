@@ -410,6 +410,8 @@ require 'header.php';
 				$CountedValueArray[] = $row['count'];
 				$SubCategoryIDArray[] = $row['subCategoryID'];
 			}
+			if(!empty($CountedValueArray))
+			{
 			$CountedValueFirstElement = array_shift( $CountedValueArray );
 			$CountedSubCategoryIDFirstElement = array_shift( $SubCategoryIDArray );
 
@@ -419,6 +421,7 @@ require 'header.php';
 			{
 				$SubCategoryName = $row['subCategoryName'];
 			}
+
 			if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInSignificantNotes) == 0) {
 				$message = "There are no significant notes in the recent 6 months for the program recommender to use";
 				echo "<script>var notyMessage = '$message';</script>";
@@ -426,6 +429,12 @@ require 'header.php';
 			else
 			{
 				$message = "The most hottest topic recorded in significant notes is ".$SubCategoryName." with a total of ".$CountedValueFirstElement." records this past 6 months ";
+				echo "<script>var notyMessage = '$message';</script>";
+			}
+		}
+		else
+			{
+				$message = "There are no significant notes in the recent 6 months for the program recommender to use";
 				echo "<script>var notyMessage = '$message';</script>";
 			}
 //PROBLEM
@@ -438,15 +447,20 @@ require 'header.php';
 				$CountedValueArray2[] = $row['count'];
 				$SubCategoryIDArray2[] = $row['subCategoryID'];
 			}
+			if(!empty($CountedValueArray2)){
+
+			
 			$CountedValueFirstElement2 = array_shift( $CountedValueArray2 );
 			$CountedSubCategoryIDFirstElement2 = array_shift( $SubCategoryIDArray2 );
 
 			$queryGettingSubCategoryName2 = "SELECT * FROM tbl_incidentsubcategory WHERE subCategoryID = '$CountedSubCategoryIDFirstElement2'";
+
 			$resultGettingSubCategoryName2 = mysqli_query($connect,$queryGettingSubCategoryName2);
 			while ($row = mysqli_fetch_array($resultGettingSubCategoryName2))
 			{
 				$SubCategoryName2 = $row['subCategoryName'];
 			}
+
 			if (mysqli_num_rows($resultGettingSuggestionsBasedOnNumberOfSubCategoryIDInMessage) == 0) {
 				$message2 = "There are no message in the recent 6 months for the program recommender to use ";
 				echo "<script>var notyMessage2 = '$message2';</script>";
@@ -456,9 +470,16 @@ require 'header.php';
 				$message2 = "The most hottest topic recorded in messages is ".$SubCategoryName2." with a total of ".$CountedValueFirstElement2." records this past 6 months ";
 				echo "<script>var notyMessage2 = '$message2';</script>";
 			}
+		}
+		else
+		{
+			$message2 = "There are no message in the recent 6 months for the program recommender to use ";
+				echo "<script>var notyMessage2 = '$message2';</script>";
+		}
 			// echo "<script type='text/javascript'>alert('$message');</script>";
 			
 			//End 2 
+
 			$queryGettingSuggestionsBasedOnSurvey = "SELECT *,SUM(answerProblem) AS talliedAnswers, (SUM(answerProblem) / (SELECT COUNT(*) FROM tbl_answerproblem )) * 100 AS 'averageRating', COUNT(tbl_surveyofproblems.problemID) AS countedBiggestProblem FROM tbl_answerproblem INNER JOIN tbl_surveyofproblems ON tbl_answerproblem.problemID = tbl_surveyofproblems.problemID where answerDate > DATE_SUB(now(), INTERVAL 6 MONTH) GROUP BY tbl_answerproblem.problemID ORDER BY talliedAnswers DESC LIMIT 5";
 			$resultGettingSuggestionsBasedOnSurvey = mysqli_query($connect, $queryGettingSuggestionsBasedOnSurvey);
 
