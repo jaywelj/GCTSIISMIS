@@ -1,5 +1,6 @@
 <?php 
 include("connectionString.php");
+error_reporting(0)
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -62,7 +63,8 @@ require 'header.php';
 					while ($res =  mysqli_fetch_array($resultStudentAccount6MonthsAgo)) {
 						$NumberOfStudentAccounts6MonthsAgo = $res['NumberOfStudentAccounts6MonthsAgo'];
 						$NewNumberOfStudentAccounts = $CurrentNumberOfStudentAccounts - $NumberOfStudentAccounts6MonthsAgo;
-						if ($CurrentNumberOfStudentAccounts = $NumberOfStudentAccounts6MonthsAgo || $CurrentNumberOfStudentAccounts == 0) {
+						if ($CurrentNumberOfStudentAccounts = $NumberOfStudentAccounts6MonthsAgo || $CurrentNumberOfStudentAccounts = 0 || $CurrentNumberOfStudentAccounts = 0) 
+						{
 							$PercentageOfIncreaseOfStudentAccounts = 0;
 						}
 						else{
